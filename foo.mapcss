@@ -1,0 +1,3 @@
+node|z15-[amenity=bar] {
+  text: auto;
+}
