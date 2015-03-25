@@ -1,4 +1,4 @@
 node|z15-[amenity=bar] {
   text: auto;
-  text-color: blue;
+  text-color: green;
 }
