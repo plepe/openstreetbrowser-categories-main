@@ -1,0 +1,3 @@
+area[building] {
+  fill-color: black;
+}
