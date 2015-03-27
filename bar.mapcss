@@ -1,3 +1,7 @@
+meta {
+  title: "Bar style";
+}
+
 area[leisure=park] {
   fill-color: green;
   text: name;
