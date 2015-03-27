@@ -1,0 +1,4 @@
+area[leisure=park] {
+  fill-color: green;
+  text: name;
+}
