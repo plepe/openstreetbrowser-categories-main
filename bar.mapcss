@@ -4,6 +4,6 @@ meta {
 
 area[leisure=park] {
   fill-color: green;
-  text-halo-color: blue;
+  text-halo-color: red;
   text: name;
 }
