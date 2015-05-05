@@ -6,4 +6,5 @@ area[leisure=park] {
   fill-color: green;
   text-halo-color: red;
   text: name;
+  icon-image: restaurant;
 }
