@@ -6,5 +6,6 @@ area[leisure=park] {
   fill-color: green;
   text-halo-color: red;
   text: name;
+  list-type: tr("tag:leisure=park");
   icon-image: restaurant;
 }
