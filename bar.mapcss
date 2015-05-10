@@ -1,5 +1,5 @@
 meta {
-  title: "Bar style";
+  title: tr("Bar style");
 }
 
 area[leisure=park] {
