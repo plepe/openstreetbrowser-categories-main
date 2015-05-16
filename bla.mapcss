@@ -1,3 +1,4 @@
 node[place] {
   text: tag('name') . ' (' . tag('place') . ')';
+  type: tr("foo");
 }
