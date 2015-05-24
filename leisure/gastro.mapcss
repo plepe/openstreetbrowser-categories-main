@@ -1,0 +1,8 @@
+meta {
+  title: tr("title:gastro");
+}
+
+node[amenity=restaurant] {
+  text: name;
+  type: tr('tag:amenity=restaurant');
+}
