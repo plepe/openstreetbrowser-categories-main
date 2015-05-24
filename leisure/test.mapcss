@@ -1,3 +1,7 @@
+meta {
+  title: tr("title:restaurants");
+}
+
 node[amenity=restaurant] {
   text: name;
 }
