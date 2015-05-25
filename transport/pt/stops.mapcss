@@ -18,5 +18,11 @@ node|z11-[railway=station] {
 
 node.stop,
 area.stop {
-  text: auto;
+  set .z-index = prop('z-index');
+  combine stop tag('name');
+}
+
+stop {
+  text: name;
+  z-index: max(tag('.z-index'));
 }
