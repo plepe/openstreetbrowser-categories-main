@@ -28,5 +28,5 @@ area.stop {
 stop {
   text: name;
   list-type: join(', ', unique(tag('.type')));
-  z-index: sum(unqiue((tag('.z-index'))));
+  z-index: sum(unique(tag('.z-index')));
 }
