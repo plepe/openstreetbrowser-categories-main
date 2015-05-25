@@ -2,7 +2,65 @@ meta {
   title: tr("title:gastro");
 }
 
-node[amenity=restaurant] {
-  text: name;
-  type: tr('tag:amenity=restaurant');
+node|z14-[amenity=restaurant],
+area|z14-[amenity=restaurant] {
+  set .amenity;
+  list-type: tr('tag:amenity=restaurant');
+  icon-image: restaurant;
+}
+node|z14-[amenity=bar],
+area|z14-[amenity=bar] {
+  set .amenity;
+  list-type: tr('tag:amenity=bar');
+  icon-image: bar;
+}
+node|z14-[amenity=biergarten],
+area|z14-[amenity=biergarten] {
+  set .amenity;
+  list-type: tr('tag:amenity=biergarten');
+  icon-image: restaurant;
+}
+node|z14-[amenity=cafe],
+area|z14-[amenity=cafe] {
+  set .amenity;
+  list-type: tr('tag:amenity=cafe');
+  icon-image: cafe;
+}
+node|z14-[amenity=casino],
+area|z14-[amenity=casino] {
+  set .amenity;
+  list-type: tr('tag:amenity=casino');
+  icon-image: bar;
+}
+node|z14-[amenity=fast_food],
+area|z14-[amenity=fast_food] {
+  set .amenity;
+  list-type: tr('tag:amenity=fast_food');
+  icon-image: bar;
+}
+node|z14-[amenity=food_court],
+area|z14-[amenity=food_court] {
+  set .amenity;
+  list-type: tr('tag:amenity=food_court');
+  icon-image: restaurant;
+}
+node|z14-[amenity=pub],
+area|z14-[amenity=pub] {
+  set .amenity;
+  list-type: tr('tag:amenity=pub');
+  icon-image: pub;
+}
+node|z14-[amenity=bbq],
+area|z14-[amenity=bbq] {
+  set .amenity;
+  list-type: tr('tag:amenity=bbq');
+}
+
+*.amenity|z14-16 {
+  list-text: auto; // only show name in list, but not on overlay
+  icon-size: 12;
+}
+*.amenity|z16- {
+  text: auto;
+  icon-size: 12;
 }
