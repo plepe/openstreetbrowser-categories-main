@@ -1,0 +1,21 @@
+meta {
+  title: tr('title:pt-stops');
+}
+
+node|z14-[highway=bus_stop] {
+  set .stop;
+  z-index: 5;
+}
+node|z13-[railway=tram_stop] {
+  set .stop;
+  z-index: 6;
+}
+area|z11-[railway=station],
+node|z11-[railway=station] {
+  z-index: 10;
+  set .stop;
+}
+
+*.stop {
+  text: auto;
+}
