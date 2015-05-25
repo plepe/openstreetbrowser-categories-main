@@ -16,6 +16,7 @@ node|z11-[railway=station] {
   set .stop;
 }
 
-*.stop {
+node.stop,
+area.stop {
   text: auto;
 }
