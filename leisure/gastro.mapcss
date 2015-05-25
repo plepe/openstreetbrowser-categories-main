@@ -48,7 +48,7 @@ node|z14-[amenity=pub],
 area|z14-[amenity=pub] {
   set .amenity;
   list-type: tr('tag:amenity=pub');
-  icon-image: pub;
+  icon-image: beer;
 }
 node|z14-[amenity=bbq],
 area|z14-[amenity=bbq] {
