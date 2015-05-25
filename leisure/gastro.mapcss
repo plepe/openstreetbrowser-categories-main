@@ -58,9 +58,13 @@ area|z14-[amenity=bbq] {
 
 *.amenity|z14-16 {
   list-text: auto; // only show name in list, but not on overlay
-  icon-size: 12;
+  icon-width: 12;
+  icon-color: #b07c00;
+  text-color: #b07c00;
 }
 *.amenity|z16- {
   text: auto;
-  icon-size: 12;
+  icon-width: 12;
+  icon-color: #b07c00;
+  text-color: #b07c00;
 }
