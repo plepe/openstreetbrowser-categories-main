@@ -1,8 +1,14 @@
 {
     "Bar style": "",
     "dir:leisure": "",
+    "dir:transport": "",
+    "dir:transportpt": "",
     "foo": "",
+    "tag:highway=bus_stop": "",
     "tag:leisure=park": "",
+    "tag:railway=station": "",
+    "tag:railway=tram_stop": "",
     "title:gastro": "",
+    "title:pt-stops": "",
     "title:restaurants": ""
 }
