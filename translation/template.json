@@ -1,6 +1,7 @@
 {
     "Bar style": "",
     "dir:leisure": "",
+    "dir:places": "",
     "dir:transport": "",
     "dir:transportpt": "",
     "foo": "",
@@ -15,6 +16,8 @@
     "tag:amenity=restaurant": "",
     "tag:highway=bus_stop": "",
     "tag:leisure=park": "",
+    "tag:place=city": "",
+    "tag:population": "",
     "tag:railway=station": "",
     "tag:railway=tram_stop": "",
     "title:gastro": "",
