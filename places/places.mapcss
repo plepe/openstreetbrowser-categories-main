@@ -1,19 +1,20 @@
 node|z7-[place=city] {
   set .place;
-  list-type: tr('tag:place=city');
+  set .type = tr('tag:place=city');
   z-index: 5;
 }
 node|z6-[place=city][population>=200000] {
   set .place;
-  list-type: concat(tr('tag:place=city'), ', ', tr('tag:population'), ' >= 200000');
+  set .type = tr('tag:place=city');
   z-index: 6;
 }
 node|z5-[place=city][population>=1000000] {
   set .place;
-  list-type: concat(tr('tag:place=city'), ', ', tr('tag:population'), ' >= 1000000');
+  set .type = tr('tag:place=city');
   z-index: 7;
 }
 
 node.place {
   text: auto;
+  list-type: concat(tr('tag:place=city'), cond(tag('population'), concat(', ', tr('tag:population'), ': ', tag('population')), ''));
 }
