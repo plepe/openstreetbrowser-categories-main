@@ -3,7 +3,7 @@ meta {
 }
 
 area[leisure=park] {
-  fill-color: green;
+  fill-color: #007f007f;
   text-halo-color: red;
   text: name;
   type: tr("tag:leisure=park");
