@@ -1,3 +1,0 @@
-node[amenity=restaurant] {
-  text: name;
-}
