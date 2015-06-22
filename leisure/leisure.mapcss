@@ -11,6 +11,7 @@ meta {
   text: auto;
   list-type: tr('tag:amenity=brothel');
   icon-image: url('img/Brothel.png');
+  z-index: 3;
 }
 
 *|z16-17[amenity=bench] {
@@ -22,6 +23,7 @@ meta {
   text: auto;
   list-type: tr('tag:amenity=bench');
   icon-image: url('img/4d74891f9b793.svg');
+  z-index: 1;
 }
 
 *|z13-14[leisure=nature_reserve] {
@@ -31,6 +33,7 @@ meta {
 *|z15-[leisure=nature_reserve] {
   text: auto;
   list-type: tr('tag:leisure=nature_reserve');
+  z-index: 3;
 }
 
 *|z13-14[leisure=beach_resort] {
@@ -40,6 +43,7 @@ meta {
 *|z15-[leisure=beach_resort] {
   text: auto;
   list-type: tr('tag:leisure=beach_resort');
+  z-index: 3;
 }
 
 *|z13-14[landuse=recreation_ground] {
@@ -49,6 +53,7 @@ meta {
 *|z15-[landuse=recreation_ground] {
   text: auto;
   list-type: tr('tag:landuse=recreation_ground');
+  z-index: 3;
 }
 
 *|z13-14[leisure=sports_centre] {
@@ -58,6 +63,7 @@ meta {
 *|z15-[leisure=sports_centre] {
   text: auto;
   list-type: tr('tag:leisure=sports_centre');
+  z-index: 3;
 }
 
 *|z13-14[leisure=stadium] {
@@ -67,6 +73,7 @@ meta {
 *|z15-[leisure=stadium] {
   text: auto;
   list-type: tr('tag:leisure=stadium');
+  z-index: 3;
 }
 
 *|z13-14[leisure=marina] {
@@ -76,6 +83,7 @@ meta {
 *|z15-[leisure=marina] {
   text: auto;
   list-type: tr('tag:leisure=marina');
+  z-index: 3;
 }
 
 *|z15[leisure=fishing] {
@@ -85,6 +93,7 @@ meta {
 *|z16-[leisure=fishing] {
   text: auto;
   list-type: tr('tag:leisure=fishing');
+  z-index: 2;
 }
 
 *|z15[leisure=park] {
@@ -94,6 +103,7 @@ meta {
 *|z16-[leisure=park] {
   text: auto;
   list-type: tr('tag:leisure=park');
+  z-index: 2;
 }
 
 *|z15[leisure=common] {
@@ -103,6 +113,7 @@ meta {
 *|z16-[leisure=common] {
   text: auto;
   list-type: tr('tag:leisure=common');
+  z-index: 2;
 }
 
 *|z15[leisure=ice_rink] {
@@ -112,6 +123,7 @@ meta {
 *|z16-[leisure=ice_rink] {
   text: auto;
   list-type: tr('tag:leisure=ice_rink');
+  z-index: 2;
 }
 
 *|z15[leisure=miniature_golf] {
@@ -121,6 +133,7 @@ meta {
 *|z16-[leisure=miniature_golf] {
   text: auto;
   list-type: tr('tag:leisure=miniature_golf');
+  z-index: 2;
 }
 
 *|z15[leisure=swimming_pool] {
@@ -130,6 +143,7 @@ meta {
 *|z16-[leisure=swimming_pool] {
   text: auto;
   list-type: tr('tag:leisure=swimming_pool');
+  z-index: 2;
 }
 
 *|z15[amenity=sauna] {
@@ -139,6 +153,7 @@ meta {
 *|z16-[amenity=sauna] {
   text: auto;
   list-type: tr('tag:amenity=sauna');
+  z-index: 2;
 }
 
 *|z15[leisure=sport] {
@@ -148,6 +163,7 @@ meta {
 *|z16-[leisure=sport] {
   text: auto;
   list-type: tr('tag:leisure=sport');
+  z-index: 2;
 }
 
 *|z15[leisure=golf_course] {
@@ -157,6 +173,7 @@ meta {
 *|z16-[leisure=golf_course] {
   text: auto;
   list-type: tr('tag:leisure=golf_course');
+  z-index: 2;
 }
 
 *|z15[leisure=track] {
@@ -166,6 +183,7 @@ meta {
 *|z16-[leisure=track] {
   text: auto;
   list-type: tr('tag:leisure=track');
+  z-index: 2;
 }
 
 *|z15[leisure=pitch] {
@@ -175,6 +193,7 @@ meta {
 *|z16-[leisure=pitch] {
   text: auto;
   list-type: tr('tag:leisure=pitch');
+  z-index: 2;
 }
 
 *|z15[leisure=water_park] {
@@ -184,6 +203,7 @@ meta {
 *|z16-[leisure=water_park] {
   text: auto;
   list-type: tr('tag:leisure=water_park');
+  z-index: 2;
 }
 
 area|z13-14[leisure=playground],
@@ -195,5 +215,6 @@ area|z15-[leisure=playground],
 node|z15-[leisure=playground] {
   text: auto;
   list-type: tr('tag:leisure=playground');
+  z-index: 3;
 }
 
