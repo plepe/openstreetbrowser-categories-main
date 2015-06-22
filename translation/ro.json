@@ -13,7 +13,14 @@
     "tag:leisure=stadium": "Stadion",
     "tag:leisure=track": "Pista",
     "tag:leisure=water_park": "Parc acvatic",
+    "tag:sport=cycling": "Ciclism",
+    "tag:sport=dog_racing": "Curse de caini",
+    "tag:sport=gymnastics": "Gimnastica",
+    "tag:sport=horse_racing": "Curse cai",
+    "tag:sport=soccer": "Fotbal",
+    "tag:sport=tennis": "Tenis",
     "title:gastro": "Gastronomie",
     "title:leisure": "Timp liber",
+    "title:playgrounds": "Loc de joaca",
     "title:shop": "Cumpărături"
 }

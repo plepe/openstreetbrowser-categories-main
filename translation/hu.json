@@ -5,6 +5,15 @@
     "tag:shop=books": "Könyvesbolt",
     "tag:shop=supermarket": "Szupermarket",
     "tag:shop=toys": "Játékbolt",
+    "tag:sport=archery": "Íjászat",
+    "tag:sport=chess": "Sakk",
+    "tag:sport=dog_racing": "Kutyafuttatás",
+    "tag:sport=golf": "Golf",
+    "tag:sport=hockey": "Hoki",
+    "tag:sport=swimming": "Úszás",
+    "tag:sport=team_handball": "Kézilabda",
+    "tag:sport=tennis": "Tenisz",
     "title:gastro": "Gasztronómia",
-    "title:shop": "Vásárlás"
+    "title:shop": "Vásárlás",
+    "title:sport": "Sport"
 }

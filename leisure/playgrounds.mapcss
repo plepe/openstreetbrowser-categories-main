@@ -1,0 +1,16 @@
+meta {
+  title: tr("title:playgrounds");
+}
+
+area|z13-14[leisure=playground],
+node|z13-14[leisure=playground] {
+  list-text: auto;
+  list-type: tr('tag:leisure=playground');
+}
+area|z15-[leisure=playground],
+node|z15-[leisure=playground] {
+  text: auto;
+  list-type: tr('tag:leisure=playground');
+  z-index: 3;
+}
+

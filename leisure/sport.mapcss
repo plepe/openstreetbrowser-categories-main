@@ -1,0 +1,456 @@
+meta {
+  title: tr("title:sport");
+}
+
+*|z15[sport=golf] {
+  list-text: auto;
+  list-type: tr('tag:sport=golf');
+}
+*|z16-[sport=golf] {
+  text: auto;
+  list-type: tr('tag:sport=golf');
+  z-index: 2;
+}
+
+*|z15[sport=soccer] {
+  list-text: auto;
+  list-type: tr('tag:sport=soccer');
+}
+*|z16-[sport=soccer] {
+  text: auto;
+  list-type: tr('tag:sport=soccer');
+  z-index: 2;
+}
+
+*|z15[sport=9pin] {
+  list-text: auto;
+  list-type: tr('tag:sport=9pin');
+}
+*|z16-[sport=9pin] {
+  text: auto;
+  list-type: tr('tag:sport=9pin');
+  z-index: 2;
+}
+
+*|z15[sport=10pin] {
+  list-text: auto;
+  list-type: tr('tag:sport=10pin');
+}
+*|z16-[sport=10pin] {
+  text: auto;
+  list-type: tr('tag:sport=10pin');
+  z-index: 2;
+}
+
+*|z15[sport=canoe] {
+  list-text: auto;
+  list-type: tr('tag:sport=canoe');
+}
+*|z16-[sport=canoe] {
+  text: auto;
+  list-type: tr('tag:sport=canoe');
+  z-index: 2;
+}
+
+*|z15[sport=chess] {
+  list-text: auto;
+  list-type: tr('tag:sport=chess');
+}
+*|z16-[sport=chess] {
+  text: auto;
+  list-type: tr('tag:sport=chess');
+  z-index: 2;
+}
+
+*|z15[sport=climbing] {
+  list-text: auto;
+  list-type: tr('tag:sport=climbing');
+}
+*|z16-[sport=climbing] {
+  text: auto;
+  list-type: tr('tag:sport=climbing');
+  z-index: 2;
+}
+
+*|z15[sport=cricket] {
+  list-text: auto;
+  list-type: tr('tag:sport=cricket');
+}
+*|z16-[sport=cricket] {
+  text: auto;
+  list-type: tr('tag:sport=cricket');
+  z-index: 2;
+}
+
+*|z15[sport=cricket_nets] {
+  list-text: auto;
+  list-type: tr('tag:sport=cricket_nets');
+}
+*|z16-[sport=cricket_nets] {
+  text: auto;
+  list-type: tr('tag:sport=cricket_nets');
+  z-index: 2;
+}
+
+*|z15[sport=croquet] {
+  list-text: auto;
+  list-type: tr('tag:sport=croquet');
+}
+*|z16-[sport=croquet] {
+  text: auto;
+  list-type: tr('tag:sport=croquet');
+  z-index: 2;
+}
+
+*|z15[sport=cycling] {
+  list-text: auto;
+  list-type: tr('tag:sport=cycling');
+}
+*|z16-[sport=cycling] {
+  text: auto;
+  list-type: tr('tag:sport=cycling');
+  z-index: 2;
+}
+
+*|z15[sport=diving] {
+  list-text: auto;
+  list-type: tr('tag:sport=diving');
+}
+*|z16-[sport=diving] {
+  text: auto;
+  list-type: tr('tag:sport=diving');
+  z-index: 2;
+}
+
+*|z15[sport=dog_racing] {
+  list-text: auto;
+  list-type: tr('tag:sport=dog_racing');
+}
+*|z16-[sport=dog_racing] {
+  text: auto;
+  list-type: tr('tag:sport=dog_racing');
+  z-index: 2;
+}
+
+*|z15[sport=equestrian] {
+  list-text: auto;
+  list-type: tr('tag:sport=equestrian');
+}
+*|z16-[sport=equestrian] {
+  text: auto;
+  list-type: tr('tag:sport=equestrian');
+  z-index: 2;
+}
+
+*|z15[sport=archery] {
+  list-text: auto;
+  list-type: tr('tag:sport=archery');
+  icon-image: url('img/sport_archery.svg');
+}
+*|z16-[sport=archery] {
+  text: auto;
+  list-type: tr('tag:sport=archery');
+  icon-image: url('img/sport_archery.svg');
+  z-index: 2;
+}
+
+*|z15[sport=football] {
+  list-text: auto;
+  list-type: tr('tag:sport=football');
+}
+*|z16-[sport=football] {
+  text: auto;
+  list-type: tr('tag:sport=football');
+  z-index: 2;
+}
+
+*|z15[sport=gymnastics] {
+  list-text: auto;
+  list-type: tr('tag:sport=gymnastics');
+}
+*|z16-[sport=gymnastics] {
+  text: auto;
+  list-type: tr('tag:sport=gymnastics');
+  z-index: 2;
+}
+
+*|z15[sport=hockey] {
+  list-text: auto;
+  list-type: tr('tag:sport=hockey');
+}
+*|z16-[sport=hockey] {
+  text: auto;
+  list-type: tr('tag:sport=hockey');
+  z-index: 2;
+}
+
+*|z15[sport=horse_racing] {
+  list-text: auto;
+  list-type: tr('tag:sport=horse_racing');
+}
+*|z16-[sport=horse_racing] {
+  text: auto;
+  list-type: tr('tag:sport=horse_racing');
+  z-index: 2;
+}
+
+*|z15[sport=korfball] {
+  list-text: auto;
+  list-type: tr('tag:sport=korfball');
+}
+*|z16-[sport=korfball] {
+  text: auto;
+  list-type: tr('tag:sport=korfball');
+  z-index: 2;
+}
+
+*|z15[sport=motor] {
+  list-text: auto;
+  list-type: tr('tag:sport=motor');
+}
+*|z16-[sport=motor] {
+  text: auto;
+  list-type: tr('tag:sport=motor');
+  z-index: 2;
+}
+
+*|z15[sport=multi] {
+  list-text: auto;
+  list-type: tr('tag:sport=multi');
+}
+*|z16-[sport=multi] {
+  text: auto;
+  list-type: tr('tag:sport=multi');
+  z-index: 2;
+}
+
+*|z15[sport=orienteering] {
+  list-text: auto;
+  list-type: tr('tag:sport=orienteering');
+}
+*|z16-[sport=orienteering] {
+  text: auto;
+  list-type: tr('tag:sport=orienteering');
+  z-index: 2;
+}
+
+*|z15[sport=paddle_tennis] {
+  list-text: auto;
+  list-type: tr('tag:sport=paddle_tennis');
+}
+*|z16-[sport=paddle_tennis] {
+  text: auto;
+  list-type: tr('tag:sport=paddle_tennis');
+  z-index: 2;
+}
+
+*|z15[sport=athletics] {
+  list-text: auto;
+  list-type: tr('tag:sport=athletics');
+}
+*|z16-[sport=athletics] {
+  text: auto;
+  list-type: tr('tag:sport=athletics');
+  z-index: 2;
+}
+
+*|z15[sport=paragliding] {
+  list-text: auto;
+  list-type: tr('tag:sport=paragliding');
+}
+*|z16-[sport=paragliding] {
+  text: auto;
+  list-type: tr('tag:sport=paragliding');
+  z-index: 2;
+}
+
+*|z15[sport=pelota] {
+  list-text: auto;
+  list-type: tr('tag:sport=pelota');
+}
+*|z16-[sport=pelota] {
+  text: auto;
+  list-type: tr('tag:sport=pelota');
+  z-index: 2;
+}
+
+*|z15[sport=racquet] {
+  list-text: auto;
+  list-type: tr('tag:sport=racquet');
+}
+*|z16-[sport=racquet] {
+  text: auto;
+  list-type: tr('tag:sport=racquet');
+  z-index: 2;
+}
+
+*|z15[sport=rowing] {
+  list-text: auto;
+  list-type: tr('tag:sport=rowing');
+}
+*|z16-[sport=rowing] {
+  text: auto;
+  list-type: tr('tag:sport=rowing');
+  z-index: 2;
+}
+
+*|z15[sport=rugby] {
+  list-text: auto;
+  list-type: tr('tag:sport=rugby');
+}
+*|z16-[sport=rugby] {
+  text: auto;
+  list-type: tr('tag:sport=rugby');
+  z-index: 2;
+}
+
+*|z15[sport=shooting] {
+  list-text: auto;
+  list-type: tr('tag:sport=shooting');
+}
+*|z16-[sport=shooting] {
+  text: auto;
+  list-type: tr('tag:sport=shooting');
+  z-index: 2;
+}
+
+*|z15[sport=skating] {
+  list-text: auto;
+  list-type: tr('tag:sport=skating');
+}
+*|z16-[sport=skating] {
+  text: auto;
+  list-type: tr('tag:sport=skating');
+  z-index: 2;
+}
+
+*|z15[sport=skateboard] {
+  list-text: auto;
+  list-type: tr('tag:sport=skateboard');
+}
+*|z16-[sport=skateboard] {
+  text: auto;
+  list-type: tr('tag:sport=skateboard');
+  z-index: 2;
+}
+
+*|z15[sport=skiing] {
+  list-text: auto;
+  list-type: tr('tag:sport=skiing');
+}
+*|z16-[sport=skiing] {
+  text: auto;
+  list-type: tr('tag:sport=skiing');
+  z-index: 2;
+}
+
+*|z15[sport=australian_football] {
+  list-text: auto;
+  list-type: tr('tag:sport=australian_football');
+}
+*|z16-[sport=australian_football] {
+  text: auto;
+  list-type: tr('tag:sport=australian_football');
+  z-index: 2;
+}
+
+*|z15[sport=swimming] {
+  list-text: auto;
+  list-type: tr('tag:sport=swimming');
+}
+*|z16-[sport=swimming] {
+  text: auto;
+  list-type: tr('tag:sport=swimming');
+  z-index: 2;
+}
+
+*|z15[sport=table_tennis] {
+  list-text: auto;
+  list-type: tr('tag:sport=table_tennis');
+}
+*|z16-[sport=table_tennis] {
+  text: auto;
+  list-type: tr('tag:sport=table_tennis');
+  z-index: 2;
+}
+
+*|z15[sport=team_handball] {
+  list-text: auto;
+  list-type: tr('tag:sport=team_handball');
+}
+*|z16-[sport=team_handball] {
+  text: auto;
+  list-type: tr('tag:sport=team_handball');
+  z-index: 2;
+}
+
+*|z15[sport=tennis] {
+  list-text: auto;
+  list-type: tr('tag:sport=tennis');
+}
+*|z16-[sport=tennis] {
+  text: auto;
+  list-type: tr('tag:sport=tennis');
+  z-index: 2;
+}
+
+*|z15[sport=volleyball] {
+  list-text: auto;
+  list-type: tr('tag:sport=volleyball');
+}
+*|z16-[sport=volleyball] {
+  text: auto;
+  list-type: tr('tag:sport=volleyball');
+  z-index: 2;
+}
+
+*|z15[sport=baseball] {
+  list-text: auto;
+  list-type: tr('tag:sport=baseball');
+}
+*|z16-[sport=baseball] {
+  text: auto;
+  list-type: tr('tag:sport=baseball');
+  z-index: 2;
+}
+
+*|z15[sport=basketball] {
+  list-text: auto;
+  list-type: tr('tag:sport=basketball');
+}
+*|z16-[sport=basketball] {
+  text: auto;
+  list-type: tr('tag:sport=basketball');
+  z-index: 2;
+}
+
+*|z15[sport=beachvolleyball] {
+  list-text: auto;
+  list-type: tr('tag:sport=beachvolleyball');
+}
+*|z16-[sport=beachvolleyball] {
+  text: auto;
+  list-type: tr('tag:sport=beachvolleyball');
+  z-index: 2;
+}
+
+*|z15[sport=boules] {
+  list-text: auto;
+  list-type: tr('tag:sport=boules');
+}
+*|z16-[sport=boules] {
+  text: auto;
+  list-type: tr('tag:sport=boules');
+  z-index: 2;
+}
+
+*|z15[sport=bowls] {
+  list-text: auto;
+  list-type: tr('tag:sport=bowls');
+}
+*|z16-[sport=bowls] {
+  text: auto;
+  list-type: tr('tag:sport=bowls');
+  z-index: 2;
+}
+
