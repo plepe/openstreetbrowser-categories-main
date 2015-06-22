@@ -1,7 +1,7 @@
 {
-  "Bar style": "BAR",
-  "foo": "",
-  "tag:leisure=park": "",
-  "dir:leisure": "Freizeit, Sport und Einkauf",
+    "Bar style": "BAR",
+    "dir:leisure": "Freizeit, Sport und Einkauf",
+    "foo": "",
+    "tag:leisure=park": "",
     "title:gastro": "Gastronomie"
 }
