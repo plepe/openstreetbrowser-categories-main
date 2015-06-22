@@ -1,5 +1,16 @@
 {
     "dir:leisure": "Αναψυχή, Αθλητισμός και Αγορές",
+    "tag:amenity=sauna": "Σάουνα",
+    "tag:landuse=recreation_ground": "Πεδίο Δραστηριοτήτων",
+    "tag:leisure=beach_resort": "Παραθαλάσσιο Θέρετρο",
+    "tag:leisure=golf_course": "Γήπεδο Γκολφ",
+    "tag:leisure=nature_reserve": "Προστασία της Φύσης",
+    "tag:leisure=pitch": "Γήπεδο",
+    "tag:leisure=sport": "Άλλο άθλημα",
+    "tag:leisure=sports_centre": "Αθλητικό Κέντρο",
+    "tag:leisure=stadium": "Στάδιο",
+    "tag:leisure=swimming_pool": "Πισίνα Κολύμβησης",
     "title:gastro": "Γαστρονομία",
+    "title:leisure": "Αναψυχή",
     "title:shop": "Αγορές"
 }

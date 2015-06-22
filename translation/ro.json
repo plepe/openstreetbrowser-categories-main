@@ -1,5 +1,19 @@
 {
     "dir:leisure": "Timp liber, Sport si Cumparaturi",
+    "tag:amenity=bench": "Banca",
+    "tag:amenity=brothel": "Bordel",
+    "tag:amenity=sauna": "Sauna",
+    "tag:landuse=recreation_ground": "Teren recreare",
+    "tag:leisure=fishing": "Pescuit",
+    "tag:leisure=miniature_golf": "Golf miniatura",
+    "tag:leisure=nature_reserve": "Rezervatie naturala",
+    "tag:leisure=pitch": "Smoala",
+    "tag:leisure=sport": "Alt sport",
+    "tag:leisure=sports_centre": "Centru sport",
+    "tag:leisure=stadium": "Stadion",
+    "tag:leisure=track": "Pista",
+    "tag:leisure=water_park": "Parc acvatic",
     "title:gastro": "Gastronomie",
+    "title:leisure": "Timp liber",
     "title:shop": "Cumpărături"
 }

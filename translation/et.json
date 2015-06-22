@@ -1,4 +1,10 @@
 {
     "dir:leisure": "Vaba aeg, sport ja ostmine",
+    "tag:amenity=bench": "Pink",
+    "tag:amenity=brothel": "Bordell",
+    "tag:amenity=sauna": "Saun",
+    "tag:leisure=sports_centre": "Spordikeskus",
+    "tag:leisure=stadium": "Staadion",
+    "tag:leisure=water_park": "Veepark",
     "title:shop": "Ostmine"
 }

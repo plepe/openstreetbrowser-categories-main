@@ -1,6 +1,7 @@
 {
     "dir:leisure": "Szabadidő",
     "tag:amenity=marketplace": "Piac",
+    "tag:leisure=sport": "OEgyéb sport",
     "tag:shop=books": "Könyvesbolt",
     "tag:shop=supermarket": "Szupermarket",
     "tag:shop=toys": "Játékbolt",
