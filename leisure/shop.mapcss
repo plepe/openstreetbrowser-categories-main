@@ -1,0 +1,677 @@
+meta {
+  title: tr("title:shop");
+}
+
+*|z15[amenity=marketplace] {
+  list-text: auto;
+  list-type: tr('tag:amenity=marketplace');
+  icon-image: url('img/marketplace.png');
+}
+*|z16-[amenity=marketplace] {
+  text: auto;
+  list-type: tr('tag:amenity=marketplace');
+  icon-image: url('img/marketplace.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=news_papers] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=news_papers');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=news_papers] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=news_papers');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=parcel_pickup] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=parcel_pickup');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=parcel_pickup] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=parcel_pickup');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=parcel_mail_in] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=parcel_mail_in');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=parcel_mail_in] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=parcel_mail_in');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=bicycle_tube] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=bicycle_tube');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=bicycle_tube] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=bicycle_tube');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=food;drinks] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=food;drinks');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=food;drinks] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=food;drinks');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=telephone_vouchers] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=telephone_vouchers');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=telephone_vouchers] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=telephone_vouchers');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=food] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=food');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=food] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=food');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=parking_tickets;public_transport_tickets] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=parking_tickets;public_transport_tickets');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=parking_tickets;public_transport_tickets] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=parking_tickets;public_transport_tickets');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[shop=fixme] {
+  list-text: auto;
+  list-type: tr('tag:shop=fixme');
+  icon-image: url('img/supermarket.png');
+}
+*|z18-[shop=fixme] {
+  text: auto;
+  list-type: tr('tag:shop=fixme');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=cigarettes] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=cigarettes');
+  icon-image: url('img/vending_cigarettes.svg');
+}
+*|z18-[amenity=vending_machine][vending=cigarettes] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=cigarettes');
+  icon-image: url('img/vending_cigarettes.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=excrement_bags] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=excrement_bags');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=excrement_bags] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=excrement_bags');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=motorcycle] {
+  list-text: auto;
+  list-type: tr('tag:shop=motorcycle');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=motorcycle] {
+  text: auto;
+  list-type: tr('tag:shop=motorcycle');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=parking_tickets] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=parking_tickets');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=parking_tickets] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=parking_tickets');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[shop=kiosk] {
+  list-text: auto;
+  list-type: tr('tag:shop=kiosk');
+  icon-image: url('img/supermarket.png');
+}
+*|z18-[shop=kiosk] {
+  text: auto;
+  list-type: tr('tag:shop=kiosk');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=parcel_pickup;parcel_mail_in] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=parcel_pickup;parcel_mail_in');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=parcel_pickup;parcel_mail_in] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=parcel_pickup;parcel_mail_in');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[shop=newsagent] {
+  list-text: auto;
+  list-type: tr('tag:shop=newsagent');
+  icon-image: url('img/supermarket.png');
+}
+*|z18-[shop=newsagent] {
+  text: auto;
+  list-type: tr('tag:shop=newsagent');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=public_transport_tickets] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=public_transport_tickets');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=public_transport_tickets] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=public_transport_tickets');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=stamps] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=stamps');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=stamps] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=stamps');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=condoms] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=condoms');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=condoms] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=condoms');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z16-17[amenity=vending_machine][vending=sweets],
+*|z16-17[amenity=vending_machine][vending=chewing_gum] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=sweets, amenity=vending_machine vending=chewing_gum');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=sweets],
+*|z18-[amenity=vending_machine][vending=chewing_gum] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=sweets, amenity=vending_machine vending=chewing_gum');
+  icon-image: url('img/vending_machine.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=fish;seafood] {
+  list-text: auto;
+  list-type: tr('tag:shop=fish;seafood');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=fish;seafood] {
+  text: auto;
+  list-type: tr('tag:shop=fish;seafood');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=florist] {
+  list-text: auto;
+  list-type: tr('tag:shop=florist');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=florist] {
+  text: auto;
+  list-type: tr('tag:shop=florist');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=furniture] {
+  list-text: auto;
+  list-type: tr('tag:shop=furniture');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=furniture] {
+  text: auto;
+  list-type: tr('tag:shop=furniture');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=grocery],
+*|z15[shop=groceries] {
+  list-text: auto;
+  list-type: tr('tag:shop=grocery, shop=groceries');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=grocery],
+*|z16-[shop=groceries] {
+  text: auto;
+  list-type: tr('tag:shop=grocery, shop=groceries');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=hairdresser] {
+  list-text: auto;
+  list-type: tr('tag:shop=hairdresser');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=hairdresser] {
+  text: auto;
+  list-type: tr('tag:shop=hairdresser');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=hardware] {
+  list-text: auto;
+  list-type: tr('tag:shop=hardware');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=hardware] {
+  text: auto;
+  list-type: tr('tag:shop=hardware');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=hifi] {
+  list-text: auto;
+  list-type: tr('tag:shop=hifi');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=hifi] {
+  text: auto;
+  list-type: tr('tag:shop=hifi');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=jewelry] {
+  list-text: auto;
+  list-type: tr('tag:shop=jewelry');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=jewelry] {
+  text: auto;
+  list-type: tr('tag:shop=jewelry');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=laundry] {
+  list-text: auto;
+  list-type: tr('tag:shop=laundry');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=laundry] {
+  text: auto;
+  list-type: tr('tag:shop=laundry');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=car_repair][service=wheel_repair] {
+  list-text: auto;
+  list-type: tr('tag:shop=car_repair service=wheel_repair');
+  icon-image: url('img/Car_Repair.png');
+}
+*|z16-[shop=car_repair][service=wheel_repair] {
+  text: auto;
+  list-type: tr('tag:shop=car_repair service=wheel_repair');
+  icon-image: url('img/Car_Repair.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=market] {
+  list-text: auto;
+  list-type: tr('tag:shop=market');
+  icon-image: url('img/marketplace.png');
+}
+*|z16-[shop=market] {
+  text: auto;
+  list-type: tr('tag:shop=market');
+  icon-image: url('img/marketplace.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=music] {
+  list-text: auto;
+  list-type: tr('tag:shop=music');
+  icon-image: url('img/shop_music.svg');
+}
+*|z16-[shop=music] {
+  text: auto;
+  list-type: tr('tag:shop=music');
+  icon-image: url('img/shop_music.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=optician] {
+  list-text: auto;
+  list-type: tr('tag:shop=optician');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=optician] {
+  text: auto;
+  list-type: tr('tag:shop=optician');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=organic] {
+  list-text: auto;
+  list-type: tr('tag:shop=organic');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=organic] {
+  text: auto;
+  list-type: tr('tag:shop=organic');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=outdoor] {
+  list-text: auto;
+  list-type: tr('tag:shop=outdoor');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=outdoor] {
+  text: auto;
+  list-type: tr('tag:shop=outdoor');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=pet] {
+  list-text: auto;
+  list-type: tr('tag:shop=pet');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=pet] {
+  text: auto;
+  list-type: tr('tag:shop=pet');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=photo] {
+  list-text: auto;
+  list-type: tr('tag:shop=photo');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=photo] {
+  text: auto;
+  list-type: tr('tag:shop=photo');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=second_hand] {
+  list-text: auto;
+  list-type: tr('tag:shop=second_hand');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=second_hand] {
+  text: auto;
+  list-type: tr('tag:shop=second_hand');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=sports] {
+  list-text: auto;
+  list-type: tr('tag:shop=sports');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=sports] {
+  text: auto;
+  list-type: tr('tag:shop=sports');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=stationery] {
+  list-text: auto;
+  list-type: tr('tag:shop=stationery');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=stationery] {
+  text: auto;
+  list-type: tr('tag:shop=stationery');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=supermarket] {
+  list-text: auto;
+  list-type: tr('tag:shop=supermarket');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=supermarket] {
+  text: auto;
+  list-type: tr('tag:shop=supermarket');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z13-14[shop=garden_centre],
+*|z13-14[shop=garden_center] {
+  list-text: auto;
+  list-type: tr('tag:shop=garden_centre, shop=garden_center');
+  icon-image: url('img/supermarket.png');
+}
+*|z15-[shop=garden_centre],
+*|z15-[shop=garden_center] {
+  text: auto;
+  list-type: tr('tag:shop=garden_centre, shop=garden_center');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z13-14[shop=mall] {
+  list-text: auto;
+  list-type: tr('tag:shop=mall');
+  icon-image: url('img/supermarket.png');
+}
+*|z15-[shop=mall] {
+  text: auto;
+  list-type: tr('tag:shop=mall');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z13-14[shop=shopping_centre],
+*|z13-14[shop=shopping_center] {
+  list-text: auto;
+  list-type: tr('tag:shop=shopping_centre, shop=shopping_center');
+  icon-image: url('img/supermarket.png');
+}
+*|z15-[shop=shopping_centre],
+*|z15-[shop=shopping_center] {
+  text: auto;
+  list-type: tr('tag:shop=shopping_centre, shop=shopping_center');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=toys] {
+  list-text: auto;
+  list-type: tr('tag:shop=toys');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=toys] {
+  text: auto;
+  list-type: tr('tag:shop=toys');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=video] {
+  list-text: auto;
+  list-type: tr('tag:shop=video');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=video] {
+  text: auto;
+  list-type: tr('tag:shop=video');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+*|z15[shop=wine] {
+  list-text: auto;
+  list-type: tr('tag:shop=wine');
+  icon-image: url('img/supermarket.png');
+}
+*|z16-[shop=wine] {
+  text: auto;
+  list-type: tr('tag:shop=wine');
+  icon-image: url('img/supermarket.png');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+area|z13-14[shop=books],
+node|z13-14[shop=books] {
+  list-text: auto;
+  list-type: tr('tag:shop=books');
+  icon-image: url('img/library.svg');
+}
+area|z15-[shop=books],
+node|z15-[shop=books] {
+  text: auto;
+  list-type: tr('tag:shop=books');
+  icon-image: url('img/library.svg');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+
+area|z16-17[shop=bakery],
+node|z16-17[shop=bakery] {
+  list-text: auto;
+  list-type: tr('tag:shop=bakery');
+}
+area|z18-[shop=bakery],
+node|z18-[shop=bakery] {
+  text: auto;
+  list-type: tr('tag:shop=bakery');
+  text-color: #ffce33;
+  text-halo-color: #ffe285;
+}
+

@@ -1,4 +1,6 @@
 {
     "dir:leisure": "Wypoczynek, Sport i Zakupy",
-    "title:gastro": "Gastronomia"
+    "tag:amenity=marketplace": "Bazar",
+    "title:gastro": "Gastronomia",
+    "title:shop": "Zakupy"
 }

@@ -1,4 +1,9 @@
 {
     "dir:leisure": "Szabadidő",
-    "title:gastro": "Gasztronómia"
+    "tag:amenity=marketplace": "Piac",
+    "tag:shop=books": "Könyvesbolt",
+    "tag:shop=supermarket": "Szupermarket",
+    "tag:shop=toys": "Játékbolt",
+    "title:gastro": "Gasztronómia",
+    "title:shop": "Vásárlás"
 }
