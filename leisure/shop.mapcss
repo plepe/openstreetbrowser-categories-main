@@ -714,11 +714,15 @@ node|z15-[shop=books] {
 
 area|z16-17[shop=bakery],
 node|z16-17[shop=bakery] {
+  icon-image: bakery;
+  icon-width: 12;
   list-text: auto;
   list-type: tr('tag:shop=bakery');
 }
 area|z18-[shop=bakery],
 node|z18-[shop=bakery] {
+  icon-image: bakery;
+  icon-width: 12;
   text: auto;
   list-type: tr('tag:shop=bakery');
   text-color: #ffce33;
