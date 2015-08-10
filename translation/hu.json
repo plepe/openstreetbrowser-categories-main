@@ -1,5 +1,6 @@
 {
     "dir:agriculture_industry": "Mezőgazdaság és ipar",
+    "dir:culture": "Kultúra",
     "dir:leisure": "Szabadidő",
     "dir:services": "Szolgáltatás",
     "dir:services/communication": "Kommunikácó",
@@ -7,6 +8,7 @@
     "tag:amenity=post_box": "Postaláda",
     "tag:amenity=post_office": "Posta",
     "tag:amenity=telephone": "Telefon",
+    "tag:historic=castle": "Kastély",
     "tag:landuse=farm, landuse=farmland": "Mezőgazdaság terület",
     "tag:landuse=farmyard": "Farm, telephely",
     "tag:landuse=orchard": "Gyümölcsös",
@@ -29,14 +31,17 @@
     "tag:tourism=guest_house": "Vendégház",
     "tag:tourism=hotel": "Hotel",
     "title:agriculture": "Mezőgazdaság",
+    "title:culture": "Kultúra",
     "title:gastro": "Gasztronómia",
+    "title:historic": "Historikus",
     "title:internet": "Internethozzáférés",
     "title:military": "Katonai",
     "title:phone": "Telefon",
     "title:post": "Posta",
     "title:power": "Áramellátás",
     "title:railway": "Vasút",
+    "title:religion": "Vallás",
     "title:shop": "Vásárlás",
     "title:sport": "Sport",
-    "title:tourism": "Túrsztikai szolgáltatások"
+    "title:tourism": "Túrizmus"
 }

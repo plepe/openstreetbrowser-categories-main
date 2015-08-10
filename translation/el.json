@@ -1,9 +1,14 @@
 {
     "dir:agriculture_industry": "Γεωργία και Βιομηχανία",
+    "dir:culture": "Πολιτισμός και Θρησκεία",
     "dir:leisure": "Αναψυχή, Αθλητισμός και Αγορές",
     "dir:services": "Υπηρεσίες",
     "dir:services/communication": "Επικοινωνίες",
     "dir:services_communication": "Επικοινωνίες",
+    "tag:amenity=cinema": {
+        "!=1": "Κινηματογράφοι",
+        "message": "Κινηματογράφος"
+    },
     "tag:amenity=drinking_water maintenance!=needs_repair;broken disused!=yes , drinking_water=yes  disused!=yes": "Πόσιμο νερό",
     "tag:amenity=hospital": "Νοσοκομείο",
     "tag:amenity=nursing_home": "Γηροκομείο",
@@ -40,16 +45,20 @@
     "tag:sport=shooting": "Σκοποβολή",
     "tag:sport=soccer": "Ποδόσφαιρο",
     "tag:sport=swimming": "Κολύμβηση",
+    "tag:tourism=gallery": "Γκαλερί",
     "title:agriculture": "Γεωργία",
+    "title:culture": "Πολιτισμός",
     "title:education": "Υπηρεσίες Εκπαίδευσης",
     "title:emergency": "Υπηρεσίες Έκτακτης Ανάγκης",
     "title:financial": "Χρήμα",
     "title:gastro": "Γαστρονομία",
     "title:health": "Υγεία",
+    "title:historic": "Ιστορικά",
     "title:leisure": "Αναψυχή",
     "title:military": "Στρατιωτικό",
     "title:public": "Δημόσιες Υπηρεσίες",
+    "title:religion": "Θρησκεία",
     "title:shop": "Αγορές",
     "title:sport": "Άθληση",
-    "title:tourism": "Τουριστικές Υπηρεσίες"
+    "title:tourism": "Τουρισμός"
 }

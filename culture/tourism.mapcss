@@ -1,0 +1,82 @@
+meta {
+  title: tr("title:tourism");
+}
+
+area|z13-14[tourism=attraction],
+node|z13-14[tourism=attraction],
+line|z13-14[tourism=attraction] {
+  list-text: auto;
+  list-type: tr('tag:tourism=attraction');
+  icon-image: url('img/attraction.png');
+}
+area|z15-[tourism=attraction],
+node|z15-[tourism=attraction],
+line|z15-[tourism=attraction] {
+  text: auto;
+  list-type: tr('tag:tourism=attraction');
+  icon-image: url('img/attraction.png');
+  text-color: #2045d8;
+  text-halo-color: #cc8bbf;
+  z-index: 3;
+}
+
+area|z13-14[tourism=yes],
+node|z13-14[tourism=yes],
+line|z13-14[tourism=yes] {
+  list-text: auto;
+  list-type: tr('tag:tourism=yes');
+  icon-image: url('img/attraction.png');
+}
+area|z15-[tourism=yes],
+node|z15-[tourism=yes],
+line|z15-[tourism=yes] {
+  text: auto;
+  list-type: tr('tag:tourism=yes');
+  icon-image: url('img/attraction.png');
+  text-color: #2045d8;
+  text-halo-color: #cc8bbf;
+  z-index: 3;
+}
+
+*|z16-17[tourism=viewpoint] {
+  list-text: auto;
+  list-type: tr('tag:tourism=viewpoint');
+  icon-image: url('img/attraction.png');
+}
+*|z18-[tourism=viewpoint] {
+  text: auto;
+  list-type: tr('tag:tourism=viewpoint');
+  icon-image: url('img/attraction.png');
+  text-color: #2045d8;
+  text-halo-color: #cc8bbf;
+  z-index: 1;
+}
+
+*|z11-12[tourism=theme_park] {
+  list-text: auto;
+  list-type: tr('tag:tourism=theme_park');
+  icon-image: url('img/attraction.png');
+}
+*|z13-[tourism=theme_park] {
+  text: auto;
+  list-type: tr('tag:tourism=theme_park');
+  icon-image: url('img/attraction.png');
+  text-color: #2045d8;
+  text-halo-color: #cc8bbf;
+  z-index: 4;
+}
+
+*|z11-12[tourism=zoo] {
+  list-text: auto;
+  list-type: tr('tag:tourism=zoo');
+  icon-image: url('img/zoo.svg');
+}
+*|z13-[tourism=zoo] {
+  text: auto;
+  list-type: tr('tag:tourism=zoo');
+  icon-image: url('img/zoo.svg');
+  text-color: #2045d8;
+  text-halo-color: #cc8bbf;
+  z-index: 4;
+}
+

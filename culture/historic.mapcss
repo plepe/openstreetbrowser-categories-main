@@ -1,0 +1,154 @@
+meta {
+  title: tr("title:historic");
+}
+
+*|z13-14[historic=battlefield] {
+  list-text: auto;
+  list-type: tr('tag:historic=battlefield');
+}
+*|z15-[historic=battlefield] {
+  text: auto;
+  list-type: tr('tag:historic=battlefield');
+  text-color: #e09c25;
+  text-halo-color: #e0c28d;
+  z-index: 3;
+}
+
+*|z11-12[historic=castle] {
+  list-text: auto;
+  list-type: tr('tag:historic=castle');
+  icon-image: url('img/castle.png');
+}
+*|z13-[historic=castle] {
+  text: auto;
+  list-type: tr('tag:historic=castle');
+  icon-image: url('img/castle.png');
+  text-color: #e09c25;
+  text-halo-color: #e0c28d;
+  z-index: 4;
+}
+
+*|z11-12[historic=archaeological_site] {
+  list-text: auto;
+  list-type: tr('tag:historic=archaeological_site');
+  icon-image: url('img/castle.png');
+}
+*|z13-[historic=archaeological_site] {
+  text: auto;
+  list-type: tr('tag:historic=archaeological_site');
+  icon-image: url('img/castle.png');
+  text-color: #e09c25;
+  text-halo-color: #e0c28d;
+  z-index: 4;
+}
+
+*|z11-12[historic=wreck] {
+  list-text: auto;
+  list-type: tr('tag:historic=wreck');
+  icon-image: url('img/wreck.png');
+}
+*|z13-[historic=wreck] {
+  text: auto;
+  list-type: tr('tag:historic=wreck');
+  icon-image: url('img/wreck.png');
+  text-color: #e09c25;
+  text-halo-color: #e0c28d;
+  z-index: 4;
+}
+
+area|z16-17[historic=yes],
+node|z16-17[historic=yes],
+line|z16-17[historic=yes] {
+  list-text: auto;
+  list-type: tr('tag:historic=yes');
+  icon-image: url('img/historic.png');
+}
+area|z18-[historic=yes],
+node|z18-[historic=yes],
+line|z18-[historic=yes] {
+  text: auto;
+  list-type: tr('tag:historic=yes');
+  icon-image: url('img/historic.png');
+  text-color: #e09c25;
+  text-halo-color: #e0c28d;
+  z-index: 1;
+}
+
+*|z15[historic=wayside_cross] {
+  list-text: auto;
+  list-type: tr('tag:historic=wayside_cross');
+}
+*|z16-[historic=wayside_cross] {
+  text: auto;
+  list-type: tr('tag:historic=wayside_cross');
+  text-color: #e09c25;
+  text-halo-color: #e0c28d;
+  z-index: 2;
+}
+
+*|z15[historic=wayside_shrine] {
+  list-text: auto;
+  list-type: tr('tag:historic=wayside_shrine');
+}
+*|z16-[historic=wayside_shrine] {
+  text: auto;
+  list-type: tr('tag:historic=wayside_shrine');
+  text-color: #e09c25;
+  text-halo-color: #e0c28d;
+  z-index: 2;
+}
+
+*|z15[historic=icon] {
+  list-text: auto;
+  list-type: tr('tag:historic=icon');
+}
+*|z16-[historic=icon] {
+  text: auto;
+  list-type: tr('tag:historic=icon');
+  text-color: #e09c25;
+  text-halo-color: #e0c28d;
+  z-index: 2;
+}
+
+*|z13-14[historic=monument] {
+  list-text: auto;
+  list-type: tr('tag:historic=monument');
+  icon-image: url('img/historic.png');
+}
+*|z15-[historic=monument] {
+  text: auto;
+  list-type: tr('tag:historic=monument');
+  icon-image: url('img/historic.png');
+  text-color: #e09c25;
+  text-halo-color: #e0c28d;
+  z-index: 3;
+}
+
+*|z15[historic=memorial] {
+  list-text: auto;
+  list-type: tr('tag:historic=memorial');
+  icon-image: url('img/historic.png');
+}
+*|z16-[historic=memorial] {
+  text: auto;
+  list-type: tr('tag:historic=memorial');
+  icon-image: url('img/historic.png');
+  text-color: #e09c25;
+  text-halo-color: #e0c28d;
+  z-index: 2;
+}
+
+*|z5-7[historic=unesco_world_heritage;historic=UNESCO_world_heritage] {
+  list-text: auto;
+  list-type: tr('tag:historic=unesco_world_heritage;historic=UNESCO_world_heritage');
+  icon-image: url('img/unesco.png');
+}
+*|z8-[historic=unesco_world_heritage;historic=UNESCO_world_heritage] {
+  text: auto;
+  list-type: tr('tag:historic=unesco_world_heritage;historic=UNESCO_world_heritage');
+  icon-image: url('img/unesco.png');
+  text-color: #e09c25;
+  text-halo-color: #e0c28d;
+  z-index: 6;
+}
+

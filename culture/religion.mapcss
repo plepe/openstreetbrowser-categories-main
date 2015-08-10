@@ -1,0 +1,100 @@
+meta {
+  title: tr("title:religion");
+}
+
+*|z15[amenity=crematorium] {
+  list-text: auto;
+  list-type: tr('tag:amenity=crematorium');
+}
+*|z16-[amenity=crematorium] {
+  text: auto;
+  list-type: tr('tag:amenity=crematorium');
+  text-color: #af29cc;
+  text-halo-color: #c399cc;
+  z-index: 2;
+}
+
+*|z16-17[amenity=grave_yard] {
+  list-text: auto;
+  list-type: tr('tag:amenity=grave_yard');
+  icon-image: url('img/cemetery.png');
+}
+*|z18-[amenity=grave_yard] {
+  text: auto;
+  list-type: tr('tag:amenity=grave_yard');
+  icon-image: url('img/cemetery.png');
+  text-color: #af29cc;
+  text-halo-color: #c399cc;
+  z-index: 1;
+}
+
+*|z13-14[amenity=place_of_worship][religion!=christian;jewish;muslim;sikh] {
+  list-text: auto;
+  list-type: tr('tag:amenity=place_of_worship religion!=christian;jewish;muslim;sikh');
+  icon-image: url('img/worship_default.png');
+}
+*|z15-[amenity=place_of_worship][religion!=christian;jewish;muslim;sikh] {
+  text: auto;
+  list-type: tr('tag:amenity=place_of_worship religion!=christian;jewish;muslim;sikh');
+  icon-image: url('img/worship_default.png');
+  text-color: #af29cc;
+  text-halo-color: #c399cc;
+  z-index: 3;
+}
+
+*|z13-14[amenity=place_of_worship][religion=christian] {
+  list-text: auto;
+  list-type: tr('tag:amenity=place_of_worship religion=christian');
+  icon-image: url('img/worship_church.png');
+}
+*|z15-[amenity=place_of_worship][religion=christian] {
+  text: auto;
+  list-type: tr('tag:amenity=place_of_worship religion=christian');
+  icon-image: url('img/worship_church.png');
+  text-color: #af29cc;
+  text-halo-color: #c399cc;
+  z-index: 3;
+}
+
+*|z13-14[amenity=place_of_worship][religion=jewish] {
+  list-text: auto;
+  list-type: tr('tag:amenity=place_of_worship religion=jewish');
+  icon-image: url('img/worship_synagogue.png');
+}
+*|z15-[amenity=place_of_worship][religion=jewish] {
+  text: auto;
+  list-type: tr('tag:amenity=place_of_worship religion=jewish');
+  icon-image: url('img/worship_synagogue.png');
+  text-color: #af29cc;
+  text-halo-color: #c399cc;
+  z-index: 3;
+}
+
+*|z13-14[amenity=place_of_worship][religion=muslim] {
+  list-text: auto;
+  list-type: tr('tag:amenity=place_of_worship religion=muslim');
+  icon-image: url('img/worship_mosque.png');
+}
+*|z15-[amenity=place_of_worship][religion=muslim] {
+  text: auto;
+  list-type: tr('tag:amenity=place_of_worship religion=muslim');
+  icon-image: url('img/worship_mosque.png');
+  text-color: #af29cc;
+  text-halo-color: #c399cc;
+  z-index: 3;
+}
+
+*|z13-14[amenity=place_of_worship][religion=sikh] {
+  list-text: auto;
+  list-type: tr('tag:amenity=place_of_worship religion=sikh');
+  icon-image: url('img/worship_sikh.png');
+}
+*|z15-[amenity=place_of_worship][religion=sikh] {
+  text: auto;
+  list-type: tr('tag:amenity=place_of_worship religion=sikh');
+  icon-image: url('img/worship_sikh.png');
+  text-color: #af29cc;
+  text-halo-color: #c399cc;
+  z-index: 3;
+}
+

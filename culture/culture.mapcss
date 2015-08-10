@@ -1,0 +1,146 @@
+meta {
+  title: tr("title:culture");
+}
+
+*|z13-14[amenity=arts_centre] {
+  list-text: auto;
+  list-type: tr('tag:amenity=arts_centre');
+  icon-image: url('img/culture.png');
+}
+*|z15-[amenity=arts_centre] {
+  text: auto;
+  list-type: tr('tag:amenity=arts_centre');
+  icon-image: url('img/culture.png');
+  text-color: #ff5745;
+  text-halo-color: #ffbab3;
+  z-index: 3;
+}
+
+*|z15[amenity=cinema] {
+  list-text: auto;
+  list-type: tr('tag:amenity=cinema');
+  icon-image: url('img/cinema.svg');
+}
+*|z16-[amenity=cinema] {
+  text: auto;
+  list-type: tr('tag:amenity=cinema');
+  icon-image: url('img/cinema.svg');
+  text-color: #ff5745;
+  text-halo-color: #ffbab3;
+  z-index: 2;
+}
+
+*|z15[heritage=8] {
+  list-text: auto;
+  list-type: tr('tag:heritage=8');
+  icon-image: url('img/heritage.png');
+}
+*|z16-[heritage=8] {
+  text: auto;
+  list-type: tr('tag:heritage=8');
+  icon-image: url('img/heritage.png');
+  text-color: #ff5745;
+  text-halo-color: #ffbab3;
+  z-index: 2;
+}
+
+*|z13-14[amenity=theatre] {
+  list-text: auto;
+  list-type: tr('tag:amenity=theatre');
+  icon-image: url('img/culture.png');
+}
+*|z15-[amenity=theatre] {
+  text: auto;
+  list-type: tr('tag:amenity=theatre');
+  icon-image: url('img/culture.png');
+  text-color: #ff5745;
+  text-halo-color: #ffbab3;
+  z-index: 3;
+}
+
+*|z13-14[heritage=4] {
+  list-text: auto;
+  list-type: tr('tag:heritage=4');
+  icon-image: url('img/heritage.png');
+}
+*|z15-[heritage=4] {
+  text: auto;
+  list-type: tr('tag:heritage=4');
+  icon-image: url('img/heritage.png');
+  text-color: #ff5745;
+  text-halo-color: #ffbab3;
+  z-index: 3;
+}
+
+*|z11-12[heritage=0] {
+  list-text: auto;
+  list-type: tr('tag:heritage=0');
+  icon-image: url('img/unesco.png');
+}
+*|z13-[heritage=0] {
+  text: auto;
+  list-type: tr('tag:heritage=0');
+  icon-image: url('img/unesco.png');
+  text-color: #ff5745;
+  text-halo-color: #ffbab3;
+  z-index: 4;
+}
+
+area|z15[tourism=gallery],
+node|z15[tourism=gallery] {
+  list-text: auto;
+  list-type: tr('tag:tourism=gallery');
+  icon-image: url('img/culture.png');
+}
+area|z16-[tourism=gallery],
+node|z16-[tourism=gallery] {
+  text: auto;
+  list-type: tr('tag:tourism=gallery');
+  icon-image: url('img/culture.png');
+  text-color: #ff5745;
+  text-halo-color: #ffbab3;
+  z-index: 2;
+}
+
+*|z16-17[tourism=artwork] {
+  list-text: auto;
+  list-type: tr('tag:tourism=artwork');
+  icon-image: url('img/culture.png');
+}
+*|z18-[tourism=artwork] {
+  text: auto;
+  list-type: tr('tag:tourism=artwork');
+  icon-image: url('img/culture.png');
+  text-color: #ff5745;
+  text-halo-color: #ffbab3;
+  z-index: 1;
+}
+
+*|z16-17[amenity=fountain] {
+  list-text: auto;
+  list-type: tr('tag:amenity=fountain');
+  icon-image: url('img/fountain.svg');
+}
+*|z18-[amenity=fountain] {
+  text: auto;
+  list-type: tr('tag:amenity=fountain');
+  icon-image: url('img/fountain.svg');
+  text-color: #ff5745;
+  text-halo-color: #ffbab3;
+  z-index: 1;
+}
+
+*|z11-12[heritage=2] {
+  list-text: auto;
+  list-type: tr('tag:heritage=2');
+  icon-image: url('img/heritage.png');
+}
+*|z13-[heritage=2] {
+  text: auto;
+  list-type: tr('tag:heritage=2');
+  icon-image: url('img/heritage.png');
+  text-color: #ff5745;
+  text-halo-color: #ffbab3;
+  z-index: 4;
+}
+

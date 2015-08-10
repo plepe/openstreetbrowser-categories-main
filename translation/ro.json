@@ -1,5 +1,6 @@
 {
     "dir:agriculture_industry": "Agricultura si industrie",
+    "dir:culture": "Cultura si religie",
     "dir:leisure": "Timp liber, Sport si Cumparaturi",
     "dir:services": "Servicii",
     "dir:services/communication": "Comunicatii",
@@ -28,11 +29,13 @@
     "tag:sport=soccer": "Fotbal",
     "tag:sport=tennis": "Tenis",
     "title:agriculture": "Agricultura",
+    "title:culture": "Cultura",
     "title:education": "Servicii educatie",
     "title:emergency": "Servicii urgenta",
     "title:financial": "Financiar",
     "title:gastro": "Gastronomie",
     "title:health": "Sanatate",
+    "title:historic": "Istoric",
     "title:internet": "Acces internet",
     "title:leisure": "Timp liber",
     "title:military": "Militar",
@@ -40,6 +43,7 @@
     "title:playgrounds": "Loc de joaca",
     "title:power": "Energie",
     "title:public": "Servicii publice",
+    "title:religion": "Religie",
     "title:shop": "Cumpărături",
-    "title:tourism": "Servicii turistice"
+    "title:tourism": "Turism"
 }
