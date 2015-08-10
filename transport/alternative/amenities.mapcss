@@ -1,0 +1,116 @@
+meta {
+  title: tr("title:alternative_amenities");
+}
+
+*|z15[amenity=bicycle_rental] {
+  list-text: auto;
+  list-type: tr('tag:amenity=bicycle_rental');
+  icon-image: url('img/bicycle_renting.svg');
+}
+*|z16-[amenity=bicycle_rental] {
+  text: auto;
+  list-type: tr('tag:amenity=bicycle_rental');
+  icon-image: url('img/bicycle_renting.svg');
+  z-index: 2;
+}
+
+*|z13-14[amenity=bicycle_parking][capacity>60] {
+  list-text: auto;
+  list-type: tr('tag:amenity=bicycle_parking capacity>60');
+  icon-image: url('img/parking_bikes.svg');
+}
+*|z15-[amenity=bicycle_parking][capacity>60] {
+  text: auto;
+  list-type: tr('tag:amenity=bicycle_parking capacity>60');
+  icon-image: url('img/parking_bikes.svg');
+  z-index: 3;
+}
+
+*|z13-14[shop=bicycle] {
+  list-text: auto;
+  list-type: tr('tag:shop=bicycle');
+  icon-image: url('img/shop_bicycles.svg');
+}
+*|z15-[shop=bicycle] {
+  text: auto;
+  list-type: tr('tag:shop=bicycle');
+  icon-image: url('img/shop_bicycles.svg');
+  z-index: 3;
+}
+
+*|z15[amenity=bicycle_parking][capacity<=60][capacity>20] {
+  list-text: auto;
+  list-type: tr('tag:amenity=bicycle_parking capacity<=60 capacity>20');
+  icon-image: url('img/parking_bikes.svg');
+}
+*|z16-[amenity=bicycle_parking][capacity<=60][capacity>20] {
+  text: auto;
+  list-type: tr('tag:amenity=bicycle_parking capacity<=60 capacity>20');
+  icon-image: url('img/parking_bikes.svg');
+  z-index: 2;
+}
+
+*|z16-17[amenity=bicycle_parking][capacity<=20],
+*|z16-17[amenity=bicycle_parking][capacity!] {
+  list-text: auto;
+  list-type: tr('tag:amenity=bicycle_parking capacity<=20, amenity=bicycle_parking capacity!=*');
+  icon-image: url('img/parking_bikes.svg');
+}
+*|z18-[amenity=bicycle_parking][capacity<=20],
+*|z18-[amenity=bicycle_parking][capacity!] {
+  text: auto;
+  list-type: tr('tag:amenity=bicycle_parking capacity<=20, amenity=bicycle_parking capacity!=*');
+  icon-image: url('img/parking_bikes.svg');
+  z-index: 1;
+}
+
+*|z16-17[amenity=drinking_water] {
+  list-text: auto;
+  list-type: tr('tag:amenity=drinking_water');
+  icon-image: url('img/drinking_water.svg');
+}
+*|z18-[amenity=drinking_water] {
+  text: auto;
+  list-type: tr('tag:amenity=drinking_water');
+  icon-image: url('img/drinking_water.svg');
+  z-index: 1;
+}
+
+*|z16-17[amenity=signpost],
+*|z16-17[information=guidepost] {
+  list-text: auto;
+  list-type: tr('tag:amenity=signpost, information=guidepost');
+  icon-image: url('img/signpost.svg');
+}
+*|z18-[amenity=signpost],
+*|z18-[information=guidepost] {
+  text: auto;
+  list-type: tr('tag:amenity=signpost, information=guidepost');
+  icon-image: url('img/signpost.svg');
+  z-index: 1;
+}
+
+*|z16-17[amenity=vending_machine][vending=bicycle_tube] {
+  list-text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=bicycle_tube');
+  icon-image: url('img/vending_machine.svg');
+}
+*|z18-[amenity=vending_machine][vending=bicycle_tube] {
+  text: auto;
+  list-type: tr('tag:amenity=vending_machine vending=bicycle_tube');
+  icon-image: url('img/vending_machine.svg');
+  z-index: 1;
+}
+
+node|z16-17[cycleway=bike_box;asl] {
+  list-text: auto;
+  list-type: tr('tag:cycleway=bike_box;asl');
+  icon-image: url('img/4d83021f00a5a.svg');
+}
+node|z18-[cycleway=bike_box;asl] {
+  text: auto;
+  list-type: tr('tag:cycleway=bike_box;asl');
+  icon-image: url('img/4d83021f00a5a.svg');
+  z-index: 1;
+}
+

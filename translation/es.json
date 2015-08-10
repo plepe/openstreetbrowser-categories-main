@@ -12,5 +12,6 @@
     "tag:internet_access=wlan internet_access:fee=yes": "Acceso WiFi de pago a Internet",
     "tag:internet_access=wlan, amenity=wlan, amenity=WLAN, amenity=wifi, wifi=yes": "Acceso WiFi no especificado a Internet",
     "title:emergency": "Servicios de emergencia",
-    "title:internet": "Acceso a Internet"
+    "title:internet": "Acceso a Internet",
+    "title:pt_stops": "Paradas y estaciones"
 }

@@ -1,32 +1,122 @@
 meta {
-  title: tr('title:pt-stops');
+  title: tr("title:pt_stops");
 }
 
-node|z14-[highway=bus_stop] {
-  set .stop;
-  set .type = tr('tag:highway=bus_stop');
-  z-index: 5;
+node|z15[highway=bus_stop],
+node|z15[public_transport=stop_position][bus=yes] {
+  list-text: auto;
+  list-type: tr('tag:highway=bus_stop, public_transport=stop_position bus=yes');
+  icon-image: url('img/4cf0aede90505.svg');
 }
-node|z13-[railway=tram_stop] {
-  set .stop;
-  set .type = tr('tag:railway=tram_stop');
-  z-index: 6;
-}
-area|z11-[railway=station],
-node|z11-[railway=station] {
-  set .stop;
-  set .type = tr('tag:railway=station');
-  z-index: 10;
+node|z16-[highway=bus_stop],
+node|z16-[public_transport=stop_position][bus=yes] {
+  text: auto;
+  list-type: tr('tag:highway=bus_stop, public_transport=stop_position bus=yes');
+  icon-image: url('img/4cf0aede90505.svg');
+  z-index: 2;
 }
 
-node.stop,
-area.stop {
-  set .z-index = prop('z-index');
-  combine stop tag('name');
+area|z16-17[highway=platform],
+area|z16-17[public_transport=platform],
+node|z16-17[highway=platform],
+node|z16-17[public_transport=platform],
+line|z16-17[highway=platform],
+line|z16-17[public_transport=platform] {
+  list-text: auto;
+  list-type: tr('tag:highway=platform, public_transport=platform');
+  icon-image: url('img/4cf0aede90505.svg');
+}
+area|z18-[highway=platform],
+area|z18-[public_transport=platform],
+node|z18-[highway=platform],
+node|z18-[public_transport=platform],
+line|z18-[highway=platform],
+line|z18-[public_transport=platform] {
+  text: auto;
+  list-type: tr('tag:highway=platform, public_transport=platform');
+  icon-image: url('img/4cf0aede90505.svg');
+  z-index: 1;
 }
 
-stop {
-  text: name;
-  list-type: join(', ', unique(tag('.type')));
-  z-index: sum(unique(tag('.z-index')));
+area|z16-17[railway=platform],
+line|z16-17[railway=platform] {
+  list-text: auto;
+  list-type: tr('tag:railway=platform');
+  icon-image: url('img/4cf0ae91d622e.svg');
 }
+area|z18-[railway=platform],
+line|z18-[railway=platform] {
+  text: auto;
+  list-type: tr('tag:railway=platform');
+  icon-image: url('img/4cf0ae91d622e.svg');
+  z-index: 1;
+}
+
+area|z11-12[railway=station],
+node|z11-12[railway=station] {
+  list-text: auto;
+  list-type: tr('tag:railway=station');
+  icon-image: url('img/4cf0ae91d622e.svg');
+}
+area|z13-[railway=station],
+node|z13-[railway=station] {
+  text: auto;
+  list-type: tr('tag:railway=station');
+  icon-image: url('img/4cf0ae91d622e.svg');
+  z-index: 4;
+}
+
+area|z11-12[amenity=ferry_terminal],
+node|z11-12[amenity=ferry_terminal] {
+  list-text: auto;
+  list-type: tr('tag:amenity=ferry_terminal');
+  icon-image: url('img/4cf0b826b1fb5.svg');
+}
+area|z13-[amenity=ferry_terminal],
+node|z13-[amenity=ferry_terminal] {
+  text: auto;
+  list-type: tr('tag:amenity=ferry_terminal');
+  icon-image: url('img/4cf0b826b1fb5.svg');
+  z-index: 4;
+}
+
+area|z11-12[amenity=bus_station],
+node|z11-12[amenity=bus_station] {
+  list-text: auto;
+  list-type: tr('tag:amenity=bus_station');
+  icon-image: url('img/4cf0aede90505.svg');
+}
+area|z13-[amenity=bus_station],
+node|z13-[amenity=bus_station] {
+  text: auto;
+  list-type: tr('tag:amenity=bus_station');
+  icon-image: url('img/4cf0aede90505.svg');
+  z-index: 4;
+}
+
+node|z13-14[railway=halt] {
+  list-text: auto;
+  list-type: tr('tag:railway=halt');
+  icon-image: url('img/4cf0ae91d622e.svg');
+}
+node|z15-[railway=halt] {
+  text: auto;
+  list-type: tr('tag:railway=halt');
+  icon-image: url('img/4cf0ae91d622e.svg');
+  z-index: 3;
+}
+
+node|z13-14[railway=tram_stop],
+node|z13-14[public_transport=stop_position][tram=yes] {
+  list-text: auto;
+  list-type: tr('tag:railway=tram_stop, public_transport=stop_position tram=yes');
+  icon-image: url('img/4cf0b8770ccb4.svg');
+}
+node|z15-[railway=tram_stop],
+node|z15-[public_transport=stop_position][tram=yes] {
+  text: auto;
+  list-type: tr('tag:railway=tram_stop, public_transport=stop_position tram=yes');
+  icon-image: url('img/4cf0b8770ccb4.svg');
+  z-index: 3;
+}
+

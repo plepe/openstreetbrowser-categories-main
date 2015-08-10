@@ -1,0 +1,38 @@
+meta {
+  title: tr("title:pt_amenities");
+}
+
+*|z15[amenity=taxi] {
+  list-text: auto;
+  list-type: tr('tag:amenity=taxi');
+  icon-image: url('img/Taxi.png');
+}
+*|z16-[amenity=taxi] {
+  text: auto;
+  list-type: tr('tag:amenity=taxi');
+  icon-image: url('img/Taxi.png');
+  z-index: 2;
+}
+
+*|z15[amenity=ticket_counter] {
+  list-text: auto;
+  list-type: tr('tag:amenity=ticket_counter');
+}
+*|z16-[amenity=ticket_counter] {
+  text: auto;
+  list-type: tr('tag:amenity=ticket_counter');
+  z-index: 2;
+}
+
+node|z15[railway=subway_entrance] {
+  list-text: auto;
+  list-type: tr('tag:railway=subway_entrance');
+  icon-image: url('img/subway_entrance.svg');
+}
+node|z16-[railway=subway_entrance] {
+  text: auto;
+  list-type: tr('tag:railway=subway_entrance');
+  icon-image: url('img/subway_entrance.svg');
+  z-index: 2;
+}
+

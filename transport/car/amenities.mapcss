@@ -1,0 +1,98 @@
+meta {
+  title: tr("title:car_amenities");
+}
+
+*|z13-14[amenity=car_rental] {
+  list-text: auto;
+  list-type: tr('tag:amenity=car_rental');
+  icon-image: url('img/car_rental.svg');
+}
+*|z15-[amenity=car_rental] {
+  text: auto;
+  list-type: tr('tag:amenity=car_rental');
+  icon-image: url('img/car_rental.svg');
+  text-color: #858585;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+*|z13-14[amenity=car_sharing] {
+  list-text: auto;
+  list-type: tr('tag:amenity=car_sharing');
+  icon-image: url('img/car_rental.svg');
+}
+*|z15-[amenity=car_sharing] {
+  text: auto;
+  list-type: tr('tag:amenity=car_sharing');
+  icon-image: url('img/car_rental.svg');
+  text-color: #858585;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+*|z13-14[amenity=fuel] {
+  list-text: auto;
+  list-type: tr('tag:amenity=fuel');
+  icon-image: url('img/Fuel.png');
+}
+*|z15-[amenity=fuel] {
+  text: auto;
+  list-type: tr('tag:amenity=fuel');
+  icon-image: url('img/Fuel.png');
+  text-color: #858585;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+*|z15[amenity=parking] {
+  list-text: auto;
+  list-type: tr('tag:amenity=parking');
+  icon-image: url('img/parking.svg');
+}
+*|z16-[amenity=parking] {
+  text: auto;
+  list-type: tr('tag:amenity=parking');
+  icon-image: url('img/parking.svg');
+  text-color: #858585;
+  text-halo-color: #b7b8cc;
+  z-index: 2;
+}
+
+*|z13-14[shop=car_repair] {
+  list-text: auto;
+  list-type: tr('tag:shop=car_repair');
+  icon-image: url('img/Car_Repair.png');
+}
+*|z15-[shop=car_repair] {
+  text: auto;
+  list-type: tr('tag:shop=car_repair');
+  icon-image: url('img/Car_Repair.png');
+  text-color: #858585;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+*|z13-14[landuse=garages] {
+  list-text: auto;
+  list-type: tr('tag:landuse=garages');
+}
+*|z15-[landuse=garages] {
+  text: auto;
+  list-type: tr('tag:landuse=garages');
+  text-color: #858585;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+*|z11-12[highway=services] {
+  list-text: auto;
+  list-type: tr('tag:highway=services');
+}
+*|z13-[highway=services] {
+  text: auto;
+  list-type: tr('tag:highway=services');
+  text-color: #858585;
+  text-halo-color: #b7b8cc;
+  z-index: 4;
+}
+

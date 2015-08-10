@@ -1,0 +1,106 @@
+meta {
+  title: tr("title:car_furniture");
+}
+
+node|z16-17[highway=mini_roundabout] {
+  list-text: auto;
+  list-type: tr('tag:highway=mini_roundabout');
+}
+node|z18-[highway=mini_roundabout] {
+  text: auto;
+  list-type: tr('tag:highway=mini_roundabout');
+  text-color: #858585;
+  text-halo-color: #b7b8cc;
+  z-index: 1;
+}
+
+node|z16-17[highway=stop] {
+  list-text: auto;
+  list-type: tr('tag:highway=stop');
+  icon-image: url('img/Stop.png');
+}
+node|z18-[highway=stop] {
+  text: auto;
+  list-type: tr('tag:highway=stop');
+  icon-image: url('img/Stop.png');
+  text-color: #858585;
+  text-halo-color: #b7b8cc;
+  z-index: 1;
+}
+
+node|z16-17[railway=level_crossing] {
+  list-text: auto;
+  list-type: tr('tag:railway=level_crossing');
+}
+node|z18-[railway=level_crossing] {
+  text: auto;
+  list-type: tr('tag:railway=level_crossing');
+  text-color: #858585;
+  text-halo-color: #b7b8cc;
+  z-index: 1;
+}
+
+area|z15[highway=roundabout],
+node|z15[highway=roundabout],
+line|z15[highway=roundabout] {
+  list-text: auto;
+  list-type: tr('tag:highway=roundabout');
+}
+area|z16-[highway=roundabout],
+node|z16-[highway=roundabout],
+line|z16-[highway=roundabout] {
+  text: auto;
+  list-type: tr('tag:highway=roundabout');
+  text-color: #858585;
+  text-halo-color: #b7b8cc;
+  z-index: 2;
+}
+
+node|z11-12[highway=motorway_junction] {
+  list-text: auto;
+  list-type: tr('tag:highway=motorway_junction');
+}
+node|z13-[highway=motorway_junction] {
+  text: auto;
+  list-type: tr('tag:highway=motorway_junction');
+  text-color: #858585;
+  text-halo-color: #b7b8cc;
+  z-index: 4;
+}
+
+node|z15[highway=emergency_access_point] {
+  list-text: auto;
+  list-type: tr('tag:highway=emergency_access_point');
+}
+node|z16-[highway=emergency_access_point] {
+  text: auto;
+  list-type: tr('tag:highway=emergency_access_point');
+  text-color: #858585;
+  text-halo-color: #b7b8cc;
+  z-index: 2;
+}
+
+node|z16-17[highway=passing_place] {
+  list-text: auto;
+  list-type: tr('tag:highway=passing_place');
+}
+node|z18-[highway=passing_place] {
+  text: auto;
+  list-type: tr('tag:highway=passing_place');
+  text-color: #858585;
+  text-halo-color: #b7b8cc;
+  z-index: 1;
+}
+
+line|z15[highway][bridge=*!=no] {
+  list-text: auto;
+  list-type: tr('tag:highway=* bridge=*!=no');
+}
+line|z16-[highway][bridge=*!=no] {
+  text: auto;
+  list-type: tr('tag:highway=* bridge=*!=no');
+  text-color: #858585;
+  text-halo-color: #b7b8cc;
+  z-index: 2;
+}
+

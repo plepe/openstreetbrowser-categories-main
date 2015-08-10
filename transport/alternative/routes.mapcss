@@ -1,0 +1,64 @@
+meta {
+  title: tr("title:alternative_routes");
+}
+
+relation|z5-7[type=route][route=bicycle][network=icn] {
+  list-text: auto;
+  list-type: tr('tag:type=route route=bicycle network=icn');
+}
+relation|z8-[type=route][route=bicycle][network=icn] {
+  text: auto;
+  list-type: tr('tag:type=route route=bicycle network=icn');
+  z-index: 6;
+}
+
+relation|z13-14[type=route][route=hiking] {
+  list-text: auto;
+  list-type: tr('tag:type=route route=hiking');
+}
+relation|z15-[type=route][route=hiking] {
+  text: auto;
+  list-type: tr('tag:type=route route=hiking');
+  z-index: 3;
+}
+
+relation|z13-14[type=route][route=bicycle][network!=icn;ncn;rcn] {
+  list-text: auto;
+  list-type: tr('tag:type=route route=bicycle network!=icn;ncn;rcn');
+}
+relation|z15-[type=route][route=bicycle][network!=icn;ncn;rcn] {
+  text: auto;
+  list-type: tr('tag:type=route route=bicycle network!=icn;ncn;rcn');
+  z-index: 3;
+}
+
+relation|z8-9[type=route][route=bicycle][network=ncn] {
+  list-text: auto;
+  list-type: tr('tag:type=route route=bicycle network=ncn');
+}
+relation|z10-[type=route][route=bicycle][network=ncn] {
+  text: auto;
+  list-type: tr('tag:type=route route=bicycle network=ncn');
+  z-index: 5;
+}
+
+relation|z11-12[type=route][route=bicycle][network=rcn] {
+  list-text: auto;
+  list-type: tr('tag:type=route route=bicycle network=rcn');
+}
+relation|z13-[type=route][route=bicycle][network=rcn] {
+  text: auto;
+  list-type: tr('tag:type=route route=bicycle network=rcn');
+  z-index: 4;
+}
+
+relation|z11-12[type=route][route=mtb] {
+  list-text: auto;
+  list-type: tr('tag:type=route route=mtb');
+}
+relation|z13-[type=route][route=mtb] {
+  text: auto;
+  list-type: tr('tag:type=route route=mtb');
+  z-index: 4;
+}
+

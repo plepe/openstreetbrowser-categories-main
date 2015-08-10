@@ -5,6 +5,9 @@
     "dir:services": "Υπηρεσίες",
     "dir:services/communication": "Επικοινωνίες",
     "dir:services_communication": "Επικοινωνίες",
+    "dir:transport": "Μεταφορές",
+    "dir:transport/alternative": "Εναλλακτικά (ποδηλασία, ορειβασία,...)",
+    "dir:transport/pt": "Δημόσιες Μεταφορές",
     "tag:amenity=cinema": {
         "!=1": "Κινηματογράφοι",
         "message": "Κινηματογράφος"
@@ -14,6 +17,7 @@
     "tag:amenity=nursing_home": "Γηροκομείο",
     "tag:amenity=recycling recycling_type=centre": "Κέντρο ανακύκλωσης",
     "tag:amenity=sauna": "Σάουνα",
+    "tag:highway=* bridge=*!=no": "Γέφυρα",
     "tag:landuse=landfill": "Χωματερή",
     "tag:landuse=recreation_ground": "Πεδίο Δραστηριοτήτων",
     "tag:leisure=beach_resort": "Παραθαλάσσιο Θέρετρο",
@@ -56,6 +60,7 @@
     "title:historic": "Ιστορικά",
     "title:leisure": "Αναψυχή",
     "title:military": "Στρατιωτικό",
+    "title:pt_stops": "Στάσεις & Σταθμοί",
     "title:public": "Δημόσιες Υπηρεσίες",
     "title:religion": "Θρησκεία",
     "title:shop": "Αγορές",

@@ -1,0 +1,14 @@
+meta {
+  title: tr("title:pt_routes");
+}
+
+relation|z15[route=bus] {
+  list-text: auto;
+  list-type: tr('tag:route=bus');
+}
+relation|z16-[route=bus] {
+  text: auto;
+  list-type: tr('tag:route=bus');
+  z-index: 2;
+}
+

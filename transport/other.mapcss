@@ -1,0 +1,34 @@
+meta {
+  title: tr("title:other");
+}
+
+line|z11-12[power=line] {
+  list-text: auto;
+  list-type: tr('tag:power=line');
+}
+line|z13-[power=line] {
+  text: auto;
+  list-type: tr('tag:power=line');
+  z-index: 4;
+}
+
+line|z15[power=minor_line] {
+  list-text: auto;
+  list-type: tr('tag:power=minor_line');
+}
+line|z16-[power=minor_line] {
+  text: auto;
+  list-type: tr('tag:power=minor_line');
+  z-index: 2;
+}
+
+line|z13-14[man_made=pipeline] {
+  list-text: auto;
+  list-type: tr('tag:man_made=pipeline');
+}
+line|z15-[man_made=pipeline] {
+  text: auto;
+  list-type: tr('tag:man_made=pipeline');
+  z-index: 3;
+}
+
