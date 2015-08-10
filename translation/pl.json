@@ -1,7 +1,27 @@
 {
     "dir:leisure": "Wypoczynek, Sport i Zakupy",
     "dir:services": "Usługi",
+    "tag:amenity=atm": "Bankomat",
+    "tag:amenity=baby_hatch": "Okno życia",
+    "tag:amenity=bank, amenity=bank;atm, amenity=atm;bank": "Bank",
+    "tag:amenity=bureau_de_change": "Kantor",
+    "tag:amenity=dentist": "Stomatolog",
+    "tag:amenity=doctors": "Przychodnia lekarska",
+    "tag:amenity=hospital": "Szpital",
+    "tag:amenity=kindergarten": "Przedszkole",
+    "tag:amenity=library": "Biblioteka",
     "tag:amenity=marketplace": "Bazar",
+    "tag:amenity=pharmacy": "Apteka",
+    "tag:amenity=school": "Szkoła",
+    "tag:amenity=veterinary": "Weterynarz",
+    "tag:tourism=camp_site": "Kemping",
+    "tag:tourism=hostel": "Hostel",
+    "tag:tourism=hotel": "Hotel",
+    "tag:tourism=motel": "Motel",
+    "title:education": "Edukacyjne",
+    "title:financial": "Finasowe",
     "title:gastro": "Gastronomia",
-    "title:shop": "Zakupy"
+    "title:health": "Zdrowie",
+    "title:shop": "Zakupy",
+    "title:tourism": "Turystyczne"
 }

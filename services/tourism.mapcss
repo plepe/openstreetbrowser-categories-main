@@ -1,0 +1,95 @@
+meta {
+  title: tr("title:tourism");
+}
+
+*|z13-14[tourism=motel] {
+  list-text: auto;
+  list-type: tr('tag:tourism=motel');
+  icon-image: url('img/hotel.png');
+}
+*|z15-[tourism=motel] {
+  text: auto;
+  list-type: tr('tag:tourism=motel');
+  icon-image: url('img/hotel.png');
+  text-halo-color: #8f9ed8;
+  z-index: 3;
+}
+
+*|z11-12[tourism=camp_site] {
+  list-text: auto;
+  list-type: tr('tag:tourism=camp_site');
+  icon-image: url('img/camp_site.png');
+}
+*|z13-[tourism=camp_site] {
+  text: auto;
+  list-type: tr('tag:tourism=camp_site');
+  icon-image: url('img/camp_site.png');
+  text-halo-color: #8f9ed8;
+  z-index: 4;
+}
+
+*|z11-12[tourism=caravan_site] {
+  list-text: auto;
+  list-type: tr('tag:tourism=caravan_site');
+  icon-image: url('img/camp_site.png');
+}
+*|z13-[tourism=caravan_site] {
+  text: auto;
+  list-type: tr('tag:tourism=caravan_site');
+  icon-image: url('img/camp_site.png');
+  text-halo-color: #8f9ed8;
+  z-index: 4;
+}
+
+*|z15[tourism=chalet] {
+  list-text: auto;
+  list-type: tr('tag:tourism=chalet');
+  icon-image: url('img/hotel.png');
+}
+*|z16-[tourism=chalet] {
+  text: auto;
+  list-type: tr('tag:tourism=chalet');
+  icon-image: url('img/hotel.png');
+  text-halo-color: #8f9ed8;
+  z-index: 2;
+}
+
+*|z15[tourism=guest_house] {
+  list-text: auto;
+  list-type: tr('tag:tourism=guest_house');
+  icon-image: url('img/hotel.png');
+}
+*|z16-[tourism=guest_house] {
+  text: auto;
+  list-type: tr('tag:tourism=guest_house');
+  icon-image: url('img/hotel.png');
+  text-halo-color: #8f9ed8;
+  z-index: 2;
+}
+
+*|z13-14[tourism=hostel] {
+  list-text: auto;
+  list-type: tr('tag:tourism=hostel');
+  icon-image: url('img/hotel.png');
+}
+*|z15-[tourism=hostel] {
+  text: auto;
+  list-type: tr('tag:tourism=hostel');
+  icon-image: url('img/hotel.png');
+  text-halo-color: #8f9ed8;
+  z-index: 3;
+}
+
+*|z13-14[tourism=hotel] {
+  list-text: auto;
+  list-type: tr('tag:tourism=hotel');
+  icon-image: url('img/hotel.png');
+}
+*|z15-[tourism=hotel] {
+  text: auto;
+  list-type: tr('tag:tourism=hotel');
+  icon-image: url('img/hotel.png');
+  text-halo-color: #8f9ed8;
+  z-index: 3;
+}
+

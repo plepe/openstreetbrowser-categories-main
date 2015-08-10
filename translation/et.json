@@ -4,12 +4,18 @@
     "dir:services/communication": "Kommunikatsioon",
     "tag:amenity=bench": "Pink",
     "tag:amenity=brothel": "Bordell",
+    "tag:amenity=hospital": "Haigla",
+    "tag:amenity=nursing_home": "Vanadekodu",
     "tag:amenity=sauna": "Saun",
     "tag:amenity=telephone": "Telefon",
     "tag:leisure=sports_centre": "Spordikeskus",
     "tag:leisure=stadium": "Staadion",
     "tag:leisure=water_park": "Veepark",
+    "title:education": "Haridusteenused",
+    "title:emergency": "Hädaabi teenused",
     "title:phone": "Telefon",
     "title:playgrounds": "Mänguväljak",
-    "title:shop": "Ostmine"
+    "title:public": "Kommunaalteenused",
+    "title:shop": "Ostmine",
+    "title:tourism": "Turismiteenused"
 }

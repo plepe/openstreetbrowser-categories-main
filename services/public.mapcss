@@ -1,0 +1,140 @@
+meta {
+  title: tr("title:public");
+}
+
+*|z16-17[amenity=clock] {
+  list-text: auto;
+  list-type: tr('tag:amenity=clock');
+  icon-image: url('img/clock.svg');
+}
+*|z18-[amenity=clock] {
+  text: auto;
+  list-type: tr('tag:amenity=clock');
+  icon-image: url('img/clock.svg');
+  text-color: #f0b215;
+  text-halo-color: #f0dba5;
+  z-index: 1;
+}
+
+*|z11-12[amenity=court_house] {
+  list-text: auto;
+  list-type: tr('tag:amenity=court_house');
+  icon-image: url('img/court.svg');
+}
+*|z13-[amenity=court_house] {
+  text: auto;
+  list-type: tr('tag:amenity=court_house');
+  icon-image: url('img/court.svg');
+  text-color: #f0b215;
+  text-halo-color: #f0dba5;
+  z-index: 4;
+}
+
+area|z16-17[amenity=drinking_water][maintenance!=needs_repair;broken][disused!=yes],
+area|z16-17[drinking_water=yes][][disused!=yes],
+node|z16-17[amenity=drinking_water][maintenance!=needs_repair;broken][disused!=yes],
+node|z16-17[drinking_water=yes][][disused!=yes] {
+  list-text: auto;
+  list-type: tr('tag:amenity=drinking_water maintenance!=needs_repair;broken disused!=yes , drinking_water=yes  disused!=yes');
+  icon-image: url('img/drinking_water.svg');
+}
+area|z18-[amenity=drinking_water][maintenance!=needs_repair;broken][disused!=yes],
+area|z18-[drinking_water=yes][][disused!=yes],
+node|z18-[amenity=drinking_water][maintenance!=needs_repair;broken][disused!=yes],
+node|z18-[drinking_water=yes][][disused!=yes] {
+  text: auto;
+  list-type: tr('tag:amenity=drinking_water maintenance!=needs_repair;broken disused!=yes , drinking_water=yes  disused!=yes');
+  icon-image: url('img/drinking_water.svg');
+  text-color: #f0b215;
+  text-halo-color: #f0dba5;
+  z-index: 1;
+}
+
+*|z11-12[amenity=embassy] {
+  list-text: auto;
+  list-type: tr('tag:amenity=embassy');
+  icon-image: url('img/embassy.svg');
+}
+*|z13-[amenity=embassy] {
+  text: auto;
+  list-type: tr('tag:amenity=embassy');
+  icon-image: url('img/embassy.svg');
+  text-color: #f0b215;
+  text-halo-color: #f0dba5;
+  z-index: 4;
+}
+
+*|z11-12[amenity=government],
+*|z11-12[amenity=gouvernment] {
+  list-text: auto;
+  list-type: tr('tag:amenity=government, amenity=gouvernment');
+  icon-image: url('img/government.svg');
+}
+*|z13-[amenity=government],
+*|z13-[amenity=gouvernment] {
+  text: auto;
+  list-type: tr('tag:amenity=government, amenity=gouvernment');
+  icon-image: url('img/government.svg');
+  text-color: #f0b215;
+  text-halo-color: #f0dba5;
+  z-index: 4;
+}
+
+*|z13-14[amenity=public_building] {
+  list-text: auto;
+  list-type: tr('tag:amenity=public_building');
+  icon-image: url('img/government.svg');
+}
+*|z15-[amenity=public_building] {
+  text: auto;
+  list-type: tr('tag:amenity=public_building');
+  icon-image: url('img/government.svg');
+  text-color: #f0b215;
+  text-halo-color: #f0dba5;
+  z-index: 3;
+}
+
+*|z13-14[amenity=recycling][recycling_type=centre] {
+  list-text: auto;
+  list-type: tr('tag:amenity=recycling recycling_type=centre');
+  icon-image: url('img/recycling.png');
+}
+*|z15-[amenity=recycling][recycling_type=centre] {
+  text: auto;
+  list-type: tr('tag:amenity=recycling recycling_type=centre');
+  icon-image: url('img/recycling.png');
+  text-color: #f0b215;
+  text-halo-color: #f0dba5;
+  z-index: 3;
+}
+
+*|z13-14[amenity=townhall] {
+  list-text: auto;
+  list-type: tr('tag:amenity=townhall');
+  icon-image: url('img/government.svg');
+}
+*|z15-[amenity=townhall] {
+  text: auto;
+  list-type: tr('tag:amenity=townhall');
+  icon-image: url('img/government.svg');
+  text-color: #f0b215;
+  text-halo-color: #f0dba5;
+  z-index: 3;
+}
+
+area|z16-17[amenity=recycling],
+node|z16-17[amenity=recycling] {
+  list-text: auto;
+  list-type: tr('tag:amenity=recycling');
+  icon-image: url('img/recycling.png');
+}
+area|z18-[amenity=recycling],
+node|z18-[amenity=recycling] {
+  text: auto;
+  list-type: tr('tag:amenity=recycling');
+  icon-image: url('img/recycling.png');
+  text-color: #f0b215;
+  text-halo-color: #f0dba5;
+  z-index: 1;
+}
+

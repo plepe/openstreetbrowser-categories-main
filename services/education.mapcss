@@ -1,0 +1,52 @@
+meta {
+  title: tr("title:education");
+}
+
+*|z11-12[amenity=college] {
+  list-text: auto;
+  list-type: tr('tag:amenity=college');
+  icon-image: url('img/university.svg');
+}
+*|z13-[amenity=college] {
+  text: auto;
+  list-type: tr('tag:amenity=college');
+  icon-image: url('img/university.svg');
+  text-halo-color: #e39ccf;
+  z-index: 4;
+}
+
+*|z15[amenity=kindergarten] {
+  list-text: auto;
+  list-type: tr('tag:amenity=kindergarten');
+}
+*|z16-[amenity=kindergarten] {
+  text: auto;
+  list-type: tr('tag:amenity=kindergarten');
+  text-halo-color: #e39ccf;
+  z-index: 2;
+}
+
+*|z13-14[amenity=library] {
+  list-text: auto;
+  list-type: tr('tag:amenity=library');
+  icon-image: url('img/library.svg');
+}
+*|z15-[amenity=library] {
+  text: auto;
+  list-type: tr('tag:amenity=library');
+  icon-image: url('img/library.svg');
+  text-halo-color: #e39ccf;
+  z-index: 3;
+}
+
+*|z15[amenity=school] {
+  list-text: auto;
+  list-type: tr('tag:amenity=school');
+}
+*|z16-[amenity=school] {
+  text: auto;
+  list-type: tr('tag:amenity=school');
+  text-halo-color: #e39ccf;
+  z-index: 2;
+}
+

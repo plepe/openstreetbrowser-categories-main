@@ -4,6 +4,7 @@
     "dir:services/communication": "Comunicatii",
     "tag:amenity=bench": "Banca",
     "tag:amenity=brothel": "Bordel",
+    "tag:amenity=fire_hydrant fire_hydrant:type!=pillar;underground, emergency=fire_hydrant fire_hydrant:type!=pillar;underground": "Hidrant",
     "tag:amenity=sauna": "Sauna",
     "tag:amenity=telephone": "Telefon",
     "tag:landuse=recreation_ground": "Teren recreare",
@@ -22,10 +23,16 @@
     "tag:sport=horse_racing": "Curse cai",
     "tag:sport=soccer": "Fotbal",
     "tag:sport=tennis": "Tenis",
+    "title:education": "Servicii educatie",
+    "title:emergency": "Servicii urgenta",
+    "title:financial": "Financiar",
     "title:gastro": "Gastronomie",
+    "title:health": "Sanatate",
     "title:internet": "Acces internet",
     "title:leisure": "Timp liber",
     "title:phone": "Telefon",
     "title:playgrounds": "Loc de joaca",
-    "title:shop": "Cumpărături"
+    "title:public": "Servicii publice",
+    "title:shop": "Cumpărături",
+    "title:tourism": "Servicii turistice"
 }

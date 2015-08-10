@@ -1,0 +1,124 @@
+meta {
+  title: tr("title:emergency");
+}
+
+node|z15[amenity=emergency_phone] {
+  list-text: auto;
+  list-type: tr('tag:amenity=emergency_phone');
+  icon-image: url('img/emergency_phone.svg');
+}
+node|z16-[amenity=emergency_phone] {
+  text: auto;
+  list-type: tr('tag:amenity=emergency_phone');
+  icon-image: url('img/emergency_phone.svg');
+  text-halo-color: #df9ea5;
+  z-index: 2;
+}
+
+node|z16-17[amenity=fire_hydrant][fire_hydrant:type!=pillar;underground],
+node|z16-17[emergency=fire_hydrant][fire_hydrant:type!=pillar;underground] {
+  list-text: auto;
+  list-type: tr('tag:amenity=fire_hydrant fire_hydrant:type!=pillar;underground, emergency=fire_hydrant fire_hydrant:type!=pillar;underground');
+  icon-image: url('img/fire_hydrant.svg');
+}
+node|z18-[amenity=fire_hydrant][fire_hydrant:type!=pillar;underground],
+node|z18-[emergency=fire_hydrant][fire_hydrant:type!=pillar;underground] {
+  text: auto;
+  list-type: tr('tag:amenity=fire_hydrant fire_hydrant:type!=pillar;underground, emergency=fire_hydrant fire_hydrant:type!=pillar;underground');
+  icon-image: url('img/fire_hydrant.svg');
+  text-halo-color: #df9ea5;
+  z-index: 1;
+}
+
+node|z16-17[amenity=fire_hydrant][fire_hydrant:type=underground],
+node|z16-17[emergency=fire_hydrant][fire_hydrant:type=underground] {
+  list-text: auto;
+  list-type: tr('tag:amenity=fire_hydrant fire_hydrant:type=underground, emergency=fire_hydrant fire_hydrant:type=underground');
+  icon-image: url('img/4ea85c23b6543.png');
+}
+node|z18-[amenity=fire_hydrant][fire_hydrant:type=underground],
+node|z18-[emergency=fire_hydrant][fire_hydrant:type=underground] {
+  text: auto;
+  list-type: tr('tag:amenity=fire_hydrant fire_hydrant:type=underground, emergency=fire_hydrant fire_hydrant:type=underground');
+  icon-image: url('img/4ea85c23b6543.png');
+  text-halo-color: #df9ea5;
+  z-index: 1;
+}
+
+node|z16-17[amenity=fire_hydrant][fire_hydrant:type=pillar],
+node|z16-17[emergency=fire_hydrant][fire_hydrant:type=pillar] {
+  list-text: auto;
+  list-type: tr('tag:amenity=fire_hydrant fire_hydrant:type=pillar, emergency=fire_hydrant fire_hydrant:type=pillar');
+  icon-image: url('img/4ea8600703764.png');
+}
+node|z18-[amenity=fire_hydrant][fire_hydrant:type=pillar],
+node|z18-[emergency=fire_hydrant][fire_hydrant:type=pillar] {
+  text: auto;
+  list-type: tr('tag:amenity=fire_hydrant fire_hydrant:type=pillar, emergency=fire_hydrant fire_hydrant:type=pillar');
+  icon-image: url('img/4ea8600703764.png');
+  text-halo-color: #df9ea5;
+  z-index: 1;
+}
+
+area|z11-12[amenity=fire_station],
+node|z11-12[amenity=fire_station] {
+  list-text: auto;
+  list-type: tr('tag:amenity=fire_station');
+  icon-image: url('img/fire_station.svg');
+}
+area|z13-[amenity=fire_station],
+node|z13-[amenity=fire_station] {
+  text: auto;
+  list-type: tr('tag:amenity=fire_station');
+  icon-image: url('img/fire_station.svg');
+  text-halo-color: #df9ea5;
+  z-index: 4;
+}
+
+area|z11-12[amenity=hospital],
+node|z11-12[amenity=hospital] {
+  list-text: auto;
+  list-type: tr('tag:amenity=hospital');
+  icon-image: url('img/hospital.svg');
+}
+area|z13-[amenity=hospital],
+node|z13-[amenity=hospital] {
+  text: auto;
+  list-type: tr('tag:amenity=hospital');
+  icon-image: url('img/hospital.svg');
+  text-halo-color: #df9ea5;
+  z-index: 4;
+}
+
+area|z13-14[amenity=police],
+node|z13-14[amenity=police] {
+  list-text: auto;
+  list-type: tr('tag:amenity=police');
+  icon-image: url('img/police.svg');
+}
+area|z15-[amenity=police],
+node|z15-[amenity=police] {
+  text: auto;
+  list-type: tr('tag:amenity=police');
+  icon-image: url('img/police.svg');
+  text-halo-color: #df9ea5;
+  z-index: 3;
+}
+
+area|z13-14[emergency=access_point],
+area|z13-14[highway=emergency_access_point],
+node|z13-14[emergency=access_point],
+node|z13-14[highway=emergency_access_point] {
+  list-text: auto;
+  list-type: tr('tag:emergency=access_point, highway=emergency_access_point');
+}
+area|z15-[emergency=access_point],
+area|z15-[highway=emergency_access_point],
+node|z15-[emergency=access_point],
+node|z15-[highway=emergency_access_point] {
+  text: auto;
+  list-type: tr('tag:emergency=access_point, highway=emergency_access_point');
+  text-halo-color: #df9ea5;
+  z-index: 3;
+}
+

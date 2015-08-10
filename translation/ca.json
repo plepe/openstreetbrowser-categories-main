@@ -11,5 +11,6 @@
     "tag:internet_access=wlan internet_access:fee=no, wifi=free": "Accés WiFi gratuït a Internet",
     "tag:internet_access=wlan internet_access:fee=yes": "Accés WiFi de pagament a Internet",
     "tag:internet_access=wlan, amenity=wlan, amenity=WLAN, amenity=wifi, wifi=yes": "Accés WiFi no especificat a Internet.",
+    "title:emergency": "Serveis d'emergència",
     "title:internet": "Accés a Internet"
 }

@@ -18,10 +18,13 @@
     "tag:sport=swimming": "Úszás",
     "tag:sport=team_handball": "Kézilabda",
     "tag:sport=tennis": "Tenisz",
+    "tag:tourism=guest_house": "Vendégház",
+    "tag:tourism=hotel": "Hotel",
     "title:gastro": "Gasztronómia",
     "title:internet": "Internethozzáférés",
     "title:phone": "Telefon",
     "title:post": "Posta",
     "title:shop": "Vásárlás",
-    "title:sport": "Sport"
+    "title:sport": "Sport",
+    "title:tourism": "Túrsztikai szolgáltatások"
 }

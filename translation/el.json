@@ -3,6 +3,10 @@
     "dir:services": "Υπηρεσίες",
     "dir:services/communication": "Επικοινωνίες",
     "dir:services_communication": "Επικοινωνίες",
+    "tag:amenity=drinking_water maintenance!=needs_repair;broken disused!=yes , drinking_water=yes  disused!=yes": "Πόσιμο νερό",
+    "tag:amenity=hospital": "Νοσοκομείο",
+    "tag:amenity=nursing_home": "Γηροκομείο",
+    "tag:amenity=recycling recycling_type=centre": "Κέντρο ανακύκλωσης",
     "tag:amenity=sauna": "Σάουνα",
     "tag:landuse=recreation_ground": "Πεδίο Δραστηριοτήτων",
     "tag:leisure=beach_resort": "Παραθαλάσσιο Θέρετρο",
@@ -34,8 +38,14 @@
     "tag:sport=shooting": "Σκοποβολή",
     "tag:sport=soccer": "Ποδόσφαιρο",
     "tag:sport=swimming": "Κολύμβηση",
+    "title:education": "Υπηρεσίες Εκπαίδευσης",
+    "title:emergency": "Υπηρεσίες Έκτακτης Ανάγκης",
+    "title:financial": "Χρήμα",
     "title:gastro": "Γαστρονομία",
+    "title:health": "Υγεία",
     "title:leisure": "Αναψυχή",
+    "title:public": "Δημόσιες Υπηρεσίες",
     "title:shop": "Αγορές",
-    "title:sport": "Άθληση"
+    "title:sport": "Άθληση",
+    "title:tourism": "Τουριστικές Υπηρεσίες"
 }

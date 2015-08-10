@@ -1,0 +1,97 @@
+meta {
+  title: tr("title:health");
+}
+
+*|z16-17[amenity=baby_hatch] {
+  list-text: auto;
+  list-type: tr('tag:amenity=baby_hatch');
+  icon-image: url('img/baby_hatch.svg');
+}
+*|z18-[amenity=baby_hatch] {
+  text: auto;
+  list-type: tr('tag:amenity=baby_hatch');
+  icon-image: url('img/baby_hatch.svg');
+  text-halo-color: #abffcb;
+  z-index: 1;
+}
+
+*|z15[amenity=dentist] {
+  list-text: auto;
+  list-type: tr('tag:amenity=dentist');
+  icon-image: url('img/dentist.svg');
+}
+*|z16-[amenity=dentist] {
+  text: auto;
+  list-type: tr('tag:amenity=dentist');
+  icon-image: url('img/dentist.svg');
+  text-halo-color: #abffcb;
+  z-index: 2;
+}
+
+*|z15[amenity=doctors] {
+  list-text: auto;
+  list-type: tr('tag:amenity=doctors');
+  icon-image: url('img/doctor.svg');
+}
+*|z16-[amenity=doctors] {
+  text: auto;
+  list-type: tr('tag:amenity=doctors');
+  icon-image: url('img/doctor.svg');
+  text-halo-color: #abffcb;
+  z-index: 2;
+}
+
+*|z15[amenity=pharmacy] {
+  list-text: auto;
+  list-type: tr('tag:amenity=pharmacy');
+  icon-image: url('img/pharmacy.png');
+}
+*|z16-[amenity=pharmacy] {
+  text: auto;
+  list-type: tr('tag:amenity=pharmacy');
+  icon-image: url('img/pharmacy.png');
+  text-halo-color: #abffcb;
+  z-index: 2;
+}
+
+*|z15[amenity=veterinary] {
+  list-text: auto;
+  list-type: tr('tag:amenity=veterinary');
+}
+*|z16-[amenity=veterinary] {
+  text: auto;
+  list-type: tr('tag:amenity=veterinary');
+  text-halo-color: #abffcb;
+  z-index: 2;
+}
+
+area|z13-14[amenity=hospital],
+node|z13-14[amenity=hospital] {
+  list-text: auto;
+  list-type: tr('tag:amenity=hospital');
+  icon-image: url('img/hospital.svg');
+}
+area|z15-[amenity=hospital],
+node|z15-[amenity=hospital] {
+  text: auto;
+  list-type: tr('tag:amenity=hospital');
+  icon-image: url('img/hospital.svg');
+  text-halo-color: #abffcb;
+  z-index: 3;
+}
+
+area|z13-14[amenity=nursing_home],
+node|z13-14[amenity=nursing_home] {
+  list-text: auto;
+  list-type: tr('tag:amenity=nursing_home');
+  icon-image: url('img/hospital.svg');
+}
+area|z15-[amenity=nursing_home],
+node|z15-[amenity=nursing_home] {
+  text: auto;
+  list-type: tr('tag:amenity=nursing_home');
+  icon-image: url('img/hospital.svg');
+  text-halo-color: #abffcb;
+  z-index: 3;
+}
+

@@ -1,0 +1,47 @@
+meta {
+  title: tr("title:financial");
+}
+
+*|z16-17[amenity=atm] {
+  list-text: auto;
+  list-type: tr('tag:amenity=atm');
+  icon-image: url('img/atm.svg');
+}
+*|z18-[amenity=atm] {
+  text: auto;
+  list-type: tr('tag:amenity=atm');
+  icon-image: url('img/atm.svg');
+  text-halo-color: #ffe8a2;
+  z-index: 1;
+}
+
+*|z15[amenity=bureau_de_change] {
+  list-text: auto;
+  list-type: tr('tag:amenity=bureau_de_change');
+  icon-image: url('img/bureau_de_change.svg');
+}
+*|z16-[amenity=bureau_de_change] {
+  text: auto;
+  list-type: tr('tag:amenity=bureau_de_change');
+  icon-image: url('img/bureau_de_change.svg');
+  text-halo-color: #ffe8a2;
+  z-index: 2;
+}
+
+*|z15[amenity=bank],
+*|z15[amenity=bank;atm],
+*|z15[amenity=atm;bank] {
+  list-text: auto;
+  list-type: tr('tag:amenity=bank, amenity=bank;atm, amenity=atm;bank');
+  icon-image: url('img/bank.svg');
+}
+*|z16-[amenity=bank],
+*|z16-[amenity=bank;atm],
+*|z16-[amenity=atm;bank] {
+  text: auto;
+  list-type: tr('tag:amenity=bank, amenity=bank;atm, amenity=atm;bank');
+  icon-image: url('img/bank.svg');
+  text-halo-color: #ffe8a2;
+  z-index: 2;
+}
+
