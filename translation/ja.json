@@ -3,6 +3,9 @@
     "dir:services": "サービス",
     "dir:services/communication": "交流",
     "tag:amenity=marketplace": "市場",
+    "tag:amenity=post_box": "郵便ポスト",
+    "tag:amenity=post_office": "郵便局",
+    "tag:amenity=telephone": "電話",
     "tag:amenity=vending_machine": "自動販売機",
     "tag:leisure=beach_resort": "ビーチリゾート",
     "tag:leisure=common": "共有地",
@@ -95,6 +98,8 @@
     "title:gastro": "食べ物",
     "title:internet": "インターネット接続",
     "title:leisure": "レジャー",
+    "title:phone": "電話",
+    "title:post": "郵便",
     "title:shop": "ショッピング",
     "title:sport": "スポーツ"
 }

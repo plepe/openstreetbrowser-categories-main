@@ -5,9 +5,11 @@
     "tag:amenity=bench": "Pink",
     "tag:amenity=brothel": "Bordell",
     "tag:amenity=sauna": "Saun",
+    "tag:amenity=telephone": "Telefon",
     "tag:leisure=sports_centre": "Spordikeskus",
     "tag:leisure=stadium": "Staadion",
     "tag:leisure=water_park": "Veepark",
+    "title:phone": "Telefon",
     "title:playgrounds": "Mänguväljak",
     "title:shop": "Ostmine"
 }

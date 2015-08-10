@@ -5,7 +5,10 @@
     "tag:amenity=bench": "Bench",
     "tag:amenity=brothel": "Brothel",
     "tag:amenity=marketplace": "",
+    "tag:amenity=post_box": "Post Box",
+    "tag:amenity=post_office": "Post Office",
     "tag:amenity=sauna": "Sauna",
+    "tag:amenity=telephone": "Phone",
     "tag:amenity=vending_machine": "",
     "tag:amenity=vending_machine vending=bicycle_tube": "",
     "tag:amenity=vending_machine vending=cigarettes": "",
@@ -131,7 +134,9 @@
     "title:gastro": "Gastronomy",
     "title:internet": "Internet access",
     "title:leisure": "Leisure",
+    "title:phone": "Phone",
     "title:playgrounds": "Playground",
+    "title:post": "Post",
     "title:shop": "Shopping",
     "title:sport": "Sport"
 }

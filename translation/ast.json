@@ -5,7 +5,10 @@
     "tag:amenity=bench": "Asientu",
     "tag:amenity=brothel": "Taburdiu",
     "tag:amenity=marketplace": "Mercáu",
+    "tag:amenity=post_box": "Buzón",
+    "tag:amenity=post_office": "Oficina de correos",
     "tag:amenity=sauna": "Sauna",
+    "tag:amenity=telephone": "Teléfonu",
     "tag:amenity=vending_machine": "Venta automática",
     "tag:amenity=vending_machine vending=bicycle_tube": "Máquina de tubulares de bici",
     "tag:amenity=vending_machine vending=cigarettes": "Máquina de tabacu",
@@ -128,7 +131,9 @@
     "title:gastro": "Gastronomía",
     "title:internet": "Accesu a Internet",
     "title:leisure": "Recréu",
+    "title:phone": "Teléfonos",
     "title:playgrounds": "Xuegos infantiles",
+    "title:post": "Corréu",
     "title:shop": "Compres",
     "title:sport": "Deportes"
 }

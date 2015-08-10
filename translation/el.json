@@ -2,6 +2,7 @@
     "dir:leisure": "Αναψυχή, Αθλητισμός και Αγορές",
     "dir:services": "Υπηρεσίες",
     "dir:services/communication": "Επικοινωνίες",
+    "dir:services_communication": "Επικοινωνίες",
     "tag:amenity=sauna": "Σάουνα",
     "tag:landuse=recreation_ground": "Πεδίο Δραστηριοτήτων",
     "tag:leisure=beach_resort": "Παραθαλάσσιο Θέρετρο",

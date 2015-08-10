@@ -1,0 +1,18 @@
+meta {
+  title: tr("title:phone");
+}
+
+area|z16-17[amenity=telephone],
+node|z16-17[amenity=telephone] {
+  list-text: auto;
+  list-type: tr('tag:amenity=telephone');
+  icon-image: url('img/phone.svg');
+}
+area|z18-[amenity=telephone],
+node|z18-[amenity=telephone] {
+  text: auto;
+  list-type: tr('tag:amenity=telephone');
+  icon-image: url('img/phone.svg');
+  z-index: 1;
+}
+

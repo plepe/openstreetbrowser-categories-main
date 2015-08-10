@@ -5,7 +5,10 @@
     "tag:amenity=bench": "Zitbank",
     "tag:amenity=brothel": "Bordeel",
     "tag:amenity=marketplace": "Weekmarkt",
+    "tag:amenity=post_box": "Brievenbus",
+    "tag:amenity=post_office": "Postkantoor",
     "tag:amenity=sauna": "Sauna",
+    "tag:amenity=telephone": "Telefooncel",
     "tag:amenity=vending_machine": "Verkoopautomaat",
     "tag:amenity=vending_machine vending=bicycle_tube": "Fietsonderdelenautomaat",
     "tag:amenity=vending_machine vending=cigarettes": "Sigarettenautomaat",
@@ -127,6 +130,8 @@
     "title:gastro": "Gastronomie",
     "title:internet": "Internettoegang",
     "title:leisure": "Vrije tijd",
+    "title:phone": "Telefonie",
+    "title:post": "Post",
     "title:shop": "Winkelen",
     "title:sport": "Sport"
 }

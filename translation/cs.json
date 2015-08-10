@@ -5,7 +5,10 @@
     "tag:amenity=bench": "Lavička",
     "tag:amenity=brothel": "Veřejný dům",
     "tag:amenity=marketplace": "Tržnice",
+    "tag:amenity=post_box": "Poštovní schránka",
+    "tag:amenity=post_office": "Pošta",
     "tag:amenity=sauna": "Sauna",
+    "tag:amenity=telephone": "Telefon",
     "tag:amenity=vending_machine": "Automat",
     "tag:amenity=vending_machine vending=cigarettes": "Automat na cigarety",
     "tag:amenity=vending_machine vending=condoms": "Automat na kondomy",
@@ -114,7 +117,9 @@
     "title:gastro": "Stravování",
     "title:internet": "Přístup k internetu",
     "title:leisure": "Volný čas",
+    "title:phone": "Telefony",
     "title:playgrounds": "Hřiště",
+    "title:post": "Poštovní služby",
     "title:shop": "Obchody",
     "title:sport": "Sport"
 }

@@ -1,0 +1,32 @@
+meta {
+  title: tr("title:post");
+}
+
+area|z16-17[amenity=post_box],
+node|z16-17[amenity=post_box] {
+  list-text: auto;
+  list-type: tr('tag:amenity=post_box');
+  icon-image: url('img/post_box.svg');
+}
+area|z18-[amenity=post_box],
+node|z18-[amenity=post_box] {
+  text: auto;
+  list-type: tr('tag:amenity=post_box');
+  icon-image: url('img/post_box.svg');
+  z-index: 1;
+}
+
+area|z13-14[amenity=post_office],
+node|z13-14[amenity=post_office] {
+  list-text: auto;
+  list-type: tr('tag:amenity=post_office');
+  icon-image: url('img/post_office.svg');
+}
+area|z15-[amenity=post_office],
+node|z15-[amenity=post_office] {
+  text: auto;
+  list-type: tr('tag:amenity=post_office');
+  icon-image: url('img/post_office.svg');
+  z-index: 3;
+}
+

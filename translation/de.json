@@ -7,7 +7,10 @@
     "tag:amenity=bench": "Sitzbank",
     "tag:amenity=brothel": "Bordell",
     "tag:amenity=marketplace": "Marktplätze",
+    "tag:amenity=post_box": "Briefkästen",
+    "tag:amenity=post_office": "Postämter",
     "tag:amenity=sauna": "Sauna",
+    "tag:amenity=telephone": "Telefon",
     "tag:amenity=vending_machine": "Automaten",
     "tag:amenity=vending_machine vending=bicycle_tube": "Fahrradschlauchautomaten",
     "tag:amenity=vending_machine vending=cigarettes": "Zigarettenautomaten",
@@ -145,6 +148,8 @@
     "title:gastro": "Gastronomie",
     "title:internet": "Internetzugang",
     "title:leisure": "Freizeit",
+    "title:phone": "Telekommunikation",
+    "title:post": "Post",
     "title:shop": "Einkauf",
     "title:sport": "anderer Sport"
 }

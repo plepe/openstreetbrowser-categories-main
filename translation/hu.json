@@ -3,6 +3,9 @@
     "dir:services": "Szolgáltatás",
     "dir:services/communication": "Kommunikácó",
     "tag:amenity=marketplace": "Piac",
+    "tag:amenity=post_box": "Postaláda",
+    "tag:amenity=post_office": "Posta",
+    "tag:amenity=telephone": "Telefon",
     "tag:leisure=sport": "OEgyéb sport",
     "tag:shop=books": "Könyvesbolt",
     "tag:shop=supermarket": "Szupermarket",
@@ -17,6 +20,8 @@
     "tag:sport=tennis": "Tenisz",
     "title:gastro": "Gasztronómia",
     "title:internet": "Internethozzáférés",
+    "title:phone": "Telefon",
+    "title:post": "Posta",
     "title:shop": "Vásárlás",
     "title:sport": "Sport"
 }

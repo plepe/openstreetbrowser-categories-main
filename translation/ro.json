@@ -5,6 +5,7 @@
     "tag:amenity=bench": "Banca",
     "tag:amenity=brothel": "Bordel",
     "tag:amenity=sauna": "Sauna",
+    "tag:amenity=telephone": "Telefon",
     "tag:landuse=recreation_ground": "Teren recreare",
     "tag:leisure=fishing": "Pescuit",
     "tag:leisure=miniature_golf": "Golf miniatura",
@@ -24,6 +25,7 @@
     "title:gastro": "Gastronomie",
     "title:internet": "Acces internet",
     "title:leisure": "Timp liber",
+    "title:phone": "Telefon",
     "title:playgrounds": "Loc de joaca",
     "title:shop": "Cumpărături"
 }
