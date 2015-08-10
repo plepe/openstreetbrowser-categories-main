@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: CorelDRAW -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xml:space="preserve"
+   width="16"
+   height="16"
+   viewBox="0 0 16 16.045584"
+   id="svg4247"
+   version="1.1"
+   inkscape:version="0.47pre4 r22446"
+   sodipodi:docname="White_flag_icon.svg"><metadata
+   id="metadata4257"><rdf:RDF><cc:Work
+       rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
+         rdf:resource="http://purl.org/dc/dcmitype/StillImage" /><dc:title></dc:title></cc:Work></rdf:RDF></metadata><defs
+   id="defs4255"><inkscape:perspective
+     sodipodi:type="inkscape:persp3d"
+     inkscape:vp_x="0 : 175.5 : 1"
+     inkscape:vp_y="0 : 1000 : 0"
+     inkscape:vp_z="250 : 175.5 : 1"
+     inkscape:persp3d-origin="125 : 117 : 1"
+     id="perspective4259" /></defs><sodipodi:namedview
+   pagecolor="#ffffff"
+   bordercolor="#666666"
+   borderopacity="1"
+   objecttolerance="10"
+   gridtolerance="10"
+   guidetolerance="10"
+   inkscape:pageopacity="0"
+   inkscape:pageshadow="2"
+   inkscape:window-width="1024"
+   inkscape:window-height="697"
+   id="namedview4253"
+   showgrid="false"
+   inkscape:zoom="10.757835"
+   inkscape:cx="-0.19596942"
+   inkscape:cy="13.408295"
+   inkscape:window-x="0"
+   inkscape:window-y="25"
+   inkscape:window-maximized="1"
+   inkscape:current-layer="g4261" />
+  
+  <g
+   id="g4261"
+   transform="matrix(0.04913942,0,0,0.04913942,1.5258814,-0.89601273)"><path
+     id="path4249"
+     d="M 42,327 42,36"
+     style="fill:none;stroke:#000000;stroke-width:31.20419657;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none" /><path
+     id="path4251"
+     d="m 49,50 c 70,30 104,28 178,2 -21,42 -21,74 0,116 -72,25 -101,25 -178,0 L 49,50 z"
+     style="fill:#00ffff;stroke:#000000;stroke-width:16.12250836;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" /></g>
+</svg>

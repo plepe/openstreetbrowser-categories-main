@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16"
+   height="16"
+   id="svg3257"
+   version="1.1"
+   inkscape:version="0.47pre4 r22446"
+   sodipodi:docname="U-Bahn.svg">
+  <metadata
+     id="metadata3267">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3265">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 250 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="500 : 250 : 1"
+       inkscape:persp3d-origin="250 : 166.66667 : 1"
+       id="perspective3269" />
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1024"
+     inkscape:window-height="697"
+     id="namedview3263"
+     showgrid="false"
+     inkscape:zoom="7.552"
+     inkscape:cx="-0.77633939"
+     inkscape:cy="12.334108"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3257" />
+  <g
+     id="g3271"
+     transform="matrix(0.03072034,0,0,0.03072034,0.319915,15.18856)">
+    <rect
+       style="fill:#003399"
+       y="-484"
+       x="0"
+       id="rect3259"
+       height="500"
+       width="500"
+       y1="0"
+       x1="0" />
+    <path
+       style="fill:#ffffff"
+       id="path3261"
+       d="m 269.02771,-21.96444 c 32.46324,-3.16863 62.79169,-13.49668 86.87553,-29.58458 12.10292,-8.08471 29.1727,-24.82511 36.5937,-35.8876 10.84524,-16.167 18.72123,-35.59139 22.93471,-56.56338 1.63209,-8.12347 1.83149,-22.39624 2.16542,-155 l 0.36779,-146.05263 -100.07012,0 0,133.72569 c 0,87.90894 -0.38553,137.18318 -1.12526,143.81707 -1.3252,11.88447 -5.23401,26.08963 -9.20286,33.44449 -4.98018,9.229 -14.1686,18.01085 -23.75531,22.7042 -26.37508,12.9124 -64.96875,8.26323 -83.26211,-10.03013 -9.31657,-9.31656 -15.71698,-24.31854 -18.40303,-43.13501 -0.65653,-4.59916 -1.05968,-58.69853 -1.07269,-143.94736 l -0.0208,-136.57895 -98.947367,0 0,138.30952 c 0,138.76237 0.266004,150.47615 3.815189,168.00627 8.765571,43.29486 35.775788,77.75351 77.126788,98.39553 30.30845,15.1297 69.5448,21.93323 105.98047,18.37687 z" />
+  </g>
+</svg>

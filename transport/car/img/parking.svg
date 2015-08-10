@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   version="1.1"
+   height="16"
+   width="16"
+   id="svg3723"
+   inkscape:version="0.47pre4 r22446"
+   sodipodi:docname="parking.svg">
+  <metadata
+     id="metadata3735">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs3733">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 300 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="1000 : 300 : 1"
+       inkscape:persp3d-origin="500 : 200 : 1"
+       id="perspective3737" />
+  </defs>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1024"
+     inkscape:window-height="697"
+     id="namedview3731"
+     showgrid="false"
+     inkscape:zoom="8.9001172"
+     inkscape:cx="2.7282087"
+     inkscape:cy="12.576095"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg3723" />
+  <text
+     xml:space="preserve"
+     style="font-size:18.51633835px;font-style:normal;font-weight:bold;fill:#0000ff;fill-opacity:1;stroke:#000000;stroke-width:0.34223488;stroke-miterlimit:4;stroke-dasharray:none;font-family:Bitstream Vera Sans;-inkscape-font-specification:Andale Mono Bold"
+     x="1.1679691"
+     y="14.627113"
+     id="text3744"><tspan
+       sodipodi:role="line"
+       id="tspan3746"
+       x="1.1679691"
+       y="14.627113"
+       style="stroke-width:0.34223488">P</tspan></text>
+</svg>

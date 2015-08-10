@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Creator: CorelDRAW -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="16"
+   id="svg2"
+   inkscape:version="0.47pre4 r22446"
+   sodipodi:docname="11949858391332901534government_icon_-_symbo_01.svg"
+   sodipodi:version="0.32"
+   space="preserve"
+   style="fill-rule:evenodd"
+   viewBox="0 0 1.044164 1.0441629"
+   width="16"
+   version="1.1">
+  <metadata
+     id="metadata3">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:title></dc:title>
+        <dc:description />
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>government</rdf:li>
+            <rdf:li>icon</rdf:li>
+            <rdf:li>symbol</rdf:li>
+            <rdf:li>law</rdf:li>
+            <rdf:li>parliament</rdf:li>
+            <rdf:li>state</rdf:li>
+            <rdf:li>capitol</rdf:li>
+            <rdf:li>president</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://www.openclipart.org/">
+            <dc:title>Open Clip Art Library</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>mo</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>mo</dc:title>
+          </cc:Agent>
+        </dc:rights>
+        <dc:date>18 09 2005</dc:date>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://web.resource.org/cc/PublicDomain" />
+        <dc:language>en</dc:language>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://web.resource.org/cc/PublicDomain">
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Reproduction" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/Distribution" />
+        <cc:permits
+           rdf:resource="http://web.resource.org/cc/DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     bordercolor="#666666"
+     borderopacity="1.0"
+     id="base"
+     inkscape:current-layer="Layer_x0020_1"
+     inkscape:cx="5.7518813"
+     inkscape:cy="10.785466"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:window-height="695"
+     inkscape:window-width="1018"
+     inkscape:window-x="0"
+     inkscape:window-y="25"
+     inkscape:zoom="15.087567"
+     pagecolor="#ffffff"
+     showgrid="false"
+     inkscape:window-maximized="0" />
+  <defs
+     id="defs4">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 49.577244 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="103.56059 : 49.577244 : 1"
+       inkscape:persp3d-origin="51.780296 : 33.051496 : 1"
+       id="perspective10" />
+    <style
+       id="style6"
+       type="text/css">
+   
+    .fil0 {fill:#EF7900}
+   
+  </style>
+  </defs>
+  <g
+     id="Layer_x0020_1"
+     transform="translate(0,-5.4266827)">
+    <path
+       class="fil0"
+       d="m 0.1919694,5.8025124 0.0821365,0 0.012626,0.4420321 -0.10581338,3.5e-6 0.0110509,-0.4420366 z m -0.0774108,0.4579224 0.81504737,0 0,0.056874 0.0488358,0 -3.44e-6,0.056874 0.0473607,0 0,0.056867 -1.007434,-3.4e-6 0,-0.056864 0.04736069,0 0,-0.056874 0.04883238,0 0,-0.056874 z M 0.97211306,5.6790917 0.52207331,5.4664785 0.07202607,5.6790917 l 3.45e-6,0.034759 0.90008252,3.4e-6 0,-0.034762 z m -0.81332416,0.050663 0.72658966,0 0,0.056864 -0.72658966,0 0,-0.056864 z m 0.60968754,0.072758 0.0821365,0 0.0126294,0.4420365 -0.10581338,-3.4e-6 0.0110473,-0.442032 z m -0.19216911,0 0.0821365,3.4e-6 0.0126294,0.4420291 -0.10581682,3.5e-6 0.0110509,-0.4420366 z m -0.19216911,0 0.0821331,-3.4e-6 0.0126364,0.4420365 -0.10582024,0 0.0110509,-0.442032 z"
+       id="path10"
+       style="fill:#000000" />
+  </g>
+</svg>
