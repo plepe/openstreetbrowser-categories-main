@@ -1,4 +1,5 @@
 {
+    "dir:agriculture_industry": "Põllumajandus ja tööstus",
     "dir:leisure": "Vaba aeg, sport ja ostmine",
     "dir:services": "Teenused",
     "dir:services/communication": "Kommunikatsioon",
@@ -11,11 +12,14 @@
     "tag:leisure=sports_centre": "Spordikeskus",
     "tag:leisure=stadium": "Staadion",
     "tag:leisure=water_park": "Veepark",
+    "title:agriculture": "Põllumajandus",
     "title:education": "Haridusteenused",
     "title:emergency": "Hädaabi teenused",
     "title:phone": "Telefon",
     "title:playgrounds": "Mänguväljak",
+    "title:power": "Elekter",
     "title:public": "Kommunaalteenused",
+    "title:railway": "Raudtee",
     "title:shop": "Ostmine",
     "title:tourism": "Turismiteenused"
 }

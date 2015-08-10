@@ -1,0 +1,62 @@
+meta {
+  title: tr("title:power");
+}
+
+*|z11-12[power=generator] {
+  list-text: auto;
+  list-type: tr('tag:power=generator');
+  icon-image: url('img/power.svg');
+}
+*|z13-[power=generator] {
+  text: auto;
+  list-type: tr('tag:power=generator');
+  icon-image: url('img/power.svg');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 4;
+}
+
+*|z13-14[power=station] {
+  list-text: auto;
+  list-type: tr('tag:power=station');
+  icon-image: url('img/power.svg');
+}
+*|z15-[power=station] {
+  text: auto;
+  list-type: tr('tag:power=station');
+  icon-image: url('img/power.svg');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+*|z16-17[power=sub_station] {
+  list-text: auto;
+  list-type: tr('tag:power=sub_station');
+  icon-image: url('img/power.svg');
+}
+*|z18-[power=sub_station] {
+  text: auto;
+  list-type: tr('tag:power=sub_station');
+  icon-image: url('img/power.svg');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 1;
+}
+
+area|z16-17[power=transformer],
+node|z16-17[power=transformer] {
+  list-text: auto;
+  list-type: tr('tag:power=transformer');
+  icon-image: url('img/power.svg');
+}
+area|z18-[power=transformer],
+node|z18-[power=transformer] {
+  text: auto;
+  list-type: tr('tag:power=transformer');
+  icon-image: url('img/power.svg');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 1;
+}
+

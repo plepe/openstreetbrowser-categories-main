@@ -1,0 +1,42 @@
+meta {
+  title: tr("title:resources");
+}
+
+*|z13-14[landuse=quarry] {
+  list-text: auto;
+  list-type: tr('tag:landuse=quarry');
+}
+*|z15-[landuse=quarry] {
+  text: auto;
+  list-type: tr('tag:landuse=quarry');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+*|z13-14[landuse=salt_pond] {
+  list-text: auto;
+  list-type: tr('tag:landuse=salt_pond');
+}
+*|z15-[landuse=salt_pond] {
+  text: auto;
+  list-type: tr('tag:landuse=salt_pond');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+area|z13-14[man_made=mineshaft],
+node|z13-14[man_made=mineshaft] {
+  list-text: auto;
+  list-type: tr('tag:man_made=mineshaft');
+}
+area|z15-[man_made=mineshaft],
+node|z15-[man_made=mineshaft] {
+  text: auto;
+  list-type: tr('tag:man_made=mineshaft');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+

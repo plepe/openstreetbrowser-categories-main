@@ -1,0 +1,140 @@
+meta {
+  title: tr("title:railway");
+}
+
+line|z15[railway=tram;narrow_gauge] {
+  list-text: auto;
+  list-type: tr('tag:railway=tram;narrow_gauge');
+}
+line|z16-[railway=tram;narrow_gauge] {
+  text: auto;
+  list-type: tr('tag:railway=tram;narrow_gauge');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 2;
+}
+
+line|z15[railway=rail][service=spur] {
+  list-text: auto;
+  list-type: tr('tag:railway=rail service=spur');
+}
+line|z16-[railway=rail][service=spur] {
+  text: auto;
+  list-type: tr('tag:railway=rail service=spur');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 2;
+}
+
+*|z11-12[landuse=railway] {
+  list-text: auto;
+  list-type: tr('tag:landuse=railway');
+}
+*|z13-[landuse=railway] {
+  text: auto;
+  list-type: tr('tag:landuse=railway');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 4;
+}
+
+line|z11-12[railway=rail][usage=main] {
+  list-text: auto;
+  list-type: tr('tag:railway=rail usage=main');
+}
+line|z13-[railway=rail][usage=main] {
+  text: auto;
+  list-type: tr('tag:railway=rail usage=main');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 4;
+}
+
+line|z13-14[railway=light_rail] {
+  list-text: auto;
+  list-type: tr('tag:railway=light_rail');
+}
+line|z15-[railway=light_rail] {
+  text: auto;
+  list-type: tr('tag:railway=light_rail');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+line|z13-14[railway=rail][usage!=main][service!] {
+  list-text: auto;
+  list-type: tr('tag:railway=rail usage!=main service!=*');
+}
+line|z15-[railway=rail][usage!=main][service!] {
+  text: auto;
+  list-type: tr('tag:railway=rail usage!=main service!=*');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+line|z13-14[railway=subway] {
+  list-text: auto;
+  list-type: tr('tag:railway=subway');
+}
+line|z15-[railway=subway] {
+  text: auto;
+  list-type: tr('tag:railway=subway');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+line|z16-17[railway=platform] {
+  list-text: auto;
+  list-type: tr('tag:railway=platform');
+}
+line|z18-[railway=platform] {
+  text: auto;
+  list-type: tr('tag:railway=platform');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 1;
+}
+
+line|z16-17[railway=rail][service=siding] {
+  list-text: auto;
+  list-type: tr('tag:railway=rail service=siding');
+}
+line|z18-[railway=rail][service=siding] {
+  text: auto;
+  list-type: tr('tag:railway=rail service=siding');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 1;
+}
+
+area|z16-17[railway=station],
+node|z16-17[railway=station] {
+  list-text: auto;
+  list-type: tr('tag:railway=station');
+}
+area|z18-[railway=station],
+node|z18-[railway=station] {
+  text: auto;
+  list-type: tr('tag:railway=station');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 1;
+}
+
+area|z16-17[railway=halt],
+node|z16-17[railway=halt] {
+  list-text: auto;
+  list-type: tr('tag:railway=halt');
+}
+area|z18-[railway=halt],
+node|z18-[railway=halt] {
+  text: auto;
+  list-type: tr('tag:railway=halt');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 1;
+}
+

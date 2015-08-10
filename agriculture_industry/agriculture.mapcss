@@ -1,0 +1,78 @@
+meta {
+  title: tr("title:agriculture");
+}
+
+*|z13-14[landuse=allotments] {
+  list-text: auto;
+  list-type: tr('tag:landuse=allotments');
+}
+*|z15-[landuse=allotments] {
+  text: auto;
+  list-type: tr('tag:landuse=allotments');
+  text-color: #8fcd40;
+  text-halo-color: #b0cc8a;
+  z-index: 3;
+}
+
+*|z13-14[landuse=farm],
+*|z13-14[landuse=farmland] {
+  list-text: auto;
+  list-type: tr('tag:landuse=farm, landuse=farmland');
+}
+*|z15-[landuse=farm],
+*|z15-[landuse=farmland] {
+  text: auto;
+  list-type: tr('tag:landuse=farm, landuse=farmland');
+  text-color: #8fcd40;
+  text-halo-color: #b0cc8a;
+  z-index: 3;
+}
+
+*|z13-14[landuse=farmyard] {
+  list-text: auto;
+  list-type: tr('tag:landuse=farmyard');
+}
+*|z15-[landuse=farmyard] {
+  text: auto;
+  list-type: tr('tag:landuse=farmyard');
+  text-color: #8fcd40;
+  text-halo-color: #b0cc8a;
+  z-index: 3;
+}
+
+*|z13-14[landuse=greenhouse_horticulture] {
+  list-text: auto;
+  list-type: tr('tag:landuse=greenhouse_horticulture');
+}
+*|z15-[landuse=greenhouse_horticulture] {
+  text: auto;
+  list-type: tr('tag:landuse=greenhouse_horticulture');
+  text-color: #8fcd40;
+  text-halo-color: #b0cc8a;
+  z-index: 3;
+}
+
+*|z13-14[landuse=orchard] {
+  list-text: auto;
+  list-type: tr('tag:landuse=orchard');
+}
+*|z15-[landuse=orchard] {
+  text: auto;
+  list-type: tr('tag:landuse=orchard');
+  text-color: #8fcd40;
+  text-halo-color: #b0cc8a;
+  z-index: 3;
+}
+
+*|z13-14[landuse=vineyard] {
+  list-text: auto;
+  list-type: tr('tag:landuse=vineyard');
+}
+*|z15-[landuse=vineyard] {
+  text: auto;
+  list-type: tr('tag:landuse=vineyard');
+  text-color: #8fcd40;
+  text-halo-color: #b0cc8a;
+  z-index: 3;
+}
+

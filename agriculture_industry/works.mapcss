@@ -1,0 +1,18 @@
+meta {
+  title: tr("title:works");
+}
+
+*|z13-14[landuse=industrial] {
+  list-text: auto;
+  list-type: tr('tag:landuse=industrial');
+  icon-image: url('img/industry.svg');
+}
+*|z15-[landuse=industrial] {
+  text: auto;
+  list-type: tr('tag:landuse=industrial');
+  icon-image: url('img/industry.svg');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+

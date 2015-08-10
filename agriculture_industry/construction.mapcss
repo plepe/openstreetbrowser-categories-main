@@ -1,0 +1,56 @@
+meta {
+  title: tr("title:construction");
+}
+
+*|z13-14[landuse=brownfield] {
+  list-text: auto;
+  list-type: tr('tag:landuse=brownfield');
+}
+*|z15-[landuse=brownfield] {
+  text: auto;
+  list-type: tr('tag:landuse=brownfield');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+*|z13-14[landuse=construction] {
+  list-text: auto;
+  list-type: tr('tag:landuse=construction');
+}
+*|z15-[landuse=construction] {
+  text: auto;
+  list-type: tr('tag:landuse=construction');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+*|z13-14[landuse=greenfield] {
+  list-text: auto;
+  list-type: tr('tag:landuse=greenfield');
+}
+*|z15-[landuse=greenfield] {
+  text: auto;
+  list-type: tr('tag:landuse=greenfield');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+line|z15[highway=construction],
+area|z15[highway=construction],
+node|z15[highway=construction] {
+  list-text: auto;
+  list-type: tr('tag:highway=construction');
+}
+line|z16-[highway=construction],
+area|z16-[highway=construction],
+node|z16-[highway=construction] {
+  text: auto;
+  list-type: tr('tag:highway=construction');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 2;
+}
+

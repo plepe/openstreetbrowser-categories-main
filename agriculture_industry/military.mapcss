@@ -1,0 +1,88 @@
+meta {
+  title: tr("title:military");
+}
+
+*|z15[military=range] {
+  list-text: auto;
+  list-type: tr('tag:military=range');
+}
+*|z16-[military=range] {
+  text: auto;
+  list-type: tr('tag:military=range');
+  text-color: #627625;
+  text-halo-color: #93a65b;
+  z-index: 2;
+}
+
+*|z11-12[landuse=military] {
+  list-text: auto;
+  list-type: tr('tag:landuse=military');
+}
+*|z13-[landuse=military] {
+  text: auto;
+  list-type: tr('tag:landuse=military');
+  text-color: #627625;
+  text-halo-color: #93a65b;
+  z-index: 4;
+}
+
+*|z11-12[military=airfield] {
+  list-text: auto;
+  list-type: tr('tag:military=airfield');
+}
+*|z13-[military=airfield] {
+  text: auto;
+  list-type: tr('tag:military=airfield');
+  text-color: #627625;
+  text-halo-color: #93a65b;
+  z-index: 4;
+}
+
+*|z13-14[military=bunker] {
+  list-text: auto;
+  list-type: tr('tag:military=bunker');
+}
+*|z15-[military=bunker] {
+  text: auto;
+  list-type: tr('tag:military=bunker');
+  text-color: #627625;
+  text-halo-color: #93a65b;
+  z-index: 3;
+}
+
+*|z13-14[military=barracks] {
+  list-text: auto;
+  list-type: tr('tag:military=barracks');
+}
+*|z15-[military=barracks] {
+  text: auto;
+  list-type: tr('tag:military=barracks');
+  text-color: #627625;
+  text-halo-color: #93a65b;
+  z-index: 3;
+}
+
+*|z13-14[military=danger_area] {
+  list-text: auto;
+  list-type: tr('tag:military=danger_area');
+}
+*|z15-[military=danger_area] {
+  text: auto;
+  list-type: tr('tag:military=danger_area');
+  text-color: #627625;
+  text-halo-color: #93a65b;
+  z-index: 3;
+}
+
+*|z15[military=yes] {
+  list-text: auto;
+  list-type: tr('tag:military=yes');
+}
+*|z16-[military=yes] {
+  text: auto;
+  list-type: tr('tag:military=yes');
+  text-color: #627625;
+  text-halo-color: #93a65b;
+  z-index: 2;
+}
+

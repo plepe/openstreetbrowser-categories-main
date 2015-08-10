@@ -1,4 +1,5 @@
 {
+    "dir:agriculture_industry": "Rolnictwo i Przemysł",
     "dir:leisure": "Wypoczynek, Sport i Zakupy",
     "dir:services": "Usługi",
     "tag:amenity=atm": "Bankomat",

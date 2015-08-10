@@ -1,0 +1,44 @@
+meta {
+  title: tr("title:landfill");
+}
+
+area|z13-14[landuse=landfill],
+node|z13-14[landuse=landfill] {
+  list-text: auto;
+  list-type: tr('tag:landuse=landfill');
+}
+area|z15-[landuse=landfill],
+node|z15-[landuse=landfill] {
+  text: auto;
+  list-type: tr('tag:landuse=landfill');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+area|z13-14[man_made=wastewater_plant],
+node|z13-14[man_made=wastewater_plant] {
+  list-text: auto;
+  list-type: tr('tag:man_made=wastewater_plant');
+}
+area|z15-[man_made=wastewater_plant],
+node|z15-[man_made=wastewater_plant] {
+  text: auto;
+  list-type: tr('tag:man_made=wastewater_plant');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
+node|z13-14[amenity=recycling] {
+  list-text: auto;
+  list-type: tr('tag:amenity=recycling');
+}
+node|z15-[amenity=recycling] {
+  text: auto;
+  list-type: tr('tag:amenity=recycling');
+  text-color: #7c80cd;
+  text-halo-color: #b7b8cc;
+  z-index: 3;
+}
+
