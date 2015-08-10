@@ -1,0 +1,24 @@
+meta {
+  title: tr("title:residential");
+}
+
+*|z15[landuse=allotments] {
+  list-text: auto;
+  list-type: tr('tag:landuse=allotments');
+}
+*|z16-[landuse=allotments] {
+  text: auto;
+  list-type: tr('tag:landuse=allotments');
+  z-index: 2;
+}
+
+*|z13-14[landuse=residential] {
+  list-text: auto;
+  list-type: tr('tag:landuse=residential');
+}
+*|z15-[landuse=residential] {
+  text: auto;
+  list-type: tr('tag:landuse=residential');
+  z-index: 3;
+}
+

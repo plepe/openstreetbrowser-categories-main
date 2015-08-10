@@ -1,0 +1,114 @@
+meta {
+  title: tr("title:administrative");
+}
+
+area|z2-3[admin_level=2] {
+  list-text: auto;
+  list-type: tr('tag:admin_level=2');
+}
+area|z4-[admin_level=2] {
+  text: auto;
+  list-type: tr('tag:admin_level=2');
+  z-index: 7;
+}
+
+area|z5-7[admin_level=3] {
+  list-text: auto;
+  list-type: tr('tag:admin_level=3');
+}
+area|z8-[admin_level=3] {
+  text: auto;
+  list-type: tr('tag:admin_level=3');
+  z-index: 6;
+}
+
+area|z11-12[admin_level=4] {
+  list-text: auto;
+  list-type: tr('tag:admin_level=4');
+}
+area|z13-[admin_level=4] {
+  text: auto;
+  list-type: tr('tag:admin_level=4');
+  z-index: 4;
+}
+
+area|z11-12[admin_level=5] {
+  list-text: auto;
+  list-type: tr('tag:admin_level=5');
+}
+area|z13-[admin_level=5] {
+  text: auto;
+  list-type: tr('tag:admin_level=5');
+  z-index: 4;
+}
+
+area|z13-14[admin_level=6] {
+  list-text: auto;
+  list-type: tr('tag:admin_level=6');
+}
+area|z15-[admin_level=6] {
+  text: auto;
+  list-type: tr('tag:admin_level=6');
+  z-index: 3;
+}
+
+area|z13-14[admin_level=7] {
+  list-text: auto;
+  list-type: tr('tag:admin_level=7');
+}
+area|z15-[admin_level=7] {
+  text: auto;
+  list-type: tr('tag:admin_level=7');
+  z-index: 3;
+}
+
+area|z13-14[admin_level=6] {
+  list-text: auto;
+  list-type: tr('tag:admin_level=6');
+}
+area|z15-[admin_level=6] {
+  text: auto;
+  list-type: tr('tag:admin_level=6');
+  z-index: 3;
+}
+
+area|z15[admin_level=8] {
+  list-text: auto;
+  list-type: tr('tag:admin_level=8');
+}
+area|z16-[admin_level=8] {
+  text: auto;
+  list-type: tr('tag:admin_level=8');
+  z-index: 2;
+}
+
+area|z15[admin_level=9] {
+  list-text: auto;
+  list-type: tr('tag:admin_level=9');
+}
+area|z16-[admin_level=9] {
+  text: auto;
+  list-type: tr('tag:admin_level=9');
+  z-index: 2;
+}
+
+area|z16-17[admin_level=10] {
+  list-text: auto;
+  list-type: tr('tag:admin_level=10');
+}
+area|z18-[admin_level=10] {
+  text: auto;
+  list-type: tr('tag:admin_level=10');
+  z-index: 1;
+}
+
+area|z16-17[admin_level=11] {
+  list-text: auto;
+  list-type: tr('tag:admin_level=11');
+}
+area|z18-[admin_level=11] {
+  text: auto;
+  list-type: tr('tag:admin_level=11');
+  z-index: 1;
+}
+

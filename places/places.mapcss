@@ -1,20 +1,162 @@
-node|z7-[place=city] {
-  set .place;
-  set .type = tr('tag:place=city');
-  z-index: 5;
+meta {
+  title: tr("title:places");
 }
-node|z6-[place=city][population>=200000] {
-  set .place;
-  set .type = tr('tag:place=city');
-  z-index: 6;
+
+node|z2-3[place=continent] {
+  list-text: auto;
+  list-type: tr('tag:place=continent');
 }
-node|z5-[place=city][population>=1000000] {
-  set .place;
-  set .type = tr('tag:place=city');
+node|z4-[place=continent] {
+  text: auto;
+  list-type: tr('tag:place=continent');
   z-index: 7;
 }
 
-node.place {
-  text: auto;
-  list-type: concat(tr('tag:place=city'), cond(tag('population'), concat(', ', tr('tag:population'), ': ', tag('population')), ''));
+node|z5-7[place=country] {
+  list-text: auto;
+  list-type: tr('tag:place=country');
 }
+node|z8-[place=country] {
+  text: auto;
+  list-type: tr('tag:place=country');
+  z-index: 6;
+}
+
+node|z8-9[place=state] {
+  list-text: auto;
+  list-type: tr('tag:place=state');
+}
+node|z10-[place=state] {
+  text: auto;
+  list-type: tr('tag:place=state');
+  z-index: 5;
+}
+
+node|z13-14[place=village] {
+  list-text: auto;
+  list-type: tr('tag:place=village');
+}
+node|z15-[place=village] {
+  text: auto;
+  list-type: tr('tag:place=village');
+  z-index: 3;
+}
+
+node|z15[place=suburb] {
+  list-text: auto;
+  list-type: tr('tag:place=suburb');
+}
+node|z16-[place=suburb] {
+  text: auto;
+  list-type: tr('tag:place=suburb');
+  z-index: 2;
+}
+
+node|z16-17[place=locality] {
+  list-text: auto;
+  list-type: tr('tag:place=locality');
+}
+node|z18-[place=locality] {
+  text: auto;
+  list-type: tr('tag:place=locality');
+  z-index: 1;
+}
+
+node|z11-12[place=town][population>=30000] {
+  list-text: auto;
+  list-type: tr('tag:place=town population>=30000');
+}
+node|z13-[place=town][population>=30000] {
+  text: auto;
+  list-type: tr('tag:place=town population>=30000');
+  z-index: 4;
+}
+
+node|z15[place=hamlet] {
+  list-text: auto;
+  list-type: tr('tag:place=hamlet');
+}
+node|z16-[place=hamlet] {
+  text: auto;
+  list-type: tr('tag:place=hamlet');
+  z-index: 2;
+}
+
+area|z15[place=quarter],
+node|z15[place=quarter] {
+  list-text: auto;
+  list-type: tr('tag:place=quarter');
+}
+area|z16-[place=quarter],
+node|z16-[place=quarter] {
+  text: auto;
+  list-type: tr('tag:place=quarter');
+  z-index: 2;
+}
+
+node|z16-17[place=islet] {
+  list-text: auto;
+  list-type: tr('tag:place=islet');
+}
+node|z18-[place=islet] {
+  text: auto;
+  list-type: tr('tag:place=islet');
+  z-index: 1;
+}
+
+area|z16-17[place=isolated_dwelling],
+node|z16-17[place=isolated_dwelling] {
+  list-text: auto;
+  list-type: tr('tag:place=isolated_dwelling');
+}
+area|z18-[place=isolated_dwelling],
+node|z18-[place=isolated_dwelling] {
+  text: auto;
+  list-type: tr('tag:place=isolated_dwelling');
+  z-index: 1;
+}
+
+area|z16-17[place=neighbourhood],
+node|z16-17[place=neighbourhood] {
+  list-text: auto;
+  list-type: tr('tag:place=neighbourhood');
+}
+area|z18-[place=neighbourhood],
+node|z18-[place=neighbourhood] {
+  text: auto;
+  list-type: tr('tag:place=neighbourhood');
+  z-index: 1;
+}
+
+area|z16-17[place=farm],
+node|z16-17[place=farm] {
+  list-text: auto;
+  list-type: tr('tag:place=farm');
+}
+area|z18-[place=farm],
+node|z18-[place=farm] {
+  text: auto;
+  list-type: tr('tag:place=farm');
+  z-index: 1;
+}
+
+node|z11-12[place=region] {
+  list-text: auto;
+  list-type: tr('tag:place=region');
+}
+node|z13-[place=region] {
+  text: auto;
+  list-type: tr('tag:place=region');
+  z-index: 4;
+}
+
+node|z11-12[place=city][population<200000] {
+  list-text: auto;
+  list-type: tr('tag:place=city population<200000');
+}
+node|z13-[place=city][population<200000] {
+  text: auto;
+  list-type: tr('tag:place=city population<200000');
+  z-index: 4;
+}
+

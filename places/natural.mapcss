@@ -1,0 +1,392 @@
+meta {
+  title: tr("title:natural");
+}
+
+node|z11-12[natural=peak],
+area|z11-12[natural=peak] {
+  list-text: auto;
+  list-type: tr('tag:natural=peak');
+  icon-image: url('img/Peak.png');
+}
+node|z13-[natural=peak],
+area|z13-[natural=peak] {
+  text: auto;
+  list-type: tr('tag:natural=peak');
+  icon-image: url('img/Peak.png');
+  z-index: 4;
+}
+
+node|z13-14[natural=spring] {
+  list-text: auto;
+  list-type: tr('tag:natural=spring');
+  icon-image: url('img/Spring.png');
+}
+node|z15-[natural=spring] {
+  text: auto;
+  list-type: tr('tag:natural=spring');
+  icon-image: url('img/Spring.png');
+  z-index: 3;
+}
+
+*|z13-14[landuse=forest] {
+  list-text: auto;
+  list-type: tr('tag:landuse=forest');
+}
+*|z15-[landuse=forest] {
+  text: auto;
+  list-type: tr('tag:landuse=forest');
+  z-index: 3;
+}
+
+area|z11-12[natural=valley],
+node|z11-12[natural=valley],
+line|z11-12[natural=valley] {
+  list-text: auto;
+  list-type: tr('tag:natural=valley');
+}
+area|z13-[natural=valley],
+node|z13-[natural=valley],
+line|z13-[natural=valley] {
+  text: auto;
+  list-type: tr('tag:natural=valley');
+  z-index: 4;
+}
+
+line|z11-12[waterway=river] {
+  list-text: auto;
+  list-type: tr('tag:waterway=river');
+}
+line|z13-[waterway=river] {
+  text: auto;
+  list-type: tr('tag:waterway=river');
+  z-index: 4;
+}
+
+node|z13-14[natural=water],
+area|z13-14[natural=water] {
+  list-text: auto;
+  list-type: tr('tag:natural=water');
+}
+node|z15-[natural=water],
+area|z15-[natural=water] {
+  text: auto;
+  list-type: tr('tag:natural=water');
+  z-index: 3;
+}
+
+area|z13-14[natural=cliff],
+line|z13-14[natural=cliff],
+node|z13-14[natural=cliff] {
+  list-text: auto;
+  list-type: tr('tag:natural=cliff');
+  icon-image: url('img/Cliff.png');
+}
+area|z15-[natural=cliff],
+line|z15-[natural=cliff],
+node|z15-[natural=cliff] {
+  text: auto;
+  list-type: tr('tag:natural=cliff');
+  icon-image: url('img/Cliff.png');
+  z-index: 3;
+}
+
+*|z13-14[natural=glacier] {
+  list-text: auto;
+  list-type: tr('tag:natural=glacier');
+}
+*|z15-[natural=glacier] {
+  text: auto;
+  list-type: tr('tag:natural=glacier');
+  z-index: 3;
+}
+
+*|z13-14[landuse=grass] {
+  list-text: auto;
+  list-type: tr('tag:landuse=grass');
+}
+*|z15-[landuse=grass] {
+  text: auto;
+  list-type: tr('tag:landuse=grass');
+  z-index: 3;
+}
+
+*|z13-14[landuse=meadow] {
+  list-text: auto;
+  list-type: tr('tag:landuse=meadow');
+}
+*|z15-[landuse=meadow] {
+  text: auto;
+  list-type: tr('tag:landuse=meadow');
+  z-index: 3;
+}
+
+*|z13-14[landuse=reservoir] {
+  list-text: auto;
+  list-type: tr('tag:landuse=reservoir');
+}
+*|z15-[landuse=reservoir] {
+  text: auto;
+  list-type: tr('tag:landuse=reservoir');
+  z-index: 3;
+}
+
+area|z13-14[natural=cliff],
+line|z13-14[natural=cliff],
+node|z13-14[natural=cliff] {
+  list-text: auto;
+  list-type: tr('tag:natural=cliff');
+  icon-image: url('img/Cliff.png');
+}
+area|z15-[natural=cliff],
+line|z15-[natural=cliff],
+node|z15-[natural=cliff] {
+  text: auto;
+  list-type: tr('tag:natural=cliff');
+  icon-image: url('img/Cliff.png');
+  z-index: 3;
+}
+
+*|z13-14[landuse=forest] {
+  list-text: auto;
+  list-type: tr('tag:landuse=forest');
+}
+*|z15-[landuse=forest] {
+  text: auto;
+  list-type: tr('tag:landuse=forest');
+  z-index: 3;
+}
+
+*|z15[natural=marsh] {
+  list-text: auto;
+  list-type: tr('tag:natural=marsh');
+}
+*|z16-[natural=marsh] {
+  text: auto;
+  list-type: tr('tag:natural=marsh');
+  z-index: 2;
+}
+
+*|z15[natural=wetland] {
+  list-text: auto;
+  list-type: tr('tag:natural=wetland');
+}
+*|z16-[natural=wetland] {
+  text: auto;
+  list-type: tr('tag:natural=wetland');
+  z-index: 2;
+}
+
+*|z15[natural=mud] {
+  list-text: auto;
+  list-type: tr('tag:natural=mud');
+}
+*|z16-[natural=mud] {
+  text: auto;
+  list-type: tr('tag:natural=mud');
+  z-index: 2;
+}
+
+*|z15[natural=scrub] {
+  list-text: auto;
+  list-type: tr('tag:natural=scrub');
+}
+*|z16-[natural=scrub] {
+  text: auto;
+  list-type: tr('tag:natural=scrub');
+  z-index: 2;
+}
+
+*|z15[natural=beach] {
+  list-text: auto;
+  list-type: tr('tag:natural=beach');
+}
+*|z16-[natural=beach] {
+  text: auto;
+  list-type: tr('tag:natural=beach');
+  z-index: 2;
+}
+
+*|z15[natural=cave_entrance] {
+  list-text: auto;
+  list-type: tr('tag:natural=cave_entrance');
+  icon-image: url('img/Cave.png');
+}
+*|z16-[natural=cave_entrance] {
+  text: auto;
+  list-type: tr('tag:natural=cave_entrance');
+  icon-image: url('img/Cave.png');
+  z-index: 2;
+}
+
+node|z15[natural=tree],
+area|z15[natural=tree] {
+  list-text: auto;
+  list-type: tr('tag:natural=tree');
+  icon-image: url('img/Tree.png');
+}
+node|z16-[natural=tree],
+area|z16-[natural=tree] {
+  text: auto;
+  list-type: tr('tag:natural=tree');
+  icon-image: url('img/Tree.png');
+  z-index: 2;
+}
+
+*|z15[natural=scree] {
+  list-text: auto;
+  list-type: tr('tag:natural=scree');
+}
+*|z16-[natural=scree] {
+  text: auto;
+  list-type: tr('tag:natural=scree');
+  z-index: 2;
+}
+
+line|z13-14[waterway=stream] {
+  list-text: auto;
+  list-type: tr('tag:waterway=stream');
+}
+line|z15-[waterway=stream] {
+  text: auto;
+  list-type: tr('tag:waterway=stream');
+  z-index: 3;
+}
+
+line|z13-14[waterway=canal] {
+  list-text: auto;
+  list-type: tr('tag:waterway=canal');
+}
+line|z15-[waterway=canal] {
+  text: auto;
+  list-type: tr('tag:waterway=canal');
+  z-index: 3;
+}
+
+area|z15[natural=wetland][wetland=swamp] {
+  list-text: auto;
+  list-type: tr('tag:natural=wetland wetland=swamp');
+}
+area|z16-[natural=wetland][wetland=swamp] {
+  text: auto;
+  list-type: tr('tag:natural=wetland wetland=swamp');
+  z-index: 2;
+}
+
+*|z15[natural=fell] {
+  list-text: auto;
+  list-type: tr('tag:natural=fell');
+}
+*|z16-[natural=fell] {
+  text: auto;
+  list-type: tr('tag:natural=fell');
+  z-index: 2;
+}
+
+*|z15[natural=heath] {
+  list-text: auto;
+  list-type: tr('tag:natural=heath');
+}
+*|z16-[natural=heath] {
+  text: auto;
+  list-type: tr('tag:natural=heath');
+  z-index: 2;
+}
+
+line|z15[natural=coastline] {
+  list-text: auto;
+  list-type: tr('tag:natural=coastline');
+}
+line|z16-[natural=coastline] {
+  text: auto;
+  list-type: tr('tag:natural=coastline');
+  z-index: 2;
+}
+
+*|z16-17[landuse=basin] {
+  list-text: auto;
+  list-type: tr('tag:landuse=basin');
+}
+*|z18-[landuse=basin] {
+  text: auto;
+  list-type: tr('tag:landuse=basin');
+  z-index: 1;
+}
+
+line|z8-9[waterway=river][width>10m;waterway=river][est_width>10m] {
+  list-text: auto;
+  list-type: tr('tag:waterway=river width>10m;waterway=river est_width>10m');
+}
+line|z10-[waterway=river][width>10m;waterway=river][est_width>10m] {
+  text: auto;
+  list-type: tr('tag:waterway=river width>10m;waterway=river est_width>10m');
+  z-index: 5;
+}
+
+area|z8-9[waterway=riverbank] {
+  list-text: auto;
+  list-type: tr('tag:waterway=riverbank');
+}
+area|z10-[waterway=riverbank] {
+  text: auto;
+  list-type: tr('tag:waterway=riverbank');
+  z-index: 5;
+}
+
+area|z8-9[natural=mountain] {
+  list-text: auto;
+  list-type: tr('tag:natural=mountain');
+  icon-image: url('img/Peak.png');
+}
+area|z10-[natural=mountain] {
+  text: auto;
+  list-type: tr('tag:natural=mountain');
+  icon-image: url('img/Peak.png');
+  z-index: 5;
+}
+
+area|z5-7[natural=mountain_range] {
+  list-text: auto;
+  list-type: tr('tag:natural=mountain_range');
+}
+area|z8-[natural=mountain_range] {
+  text: auto;
+  list-type: tr('tag:natural=mountain_range');
+  z-index: 6;
+}
+
+area|z5-7[place=sea],
+node|z5-7[place=sea] {
+  list-text: auto;
+  list-type: tr('tag:place=sea');
+}
+area|z8-[place=sea],
+node|z8-[place=sea] {
+  text: auto;
+  list-type: tr('tag:place=sea');
+  z-index: 6;
+}
+
+area|z2-3[place=ocean],
+node|z2-3[place=ocean] {
+  list-text: auto;
+  list-type: tr('tag:place=ocean');
+}
+area|z4-[place=ocean],
+node|z4-[place=ocean] {
+  text: auto;
+  list-type: tr('tag:place=ocean');
+  z-index: 7;
+}
+
+area|z2-3[place=continent],
+node|z2-3[place=continent] {
+  list-text: auto;
+  list-type: tr('tag:place=continent');
+}
+area|z4-[place=continent],
+node|z4-[place=continent] {
+  text: auto;
+  list-type: tr('tag:place=continent');
+  z-index: 7;
+}
+

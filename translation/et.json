@@ -2,6 +2,7 @@
     "dir:agriculture_industry": "Põllumajandus ja tööstus",
     "dir:culture": "Kultuur ja religioon",
     "dir:leisure": "Vaba aeg, sport ja ostmine",
+    "dir:places": "Kohad",
     "dir:services": "Teenused",
     "dir:services/communication": "Kommunikatsioon",
     "dir:transport": "Transport",
@@ -21,6 +22,11 @@
     "tag:leisure=sports_centre": "Spordikeskus",
     "tag:leisure=stadium": "Staadion",
     "tag:leisure=water_park": "Veepark",
+    "tag:natural=valley": "Org",
+    "tag:place=continent": "Kontinent",
+    "tag:place=ocean": "Ookean",
+    "tag:place=sea": "Meri",
+    "title:administrative": "Administratiivalad",
     "title:agriculture": "Põllumajandus",
     "title:education": "Haridusteenused",
     "title:emergency": "Hädaabi teenused",
@@ -32,6 +38,7 @@
     "title:public": "Kommunaalteenused",
     "title:railway": "Raudtee",
     "title:religion": "Religioon",
+    "title:residential": "Elamupiirkonnad",
     "title:shop": "Ostmine",
     "title:tourism": "Turism"
 }
