@@ -1,6 +1,7 @@
 {
     "dir:leisure": "Loisirs",
     "dir:services": "Services",
+    "dir:services/communication": "Communication",
     "tag:amenity=bench": "Banc",
     "tag:amenity=brothel": "Bordel",
     "tag:amenity=marketplace": "Marchés publics",

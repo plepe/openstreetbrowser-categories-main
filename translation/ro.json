@@ -1,6 +1,7 @@
 {
     "dir:leisure": "Timp liber, Sport si Cumparaturi",
     "dir:services": "Servicii",
+    "dir:services/communication": "Comunicatii",
     "tag:amenity=bench": "Banca",
     "tag:amenity=brothel": "Bordel",
     "tag:amenity=sauna": "Sauna",
@@ -21,6 +22,7 @@
     "tag:sport=soccer": "Fotbal",
     "tag:sport=tennis": "Tenis",
     "title:gastro": "Gastronomie",
+    "title:internet": "Acces internet",
     "title:leisure": "Timp liber",
     "title:playgrounds": "Loc de joaca",
     "title:shop": "Cumpărături"

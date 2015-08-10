@@ -1,0 +1,144 @@
+meta {
+  title: tr("title:internet");
+}
+
+area|z13-14[internet_access=wlan][internet_access:access=customer][internet_access:fee=no],
+area|z13-14[wifi=customers],
+node|z13-14[internet_access=wlan][internet_access:access=customer][internet_access:fee=no],
+node|z13-14[wifi=customers] {
+  list-text: auto;
+  list-type: tr('tag:internet_access=wlan internet_access:access=customer internet_access:fee=no, wifi=customers');
+  icon-image: url('img/wlan.svg');
+}
+area|z15-[internet_access=wlan][internet_access:access=customer][internet_access:fee=no],
+area|z15-[wifi=customers],
+node|z15-[internet_access=wlan][internet_access:access=customer][internet_access:fee=no],
+node|z15-[wifi=customers] {
+  text: auto;
+  list-type: tr('tag:internet_access=wlan internet_access:access=customer internet_access:fee=no, wifi=customers');
+  icon-image: url('img/wlan.svg');
+  z-index: 3;
+}
+
+area|z13-14[internet_access=wlan][internet_access:fee=no],
+area|z13-14[wifi=free],
+node|z13-14[internet_access=wlan][internet_access:fee=no],
+node|z13-14[wifi=free] {
+  list-text: auto;
+  list-type: tr('tag:internet_access=wlan internet_access:fee=no, wifi=free');
+  icon-image: url('img/wlan.svg');
+}
+area|z15-[internet_access=wlan][internet_access:fee=no],
+area|z15-[wifi=free],
+node|z15-[internet_access=wlan][internet_access:fee=no],
+node|z15-[wifi=free] {
+  text: auto;
+  list-type: tr('tag:internet_access=wlan internet_access:fee=no, wifi=free');
+  icon-image: url('img/wlan.svg');
+  z-index: 3;
+}
+
+area|z13-14[internet_access=wlan][internet_access:fee=yes],
+node|z13-14[internet_access=wlan][internet_access:fee=yes] {
+  list-text: auto;
+  list-type: tr('tag:internet_access=wlan internet_access:fee=yes');
+  icon-image: url('img/wlan.svg');
+}
+area|z15-[internet_access=wlan][internet_access:fee=yes],
+node|z15-[internet_access=wlan][internet_access:fee=yes] {
+  text: auto;
+  list-type: tr('tag:internet_access=wlan internet_access:fee=yes');
+  icon-image: url('img/wlan.svg');
+  z-index: 3;
+}
+
+area|z13-14[internet_access=wlan],
+area|z13-14[amenity=wlan],
+area|z13-14[amenity=WLAN],
+area|z13-14[amenity=wifi],
+area|z13-14[wifi=yes],
+node|z13-14[internet_access=wlan],
+node|z13-14[amenity=wlan],
+node|z13-14[amenity=WLAN],
+node|z13-14[amenity=wifi],
+node|z13-14[wifi=yes] {
+  list-text: auto;
+  list-type: tr('tag:internet_access=wlan, amenity=wlan, amenity=WLAN, amenity=wifi, wifi=yes');
+  icon-image: url('img/wlan.svg');
+}
+area|z15-[internet_access=wlan],
+area|z15-[amenity=wlan],
+area|z15-[amenity=WLAN],
+area|z15-[amenity=wifi],
+area|z15-[wifi=yes],
+node|z15-[internet_access=wlan],
+node|z15-[amenity=wlan],
+node|z15-[amenity=WLAN],
+node|z15-[amenity=wifi],
+node|z15-[wifi=yes] {
+  text: auto;
+  list-type: tr('tag:internet_access=wlan, amenity=wlan, amenity=WLAN, amenity=wifi, wifi=yes');
+  icon-image: url('img/wlan.svg');
+  z-index: 3;
+}
+
+area|z13-14[internet_access=wired],
+node|z13-14[internet_access=wired] {
+  list-text: auto;
+  list-type: tr('tag:internet_access=wired');
+}
+area|z15-[internet_access=wired],
+node|z15-[internet_access=wired] {
+  text: auto;
+  list-type: tr('tag:internet_access=wired');
+  z-index: 3;
+}
+
+area|z13-14[internet_access=terminal][internet_access:fee=no],
+node|z13-14[internet_access=terminal][internet_access:fee=no] {
+  list-text: auto;
+  list-type: tr('tag:internet_access=terminal internet_access:fee=no');
+}
+area|z15-[internet_access=terminal][internet_access:fee=no],
+node|z15-[internet_access=terminal][internet_access:fee=no] {
+  text: auto;
+  list-type: tr('tag:internet_access=terminal internet_access:fee=no');
+  z-index: 3;
+}
+
+area|z13-14[internet_access=public],
+node|z13-14[internet_access=public] {
+  list-text: auto;
+  list-type: tr('tag:internet_access=public');
+}
+area|z15-[internet_access=public],
+node|z15-[internet_access=public] {
+  text: auto;
+  list-type: tr('tag:internet_access=public');
+  z-index: 3;
+}
+
+area|z13-14[internet_access=service],
+node|z13-14[internet_access=service] {
+  list-text: auto;
+  list-type: tr('tag:internet_access=service');
+}
+area|z15-[internet_access=service],
+node|z15-[internet_access=service] {
+  text: auto;
+  list-type: tr('tag:internet_access=service');
+  z-index: 3;
+}
+
+area|z13-14[internet_access=terminal],
+node|z13-14[internet_access=terminal] {
+  list-text: auto;
+  list-type: tr('tag:internet_access=terminal');
+}
+area|z15-[internet_access=terminal],
+node|z15-[internet_access=terminal] {
+  text: auto;
+  list-type: tr('tag:internet_access=terminal');
+  z-index: 3;
+}
+

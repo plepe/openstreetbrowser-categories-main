@@ -1,6 +1,7 @@
 {
     "dir:leisure": "Tempo libero, sport e shopping",
     "dir:services": "Servizi",
+    "dir:services/communication": "Communicazioni",
     "tag:amenity=bench": "Panchine",
     "tag:amenity=brothel": "Bordelli",
     "tag:amenity=marketplace": "Mercati",

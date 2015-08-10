@@ -1,6 +1,7 @@
 {
     "dir:leisure": "レジャー",
     "dir:services": "サービス",
+    "dir:services/communication": "交流",
     "tag:amenity=marketplace": "市場",
     "tag:amenity=vending_machine": "自動販売機",
     "tag:leisure=beach_resort": "ビーチリゾート",
@@ -92,6 +93,7 @@
     "tag:sport=tennis": "テニス",
     "tag:sport=volleyball": "バレーボール",
     "title:gastro": "食べ物",
+    "title:internet": "インターネット接続",
     "title:leisure": "レジャー",
     "title:shop": "ショッピング",
     "title:sport": "スポーツ"

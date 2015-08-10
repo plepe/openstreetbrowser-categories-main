@@ -1,6 +1,7 @@
 {
     "dir:leisure": "Szabadidő",
     "dir:services": "Szolgáltatás",
+    "dir:services/communication": "Kommunikácó",
     "tag:amenity=marketplace": "Piac",
     "tag:leisure=sport": "OEgyéb sport",
     "tag:shop=books": "Könyvesbolt",
@@ -15,6 +16,7 @@
     "tag:sport=team_handball": "Kézilabda",
     "tag:sport=tennis": "Tenisz",
     "title:gastro": "Gasztronómia",
+    "title:internet": "Internethozzáférés",
     "title:shop": "Vásárlás",
     "title:sport": "Sport"
 }
