@@ -1,5 +1,6 @@
 {
     "dir:leisure": "Szabadidő",
+    "dir:services": "Szolgáltatás",
     "tag:amenity=marketplace": "Piac",
     "tag:leisure=sport": "OEgyéb sport",
     "tag:shop=books": "Könyvesbolt",

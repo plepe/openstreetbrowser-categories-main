@@ -1,5 +1,6 @@
 {
     "dir:leisure": "Wypoczynek, Sport i Zakupy",
+    "dir:services": "Usługi",
     "tag:amenity=marketplace": "Bazar",
     "title:gastro": "Gastronomia",
     "title:shop": "Zakupy"

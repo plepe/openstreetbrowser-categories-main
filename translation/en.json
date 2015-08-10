@@ -1,5 +1,6 @@
 {
     "dir:leisure": "Leisure, Sport and Shopping",
+    "dir:services": "Services",
     "tag:amenity=bench": "Bench",
     "tag:amenity=brothel": "Brothel",
     "tag:amenity=marketplace": "",

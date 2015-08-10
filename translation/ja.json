@@ -1,5 +1,6 @@
 {
     "dir:leisure": "レジャー",
+    "dir:services": "サービス",
     "tag:amenity=marketplace": "市場",
     "tag:amenity=vending_machine": "自動販売機",
     "tag:leisure=beach_resort": "ビーチリゾート",

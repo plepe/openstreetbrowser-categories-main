@@ -1,5 +1,6 @@
 {
     "dir:leisure": "Vrije tijd, Sport en Winkelen",
+    "dir:services": "Dienstverlening",
     "tag:amenity=bench": "Zitbank",
     "tag:amenity=brothel": "Bordeel",
     "tag:amenity=marketplace": "Weekmarkt",

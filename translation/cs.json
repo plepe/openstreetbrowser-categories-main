@@ -1,5 +1,6 @@
 {
     "dir:leisure": "Volný čas, sporty a nákupy",
+    "dir:services": "Služby",
     "tag:amenity=bench": "Lavička",
     "tag:amenity=brothel": "Veřejný dům",
     "tag:amenity=marketplace": "Tržnice",

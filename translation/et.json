@@ -1,5 +1,6 @@
 {
     "dir:leisure": "Vaba aeg, sport ja ostmine",
+    "dir:services": "Teenused",
     "tag:amenity=bench": "Pink",
     "tag:amenity=brothel": "Bordell",
     "tag:amenity=sauna": "Saun",

@@ -1,5 +1,6 @@
 {
     "dir:leisure": "Досуг",
+    "dir:services": "Услуги",
     "tag:amenity=bench": "Лавочки",
     "tag:amenity=brothel": "Бордели",
     "tag:amenity=marketplace": "Рынок",

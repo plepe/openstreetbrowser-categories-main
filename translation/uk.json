@@ -1,5 +1,6 @@
 {
     "dir:leisure": "Дозвілля",
+    "dir:services": "Послуги",
     "tag:amenity=marketplace": "Marketplaces",
     "tag:amenity=vending_machine": "Торгівельні автомати",
     "tag:leisure=beach_resort": "Пляжі",

@@ -1,6 +1,7 @@
 {
     "Bar style": "BAR",
     "dir:leisure": "Freizeit, Sport und Einkauf",
+    "dir:services": "Dienste",
     "foo": "",
     "tag:amenity=bench": "Sitzbank",
     "tag:amenity=brothel": "Bordell",

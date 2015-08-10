@@ -1,5 +1,6 @@
 {
     "dir:leisure": "Αναψυχή, Αθλητισμός και Αγορές",
+    "dir:services": "Υπηρεσίες",
     "tag:amenity=sauna": "Σάουνα",
     "tag:landuse=recreation_ground": "Πεδίο Δραστηριοτήτων",
     "tag:leisure=beach_resort": "Παραθαλάσσιο Θέρετρο",

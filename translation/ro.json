@@ -1,5 +1,6 @@
 {
     "dir:leisure": "Timp liber, Sport si Cumparaturi",
+    "dir:services": "Servicii",
     "tag:amenity=bench": "Banca",
     "tag:amenity=brothel": "Bordel",
     "tag:amenity=sauna": "Sauna",
