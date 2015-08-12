@@ -92,11 +92,11 @@ node|z18-[highway=passing_place] {
   z-index: 1;
 }
 
-line|z15[highway][bridge=*!=no] {
+line|z15[highway][bridge][bridge!=no] {
   list-text: auto;
   list-type: tr('tag:highway=* bridge=*!=no');
 }
-line|z16-[highway][bridge=*!=no] {
+line|z16-[highway][bridge][bridge!=no] {
   text: auto;
   list-type: tr('tag:highway=* bridge=*!=no');
   text-color: #858585;

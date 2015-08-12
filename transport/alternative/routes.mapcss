@@ -10,6 +10,8 @@ relation|z8-[type=route][route=bicycle][network=icn] {
   text: auto;
   list-type: tr('tag:type=route route=bicycle network=icn');
   z-index: 6;
+  color: #ff0000;
+  width: 1;
 }
 
 relation|z13-14[type=route][route=hiking] {
@@ -20,16 +22,20 @@ relation|z15-[type=route][route=hiking] {
   text: auto;
   list-type: tr('tag:type=route route=hiking');
   z-index: 3;
+  color: #ba4925;
+  width: 1;
 }
 
-relation|z13-14[type=route][route=bicycle][network!=icn;ncn;rcn] {
+relation|z13-14[type=route][route=bicycle][network!=icn][network!=ncn][network!=rcn] {
   list-text: auto;
   list-type: tr('tag:type=route route=bicycle network!=icn;ncn;rcn');
 }
-relation|z15-[type=route][route=bicycle][network!=icn;ncn;rcn] {
+relation|z15-[type=route][route=bicycle][network!=icn][network!=ncn][network!=rcn] {
   text: auto;
   list-type: tr('tag:type=route route=bicycle network!=icn;ncn;rcn');
   z-index: 3;
+  color: #0000ff;
+  width: 1;
 }
 
 relation|z8-9[type=route][route=bicycle][network=ncn] {
@@ -40,6 +46,8 @@ relation|z10-[type=route][route=bicycle][network=ncn] {
   text: auto;
   list-type: tr('tag:type=route route=bicycle network=ncn');
   z-index: 5;
+  color: #ff0000;
+  width: 1;
 }
 
 relation|z11-12[type=route][route=bicycle][network=rcn] {
@@ -50,6 +58,8 @@ relation|z13-[type=route][route=bicycle][network=rcn] {
   text: auto;
   list-type: tr('tag:type=route route=bicycle network=rcn');
   z-index: 4;
+  color: #ff00ff;
+  width: 1;
 }
 
 relation|z11-12[type=route][route=mtb] {
@@ -60,5 +70,7 @@ relation|z13-[type=route][route=mtb] {
   text: auto;
   list-type: tr('tag:type=route route=mtb');
   z-index: 4;
+  color: #00ff00;
+  width: 1;
 }
 

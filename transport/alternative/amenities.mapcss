@@ -102,12 +102,12 @@ meta {
   z-index: 1;
 }
 
-node|z16-17[cycleway=bike_box;asl] {
+node|z16-17[cycleway~=bike_box;asl] {
   list-text: auto;
   list-type: tr('tag:cycleway=bike_box;asl');
   icon-image: url('img/4d83021f00a5a.svg');
 }
-node|z18-[cycleway=bike_box;asl] {
+node|z18-[cycleway~=bike_box;asl] {
   text: auto;
   list-type: tr('tag:cycleway=bike_box;asl');
   icon-image: url('img/4d83021f00a5a.svg');
