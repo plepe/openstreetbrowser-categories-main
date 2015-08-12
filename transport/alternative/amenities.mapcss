@@ -51,13 +51,13 @@ meta {
 }
 
 *|z16-17[amenity=bicycle_parking][capacity<=20],
-*|z16-17[amenity=bicycle_parking][capacity!] {
+*|z16-17[amenity=bicycle_parking][!capacity] {
   list-text: auto;
   list-type: tr('tag:amenity=bicycle_parking capacity<=20, amenity=bicycle_parking capacity!=*');
   icon-image: url('img/parking_bikes.svg');
 }
 *|z18-[amenity=bicycle_parking][capacity<=20],
-*|z18-[amenity=bicycle_parking][capacity!] {
+*|z18-[amenity=bicycle_parking][!capacity] {
   text: auto;
   list-type: tr('tag:amenity=bicycle_parking capacity<=20, amenity=bicycle_parking capacity!=*');
   icon-image: url('img/parking_bikes.svg');
