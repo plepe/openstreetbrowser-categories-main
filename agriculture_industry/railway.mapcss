@@ -62,11 +62,11 @@ line|z15-[railway=light_rail] {
   z-index: 3;
 }
 
-line|z13-14[railway=rail][usage!=main][service!] {
+line|z13-14[railway=rail][usage!=main][!service] {
   list-text: auto;
   list-type: tr('tag:railway=rail usage!=main service!=*');
 }
-line|z15-[railway=rail][usage!=main][service!] {
+line|z15-[railway=rail][usage!=main][!service] {
   text: auto;
   list-type: tr('tag:railway=rail usage!=main service!=*');
   text-color: #7c80cd;
