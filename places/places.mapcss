@@ -71,6 +71,17 @@ node|z13-[place=town][population>=30000] {
   list-type: tr('tag:place=town population>=30000');
   z-index: 4;
 }
+node|z12-13[place=town][population<30000],
+node|z12-13[place=town][!population] {
+  list-text: auto;
+  list-type: tr('tag:place=town');
+}
+node|z14-[place=town][population<30000],
+node|z14-[place=town][!population] {
+  text: auto;
+  list-type: tr('tag:place=town');
+  z-index: 4;
+}
 
 node|z15[place=hamlet] {
   list-text: auto;
@@ -150,11 +161,31 @@ node|z13-[place=region] {
   z-index: 4;
 }
 
-node|z11-12[place=city][population<200000] {
+node|z6-8[place=city][population>=1000000] {
+  list-text: auto;
+  list-type: tr('tag:place=city population>=1000000');
+}
+node|z9-[place=city][population>=1000000] {
+  text: auto;
+  list-type: tr('tag:place=city population>=1000000');
+  z-index: 4;
+}
+node|z9-11[place=city][population<1000000][population>=200000] {
+  list-text: auto;
+  list-type: tr('tag:place=city population>=200000');
+}
+node|z12-[place=city][population<1000000][population>=200000] {
+  text: auto;
+  list-type: tr('tag:place=city population>=200000');
+  z-index: 4;
+}
+node|z11-12[place=city][population<200000],
+node|z11-12[place=city][!population] {
   list-text: auto;
   list-type: tr('tag:place=city population<200000');
 }
-node|z13-[place=city][population<200000] {
+node|z13-[place=city][population<200000],
+node|z13-[place=city][!population] {
   text: auto;
   list-type: tr('tag:place=city population<200000');
   z-index: 4;
