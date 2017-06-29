@@ -1,8 +1,8 @@
 {
-    "dir:culture": "Cultura i religió",
-    "dir:leisure": "Oci, esport i compres",
-    "dir:services": "Serveis",
-    "dir:services/communication": "Comunicacions",
-    "title:emergency": "Serveis d'emergència",
-    "title:internet": "Accés a Internet"
+    "category:communication": "Comunicacions",
+    "category:culture": "Cultura i religió",
+    "category:emergency": "Serveis d'emergència",
+    "category:internet": "Accés a Internet",
+    "category:leisure_sport_shopping": "Oci, esport i compres",
+    "category:services": "Serveis"
 }
