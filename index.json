@@ -4,7 +4,6 @@
         {
             "id": "leisure_sport_shopping",
             "type": "index",
-            "name:en": "Leisure, Sport and Shopping",
             "subCategories": [
                 {
                     "id": "gastro"
@@ -20,7 +19,6 @@
         {
             "id": "services",
             "type": "index",
-            "name:en": "Services",
             "subCategories": [
                 {
                     "id": "communication"
