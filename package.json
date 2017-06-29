@@ -1,0 +1,23 @@
+{
+  "name": "openstreetbrowser-categories-main",
+  "version": "0.0.1",
+  "description": "Categories for OpenStreetBrowser",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plepe/openstreetbrowser-categories-main.git"
+  },
+  "keywords": [
+    "openstreetbrowser",
+    "openstreetmap",
+    "osm"
+  ],
+  "author": "Stephan Bösch-Plepelits <skunk@xover.mud.at>",
+  "license": "CC-BY-SA-2.0",
+  "bugs": {
+    "url": "https://github.com/plepe/openstreetbrowser-categories-main/issues"
+  },
+  "homepage": "https://github.com/plepe/openstreetbrowser-categories-main#readme"
+}
