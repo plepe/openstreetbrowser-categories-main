@@ -12,6 +12,9 @@
                     "id": "shop"
                 },
                 {
+                    "id": "leisure"
+                },
+                {
                     "id": "children"
                 }
             ]
@@ -27,12 +30,6 @@
                     "id": "public"
                 }
             ]
-        },
-        {
-            "id": "trees"
-        },
-        {
-            "id": "parks"
         },
         {
             "id": "places"
