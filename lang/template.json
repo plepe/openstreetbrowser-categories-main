@@ -6,6 +6,7 @@
     "category:car_amenities": "",
     "category:car_furniture": "",
     "category:car_routes": "",
+    "category:cycle_routes": "",
     "category:culture": "",
     "category:gastro": "",
     "category:historic": "",
@@ -22,11 +23,12 @@
     "category:railway": "",
     "category:religion": "",
     "category:residential": "",
-    "category:restaurants": "",
     "category:shop": "",
     "category:sport": "",
     "category:tourism": "",
     "category:transport": "",
-    "category:transportalternative": "",
-    "category:transportpt": ""
+    "category:transport_walk": "",
+    "category:transport_cycle": "",
+    "category:transport_car": "",
+    "category:transport_pt": ""
 }
