@@ -6,6 +6,8 @@
     "category:alternative_routes": "Routes",
     "category:car_amenities": "Amenities",
     "category:car_furniture": "Street Furniture",
+    "category:children": "Children amenities",
+    "category:cycle_routes": "Cycle Routes",
     "category:communication": "Communication",
     "category:construction": "Construction Sites",
     "category:culture": "Culture",
@@ -39,8 +41,9 @@
     "category:sport": "Sport",
     "category:tourism": "Tourism",
     "category:transport": "Transportation",
-    "category:transport_alternative": "Alternative (Cycling, Hiking, ...)",
     "category:transport_car": "Individual Traffic",
+    "category:transport_cycle": "Cycling",
     "category:transport_pt": "Public Transportation",
+    "category:transport_walk": "Walking",
     "category:works": "Works"
 }

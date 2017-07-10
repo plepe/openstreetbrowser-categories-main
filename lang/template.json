@@ -6,6 +6,8 @@
     "category:alternative_routes": "",
     "category:car_amenities": "",
     "category:car_furniture": "",
+    "category:children": "",
+    "category:cycle_routes": "",
     "category:communication": "",
     "category:construction": "",
     "category:culture": "",
@@ -39,8 +41,9 @@
     "category:sport": "",
     "category:tourism": "",
     "category:transport": "",
-    "category:transport_alternative": "",
     "category:transport_car": "",
+    "category:transport_cycle": "",
     "category:transport_pt": "",
+    "category:transport_walk": "",
     "category:works": ""
 }

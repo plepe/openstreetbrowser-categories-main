@@ -1,5 +1,4 @@
 {
-    "Bar style": "BAR",
     "category:administrative": "Administrative Gebiete",
     "category:agriculture": "Landwirtschaft",
     "category:agriculture_industry": "Landwirtschaft und Industrie",
@@ -7,6 +6,8 @@
     "category:alternative_routes": "(ausgeschilderte) Routen",
     "category:car_amenities": "Einrichtungen",
     "category:car_furniture": "Straßenausstattung",
+    "category:children": "Einrichtungen für Kinder",
+    "category:cycle_routes": "Radrouten",
     "category:communication": "Kommunikation",
     "category:construction": "Baustellen",
     "category:culture": "Kultur",
@@ -39,8 +40,9 @@
     "category:sport": "anderer Sport",
     "category:tourism": "Tourismus",
     "category:transport": "Transport",
-    "category:transport_alternative": "Alternativ (Rad, Wandern, ...)",
     "category:transport_car": "Motorisierter Individualverkehr",
+    "category:transport_cycle": "Radfahren",
     "category:transport_pt": "Öffentlicher Verkehr",
+    "category:transport_walk": "Zu Fuß gehen",
     "category:works": "Fabriken"
 }
