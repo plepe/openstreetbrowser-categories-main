@@ -1,0 +1,15 @@
+{
+    "type": "overpass",
+    "query": {
+        "11": "(node[power~'^(generator)$'];way[power~'^(generator)$'];relation[power~'^(generator)$'];)",
+        "13": "(node[power~'^(generator|station)$'];way[power~'^(generator|station)$'];relation[power~'^(generator|station)$'];)",
+        "16": "(node[power~'^(generator|station|sub_station|transformer)$'];way[power~'^(generator|station|sub_station|transformer)$'];relation[power~'^(generator|station|sub_station|transformer)$'];)"
+    },
+    "minZoom": 11,
+    "feature": {
+        "markerSign": "",
+        "body": "{{ tagTrans('power', tags.power) }}\n{% set x='generator:source' %}{% if tags[x] %}<br/>{{ tagTrans('generator:source') }}: {{ tagTransList('generator:source', tags[x]) }}{% endif %}\n{% set x='generator:method' %}{% if tags[x] %}<br/>{{ tagTrans('generator:method') }}: {{ tagTransList('generator:method', tags[x]) }}{% endif %}\n{% set x='generator:type' %}{% if tags[x] %}<br/>{{ tagTransList('generator:type') }}: {{ tagTrans('generator:type', tags[x]) }}{% endif %}",
+        "description": "{{ tagTrans('power', tags.power) }}{% set x='generator:source' %}{% if tags[x] %}, {{ tagTransList('generator:source', tags[x]) }}{% endif %}",
+        "priority": "{% if tags.power == 'generator' %}0{% elseif tags.power == 'station' %}1{% else %}2{% endif %}"
+    }
+}

@@ -65,6 +65,15 @@
             ]
         },
         {
+            "id": "agriculture_industry",
+            "type": "index",
+            "subCategories": [
+                {
+                    "id": "power"
+                }
+            ]
+        },
+        {
             "id": "places"
         }
     ]
