@@ -1,0 +1,10 @@
+{
+    "type": "overpass",
+    "query": {
+        "12": "(node[landuse~'^(industrial)$'];way[landuse~'^(industrial)$'];relation[landuse~'^(industrial)$'];)"
+    },
+    "minZoom": 12,
+    "feature": {
+        "markerSign": ""
+    }
+}
