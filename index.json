@@ -24,6 +24,9 @@
             "type": "index",
             "subCategories": [
                 {
+                    "id": "education"
+                },
+                {
                     "id": "communication"
                 },
                 {
