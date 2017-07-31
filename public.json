@@ -1,4 +1,19 @@
 {
+    "name": {
+        "ast": "Serviciu Públicu",
+        "cs": "Veřejné služby",
+        "de": "Öffentliche Dienste",
+        "el": "Δημόσιες Υπηρεσίες",
+        "en": "Public Services",
+        "et": "Kommunaalteenused",
+        "fr": "Services Publics",
+        "it": "Servizi pubblici",
+        "ja": "公共サービス",
+        "nl": "Openbare diensten",
+        "ro": "Servicii publice",
+        "ru": "Общественные места",
+        "uk": "Громадські місця"
+    },
     "type": "overpass",
     "query": {
         "12": "(node[amenity~'^(court_house|embassy|public_building|townhall)$'];way[amenity~'^(court_house|embassy|public_building|townhall)$'];relation[amenity~'^(court_house|embassy|public_building|townhall)$'];node[amenity=recycling][recyling_type=centre];way[amenity=recycling][recyling_type=centre];relation[amenity=recycling][recyling_type=centre];);",

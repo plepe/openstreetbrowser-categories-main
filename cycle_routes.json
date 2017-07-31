@@ -1,4 +1,8 @@
 {
+    "name": {
+        "de": "Radrouten",
+        "en": "Cycle Routes"
+    },
     "type": "overpass",
     "query": {
         "6": "relation[type=route][route=bicycle][network~'^(icn)$']",

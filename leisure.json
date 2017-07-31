@@ -1,4 +1,18 @@
 {
+    "name": {
+        "ast": "Recréu",
+        "cs": "Volný čas",
+        "de": "Freizeit",
+        "el": "Αναψυχή",
+        "en": "Leisure",
+        "fr": "Loisirs",
+        "it": "Tempo libero",
+        "ja": "レジャー",
+        "nl": "Vrije tijd",
+        "ro": "Timp liber",
+        "ru": "Досуг",
+        "uk": "Дозвілля"
+    },
     "type": "overpass",
     "query": {
         "14": "(way[leisure~'^(park|common)$'];relation[leisure='^(park|common)$'];)",

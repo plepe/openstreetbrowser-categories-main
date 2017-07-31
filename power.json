@@ -1,4 +1,18 @@
 {
+    "name": {
+        "ast": "Enerxía",
+        "cs": "Elektřina",
+        "de": "Energie",
+        "en": "Power",
+        "et": "Elekter",
+        "fr": "Énergie",
+        "hu": "Áramellátás",
+        "it": "Energia",
+        "ja": "電力",
+        "nl": "Stroomvoorziening",
+        "ro": "Energie",
+        "ru": "Энергетика"
+    },
     "type": "overpass",
     "query": {
         "11": "(node[power~'^(plant)$'];way[power~'^(plant|line)$'];relation[power~'^(plant)$'];)",

@@ -1,4 +1,21 @@
 {
+    "name": {
+        "ast": "Compres",
+        "cs": "Obchody",
+        "de": "Einkauf",
+        "el": "Αγορές",
+        "en": "Shopping",
+        "et": "Ostmine",
+        "fr": "Magasinage/Shopping",
+        "hu": "Vásárlás",
+        "it": "Acquisti",
+        "ja": "ショッピング",
+        "nl": "Winkelen",
+        "pl": "Zakupy",
+        "ro": "Cumpărături",
+        "ru": "Покупки",
+        "uk": "Торгівля"
+    },
     "type": "overpass",
     "query": {
         "14": "(node[shop~'^(mall|department_store)$'];way[shop~'^(mall|department_store)$'];relation[shop~'^(mall|department_store)$'];);",

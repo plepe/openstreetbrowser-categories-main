@@ -1,4 +1,15 @@
 {
+    "name": {
+        "ast": "Fábriques",
+        "cs": "Továrny",
+        "de": "Fabriken",
+        "en": "Works",
+        "fr": "Construction",
+        "it": "Fabbriche",
+        "ja": "工場",
+        "nl": "Fabrieken",
+        "ru": "Промышленность"
+    },
     "type": "overpass",
     "query": {
         "12": "(node[landuse~'^(industrial)$'];way[landuse~'^(industrial)$'];relation[landuse~'^(industrial)$'];)"

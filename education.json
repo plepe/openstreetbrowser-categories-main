@@ -1,4 +1,20 @@
 {
+    "name": {
+        "ast": "Servicios educativos",
+        "cs": "Vzdělávací služby",
+        "de": "Bildungseinrichtungen",
+        "el": "Υπηρεσίες Εκπαίδευσης",
+        "en": "Educational Services",
+        "et": "Haridusteenused",
+        "fr": "Service d'Éducation",
+        "it": "Istruzione",
+        "ja": "教育サービス",
+        "nl": "Onderwijs",
+        "pl": "Edukacyjne",
+        "ro": "Servicii educatie",
+        "ru": "Образование",
+        "uk": "Освіта"
+    },
     "type": "overpass",
     "query": {
         "11": "(node[amenity~'^(college|university|library)$'];way[amenity~'^(college|university|library)$'];relation[amenity~'^(college|university|library)$'];)",

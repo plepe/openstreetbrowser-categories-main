@@ -2,6 +2,25 @@
     "type": "index",
     "subCategories": [
         {
+            "name": {
+                "ast": "Recréu, deportes y compres",
+                "ca": "Oci, esport i compres",
+                "cs": "Volný čas, sporty a nákupy",
+                "de": "Freizeit, Sport und Einkauf",
+                "el": "Αναψυχή, Αθλητισμός και Αγορές",
+                "en": "Leisure, Sport and Shopping",
+                "es": "Ocio, deporte y compras",
+                "et": "Vaba aeg, sport ja ostmine",
+                "fr": "Loisirs",
+                "hu": "Szabadidő",
+                "it": "Tempo libero, sport e shopping",
+                "ja": "レジャー",
+                "nl": "Vrije tijd, Sport en Winkelen",
+                "pl": "Wypoczynek, Sport i Zakupy",
+                "ro": "Timp liber, Sport si Cumparaturi",
+                "ru": "Досуг",
+                "uk": "Дозвілля"
+            },
             "id": "leisure_sport_shopping",
             "type": "index",
             "subCategories": [
@@ -20,6 +39,25 @@
             ]
         },
         {
+            "name": {
+                "ast": "Servicios",
+                "ca": "Serveis",
+                "cs": "Služby",
+                "de": "Dienste",
+                "el": "Υπηρεσίες",
+                "en": "Services",
+                "es": "Servicios",
+                "et": "Teenused",
+                "fr": "Services",
+                "hu": "Szolgáltatás",
+                "it": "Servizi",
+                "ja": "サービス",
+                "nl": "Dienstverlening",
+                "pl": "Usługi",
+                "ro": "Servicii",
+                "ru": "Услуги",
+                "uk": "Послуги"
+            },
             "id": "services",
             "type": "index",
             "subCategories": [
@@ -35,16 +73,41 @@
             ]
         },
         {
+            "name": {
+                "ast": "Tresporte",
+                "cs": "Doprava",
+                "de": "Transport",
+                "el": "Μεταφορές",
+                "en": "Transportation",
+                "et": "Transport",
+                "fr": "Transport",
+                "hu": "Közlekedés",
+                "it": "Trasporti",
+                "ja": "輸送",
+                "nl": "Vervoer",
+                "pl": "Transport",
+                "ro": "Transport",
+                "ru": "Транспорт",
+                "tr": "Toplu Taşıma",
+                "uk": "Транспорт"
+            },
             "id": "transport",
             "type": "index",
             "subCategories": [
                 {
+                    "name": {
+                        "de": "Zu Fuß gehen",
+                        "en": "Walking"
+                    },
                     "id": "transport_walk",
                     "type": "index",
-                    "subCategories": [
-                    ]
+                    "subCategories": []
                 },
                 {
+                    "name": {
+                        "de": "Radfahren",
+                        "en": "Cycling"
+                    },
                     "id": "transport_cycle",
                     "type": "index",
                     "subCategories": [
@@ -54,20 +117,66 @@
                     ]
                 },
                 {
+                    "name": {
+                        "ast": "Tresporte Públicu",
+                        "cs": "Veřejná doprava",
+                        "de": "Öffentlicher Verkehr",
+                        "el": "Δημόσιες Μεταφορές",
+                        "en": "Public Transportation",
+                        "et": "Ühistransport",
+                        "fr": "Transport public",
+                        "hu": "Tömegközlekedés",
+                        "it": "Trasporti pubblici",
+                        "ja": "公共輸送",
+                        "nl": "Openbaar vervoer",
+                        "pl": "Transport Publiczny",
+                        "ro": "Transport public",
+                        "ru": "Общественный транспорт",
+                        "uk": "Громадський транспорт"
+                    },
                     "id": "transport_pt",
                     "type": "index",
-                    "subCategories": [
-                    ]
+                    "subCategories": []
                 },
                 {
+                    "name": {
+                        "ast": "Tráficu individual",
+                        "cs": "Individuální doprava",
+                        "de": "Motorisierter Individualverkehr",
+                        "en": "Individual Traffic",
+                        "fr": "Transport automobile",
+                        "it": "Trasporti individuali",
+                        "ja": "個人輸送機関",
+                        "nl": "Gemotoriseerd individueel verkeer",
+                        "pl": "Transport Indywidualny",
+                        "ro": "Trafic individual",
+                        "ru": "Частный транспорт",
+                        "uk": "Приватний транспорт"
+                    },
                     "id": "transport_car",
                     "type": "index",
-                    "subCategories": [
-                    ]
+                    "subCategories": []
                 }
             ]
         },
         {
+            "name": {
+                "ast": "Agricultura ya industria",
+                "cs": "Průmysl a zemědělství",
+                "de": "Landwirtschaft und Industrie",
+                "el": "Γεωργία και Βιομηχανία",
+                "en": "Agriculture and Industry",
+                "et": "Põllumajandus ja tööstus",
+                "fr": "Agriculture et industrie",
+                "hu": "Mezőgazdaság és ipar",
+                "it": "Agricoltura e industria",
+                "ja": "農業と工業",
+                "nl": "Landbouw en Industrie",
+                "pl": "Rolnictwo i Przemysł",
+                "ro": "Agricultura si industrie",
+                "ru": "Сельское хозяйство и промышленность",
+                "uk": "Сільське господартво та промисловість"
+            },
             "id": "agriculture_industry",
             "type": "index",
             "subCategories": [

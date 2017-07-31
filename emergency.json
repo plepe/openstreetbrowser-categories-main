@@ -1,0 +1,19 @@
+{
+    "name": {
+        "ast": "Servicios d'emerxencia",
+        "ca": "Serveis d'emergència",
+        "cs": "Pohotovostní služby",
+        "de": "Notfalldienste",
+        "el": "Υπηρεσίες Έκτακτης Ανάγκης",
+        "en": "Emergency Services",
+        "es": "Servicios de emergencia",
+        "et": "Hädaabi teenused",
+        "fr": "Service d'urgence",
+        "it": "Servizi d'emergenza",
+        "ja": "緊急サービス",
+        "nl": "Hulpdiensten",
+        "ro": "Servicii urgenta",
+        "ru": "Экстренные службы",
+        "uk": "Швидка допомога"
+    }
+}

@@ -1,4 +1,21 @@
 {
+    "name": {
+        "ast": "Comunicaciones",
+        "ca": "Comunicacions",
+        "cs": "Komunikace",
+        "de": "Kommunikation",
+        "el": "Επικοινωνίες",
+        "en": "Communication",
+        "et": "Kommunikatsioon",
+        "fr": "Communication",
+        "hu": "Kommunikácó",
+        "it": "Communicazioni",
+        "ja": "交流",
+        "nl": "Communicatie",
+        "ro": "Comunicatii",
+        "ru": "Услуги связи",
+        "uk": "Телекомунікації"
+    },
     "type": "overpass",
     "query": {
         "13": "(node[amenity~'^(post_office|internet_cafe)$'];way[amenity~'^(post_office|internet_cafe)$'];relation[amenity~'^(post_office|internet_cafe)$'];);",
