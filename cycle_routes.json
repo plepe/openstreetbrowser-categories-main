@@ -11,9 +11,8 @@
         "style": {
             "color": "{% if tags.network=='icn' %}#ff0000{% elseif tags.network=='ncn' %}#ff007f{% elseif tags.network=='rcn' %}#7f00ff{% else %}#0000ff{% endif %}",
             "weight": 4,
-            "opacity": 1.0
+            "opacity": 1
         },
         "priority": "{% if tags.network=='icn' %}0{% elseif tags.network=='ncn' %}1{% elseif tags.network=='rcn' %}2{% else %}3{% endif %}"
     }
 }
-

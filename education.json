@@ -1,9 +1,9 @@
 {
     "type": "overpass",
     "query": {
-      "11": "(node[amenity~'^(college|university|library)$'];way[amenity~'^(college|university|library)$'];relation[amenity~'^(college|university|library)$'];)",
-      "14": "(node[amenity~'^(college|university|library|school|kindergarten|language_school)$'];way[amenity~'^(college|university|library|school|kindergarten|language_school)$'];relation[amenity~'^(college|university|library|school|kindergarten|language_school)$'];)",
-      "16": "(node[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];way[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];relation[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];)"
+        "11": "(node[amenity~'^(college|university|library)$'];way[amenity~'^(college|university|library)$'];relation[amenity~'^(college|university|library)$'];)",
+        "14": "(node[amenity~'^(college|university|library|school|kindergarten|language_school)$'];way[amenity~'^(college|university|library|school|kindergarten|language_school)$'];relation[amenity~'^(college|university|library|school|kindergarten|language_school)$'];)",
+        "16": "(node[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];way[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];relation[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];)"
     },
     "minZoom": 11,
     "feature": {
@@ -13,5 +13,3 @@
         "priority": "{% if tags.amenity == 'university' %}0{% elseif tags.amenity == 'college' %}1{% elseif tags.amenity == 'library' %}2{% elseif tags.amenity == 'school' or tags.amenity == 'language_school' %}3{% elseif tags.amenity == 'kindergarten' %}4{% elseif tags.amenity == 'public_bookcase' %}5{% endif %}"
     }
 }
-
-

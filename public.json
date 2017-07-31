@@ -1,8 +1,8 @@
 {
     "type": "overpass",
     "query": {
-      "12": "(node[amenity~'^(court_house|embassy|public_building|townhall)$'];way[amenity~'^(court_house|embassy|public_building|townhall)$'];relation[amenity~'^(court_house|embassy|public_building|townhall)$'];node[amenity=recycling][recyling_type=centre];way[amenity=recycling][recyling_type=centre];relation[amenity=recycling][recyling_type=centre];);",
-      "16": "(node[amenity~'^(court_house|embassy|public_building|townhall|clock|drinking_water|recycling)$'];way[amenity~'^(court_house|embassy|public_building|townhall|recycling)$'];relation[amenity~'^(court_house|embassy|public_building|townhall|recycling)$'];node[drinking_water]);"
+        "12": "(node[amenity~'^(court_house|embassy|public_building|townhall)$'];way[amenity~'^(court_house|embassy|public_building|townhall)$'];relation[amenity~'^(court_house|embassy|public_building|townhall)$'];node[amenity=recycling][recyling_type=centre];way[amenity=recycling][recyling_type=centre];relation[amenity=recycling][recyling_type=centre];);",
+        "16": "(node[amenity~'^(court_house|embassy|public_building|townhall|clock|drinking_water|recycling)$'];way[amenity~'^(court_house|embassy|public_building|townhall|recycling)$'];relation[amenity~'^(court_house|embassy|public_building|townhall|recycling)$'];node[drinking_water]);"
     },
     "minZoom": 12,
     "feature": {
@@ -12,5 +12,3 @@
         "description": "{{ tagTrans('amenity', tags.amenity) }}"
     }
 }
-
-

@@ -1,8 +1,8 @@
 {
     "type": "overpass",
     "query": {
-      "14": "(way[leisure~'^(park|common)$'];relation[leisure='^(park|common)$'];)",
-      "16": "(node[amenity~'^(bench|swimming_pool)$'];way[leisure~'^(park|common|nature_reserve|swimming_pool)$'];relation[leisure='^(park|common|nature_reserve|swimming_pool)$'];)"
+        "14": "(way[leisure~'^(park|common)$'];relation[leisure='^(park|common)$'];)",
+        "16": "(node[amenity~'^(bench|swimming_pool)$'];way[leisure~'^(park|common|nature_reserve|swimming_pool)$'];relation[leisure='^(park|common|nature_reserve|swimming_pool)$'];)"
     },
     "minZoom": 14,
     "feature": {

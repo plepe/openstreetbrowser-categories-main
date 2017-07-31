@@ -1,8 +1,8 @@
 {
     "type": "overpass",
     "query": {
-      "13": "(node[amenity~'^(post_office|internet_cafe)$'];way[amenity~'^(post_office|internet_cafe)$'];relation[amenity~'^(post_office|internet_cafe)$'];);",
-      "16": "(node[amenity~'^(post_office|internet_cafe|post_box|telephone)$'];way[amenity~'^(post_office|internet_cafe)$'];relation[amenity~'^(post_office|internet_cafe)$'];);"
+        "13": "(node[amenity~'^(post_office|internet_cafe)$'];way[amenity~'^(post_office|internet_cafe)$'];relation[amenity~'^(post_office|internet_cafe)$'];);",
+        "16": "(node[amenity~'^(post_office|internet_cafe|post_box|telephone)$'];way[amenity~'^(post_office|internet_cafe)$'];relation[amenity~'^(post_office|internet_cafe)$'];);"
     },
     "minZoom": 13,
     "feature": {
