@@ -23,7 +23,7 @@
     "minZoom": 11,
     "feature": {
         "markerSign": "",
-        "body": "{{ tagTrans('power', tags.power) }}\n{% set x='generator:source' %}{% if tags[x] %}<br/>{{ tagTrans('generator:source') }}: {{ tagTransList('generator:source', tags[x]) }}{% endif %}\n{% set x='generator:method' %}{% if tags[x] %}<br/>{{ tagTrans('generator:method') }}: {{ tagTransList('generator:method', tags[x]) }}{% endif %}\n{% set x='generator:type' %}{% if tags[x] %}<br/>{{ tagTransList('generator:type') }}: {{ tagTrans('generator:type', tags[x]) }}{% endif %}",
+        "body": "{{ tagTrans('power', tags.power) }}\n{% set x='generator:source' %}{% if tags[x] %}<br/>{{ keyTrans('generator:source') }}: {{ tagTransList('generator:source', tags[x]) }}{% endif %}\n{% set x='generator:method' %}{% if tags[x] %}<br/>{{ keyTrans('generator:method') }}: {{ tagTransList('generator:method', tags[x]) }}{% endif %}\n{% set x='generator:type' %}{% if tags[x] %}<br/>{{ tagTransList('generator:type') }}: {{ tagTrans('generator:type', tags[x]) }}{% endif %}",
         "description": "{{ tagTrans('power', tags.power) }}{% set x='generator:source' %}{% if tags[x] %}, {{ tagTransList('generator:source', tags[x]) }}{% endif %}",
         "priority": "{% if tags.power == 'plant' %}0{% elseif tags.power == 'generator' or tags.power == 'line' %}1{% elseif tags.power == 'substation' %}2{% else %}3{% endif %}"
     }
