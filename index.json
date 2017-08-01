@@ -193,6 +193,9 @@
         },
         {
             "id": "places"
+        },
+        {
+            "id": "natural"
         }
     ]
 }
