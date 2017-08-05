@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Dineru",
         "cs": "Finanční služby",
@@ -13,5 +14,19 @@
         "ro": "Financiar",
         "ru": "Финансы",
         "uk": "Фінанси"
+    },
+    "query": {
+        "14": "(\nnode[amenity~\"^(bank)$\"];\nway[amenity~\"^(bank)$\"];\nrelation[amenity~\"^(bank)$\"]\n)",
+        "15": "(\nnode[amenity~\"^(bank|bureau_de_change|atm)$\"];\nway[amenity~\"^(bank|bureau_de_change|atm)$\"];\nrelation[amenity~\"^(bank|bureau_de_change|atm)$\"]\n)"
+    },
+    "feature": {
+        "description": "{{ tagTrans('amenity', tags.amenity) }}",
+        "body": "{{ tagTrans('amenity', tags.amenity) }}",
+        "markerSign": "{{ const[tags.amenity] }}"
+    },
+    "const": {
+        "atm": "💵",
+        "bank": "🏢",
+        "bureau_de_change": "⇄"
     }
 }
