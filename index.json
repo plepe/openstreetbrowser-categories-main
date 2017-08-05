@@ -65,6 +65,9 @@
             "type": "index",
             "subCategories": [
                 {
+                    "id": "emergency"
+                },
+                {
                     "id": "education"
                 },
                 {

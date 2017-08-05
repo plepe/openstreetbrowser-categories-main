@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Servicios d'emerxencia",
         "ca": "Serveis d'emergència",
@@ -15,5 +16,28 @@
         "ro": "Servicii urgenta",
         "ru": "Экстренные службы",
         "uk": "Швидка допомога"
+    },
+    "query": {
+        "11": "(node[amenity~\"^(fire_station|hospital)$\"];\nway[amenity~\"^(fire_station|hospital)$\"];\nrelation[amenity~\"^(fire_station|hospital)$\"])",
+        "13": "(node[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"];\nway[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"];\nrelation[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"])"
+    },
+    "feature": {
+        "description": "{{ tagTrans('amenity', tags.amenity) }}",
+        "body": "{{ tagTrans('amenity', tags.amenity) }}",
+        "markerSign": "{% set data = const[tags.amenity] %}\n{% if data %}\n{{ data.sign }}\n{% endif %}"
+    },
+    "const": {
+        "fire_station": {
+            "sign": "🔥"
+        },
+        "hospital": {
+            "sign": "🏥"
+        },
+        "police": {
+            "sign": "👮"
+        },
+        "emergency_phone": {
+            "sign": "📞"
+        }
     }
 }
