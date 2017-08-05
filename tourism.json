@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Turismu",
         "cs": "Turistika",
@@ -15,5 +16,35 @@
         "ro": "Turism",
         "ru": "Туризм",
         "uk": "Туризм"
+    },
+    "query": {
+        "13": "(\nnode[tourism];\nway[tourism];\nrelation[tourism]\n)"
+    },
+    "feature": {
+        "description": "{{ tagTrans('tourism', tags.tourism) }}",
+        "body": "{{ tagTrans('tourism', tags.tourism) }}",
+        "markerSign": "{{ const[tags.tourism] }}"
+    },
+    "const": {
+        "alpine_hut": "🛌",
+        "apartment": "🛌",
+        "aquarium": "🐟",
+        "artwork": "🛌",
+        "attraction": "",
+        "camp_site": "⛺",
+        "caravan_site": "⛺",
+        "chalet": "🛌",
+        "gallery": "🖼",
+        "guest_house": "🛌",
+        "hostel": "🛌",
+        "hotel": "🛌",
+        "information": "",
+        "motel": "🛌",
+        "museum": "",
+        "picnic_site": "",
+        "theme_park": "",
+        "viewpoint": "",
+        "wilderness_hut": "",
+        "zoo": "🦁"
     }
 }
