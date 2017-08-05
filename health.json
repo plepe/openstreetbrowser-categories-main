@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Salú",
         "cs": "Zdravotnictví",
@@ -13,5 +14,25 @@
         "ro": "Sanatate",
         "ru": "Медицина",
         "uk": "Здоров'я"
+    },
+    "query": {
+        "11": "(\nnode[amenity~\"^(hospital)$\"];\nway[amenity~\"^(hospital)$\"];\nrelation[amenity~\"^(hospital)$\"]\n)",
+        "14": "(\nnode[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];\nway[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];\nrelation[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"]\n)"
+    },
+    "feature": {
+        "description": "{{ tagTrans('amenity', tags.amenity) }}",
+        "body": "{{ tagTrans('amenity', tags.amenity) }}",
+        "markerSign": "{{ const[tags.amenity] }}"
+    },
+    "const": {
+        "baby_hatch": "🚼",
+        "clinic": "🏥",
+        "dentist": "☤",
+        "doctors": "☤",
+        "hospital": "🏥",
+        "nursing_home": "",
+        "pharmacy": "",
+        "social_facility": "",
+        "veterinary": "🐕"
     }
 }
