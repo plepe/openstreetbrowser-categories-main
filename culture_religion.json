@@ -1,0 +1,28 @@
+{
+    "type": "index",
+    "name": {
+        "ast": "Cultura",
+        "ca": "Cultura i religió",
+        "cs": "Kultura",
+        "de": "Kultur und Religion",
+        "el": "Πολιτισμός",
+        "en": "Culture",
+        "es": "Cultura y religión",
+        "et": "Kultuur ja religioon",
+        "fr": "Culture",
+        "hu": "Kultúra",
+        "it": "Cultura",
+        "ja": "文化",
+        "nl": "Cultuur",
+        "pl": "Kultura",
+        "ro": "Cultura",
+        "ru": "Культура",
+        "uk": "Культура "
+    },
+    "subCategories": [
+        {
+            "id": "culture",
+            "name": null
+        }
+    ]
+}

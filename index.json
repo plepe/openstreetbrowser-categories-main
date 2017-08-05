@@ -88,6 +88,9 @@
             ]
         },
         {
+            "id": "culture_religion"
+        },
+        {
             "name": {
                 "ast": "Tresporte",
                 "cs": "Doprava",

@@ -1,13 +1,14 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Cultura",
-        "ca": "Cultura i religió",
+        "ca": "Cultura",
         "cs": "Kultura",
         "de": "Kultur",
         "el": "Πολιτισμός",
         "en": "Culture",
-        "es": "Cultura y religión",
-        "et": "Kultuur ja religioon",
+        "es": "Cultura",
+        "et": "Kultuur",
         "fr": "Culture",
         "hu": "Kultúra",
         "it": "Cultura",
@@ -17,5 +18,26 @@
         "ro": "Cultura",
         "ru": "Культура",
         "uk": "Культура "
+    },
+    "query": {
+        "13": "(\nnode[amenity~\"^(arts_centre|cinema|community_centre|fountain|studio|theatre)$\"];\nway[amenity~\"^(arts_centre|cinema|community_centre|fountain|studio|theatre)$\"];\nrelation[amenity~\"^(arts_centre|cinema|community_centre|fountain|studio|theatre)$\"];\nnode[tourism~\"^(artwork|gallery|museum|theme_park)$\"];\nway[tourism~\"^(artwork|gallery|museum|theme_park)$\"];\nrelation[tourism~\"^(artwork|gallery|museum|theme_park)$\"];\n)"
+    },
+    "feature": {
+        "pre": "{% if tags.amenity in [ 'arts_centre', 'cinema', 'community_centre', 'fountain', 'studio', 'theatre' ] %}\n{% set key = 'amenity' %}\n{% set value = tags.amenity %}\n{% elseif tags.tourism %}\n{% set key = 'tourism' %}\n{% set value = tags.tourism %}\n{% endif %}",
+        "description": "{{ tagTrans(key, value) }}",
+        "body": "{{ tagTrans(key, value) }}",
+        "markerSign": "{{ const[value] }}"
+    },
+    "const": {
+        "arts_centre": "",
+        "cinema": "🎦",
+        "community_centre": "",
+        "fountain": "⛲",
+        "studio": "",
+        "theatre": "",
+        "artwork": "",
+        "gallery": "🖼",
+        "museum": "",
+        "theme_park": ""
     }
 }
