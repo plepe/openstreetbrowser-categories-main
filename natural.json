@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Formaciones naturales",
         "cs": "Přírodní úkazy",
@@ -13,10 +14,9 @@
         "ru": "Природные образования",
         "uk": "Природне середовище"
     },
-    "type": "overpass",
     "query": {
-        "9": "(node[natural~\"^(peak|volcano|];)",
-        "16": "(node[natural];way[natural];relation[natural];)",
+        "9": "(\nnode[natural~\"^(peak|volcano)$\"];\n)",
+        "16": "(\nnode[natural];\nway[natural];\nrelation[natural];\n)",
         "13": "(\nnode[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|water|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];\nway[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|water|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];\nrelation[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|water|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];\n)"
     },
     "feature": {
