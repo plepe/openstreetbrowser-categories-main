@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Militar",
         "cs": "Vojenské",
@@ -12,5 +13,14 @@
         "nl": "Militair",
         "ro": "Militar",
         "ru": "Вооружённые силы"
+    },
+    "query": {
+        "11": "(\nnode[military~\"^(airfield|danger_area)$\"];\nnode[landuse=military];\nway[military~\"^(airfield|danger_area)$\"];\nway[landuse=military];\nrelation[military~\"^(airfield|danger_area)$\"];\nrelation[landuse=military];\n)",
+        "14": "(\nnode[military];\nnode[landuse=military];\nway[military];\nway[landuse=military];\nrelation[military];\nrelation[landuse=military];\n)"
+    },
+    "feature": {
+        "pre": "{% if tags.military %}\n  {% set key = 'military' %}\n  {% set value = tags.military %}\n{% else %}\n  {% set key = 'landuse' %}\n  {% set value = tags.landuse %}\n{% endif %}",
+        "description": "{{ tagTrans(key, value) }}",
+        "body": "{{ tagTrans(key, value) }}"
     }
 }

@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Sitios d'obres",
         "cs": "Staveniště",
@@ -9,5 +10,13 @@
         "ja": "工事中",
         "nl": "Bouwterrein",
         "ru": "Места строительства"
+    },
+    "query": {
+        "13": "(\nnode[landuse~\"^(brownfield|greenfield|construction|)$\"];\nway[landuse~\"^(brownfield|greenfield|construction|)$\"];\nrelation[landuse~\"^(brownfield|greenfield|construction|)$\"];\nnode[highway~\"^(construction)$\"];\nway[highway~\"^(construction)$\"];\nrelation[highway~\"^(construction)$\"];\n)"
+    },
+    "feature": {
+        "pre": "{% if tags.highway == 'construction' %}\n{% set key = 'highway' %}\n{% set value = tags.highway %}\n{% else %}\n{% set key = 'landuse' %}\n{% set value = tags.landuse %}\n{% endif %}",
+        "description": "{{ tagTrans(key, value) }}",
+        "body": "{{ tagTrans(key, value) }}"
     }
 }

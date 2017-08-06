@@ -199,10 +199,25 @@
             "type": "index",
             "subCategories": [
                 {
+                    "id": "agriculture"
+                },
+                {
+                    "id": "construction"
+                },
+                {
+                    "id": "military"
+                },
+                {
                     "id": "power"
                 },
                 {
                     "id": "railway"
+                },
+                {
+                    "id": "resources"
+                },
+                {
+                    "id": "waste"
                 },
                 {
                     "id": "works"

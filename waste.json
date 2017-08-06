@@ -1,0 +1,23 @@
+{
+    "type": "overpass",
+    "name": {
+        "ast": "Basures",
+        "cs": "Nakládání s odpady",
+        "de": "Entsorgung",
+        "en": "Disposal",
+        "fr": "Rebuts",
+        "it": "Smaltimento",
+        "ja": "処理場",
+        "nl": "Afvalverwijdering",
+        "ru": "Переработка отходов"
+    },
+    "query": {
+        "13": "(\nnode[landuse=landfill];\nnode[man_made=wastewater_plant];\nnode[amenity=recycling][recycling_type=centre];\nway[landuse=landfill];\nway[man_made=wastewater_plant];\nway[amenity=recycling][recycling_type=centre];\nrelation[landuse=landfill];\nrelation[man_made=wastewater_plant];\nrelation[amenity=recycling][recycling_type=centre];\n)",
+        "15": "(\nnode[landuse=landfill];\nnode[man_made=wastewater_plant];\nnode[amenity=recycling];\nway[landuse=landfill];\nway[man_made=wastewater_plant];\nway[amenity=recycling];\nrelation[landuse=landfill];\nrelation[man_made=wastewater_plant];\nrelation[amenity=recycling];\n)"
+    },
+    "feature": {
+        "pre": "{% if tags.landuse == 'landfill' %}\n  {% set key = 'landuse' %}\n  {% set value = tags.landuse %}\n{% elseif tags.man_made == 'wastewater_plant' %}\n  {% set key = 'man_made' %}\n  {% set value = tags.man_made %}\n{% elseif tags.amenity == 'recycling' %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% endif %}",
+        "description": "{{ tagTrans(key, value) }}",
+        "body": "{{ tagTrans(key, value) }}\n{% if tags.recycling_type %}\n<br/>\n{{ keyTrans('recycling_type') }}: {{ tagTrans('recycling_type', tags.recycling_type) }}\n{% endif %}"
+    }
+}
