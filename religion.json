@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Relixón",
         "cs": "Religion",
@@ -14,5 +15,14 @@
         "ro": "Religie",
         "ru": "Религия",
         "uk": "Релігія"
+    },
+    "query": {
+        "13": "(\nnode[amenity~\"^(place_of_worship|grave_yard|crematorium)$\"];\nway[amenity~\"^(place_of_worship|grave_yard|crematorium)$\"];\nrelation[amenity~\"^(place_of_worship|grave_yard|crematorium)$\"];\nway[landuse~\"^(cemetery)$\"];\nrelation[landuse~\"^(cemetery)$\"];\n)"
+    },
+    "feature": {
+        "pre": "{% if tags.landuse == 'cemetery' %}\n{% set key = 'landuse' %}\n{% set value = tags.landuse %}\n{% else %}\n{% set key = 'amenity' %}\n{% set value = tags.amenity %}\n{% endif %}",
+        "description": "{{ tagTrans(key, value) }}{% if tags.religion %}: {{ tagTransList('religion', tags.religion) }}{% endif %}",
+        "body": "{{ tagTrans(key, value) }}\n{% if tags.religion %}\n  <br/>\n  {{ keyTrans('religion') }}: {{ tagTransList('religion', tags.religion) }}\n{% endif %}\n{% if tags.denomination %}\n  <br/>\n  {{ keyTrans('denomination') }}: {{ tagTransList('denomination', tags.denomination) }}\n{% endif %}",
+        "markerSign": "{% if tags.religion == 'christian' %}✝\n{% elseif tags.religion == 'muslim' %}☪\n{% elseif tags.religion == 'buddhist' %}☸\n{% elseif tags.religion == 'hindu' %}ॐ\n{% elseif tags.religion == 'jewish' %}✡\n{% elseif tags.religion == 'pagan' %}☆\n{% endif %}"
     }
 }

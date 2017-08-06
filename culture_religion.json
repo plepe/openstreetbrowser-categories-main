@@ -25,6 +25,9 @@
         },
         {
             "id": "historic"
+        },
+        {
+            "id": "religion"
         }
     ]
 }
