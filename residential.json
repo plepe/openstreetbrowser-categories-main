@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Zones residenciales",
         "cs": "Obytné oblasti",
@@ -14,5 +15,13 @@
         "ro": "Zona rezidentiala",
         "ru": "Жилые районы",
         "uk": "Житлова зона"
+    },
+    "query": {
+        "13": "(\nnode[landuse~\"^(residential)$\"];\nway[landuse~\"^(residential)$\"];\nrelation[landuse~\"^(residential)$\"];\n)",
+        "15": "(\nnode[landuse~\"^(residential|allotments)$\"];\nway[landuse~\"^(residential|allotments)$\"];\nrelation[landuse~\"^(residential|allotments)$\"];\n)"
+    },
+    "feature": {
+        "description": "{{ tagTrans('landuse', tags.landuse) }}",
+        "body": "{{ tagTrans('landuse', tags.landuse) }}"
     }
 }

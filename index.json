@@ -225,10 +225,7 @@
             ]
         },
         {
-            "id": "places"
-        },
-        {
-            "id": "natural"
+            "id": "places_geo"
         }
     ]
 }

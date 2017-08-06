@@ -1,0 +1,34 @@
+{
+    "name": {
+        "ast": "Llugares",
+        "cs": "Sídla",
+        "de": "Orte",
+        "el": "Μέρη",
+        "en": "Places",
+        "et": "Kohad",
+        "fr": "Place",
+        "hu": "Helyek",
+        "it": "Luoghi",
+        "ja": "場所",
+        "nl": "Plaatsen",
+        "pl": "Miejsca",
+        "ro": "Locuri",
+        "ru": "Места",
+        "uk": "Місцевість"
+    },
+    "type": "index",
+    "subCategories": [
+        {
+            "id": "places"
+        },
+        {
+            "id": "natural"
+        },
+        {
+            "id": "administrative"
+        },
+        {
+            "id": "residential"
+        }
+    ]
+}
