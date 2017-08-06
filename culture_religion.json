@@ -28,6 +28,9 @@
         },
         {
             "id": "religion"
+        },
+        {
+            "id": "tourism_attractions"
         }
     ]
 }

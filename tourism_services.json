@@ -1,0 +1,41 @@
+{
+    "type": "overpass",
+    "name": {
+        "ast": "Turismu",
+        "cs": "Turistika",
+        "de": "Tourismus",
+        "el": "Τουρισμός",
+        "en": "Tourism",
+        "et": "Turism",
+        "fr": "Tourisme",
+        "hu": "Túrizmus",
+        "it": "Turismo",
+        "ja": "観光",
+        "nl": "Toerisme",
+        "pl": "Turystyka",
+        "ro": "Turism",
+        "ru": "Туризм",
+        "uk": "Туризм"
+    },
+    "query": {
+        "13": "(\nnode[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];\nway[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];\nrelation[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"]\n)"
+    },
+    "feature": {
+        "description": "{{ tagTrans('tourism', tags.tourism) }}",
+        "body": "{{ tagTrans('tourism', tags.tourism) }}",
+        "markerSign": "{{ const[tags.tourism] }}"
+    },
+    "const": {
+        "alpine_hut": "🛌",
+        "apartment": "🛌",
+        "camp_site": "⛺",
+        "caravan_site": "⛺",
+        "chalet": "🛌",
+        "guest_house": "🛌",
+        "hostel": "🛌",
+        "hotel": "🛌",
+        "information": "",
+        "motel": "🛌",
+        "wilderness_hut": ""
+    }
+}
