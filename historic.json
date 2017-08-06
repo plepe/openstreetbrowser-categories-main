@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Hestoria",
         "cs": "Historické",
@@ -15,5 +16,18 @@
         "ro": "Istoric",
         "ru": "Историческое",
         "uk": "Історія"
+    },
+    "query": {
+        "11": "(\nnode[historic~\"^(castle|archaeological_site|battlefield|monument)$\"];\nway[historic~\"^(castle|archaeological_site|battlefield|monument)$\"];\nrelation[historic~\"^(castle|archaeological_site|battlefield|monument)$\"];\n)",
+        "14": "(\nnode[historic];\nway[historic];\nrelation[historic];\n)"
+    },
+    "feature": {
+        "description": "{{ tagTransList('historic', tags.historic) }}",
+        "body": "{{ tagTransList('historic', tags.historic) }}",
+        "markerSign": "{{ const[tags.historic] }}"
+    },
+    "const": {
+        "castle": "🏰",
+        "aircraft": "✈"
     }
 }

@@ -21,8 +21,10 @@
     },
     "subCategories": [
         {
-            "id": "culture",
-            "name": null
+            "id": "culture"
+        },
+        {
+            "id": "historic"
         }
     ]
 }
