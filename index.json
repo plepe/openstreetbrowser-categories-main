@@ -119,7 +119,14 @@
                     },
                     "id": "transport_walk",
                     "type": "index",
-                    "subCategories": []
+                    "subCategories": [
+                        {
+                            "id": "walk_amenities"
+                        },
+                        {
+                            "id": "hiking_routes"
+                        }
+                    ]
                 },
                 {
                     "name": {

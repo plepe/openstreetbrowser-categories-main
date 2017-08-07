@@ -1,0 +1,53 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Amenities",
+        "de": "Einrichtungen"
+    },
+    "query": {
+        "13": "(\nnode[highway~\"^(elevator)$\"];\nnode[information];\nnode[tourism~\"^(viewpoint)$\"];\nnode[man_made~\"^(cairn)$\"];\nnode[amenity~\"^(shelter)$\"];\nway[amenity~\"^(shelter)$\"];\nrelation[amenity~\"^(shelter)$\"];\n)",
+        "17": "(\nnode[highway~\"^(crossing|elevator)$\"];\nnode[information];\nnode[tourism~\"^(viewpoint)$\"];\nnode[man_made~\"^(cairn)$\"];\nnode[amenity~\"^(shelter)$\"];\nway[amenity~\"^(shelter)$\"];\nrelation[amenity~\"^(shelter)$\"];\n)"
+    },
+    "feature": {
+        "pre": "{% if tags.information %}\n  {% set key = 'information' %}\n  {% set value = tags.information %}\n{% elseif tags.amenity in [ 'bench', 'shelter' ] %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% elseif tags.man_made in [ 'cairn' ] %}\n  {% set key = 'man_made' %}\n  {% set value = tags.man_made %}\n{% elseif tags.tourism in [ 'viewpoint'] %}\n  {% set key = 'tourism' %}\n  {% set value = tags.tourism %}\n{% else %}\n  {% set key = 'highway' %}\n  {% set value = tags.highway %}\n{% endif %}\n\n{% set type_data = const[value] %}",
+        "description": "{{ tagTrans(key, value) }}",
+        "body": "{{ tagTrans(key, value) }}",
+        "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(tagTrans(key, value)) }}",
+        "markerSign": "{{ type_data.sign|raw }}",
+        "priority": "{{ type_data.priority }}"
+    },
+    "const": {
+        "crossing": {
+            "priority": 10,
+            "sign": "<i class='fa fa-bars' aria-hidden='true'></i>"
+        },
+        "elevator": {
+            "priority": 2,
+            "sign": "<i class='fa fa-caret-square-o-up' aria-hidden='true'></i>"
+        },
+        "guidepost": {
+            "priority": 2,
+            "sign": "<i class='fa fa-map-signs' aria-hidden='true'></i>"
+        },
+        "map": {
+            "priority": 2,
+            "sign": "<i class='fa fa-map' aria-hidden='true'></i>"
+        },
+        "board": {
+            "priority": 2,
+            "sign": ""
+        },
+        "office": {
+            "priority": 1,
+            "sign": "<i class='fa fa-info-circle' aria-hidden='true'></i>"
+        },
+        "cairn": {
+            "priority": 2,
+            "sign": ""
+        },
+        "shelter": {
+            "priority": 1,
+            "sign": "⌃"
+        }
+    }
+}
