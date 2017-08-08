@@ -29,15 +29,15 @@
         "markerSign": "{{ const[value] }}"
     },
     "const": {
-        "arts_centre": "",
+        "arts_centre": "🎨",
         "cinema": "🎦",
         "community_centre": "",
         "fountain": "⛲",
         "studio": "",
-        "theatre": "",
-        "artwork": "",
+        "theatre": "🎭",
+        "artwork": "🎨 ",
         "gallery": "🖼",
-        "museum": "",
+        "museum": "🏛 ",
         "theme_park": ""
     }
 }
