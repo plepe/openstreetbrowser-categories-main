@@ -164,7 +164,17 @@
                     },
                     "id": "transport_pt",
                     "type": "index",
-                    "subCategories": []
+                    "subCategories": [
+                        {
+                            "id": "pt_amenities"
+                        },
+                        {
+                            "id": "pt_stops"
+                        },
+                        {
+                            "id": "pt_routes"
+                        }
+                    ]
                 },
                 {
                     "name": {

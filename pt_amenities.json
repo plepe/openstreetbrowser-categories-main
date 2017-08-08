@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Infraestructures",
         "cs": "Občanská vybavenost",
@@ -8,8 +9,21 @@
         "it": "Infrastrutture",
         "ja": "生活環境",
         "nl": "Voorzieningen",
-        "pl": "",
         "ru": "Транспортные принадлежности",
         "uk": "Amenities"
+    },
+    "query": {
+        "14": "(\nnode[amenity~\"^(taxi|ticket_counter)$\"];\nway[amenity~\"^(taxi|ticket_counter)$\"];\nrelation[amenity~\"^(taxi|ticket_counter)$\"];\nnode[railway~\"^(subway_entrance)$\"];\nway[railway~\"^(subway_entrance)$\"];\nrelation[railway~\"^(subway_entrance)$\"];\n)"
+    },
+    "feature": {
+        "pre": "{% if tags.railway == 'subway_entrance' %}\n  {% set key = 'railway' %}\n  {% set value = tags.railway %}\n{% else %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% endif %}",
+        "description": "{{ tagTrans(key, value) }}",
+        "body": "{{ tagTrans(key, value) }}",
+        "markerSign": "{{ const[value] }}"
+    },
+    "const": {
+        "taxi": "🚖",
+        "ticket_counter": "🎫",
+        "subway_entrance": "🚉"
     }
 }

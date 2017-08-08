@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Paraes y estaciones",
         "cs": "Zastávky & Stanice",
@@ -14,5 +15,13 @@
         "pl": "Przystanki i Stacje",
         "ru": "Остановки и станции",
         "uk": "Зупинки та станції"
+    },
+    "query": {
+        "14": "(\nnode[railway~\"^(station|halt|tram_stop|platform)$\"];\nway[railway~\"^(station|platform)$\"];\nnode[highway~\"^(bus_stop|platform)$\"];\nway[highway~\"^(platform)$\"];\nnode[public_transport~\"^(stop_position|platform)$\"];\nway[public_transport~\"^(platform)$\"];\nnode[amenity~\"^(ferry_terminal|bus_station)$\"];\n)"
+    },
+    "feature": {
+        "pre": "{% if tags.amenity in [ 'ferry_terminal', 'bus_station' ] %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% elseif tags.railway == 'platform' or tags.highway == 'platform' or tags.public_transport == 'platform' %}\n  {% set key = 'public_transport' %}\n  {% set value = 'platform' %}\n{% else %}\n  {% set key = 'public_transport' %}\n  {% set value = 'stop_position' %}\n{% endif %}",
+        "description": "{{ tagTrans(key, value) }}",
+        "body": "{{ tagTrans(key, value) }}"
     }
 }
