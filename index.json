@@ -193,7 +193,11 @@
                     },
                     "id": "transport_car",
                     "type": "index",
-                    "subCategories": []
+                    "subCategories": [
+                        {
+                            "id": "car_amenities"
+                        }
+                    ]
                 }
             ]
         },

@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Infraestructures",
         "cs": "Občasnká vybavenost",
@@ -10,5 +11,24 @@
         "nl": "Voorzieningen",
         "ru": "Обслуживание транспорта",
         "uk": "Amenities"
+    },
+    "query": {
+        "13": "(\nnode[amenity~\"^(car_rental|car_sharing|fuel)$\"];\nway[amenity~\"^(car_rental|car_sharing|fuel)$\"];\nrelation[amenity~\"^(car_rental|car_sharing|fuel)$\"];\n)",
+        "16": "(\nnode[amenity~\"^(car_rental|car_sharing|car_wash|charging_station|fuel|motorcycle_parking|parking)$\"];\nway[amenity~\"^(car_rental|car_sharing|car_wash|charging_station|fuel|motorcycle_parking|parking)$\"];\nrelation[amenity~\"^(car_rental|car_sharing|car_wash|charging_station|fuel|motorcycle_parking|parking)$\"];\n)"
+    },
+    "feature": {
+        "pre": "{% set key = 'amenity' %}\n{% set value = tags.amenity %}",
+        "description": "{{ tagTrans(key, value) }}",
+        "body": "{{ tagTrans(key, value) }}",
+        "markerSign": "{{ const[value] }}"
+    },
+    "const": {
+        "car_rental": "R",
+        "car_sharing": "S",
+        "car_wash": "",
+        "charging_station": "",
+        "fuel": "⛽",
+        "parking": "🅿",
+        "motorcycle_parking": "🅿"
     }
 }
