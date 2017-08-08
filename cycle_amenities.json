@@ -1,0 +1,27 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Amenities",
+        "de": "Einrichtungen"
+    },
+    "query": {
+        "13": "(\nnode[amenity~\"^(bicycle_rental)$\"];\nway[amenity~\"^(bicycle_rental)$\"];\nrelation[amenity~\"^(bicycle_rental)$\"];\n)",
+        "16": "(\nnode[amenity~\"^(bicycle_.*|compressed_air)$\"];\nway[amenity~\"^(bicycle_.*|compressed_air)$\"];\nrelation[amenity~\"^(bicycle_.*|compressed_air)$\"];\nnode[shop~\"^(bicycle)$\"];\nway[shop~\"^(bicycle)$\"];\nrelation[shop~\"^(bicycle)$\"];\nnode[\"monitoring:bicycle\"];\nway[\"monitoring:bicycle\"];\nrelation[\"monitoring:bicycle\"];\nnode[vending~\"^(bicycle_tube)$\"];\nway[vending~\"^(bicycle_tube)$\"];\nrelation[vending~\"^(bicycle_tube)$\"];\n)\n"
+    },
+    "feature": {
+        "pre": "{% if tags.shop in [ 'bicycle' ] %}\n  {% set key = 'shop' %}\n  {% set value = tags.shop %}\n{% elseif attribute(tags, \"monitoring:bicycle\") %}\n  {% set key = 'man_made' %}\n  {% set value = 'monitoring_station' %}\n{% elseif tags.vending in [ 'bicycle_tube' ] %}\n  {% set key = 'vending' %}\n  {% set value = tags.vending %}\n{% else %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% endif %}\n\n{% set constIndex = (key ~ \"=\" ~ value) %}",
+        "description": "{{ tagTrans(key, value) }}",
+        "body": "{{ tagTrans(key, value) }}\n\n{% if tags.capacity %}\n  <br/>\n  {{ keyTrans('capacity') }}: {{ tags.capacity }}\n{% endif %}",
+        "markerSign": "{{ const[constIndex] }}",
+        "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}\n\n{% if tags.capacity %}({{ tags.capacity }}){% endif %}"
+    },
+    "const": {
+        "shop=bicycle": "🚲",
+        "amenity=bicycle_repair_station": "🔧",
+        "amenity=bicycle_parking": "🅿",
+        "amenity=bicycle_rental": "R",
+        "man_made=monitoring_station": "#",
+        "vending=bicycle_tube": "T",
+        "amenity=compressed_air": "A"
+    }
+}

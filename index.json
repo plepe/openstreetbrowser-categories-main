@@ -137,6 +137,9 @@
                     "type": "index",
                     "subCategories": [
                         {
+                            "id": "cycle_amenities"
+                        },
+                        {
                             "id": "cycle_routes"
                         }
                     ]
