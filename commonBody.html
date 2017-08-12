@@ -20,4 +20,16 @@
 </dd>
 {% endif %}
 
+{% set payment = tagsPrefix(tags, 'payment:') %}
+{% if payment %}
+<dt>
+<i class="fa fa-money symbol" aria-hidden="true"></i>
+{{ keyTrans('payment') }}:
+</dt><dd>
+{% for k, tag in payment %}
+{% if tags[tag] == 'no' %}<s>{{ k }}</s> {% else %}{{ k }} {% endif %}
+{% endfor %}
+</dd>
+{% endif %}
+
 </dl>
