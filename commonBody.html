@@ -1,0 +1,23 @@
+<dl>
+
+{% set address = tagsPrefix(tags, 'addr:') %}
+{% if address %}
+<dt>
+<i class="fa fa-map-marker symbol" aria-hidden="true"></i>
+{{ keyTrans('addr') }}:
+</dt><dd>
+{{ attribute(tags, 'addr:street') }} {{ attribute(tags, 'addr:housenumber') }}, {{ attribute(tags, 'addr:postcode') }} {{ attribute(tags, 'addr:city') }}
+</dd>
+{% endif %}
+
+{% if tags.phone %}
+<dt>
+<i class="fa fa-phone symbol" aria-hidden="true"></i>
+{{ keyTrans('phone') }}:
+</dt>
+<dd>
+<a href='tel:{{ tags.phone }}'>{{ tags.phone }}</a>
+</dd>
+{% endif %}
+
+</dl>
