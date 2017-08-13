@@ -38,10 +38,17 @@
 
 {% if attribute(tags, 'wheelchair') %}
 <li>
-  <i class="fa fa-wheelchair-alt symbol" aria-hidden="true"></i>
+  <i class="fa fa-wheelchair-alt symbol {{ tags.wheelchair }}" aria-hidden="true"></i>
   <span class='key'>{{ keyTrans('wheelchair') }}</span>
   <span class='value'>
-    {{ tagTrans('wheelchair', tags.wheelchair) }}
+    {{ tagTrans('wheelchair', tags.wheelchair) -}}
+
+    {%- if attribute(tags, 'toilets:wheelchair') -%}
+      , <span class='{{ attribute(tags, 'toilets:wheelchair') }}'>&#128701;</span> {{ keyTrans('amenity', 'toilets') }}: {{ tagTrans('toilets:wheelchair', attribute(tags, 'toilets:wheelchair')) }}</span>
+    {% endif %}
+
+    <br/>
+    {{ localizedTag(tags, 'wheelchair:description') }}
   </span>
 </li>
 {% endif %}
