@@ -36,4 +36,14 @@
 </li>
 {% endif %}
 
+{% if attribute(tags, 'wheelchair') %}
+<li>
+  <i class="fa fa-wheelchair-alt symbol" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('wheelchair') }}</span>
+  <span class='value'>
+    {{ tagTrans('wheelchair', tags.wheelchair) }}
+  </span>
+</li>
+{% endif %}
+
 </ul>
