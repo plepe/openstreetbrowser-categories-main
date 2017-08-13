@@ -21,7 +21,7 @@
     },
     "feature": {
         "markerSign": "{% if tags.amenity=='bar' %}&#127864;{% elseif tags.amenity=='biergarten'%}&#127867;{% elseif tags.amenity=='cafe' %}&#9749;{% elseif tags.amenity=='fast_food' %}&#127828;{% elseif tags.amenity=='ice_cream' %}&#127848;{% elseif tags.amenity=='pub' %}&#127866;{% else %}&#127860;{% endif %}",
-        "body": "{{ tagTrans('amenity', tags.amenity) }}<br/>{{ keyTrans('cuisine') }}: {{ tagTransList('cuisine', tags.cuisine)|default(trans('unknown')) }}",
+        "body": "<span class='description'>\n{{ tagTrans('amenity', tags.amenity) }}\n</span>\n<ul>\n  <li>\n   <i class=\"fa fa-cutlery symbol\" aria-hidden=\"true\"></i>\n   <span class='key'>{{ keyTrans('cuisine') }}</span>\n   <span class='value'>{{ tagTransList('cuisine', tags.cuisine)|default(trans('unknown')) }}</span>\n  </li>\n</ul>",
         "description": "{{ tagTrans('amenity', tags.amenity) }}"
     }
 }
