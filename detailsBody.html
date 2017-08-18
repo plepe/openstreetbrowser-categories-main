@@ -23,6 +23,40 @@
 </li>
 {% endif %}
 
+{% if attribute(tags, 'contact:phone') %}
+<li class='hasSymbol'>
+  <i class="fa fa-phone" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('phone') }}:</span>
+  <span class='value'>
+    <a href='tel:{{ attribute(tags, 'contact:phone') }}'>{{ attribute(tags, 'contact:phone') }}</a>
+  </span>
+</li>
+{% endif %}
+
+{% if attribute(tags, 'contact:email') %}
+<li class='hasSymbol'>
+  <i class="fa fa-envelope" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('email') }}:</span>
+  <span class='value'>
+    <a href='mailto:{{ attribute(tags, 'contact:email') }}'>
+    {{ attribute(tags, 'contact:email') }}
+    </a>
+  </span>
+</li>
+{% endif %}
+
+{% if attribute(tags, 'email') %}
+<li class='hasSymbol'>
+  <i class="fa fa-envelope" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('email') }}:</span>
+  <span class='value'>
+    <a href='mailto:{{ attribute(tags, 'email') }}'>
+    {{ attribute(tags, 'email') }}
+    </a>
+  </span>
+</li>
+{% endif %}
+
 {% if tags.opening_hours %}
 {% set oh_state = openingHoursState(tags.opening_hours) %}
 {% set oh_css = { "open": "yes", "closed": "no", "unknown": "unknown" } %}
