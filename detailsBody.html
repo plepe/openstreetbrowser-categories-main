@@ -1,0 +1,83 @@
+<ul>
+{% set address = tagsPrefix(tags, 'addr:') %}
+{% if address %}
+<li class='hasSymbol'>
+  <i class="fa fa-map-marker" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('addr') }}:</span>
+  <span class='value'>
+    {{ attribute(tags, 'addr:street') }}
+    {{ attribute(tags, 'addr:housenumber') }},
+    {{ attribute(tags, 'addr:postcode') }}
+    {{ attribute(tags, 'addr:city') }}
+  </span>
+</li>
+{% endif %}
+
+{% if tags.phone %}
+<li class='hasSymbol'>
+  <i class="fa fa-phone" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('phone') }}:</span>
+  <span class='value'>
+    <a href='tel:{{ tags.phone }}'>{{ tags.phone }}</a>
+  </span>
+</li>
+{% endif %}
+
+{% if tags.opening_hours %}
+{% set oh_state = openingHoursState(tags.opening_hours) %}
+{% set oh_css = { "open": "yes", "closed": "no", "unknown": "unknown" } %}
+{% set oh_css = oh_css[oh_state] %}
+<li class='hasSymbol'>
+  <i class="fa fa-clock-o {{ oh_css }}" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('opening_hours') }}:</span>
+  <span class='value'>
+    {{ trans(oh_state) }}<br />
+    {{ tags.opening_hours }}
+  </span>
+</li>
+{% endif %}
+
+{% set payment = tagsPrefix(tags, 'payment:') %}
+{% if payment %}
+<li class='hasSymbol'>
+  <i class="fa fa-money" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('payment') }}:</span>
+  <span class='value'>
+    {% for k, tag in payment %}
+    {% if tags[tag] == 'no' %}<s>{{ k }}</s> {% else %}{{ k }} {% endif %}
+    {% endfor %}
+  </span>
+</li>
+{% endif %}
+
+{% if attribute(tags, 'wheelchair') %}
+<li class='hasSymbol'>
+  <i class="fa fa-info-circle" aria-hidden="true"></i>
+  <span class='key'>{{ trans('facilities') }}:</span>
+  <span class='value'>
+  
+  <ul>
+  {% if attribute(tags, 'wheelchair') %}
+    <li class='hasSymbol'>
+      <i class="fa fa-wheelchair-alt {{ tags.wheelchair }}" aria-hidden="true"></i>
+      <span class='key'>{{ keyTrans('wheelchair') }}:</span>
+      <span class='value'>
+      {{ tagTrans('wheelchair', tags.wheelchair) }}
+      <ul>
+      {% if attribute(tags, 'toilets:wheelchair') %}
+        <li class='hasSymbol'>
+          <span class='{{ attribute(tags, 'toilets:wheelchair') }} symbol'>&#128701;</span>
+          <span class='key'>{{ keyTrans('toilets:wheelchair') }}:</span>
+          <span class='value'>{{ tagTrans('toilets:wheelchair', attribute(tags, 'toilets:wheelchair')) }}</span>
+        </li>
+      {% endif %}
+      </ul>
+      </span>
+    </li>
+  {% endif %}
+  </ul>
+  </span>
+</li>
+{% endif %}
+
+</ul>
