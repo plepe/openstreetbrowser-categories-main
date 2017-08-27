@@ -13,6 +13,26 @@
 </li>
 {% endif %}
 
+{% if tags.website %}
+<li class='hasSymbol'>
+  <i class="fa fa-globe" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('website') }}:</span>
+  <span class='value'>
+    <a href='{{ tags.website }}'>{{ tags.website }}</a>
+  </span>
+</li>
+{% endif %}
+
+{% if attribute(tags, 'contact:website') %}
+<li class='hasSymbol'>
+  <i class="fa fa-globe" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('website') }}:</span>
+  <span class='value'>
+    <a href='{{ attribute(tags, 'contact:website') }}'>{{ attribute(tags, 'contact:website') }}</a>
+  </span>
+</li>
+{% endif %}
+
 {% if tags.phone %}
 <li class='hasSymbol'>
   <i class="fa fa-phone" aria-hidden="true"></i>
@@ -29,6 +49,16 @@
   <span class='key'>{{ keyTrans('phone') }}:</span>
   <span class='value'>
     <a href='tel:{{ attribute(tags, 'contact:phone') }}'>{{ attribute(tags, 'contact:phone') }}</a>
+  </span>
+</li>
+{% endif %}
+
+{% if tags.phone %}
+<li class='hasSymbol'>
+  <i class="fa fa-phone" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('phone') }}:</span>
+  <span class='value'>
+    <a href='tel:{{ tags.phone }}'>{{ tags.phone }}</a>
   </span>
 </li>
 {% endif %}

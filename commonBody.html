@@ -75,16 +75,6 @@
 </li>
 {% endif %}
 
-{% if attribute(tags, 'contact:website') %}
-<li class='hasSymbol'>
-  <i class="fa fa-globe" aria-hidden="true"></i>
-  <span class='key'>{{ keyTrans('website') }}:</span>
-  <span class='value'>
-    <a href='{{ attribute(tags, 'contact:website') }}'>{{ attribute(tags, 'contact:website') }}</a>
-  </span>
-</li>
-{% endif %}
-
 {% if tags.opening_hours %}
 {% set oh_state = openingHoursState(tags.opening_hours) %}
 {% set oh_css = { "open": "yes", "closed": "no", "unknown": "unknown" } %}
