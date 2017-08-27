@@ -33,5 +33,25 @@
             "</ul>"
         ],
         "markerSign": "{% if tags.amenity=='bar' %}&#127864;{% elseif tags.amenity=='biergarten'%}&#127867;{% elseif tags.amenity=='cafe' %}&#9749;{% elseif tags.amenity=='fast_food' %}&#127828;{% elseif tags.amenity=='ice_cream' %}&#127848;{% elseif tags.amenity=='pub' %}&#127866;{% else %}&#127860;{% endif %}"
+    },
+    "filter": {
+        "amenity": {
+            "name": "tag:amenity",
+            "type": "select",
+            "values": "auto",
+            "op": "="
+        },
+        "cuisine": {
+            "name": "tag:cuisine",
+            "type": "select",
+            "values": [
+                "kebab",
+                "pizza",
+                "sausage",
+                "asian",
+                "chinese"
+            ],
+            "op": "has"
+        }
     }
 }
