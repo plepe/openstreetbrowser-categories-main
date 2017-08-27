@@ -23,7 +23,6 @@
     },
     "feature": {
         "description": "{{ tagTrans('amenity', tags.amenity) }}",
-        "body": "{{ tagTrans('amenity', tags.amenity) }}",
         "markerSign": "{% set data = const[tags.amenity] %}\n{% if data %}\n{{ data.sign }}\n{% endif %}"
     },
     "const": {

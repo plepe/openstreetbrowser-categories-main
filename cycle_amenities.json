@@ -11,7 +11,7 @@
     "feature": {
         "pre": "{% if tags.shop in [ 'bicycle' ] %}\n  {% set key = 'shop' %}\n  {% set value = tags.shop %}\n{% elseif attribute(tags, \"monitoring:bicycle\") %}\n  {% set key = 'man_made' %}\n  {% set value = 'monitoring_station' %}\n{% elseif tags.vending in [ 'bicycle_tube' ] %}\n  {% set key = 'vending' %}\n  {% set value = tags.vending %}\n{% else %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% endif %}\n\n{% set constIndex = (key ~ \"=\" ~ value) %}",
         "description": "{{ tagTrans(key, value) }}",
-        "body": "{{ tagTrans(key, value) }}\n\n{% if tags.capacity %}\n  <br/>\n  {{ keyTrans('capacity') }}: {{ tags.capacity }}\n{% endif %}",
+        "body": "{% if tags.capacity %}\n  {{ keyTrans('capacity') }}: {{ tags.capacity }}\n{% endif %}",
         "markerSign": "{{ const[constIndex] }}",
         "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}\n\n{% if tags.capacity %}({{ tags.capacity }}){% endif %}"
     },

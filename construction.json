@@ -16,7 +16,6 @@
     },
     "feature": {
         "pre": "{% if tags.highway == 'construction' %}\n{% set key = 'highway' %}\n{% set value = tags.highway %}\n{% else %}\n{% set key = 'landuse' %}\n{% set value = tags.landuse %}\n{% endif %}",
-        "description": "{{ tagTrans(key, value) }}",
-        "body": "{{ tagTrans(key, value) }}"
+        "description": "{{ tagTrans(key, value) }}"
     }
 }

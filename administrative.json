@@ -24,6 +24,6 @@
     },
     "feature": {
         "description": "{{ tagTrans('admin_level', tags.admin_level) }}",
-        "body": "{{ tagTrans('admin_level', tags.admin_level) }}\n<br/>\n{{ keyTrans('admin_level') }}: {{ tags.admin_level }}"
+        "body": "{{ keyTrans('admin_level') }}: {{ tags.admin_level }}"
     }
 }

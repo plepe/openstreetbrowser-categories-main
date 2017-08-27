@@ -21,7 +21,6 @@
     },
     "feature": {
         "description": "{{ tagTrans('amenity', tags.amenity) }}",
-        "body": "{{ tagTrans('amenity', tags.amenity) }}",
         "markerSign": "{{ const[tags.amenity] }}"
     },
     "const": {

@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Servicios educativos",
         "cs": "Vzdělávací služby",
@@ -15,16 +16,14 @@
         "ru": "Образование",
         "uk": "Освіта"
     },
-    "type": "overpass",
     "query": {
         "11": "(node[amenity~'^(college|university|library)$'];way[amenity~'^(college|university|library)$'];relation[amenity~'^(college|university|library)$'];)",
         "14": "(node[amenity~'^(college|university|library|school|kindergarten|language_school)$'];way[amenity~'^(college|university|library|school|kindergarten|language_school)$'];relation[amenity~'^(college|university|library|school|kindergarten|language_school)$'];)",
         "16": "(node[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];way[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];relation[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];)"
     },
-    "minZoom": 11,
     "feature": {
         "markerSign": "{% if tags.amenity == 'university' or tags.amenity == 'college' %}🎓{% elseif tags.amenity == 'library' %}🕮{% elseif tags.amenity == 'school' or tags.amenity == 'language_school' %}🏫{% elseif tags.amenity == 'kindergarten' %}⛹{% elseif tags.amenity == 'public_bookcase' %}📚{% endif %}",
-        "body": "{{ tagTrans('amenity', tags.amenity) }}<br/>{% if tags.operator %}{{ keyTrans('operator') }}: {{ tags.operator }}<br/>{% endif %}",
+        "body": "{% if tags.operator %}{{ keyTrans('operator') }}: {{ tags.operator }}<br/>{% endif %}",
         "description": "{{ tagTrans('amenity', tags.amenity) }}",
         "priority": "{% if tags.amenity == 'university' %}0{% elseif tags.amenity == 'college' %}1{% elseif tags.amenity == 'library' %}2{% elseif tags.amenity == 'school' or tags.amenity == 'language_school' %}3{% elseif tags.amenity == 'kindergarten' %}4{% elseif tags.amenity == 'public_bookcase' %}5{% endif %}"
     }

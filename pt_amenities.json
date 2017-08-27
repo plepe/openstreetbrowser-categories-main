@@ -18,7 +18,6 @@
     "feature": {
         "pre": "{% if tags.railway == 'subway_entrance' %}\n  {% set key = 'railway' %}\n  {% set value = tags.railway %}\n{% else %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% endif %}",
         "description": "{{ tagTrans(key, value) }}",
-        "body": "{{ tagTrans(key, value) }}",
         "markerSign": "{{ const[value] }}"
     },
     "const": {

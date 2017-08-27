@@ -12,7 +12,6 @@
     },
     "feature": {
         "description": "{{ tagTrans('network', tags.network) }}",
-        "body": "{{ tagTrans('network', tags.network) }}",
         "priority": "{% set network_data = const[tags.network] %}\n{% if network_data %}\n{{ network_data.priority }}\n{% endif %}"
     },
     "const": {

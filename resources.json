@@ -15,7 +15,6 @@
     },
     "feature": {
         "pre": "{% if tags.landuse in [ 'quarry', 'salt_pond' ] %}\n  {% set key = 'landuse' %}\n  {% set value = tags.landuse %}\n{% else %}\n  {% set key = 'man_made' %}\n  {% set value = tags.man_made %}\n{% endif %}",
-        "description": "{{ tagTrans(key, value) }}",
-        "body": "{{ tagTrans(key, value) }}"
+        "description": "{{ tagTrans(key, value) }}"
     }
 }

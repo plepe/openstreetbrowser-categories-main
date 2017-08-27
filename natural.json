@@ -21,7 +21,6 @@
     },
     "feature": {
         "title": "{{ localizedTag(tags, 'name') | default(trans('unnamed')) }}\n{% if tags.natural == 'peak' and tags.ele %}({{ tags.ele }}m){% endif %}",
-        "description": "{{ tagTrans('natural', tags.natural) }}",
-        "body": "{{ tagTrans('natural', tags.natural) }}"
+        "description": "{{ tagTrans('natural', tags.natural) }}"
     }
 }
