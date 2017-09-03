@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Recréu",
         "cs": "Volný čas",
@@ -13,20 +14,17 @@
         "ru": "Досуг",
         "uk": "Дозвілля"
     },
-    "type": "overpass",
     "query": {
         "14": "(way[leisure~'^(park|common)$'];relation[leisure='^(park|common)$'];)",
         "16": "(node[amenity~'^(bench|swimming_pool)$'];way[leisure~'^(park|common|nature_reserve|swimming_pool)$'];relation[leisure='^(park|common|nature_reserve|swimming_pool)$'];)"
     },
-    "minZoom": 14,
     "feature": {
         "style": {
             "color": "green",
             "fillColor": "green",
-            "fillOpacity": 0.2,
-            "weight": 2
+            "fillOpacity": "0.2",
+            "weight": "2"
         },
-        "body": "{% if tags.leisure %}{{ tagTrans('leisure', tags.leisure ) }}{% elseif tags.amenity %}{{ tagTrans('amenity', tags.amenity ) }}{% endif %}",
         "description": "{% if tags.leisure %}{{ tagTrans('leisure', tags.leisure ) }}{% elseif tags.amenity %}{{ tagTrans('amenity', tags.amenity ) }}{% endif %}"
     }
 }

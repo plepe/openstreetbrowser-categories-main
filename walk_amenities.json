@@ -11,7 +11,6 @@
     "feature": {
         "pre": "{% if tags.information %}\n  {% set key = 'information' %}\n  {% set value = tags.information %}\n{% elseif tags.amenity in [ 'bench', 'shelter' ] %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% elseif tags.man_made in [ 'cairn' ] %}\n  {% set key = 'man_made' %}\n  {% set value = tags.man_made %}\n{% elseif tags.tourism in [ 'viewpoint'] %}\n  {% set key = 'tourism' %}\n  {% set value = tags.tourism %}\n{% else %}\n  {% set key = 'highway' %}\n  {% set value = tags.highway %}\n{% endif %}\n\n{% set type_data = const[value] %}",
         "description": "{{ tagTrans(key, value) }}",
-        "body": "{{ tagTrans(key, value) }}",
         "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(tagTrans(key, value)) }}",
         "markerSign": "{{ type_data.sign|raw }}",
         "priority": "{{ type_data.priority }}"

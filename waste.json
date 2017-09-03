@@ -18,6 +18,6 @@
     "feature": {
         "pre": "{% if tags.landuse == 'landfill' %}\n  {% set key = 'landuse' %}\n  {% set value = tags.landuse %}\n{% elseif tags.man_made == 'wastewater_plant' %}\n  {% set key = 'man_made' %}\n  {% set value = tags.man_made %}\n{% elseif tags.amenity == 'recycling' %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% endif %}",
         "description": "{{ tagTrans(key, value) }}",
-        "body": "{{ tagTrans(key, value) }}\n{% if tags.recycling_type %}\n<br/>\n{{ keyTrans('recycling_type') }}: {{ tagTrans('recycling_type', tags.recycling_type) }}\n{% endif %}"
+        "body": "{% if tags.recycling_type %}\n{{ keyTrans('recycling_type') }}: {{ tagTrans('recycling_type', tags.recycling_type) }}\n{% endif %}"
     }
 }

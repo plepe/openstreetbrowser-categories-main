@@ -1,0 +1,118 @@
+<ul>
+{% set address = tagsPrefix(tags, 'addr:') %}
+{% if address %}
+<li class='hasSymbol'>
+  <i class="fa fa-map-marker" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('addr') }}:</span>
+  <span class='value'>
+    {{ attribute(tags, 'addr:street') }}
+    {{ attribute(tags, 'addr:housenumber') }},
+    {{ attribute(tags, 'addr:postcode') }}
+    {{ attribute(tags, 'addr:city') }}
+  </span>
+</li>
+{% endif %}
+
+{% if tags.website %}
+<li class='hasSymbol'>
+  <i class="fa fa-globe" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('website') }}:</span>
+  <span class='value'>
+    <a target='_blank' href='{{ tags.website }}'>{{ tags.website }}</a>
+  </span>
+</li>
+{% endif %}
+
+{% if attribute(tags, 'contact:website') %}
+<li class='hasSymbol'>
+  <i class="fa fa-globe" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('website') }}:</span>
+  <span class='value'>
+    <a target='_blank' href='{{ attribute(tags, 'contact:website') }}'>{{ attribute(tags, 'contact:website') }}</a>
+  </span>
+</li>
+{% endif %}
+
+{% if tags.phone %}
+<li class='hasSymbol'>
+  <i class="fa fa-phone" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('phone') }}:</span>
+  <span class='value'>
+    <a target='_blank' href='tel:{{ tags.phone }}'>{{ tags.phone }}</a>
+  </span>
+</li>
+{% endif %}
+
+{% if attribute(tags, 'contact:phone') %}
+<li class='hasSymbol'>
+  <i class="fa fa-phone" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('phone') }}:</span>
+  <span class='value'>
+    <a target='_blank' href='tel:{{ attribute(tags, 'contact:phone') }}'>{{ attribute(tags, 'contact:phone') }}</a>
+  </span>
+</li>
+{% endif %}
+
+{% if attribute(tags, 'contact:email') or tags.email %}
+<li class='hasSymbol'>
+  <i class="fa fa-user-circle" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('contact') }}:</span>
+  <span class='value'>
+
+  {% if attribute(tags, 'contact:email') %}
+    <a target='_blank' href='mailto:{{ attribute(tags, 'contact:email') }}'>
+      <i class="fa fa-envelope" aria-hidden="true"></i>
+    </a>
+  {% endif %}
+
+  {% if attribute(tags, 'email') %}
+    <a target='_blank' href='mailto:{{ attribute(tags, 'email') }}'>
+      <i class="fa fa-envelope" aria-hidden="true"></i>
+    </a>
+  {% endif %}
+
+  </span>
+</li>
+{% endif %}
+
+{% if tags.opening_hours %}
+<li class='hasSymbol'>
+  <i class="fa fa-clock-o" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('opening_hours') }}:</span>
+  <span class='value'>
+    {{ tags.opening_hours }}
+  </span>
+</li>
+{% endif %}
+
+{% set payment = tagsPrefix(tags, 'payment:') %}
+{% if payment %}
+<li class='hasSymbol'>
+  <i class="fa fa-money" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('payment') }}:</span>
+  <span class='value'>
+    {% for k, tag in payment %}
+    {% if tags[tag] == 'no' %}<s>{{ k }}</s> {% else %}{{ k }} {% endif %}
+    {% endfor %}
+  </span>
+</li>
+{% endif %}
+
+{% if attribute(tags, 'wheelchair') %}
+<li class='hasSymbol'>
+  <i class="fa fa-info-circle" aria-hidden="true"></i>
+  <span class='key'>{{ trans('facilities') }}:</span>
+  <span class='value'>
+
+  {% if attribute(tags, 'wheelchair') %}
+    <i class="fa fa-wheelchair-alt {{ tags.wheelchair }}" aria-hidden="true" title='{{ keyTrans('wheelchair') }}: {{ tagTrans('wheelchair', tags.wheelchair) }}'></i>
+
+    {% if attribute(tags, 'toilets:wheelchair') %}
+      (<span class='{{ attribute(tags, 'toilets:wheelchair') }}' title='{{ keyTrans('toilets:wheelchair') }}: {{ tagTrans('toilets:wheelchair', attribute(tags, 'toilets:wheelchair')) }}'>&#128701;</span>)
+    {% endif %}
+  {% endif %}
+  </span>
+</li>
+{% endif %}
+
+</ul>

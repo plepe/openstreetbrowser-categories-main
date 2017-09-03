@@ -19,7 +19,6 @@
     "feature": {
         "pre": "{% set key = 'amenity' %}\n{% set value = tags.amenity %}",
         "description": "{{ tagTrans(key, value) }}",
-        "body": "{{ tagTrans(key, value) }}",
         "markerSign": "{{ const[value] }}"
     },
     "const": {

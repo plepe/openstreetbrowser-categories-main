@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Compres",
         "cs": "Obchody",
@@ -16,18 +17,14 @@
         "ru": "Покупки",
         "uk": "Торгівля"
     },
-    "type": "overpass",
     "query": {
         "14": "(node[shop~'^(mall|department_store)$'];way[shop~'^(mall|department_store)$'];relation[shop~'^(mall|department_store)$'];);",
         "16": "(node[shop];way[shop];relation[shop];);"
     },
-    "minZoom": 14,
     "feature": {
         "pre": "{% set shop0 = tags.shop|split(';')[0] %}{% set current = const.default %}{% for v in const.shops %}{% if shop0 in v.types %}{% set current = v %}{% endif %}{% endfor %}",
-        "body": "{{ tagTransList('shop', tags.shop) }}",
         "description": "{{ tagTransList('shop', tags.shop) }}",
-        "markerSign": "{% set c = current.sign %}{% if c|slice(0, 3) == 'fa-' %}<i class=\"fa {{ c }}\"></i>{% else %}{{ c|raw }}{% endif %}",
-        "__": "no icons for: brewing_supplies, charity, second_hand, variety_store"
+        "markerSign": "{% set c = current.sign %}{% if c|slice(0, 3) == 'fa-' %}<i class=\"fa {{ c }}\"></i>{% else %}{{ c|raw }}{% endif %}"
     },
     "const": {
         "default": {

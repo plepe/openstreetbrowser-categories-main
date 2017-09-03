@@ -21,7 +21,6 @@
         "15": "(\nnode[landuse~\"^(residential|allotments)$\"];\nway[landuse~\"^(residential|allotments)$\"];\nrelation[landuse~\"^(residential|allotments)$\"];\n)"
     },
     "feature": {
-        "description": "{{ tagTrans('landuse', tags.landuse) }}",
-        "body": "{{ tagTrans('landuse', tags.landuse) }}"
+        "description": "{{ tagTrans('landuse', tags.landuse) }}"
     }
 }

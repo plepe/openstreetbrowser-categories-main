@@ -21,7 +21,6 @@
     },
     "feature": {
         "pre": "{% if tags.amenity in [ 'ferry_terminal', 'bus_station' ] %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% elseif tags.railway == 'platform' or tags.highway == 'platform' or tags.public_transport == 'platform' %}\n  {% set key = 'public_transport' %}\n  {% set value = 'platform' %}\n{% else %}\n  {% set key = 'public_transport' %}\n  {% set value = 'stop_position' %}\n{% endif %}",
-        "description": "{{ tagTrans(key, value) }}",
-        "body": "{{ tagTrans(key, value) }}"
+        "description": "{{ tagTrans(key, value) }}"
     }
 }

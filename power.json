@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Enerxía",
         "cs": "Elektřina",
@@ -13,18 +14,17 @@
         "ro": "Energie",
         "ru": "Энергетика"
     },
-    "type": "overpass",
     "query": {
         "11": "(node[power~'^(plant)$'];way[power~'^(plant|line)$'];relation[power~'^(plant)$'];)",
         "13": "(node[power~'^(plant|generator|substation)$'];way[power~'^(plant|line|generator|substation)$'];relation[power~'^(plant|generator|substation)$'];)",
         "15": "(node[power~'^(plant|generator|substation|transformer|tower)$'];way[power~'^(plant|line|generator|substation|transformer|minor_line)$'];relation[power~'^(plant|generator|substation|transformer)$'];)",
         "16": "(node[power];way[power];relation[power];)"
     },
-    "minZoom": 11,
     "feature": {
-        "markerSign": "",
-        "body": "{{ tagTrans('power', tags.power) }}\n{% set x='generator:source' %}{% if tags[x] %}<br/>{{ keyTrans('generator:source') }}: {{ tagTransList('generator:source', tags[x]) }}{% endif %}\n{% set x='generator:method' %}{% if tags[x] %}<br/>{{ keyTrans('generator:method') }}: {{ tagTransList('generator:method', tags[x]) }}{% endif %}\n{% set x='generator:type' %}{% if tags[x] %}<br/>{{ tagTransList('generator:type') }}: {{ tagTrans('generator:type', tags[x]) }}{% endif %}",
+        "markerSign": null,
+        "body": "{% set x='generator:source' %}{% if tags[x] %}<br/>{{ keyTrans('generator:source') }}: {{ tagTransList('generator:source', tags[x]) }}{% endif %}\n{% set x='generator:method' %}{% if tags[x] %}<br/>{{ keyTrans('generator:method') }}: {{ tagTransList('generator:method', tags[x]) }}{% endif %}\n{% set x='generator:type' %}{% if tags[x] %}<br/>{{ tagTransList('generator:type') }}: {{ tagTrans('generator:type', tags[x]) }}{% endif %}",
         "description": "{{ tagTrans('power', tags.power) }}{% set x='generator:source' %}{% if tags[x] %}, {{ tagTransList('generator:source', tags[x]) }}{% endif %}",
-        "priority": "{% if tags.power == 'plant' %}0{% elseif tags.power == 'generator' or tags.power == 'line' %}1{% elseif tags.power == 'substation' %}2{% else %}3{% endif %}"
+        "priority": "{% if tags.power == 'plant' %}0{% elseif tags.power == 'generator' or tags.power == 'line' %}1{% elseif tags.power == 'substation' %}2{% else %}3{% endif %}",
+        "popupDescription": "{{ tagTrans('power', tags.power) }}"
     }
 }

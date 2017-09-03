@@ -1,4 +1,5 @@
 {
+    "type": "overpass",
     "name": {
         "ast": "Gastronomía",
         "cs": "Stravování",
@@ -15,12 +16,12 @@
         "ru": "Общепит",
         "uk": "Гастрономія"
     },
-    "type": "overpass",
-    "query": "(node[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];way[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];relation[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];);",
-    "minZoom": 16,
+    "query": {
+        "16": "(node[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];way[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];relation[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];);"
+    },
     "feature": {
         "markerSign": "{% if tags.amenity=='bar' %}&#127864;{% elseif tags.amenity=='biergarten'%}&#127867;{% elseif tags.amenity=='cafe' %}&#9749;{% elseif tags.amenity=='fast_food' %}&#127828;{% elseif tags.amenity=='ice_cream' %}&#127848;{% elseif tags.amenity=='pub' %}&#127866;{% else %}&#127860;{% endif %}",
-        "body": "{{ tagTrans('amenity', tags.amenity) }}<br/>{{ keyTrans('cuisine') }}: {{ tagTransList('cuisine', tags.cuisine)|default(trans('unknown')) }}",
+        "body": "<ul>\n  <li class='hasSymbol'>\n   <i class=\"fa fa-cutlery\" aria-hidden=\"true\"></i>\n   <span class='key'>{{ keyTrans('cuisine') }}:</span>\n   <span class='value'>{{ tagTransList('cuisine', tags.cuisine)|default(trans('unknown')) }}</span>\n  </li>\n</ul>",
         "description": "{{ tagTrans('amenity', tags.amenity) }}"
     }
 }

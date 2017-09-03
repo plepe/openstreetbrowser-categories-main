@@ -23,7 +23,6 @@
     },
     "feature": {
         "description": "{{ tagTransList('historic', tags.historic) }}",
-        "body": "{{ tagTransList('historic', tags.historic) }}",
         "markerSign": "{{ const[tags.historic] }}"
     },
     "const": {

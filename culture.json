@@ -25,7 +25,6 @@
     "feature": {
         "pre": "{% if tags.amenity in [ 'arts_centre', 'cinema', 'community_centre', 'fountain', 'studio', 'theatre' ] %}\n{% set key = 'amenity' %}\n{% set value = tags.amenity %}\n{% elseif tags.tourism %}\n{% set key = 'tourism' %}\n{% set value = tags.tourism %}\n{% endif %}",
         "description": "{{ tagTrans(key, value) }}",
-        "body": "{{ tagTrans(key, value) }}",
         "markerSign": "{{ const[value] }}"
     },
     "const": {

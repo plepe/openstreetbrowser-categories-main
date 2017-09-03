@@ -22,7 +22,6 @@
     },
     "feature": {
         "description": "{{ tagTrans('tourism', tags.tourism) }}",
-        "body": "{{ tagTrans('tourism', tags.tourism) }}",
         "markerSign": "{{ const[tags.tourism] }}"
     },
     "const": {

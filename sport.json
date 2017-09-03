@@ -19,7 +19,6 @@
     },
     "feature": {
         "description": "{{ tagTransList('sport', tags.sport) }}",
-        "body": "{{ tagTransList('sport', tags.sport) }}",
         "markerSign": "{% set firstSport = tags.sport|split(';')[0] %}\n{{ const[firstSport] }}",
         "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) |default(tagTransList('sport', tags.sport)) }}"
     },
