@@ -76,10 +76,14 @@
 {% endif %}
 
 {% if tags.opening_hours %}
+{% set oh_state = openingHoursState(tags.opening_hours) %}
+{% set oh_css = { "open": "yes", "closed": "no", "unknown": "unknown" } %}
+{% set oh_css = oh_css[oh_state] %}
 <li class='hasSymbol'>
-  <i class="fa fa-clock-o" aria-hidden="true"></i>
+  <i class="fa fa-clock-o {{ oh_css }}" aria-hidden="true"></i>
   <span class='key'>{{ keyTrans('opening_hours') }}:</span>
   <span class='value'>
+    {{ trans(oh_state) }}<br />
     {{ tags.opening_hours }}
   </span>
 </li>
