@@ -18,7 +18,7 @@
   <i class="fa fa-globe" aria-hidden="true"></i>
   <span class='key'>{{ keyTrans('website') }}:</span>
   <span class='value'>
-    <a href='{{ tags.website }}'>{{ tags.website }}</a>
+    <a target='_blank' href='{{ tags.website }}'>{{ tags.website }}</a>
   </span>
 </li>
 {% endif %}
@@ -28,7 +28,7 @@
   <i class="fa fa-globe" aria-hidden="true"></i>
   <span class='key'>{{ keyTrans('website') }}:</span>
   <span class='value'>
-    <a href='{{ attribute(tags, 'contact:website') }}'>{{ attribute(tags, 'contact:website') }}</a>
+    <a target='_blank' href='{{ attribute(tags, 'contact:website') }}'>{{ attribute(tags, 'contact:website') }}</a>
   </span>
 </li>
 {% endif %}
@@ -38,7 +38,7 @@
   <i class="fa fa-phone" aria-hidden="true"></i>
   <span class='key'>{{ keyTrans('phone') }}:</span>
   <span class='value'>
-    <a href='tel:{{ tags.phone }}'>{{ tags.phone }}</a>
+    <a target='_blank' href='tel:{{ tags.phone }}'>{{ tags.phone }}</a>
   </span>
 </li>
 {% endif %}
@@ -48,7 +48,7 @@
   <i class="fa fa-phone" aria-hidden="true"></i>
   <span class='key'>{{ keyTrans('phone') }}:</span>
   <span class='value'>
-    <a href='tel:{{ attribute(tags, 'contact:phone') }}'>{{ attribute(tags, 'contact:phone') }}</a>
+    <a target='_blank' href='tel:{{ attribute(tags, 'contact:phone') }}'>{{ attribute(tags, 'contact:phone') }}</a>
   </span>
 </li>
 {% endif %}
@@ -58,7 +58,7 @@
   <i class="fa fa-envelope" aria-hidden="true"></i>
   <span class='key'>{{ keyTrans('email') }}:</span>
   <span class='value'>
-    <a href='mailto:{{ attribute(tags, 'contact:email') }}'>
+    <a target='_blank' href='mailto:{{ attribute(tags, 'contact:email') }}'>
     {{ attribute(tags, 'contact:email') }}
     </a>
   </span>
@@ -70,7 +70,7 @@
   <i class="fa fa-envelope" aria-hidden="true"></i>
   <span class='key'>{{ keyTrans('email') }}:</span>
   <span class='value'>
-    <a href='mailto:{{ attribute(tags, 'email') }}'>
+    <a target='_blank' href='mailto:{{ attribute(tags, 'email') }}'>
     {{ attribute(tags, 'email') }}
     </a>
   </span>
