@@ -53,16 +53,6 @@
 </li>
 {% endif %}
 
-{% if tags.phone %}
-<li class='hasSymbol'>
-  <i class="fa fa-phone" aria-hidden="true"></i>
-  <span class='key'>{{ keyTrans('phone') }}:</span>
-  <span class='value'>
-    <a href='tel:{{ tags.phone }}'>{{ tags.phone }}</a>
-  </span>
-</li>
-{% endif %}
-
 {% if attribute(tags, 'contact:email') %}
 <li class='hasSymbol'>
   <i class="fa fa-envelope" aria-hidden="true"></i>
