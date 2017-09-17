@@ -250,6 +250,19 @@
         },
         {
             "id": "places_geo"
+        },
+        {
+            "name": {
+                "en": "Special",
+                "de": "Spezial"
+            },
+            "id": "special",
+            "type": "index",
+            "subCategories": [
+                {
+                    "id": "wikipedia"
+                }
+            ]
         }
     ]
 }
