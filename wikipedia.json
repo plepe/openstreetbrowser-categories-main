@@ -4,7 +4,7 @@
         "en": "Wikipedia"
     },
     "query": {
-        "14": "(\nnode[~\"wikipedia\"~\".\"];\nway[~\"wikipedia\"~\".\"];\nrelation[~\"wikipedia\"~\".\"];\n)"
+        "14": "(\nnode[~\"wikipedia\"~\".\"];\nway[~\"wikipedia\"~\".\"];\nrelation[~\"wikipedia\"~\".\"];\n\nnode[~\"wikidata$\"~\".\"];\nway[~\"wikidata$\"~\".\"];\nrelation[~\"wikidata$\"~\".\"];\n\nnode[wikimedia_commons];\nway[wikimedia_commons];\nrelation[wikimedia_commons];\n)"
     },
     "feature": {
         "pre": "{% set errors = [] %}\n{% for k, v in tags %}\n\n{% if k|matches(\"^wikipedia:\") %}\n  {% set errors = errors|merge([\"Uses <tt>wikipedia</tt> and old-style <tt>\" ~ k ~ \"</tt> tag\"]) %}\n{% elseif k|matches(\"^wikipedia:\") %}\n  {% set errors = errors|merge([\"Uses old-style <tt>\" ~ k ~ \"</tt> tag\"]) %}\n{% endif %}\n\n{% if k|matches(\":?wikipedia$\") and not v|matches(\"^[a-z-]+:\") %}\n  {% set errors = errors|merge([\"Tag <tt>\" ~ k ~ \"</tt> does not contain language information: \" ~ v ]) %}\n{% endif %}\n\n{% endfor %}",
