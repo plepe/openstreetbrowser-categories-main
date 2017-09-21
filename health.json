@@ -17,16 +17,18 @@
     },
     "query": {
         "11": "(\nnode[amenity~\"^(hospital)$\"];\nway[amenity~\"^(hospital)$\"];\nrelation[amenity~\"^(hospital)$\"]\n)",
-        "14": "(\nnode[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];\nway[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];\nrelation[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"]\n)"
+        "14": "(\nnode[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];\nnode[emergency=defibrillator];\nway[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];\nrelation[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"]\n)"
     },
     "feature": {
-        "description": "{{ tagTrans('amenity', tags.amenity) }}",
-        "markerSign": "{{ const[tags.amenity] }}"
+        "pre": "{% if tags.emergency in [ 'defibrillator' ] %}\n  {% set key = 'emergency' %}\n  {% set value = tags.emergency %}\n{% else %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% endif %}\n",
+        "description": "{{ tagTrans(key, value) }}",
+        "markerSign": "{{ const[value] }}"
     },
     "const": {
         "baby_hatch": "🚼",
         "clinic": "🏥",
         "dentist": "☤",
+        "defibrillator": "❤",
         "doctors": "☤",
         "hospital": "🏥",
         "nursing_home": "",
