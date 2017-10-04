@@ -12,16 +12,38 @@
         "pre": "{% if tags.shop in [ 'bicycle' ] %}\n  {% set key = 'shop' %}\n  {% set value = tags.shop %}\n{% elseif attribute(tags, \"monitoring:bicycle\") %}\n  {% set key = 'man_made' %}\n  {% set value = 'monitoring_station' %}\n{% elseif tags.vending in [ 'bicycle_tube' ] %}\n  {% set key = 'vending' %}\n  {% set value = tags.vending %}\n{% else %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% endif %}\n\n{% set constIndex = (key ~ \"=\" ~ value) %}",
         "description": "{{ tagTrans(key, value) }}",
         "body": "{% if tags.capacity %}\n  {{ keyTrans('capacity') }}: {{ tags.capacity }}\n{% endif %}",
-        "markerSign": "{{ const[constIndex] }}",
-        "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}\n\n{% if tags.capacity %}({{ tags.capacity }}){% endif %}"
+        "markerSign": "{{ const[constIndex]['sign'] }}",
+        "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}\n\n{% if tags.capacity %}({{ tags.capacity }}){% endif %}",
+        "priority": "{% if const[constIndex] %}\n{{ const[constIndex]['priority'] }}\n{% else %}\n10\n{% endif %}"
     },
     "const": {
-        "shop=bicycle": "🚲",
-        "amenity=bicycle_repair_station": "🔧",
-        "amenity=bicycle_parking": "🅿",
-        "amenity=bicycle_rental": "R",
-        "man_made=monitoring_station": "#",
-        "vending=bicycle_tube": "T",
-        "amenity=compressed_air": "A"
+        "shop=bicycle": {
+            "sign": "🚲",
+            "priority": 0
+        },
+        "amenity=bicycle_repair_station": {
+            "sign": "🔧",
+            "priority": 2
+        },
+        "amenity=bicycle_parking": {
+            "sign": "🅿",
+            "priority": 3
+        },
+        "amenity=bicycle_rental": {
+            "sign": "R",
+            "priority": 1
+        },
+        "man_made=monitoring_station": {
+            "sign": "#",
+            "priority": 4
+        },
+        "vending=bicycle_tube": {
+            "sign": "T",
+            "priority": 2
+        },
+        "amenity=compressed_air": {
+            "sign": "A",
+            "priority": 2
+        }
     }
 }
