@@ -5,7 +5,7 @@
         "de": "Einrichtungen"
     },
     "query": {
-        "13": "(\nnode[amenity~\"^(bicycle_rental)$\"];\nway[amenity~\"^(bicycle_rental)$\"];\nrelation[amenity~\"^(bicycle_rental)$\"];\n)",
+        "13": "(\nnode[amenity~\"^(bicycle_rental)$\"];\nway[amenity~\"^(bicycle_rental)$\"];\nrelation[amenity~\"^(bicycle_rental)$\"];\nnode[shop~\"^(bicycle)$\"];\nway[shop~\"^(bicycle)$\"];\nrelation[shop~\"^(bicycle)$\"];\n)",
         "16": "(\nnode[amenity~\"^(bicycle_.*|compressed_air)$\"];\nway[amenity~\"^(bicycle_.*|compressed_air)$\"];\nrelation[amenity~\"^(bicycle_.*|compressed_air)$\"];\nnode[shop~\"^(bicycle)$\"];\nway[shop~\"^(bicycle)$\"];\nrelation[shop~\"^(bicycle)$\"];\nnode[\"monitoring:bicycle\"];\nway[\"monitoring:bicycle\"];\nrelation[\"monitoring:bicycle\"];\nnode[vending~\"^(bicycle_tube)$\"];\nway[vending~\"^(bicycle_tube)$\"];\nrelation[vending~\"^(bicycle_tube)$\"];\n)\n"
     },
     "feature": {
