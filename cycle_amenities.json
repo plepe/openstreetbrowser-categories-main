@@ -14,7 +14,7 @@
         "body": "{% if tags.capacity %}\n  {{ keyTrans('capacity') }}: {{ tags.capacity }}\n{% endif %}",
         "markerSign": "{{ const[constIndex]['sign'] }}",
         "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}\n\n{% if tags.capacity %}({{ tags.capacity }}){% endif %}",
-        "priority": "{% if const[constIndex] %}\n{{ const[constIndex]['priority'] }}\n{% else %}\n10\n{% endif %}"
+        "priority": "{% if const[constIndex] and const[constIndex]['priority']['capacity'] %}\n  {% set max=const[constIndex]['priority']['default'] %}\n  {% for v in const[constIndex]['priority']['capacity'] %}\n    {% if tags.capacity >= v[0] %}{% set max=v[1] %}{% endif %}\n  {% endfor %}\n  {{ max }}\n{% elseif const[constIndex] is defined %}\n{{ const[constIndex]['priority'] }}\n{% else %}\n10\n{% endif %}"
     },
     "const": {
         "shop=bicycle": {
@@ -27,7 +27,23 @@
         },
         "amenity=bicycle_parking": {
             "sign": "🅿",
-            "priority": 3
+            "priority": {
+                "capacity": [
+                    [
+                        0,
+                        3
+                    ],
+                    [
+                        20,
+                        2
+                    ],
+                    [
+                        100,
+                        0
+                    ]
+                ],
+                "default": 3
+            }
         },
         "amenity=bicycle_rental": {
             "sign": "R",
