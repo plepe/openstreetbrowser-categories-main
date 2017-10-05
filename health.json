@@ -16,12 +16,12 @@
         "uk": "Здоров'я"
     },
     "query": {
-        "11": "(\nnode[amenity~\"^(hospital)$\"];\nway[amenity~\"^(hospital)$\"];\nrelation[amenity~\"^(hospital)$\"]\n)",
-        "14": "(\nnode[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];\nnode[emergency=defibrillator];\nway[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];\nrelation[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"]\n)"
+        "11": "(\nnode[amenity~\"^(hospital)$\"];\nway[amenity~\"^(hospital)$\"];\nrelation[amenity~\"^(hospital)$\"];\nnode[healthcare~\"^(hospital|clinic)$\"];\nway[healthcare~\"^(hospital|clinic)$\"];\nrelation[healthcare~\"^(hospital|clinic)$\"];\n)",
+        "14": "(\nnode[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];\nnode[emergency=defibrillator];\nway[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];\nrelation[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];\nnode[healthcare];\nway[healthcare];\nrelation[healthcare];\n)"
     },
     "feature": {
-        "pre": "{% if tags.emergency in [ 'defibrillator' ] %}\n  {% set key = 'emergency' %}\n  {% set value = tags.emergency %}\n{% else %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% endif %}\n",
-        "description": "{{ tagTrans(key, value) }}",
+        "pre": "{% if tags.emergency in [ 'defibrillator' ] %}\n  {% set key = 'emergency' %}\n  {% set value = tags.emergency %}\n{% elseif tags.healthcare %}\n  {% set key = 'healthcare' %}\n  {% set value = tags.healthcare %}\n{% else %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% endif %}\n",
+        "description": "{{ tagTrans(key, value) }}\n{% if attribute(tags, 'healthcare:speciality') %}\n-\n{{ tagTransList('healthcare:speciality', attribute(tags, 'healthcare:speciality')) }}\n{% endif %}",
         "markerSign": "{{ const[value] }}"
     },
     "const": {
@@ -29,6 +29,7 @@
         "clinic": "🏥",
         "dentist": "☤",
         "defibrillator": "❤",
+        "doctor": "☤",
         "doctors": "☤",
         "hospital": "🏥",
         "nursing_home": "",
