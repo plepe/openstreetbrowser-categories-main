@@ -24,8 +24,8 @@
     "const": {
         "car_rental": "R",
         "car_sharing": "S",
-        "car_wash": "",
-        "charging_station": "",
+        "car_wash": "🚿",
+        "charging_station": "🔌 ",
         "fuel": "⛽",
         "parking": "🅿",
         "motorcycle_parking": "🅿"
