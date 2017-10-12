@@ -5,28 +5,36 @@
         "en": "Railway electrification"
     },
     "query": {
-        "11": "way[railway=rail][usage~'^(main|branch)$'];",
-        "14": "way[railway];"
+        "11": "way[railway=rail][railway!~'^(platform|abandoned|disused|station|proposed)$'][usage~'^(main|branch)$'];",
+        "14": "way[railway][railway!~'^(platform|abandoned|disused|station|proposed)$'];"
     },
     "feature": {
+        "pre": "{% if tags.electrified and tags.electrified != 'no' %}\n  {% if tags.voltage < 5000 %}\n    {% set color = colorInterpolate([ 'green', 'red' ], tags.voltage / 1000) %}\n  {% else %}\n    {% set color = colorInterpolate([ 'red', 'blue' ], (tags.voltage - 1000) / 24000) %}\n  {% endif %}\n{% else %}\n  {% set color='black' %}\n{%endif %}\n\n{% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}\n    {% set weight=2 %}\n  {% else %}\n    {% if tags.railway == 'rail' %}\n      {% if tags.usage == 'main' or tags.usage == 'branch' %}\n        {% set weight=3 %}\n      {% else %}\n        {% set weight=2.5 %}\n      {% endif %}\n    {% else %}\n      {% set weight=2 %}\n  {% endif %}\n{% endif %}",
         "style:casing": {
-            "weight": "{% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}5{% else %}{% if tags.railway == 'rail' %}{% if tags.usage == 'main' or tags.usage == 'branch' %}7{% else %}6{% endif %}{% elseif tags.railway == 'platform' %}5{% else %}6{% endif %}{% endif %}",
-            "color": "{% if tags.railway == 'rail' or tags.railway == 'narrow_gauge' or tags.railway == 'disused' %}{% if tags.usage == 'main' %}#ff8100{% elseif tags.usage == 'branch' %}#daca00{% else %}#000000{% endif %}{% elseif tags.railway == 'subway' %}#0000ff{% elseif tags.railway == 'tram' %}#ff00ff{% elseif tags.railway == 'platform' %}#3f3f3f{% else %}#000000{% endif %}",
+            "weight": "{{ weight + 2 }}",
+            "color": "{{ color }}",
             "dashArray": "2,4",
             "lineCap": "butt"
         },
         "style": {
-            "color": "{% if tags.electrified and tags.electrified != 'no' %}red{% else %}black{%endif %}",
-            "weight": "{% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}1{% else %}{% if tags.railway == 'rail' %}{% if tags.usage == 'main' or tags.usage == 'branch' %}3{% else %}2{% endif %}{% elseif tags.railway == 'platform' %}1{% else %}2{% endif %}{% endif %}",
-            "dashArray": "{% if tags.railway == 'rail' %}{% elseif tags.railway == 'disused' %}1,5{% elseif tags.railway == 'abandoned' %}1,7{% endif %}",
-            "fillColor": "{% if tags.railway == 'platform' %}#3f3f3f{% endif %}",
-            "fill": "{% if tags.railway == 'platform' %}1{% else %}{% endif %}",
+            "color": "white",
+            "weight": "{{ weight }}",
+            "fill": null,
             "opacity": "1"
         },
-        "styles": "{% if tags.railway == 'narrow_gauge' %}default,casing{% else %}default{% endif %}",
+        "style:highlight": {
+            "color": "{{ color }}",
+            "weight": "{{ weight }}",
+            "dashArray": "{% if not tags.electrified or tags.electrified == 'no' %}\n{% elseif tags.frequency == 0 %}\n{% else %}\n5,2\n{% endif %}",
+            "fillColor": "{% if tags.railway == 'platform' %}#3f3f3f{% endif %}",
+            "fill": "{% if tags.railway == 'platform' %}1{% else %}{% endif %}",
+            "opacity": "1",
+            "lineCap": "butt"
+        },
+        "styles": "{% if tags.railway == 'narrow_gauge' %}default,casing,highlight{% else %}default,highlight{% endif %}",
         "markerSign": null,
         "body": "{{ tagTrans('railway', tags.railway) }}<br/>\n{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}\n{% if tags.usage %}{{ keyTrans('usage') }}: {{ tagTrans('usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}\n{% if tags.service %}{{ keyTrans('service') }}: {{ tagTrans('service', tags.service ) }}<br/>{% endif %}\n{{ keyTrans('gauge') }}: {{ tags.gauge|default(trans('unknown')) }}<br/>\n{% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}\n",
-        "description": "{{ tagTrans('railway', tags.railway) }}",
+        "description": "{{ tagTrans('railway', tags.railway) }} -\n\n{% if tags.electrified == 'no' %}\n  {{ trans('not electrified') }}\n{% elseif tags.electrified %}\n  {{ tags.voltage|default(trans('unknown')) }}V, {{ tags.frequency|default(trans('unknown')) }}Hz\n{% endif %}",
         "priority": "{% if tags.railway == 'station' %}0{% elseif tags.railway in [ 'halt', 'tram_stop' ] %}1{% else %}5{% endif %}",
         "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}"
     }
