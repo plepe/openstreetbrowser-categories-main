@@ -9,6 +9,11 @@
     },
     "feature": {
         "priority": "{% set p = 100 %}\n{% if tags.name %}{% set p = p - 10 %}{% endif %}\n{% if tags.amenity %}{% set p = p - 1 %}{% endif %}\n{% if tags.historic %}{% set p = p - 1 %}{% endif %}\n{% if tags.culture %}{% set p = p - 1 %}{% endif %}\n{% if tags.highway %}{% set p = p - 1 %}{% endif %}\n{% if tags.railway %}{% set p = p - 1 %}{% endif %}\n{% if tags.aeroway %}{% set p = p - 1 %}{% endif %}\n{% if tags.amenity %}{% set p = p - 1 %}{% endif %}\n{% if tags.tourism %}{% set p = p - 1 %}{% endif %}\n{{ p }}",
-        "markerSign": null
+        "markerSign": null,
+        "style": {
+            "fillColor": "#000000",
+            "color": "#000000",
+            "weight": "1"
+        }
     }
 }
