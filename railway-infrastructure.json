@@ -26,12 +26,13 @@
             "fillOpacity": "{% if tags.railway == 'platform' %}\n0.2\n{% elseif type == 'node' %}\n0\n{% endif %}"
         },
         "styles": "{% if tags.railway == 'narrow_gauge' %}default,casing{% else %}default{% endif %}",
-        "markerSign": null,
+        "markerSign": "{% if tags.railway in [ 'halt', 'tram_stop', 'station', 'stop', 'subway_entrance' ] %}X{% endif %}",
         "body": "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}\n{% if tags.usage %}{{ keyTrans('usage') }}: {{ tagTrans('usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}\n{% if tags.service %}{{ keyTrans('service') }}: {{ tagTrans('service', tags.service ) }}<br/>{% endif %}\n{{ keyTrans('gauge') }}: {{ tags.gauge|default(trans('unknown')) }}<br/>\n{% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}\n",
         "description": "{{ tagTrans('railway', tags.railway) }}",
-        "priority": "{% if tags.railway == 'station' %}0{% elseif tags.railway in [ 'halt', 'tram_stop' ] %}1{% else %}5{% endif %}",
+        "priority": "{% if tags.railway == 'station' %}0\n{% elseif tags.railway in [ 'halt' ] %}1\n{% elseif tags.railway in [ 'tram_stop', 'stop' ] %}2\n{% elseif tags.railway in [ 'subway_entrance' ] %}3\n{% else %}5\n{% endif %}",
         "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
-        "listMarkerSymbol": "{% if tags.railway == 'station' %}\narea\n{% else %}\nline\n{% endif %}"
+        "listMarkerSymbol": "{% if tags.railway in [ 'station', 'halt', 'tram_stop', 'stop', 'subway_entrance', 'signal' ] %}\n{% else %}\nline\n{% endif %}",
+        "markerSymbol": "{% if tags.railway == 'signal' %}\n<svg width='10' height='10'>\n  <circle cx='4.5' cy='4.5' r='3' style='stroke-width: 3; stroke: #000000; fill: #ffffff'>\n</svg>\n{% else %}\n{{ markerPointer({})|raw }}\n{% endif %}"
     },
     "info": "<table>\n  <tr>\n    <td>{{ markerLine(evaluate({ \"railway\": \"rail\", \"usage\": \"main\" }))|raw }}</td>\n    <td>{{ tagTrans('railway', 'rail') }}, {{ keyTrans('usage') }}: {{ tagTrans('usage', 'main') }}</td>\n  </tr>\n  <tr>\n    <td>{{ markerLine(evaluate({ \"railway\": \"rail\" }))|raw }}</td>\n    <td>{{ tagTrans('railway', 'rail') }}</td>\n  </tr>\n  <tr>\n    <td>{{ markerLine(evaluate({ \"railway\": \"narrow_gauge\" }))|raw }}</td>\n    <td>{{ tagTrans('railway', 'narrow_gauge') }}</td>\n  </tr>\n  <tr>\n    <td>{{ markerLine(evaluate({ \"railway\": \"light_rail\" }))|raw }}</td>\n    <td>{{ tagTrans('railway', 'light_rail') }}</td>\n  </tr>\n  <tr>\n    <td>{{ markerLine(evaluate({ \"railway\": \"subway\" }))|raw }}</td>\n    <td>{{ tagTrans('railway', 'subway') }}</td>\n  </tr>\n{{ console_log(map) }}\n{% if map.zoom >= 14 %}\n  <tr>\n    <td>{{ markerLine(evaluate({ \"railway\": \"tram\" }))|raw }}</td>\n    <td>{{ tagTrans('railway', 'tram') }}</td>\n  </tr>\n{% endif %}\n</table>"
 }
