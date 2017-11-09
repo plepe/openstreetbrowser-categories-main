@@ -13,10 +13,27 @@
         "uk": "Amenities"
     },
     "query": {
-        "14": "(\nnode[amenity~\"^(taxi|ticket_counter)$\"];\nway[amenity~\"^(taxi|ticket_counter)$\"];\nrelation[amenity~\"^(taxi|ticket_counter)$\"];\nnode[railway~\"^(subway_entrance)$\"];\nway[railway~\"^(subway_entrance)$\"];\nrelation[railway~\"^(subway_entrance)$\"];\n)"
+        "14": [
+            "(",
+            "node[amenity~\"^(taxi|ticket_counter)$\"];",
+            "way[amenity~\"^(taxi|ticket_counter)$\"];",
+            "relation[amenity~\"^(taxi|ticket_counter)$\"];",
+            "node[railway~\"^(subway_entrance)$\"];",
+            "way[railway~\"^(subway_entrance)$\"];",
+            "relation[railway~\"^(subway_entrance)$\"];",
+            ")"
+        ]
     },
     "feature": {
-        "pre": "{% if tags.railway == 'subway_entrance' %}\n  {% set key = 'railway' %}\n  {% set value = tags.railway %}\n{% else %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% endif %}",
+        "pre": [
+            "{% if tags.railway == 'subway_entrance' %}",
+            "  {% set key = 'railway' %}",
+            "  {% set value = tags.railway %}",
+            "{% else %}",
+            "  {% set key = 'amenity' %}",
+            "  {% set value = tags.amenity %}",
+            "{% endif %}"
+        ],
         "description": "{{ tagTrans(key, value) }}",
         "markerSign": "{{ const[value] }}"
     },

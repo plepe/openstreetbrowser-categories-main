@@ -13,11 +13,26 @@
         "uk": "Amenities"
     },
     "query": {
-        "13": "(\nnode[amenity~\"^(car_rental|car_sharing|fuel)$\"];\nway[amenity~\"^(car_rental|car_sharing|fuel)$\"];\nrelation[amenity~\"^(car_rental|car_sharing|fuel)$\"];\n)",
-        "16": "(\nnode[amenity~\"^(car_rental|car_sharing|car_wash|charging_station|fuel|motorcycle_parking|parking)$\"];\nway[amenity~\"^(car_rental|car_sharing|car_wash|charging_station|fuel|motorcycle_parking|parking)$\"];\nrelation[amenity~\"^(car_rental|car_sharing|car_wash|charging_station|fuel|motorcycle_parking|parking)$\"];\n)"
+        "13": [
+            "(",
+            "node[amenity~\"^(car_rental|car_sharing|fuel)$\"];",
+            "way[amenity~\"^(car_rental|car_sharing|fuel)$\"];",
+            "relation[amenity~\"^(car_rental|car_sharing|fuel)$\"];",
+            ")"
+        ],
+        "16": [
+            "(",
+            "node[amenity~\"^(car_rental|car_sharing|car_wash|charging_station|fuel|motorcycle_parking|parking)$\"];",
+            "way[amenity~\"^(car_rental|car_sharing|car_wash|charging_station|fuel|motorcycle_parking|parking)$\"];",
+            "relation[amenity~\"^(car_rental|car_sharing|car_wash|charging_station|fuel|motorcycle_parking|parking)$\"];",
+            ")"
+        ]
     },
     "feature": {
-        "pre": "{% set key = 'amenity' %}\n{% set value = tags.amenity %}",
+        "pre": [
+            "{% set key = 'amenity' %}",
+            "{% set value = tags.amenity %}"
+        ],
         "description": "{{ tagTrans(key, value) }}",
         "markerSign": "{{ const[value] }}"
     },

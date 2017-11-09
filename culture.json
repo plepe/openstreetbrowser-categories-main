@@ -20,10 +20,27 @@
         "uk": "Культура "
     },
     "query": {
-        "13": "(\nnode[amenity~\"^(arts_centre|cinema|community_centre|fountain|studio|theatre)$\"];\nway[amenity~\"^(arts_centre|cinema|community_centre|fountain|studio|theatre)$\"];\nrelation[amenity~\"^(arts_centre|cinema|community_centre|fountain|studio|theatre)$\"];\nnode[tourism~\"^(artwork|gallery|museum|theme_park)$\"];\nway[tourism~\"^(artwork|gallery|museum|theme_park)$\"];\nrelation[tourism~\"^(artwork|gallery|museum|theme_park)$\"];\n)"
+        "13": [
+            "(",
+            "node[amenity~\"^(arts_centre|cinema|community_centre|fountain|studio|theatre)$\"];",
+            "way[amenity~\"^(arts_centre|cinema|community_centre|fountain|studio|theatre)$\"];",
+            "relation[amenity~\"^(arts_centre|cinema|community_centre|fountain|studio|theatre)$\"];",
+            "node[tourism~\"^(artwork|gallery|museum|theme_park)$\"];",
+            "way[tourism~\"^(artwork|gallery|museum|theme_park)$\"];",
+            "relation[tourism~\"^(artwork|gallery|museum|theme_park)$\"];",
+            ")"
+        ]
     },
     "feature": {
-        "pre": "{% if tags.amenity in [ 'arts_centre', 'cinema', 'community_centre', 'fountain', 'studio', 'theatre' ] %}\n{% set key = 'amenity' %}\n{% set value = tags.amenity %}\n{% elseif tags.tourism %}\n{% set key = 'tourism' %}\n{% set value = tags.tourism %}\n{% endif %}",
+        "pre": [
+            "{% if tags.amenity in [ 'arts_centre', 'cinema', 'community_centre', 'fountain', 'studio', 'theatre' ] %}",
+            "{% set key = 'amenity' %}",
+            "{% set value = tags.amenity %}",
+            "{% elseif tags.tourism %}",
+            "{% set key = 'tourism' %}",
+            "{% set value = tags.tourism %}",
+            "{% endif %}"
+        ],
         "description": "{{ tagTrans(key, value) }}",
         "markerSign": "{{ const[value] }}"
     },

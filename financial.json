@@ -16,8 +16,20 @@
         "uk": "Фінанси"
     },
     "query": {
-        "14": "(\nnode[amenity~\"^(bank)$\"];\nway[amenity~\"^(bank)$\"];\nrelation[amenity~\"^(bank)$\"]\n)",
-        "15": "(\nnode[amenity~\"^(bank|bureau_de_change|atm)$\"];\nway[amenity~\"^(bank|bureau_de_change|atm)$\"];\nrelation[amenity~\"^(bank|bureau_de_change|atm)$\"]\n)"
+        "14": [
+            "(",
+            "node[amenity~\"^(bank)$\"];",
+            "way[amenity~\"^(bank)$\"];",
+            "relation[amenity~\"^(bank)$\"]",
+            ")"
+        ],
+        "15": [
+            "(",
+            "node[amenity~\"^(bank|bureau_de_change|atm)$\"];",
+            "way[amenity~\"^(bank|bureau_de_change|atm)$\"];",
+            "relation[amenity~\"^(bank|bureau_de_change|atm)$\"]",
+            ")"
+        ]
     },
     "feature": {
         "description": "{{ tagTrans('amenity', tags.amenity) }}",

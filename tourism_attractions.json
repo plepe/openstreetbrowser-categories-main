@@ -18,7 +18,13 @@
         "uk": "Туризм"
     },
     "query": {
-        "13": "(\nnode[tourism][tourism!~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];\nway[tourism][tourism!~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];\nrelation[tourism][tourism!~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"]\n)"
+        "13": [
+            "(",
+            "node[tourism][tourism!~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];",
+            "way[tourism][tourism!~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];",
+            "relation[tourism][tourism!~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"]",
+            ")"
+        ]
     },
     "feature": {
         "description": "{{ tagTrans('tourism', tags.tourism) }}",

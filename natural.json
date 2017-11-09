@@ -15,12 +15,31 @@
         "uk": "Природне середовище"
     },
     "query": {
-        "9": "(\nnode[natural~\"^(peak|volcano)$\"];\n)",
-        "16": "(\nnode[natural];\nway[natural];\nrelation[natural];\n)",
-        "13": "(\nnode[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|water|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];\nway[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|water|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];\nrelation[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|water|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];\n)"
+        "9": [
+            "(",
+            "node[natural~\"^(peak|volcano)$\"];",
+            ")"
+        ],
+        "16": [
+            "(",
+            "node[natural];",
+            "way[natural];",
+            "relation[natural];",
+            ")"
+        ],
+        "13": [
+            "(",
+            "node[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|water|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
+            "way[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|water|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
+            "relation[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|water|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
+            ")"
+        ]
     },
     "feature": {
-        "title": "{{ localizedTag(tags, 'name') | default(trans('unnamed')) }}\n{% if tags.natural == 'peak' and tags.ele %}({{ tags.ele }}m){% endif %}",
+        "title": [
+            "{{ localizedTag(tags, 'name') | default(trans('unnamed')) }}",
+            "{% if tags.natural == 'peak' and tags.ele %}({{ tags.ele }}m){% endif %}"
+        ],
         "description": "{{ tagTrans('natural', tags.natural) }}"
     }
 }

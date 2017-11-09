@@ -11,10 +11,27 @@
         "ru": "Добыча ресурсов"
     },
     "query": {
-        "11": "(\nnode[landuse~\"^(quarry|salt_pond)$\"];\nnode[man_made~\"^(mineshaft)$\"];\nway[landuse~\"^(quarry|salt_pond)$\"];\nway[man_made~\"^(mineshaft)$\"];\nrelation[landuse~\"^(quarry|salt_pond)$\"];\nrelation[man_made~\"^(mineshaft)$\"];\n)"
+        "11": [
+            "(",
+            "node[landuse~\"^(quarry|salt_pond)$\"];",
+            "node[man_made~\"^(mineshaft)$\"];",
+            "way[landuse~\"^(quarry|salt_pond)$\"];",
+            "way[man_made~\"^(mineshaft)$\"];",
+            "relation[landuse~\"^(quarry|salt_pond)$\"];",
+            "relation[man_made~\"^(mineshaft)$\"];",
+            ")"
+        ]
     },
     "feature": {
-        "pre": "{% if tags.landuse in [ 'quarry', 'salt_pond' ] %}\n  {% set key = 'landuse' %}\n  {% set value = tags.landuse %}\n{% else %}\n  {% set key = 'man_made' %}\n  {% set value = tags.man_made %}\n{% endif %}",
+        "pre": [
+            "{% if tags.landuse in [ 'quarry', 'salt_pond' ] %}",
+            "  {% set key = 'landuse' %}",
+            "  {% set value = tags.landuse %}",
+            "{% else %}",
+            "  {% set key = 'man_made' %}",
+            "  {% set value = tags.man_made %}",
+            "{% endif %}"
+        ],
         "description": "{{ tagTrans(key, value) }}"
     }
 }

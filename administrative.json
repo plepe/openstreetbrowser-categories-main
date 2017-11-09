@@ -15,12 +15,42 @@
         "ru": "Административные границы"
     },
     "query": {
-        "3": "(\nway[admin_level=2];\nrelation[admin_level=2];\n)",
-        "6": "(\nway[admin_level~\"^(2|3)$\"];\nrelation[admin_level~\"^(2|3)$\"];\n)",
-        "11": "(\nway[admin_level~\"^(2|3|4|5)$\"];\nrelation[admin_level~\"^(2|3|4|5)$\"];\n)",
-        "13": "(\nway[admin_level~\"^(2|3|4|5|6|7)$\"];\nrelation[admin_level~\"^(2|3|4|5|6|7)$\"];\n)",
-        "15": "(\nway[admin_level~\"^(2|3|4|5|6|7|8|9)$\"];\nrelation[admin_level~\"^(2|3|4|5|6|7|8|9)$\"];\n)",
-        "16": "(\nway[admin_level~\"^(2|3|4|5|6|7|8|9|10|11)$\"];\nrelation[admin_level~\"^(2|3|4|5|6|7|8|9|10|11)$\"];\n)"
+        "3": [
+            "(",
+            "way[admin_level=2];",
+            "relation[admin_level=2];",
+            ")"
+        ],
+        "6": [
+            "(",
+            "way[admin_level~\"^(2|3)$\"];",
+            "relation[admin_level~\"^(2|3)$\"];",
+            ")"
+        ],
+        "11": [
+            "(",
+            "way[admin_level~\"^(2|3|4|5)$\"];",
+            "relation[admin_level~\"^(2|3|4|5)$\"];",
+            ")"
+        ],
+        "13": [
+            "(",
+            "way[admin_level~\"^(2|3|4|5|6|7)$\"];",
+            "relation[admin_level~\"^(2|3|4|5|6|7)$\"];",
+            ")"
+        ],
+        "15": [
+            "(",
+            "way[admin_level~\"^(2|3|4|5|6|7|8|9)$\"];",
+            "relation[admin_level~\"^(2|3|4|5|6|7|8|9)$\"];",
+            ")"
+        ],
+        "16": [
+            "(",
+            "way[admin_level~\"^(2|3|4|5|6|7|8|9|10|11)$\"];",
+            "relation[admin_level~\"^(2|3|4|5|6|7|8|9|10|11)$\"];",
+            ")"
+        ]
     },
     "feature": {
         "description": "{{ tagTrans('admin_level', tags.admin_level) }}",

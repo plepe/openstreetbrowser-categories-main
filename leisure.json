@@ -15,9 +15,20 @@
         "uk": "Дозвілля"
     },
     "query": {
-        "15": "(\nnode[leisure];\nway[leisure];\nrelation[leisure];\n)"
+        "15": [
+            "(",
+            "node[leisure];",
+            "way[leisure];",
+            "relation[leisure];",
+            ")"
+        ]
     },
     "feature": {
-        "description": "{{ tagTrans('leisure', tags.leisure) }}\n{% if tags.leisure == 'pitch' and tags.sport %}\n- {{ tagTransList('sport', tags.sport) }}\n{% endif %}"
+        "description": [
+            "{{ tagTrans('leisure', tags.leisure) }}",
+            "{% if tags.leisure == 'pitch' and tags.sport %}",
+            "- {{ tagTransList('sport', tags.sport) }}",
+            "{% endif %}"
+        ]
     }
 }
