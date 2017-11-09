@@ -17,10 +17,31 @@
         "uk": "Зупинки та станції"
     },
     "query": {
-        "14": "(\nnode[railway~\"^(station|halt|tram_stop|platform)$\"];\nway[railway~\"^(station|platform)$\"];\nnode[highway~\"^(bus_stop|platform)$\"];\nway[highway~\"^(platform)$\"];\nnode[public_transport~\"^(stop_position|platform)$\"];\nway[public_transport~\"^(platform)$\"];\nnode[amenity~\"^(ferry_terminal|bus_station)$\"];\n)"
+        "14": [
+            "(",
+            "node[railway~\"^(station|halt|tram_stop|platform)$\"];",
+            "way[railway~\"^(station|platform)$\"];",
+            "node[highway~\"^(bus_stop|platform)$\"];",
+            "way[highway~\"^(platform)$\"];",
+            "node[public_transport~\"^(stop_position|platform)$\"];",
+            "way[public_transport~\"^(platform)$\"];",
+            "node[amenity~\"^(ferry_terminal|bus_station)$\"];",
+            ")"
+        ]
     },
     "feature": {
-        "pre": "{% if tags.amenity in [ 'ferry_terminal', 'bus_station' ] %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% elseif tags.railway == 'platform' or tags.highway == 'platform' or tags.public_transport == 'platform' %}\n  {% set key = 'public_transport' %}\n  {% set value = 'platform' %}\n{% else %}\n  {% set key = 'public_transport' %}\n  {% set value = 'stop_position' %}\n{% endif %}",
+        "pre": [
+            "{% if tags.amenity in [ 'ferry_terminal', 'bus_station' ] %}",
+            "  {% set key = 'amenity' %}",
+            "  {% set value = tags.amenity %}",
+            "{% elseif tags.railway == 'platform' or tags.highway == 'platform' or tags.public_transport == 'platform' %}",
+            "  {% set key = 'public_transport' %}",
+            "  {% set value = 'platform' %}",
+            "{% else %}",
+            "  {% set key = 'public_transport' %}",
+            "  {% set value = 'stop_position' %}",
+            "{% endif %}"
+        ],
         "description": "{{ tagTrans(key, value) }}"
     }
 }

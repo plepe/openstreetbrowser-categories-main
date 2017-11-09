@@ -18,12 +18,25 @@
         "uk": "Швидка допомога"
     },
     "query": {
-        "11": "(node[amenity~\"^(fire_station|hospital)$\"];\nway[amenity~\"^(fire_station|hospital)$\"];\nrelation[amenity~\"^(fire_station|hospital)$\"])",
-        "13": "(node[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"];\nway[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"];\nrelation[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"])"
+        "11": [
+            "(node[amenity~\"^(fire_station|hospital)$\"];",
+            "way[amenity~\"^(fire_station|hospital)$\"];",
+            "relation[amenity~\"^(fire_station|hospital)$\"])"
+        ],
+        "13": [
+            "(node[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"];",
+            "way[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"];",
+            "relation[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"])"
+        ]
     },
     "feature": {
         "description": "{{ tagTrans('amenity', tags.amenity) }}",
-        "markerSign": "{% set data = const[tags.amenity] %}\n{% if data %}\n{{ data.sign }}\n{% endif %}"
+        "markerSign": [
+            "{% set data = const[tags.amenity] %}",
+            "{% if data %}",
+            "{{ data.sign }}",
+            "{% endif %}"
+        ]
     },
     "const": {
         "fire_station": {

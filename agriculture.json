@@ -16,7 +16,13 @@
         "ru": "Сельское хозяйство"
     },
     "query": {
-        "13": "(\nnode[landuse~\"^(allotments|farm|farmland|farmyard|greenhouse_horticulture|orchard|vineyard)$\"];\nway[landuse~\"^(allotments|farm|farmland|farmyard|greenhouse_horticulture|orchard|vineyard)$\"];\nrelation[landuse~\"^(allotments|farm|farmland|farmyard|greenhouse_horticulture|orchard|vineyard)$\"];\n)"
+        "13": [
+            "(",
+            "node[landuse~\"^(allotments|farm|farmland|farmyard|greenhouse_horticulture|orchard|vineyard)$\"];",
+            "way[landuse~\"^(allotments|farm|farmland|farmyard|greenhouse_horticulture|orchard|vineyard)$\"];",
+            "relation[landuse~\"^(allotments|farm|farmland|farmyard|greenhouse_horticulture|orchard|vineyard)$\"];",
+            ")"
+        ]
     },
     "feature": {
         "description": "{{ tagTrans('landuse', tags.landuse) }}"

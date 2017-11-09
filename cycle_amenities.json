@@ -5,16 +5,77 @@
         "de": "Einrichtungen"
     },
     "query": {
-        "13": "(\nnode[amenity~\"^(bicycle_rental)$\"];\nway[amenity~\"^(bicycle_rental)$\"];\nrelation[amenity~\"^(bicycle_rental)$\"];\nnode[shop~\"^(bicycle)$\"];\nway[shop~\"^(bicycle)$\"];\nrelation[shop~\"^(bicycle)$\"];\n)",
-        "16": "(\nnode[amenity~\"^(bicycle_.*|compressed_air)$\"];\nway[amenity~\"^(bicycle_.*|compressed_air)$\"];\nrelation[amenity~\"^(bicycle_.*|compressed_air)$\"];\nnode[shop~\"^(bicycle)$\"];\nway[shop~\"^(bicycle)$\"];\nrelation[shop~\"^(bicycle)$\"];\nnode[\"monitoring:bicycle\"];\nway[\"monitoring:bicycle\"];\nrelation[\"monitoring:bicycle\"];\nnode[vending~\"^(bicycle_tube)$\"];\nway[vending~\"^(bicycle_tube)$\"];\nrelation[vending~\"^(bicycle_tube)$\"];\n)\n"
+        "13": [
+            "(",
+            "node[amenity~\"^(bicycle_rental)$\"];",
+            "way[amenity~\"^(bicycle_rental)$\"];",
+            "relation[amenity~\"^(bicycle_rental)$\"];",
+            "node[shop~\"^(bicycle)$\"];",
+            "way[shop~\"^(bicycle)$\"];",
+            "relation[shop~\"^(bicycle)$\"];",
+            ")"
+        ],
+        "16": [
+            "(",
+            "node[amenity~\"^(bicycle_.*|compressed_air)$\"];",
+            "way[amenity~\"^(bicycle_.*|compressed_air)$\"];",
+            "relation[amenity~\"^(bicycle_.*|compressed_air)$\"];",
+            "node[shop~\"^(bicycle)$\"];",
+            "way[shop~\"^(bicycle)$\"];",
+            "relation[shop~\"^(bicycle)$\"];",
+            "node[\"monitoring:bicycle\"];",
+            "way[\"monitoring:bicycle\"];",
+            "relation[\"monitoring:bicycle\"];",
+            "node[vending~\"^(bicycle_tube)$\"];",
+            "way[vending~\"^(bicycle_tube)$\"];",
+            "relation[vending~\"^(bicycle_tube)$\"];",
+            ")",
+            ""
+        ]
     },
     "feature": {
-        "pre": "{% if tags.shop in [ 'bicycle' ] %}\n  {% set key = 'shop' %}\n  {% set value = tags.shop %}\n{% elseif attribute(tags, \"monitoring:bicycle\") %}\n  {% set key = 'man_made' %}\n  {% set value = 'monitoring_station' %}\n{% elseif tags.vending in [ 'bicycle_tube' ] %}\n  {% set key = 'vending' %}\n  {% set value = tags.vending %}\n{% else %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% endif %}\n\n{% set constIndex = (key ~ \"=\" ~ value) %}",
+        "pre": [
+            "{% if tags.shop in [ 'bicycle' ] %}",
+            "  {% set key = 'shop' %}",
+            "  {% set value = tags.shop %}",
+            "{% elseif attribute(tags, \"monitoring:bicycle\") %}",
+            "  {% set key = 'man_made' %}",
+            "  {% set value = 'monitoring_station' %}",
+            "{% elseif tags.vending in [ 'bicycle_tube' ] %}",
+            "  {% set key = 'vending' %}",
+            "  {% set value = tags.vending %}",
+            "{% else %}",
+            "  {% set key = 'amenity' %}",
+            "  {% set value = tags.amenity %}",
+            "{% endif %}",
+            "",
+            "{% set constIndex = (key ~ \"=\" ~ value) %}"
+        ],
         "description": "{{ tagTrans(key, value) }}",
-        "body": "{% if tags.capacity %}\n  {{ keyTrans('capacity') }}: {{ tags.capacity }}\n{% endif %}",
+        "body": [
+            "{% if tags.capacity %}",
+            "  {{ keyTrans('capacity') }}: {{ tags.capacity }}",
+            "{% endif %}"
+        ],
         "markerSign": "{{ const[constIndex]['sign'] }}",
-        "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}\n\n{% if tags.capacity %}({{ tags.capacity }}){% endif %}",
-        "priority": "{% if const[constIndex] and const[constIndex]['priority']['capacity'] %}\n  {% set max=const[constIndex]['priority']['default'] %}\n  {% for v in const[constIndex]['priority']['capacity'] %}\n    {% if tags.capacity >= v[0] %}{% set max=v[1] %}{% endif %}\n  {% endfor %}\n  {{ max }}\n{% elseif const[constIndex] is defined %}\n{{ const[constIndex]['priority'] }}\n{% else %}\n10\n{% endif %}"
+        "title": [
+            "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}",
+            "",
+            "{% if tags.capacity %}({{ tags.capacity }}){% endif %}"
+        ],
+        "priority": [
+            "{% if const[constIndex] and const[constIndex]['priority']['capacity'] %}",
+            "  {% set max=const[constIndex]['priority']['default'] %}",
+            "  {% for v in const[constIndex]['priority']['capacity'] %}",
+            "    {% if tags.capacity >= v[0] %}{% set max=v[1] %}{% endif %}",
+            "  {% endfor %}",
+            "  {{ max }}",
+            "{% elseif const[constIndex] is defined %}",
+            "{{ const[constIndex]['priority'] }}",
+            "{% else %}",
+            "10",
+            "{% endif %}"
+        ]
     },
     "const": {
         "shop=bicycle": {

@@ -17,8 +17,20 @@
         "uk": "Житлова зона"
     },
     "query": {
-        "13": "(\nnode[landuse~\"^(residential)$\"];\nway[landuse~\"^(residential)$\"];\nrelation[landuse~\"^(residential)$\"];\n)",
-        "15": "(\nnode[landuse~\"^(residential|allotments)$\"];\nway[landuse~\"^(residential|allotments)$\"];\nrelation[landuse~\"^(residential|allotments)$\"];\n)"
+        "13": [
+            "(",
+            "node[landuse~\"^(residential)$\"];",
+            "way[landuse~\"^(residential)$\"];",
+            "relation[landuse~\"^(residential)$\"];",
+            ")"
+        ],
+        "15": [
+            "(",
+            "node[landuse~\"^(residential|allotments)$\"];",
+            "way[landuse~\"^(residential|allotments)$\"];",
+            "relation[landuse~\"^(residential|allotments)$\"];",
+            ")"
+        ]
     },
     "feature": {
         "description": "{{ tagTrans('landuse', tags.landuse) }}"

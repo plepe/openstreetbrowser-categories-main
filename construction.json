@@ -12,10 +12,27 @@
         "ru": "Места строительства"
     },
     "query": {
-        "13": "(\nnode[landuse~\"^(brownfield|greenfield|construction|)$\"];\nway[landuse~\"^(brownfield|greenfield|construction|)$\"];\nrelation[landuse~\"^(brownfield|greenfield|construction|)$\"];\nnode[highway~\"^(construction)$\"];\nway[highway~\"^(construction)$\"];\nrelation[highway~\"^(construction)$\"];\n)"
+        "13": [
+            "(",
+            "node[landuse~\"^(brownfield|greenfield|construction|)$\"];",
+            "way[landuse~\"^(brownfield|greenfield|construction|)$\"];",
+            "relation[landuse~\"^(brownfield|greenfield|construction|)$\"];",
+            "node[highway~\"^(construction)$\"];",
+            "way[highway~\"^(construction)$\"];",
+            "relation[highway~\"^(construction)$\"];",
+            ")"
+        ]
     },
     "feature": {
-        "pre": "{% if tags.highway == 'construction' %}\n{% set key = 'highway' %}\n{% set value = tags.highway %}\n{% else %}\n{% set key = 'landuse' %}\n{% set value = tags.landuse %}\n{% endif %}",
+        "pre": [
+            "{% if tags.highway == 'construction' %}",
+            "{% set key = 'highway' %}",
+            "{% set value = tags.highway %}",
+            "{% else %}",
+            "{% set key = 'landuse' %}",
+            "{% set value = tags.landuse %}",
+            "{% endif %}"
+        ],
         "description": "{{ tagTrans(key, value) }}"
     }
 }

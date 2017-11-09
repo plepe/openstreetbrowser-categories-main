@@ -10,8 +10,42 @@
         "17": "way[highway~\"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|residential|unclassified|service|living_street|pedestrian|track|road)$\"];"
     },
     "feature": {
-        "pre": "{% if tags.maxspeed is not defined %}\n{% set maxspeedKmh = null %}\n{% set maxspeed = null %}\n{% set unit = null %}\n{% else %}\n\n{% if tags.maxspeed|matches(\"^[0-9]+$\") %}\n{% set maxspeedKmh = tags.maxspeed %}\n{% set maxspeed = tags.maxspeed %}\n{% set unit = \"km/h\" %}\n{% endif %}\n\n\n{% set m = tags.maxspeed|matches(\"(^[0-9]+) mph$\") %}\n{% if m %}\n{% set maxspeedKmh = m[1] * 1.60934 %}\n{% set maxspeed = m[1] %}\n{% set unit = \"mph\" %}\n{% endif %}\n\n{% endif %}\n\n{% if not maxspeedKmh %}\n{% set color = \"#404040\" %}\n{% else %}\n{% set color = colorInterpolate([ 'green', 'orange', 'red' ], maxspeedKmh / 150) %}\n{% endif %}",
-        "description": "{% if maxspeed %}\n<span style='color: {{ color }}'>{{ maxspeed }} {{ unit }}</span>\n{% else %}\n{{ trans('unknown') }}\n{% endif %}",
+        "pre": [
+            "{% if tags.maxspeed is not defined %}",
+            "{% set maxspeedKmh = null %}",
+            "{% set maxspeed = null %}",
+            "{% set unit = null %}",
+            "{% else %}",
+            "",
+            "{% if tags.maxspeed|matches(\"^[0-9]+$\") %}",
+            "{% set maxspeedKmh = tags.maxspeed %}",
+            "{% set maxspeed = tags.maxspeed %}",
+            "{% set unit = \"km/h\" %}",
+            "{% endif %}",
+            "",
+            "",
+            "{% set m = tags.maxspeed|matches(\"(^[0-9]+) mph$\") %}",
+            "{% if m %}",
+            "{% set maxspeedKmh = m[1] * 1.60934 %}",
+            "{% set maxspeed = m[1] %}",
+            "{% set unit = \"mph\" %}",
+            "{% endif %}",
+            "",
+            "{% endif %}",
+            "",
+            "{% if not maxspeedKmh %}",
+            "{% set color = \"#404040\" %}",
+            "{% else %}",
+            "{% set color = colorInterpolate([ 'green', 'orange', 'red' ], maxspeedKmh / 150) %}",
+            "{% endif %}"
+        ],
+        "description": [
+            "{% if maxspeed %}",
+            "<span style='color: {{ color }}'>{{ maxspeed }} {{ unit }}</span>",
+            "{% else %}",
+            "{{ trans('unknown') }}",
+            "{% endif %}"
+        ],
         "style": {
             "color": "{{ color }}"
         },

@@ -9,6 +9,10 @@
     },
     "feature": {
         "description": "{{ tagTrans('route', tags.route) }}",
-        "title": "{% if tags.ref %}{{ tags.ref }} - {% endif %}\n\n{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}"
+        "title": [
+            "{% if tags.ref %}{{ tags.ref }} - {% endif %}",
+            "",
+            "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}"
+        ]
     }
 }

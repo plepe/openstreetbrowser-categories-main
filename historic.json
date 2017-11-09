@@ -18,8 +18,20 @@
         "uk": "Історія"
     },
     "query": {
-        "11": "(\nnode[historic~\"^(castle|archaeological_site|battlefield|monument)$\"];\nway[historic~\"^(castle|archaeological_site|battlefield|monument)$\"];\nrelation[historic~\"^(castle|archaeological_site|battlefield|monument)$\"];\n)",
-        "14": "(\nnode[historic];\nway[historic];\nrelation[historic];\n)"
+        "11": [
+            "(",
+            "node[historic~\"^(castle|archaeological_site|battlefield|monument)$\"];",
+            "way[historic~\"^(castle|archaeological_site|battlefield|monument)$\"];",
+            "relation[historic~\"^(castle|archaeological_site|battlefield|monument)$\"];",
+            ")"
+        ],
+        "14": [
+            "(",
+            "node[historic];",
+            "way[historic];",
+            "relation[historic];",
+            ")"
+        ]
     },
     "feature": {
         "description": "{{ tagTransList('historic', tags.historic) }}",

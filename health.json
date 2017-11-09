@@ -16,12 +16,49 @@
         "uk": "Здоров'я"
     },
     "query": {
-        "11": "(\nnode[amenity~\"^(hospital)$\"];\nway[amenity~\"^(hospital)$\"];\nrelation[amenity~\"^(hospital)$\"];\nnode[healthcare~\"^(hospital|clinic)$\"];\nway[healthcare~\"^(hospital|clinic)$\"];\nrelation[healthcare~\"^(hospital|clinic)$\"];\n)",
-        "14": "(\nnode[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];\nnode[emergency=defibrillator];\nway[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];\nrelation[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];\nnode[healthcare];\nway[healthcare];\nrelation[healthcare];\n)"
+        "11": [
+            "(",
+            "node[amenity~\"^(hospital)$\"];",
+            "way[amenity~\"^(hospital)$\"];",
+            "relation[amenity~\"^(hospital)$\"];",
+            "node[healthcare~\"^(hospital|clinic)$\"];",
+            "way[healthcare~\"^(hospital|clinic)$\"];",
+            "relation[healthcare~\"^(hospital|clinic)$\"];",
+            ")"
+        ],
+        "14": [
+            "(",
+            "node[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];",
+            "node[emergency=defibrillator];",
+            "way[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];",
+            "relation[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];",
+            "node[healthcare];",
+            "way[healthcare];",
+            "relation[healthcare];",
+            ")"
+        ]
     },
     "feature": {
-        "pre": "{% if tags.emergency in [ 'defibrillator' ] %}\n  {% set key = 'emergency' %}\n  {% set value = tags.emergency %}\n{% elseif tags.healthcare %}\n  {% set key = 'healthcare' %}\n  {% set value = tags.healthcare %}\n{% else %}\n  {% set key = 'amenity' %}\n  {% set value = tags.amenity %}\n{% endif %}\n",
-        "description": "{{ tagTrans(key, value) }}\n{% if attribute(tags, 'healthcare:speciality') %}\n-\n{{ tagTransList('healthcare:speciality', attribute(tags, 'healthcare:speciality')) }}\n{% endif %}",
+        "pre": [
+            "{% if tags.emergency in [ 'defibrillator' ] %}",
+            "  {% set key = 'emergency' %}",
+            "  {% set value = tags.emergency %}",
+            "{% elseif tags.healthcare %}",
+            "  {% set key = 'healthcare' %}",
+            "  {% set value = tags.healthcare %}",
+            "{% else %}",
+            "  {% set key = 'amenity' %}",
+            "  {% set value = tags.amenity %}",
+            "{% endif %}",
+            ""
+        ],
+        "description": [
+            "{{ tagTrans(key, value) }}",
+            "{% if attribute(tags, 'healthcare:speciality') %}",
+            "-",
+            "{{ tagTransList('healthcare:speciality', attribute(tags, 'healthcare:speciality')) }}",
+            "{% endif %}"
+        ],
         "markerSign": "{{ const[value] }}"
     },
     "const": {

@@ -15,11 +15,37 @@
         "ru": "Вооружённые силы"
     },
     "query": {
-        "11": "(\nnode[military~\"^(airfield|danger_area)$\"];\nnode[landuse=military];\nway[military~\"^(airfield|danger_area)$\"];\nway[landuse=military];\nrelation[military~\"^(airfield|danger_area)$\"];\nrelation[landuse=military];\n)",
-        "14": "(\nnode[military];\nnode[landuse=military];\nway[military];\nway[landuse=military];\nrelation[military];\nrelation[landuse=military];\n)"
+        "11": [
+            "(",
+            "node[military~\"^(airfield|danger_area)$\"];",
+            "node[landuse=military];",
+            "way[military~\"^(airfield|danger_area)$\"];",
+            "way[landuse=military];",
+            "relation[military~\"^(airfield|danger_area)$\"];",
+            "relation[landuse=military];",
+            ")"
+        ],
+        "14": [
+            "(",
+            "node[military];",
+            "node[landuse=military];",
+            "way[military];",
+            "way[landuse=military];",
+            "relation[military];",
+            "relation[landuse=military];",
+            ")"
+        ]
     },
     "feature": {
-        "pre": "{% if tags.military %}\n  {% set key = 'military' %}\n  {% set value = tags.military %}\n{% else %}\n  {% set key = 'landuse' %}\n  {% set value = tags.landuse %}\n{% endif %}",
+        "pre": [
+            "{% if tags.military %}",
+            "  {% set key = 'military' %}",
+            "  {% set value = tags.military %}",
+            "{% else %}",
+            "  {% set key = 'landuse' %}",
+            "  {% set value = tags.landuse %}",
+            "{% endif %}"
+        ],
         "description": "{{ tagTrans(key, value) }}"
     }
 }
