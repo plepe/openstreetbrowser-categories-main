@@ -1,4 +1,5 @@
 {
+    "type": "index",
     "name": {
         "ast": "Llugares",
         "cs": "Sídla",
@@ -16,7 +17,6 @@
         "ru": "Места",
         "uk": "Місцевість"
     },
-    "type": "index",
     "subCategories": [
         {
             "id": "places"

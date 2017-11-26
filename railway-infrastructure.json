@@ -10,42 +10,8 @@
         "17": "(node[railway];way[railway];)"
     },
     "feature": {
-        "style:casing": {
-            "weight": "{% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}5{% else %}{% if tags.railway == 'rail' %}{% if tags.usage == 'main' or tags.usage == 'branch' %}7{% else %}6{% endif %}{% elseif tags.railway == 'platform' %}5{% else %}6{% endif %}{% endif %}",
-            "color": "{% if tags.railway == 'rail' or tags.railway == 'narrow_gauge' or tags.railway == 'disused' %}{% if tags.usage == 'main' %}#ff8100{% elseif tags.usage == 'branch' %}#daca00{% else %}#000000{% endif %}{% elseif tags.railway == 'subway' %}#0000ff{% elseif tags.railway == 'tram' %}#ff00ff{% elseif tags.railway == 'light_rail' %}#00BD14{% elseif tags.railway == 'platform' %}#3f3f3f{% else %}#000000{% endif %}",
-            "dashArray": "2,4",
-            "lineCap": "butt"
-        },
-        "style": {
-            "color": "{% if tags.railway == 'rail' or tags.railway == 'narrow_gauge' or tags.railway == 'disused' %}{% if tags.usage == 'main' %}#ff8100{% elseif tags.usage == 'branch' %}#daca00{% else %}#000000{% endif %}{% elseif tags.railway == 'subway' %}#0000ff{% elseif tags.railway == 'tram' %}#ff00ff{% elseif tags.railway == 'light_rail' %}#00BD14{% elseif tags.railway == 'platform' %}#3f3f3f{% else %}#000000{% endif %}",
-            "weight": "{% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}1{% else %}{% if tags.railway == 'rail' %}{% if tags.usage == 'main' or tags.usage == 'branch' %}3{% else %}2{% endif %}{% elseif tags.railway == 'platform' %}1{% else %}2{% endif %}{% endif %}",
-            "dashArray": "{% if tags.railway == 'rail' %}{% elseif tags.railway == 'disused' %}1,5{% elseif tags.railway == 'abandoned' %}1,7{% endif %}",
-            "fillColor": [
-                "{% if tags.railway == 'platform' %}",
-                "#3f3f3f",
-                "{% elseif type == 'node' %}",
-                "#ffffff",
-                "{% endif %}"
-            ],
-            "fill": [
-                "{% if tags.railway == 'platform' %}",
-                "1",
-                "{% elseif type == 'node' %}",
-                "1",
-                "{% else %}",
-                "{% endif %}"
-            ],
-            "opacity": "1",
-            "fillOpacity": [
-                "{% if tags.railway == 'platform' %}",
-                "0.2",
-                "{% elseif type == 'node' %}",
-                "0",
-                "{% endif %}"
-            ]
-        },
-        "styles": "{% if tags.railway == 'narrow_gauge' %}default,casing{% else %}default{% endif %}",
-        "markerSign": "{% if tags.railway in [ 'halt', 'tram_stop', 'station', 'stop', 'subway_entrance' ] %}X{% endif %}",
+        "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
+        "description": "{{ tagTrans('railway', tags.railway) }}",
         "body": [
             "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}",
             "{% if tags.usage %}{{ keyTrans('usage') }}: {{ tagTrans('usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}",
@@ -54,22 +20,7 @@
             "{% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}",
             ""
         ],
-        "description": "{{ tagTrans('railway', tags.railway) }}",
-        "priority": [
-            "{% if tags.railway == 'station' %}0",
-            "{% elseif tags.railway in [ 'halt' ] %}1",
-            "{% elseif tags.railway in [ 'tram_stop', 'stop' ] %}2",
-            "{% elseif tags.railway in [ 'subway_entrance' ] %}3",
-            "{% else %}5",
-            "{% endif %}"
-        ],
-        "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
-        "listMarkerSymbol": [
-            "{% if tags.railway in [ 'station', 'halt', 'tram_stop', 'stop', 'subway_entrance', 'signal' ] %}",
-            "{% else %}",
-            "line",
-            "{% endif %}"
-        ],
+        "markerSign": "{% if tags.railway in [ 'halt', 'tram_stop', 'station', 'stop', 'subway_entrance' ] %}X{% endif %}",
         "markerSymbol": [
             "{% if tags.railway == 'signal' %}",
             "<svg width='10' height='10'>",
@@ -78,7 +29,56 @@
             "{% else %}",
             "{{ markerPointer({})|raw }}",
             "{% endif %}"
-        ]
+        ],
+        "listMarkerSymbol": [
+            "{% if tags.railway in [ 'station', 'halt', 'tram_stop', 'stop', 'subway_entrance', 'signal' ] %}",
+            "{% else %}",
+            "line",
+            "{% endif %}"
+        ],
+        "priority": [
+            "{% if tags.railway == 'station' %}0",
+            "{% elseif tags.railway in [ 'halt' ] %}1",
+            "{% elseif tags.railway in [ 'tram_stop', 'stop' ] %}2",
+            "{% elseif tags.railway in [ 'subway_entrance' ] %}3",
+            "{% else %}5",
+            "{% endif %}"
+        ],
+        "styles": "{% if tags.railway == 'narrow_gauge' %}default,casing{% else %}default{% endif %}",
+        "style": {
+            "weight": "{% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}1{% else %}{% if tags.railway == 'rail' %}{% if tags.usage == 'main' or tags.usage == 'branch' %}3{% else %}2{% endif %}{% elseif tags.railway == 'platform' %}1{% else %}2{% endif %}{% endif %}",
+            "color": "{% if tags.railway == 'rail' or tags.railway == 'narrow_gauge' or tags.railway == 'disused' %}{% if tags.usage == 'main' %}#ff8100{% elseif tags.usage == 'branch' %}#daca00{% else %}#000000{% endif %}{% elseif tags.railway == 'subway' %}#0000ff{% elseif tags.railway == 'tram' %}#ff00ff{% elseif tags.railway == 'light_rail' %}#00BD14{% elseif tags.railway == 'platform' %}#3f3f3f{% else %}#000000{% endif %}",
+            "opacity": "1",
+            "dashArray": "{% if tags.railway == 'rail' %}{% elseif tags.railway == 'disused' %}1,5{% elseif tags.railway == 'abandoned' %}1,7{% endif %}",
+            "fill": [
+                "{% if tags.railway == 'platform' %}",
+                "1",
+                "{% elseif type == 'node' %}",
+                "1",
+                "{% else %}",
+                "{% endif %}"
+            ],
+            "fillColor": [
+                "{% if tags.railway == 'platform' %}",
+                "#3f3f3f",
+                "{% elseif type == 'node' %}",
+                "#ffffff",
+                "{% endif %}"
+            ],
+            "fillOpacity": [
+                "{% if tags.railway == 'platform' %}",
+                "0.2",
+                "{% elseif type == 'node' %}",
+                "0",
+                "{% endif %}"
+            ]
+        },
+        "style:casing": {
+            "weight": "{% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}5{% else %}{% if tags.railway == 'rail' %}{% if tags.usage == 'main' or tags.usage == 'branch' %}7{% else %}6{% endif %}{% elseif tags.railway == 'platform' %}5{% else %}6{% endif %}{% endif %}",
+            "color": "{% if tags.railway == 'rail' or tags.railway == 'narrow_gauge' or tags.railway == 'disused' %}{% if tags.usage == 'main' %}#ff8100{% elseif tags.usage == 'branch' %}#daca00{% else %}#000000{% endif %}{% elseif tags.railway == 'subway' %}#0000ff{% elseif tags.railway == 'tram' %}#ff00ff{% elseif tags.railway == 'light_rail' %}#00BD14{% elseif tags.railway == 'platform' %}#3f3f3f{% else %}#000000{% endif %}",
+            "lineCap": "butt",
+            "dashArray": "2,4"
+        }
     },
     "info": [
         "<table>",

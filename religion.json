@@ -38,6 +38,7 @@
             "{% endif %}"
         ],
         "description": "{{ tagTrans(key, value) }}{% if tags.religion %}: {{ tagTransList('religion', tags.religion) }}{% endif %}",
+        "popupDescription": "{{ tagTrans(key, value) }}",
         "body": [
             "{% if tags.religion %}",
             "  {{ keyTrans('religion') }}: {{ tagTransList('religion', tags.religion) }}",
@@ -55,7 +56,6 @@
             "{% elseif tags.religion == 'jewish' %}✡",
             "{% elseif tags.religion == 'pagan' %}☆",
             "{% endif %}"
-        ],
-        "popupDescription": "{{ tagTrans(key, value) }}"
+        ]
     }
 }

@@ -23,8 +23,8 @@
     },
     "feature": {
         "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) |default(tagTrans('amenity', tags.amenity)) }}",
-        "markerSign": "{% if tags.amenity=='post_office' %}&#127972;{% elseif tags.amenity=='post_box'%}&#128238;{% elseif tags.amenity=='internet_cafe' %}&#128187;{% elseif tags.amenity=='telephone' %}&#9990;{% endif %}",
+        "description": "{{ tagTrans('amenity', tags.amenity) }}",
         "body": "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br/>{% endif %}",
-        "description": "{{ tagTrans('amenity', tags.amenity) }}"
+        "markerSign": "{% if tags.amenity=='post_office' %}&#127972;{% elseif tags.amenity=='post_box'%}&#128238;{% elseif tags.amenity=='internet_cafe' %}&#128187;{% elseif tags.amenity=='telephone' %}&#9990;{% endif %}"
     }
 }

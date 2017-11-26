@@ -34,36 +34,7 @@
             "  {% endif %}",
             "{% endif %}"
         ],
-        "style:casing": {
-            "color": "white",
-            "weight": "{{ weight }}",
-            "fill": null,
-            "opacity": "1"
-        },
-        "style": {
-            "color": "{{ color }}",
-            "weight": "{{ weight }}",
-            "dashArray": [
-                "{% if not tags.electrified or tags.electrified == 'no' %}",
-                "{% elseif tags.frequency == 0 %}",
-                "{% else %}",
-                "5,2",
-                "{% endif %}"
-            ],
-            "opacity": "1",
-            "lineCap": "butt"
-        },
-        "styles": "casing,default",
-        "markerSign": null,
-        "body": [
-            "{{ tagTrans('railway', tags.railway) }}<br/>",
-            "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}",
-            "{% if tags.usage %}{{ keyTrans('usage') }}: {{ tagTrans('usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}",
-            "{% if tags.service %}{{ keyTrans('service') }}: {{ tagTrans('service', tags.service ) }}<br/>{% endif %}",
-            "{{ keyTrans('gauge') }}: {{ tags.gauge|default(trans('unknown')) }}<br/>",
-            "{% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}",
-            ""
-        ],
+        "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
         "description": [
             "{{ tagTrans('railway', tags.railway) }} -",
             "",
@@ -73,9 +44,37 @@
             "  {{ tags.voltage|default(trans('unknown')) }}V, {{ tags.frequency|default(trans('unknown')) }}Hz",
             "{% endif %}"
         ],
+        "body": [
+            "{{ tagTrans('railway', tags.railway) }}<br/>",
+            "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}",
+            "{% if tags.usage %}{{ keyTrans('usage') }}: {{ tagTrans('usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}",
+            "{% if tags.service %}{{ keyTrans('service') }}: {{ tagTrans('service', tags.service ) }}<br/>{% endif %}",
+            "{{ keyTrans('gauge') }}: {{ tags.gauge|default(trans('unknown')) }}<br/>",
+            "{% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}"
+        ],
+        "markerSign": null,
+        "listMarkerSymbol": "line",
         "priority": "{% if tags.railway == 'station' %}0{% elseif tags.railway in [ 'halt', 'tram_stop' ] %}1{% else %}5{% endif %}",
-        "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
-        "listMarkerSymbol": "line"
+        "styles": "casing,default",
+        "style": {
+            "weight": "{{ weight }}",
+            "color": "{{ color }}",
+            "opacity": "1",
+            "lineCap": "butt",
+            "dashArray": [
+                "{% if not tags.electrified or tags.electrified == 'no' %}",
+                "{% elseif tags.frequency == 0 %}",
+                "{% else %}",
+                "5,2",
+                "{% endif %}"
+            ]
+        },
+        "style:casing": {
+            "weight": "{{ weight }}",
+            "color": "white",
+            "opacity": "1",
+            "fill": null
+        }
     },
     "info": [
         "<table>",
