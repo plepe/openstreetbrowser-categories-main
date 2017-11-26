@@ -1,0 +1,43 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Waterbodies",
+        "de": "Gewässer"
+    },
+    "query": {
+        "12": [
+            "(",
+            "node[natural~\"^(water|divide)$\"];",
+            "way[natural~\"^(water|divide)$\"];",
+            "relation[type=multipolygon][natural=water];",
+            "way[waterway];",
+            ")"
+        ]
+    },
+    "feature": {
+        "markerSign": null,
+        "style": {
+            "weight": [
+                "{% if tags.waterway == 'stream' %}",
+                "1.5",
+                "{% else %}",
+                "3",
+                "{% endif %}"
+            ],
+            "color": [
+                "{% if tags.natural == 'divide' %}",
+                "#ff0000",
+                "{% elseif tags.waterway in [ 'dam', 'weir' ] %}",
+                "#000000",
+                "{% else %}",
+                "#3388ff",
+                "{% endif %}"
+            ],
+            "text": [
+                "{% if type=='way' and tags.waterway in [ 'river', 'stream', 'canal', 'wadi', 'drystream' ] %}",
+                "{{ tags.name }}   ➔   ",
+                "{% endif %}"
+            ]
+        }
+    }
+}
