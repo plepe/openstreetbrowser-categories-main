@@ -16,6 +16,13 @@
     },
     "feature": {
         "markerSign": null,
+        "listMarkerSymbol": [
+            "{% if tags.natural == 'water' %}",
+            "polygon",
+            "{% else %}",
+            "line",
+            "{% endif %}"
+        ],
         "style": {
             "weight": [
                 "{% if tags.waterway == 'stream' %}",
