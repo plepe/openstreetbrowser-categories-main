@@ -5,16 +5,16 @@
         "en": "Railway electrification"
     },
     "query": {
-        "11": "way[railway=rail][railway!~'^(platform|abandoned|disused|station|proposed)$'][usage~'^(main|branch)$'];",
-        "14": "way[railway][railway!~'^(platform|abandoned|disused|station|proposed)$'];"
+        "11": "way[railway=rail][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'][usage~'^(main|branch)$'];",
+        "14": "way[railway][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'];"
     },
     "feature": {
         "pre": [
             "{% if tags.electrified and tags.electrified != 'no' %}",
-            "  {% if tags.voltage < 5000 %}",
-            "    {% set color = colorInterpolate([ 'green', 'red' ], tags.voltage / 1000) %}",
+            "  {% if tags.voltage < 1000 %}",
+            "    {% set color = colorInterpolate([ '#00ff00', 'blue' ], tags.voltage / 1000) %}",
             "  {% else %}",
-            "    {% set color = colorInterpolate([ 'red', 'blue' ], (tags.voltage - 1000) / 24000) %}",
+            "    {% set color = colorInterpolate([ 'blue', 'red' ], (tags.voltage - 1000) / 24000) %}",
             "  {% endif %}",
             "{% else %}",
             "  {% set color='black' %}",
@@ -53,34 +53,62 @@
             "{% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}"
         ],
         "markerSign": null,
+        "listMarkerSymbol": "line",
+        "styles": "casing,default",
         "priority": "{% if tags.railway == 'station' %}0{% elseif tags.railway in [ 'halt', 'tram_stop' ] %}1{% else %}5{% endif %}",
-        "styles": "{% if tags.railway == 'narrow_gauge' %}default,casing,highlight{% else %}default,highlight{% endif %}",
         "style": {
             "weight": "{{ weight }}",
-            "color": "white",
-            "opacity": "1",
-            "fill": null
-        },
-        "style:casing": {
-            "weight": "{{ weight + 2 }}",
-            "color": "{{ color }}",
             "lineCap": "butt",
-            "dashArray": "2,4"
-        },
-        "style:highlight": {
-            "weight": "{{ weight }}",
             "color": "{{ color }}",
             "opacity": "1",
-            "lineCap": "butt",
+            "fill": null,
             "dashArray": [
                 "{% if not tags.electrified or tags.electrified == 'no' %}",
                 "{% elseif tags.frequency == 0 %}",
                 "{% else %}",
                 "5,2",
                 "{% endif %}"
-            ],
-            "fill": "{% if tags.railway == 'platform' %}1{% else %}{% endif %}",
-            "fillColor": "{% if tags.railway == 'platform' %}#3f3f3f{% endif %}"
+            ]
+        },
+        "style:casing": {
+            "weight": "{{ weight }}",
+            "color": "white",
+            "opacity": "1",
+            "fill": null
         }
-    }
+    },
+    "info": [
+        "<table>",
+        "  {% set color = '#000000' %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'weight': 3, 'color': color })|raw }}</td>",
+        "    <td>{{ trans('not electrified') }}</td>",
+        "  </tr>",
+        "{% for i in range(0, 1000, 200) %}",
+        "  {% set color = colorInterpolate([ '#00ff00', 'blue' ], i / 1000) %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'weight': 3, 'color': color })|raw }}</td>",
+        "    <td>{{ i }}V</td>",
+        "  </tr>",
+        "{% endfor %}",
+        "",
+        "{% for i in range(3000, 25000, 2000) %}",
+        "  {% set color = colorInterpolate([ 'blue', 'red' ], (i - 1000) / 24000) %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'weight': 3, 'color': color })|raw }}</td>",
+        "    <td>{{ i }}V</td>",
+        "  </tr>",
+        "{% endfor %}",
+        "",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'weight': 3, 'color': color })|raw }}</td>",
+        "    <td>{{ trans('direct current') }}</td>",
+        "  </tr>",
+        "",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'styles': [ 'casing', 'default' ], 'style:casing': { 'weight': 3, 'color': 'white' }, 'style': { 'weight': '3', 'dashArray': '5,2', 'lineCap': 'butt', 'color': color } })|raw }}</td>",
+        "    <td>{{ trans('alternating current') }}</td>",
+        "  </tr>",
+        "</table>"
+    ]
 }

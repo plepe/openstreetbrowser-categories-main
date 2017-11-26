@@ -42,18 +42,28 @@
             "{% endif %}"
         ],
         "description": "{{ tagTrans(key, value) }}",
-        "markerSign": "{{ const[value] }}"
+        "markerSign": "{{ attribute(const, key ~ '=' ~ value) }}"
     },
     "const": {
-        "arts_centre": "🎨",
-        "cinema": "🎦",
-        "community_centre": "",
-        "fountain": "⛲",
-        "studio": "",
-        "theatre": "🎭",
-        "artwork": "🎨 ",
-        "gallery": "🖼",
-        "museum": "🏛 ",
-        "theme_park": ""
-    }
+        "amenity=arts_centre": "🎨",
+        "amenity=cinema": "🎦",
+        "amenity=community_centre": "",
+        "amenity=fountain": "⛲",
+        "amenity=studio": "",
+        "amenity=theatre": "🎭",
+        "tourism=artwork": "🎨 ",
+        "tourism=gallery": "🖼",
+        "tourism=museum": "🏛 ",
+        "tourism=theme_park": ""
+    },
+    "info": [
+        "<table>",
+        "{% for value, sign in const %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ sign }}</div></td>",
+        "    <td>{{ tagTrans(value|split('=')[0], value|split('=')[1]) }}</td>",
+        "  </tr>",
+        "{% endfor %}",
+        "</table>"
+    ]
 }
