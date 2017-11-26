@@ -46,9 +46,9 @@
             "{{ trans('unknown') }}",
             "{% endif %}"
         ],
+        "markerSign": null,
         "style": {
             "color": "{{ color }}"
-        },
-        "markerSign": null
+        }
     }
 }

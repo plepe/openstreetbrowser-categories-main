@@ -50,6 +50,11 @@
             "",
             "{% set constIndex = (key ~ \"=\" ~ value) %}"
         ],
+        "title": [
+            "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}",
+            "",
+            "{% if tags.capacity %}({{ tags.capacity }}){% endif %}"
+        ],
         "description": "{{ tagTrans(key, value) }}",
         "body": [
             "{% if tags.capacity %}",
@@ -57,11 +62,6 @@
             "{% endif %}"
         ],
         "markerSign": "{{ const[constIndex]['sign'] }}",
-        "title": [
-            "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}",
-            "",
-            "{% if tags.capacity %}({{ tags.capacity }}){% endif %}"
-        ],
         "priority": [
             "{% if const[constIndex] and const[constIndex]['priority']['capacity'] %}",
             "  {% set max=const[constIndex]['priority']['default'] %}",

@@ -1,22 +1,21 @@
 {
+    "type": "overpass",
     "name": {
         "de": "Radrouten",
         "en": "Cycle Routes"
     },
-    "type": "overpass",
     "query": {
         "6": "relation[type=route][route=bicycle][network~'^(icn)$']",
         "9": "relation[type=route][route=bicycle][network~'^(icn|ncn)$']",
         "12": "relation[type=route][route=bicycle][network~'^(icn|ncn|rcn)$']",
         "15": "relation[type=route][route=bicycle]"
     },
-    "minZoom": 6,
     "feature": {
+        "priority": "{% if tags.network=='icn' %}0{% elseif tags.network=='ncn' %}1{% elseif tags.network=='rcn' %}2{% else %}3{% endif %}",
         "style": {
-            "color": "{% if tags.network=='icn' %}#ff0000{% elseif tags.network=='ncn' %}#ff007f{% elseif tags.network=='rcn' %}#7f00ff{% else %}#0000ff{% endif %}",
             "weight": 4,
+            "color": "{% if tags.network=='icn' %}#ff0000{% elseif tags.network=='ncn' %}#ff007f{% elseif tags.network=='rcn' %}#7f00ff{% else %}#0000ff{% endif %}",
             "opacity": 1
-        },
-        "priority": "{% if tags.network=='icn' %}0{% elseif tags.network=='ncn' %}1{% elseif tags.network=='rcn' %}2{% else %}3{% endif %}"
+        }
     }
 }

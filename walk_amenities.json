@@ -49,8 +49,8 @@
             "",
             "{% set type_data = const[value] %}"
         ],
-        "description": "{{ tagTrans(key, value) }}",
         "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(tagTrans(key, value)) }}",
+        "description": "{{ tagTrans(key, value) }}",
         "markerSign": "{{ type_data.sign|raw }}",
         "priority": "{{ type_data.priority }}"
     },

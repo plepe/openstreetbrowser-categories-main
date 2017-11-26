@@ -34,43 +34,7 @@
             "  {% endif %}",
             "{% endif %}"
         ],
-        "style:casing": {
-            "weight": "{{ weight + 2 }}",
-            "color": "{{ color }}",
-            "dashArray": "2,4",
-            "lineCap": "butt"
-        },
-        "style": {
-            "color": "white",
-            "weight": "{{ weight }}",
-            "fill": null,
-            "opacity": "1"
-        },
-        "style:highlight": {
-            "color": "{{ color }}",
-            "weight": "{{ weight }}",
-            "dashArray": [
-                "{% if not tags.electrified or tags.electrified == 'no' %}",
-                "{% elseif tags.frequency == 0 %}",
-                "{% else %}",
-                "5,2",
-                "{% endif %}"
-            ],
-            "fillColor": "{% if tags.railway == 'platform' %}#3f3f3f{% endif %}",
-            "fill": "{% if tags.railway == 'platform' %}1{% else %}{% endif %}",
-            "opacity": "1",
-            "lineCap": "butt"
-        },
-        "styles": "{% if tags.railway == 'narrow_gauge' %}default,casing,highlight{% else %}default,highlight{% endif %}",
-        "markerSign": null,
-        "body": [
-            "{{ tagTrans('railway', tags.railway) }}<br/>",
-            "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}",
-            "{% if tags.usage %}{{ keyTrans('usage') }}: {{ tagTrans('usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}",
-            "{% if tags.service %}{{ keyTrans('service') }}: {{ tagTrans('service', tags.service ) }}<br/>{% endif %}",
-            "{{ keyTrans('gauge') }}: {{ tags.gauge|default(trans('unknown')) }}<br/>",
-            "{% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}"
-        ],
+        "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
         "description": [
             "{{ tagTrans('railway', tags.railway) }} -",
             "",
@@ -80,7 +44,43 @@
             "  {{ tags.voltage|default(trans('unknown')) }}V, {{ tags.frequency|default(trans('unknown')) }}Hz",
             "{% endif %}"
         ],
+        "body": [
+            "{{ tagTrans('railway', tags.railway) }}<br/>",
+            "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}",
+            "{% if tags.usage %}{{ keyTrans('usage') }}: {{ tagTrans('usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}",
+            "{% if tags.service %}{{ keyTrans('service') }}: {{ tagTrans('service', tags.service ) }}<br/>{% endif %}",
+            "{{ keyTrans('gauge') }}: {{ tags.gauge|default(trans('unknown')) }}<br/>",
+            "{% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}"
+        ],
+        "markerSign": null,
         "priority": "{% if tags.railway == 'station' %}0{% elseif tags.railway in [ 'halt', 'tram_stop' ] %}1{% else %}5{% endif %}",
-        "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}"
+        "styles": "{% if tags.railway == 'narrow_gauge' %}default,casing,highlight{% else %}default,highlight{% endif %}",
+        "style": {
+            "weight": "{{ weight }}",
+            "color": "white",
+            "opacity": "1",
+            "fill": null
+        },
+        "style:casing": {
+            "weight": "{{ weight + 2 }}",
+            "color": "{{ color }}",
+            "lineCap": "butt",
+            "dashArray": "2,4"
+        },
+        "style:highlight": {
+            "weight": "{{ weight }}",
+            "color": "{{ color }}",
+            "opacity": "1",
+            "lineCap": "butt",
+            "dashArray": [
+                "{% if not tags.electrified or tags.electrified == 'no' %}",
+                "{% elseif tags.frequency == 0 %}",
+                "{% else %}",
+                "5,2",
+                "{% endif %}"
+            ],
+            "fill": "{% if tags.railway == 'platform' %}1{% else %}{% endif %}",
+            "fillColor": "{% if tags.railway == 'platform' %}#3f3f3f{% endif %}"
+        }
     }
 }

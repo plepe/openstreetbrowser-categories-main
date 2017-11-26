@@ -2,6 +2,8 @@
     "type": "index",
     "subCategories": [
         {
+            "id": "leisure_sport_shopping",
+            "type": "index",
             "name": {
                 "ast": "Recréu, deportes y compres",
                 "ca": "Oci, esport i compres",
@@ -21,8 +23,6 @@
                 "ru": "Досуг",
                 "uk": "Дозвілля"
             },
-            "id": "leisure_sport_shopping",
-            "type": "index",
             "subCategories": [
                 {
                     "id": "gastro"
@@ -42,6 +42,8 @@
             ]
         },
         {
+            "id": "services",
+            "type": "index",
             "name": {
                 "ast": "Servicios",
                 "ca": "Serveis",
@@ -61,8 +63,6 @@
                 "ru": "Услуги",
                 "uk": "Послуги"
             },
-            "id": "services",
-            "type": "index",
             "subCategories": [
                 {
                     "id": "emergency"
@@ -91,6 +91,8 @@
             "id": "culture_religion"
         },
         {
+            "id": "transport",
+            "type": "index",
             "name": {
                 "ast": "Tresporte",
                 "cs": "Doprava",
@@ -106,19 +108,16 @@
                 "pl": "Transport",
                 "ro": "Transport",
                 "ru": "Транспорт",
-                "tr": "Toplu Taşıma",
                 "uk": "Транспорт"
             },
-            "id": "transport",
-            "type": "index",
             "subCategories": [
                 {
+                    "id": "transport_walk",
+                    "type": "index",
                     "name": {
                         "de": "Zu Fuß gehen",
                         "en": "Walking"
                     },
-                    "id": "transport_walk",
-                    "type": "index",
                     "subCategories": [
                         {
                             "id": "walk_amenities"
@@ -129,12 +128,12 @@
                     ]
                 },
                 {
+                    "id": "transport_cycle",
+                    "type": "index",
                     "name": {
                         "de": "Radfahren",
                         "en": "Cycling"
                     },
-                    "id": "transport_cycle",
-                    "type": "index",
                     "subCategories": [
                         {
                             "id": "cycle_amenities"
@@ -145,6 +144,8 @@
                     ]
                 },
                 {
+                    "id": "transport_pt",
+                    "type": "index",
                     "name": {
                         "ast": "Tresporte Públicu",
                         "cs": "Veřejná doprava",
@@ -162,8 +163,6 @@
                         "ru": "Общественный транспорт",
                         "uk": "Громадський транспорт"
                     },
-                    "id": "transport_pt",
-                    "type": "index",
                     "subCategories": [
                         {
                             "id": "pt_amenities"
@@ -177,6 +176,8 @@
                     ]
                 },
                 {
+                    "id": "transport_car",
+                    "type": "index",
                     "name": {
                         "ast": "Tráficu individual",
                         "cs": "Individuální doprava",
@@ -191,8 +192,6 @@
                         "ru": "Частный транспорт",
                         "uk": "Приватний транспорт"
                     },
-                    "id": "transport_car",
-                    "type": "index",
                     "subCategories": [
                         {
                             "id": "car_amenities"
@@ -205,12 +204,12 @@
             ]
         },
         {
+            "id": "infrastructure",
+            "type": "index",
             "name": {
                 "de": "Infrastruktur",
                 "en": "Infrastructure"
             },
-            "id": "infrastructure",
-            "type": "index",
             "subCategories": [
                 {
                     "id": "agriculture"
@@ -267,12 +266,12 @@
             "id": "places_geo"
         },
         {
+            "id": "special",
+            "type": "index",
             "name": {
                 "en": "Special",
                 "de": "Spezial"
             },
-            "id": "special",
-            "type": "index",
             "subCategories": [
                 {
                     "id": "wikipedia"
