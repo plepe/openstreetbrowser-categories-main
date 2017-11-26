@@ -102,7 +102,6 @@
         "    <td>{{ markerLine(evaluate({ \"railway\": \"subway\" }))|raw }}</td>",
         "    <td>{{ tagTrans('railway', 'subway') }}</td>",
         "  </tr>",
-        "{{ console_log(map) }}",
         "{% if map.zoom >= 14 %}",
         "  <tr>",
         "    <td>{{ markerLine(evaluate({ \"railway\": \"tram\" }))|raw }}</td>",
