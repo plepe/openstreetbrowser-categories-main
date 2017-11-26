@@ -54,13 +54,14 @@
         ],
         "markerSign": null,
         "listMarkerSymbol": "line",
-        "priority": "{% if tags.railway == 'station' %}0{% elseif tags.railway in [ 'halt', 'tram_stop' ] %}1{% else %}5{% endif %}",
         "styles": "casing,default",
+        "priority": "{% if tags.railway == 'station' %}0{% elseif tags.railway in [ 'halt', 'tram_stop' ] %}1{% else %}5{% endif %}",
         "style": {
             "weight": "{{ weight }}",
+            "lineCap": "butt",
             "color": "{{ color }}",
             "opacity": "1",
-            "lineCap": "butt",
+            "fill": null,
             "dashArray": [
                 "{% if not tags.electrified or tags.electrified == 'no' %}",
                 "{% elseif tags.frequency == 0 %}",

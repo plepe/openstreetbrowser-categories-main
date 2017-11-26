@@ -204,24 +204,11 @@
             ]
         },
         {
-            "id": "agriculture_industry",
+            "id": "infrastructure",
             "type": "index",
             "name": {
-                "ast": "Agricultura ya industria",
-                "cs": "Průmysl a zemědělství",
-                "de": "Landwirtschaft und Industrie",
-                "el": "Γεωργία και Βιομηχανία",
-                "en": "Agriculture and Industry",
-                "et": "Põllumajandus ja tööstus",
-                "fr": "Agriculture et industrie",
-                "hu": "Mezőgazdaság és ipar",
-                "it": "Agricoltura e industria",
-                "ja": "農業と工業",
-                "nl": "Landbouw en Industrie",
-                "pl": "Rolnictwo i Przemysł",
-                "ro": "Agricultura si industrie",
-                "ru": "Сельское хозяйство и промышленность",
-                "uk": "Сільське господартво та промисловість"
+                "de": "Infrastruktur",
+                "en": "Infrastructure"
             },
             "subCategories": [
                 {
@@ -269,6 +256,9 @@
                 },
                 {
                     "id": "works"
+                },
+                {
+                    "id": "buildings"
                 }
             ]
         },

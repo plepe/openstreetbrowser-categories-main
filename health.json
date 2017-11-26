@@ -49,8 +49,7 @@
             "{% else %}",
             "  {% set key = 'amenity' %}",
             "  {% set value = tags.amenity %}",
-            "{% endif %}",
-            ""
+            "{% endif %}"
         ],
         "description": [
             "{{ tagTrans(key, value) }}",

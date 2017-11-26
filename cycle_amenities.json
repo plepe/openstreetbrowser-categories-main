@@ -29,8 +29,7 @@
             "node[vending~\"^(bicycle_tube)$\"];",
             "way[vending~\"^(bicycle_tube)$\"];",
             "relation[vending~\"^(bicycle_tube)$\"];",
-            ")",
-            ""
+            ")"
         ]
     },
     "feature": {
