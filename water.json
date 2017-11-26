@@ -39,5 +39,29 @@
                 "{% endif %}"
             ]
         }
-    }
+    },
+    "info": [
+        "<table>",
+        "  <tr>",
+        "    <td>{{ markerPolygon(evaluate({ \"natural\": \"water\" }))|raw }}</td>",
+        "    <td>{{ tagTrans('natural', 'water') }}</td>",
+        "  </tr>",
+        "  <tr>",
+        "    <td>{{ markerLine(evaluate({ \"waterway\": \"river\" }))|raw }}</td>",
+        "    <td>{{ tagTrans('waterway', 'river') }}</td>",
+        "  </tr>",
+        "  <tr>",
+        "    <td>{{ markerLine(evaluate({ \"waterway\": \"stream\" }))|raw }}</td>",
+        "    <td>{{ tagTrans('waterway', 'stream') }}</td>",
+        "  </tr>",
+        "  <tr>",
+        "    <td>{{ markerLine(evaluate({ \"waterway\": \"dam\" }))|raw }}</td>",
+        "    <td>{{ tagTrans('waterway', 'dam') }}, {{ tagTrans('waterway', 'weir') }}</td>",
+        "  </tr>",
+        "  <tr>",
+        "    <td>{{ markerLine(evaluate({ \"natural\": \"divide\" }))|raw }}</td>",
+        "    <td>{{ tagTrans('natural', 'divide') }}</td>",
+        "  </tr>",
+        "</table>"
+    ]
 }
