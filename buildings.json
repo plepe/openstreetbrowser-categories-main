@@ -28,7 +28,7 @@
             "{{ p }}"
         ],
         "style": {
-            "weight": "1",
+            "width": "1",
             "color": "#000000",
             "fillColor": "#000000"
         }

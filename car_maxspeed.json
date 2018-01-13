@@ -51,7 +51,7 @@
         "markerSign": null,
         "listMarkerSymbol": "line",
         "style": {
-            "weight": "3",
+            "width": "3",
             "color": "{{ color }}"
         }
     },

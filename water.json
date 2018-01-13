@@ -57,7 +57,7 @@
             "{% endif %}"
         ],
         "style": {
-            "weight": [
+            "width": [
                 "{% if tags.waterway == 'river' %}",
                 "4",
                 "{% elseif tags.waterway == 'stream' %}",
