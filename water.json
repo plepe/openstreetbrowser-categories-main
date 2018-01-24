@@ -78,10 +78,11 @@
                 "{% endif %}"
             ],
             "text": [
-                "{% if type=='way' and tags.waterway in [ 'river', 'stream', 'canal', 'wadi', 'drystream' ] %}",
+                "{% if type=='way' and tags.waterway in [ 'river', 'stream', 'canal', 'ditch', 'wadi', 'drystream' ] %}",
                 "{{ tags.name }}   ➔   ",
                 "{% endif %}"
-            ]
+            ],
+            "textRepeat": "1"
         }
     },
     "info": [
