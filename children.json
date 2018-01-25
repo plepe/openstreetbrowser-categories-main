@@ -39,16 +39,41 @@
         ],
         "markerSign": [
             "{% if tags.leisure=='playground' %}",
-            "&#9977;",
+            "⛹",
             "{% elseif tags.leisure=='summer_camp'%}",
-            "&#127957;",
+            "🏕",
             "{% elseif tags.leisure=='indoor_play' or tags.kids_area %}",
-            "&#127968;",
+            "🏠",
             "{% elseif tags.shop=='baby_goods' or tags.shop=='toys' %}",
             "<i class=\"fa fa-shopping-cart\"></i>",
             "{% elseif tags.amenity=='toilets' and tags.diaper %}",
-            "&#128701;&#128700;",
+            "🚽🚼",
             "{% endif %}"
         ]
-    }
+    },
+    "info": [
+        "<table>",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>⛹</div></td>",
+        "    <td>{{ tagTrans('leisure', 'playground') }}</td>",
+        "  </tr>",
+        "",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>🏕</div></td>",
+        "    <td>{{ tagTrans('leisure', 'summer_camp') }}</td>",
+        "  </tr>",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>🏠</div></td>",
+        "    <td>{{ keyTrans('kids_area') }}</td>",
+        "  </tr>",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'><i class=\"fa fa-shopping-cart\"></i></div></td>",
+        "    <td>{{ keyTrans('shop') }}</td>",
+        "  </tr>",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>🚽🚼</div></td>",
+        "    <td>{{ tagTrans('amenity', 'toilets') }} with diaper changing table</td>",
+        "  </tr>",
+        "</table>"
+    ]
 }
