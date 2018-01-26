@@ -20,6 +20,13 @@
     "query": {
         "13": [
             "(",
+            "node[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|motel|wilderness_hut)$\"];",
+            "way[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|motel|wilderness_hut)$\"];",
+            "relation[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|motel|wilderness_hut)$\"]",
+            ")"
+        ],
+        "16": [
+            "(",
             "node[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];",
             "way[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];",
             "relation[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"]",
@@ -28,19 +35,64 @@
     },
     "feature": {
         "description": "{{ tagTrans('tourism', tags.tourism) }}",
-        "markerSign": "{{ const[tags.tourism] }}"
+        "markerSign": "{{ const[tags.tourism].sign|raw }}"
     },
+    "info": [
+        "<table>",
+        "{% for value, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "    <td>{{ tagTrans('tourism', value) }}</td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "</table>"
+    ],
     "const": {
-        "alpine_hut": "🛌",
-        "apartment": "🛌",
-        "camp_site": "⛺",
-        "caravan_site": "⛺",
-        "chalet": "🛌",
-        "guest_house": "🛌",
-        "hostel": "🛌",
-        "hotel": "🛌",
-        "information": "ℹ️",
-        "motel": "🛌",
-        "wilderness_hut": ""
+        "alpine_hut": {
+            "sign": "🛌",
+            "zoom": 13
+        },
+        "apartment": {
+            "sign": "🛌",
+            "zoom": 13
+        },
+        "camp_site": {
+            "sign": "⛺",
+            "zoom": 13
+        },
+        "caravan_site": {
+            "sign": "⛺",
+            "zoom": 13
+        },
+        "chalet": {
+            "sign": "🛌",
+            "zoom": 13
+        },
+        "guest_house": {
+            "sign": "🛌",
+            "zoom": 13
+        },
+        "hostel": {
+            "sign": "🛌",
+            "zoom": 13
+        },
+        "hotel": {
+            "sign": "🛌",
+            "zoom": 13
+        },
+        "motel": {
+            "sign": "🛌",
+            "zoom": 13
+        },
+        "wilderness_hut": {
+            "sign": "",
+            "zoom": 13
+        },
+        "information": {
+            "sign": "ℹ️",
+            "zoom": 16
+        }
     }
 }
