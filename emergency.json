@@ -19,14 +19,18 @@
     },
     "query": {
         "11": [
-            "(node[amenity~\"^(fire_station|hospital)$\"];",
+            "(",
+            "node[amenity~\"^(fire_station|hospital)$\"];",
             "way[amenity~\"^(fire_station|hospital)$\"];",
-            "relation[amenity~\"^(fire_station|hospital)$\"])"
+            "relation[amenity~\"^(fire_station|hospital)$\"];",
+            ")"
         ],
         "13": [
-            "(node[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"];",
+            "(",
+            "node[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"];",
             "way[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"];",
-            "relation[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"])"
+            "relation[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"];",
+            ")"
         ]
     },
     "feature": {
@@ -38,17 +42,33 @@
             "{% endif %}"
         ]
     },
+    "info": [
+        "<table>",
+        "{% for value, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign }}</div></td>",
+        "    <td>{{ tagTrans('amenity', value) }}</td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "</table>"
+    ],
     "const": {
         "fire_station": {
+            "zoom": "11",
             "sign": "🔥"
         },
         "hospital": {
+            "zoom": "11",
             "sign": "🏥"
         },
         "police": {
+            "zoom": "13",
             "sign": "👮"
         },
         "emergency_phone": {
+            "zoom": "13",
             "sign": "📞"
         }
     }
