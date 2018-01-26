@@ -16,13 +16,42 @@
         "uk": "Громадські місця"
     },
     "query": {
-        "12": "(node[amenity~'^(court_house|embassy|public_building|townhall)$'];way[amenity~'^(court_house|embassy|public_building|townhall)$'];relation[amenity~'^(court_house|embassy|public_building|townhall)$'];node[amenity=recycling][recyling_type=centre];way[amenity=recycling][recyling_type=centre];relation[amenity=recycling][recyling_type=centre];);",
-        "16": "(node[amenity~'^(court_house|embassy|public_building|townhall|clock|drinking_water|recycling)$'];way[amenity~'^(court_house|embassy|public_building|townhall|recycling)$'];relation[amenity~'^(court_house|embassy|public_building|townhall|recycling)$'];node[drinking_water]);"
+        "12": [
+            "(",
+            "node[amenity~'^(courthouse|embassy|public_building|townhall)$'];",
+            "way[amenity~'^(courthouse|embassy|public_building|townhall)$'];",
+            "relation[amenity~'^(courthouse|embassy|public_building|townhall)$'];",
+            "node[amenity=recycling][recyling_type=centre];",
+            "way[amenity=recycling][recyling_type=centre];",
+            "relation[amenity=recycling][recyling_type=centre];",
+            ");"
+        ],
+        "16": [
+            "(",
+            "node[amenity~'^(courthouse|embassy|public_building|townhall|clock|drinking_water|recycling)$'];",
+            "way[amenity~'^(courthouse|embassy|public_building|townhall|recycling)$'];",
+            "relation[amenity~'^(courthouse|embassy|public_building|townhall|recycling)$'];",
+            "node[drinking_water];",
+            ");"
+        ]
     },
     "feature": {
         "title": "{{ tags.name|default(tags.operator)|default(tagTrans('amenity', tags.amenity)) }}",
         "description": "{{ tagTrans('amenity', tags.amenity) }}",
         "body": "{% if tags.operator %}{{ keyTrans('operator') }}: {{ tags.operator }}<br/>{% endif %}",
-        "markerSign": "{% if tags.amenity=='post_office' %}&#127972;{% elseif tags.amenity=='post_box'%}&#128238;{% elseif tags.amenity=='internet_cafe' %}&#128187;{% elseif tags.amenity=='telephone' %}&#9990;{% endif %}"
+        "markerSign": [
+            "{% if const[tags.amenity] %}",
+            "{{ attribute(const, tags.amenity)|raw }}",
+            "{% endif %}"
+        ]
+    },
+    "const": {
+        "courthouse": "⚖",
+        "clock": "<i class='fa fa-clock-o' aria-hidden='true'></i>",
+        "drinking_water": "<img src='maki:drinking-water'>",
+        "embassy": "<img src='maki:embassy'>",
+        "public_building": "<img src='maki:building'>",
+        "recycling": "<img src='maki:recycling'>",
+        "townhall": "<img src='maki:town-hall'>"
     }
 }
