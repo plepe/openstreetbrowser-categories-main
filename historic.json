@@ -35,10 +35,48 @@
     },
     "feature": {
         "description": "{{ tagTransList('historic', tags.historic) }}",
-        "markerSign": "{{ const[tags.historic] }}"
+        "markerSign": "{{ const[tags.historic].sign|raw }}"
     },
+    "info": [
+        "<table>",
+        "{% for value, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "    <td>{{ tagTrans('amenity', value) }}</td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "</table>"
+    ],
     "const": {
-        "castle": "🏰",
-        "aircraft": "✈"
+        "archaeological_site": {
+            "sign": "",
+            "zoom": 11
+        },
+        "battlefield": {
+            "sign": "",
+            "zoom": 11
+        },
+        "castle": {
+            "sign": "<img src='maki:castle'>",
+            "zoom": 11
+        },
+        "aircraft": {
+            "sign": "<img src='maki:airport'>",
+            "zoom": 14
+        },
+        "memorial": {
+            "sign": "<img src='maki:monument?size=11'>",
+            "zoom": 14
+        },
+        "monument": {
+            "sign": "<img src='maki:monument?size=15'>",
+            "zoom": 11
+        },
+        "other": {
+            "sign": "",
+            "zoom": 14
+        }
     }
 }
