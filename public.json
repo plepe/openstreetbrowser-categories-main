@@ -36,15 +36,32 @@
         ]
     },
     "feature": {
-        "title": "{{ tags.name|default(tags.operator)|default(tagTrans('amenity', tags.amenity)) }}",
-        "description": "{{ tagTrans('amenity', tags.amenity) }}",
+        "pre": [
+            "{% if tags.drinking_water %}",
+            "{% set value = 'drinking_water' %}",
+            "{% else %}",
+            "{% set value = tags.amenity %}",
+            "{% endif %}"
+        ],
+        "title": "{{ tags.name|default(tags.operator)|default(tagTrans('amenity', value)) }}",
+        "description": "{{ tagTrans('amenity', value) }}",
         "body": "{% if tags.operator %}{{ keyTrans('operator') }}: {{ tags.operator }}<br/>{% endif %}",
         "markerSign": [
-            "{% if const[tags.amenity] %}",
-            "{{ attribute(const, tags.amenity)|raw }}",
+            "{% if const[value] %}",
+            "{{ const[value]|raw }}",
             "{% endif %}"
         ]
     },
+    "info": [
+        "<table>",
+        "{% for value, sign in const %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ sign|raw }}</div></td>",
+        "    <td>{{ tagTrans('amenity', value) }}</td>",
+        "  </tr>",
+        "{% endfor %}",
+        "</table>"
+    ],
     "const": {
         "courthouse": "⚖",
         "clock": "<i class='fa fa-clock-o' aria-hidden='true'></i>",
