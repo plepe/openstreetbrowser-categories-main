@@ -28,17 +28,28 @@
     },
     "feature": {
         "description": "{{ tagTrans('tourism', tags.tourism) }}",
-        "markerSign": "{{ const[tags.tourism] }}"
+        "markerSign": "{{ const[tags.tourism]|raw }}"
     },
+    "info": [
+        "<table>",
+        "{% for value, sign in const %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ sign|raw }}</div></td>",
+        "    <td>{{ tagTrans('amenity', value) }}</td>",
+        "  </tr>",
+        "{% endfor %}",
+        "</table>"
+    ],
     "const": {
         "aquarium": "🐟",
         "artwork": "🎨 ",
-        "attraction": "",
+        "attraction": "<img src='maki:attraction'>",
         "gallery": "🖼",
-        "museum": "",
-        "picnic_site": "",
-        "theme_park": "",
-        "viewpoint": "",
-        "zoo": "🦁"
+        "museum": "<img src='maki:museum'>",
+        "picnic_site": "<img src='maki:picnic-site'>",
+        "theme_park": "<img src='maki:amusement-park'>",
+        "viewpoint": "<i class='fa fa-eye' aria-hidden='true'></i>",
+        "zoo": "🦁",
+        "other": ""
     }
 }
