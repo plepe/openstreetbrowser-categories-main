@@ -33,11 +33,32 @@
     },
     "feature": {
         "description": "{{ tagTrans('amenity', tags.amenity) }}",
-        "markerSign": "{{ const[tags.amenity] }}"
+        "markerSign": "{{ const[tags.amenity].sign|raw }}"
     },
+    "info": [
+        "<table>",
+        "{% for value, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "    <td>{{ tagTrans('amenity', value) }}</td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "</table>"
+    ],
     "const": {
-        "atm": "💵",
-        "bank": "🏢",
-        "bureau_de_change": "⇄"
+        "atm": {
+            "sign": "<img src='maki:bank?size=11'>",
+            "zoom": 15
+        },
+        "bank": {
+            "sign": "<img src='maki:building'>",
+            "zoom": 14
+        },
+        "bureau_de_change": {
+            "sign": "⇄",
+            "zoom": 15
+        }
     }
 }
