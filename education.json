@@ -17,14 +17,91 @@
         "uk": "Освіта"
     },
     "query": {
-        "11": "(node[amenity~'^(college|university|library)$'];way[amenity~'^(college|university|library)$'];relation[amenity~'^(college|university|library)$'];)",
-        "14": "(node[amenity~'^(college|university|library|school|kindergarten|language_school)$'];way[amenity~'^(college|university|library|school|kindergarten|language_school)$'];relation[amenity~'^(college|university|library|school|kindergarten|language_school)$'];)",
-        "16": "(node[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];way[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];relation[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];)"
+        "11": [
+            "(",
+            "node[amenity~'^(college|university|library)$'];",
+            "way[amenity~'^(college|university|library)$'];",
+            "relation[amenity~'^(college|university|library)$'];",
+            ")"
+        ],
+        "14": [
+            "(",
+            "node[amenity~'^(college|university|library|school|kindergarten|language_school)$'];",
+            "way[amenity~'^(college|university|library|school|kindergarten|language_school)$'];",
+            "relation[amenity~'^(college|university|library|school|kindergarten|language_school)$'];",
+            ")"
+        ],
+        "16": [
+            "(",
+            "node[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];",
+            "way[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];",
+            "relation[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];",
+            ")"
+        ]
     },
     "feature": {
         "description": "{{ tagTrans('amenity', tags.amenity) }}",
         "body": "{% if tags.operator %}{{ keyTrans('operator') }}: {{ tags.operator }}<br/>{% endif %}",
-        "markerSign": "{% if tags.amenity == 'university' or tags.amenity == 'college' %}🎓{% elseif tags.amenity == 'library' %}🕮{% elseif tags.amenity == 'school' or tags.amenity == 'language_school' %}🏫{% elseif tags.amenity == 'kindergarten' %}⛹{% elseif tags.amenity == 'public_bookcase' %}📚{% endif %}",
-        "priority": "{% if tags.amenity == 'university' %}0{% elseif tags.amenity == 'college' %}1{% elseif tags.amenity == 'library' %}2{% elseif tags.amenity == 'school' or tags.amenity == 'language_school' %}3{% elseif tags.amenity == 'kindergarten' %}4{% elseif tags.amenity == 'public_bookcase' %}5{% endif %}"
+        "markerSign": [
+            "{% set data = const[tags.amenity] %}",
+            "{% if data %}",
+            "{{ data.sign }}",
+            "{% endif %}"
+        ],
+        "priority": [
+            "{% set data = const[tags.amenity] %}",
+            "{% if data %}",
+            "{{ data.priority }}",
+            "{% endif %}"
+        ]
+    },
+    "info": [
+        "<table>",
+        "{% for value, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign }}</div></td>",
+        "    <td>{{ tagTrans('amenity', value) }}</td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "</table>"
+    ],
+    "const": {
+        "university": {
+            "priority": 0,
+            "sign": "🎓",
+            "zoom": 11
+        },
+        "college": {
+            "priority": 1,
+            "sign": "🎓",
+            "zoom": 11
+        },
+        "library": {
+            "priority": 2,
+            "sign": "🕮",
+            "zoom": 11
+        },
+        "school": {
+            "priority": 3,
+            "sign": "🏫",
+            "zoom": 14
+        },
+        "language_school": {
+            "priority": 3,
+            "sign": "🏫",
+            "zoom": 14
+        },
+        "kindergarten": {
+            "priority": 4,
+            "sign": "⛹",
+            "zoom": 14
+        },
+        "public_bookcase": {
+            "priority": 5,
+            "sign": "📚",
+            "zoom": 16
+        }
     }
 }
