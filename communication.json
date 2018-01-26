@@ -18,13 +18,59 @@
         "uk": "Телекомунікації"
     },
     "query": {
-        "13": "(node[amenity~'^(post_office|internet_cafe)$'];way[amenity~'^(post_office|internet_cafe)$'];relation[amenity~'^(post_office|internet_cafe)$'];);",
-        "16": "(node[amenity~'^(post_office|internet_cafe|post_box|telephone)$'];way[amenity~'^(post_office|internet_cafe)$'];relation[amenity~'^(post_office|internet_cafe)$'];);"
+        "13": [
+            "(",
+            "node[amenity~'^(post_office|internet_cafe)$'];",
+            "way[amenity~'^(post_office|internet_cafe)$'];",
+            "relation[amenity~'^(post_office|internet_cafe)$'];",
+            ");"
+        ],
+        "16": [
+            "(node[amenity~'^(post_office|internet_cafe|post_box|telephone)$'];",
+            "way[amenity~'^(post_office|internet_cafe)$'];",
+            "relation[amenity~'^(post_office|internet_cafe)$'];",
+            ");"
+        ]
     },
     "feature": {
         "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) |default(tagTrans('amenity', tags.amenity)) }}",
         "description": "{{ tagTrans('amenity', tags.amenity) }}",
         "body": "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br/>{% endif %}",
-        "markerSign": "{% if tags.amenity=='post_office' %}&#127972;{% elseif tags.amenity=='post_box'%}&#128238;{% elseif tags.amenity=='internet_cafe' %}&#128187;{% elseif tags.amenity=='telephone' %}&#9990;{% endif %}"
+        "markerSign": [
+            "{% set data = const[tags.amenity] %}",
+            "{% if data %}",
+            "{{ data.sign|raw }}",
+            "{% endif %}"
+        ]
+    },
+    "info": [
+        "<table>",
+        "{% for value, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "    <td>{{ tagTrans('amenity', value) }}</td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "</table>"
+    ],
+    "const": {
+        "post_office": {
+            "sign": "<img src='maki:post?size=15'>",
+            "zoom": 13
+        },
+        "post_box": {
+            "sign": "<img src='maki:post?size=11'>",
+            "zoom": 16
+        },
+        "internet_cafe": {
+            "sign": "<i class='fa fa-laptop' aria-hidden='true'></i>",
+            "zoom": 13
+        },
+        "telephone": {
+            "sign": "<img src='maki:telephone'>",
+            "zoom": 16
+        }
     }
 }
