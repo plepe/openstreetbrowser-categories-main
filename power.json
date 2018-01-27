@@ -28,7 +28,7 @@
             "{% set x='generator:method' %}{% if tags[x] %}<br/>{{ keyTrans('generator:method') }}: {{ tagTransList('generator:method', tags[x]) }}{% endif %}",
             "{% set x='generator:type' %}{% if tags[x] %}<br/>{{ tagTransList('generator:type') }}: {{ tagTrans('generator:type', tags[x]) }}{% endif %}"
         ],
-        "markerSign": null,
+        "markerSymbol": null,
         "priority": "{% if tags.power == 'plant' %}0{% elseif tags.power == 'generator' or tags.power == 'line' %}1{% elseif tags.power == 'substation' %}2{% else %}3{% endif %}"
     }
 }

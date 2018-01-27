@@ -13,7 +13,7 @@
         ]
     },
     "feature": {
-        "markerSign": null,
+        "markerSymbol": null,
         "priority": [
             "{% set p = 100 %}",
             "{% if tags.name %}{% set p = p - 10 %}{% endif %}",

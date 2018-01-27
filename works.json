@@ -15,6 +15,6 @@
         "12": "(node[landuse~'^(industrial)$'];way[landuse~'^(industrial)$'];relation[landuse~'^(industrial)$'];)"
     },
     "feature": {
-        "markerSign": null
+        "markerSymbol": null
     }
 }

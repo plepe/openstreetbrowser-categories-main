@@ -48,7 +48,7 @@
             "{{ trans('unknown') }}",
             "{% endif %}"
         ],
-        "markerSign": null,
+        "markerSymbol": null,
         "listMarkerSymbol": "line",
         "style": {
             "width": "3",

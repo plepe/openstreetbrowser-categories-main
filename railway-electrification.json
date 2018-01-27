@@ -52,7 +52,7 @@
             "{{ keyTrans('gauge') }}: {{ tags.gauge|default(trans('unknown')) }}<br/>",
             "{% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}"
         ],
-        "markerSign": null,
+        "markerSymbol": null,
         "listMarkerSymbol": "line",
         "styles": "casing,default",
         "priority": "{% if tags.railway == 'station' %}0{% elseif tags.railway in [ 'halt', 'tram_stop' ] %}1{% else %}5{% endif %}",

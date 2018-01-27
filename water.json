@@ -33,7 +33,7 @@
             "{{ tagTrans('natural', tags.natural) }}",
             "{% endif %}"
         ],
-        "markerSign": null,
+        "markerSymbol": null,
         "listMarkerSymbol": [
             "{% if tags.natural == 'water' %}",
             "polygon",
