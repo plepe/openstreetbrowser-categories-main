@@ -5,7 +5,8 @@
         "de": "Routen"
     },
     "query": {
-        "13": "relation[type=route][route~\"^(bus|trolleybus|ferry|train|tram)$\"];"
+        "12": "relation[type=route][route~\"^(subway|monorail|ferry|train)$\"];",
+        "14": "relation[type=route][route~\"^(subway|monorail|aerialway|bus|trolleybus|ferry|train|tram)$\"];"
     },
     "feature": {
         "title": [
@@ -13,6 +14,55 @@
             "",
             "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}"
         ],
-        "description": "{{ tagTrans('route', tags.route) }}"
+        "description": "{{ tagTrans('route', tags.route) }}",
+        "listMarkerSign": "{{ const[tags.route].sign|raw }}",
+        "markerSymbol": null,
+        "listMarkerSymbol": "{{ markerCircle({})|raw }}"
+    },
+    "info": [
+        "<table>",
+        "{% for value, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "    <td>{{ tagTrans('amenity', value) }}</td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "</table>"
+    ],
+    "const": {
+        "train": {
+            "sign": "<img src='maki:rail'>",
+            "zoom": 12
+        },
+        "subway": {
+            "sign": "<img src='maki:rail-metro'>",
+            "zoom": 12
+        },
+        "monorail": {
+            "sign": "M",
+            "zoom": 12
+        },
+        "tram": {
+            "sign": "<img src='maki:rail-light'>",
+            "zoom": 12
+        },
+        "bus": {
+            "sign": "<img src='maki:bus'>",
+            "zoom": 12
+        },
+        "trolleybus": {
+            "sign": "<img src='maki:bus?fill=#5f0000'>",
+            "zoom": 12
+        },
+        "aerialway": {
+            "sign": "<img src='maki:aerialway'>",
+            "zoom": 12
+        },
+        "ferry": {
+            "sign": "<img src='maki:ferry'>",
+            "zoom": 12
+        }
     }
 }
