@@ -37,6 +37,19 @@
             "relation[man_made=wastewater_plant];",
             "relation[amenity=recycling];",
             ")"
+        ],
+        "18": [
+            "(",
+            "node[landuse=landfill];",
+            "node[man_made=wastewater_plant];",
+            "node[amenity~\"^(recycling|waste_basket)$\"];",
+            "way[landuse=landfill];",
+            "way[man_made=wastewater_plant];",
+            "way[amenity=recycling];",
+            "relation[landuse=landfill];",
+            "relation[man_made=wastewater_plant];",
+            "relation[amenity=recycling];",
+            ")"
         ]
     },
     "feature": {
@@ -47,16 +60,50 @@
             "{% elseif tags.man_made == 'wastewater_plant' %}",
             "  {% set key = 'man_made' %}",
             "  {% set value = tags.man_made %}",
-            "{% elseif tags.amenity == 'recycling' %}",
+            "{% elseif tags.amenity == 'recycling' or tags.amenity == 'waste_basket' %}",
             "  {% set key = 'amenity' %}",
             "  {% set value = tags.amenity %}",
-            "{% endif %}"
+            "{% endif %}",
+            "{% set kv = key ~ '=' ~ value %}"
         ],
         "description": "{{ tagTrans(key, value) }}",
         "body": [
             "{% if tags.recycling_type %}",
             "{{ keyTrans('recycling_type') }}: {{ tagTrans('recycling_type', tags.recycling_type) }}",
             "{% endif %}"
+        ],
+        "markerSign": [
+            "{% if const[kv] %}",
+            "{{ const[kv].sign|raw }}",
+            "{% endif %}"
         ]
+    },
+    "info": [
+        "<table>",
+        "{% for kv, data in const %}",
+        "  {% if map.zoom >= data.zoom %}",
+        "  {% set key  = kv|split('=')[0] %}",
+        "  {% set value  = kv|split('=')[1] %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "    <td>{{ tagTrans('leisure', value) }}</td>",
+        "  </tr>",
+        "  {% endif %}",
+        "{% endfor %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}</td>",
+        "    <td>{{ trans('other') }}</td>",
+        "  </tr>",
+        "</table>"
+    ],
+    "const": {
+        "amenity=recycling": {
+            "minZoom": 13,
+            "sign": "<img src='maki:recycling'>"
+        },
+        "amenity=waste_basket": {
+            "minZoom": 18,
+            "sign": "<img src='maki:waste-basket'>"
+        }
     }
 }
