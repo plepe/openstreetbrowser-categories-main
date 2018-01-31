@@ -81,7 +81,7 @@
     "info": [
         "<table>",
         "{% for kv, data in const %}",
-        "  {% if map.zoom >= data.zoom %}",
+        "  {% if map.zoom >= data.minZoom %}",
         "  {% set key  = kv|split('=')[0] %}",
         "  {% set value  = kv|split('=')[1] %}",
         "  <tr>",
