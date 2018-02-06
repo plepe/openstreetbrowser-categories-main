@@ -6,7 +6,7 @@
     "category:buildings": "Gebäude",
     "category:car_amenities": "Einrichtungen",
     "category:car_furniture": "Straßenausstattung",
-    "category:car_maxspeed": null,
+    "category:car_maxspeed": "Höchstgeschwindigkeiten",
     "category:children": "Einrichtungen für Kinder",
     "category:communication": "Kommunikation",
     "category:construction": "Baustellen",
@@ -31,7 +31,7 @@
     "category:phone": "Telekommunikation",
     "category:places": "Orte",
     "category:places_geo": "Orte",
-    "category:playgrounds": null,
+    "category:playgrounds": "Spielplätze",
     "category:post": "Post",
     "category:power": "Energie",
     "category:pt_amenities": "Einrichtungen",
@@ -51,6 +51,6 @@
     "category:walk_amenities": "Einrichtungen",
     "category:waste": "Entsorgung",
     "category:water": "Gewässer",
-    "category:wikipedia": null,
+    "category:wikipedia": "Wikipedia",
     "category:works": "Fabriken"
 }

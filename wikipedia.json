@@ -1,6 +1,7 @@
 {
     "type": "overpass",
     "name": {
+        "de": "Wikipedia",
         "en": "Wikipedia"
     },
     "query": {

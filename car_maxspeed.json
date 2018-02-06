@@ -1,6 +1,7 @@
 {
     "type": "overpass",
     "name": {
+        "de": "Höchstgeschwindigkeiten",
         "en": "Maxspeed"
     },
     "query": {
