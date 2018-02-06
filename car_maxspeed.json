@@ -5,8 +5,8 @@
     },
     "query": {
         "11": "way[highway~\"^(motorway|trunk)$\"];",
-        "15": "way[highway~\"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|residential|unclassified)$\"];",
         "13": "way[highway~\"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|tertiary)$\"];",
+        "15": "way[highway~\"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|residential|unclassified)$\"];",
         "17": "way[highway~\"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|residential|unclassified|service|living_street|pedestrian|track|road)$\"];"
     },
     "feature": {

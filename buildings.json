@@ -1,8 +1,8 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Buildings",
-        "de": "Gebäude"
+        "de": "Gebäude",
+        "en": "Buildings"
     },
     "query": {
         "16": [

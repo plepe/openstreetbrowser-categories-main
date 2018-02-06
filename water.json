@@ -1,8 +1,8 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Waterbodies",
-        "de": "Gewässer"
+        "de": "Gewässer",
+        "en": "Waterbodies"
     },
     "query": {
         "10": [
