@@ -28,9 +28,9 @@
         ],
         "16": [
             "(",
-            "node[amenity~'^(courthouse|embassy|public_building|townhall|clock|drinking_water|recycling)$'];",
-            "way[amenity~'^(courthouse|embassy|public_building|townhall|recycling)$'];",
-            "relation[amenity~'^(courthouse|embassy|public_building|townhall|recycling)$'];",
+            "node[amenity~'^(courthouse|embassy|public_building|townhall|clock|drinking_water|recycling|toilets)$'];",
+            "way[amenity~'^(courthouse|embassy|public_building|townhall|recycling|toilets)$'];",
+            "relation[amenity~'^(courthouse|embassy|public_building|townhall|recycling|toilets)$'];",
             "node[drinking_water];",
             ");"
         ]
@@ -69,6 +69,7 @@
         "embassy": "<img src='maki:embassy'>",
         "public_building": "<img src='maki:building'>",
         "recycling": "<img src='maki:recycling'>",
+        "toilets": "<img src='maki:toilet'>",
         "townhall": "<img src='maki:town-hall'>"
     }
 }
