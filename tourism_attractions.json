@@ -35,7 +35,7 @@
         "{% for value, sign in const %}",
         "  <tr>",
         "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ sign|raw }}</div></td>",
-        "    <td>{{ tagTrans('amenity', value) }}</td>",
+        "    <td>{{ tagTrans('tourism', value) }}</td>",
         "  </tr>",
         "{% endfor %}",
         "</table>"

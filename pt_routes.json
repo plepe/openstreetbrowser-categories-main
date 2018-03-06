@@ -29,7 +29,7 @@
         "{% if data.zoom <= map.zoom %}",
         "  <tr>",
         "    <td>{{ markerCircle({fillColor:data.color})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
-        "    <td>{{ tagTrans('amenity', value) }}</td>",
+        "    <td>{{ tagTrans('route', value) }}</td>",
         "  </tr>",
         "{% endif %}",
         "{% endfor %}",

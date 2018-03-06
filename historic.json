@@ -43,7 +43,7 @@
         "{% if data.zoom <= map.zoom %}",
         "  <tr>",
         "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
-        "    <td>{{ tagTrans('amenity', value) }}</td>",
+        "    <td>{{ tagTrans('historic', value) }}</td>",
         "  </tr>",
         "{% endif %}",
         "{% endfor %}",
