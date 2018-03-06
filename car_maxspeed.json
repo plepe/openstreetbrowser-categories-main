@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Höchstgeschwindigkeiten",
-        "en": "Maxspeed"
+        "en": "Maxspeed",
+        "fr": "Limites de vitesse"
     },
     "query": {
         "11": "way[highway~\"^(motorway|trunk)$\"];",

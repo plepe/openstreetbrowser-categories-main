@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Einrichtungen",
-        "en": "Amenities"
+        "en": "Amenities",
+        "fr": "Équipements"
     },
     "query": {
         "13": [

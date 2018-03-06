@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Einrichtungen für Kinder",
-        "en": "Children amenities"
+        "en": "Children amenities",
+        "fr": "Équipements pour enfants"
     },
     "query": {
         "15": [

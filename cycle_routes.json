@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Radrouten",
-        "en": "Cycle Routes"
+        "en": "Cycle Routes",
+        "fr": "Itinéraires vélo"
     },
     "query": {
         "6": "relation[type=route][route=bicycle][network~'^(icn)$']",

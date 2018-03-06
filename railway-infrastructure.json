@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Eisenbahn Infrastruktur",
-        "en": "Railway infrastructure"
+        "en": "Railway infrastructure",
+        "fr": "Infrastructure ferroviaire"
     },
     "query": {
         "11": "(way[railway=rail][usage~'^(main|branch)$'];node[railway~'^(station)$'];)",

@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Routen",
-        "en": "Routes"
+        "en": "Routes",
+        "fr": "Lignes"
     },
     "query": {
         "12": "relation[type=route][route~\"^(subway|monorail|ferry|train)$\"];",

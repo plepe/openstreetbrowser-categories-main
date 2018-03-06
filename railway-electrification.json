@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Eisenbahn Elektrifizierung",
-        "en": "Railway electrification"
+        "en": "Railway electrification",
+        "fr": "Électrification ferroviaire"
     },
     "query": {
         "11": "way[railway=rail][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'][usage~'^(main|branch)$'];",

@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Gebäude",
-        "en": "Buildings"
+        "en": "Buildings",
+        "fr": "Bâtiments"
     },
     "query": {
         "16": [

@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Gewässer",
-        "en": "Waterbodies"
+        "en": "Waterbodies",
+        "fr": "Hydrographie"
     },
     "query": {
         "10": [
