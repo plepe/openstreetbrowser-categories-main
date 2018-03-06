@@ -13,7 +13,6 @@
     "category:culture": "Πολιτισμός",
     "category:culture_religion": "Πολιτισμός",
     "category:cycle_amenities": null,
-    "category:cycle_infrastructure": null,
     "category:cycle_routes": null,
     "category:education": "Υπηρεσίες Εκπαίδευσης",
     "category:emergency": "Υπηρεσίες Έκτακτης Ανάγκης",
@@ -52,5 +51,10 @@
     "category:waste": null,
     "category:water": null,
     "category:wikipedia": null,
-    "category:works": null
+    "category:works": null,
+    "category:cycle_infrastructure": null,
+    "category:leisure_sport_shopping": "Αναψυχή, Αθλητισμός και Αγορές",
+    "category:services": "Υπηρεσίες",
+    "category:transport": "Μεταφορές",
+    "category:transport_pt": "Δημόσιες Μεταφορές"
 }

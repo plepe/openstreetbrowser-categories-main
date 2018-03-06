@@ -13,7 +13,6 @@
     "category:culture": "Cultura",
     "category:culture_religion": "Cultura y religión",
     "category:cycle_amenities": null,
-    "category:cycle_infrastructure": null,
     "category:cycle_routes": null,
     "category:education": null,
     "category:emergency": "Servicios de emergencia",
@@ -52,5 +51,8 @@
     "category:waste": null,
     "category:water": null,
     "category:wikipedia": null,
-    "category:works": null
+    "category:works": null,
+    "category:cycle_infrastructure": null,
+    "category:leisure_sport_shopping": "Ocio, deporte y compras",
+    "category:services": "Servicios"
 }

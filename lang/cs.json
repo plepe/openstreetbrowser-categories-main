@@ -13,7 +13,6 @@
     "category:culture": "Kultura",
     "category:culture_religion": "Kultura",
     "category:cycle_amenities": null,
-    "category:cycle_infrastructure": null,
     "category:cycle_routes": null,
     "category:education": "Vzdělávací služby",
     "category:emergency": "Pohotovostní služby",
@@ -52,5 +51,12 @@
     "category:waste": "Nakládání s odpady",
     "category:water": null,
     "category:wikipedia": null,
-    "category:works": "Továrny"
+    "category:works": "Továrny",
+    "category:cycle_infrastructure": null,
+    "category:leisure_sport_shopping": "Volný čas, sporty a nákupy",
+    "category:railway": "Železnice",
+    "category:services": "Služby",
+    "category:transport": "Doprava",
+    "category:transport_car": "Individuální doprava",
+    "category:transport_pt": "Veřejná doprava"
 }

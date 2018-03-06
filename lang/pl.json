@@ -13,7 +13,6 @@
     "category:culture": "Kultura",
     "category:culture_religion": "Kultura",
     "category:cycle_amenities": null,
-    "category:cycle_infrastructure": null,
     "category:cycle_routes": null,
     "category:education": "Edukacyjne",
     "category:emergency": null,
@@ -52,5 +51,11 @@
     "category:waste": null,
     "category:water": null,
     "category:wikipedia": null,
-    "category:works": null
+    "category:works": null,
+    "category:cycle_infrastructure": null,
+    "category:leisure_sport_shopping": "Wypoczynek, Sport i Zakupy",
+    "category:services": "Usługi",
+    "category:transport": "Transport",
+    "category:transport_car": "Transport Indywidualny",
+    "category:transport_pt": "Transport Publiczny"
 }

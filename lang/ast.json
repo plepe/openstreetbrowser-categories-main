@@ -13,7 +13,6 @@
     "category:culture": "Cultura",
     "category:culture_religion": "Cultura",
     "category:cycle_amenities": null,
-    "category:cycle_infrastructure": null,
     "category:cycle_routes": null,
     "category:education": "Servicios educativos",
     "category:emergency": "Servicios d'emerxencia",
@@ -52,5 +51,12 @@
     "category:waste": "Basures",
     "category:water": null,
     "category:wikipedia": null,
-    "category:works": "Fábriques"
+    "category:works": "Fábriques",
+    "category:cycle_infrastructure": null,
+    "category:leisure_sport_shopping": "Recréu, deportes y compres",
+    "category:railway": "Ferrocarril",
+    "category:services": "Servicios",
+    "category:transport": "Tresporte",
+    "category:transport_car": "Tráficu individual",
+    "category:transport_pt": "Tresporte Públicu"
 }

@@ -13,7 +13,6 @@
     "category:culture": "Kultúra",
     "category:culture_religion": "Kultúra",
     "category:cycle_amenities": null,
-    "category:cycle_infrastructure": null,
     "category:cycle_routes": null,
     "category:education": null,
     "category:emergency": null,
@@ -52,5 +51,11 @@
     "category:waste": null,
     "category:water": null,
     "category:wikipedia": null,
-    "category:works": null
+    "category:works": null,
+    "category:cycle_infrastructure": null,
+    "category:leisure_sport_shopping": "Szabadidő",
+    "category:railway": "Vasút",
+    "category:services": "Szolgáltatás",
+    "category:transport": "Közlekedés",
+    "category:transport_pt": "Tömegközlekedés"
 }

@@ -13,7 +13,6 @@
     "category:culture": "Cultura",
     "category:culture_religion": "Cultura",
     "category:cycle_amenities": null,
-    "category:cycle_infrastructure": null,
     "category:cycle_routes": null,
     "category:education": "Servicii educatie",
     "category:emergency": "Servicii urgenta",
@@ -52,5 +51,11 @@
     "category:waste": null,
     "category:water": null,
     "category:wikipedia": null,
-    "category:works": null
+    "category:works": null,
+    "category:cycle_infrastructure": null,
+    "category:leisure_sport_shopping": "Timp liber, Sport si Cumparaturi",
+    "category:services": "Servicii",
+    "category:transport": "Transport",
+    "category:transport_car": "Trafic individual",
+    "category:transport_pt": "Transport public"
 }

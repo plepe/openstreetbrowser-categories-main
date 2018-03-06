@@ -13,7 +13,6 @@
     "category:culture": "Kultuur",
     "category:culture_religion": "Kultuur ja religioon",
     "category:cycle_amenities": null,
-    "category:cycle_infrastructure": null,
     "category:cycle_routes": null,
     "category:education": "Haridusteenused",
     "category:emergency": "Hädaabi teenused",
@@ -52,5 +51,11 @@
     "category:waste": null,
     "category:water": null,
     "category:wikipedia": null,
-    "category:works": null
+    "category:works": null,
+    "category:cycle_infrastructure": null,
+    "category:leisure_sport_shopping": "Vaba aeg, sport ja ostmine",
+    "category:railway": "Raudtee",
+    "category:services": "Teenused",
+    "category:transport": "Transport",
+    "category:transport_pt": "Ühistransport"
 }

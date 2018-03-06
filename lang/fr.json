@@ -13,7 +13,6 @@
     "category:culture": "Culture",
     "category:culture_religion": "Culture",
     "category:cycle_amenities": null,
-    "category:cycle_infrastructure": null,
     "category:cycle_routes": null,
     "category:education": "Service d'Éducation",
     "category:emergency": "Service d'urgence",
@@ -52,5 +51,12 @@
     "category:waste": "Rebuts",
     "category:water": null,
     "category:wikipedia": null,
-    "category:works": "Construction"
+    "category:works": "Construction",
+    "category:cycle_infrastructure": null,
+    "category:leisure_sport_shopping": "Loisirs",
+    "category:railway": "Chemins de fer",
+    "category:services": "Services",
+    "category:transport": "Transport",
+    "category:transport_car": "Transport automobile",
+    "category:transport_pt": "Transport public"
 }

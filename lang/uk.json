@@ -13,7 +13,6 @@
     "category:culture": "Культура ",
     "category:culture_religion": "Культура ",
     "category:cycle_amenities": null,
-    "category:cycle_infrastructure": null,
     "category:cycle_routes": null,
     "category:education": "Освіта",
     "category:emergency": "Швидка допомога",
@@ -52,5 +51,11 @@
     "category:waste": null,
     "category:water": null,
     "category:wikipedia": null,
-    "category:works": null
+    "category:works": null,
+    "category:cycle_infrastructure": null,
+    "category:leisure_sport_shopping": "Дозвілля",
+    "category:services": "Послуги",
+    "category:transport": "Транспорт",
+    "category:transport_car": "Приватний транспорт",
+    "category:transport_pt": "Громадський транспорт"
 }

@@ -13,7 +13,6 @@
     "category:culture": "文化",
     "category:culture_religion": "文化",
     "category:cycle_amenities": null,
-    "category:cycle_infrastructure": null,
     "category:cycle_routes": null,
     "category:education": "教育サービス",
     "category:emergency": "緊急サービス",
@@ -52,5 +51,12 @@
     "category:waste": "処理場",
     "category:water": null,
     "category:wikipedia": null,
-    "category:works": "工場"
+    "category:works": "工場",
+    "category:cycle_infrastructure": null,
+    "category:leisure_sport_shopping": "レジャー",
+    "category:railway": "鉄道",
+    "category:services": "サービス",
+    "category:transport": "輸送",
+    "category:transport_car": "個人輸送機関",
+    "category:transport_pt": "公共輸送"
 }

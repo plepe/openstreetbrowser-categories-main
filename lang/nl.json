@@ -13,7 +13,6 @@
     "category:culture": "Cultuur",
     "category:culture_religion": "Cultuur",
     "category:cycle_amenities": null,
-    "category:cycle_infrastructure": null,
     "category:cycle_routes": null,
     "category:education": "Onderwijs",
     "category:emergency": "Hulpdiensten",
@@ -52,5 +51,12 @@
     "category:waste": "Afvalverwijdering",
     "category:water": null,
     "category:wikipedia": null,
-    "category:works": "Fabrieken"
+    "category:works": "Fabrieken",
+    "category:cycle_infrastructure": null,
+    "category:leisure_sport_shopping": "Vrije tijd, Sport en Winkelen",
+    "category:railway": "Spoorwegen",
+    "category:services": "Dienstverlening",
+    "category:transport": "Vervoer",
+    "category:transport_car": "Gemotoriseerd individueel verkeer",
+    "category:transport_pt": "Openbaar vervoer"
 }
