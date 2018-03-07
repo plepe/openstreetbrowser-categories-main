@@ -38,6 +38,10 @@
         "    <td>{{ tagTrans('tourism', value) }}</td>",
         "  </tr>",
         "{% endfor %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'></div></td>",
+        "    <td>{{ trans('other') }}</td>",
+        "  </tr>",
         "</table>"
     ],
     "const": {
@@ -49,7 +53,6 @@
         "picnic_site": "<img src='maki:picnic-site'>",
         "theme_park": "<img src='maki:amusement-park'>",
         "viewpoint": "<i class='fa fa-eye' aria-hidden='true'></i>",
-        "zoo": "🦁",
-        "other": ""
+        "zoo": "🦁"
     }
 }
