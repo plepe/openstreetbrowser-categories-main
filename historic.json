@@ -47,6 +47,12 @@
         "  </tr>",
         "{% endif %}",
         "{% endfor %}",
+        "{% if 14 <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'></div></td>",
+        "    <td>{{ trans('other') }}</td>",
+        "  </tr>",
+        "{% endif %}",
         "</table>"
     ],
     "const": {
@@ -73,10 +79,6 @@
         "monument": {
             "sign": "<img src='maki:monument?size=15'>",
             "zoom": 11
-        },
-        "other": {
-            "sign": "",
-            "zoom": 14
         }
     }
 }
