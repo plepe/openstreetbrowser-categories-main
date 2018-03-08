@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Wanderrouten",
-        "en": "Hiking routes"
+        "en": "Hiking routes",
+        "fr": "Itinéraires pédestres"
     },
     "query": {
         "10": "relation[type=route][route=hiking][network~\"^(iwn)$\"]",

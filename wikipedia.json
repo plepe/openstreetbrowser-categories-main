@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Wikipedia",
-        "en": "Wikipedia"
+        "en": "Wikipedia",
+        "fr": "Wikipédia"
     },
     "query": {
         "14": [
