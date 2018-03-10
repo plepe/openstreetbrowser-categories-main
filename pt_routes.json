@@ -3,7 +3,8 @@
     "name": {
         "de": "Routen",
         "en": "Routes",
-        "fr": "Lignes"
+        "fr": "Lignes",
+        "pt-br": "Rotas"
     },
     "query": {
         "12": "relation[type=route][route~\"^(subway|monorail|ferry|train)$\"];",

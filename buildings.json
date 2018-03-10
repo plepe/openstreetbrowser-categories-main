@@ -3,7 +3,8 @@
     "name": {
         "de": "Gebäude",
         "en": "Buildings",
-        "fr": "Bâtiments"
+        "fr": "Bâtiments",
+        "pt-br": "Edificações"
     },
     "query": {
         "16": [

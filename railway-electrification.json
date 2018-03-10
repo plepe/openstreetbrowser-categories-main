@@ -3,7 +3,8 @@
     "name": {
         "de": "Eisenbahn Elektrifizierung",
         "en": "Railway electrification",
-        "fr": "Puissance électrique ferroviaire"
+        "fr": "Puissance électrique ferroviaire",
+        "pt-br": "Eletrificação Ferroviária"
     },
     "query": {
         "11": "way[railway=rail][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'][usage~'^(main|branch)$'];",
