@@ -26,6 +26,15 @@
         ]
     },
     "feature": {
-        "description": "{{ tagTrans('landuse', tags.landuse) }}"
+        "description": "{{ tagTrans('landuse', tags.landuse) }}",
+        "priority": [
+            "{% if tags.landuse == 'farmyard' %}",
+            "0",
+            "{% elseif tags.landuse == 'allotments' %}",
+            "1",
+            "{% else %}",
+            "2",
+            "{% endif %}"
+        ]
     }
 }
