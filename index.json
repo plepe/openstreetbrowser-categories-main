@@ -283,7 +283,8 @@
             "name": {
                 "en": "Special",
                 "de": "Spezial",
-                "pt-br": "Especial"
+                "pt-br": "Especial",
+                "fr": "Spécial"
             },
             "subCategories": [
                 {
