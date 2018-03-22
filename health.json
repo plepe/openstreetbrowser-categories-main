@@ -59,31 +59,32 @@
             "{{ tagTransList('healthcare:speciality', attribute(tags, 'healthcare:speciality')) }}",
             "{% endif %}"
         ],
-        "markerSign": "{{ const[value]|raw }}"
+        "markerSign": "{{ const[concat(key, '=', value)]|raw }}"
     },
     "info": [
         "<table>",
         "{% for value, sign in const %}",
         "  <tr>",
         "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ sign|raw }}</div></td>",
-        "    <td>{{ tagTrans('amenity', value) }}</td>",
+        "    <td>{{ tagTrans(value|split('=')[0], value|split('=')[1]) }}</td>",
         "  </tr>",
         "{% endfor %}",
         "</table>"
     ],
     "const": {
-        "baby_hatch": "🚼",
-        "blood_bank": "<img src='maki:blood-bank'>",
-        "blood_donation": "<img src='maki:blood-bank'>",
-        "clinic": "🏥",
-        "defibrillator": "<img src='maki:defibrillator'>",
-        "dentist": "<img src='maki:dentist'>",
-        "doctor": "<img src='maki:doctor'>",
-        "doctors": "<img src='maki:doctor'>",
-        "hospital": "🏥",
-        "nursing_home": "",
-        "pharmacy": "<img src='maki:pharmacy'>",
-        "social_facility": "",
-        "veterinary": "<img src='maki:veterinary'>"
+        "amenity=baby_hatch": "🚼",
+        "healthcare=blood_bank": "<img src='maki:blood-bank'>",
+        "healthcare=blood_donation": "<img src='maki:blood-bank'>",
+        "healthcare=clinic": "🏥",
+        "emergency=defibrillator": "<img src='maki:defibrillator'>",
+        "healthcare=dentist": "<img src='maki:dentist'>",
+        "healthcare=doctor": "<img src='maki:doctor'>",
+        "amenity=doctors": "<img src='maki:doctor'>",
+        "amenity=hospital": "🏥",
+        "healthcare=hospital": "🏥",
+        "amenity=nursing_home": "",
+        "amenity=pharmacy": "<img src='maki:pharmacy'>",
+        "amenity=social_facility": "",
+        "amenity=veterinary": "<img src='maki:veterinary'>"
     }
 }
