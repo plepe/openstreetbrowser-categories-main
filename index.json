@@ -29,9 +29,6 @@
                     "id": "gastro"
                 },
                 {
-                    "id": "gastro-smoking"
-                },
-                {
                     "id": "shop"
                 },
                 {
@@ -290,6 +287,9 @@
                 "fr": "Spécial"
             },
             "subCategories": [
+                {
+                    "id": "gastro-smoking"
+                },
                 {
                     "id": "wikipedia"
                 }
