@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Rauchfreie Gastronomie",
-        "en": "Smokefree Gastronomy"
+        "en": "Smokefree Gastronomy",
+        "fr": "Restauration sans tabac"
     },
     "query": {
         "16": "(node[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];way[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];relation[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];);"
