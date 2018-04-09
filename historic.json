@@ -74,7 +74,7 @@
             "zoom": 14
         },
         "memorial": {
-            "sign": "<img src='maki:monument?size=11'>",
+            "sign": "<span  style='position: relative; top: -2px;'><img src='maki:monument?size=11'></span>",
             "zoom": 14
         },
         "monument": {
