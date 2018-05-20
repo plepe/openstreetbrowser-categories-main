@@ -22,6 +22,7 @@
             "node[amenity~\"^(bicycle_.*|compressed_air)$\"];",
             "way[amenity~\"^(bicycle_.*|compressed_air)$\"];",
             "relation[amenity~\"^(bicycle_.*|compressed_air)$\"];",
+            "node[amenity~\"^(charging_station)$\"][bicycle!=\"no\"];",
             "node[shop~\"^(bicycle)$\"];",
             "way[shop~\"^(bicycle)$\"];",
             "relation[shop~\"^(bicycle)$\"];",
@@ -121,6 +122,10 @@
         },
         "amenity=compressed_air": {
             "sign": "A",
+            "priority": 2
+        },
+        "amenity=charging_station": {
+            "sign": "🔌",
             "priority": 2
         }
     }

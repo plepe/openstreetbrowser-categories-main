@@ -19,6 +19,8 @@
             "node[amenity~\"^(car_rental|car_sharing|fuel)$\"];",
             "way[amenity~\"^(car_rental|car_sharing|fuel)$\"];",
             "relation[amenity~\"^(car_rental|car_sharing|fuel)$\"];",
+            "node[amenity~\"^(charging_station)$\"][car!=\"no\"];",
+            "node[amenity~\"^(charging_station)$\"][motorcycle!=\"no\"];",
             ")"
         ],
         "16": [
@@ -44,6 +46,7 @@
         "charging_station": "🔌 ",
         "fuel": "⛽",
         "parking": "🅿",
-        "motorcycle_parking": "🅿"
+        "motorcycle_parking": "🅿",
+        "charging_station": "🔌"
     }
 }
