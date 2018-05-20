@@ -1,0 +1,73 @@
+{
+    "type": "overpass",
+    "name": {
+        "de": "Handwerk",
+        "en": "Craft"
+    },
+    "query": {
+        "15": "(node[craft];way[craft];relation[craft];);"
+    },
+    "feature": {
+        "description": "{{ tagTransList('craft', tags.craft) }}",
+        "markerSign": "{% set craft0 = tags.craft|split(';')[0] %}{% if const.crafts[craft0] %}{% set v = const.crafts[craft0] %}{% else %}{% set v = const.default %}{% endif %}{% if v|slice(0, 3) == 'fa-' %}<i class=\"fa {{ v }}\"></i>{% else %}{{ v|raw }}{% endif %}"
+    },
+    "const": {
+        "default": "",
+        "crafts": {
+            "bakery": "fa-birthday-cake",
+            "beekeeper": "🐝",
+            "blacksmith": "🔨",
+            "boatbuilder": "⛵",
+            "bookbinder": "📕",
+            "brewery": "fa-beer",
+            "builder": "🚧",
+            "carpenter": "",
+            "carpet_layer": "",
+            "caterer": "fa-birthday-cake",
+            "chimney_sweeper": "",
+            "clockmaker": "⌚",
+            "confectionery": "",
+            "distillery": "🍷",
+            "dressmaker": "&#128090;",
+            "electrician": "🔌",
+            "floorer": "",
+            "gardener": "⚘",
+            "glaziery": "",
+            "handicraft": "",
+            "hvac": "",
+            "insulation": "",
+            "jeweller": "💍",
+            "key_cutter": "🔑",
+            "locksmith": "🔑",
+            "metal_construction": "",
+            "optician": "👓",
+            "painter": "🖌",
+            "parquet_layer": "",
+            "photographer": "📷",
+            "photographic_laboratory": "📷",
+            "piano_tuner": "",
+            "plasterer": "",
+            "plumber": "",
+            "pottery": "",
+            "rigger": "",
+            "roofer": "",
+            "saddler": "🐎",
+            "sailmaker": "⛵",
+            "sawmill": "",
+            "scaffolder": "",
+            "sculptor": "",
+            "shoemaker": "👞",
+            "stand_builder": "",
+            "stonemason": "",
+            "sun_protection": "",
+            "tailor": "&#128090;",
+            "tiler": "",
+            "tinsmith": "",
+            "turner": "",
+            "upholsterer": "",
+            "watchmaker": "⌚",
+            "window_construction": "",
+            "winery": "🍷"
+        }
+    }
+}
