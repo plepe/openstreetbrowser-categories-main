@@ -12,6 +12,7 @@
             "node[amenity~\"^(bicycle_rental)$\"];",
             "way[amenity~\"^(bicycle_rental)$\"];",
             "relation[amenity~\"^(bicycle_rental)$\"];",
+            "node[amenity~\"^(charging_station)$\"][bicycle!=\"no\"];",
             "node[shop~\"^(bicycle)$\"];",
             "way[shop~\"^(bicycle)$\"];",
             "relation[shop~\"^(bicycle)$\"];",
