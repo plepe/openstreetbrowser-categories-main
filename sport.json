@@ -16,7 +16,7 @@
         "uk": "Спорт. Інше."
     },
     "query": {
-        "14": "(node[sport];way[sport];relation[sport])"
+        "14": "(node[sport];way[sport];relation[sport];)"
     },
     "feature": {
         "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) |default(tagTransList('sport', tags.sport)) }}",
