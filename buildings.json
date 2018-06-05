@@ -9,6 +9,9 @@
     "subCategories": [
         {
             "id": "buildings-figure-ground"
+        },
+        {
+            "id": "buildings-height"
         }
     ]
 }
