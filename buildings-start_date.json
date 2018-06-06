@@ -1,8 +1,8 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Buildings",
-        "de": "Gebäude"
+        "en": "Building age",
+        "de": "Gebäudealter"
     },
     "query": {
         "16": [
@@ -38,7 +38,7 @@
             "    {% set color = colorInterpolate([ '#ffff00', '#00ff00' ], (value - 2000.0) / 50) %}",
             "  {% endif %}",
             "{% else %}",
-            "{% set color = '#000000' %}",
+            "{% set color = '#7f7f7f' %}",
             "{% endif %}"
         ],
         "description": [
@@ -46,8 +46,8 @@
             "{{ tags.start_date }}",
             "{% endif %}"
         ],
-        "markerSign": null,
-        "listMarkerSymbol": "polygon",
+        "markerSymbol": null,
+        "listMarkerSymbol": "{{ markerPolygon({ \"fillColor\": color, \"fillOpacity\": 0.8, \"width\": 1, \"color\": \"#000000\" })|raw }}",
         "priority": [
             "{% set p = 100 %}",
             "{% if tags.start_date %}{% set p = p - 20 %}{% endif %}",
@@ -63,7 +63,7 @@
             "{{ p }}"
         ],
         "style": {
-            "weight": "1",
+            "width": "1",
             "color": "#000000",
             "fillColor": "{{ color }}",
             "fillOpacity": "0.8"
