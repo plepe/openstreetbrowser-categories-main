@@ -12,6 +12,9 @@
         },
         {
             "id": "buildings-height"
+        },
+        {
+            "id": "buildings-start_date"
         }
     ]
 }
