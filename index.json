@@ -238,6 +238,9 @@
                     "id": "power"
                 },
                 {
+                    "id": "fossil-energy"
+                },
+                {
                     "id": "railway",
                     "type": "index",
                     "name": {
