@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Handwerk",
-        "en": "Craft"
+        "en": "Craft",
+        "fr": "Artisanat"
     },
     "query": {
         "15": "(node[craft];way[craft];relation[craft];);"
