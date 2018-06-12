@@ -59,7 +59,13 @@
             "",
             "{% if tags.capacity %}({{ tags.capacity }}){% endif %}"
         ],
-        "description": "{{ tagTrans(key, value) }}",
+        "description": [
+            "{% if tags.amenity == 'vending_machine' %}",
+            "{{ tagTransList('amenity=vending_machine vending', value) }}",
+            "{% else %}",
+            "{{ tagTrans(key, value) }}",
+            "{% endif %}"
+        ],
         "body": [
             "{% if tags.capacity %}",
             "  {{ keyTrans('capacity') }}: {{ tags.capacity }}",
