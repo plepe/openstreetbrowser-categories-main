@@ -38,15 +38,29 @@
             "{% set value = tags.amenity %}",
             "{% endif %}"
         ],
-        "description": "{{ tagTrans(key, value) }}{% if tags.religion %}: {{ tagTransList('religion', tags.religion) }}{% endif %}",
+        "description": [
+            "{% if tags.building and tags.religion %}",
+            "  {% if isTranslated('tag:building=' ~ tags.building ~ ' religion=' ~ tags.religion) %}",
+            "    {{ trans('tag:building=' ~ tags.building ~ ' religion=' ~ tags.religion) }}",
+            "  {% elseif tags.building != 'yes' %}",
+            "    {{ trans('tag:building=' ~ tags.building) }}{% if tags.religion %}: {{ tagTransList('religion', tags.religion) }}{% endif %}",
+            "  {% else %}",
+            "    {{ tagTrans(key, value) }}: {{ tagTransList('religion', tags.religion) }}",
+            "  {% endif %}",
+            "{% else %}",
+            "  {{ tagTrans(key, value) }}{% if tags.religion %}: {{ tagTransList('religion', tags.religion) }}{% endif %}",
+            "{% endif %}"
+        ],
         "popupDescription": "{{ tagTrans(key, value) }}",
         "body": [
+            "{% if tags.building %}",
+            "  {{ keyTrans('building') }}: {{ tagTrans('building', tags.building) }}<br/>",
+            "{% endif %}",
             "{% if tags.religion %}",
-            "  {{ keyTrans('religion') }}: {{ tagTransList('religion', tags.religion) }}",
+            "  {{ keyTrans('religion') }}: {{ tagTransList('religion', tags.religion) }}<br/>",
             "{% endif %}",
             "{% if tags.denomination %}",
-            "  <br/>",
-            "  {{ keyTrans('denomination') }}: {{ tagTransList('denomination', tags.denomination) }}",
+            "  {{ keyTrans('denomination') }}: {{ tagTransList('denomination', tags.denomination) }}<br/>",
             "{% endif %}"
         ],
         "markerSign": [
