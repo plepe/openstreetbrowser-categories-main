@@ -3,7 +3,8 @@
     "name": {
         "de": "Gewässer",
         "en": "Waterbodies",
-        "fr": "Hydrographie"
+        "fr": "Hydrographie",
+        "pt-br": "Hidrografia"
     },
     "query": {
         "10": [

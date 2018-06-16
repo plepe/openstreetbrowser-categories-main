@@ -6,16 +6,17 @@
         "de": "Sport",
         "el": "Άθληση",
         "en": "Sport",
-        "fr": "Autres sports",
+        "fr": "Sports",
         "hu": "Sport",
         "it": "Sport",
         "ja": "スポーツ",
         "nl": "Sport",
+        "pt-br": "Esportes",
         "ru": "Спорт",
         "uk": "Спорт. Інше."
     },
     "query": {
-        "14": "(node[sport];way[sport];relation[sport])"
+        "14": "(node[sport];way[sport];relation[sport];)"
     },
     "feature": {
         "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) |default(tagTransList('sport', tags.sport)) }}",

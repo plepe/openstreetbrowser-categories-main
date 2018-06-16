@@ -3,7 +3,8 @@
     "name": {
         "de": "Radrouten",
         "en": "Cycle Routes",
-        "fr": "Itinéraires vélo"
+        "fr": "Itinéraires vélo",
+        "pt-br": "Ciclorrotas"
     },
     "query": {
         "6": "relation[type=route][route=bicycle][network~'^(icn)$']",

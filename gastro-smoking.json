@@ -1,0 +1,67 @@
+{
+    "type": "overpass",
+    "name": {
+        "de": "Rauchfreie Gastronomie",
+        "en": "Smokefree Gastronomy",
+        "fr": "Restauration sans tabac"
+    },
+    "query": {
+        "16": "(node[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];way[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];relation[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];);"
+    },
+    "feature": {
+        "pre": [
+            "{% if tags.smoking == 'yes' or tags.smoking == 'dedicated' %}",
+            "  {% set smoking_color='red' %}",
+            "  {% set smoking_icon='🚬' %}",
+            "{% elseif tags.smoking == 'separated' or tags.smoking == 'isolated' %}",
+            "  {% set smoking_color='#ffdf00' %}",
+            "  {% set smoking_icon='🚬' %}",
+            "{% elseif tags.smoking == 'no' or tags.smoking == 'outside' or tags.smokefree == 'yes' %}",
+            "  {% set smoking_color='#00ff00' %}",
+            "  {% set smoking_icon='🚭' %}",
+            "{% else %}",
+            "  {% set smoking_color='white' %}",
+            "  {% set smoking_icon='' %}",
+            "{% endif %}"
+        ],
+        "description": "{{ tagTrans('amenity', tags.amenity) }}",
+        "body": [
+            "<ul>",
+            "  <li class='hasSymbol'>",
+            "   <i class=\"fa fa-cutlery\" aria-hidden=\"true\"></i>",
+            "   <span class='key'>{{ keyTrans('cuisine') }}:</span>",
+            "   <span class='value'>{{ tagTransList('cuisine', tags.cuisine)|default(trans('unknown')) }}</span>",
+            "  </li>",
+            "  <li class='hasSymbol'>",
+            "    <span class='symbol'>🚬</span>",
+            "    <span class='key'>{{ keyTrans('smoking') }}:</span>",
+            "    <span class='value'>{% if tags.smoking %}{{ tagTrans('smoking', tags.smoking) }}{% else %}{{ trans('unknown') }}{% endif %}</span>",
+            "  </li>",
+            "</ul>"
+        ],
+        "markerSign": "{% if tags.amenity=='bar' %}&#127864;{% elseif tags.amenity=='biergarten'%}&#127867;{% elseif tags.amenity=='cafe' %}&#9749;{% elseif tags.amenity=='fast_food' %}&#127828;{% elseif tags.amenity=='ice_cream' %}&#127848;{% elseif tags.amenity=='pub' %}&#127866;{% else %}&#127860;{% endif %}",
+        "markerSymbol": "{{ markerPointer({\"fillColor\": smoking_color })|raw }}",
+        "listMarkerSymbol": "{{ markerCircle({\"fillColor\": smoking_color })|raw }}"
+    },
+    "info": [
+        "{{ keyTrans('smoking') }}:",
+        "<table>",
+        "  <tr>",
+        "    <td>{{ markerCircle({ \"fillColor\": \"#00ff00\" })|raw }}</td>",
+        "    <td>{{ tagTrans('smoking', 'no') }}, {{ tagTrans('smoking', 'outside') }}</td>",
+        "  </tr>",
+        "  <tr>",
+        "    <td>{{ markerCircle({ \"fillColor\": \"#ffdf00\" })|raw }}</td>",
+        "    <td>{{ tagTrans('smoking', 'separated') }}, {{ tagTrans('smoking', 'isolated') }}</td>",
+        "  </tr>",
+        "  <tr>",
+        "    <td>{{ markerCircle({ \"fillColor\": \"red\" })|raw }}</td>",
+        "    <td>{{ tagTrans('smoking', 'yes') }}, {{ tagTrans('smoking', 'dedicated') }}</td>",
+        "  </tr>",
+        "  <tr>",
+        "    <td>{{ markerCircle({ \"fillColor\": \"white\" })|raw }}</td>",
+        "    <td>{{ trans('unknown') }}</td>",
+        "  </tr>",
+        "</table>"
+    ]
+}

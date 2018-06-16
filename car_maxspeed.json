@@ -3,7 +3,8 @@
     "name": {
         "de": "Höchstgeschwindigkeiten",
         "en": "Maxspeed",
-        "fr": "Limites de vitesse"
+        "fr": "Limites de vitesse",
+        "pt-br": "Velocidade Máxima"
     },
     "query": {
         "11": "way[highway~\"^(motorway|trunk)$\"];",
