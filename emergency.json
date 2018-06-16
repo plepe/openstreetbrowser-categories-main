@@ -13,6 +13,7 @@
         "it": "Servizi d'emergenza",
         "ja": "緊急サービス",
         "nl": "Hulpdiensten",
+        "pt-br": "Emergência",
         "ro": "Servicii urgenta",
         "ru": "Экстренные службы",
         "uk": "Швидка допомога"
@@ -27,13 +28,23 @@
         ],
         "13": [
             "(",
-            "node[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"];",
-            "way[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"];",
-            "relation[amenity~\"^(fire_station|hospital|police|emergency_phone)$\"];",
+            "node[amenity~\"^(fire_station|hospital|police)$\"];",
+            "way[amenity~\"^(fire_station|hospital|police)$\"];",
+            "relation[amenity~\"^(fire_station|hospital|police)$\"];",
+            "node[emergency~\"^(phone)$\"];",
             ")"
         ]
     },
     "feature": {
+        "pre": [
+            "{% if tags.amenity in [ 'fire_station', 'hospital', 'police' ] %}",
+            "{% set key = 'amenity' %}",
+            "{% set value = tags.amenity %}",
+            "{% elseif tags.emergency %}",
+            "{% set key = 'emergency' %}",
+            "{% set value = tags.emergency %}",
+            "{% endif %}"
+        ],
         "description": "{{ tagTrans('amenity', tags.amenity) }}",
         "markerSign": [
             "{% set data = const[tags.amenity] %}",
@@ -48,26 +59,26 @@
         "{% if data.zoom <= map.zoom %}",
         "  <tr>",
         "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign }}</div></td>",
-        "    <td>{{ tagTrans('amenity', value) }}</td>",
+        "    <td>{{ tagTrans(value|split('=')[0], value|split('=')[1]) }}</td>",
         "  </tr>",
         "{% endif %}",
         "{% endfor %}",
         "</table>"
     ],
     "const": {
-        "fire_station": {
+        "amenity=fire_station": {
             "zoom": "11",
             "sign": "🔥"
         },
-        "hospital": {
+        "amenity=hospital": {
             "zoom": "11",
             "sign": "🏥"
         },
-        "police": {
+        "amenity=police": {
             "zoom": "13",
             "sign": "👮"
         },
-        "emergency_phone": {
+        "emergency=phone": {
             "zoom": "13",
             "sign": "📞"
         }

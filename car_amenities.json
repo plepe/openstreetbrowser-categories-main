@@ -5,10 +5,11 @@
         "cs": "Občasnká vybavenost",
         "de": "Einrichtungen",
         "en": "Amenities",
-        "fr": "Infrastructures routières",
+        "fr": "Équipements auto",
         "it": "Infrastrutture",
         "ja": "生活環境",
         "nl": "Voorzieningen",
+        "pt-br": "Equipamentos",
         "ru": "Обслуживание транспорта",
         "uk": "Amenities"
     },
@@ -18,6 +19,8 @@
             "node[amenity~\"^(car_rental|car_sharing|fuel)$\"];",
             "way[amenity~\"^(car_rental|car_sharing|fuel)$\"];",
             "relation[amenity~\"^(car_rental|car_sharing|fuel)$\"];",
+            "node[amenity~\"^(charging_station)$\"][car!=\"no\"];",
+            "node[amenity~\"^(charging_station)$\"][motorcycle!=\"no\"];",
             ")"
         ],
         "16": [
@@ -43,6 +46,7 @@
         "charging_station": "🔌 ",
         "fuel": "⛽",
         "parking": "🅿",
-        "motorcycle_parking": "🅿"
+        "motorcycle_parking": "🅿",
+        "charging_station": "🔌"
     }
 }

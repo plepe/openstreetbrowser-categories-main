@@ -21,7 +21,8 @@
                 "pl": "Wypoczynek, Sport i Zakupy",
                 "ro": "Timp liber, Sport si Cumparaturi",
                 "ru": "Досуг",
-                "uk": "Дозвілля"
+                "uk": "Дозвілля",
+                "pt-br": "Lazer, Esportes e Compras"
             },
             "subCategories": [
                 {
@@ -29,6 +30,9 @@
                 },
                 {
                     "id": "shop"
+                },
+                {
+                    "id": "craft"
                 },
                 {
                     "id": "leisure"
@@ -61,7 +65,8 @@
                 "pl": "Usługi",
                 "ro": "Servicii",
                 "ru": "Услуги",
-                "uk": "Послуги"
+                "uk": "Послуги",
+                "pt-br": "Serviços"
             },
             "subCategories": [
                 {
@@ -108,7 +113,8 @@
                 "pl": "Transport",
                 "ro": "Transport",
                 "ru": "Транспорт",
-                "uk": "Транспорт"
+                "uk": "Транспорт",
+                "pt-br": "Transportes"
             },
             "subCategories": [
                 {
@@ -117,7 +123,8 @@
                     "name": {
                         "de": "Zu Fuß gehen",
                         "en": "Walking",
-                        "fr": "Marche à pied"
+                        "fr": "Marche à pied",
+                        "pt-br": "Pedestre"
                     },
                     "subCategories": [
                         {
@@ -134,7 +141,8 @@
                     "name": {
                         "de": "Radfahren",
                         "en": "Cycling",
-                        "fr": "Cyclisme"
+                        "fr": "Cyclisme",
+                        "pt-br": "Ciclismo"
                     },
                     "subCategories": [
                         {
@@ -163,7 +171,8 @@
                         "pl": "Transport Publiczny",
                         "ro": "Transport public",
                         "ru": "Общественный транспорт",
-                        "uk": "Громадський транспорт"
+                        "uk": "Громадський транспорт",
+                        "pt-br": "Transporte Público"
                     },
                     "subCategories": [
                         {
@@ -192,7 +201,8 @@
                         "pl": "Transport Indywidualny",
                         "ro": "Trafic individual",
                         "ru": "Частный транспорт",
-                        "uk": "Приватний транспорт"
+                        "uk": "Приватний транспорт",
+                        "pt-br": "Tráfego Individual"
                     },
                     "subCategories": [
                         {
@@ -211,7 +221,8 @@
             "name": {
                 "de": "Infrastruktur",
                 "en": "Infrastructure",
-                "fr": "Infrastructures"
+                "fr": "Infrastructures",
+                "pt-br": "Infraestrutura"
             },
             "subCategories": [
                 {
@@ -240,7 +251,8 @@
                         "it": "Ferrovie",
                         "ja": "鉄道",
                         "nl": "Spoorwegen",
-                        "ru": "Железные дороги"
+                        "ru": "Железные дороги",
+                        "pt-br": "Ferrovia"
                     },
                     "subCategories": [
                         {
@@ -273,9 +285,14 @@
             "type": "index",
             "name": {
                 "en": "Special",
-                "de": "Spezial"
+                "de": "Spezial",
+                "pt-br": "Especial",
+                "fr": "Catégories spéciales"
             },
             "subCategories": [
+                {
+                    "id": "gastro-smoking"
+                },
                 {
                     "id": "wikipedia"
                 }

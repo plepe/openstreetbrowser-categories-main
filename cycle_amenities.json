@@ -3,7 +3,8 @@
     "name": {
         "de": "Einrichtungen",
         "en": "Amenities",
-        "fr": "Équipements vélo"
+        "fr": "Équipements vélo",
+        "pt-br": "Equipamentos"
     },
     "query": {
         "13": [
@@ -11,6 +12,7 @@
             "node[amenity~\"^(bicycle_rental)$\"];",
             "way[amenity~\"^(bicycle_rental)$\"];",
             "relation[amenity~\"^(bicycle_rental)$\"];",
+            "node[amenity~\"^(charging_station)$\"][bicycle!=\"no\"];",
             "node[shop~\"^(bicycle)$\"];",
             "way[shop~\"^(bicycle)$\"];",
             "relation[shop~\"^(bicycle)$\"];",
@@ -21,6 +23,7 @@
             "node[amenity~\"^(bicycle_.*|compressed_air)$\"];",
             "way[amenity~\"^(bicycle_.*|compressed_air)$\"];",
             "relation[amenity~\"^(bicycle_.*|compressed_air)$\"];",
+            "node[amenity~\"^(charging_station)$\"][bicycle!=\"no\"];",
             "node[shop~\"^(bicycle)$\"];",
             "way[shop~\"^(bicycle)$\"];",
             "relation[shop~\"^(bicycle)$\"];",
@@ -56,7 +59,13 @@
             "",
             "{% if tags.capacity %}({{ tags.capacity }}){% endif %}"
         ],
-        "description": "{{ tagTrans(key, value) }}",
+        "description": [
+            "{% if tags.amenity == 'vending_machine' %}",
+            "{{ tagTransList('amenity=vending_machine vending', value) }}",
+            "{% else %}",
+            "{{ tagTrans(key, value) }}",
+            "{% endif %}"
+        ],
         "body": [
             "{% if tags.capacity %}",
             "  {{ keyTrans('capacity') }}: {{ tags.capacity }}",
@@ -120,6 +129,10 @@
         },
         "amenity=compressed_air": {
             "sign": "A",
+            "priority": 2
+        },
+        "amenity=charging_station": {
+            "sign": "🔌",
             "priority": 2
         }
     }

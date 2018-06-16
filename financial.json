@@ -11,6 +11,7 @@
         "ja": "金融",
         "nl": "Financieel",
         "pl": "Finasowe",
+        "pt-br": "Finanças",
         "ro": "Financiar",
         "ru": "Финансы",
         "uk": "Фінанси"
@@ -20,14 +21,14 @@
             "(",
             "node[amenity~\"^(bank)$\"];",
             "way[amenity~\"^(bank)$\"];",
-            "relation[amenity~\"^(bank)$\"]",
+            "relation[amenity~\"^(bank)$\"];",
             ")"
         ],
         "15": [
             "(",
             "node[amenity~\"^(bank|bureau_de_change|atm)$\"];",
             "way[amenity~\"^(bank|bureau_de_change|atm)$\"];",
-            "relation[amenity~\"^(bank|bureau_de_change|atm)$\"]",
+            "relation[amenity~\"^(bank|bureau_de_change|atm)$\"];",
             ")"
         ]
     },
