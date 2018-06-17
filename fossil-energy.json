@@ -7,6 +7,11 @@
     "query": {
         "11": [
             "(",
+            "node[landuse~\"^(quarry)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
+            "way[landuse~\"^(quarry)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
+            "relation[landuse~\"^(quarry)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
+            "node[man_made~\"^(mineshaft)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
+            "way[man_made~\"^(mineshaft)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
             "way[man_made~\"^(pipeline|goods_conveyor)$\"][substance~\"^(|.*;)(coal|oil|gas|lng|cng|multiphase)(|;.*)$\"];",
             "relation[man_made~\"^(pipeline|goods_conveyor)$\"][substance~\"^(|.*;)(coal|oil|gas|lng|cng|multiphase)(|;.*)$\"];",
             "node[landuse=industrial][industrial~\"^(|.*;)(refinery)(|;.*)$\"];",
@@ -24,6 +29,12 @@
         ],
         "13": [
             "(",
+            "node[landuse~\"^(quarry)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
+            "way[landuse~\"^(quarry)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
+            "relation[landuse~\"^(quarry)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
+            "node[man_made~\"^(mineshaft)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
+            "way[man_made~\"^(mineshaft)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
+            "relation[man_made~\"^(mineshaft)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
             "way[man_made~\"^(pipeline|goods_conveyor)$\"][substance~\"^(|.*;)(coal|oil|gas|lng|cng|multiphase)(|;.*)$\"];",
             "relation[man_made~\"^(pipeline|goods_conveyor)$\"][substance~\"^(|.*;)(coal|oil|gas|lng|cng|multiphase)(|;.*)$\"];",
             "node[landuse=industrial][industrial~\"^(|.*;)(coal|oil|gas|lng|cng|multiphase|refinery|oil_refinery)(|;.*)$\"];",
