@@ -3,7 +3,9 @@
     "name": {
         "de": "Handwerk",
         "en": "Craft",
-        "fr": "Artisanat"
+        "fr": "Artisanat",
+        "pt": "Artesanato",
+        "pt-br": "Ofícios"
     },
     "query": {
         "15": "(node[craft];way[craft];relation[craft];);"
