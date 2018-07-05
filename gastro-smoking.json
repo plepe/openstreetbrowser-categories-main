@@ -3,7 +3,9 @@
     "name": {
         "de": "Rauchfreie Gastronomie",
         "en": "Smokefree Gastronomy",
-        "fr": "Restauration sans tabac"
+        "fr": "Restauration sans tabac",
+        "pt": "Restauração livre de tabaco",
+        "pt-br": "Gastronomia sem fumo"
     },
     "query": {
         "16": "(node[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];way[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];relation[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];);"
