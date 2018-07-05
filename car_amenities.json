@@ -43,10 +43,9 @@
         "car_rental": "R",
         "car_sharing": "S",
         "car_wash": "🚿",
-        "charging_station": "🔌 ",
+        "charging_station": "🔌",
         "fuel": "⛽",
         "parking": "🅿",
-        "motorcycle_parking": "🅿",
-        "charging_station": "🔌"
+        "motorcycle_parking": "🅿"
     }
 }
