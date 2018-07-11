@@ -49,17 +49,14 @@
         ],
         "listMarkerSign": "{{ const[tags.route].sign|raw }}",
         "markerSymbol": null,
-        "listMarkerSymbol": "{{ markerCircle({fillColor:const[tags.route].color})|raw }}",
-        "style": {
-            "color": "{{ const[tags.route].color }}"
-        }
+        "listMarkerSymbol": "{{ markerCircle({fillColor:const[tags.route].color})|raw }}"
     },
     "memberFeature": {
         "listMarkerSymbol": "{{ markerCircle({})|raw }}",
         "style": {
             "color": [
                 "{% set master = masters[0] %}",
-                "{{ {'subway':'#0000ff','tram':'#007fff','trolley':'#ff007f','bus':'#ff0000'}[master.tags.route]|default('#000000') }}"
+                "{{ const[master.tags.route].color|default('#ff0000') }}"
             ],
             "width": "{% if map.zoom>=15 %}5{% else %}3{% endif %}"
         },
