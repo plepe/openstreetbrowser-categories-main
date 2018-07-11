@@ -19,18 +19,43 @@
         "pt-br": "Transporte Público",
         "pt": "Transportes públicos"
     },
-    "name_routes": {
-        "de": "Routen",
-        "en": "Routes",
-        "fr": "Lignes",
-        "pt": "Rotas",
-        "pt-br": "Rotas"
-    },
     "query": {
         "12": "relation[type=route][route~\"^(subway|monorail|ferry|train)$\"];",
         "14": "relation[type=route][route~\"^(subway|monorail|aerialway|bus|trolleybus|ferry|train|tram)$\"];"
     },
     "members": true,
+    "lists": {
+        "stops": {
+            "prefix": "listStops",
+	    "name": {
+		"ast": "Paraes y estaciones",
+		"cs": "Zastávky & Stanice",
+		"de": "Haltestellen",
+		"el": "Στάσεις & Σταθμοί",
+		"en": "Stops & Stations",
+		"es": "Paradas y estaciones",
+		"fr": "Arrêts/Stops, Stations",
+		"hu": "Megállók és állomások",
+		"it": "Stazioni e fermate",
+		"ja": "停留所と駅",
+		"nl": "Haltes en Stations",
+		"pl": "Przystanki i Stacje",
+		"pt-br": "Paradas e Estações",
+		"ru": "Остановки и станции",
+		"uk": "Зупинки та станції"
+	    }
+        },
+        "routes": {
+            "prefix": "listRoutes",
+            "name": {
+                "de": "Routen",
+                "en": "Routes",
+                "fr": "Lignes",
+                "pt": "Rotas",
+                "pt-br": "Rotas"
+            }
+        }
+    },
     "feature": {
         "styles": "",
         "title": [
@@ -40,19 +65,20 @@
         ],
         "description": "{{ tagTrans('route', tags.route) }}",
         "body": [
-            "<h4>Stops</h4>",
+            "<h4>Stops {{ map.zoom }}</h4>",
             "{% for member in members %}",
             "{% if member.role|slice(-4) == 'stop' %}",
             "<div object='{{ member.id }}' sublayer='member'><b>{{ member.tags.name }}</b></div>",
             "{% endif %}",
             "{% endfor %}"
         ],
-        "listMarkerSign": "{{ const[tags.route].sign|raw }}",
+	"listStopsExclude": "true",
+        "listRoutesMarkerSign": "{{ const[tags.route].sign|raw }}",
         "markerSymbol": null,
-        "listMarkerSymbol": "{{ markerCircle({fillColor:const[tags.route].color})|raw }}"
+        "listRoutesMarkerSymbol": "{{ markerCircle({fillColor:const[tags.route].color})|raw }}"
     },
     "memberFeature": {
-        "listMarkerSymbol": "{{ markerCircle({})|raw }}",
+        "listStopsMarkerSymbol": "{{ markerCircle({})|raw }}",
         "style": {
             "color": [
                 "{% set master = masters[0] %}",
@@ -61,7 +87,7 @@
             "width": "{% if map.zoom>=15 %}5{% else %}3{% endif %}"
         },
         "title": "{% if tags.public_transport == 'stop_position' %}{{ tags.name }}{% endif %}",
-        "listStopsTitle": "{{ tags.name }}: {% for master in masters %}{{ master.tags.ref }} {% endfor %}",
+        "listStopsTitle": "{{ tags.name }}<br/>{% for master in masters %}{{ master.tags.ref }} {% endfor %}",
         "body": [
             "{% for master in masters %}",
             "      '<div object=\"{{ master.id }}\"><b>{{ master.tags.name|default(master.tags.ref) }}</b> ({{ master.id }})</div>",
