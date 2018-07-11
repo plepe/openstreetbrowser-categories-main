@@ -86,12 +86,12 @@
         "train": {
             "sign": "<img src='maki:rail?fill=#ffffff'>",
             "zoom": 12,
-            "color": "#202020"
+            "color": "#00007f"
         },
         "subway": {
             "sign": "<img src='maki:rail-metro?fill=#ffffff'>",
             "zoom": 12,
-            "color": "#00007f"
+            "color": "#0000ff"
         },
         "monorail": {
             "sign": "<span style='color: #ffffff'>M</span>",
