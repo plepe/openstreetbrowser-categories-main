@@ -14,7 +14,15 @@
     },
     "feature": {
         "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
-        "description": "{{ tagTrans('railway', tags.railway) }}",
+        "description": [
+            "{{ tagTrans('railway', tags.railway) -}}",
+            "{%- if tags.usage %}",
+            ", {{ tagTrans('railway=rail usage', tags.usage) }}",
+            "{% endif -%}",
+            "{%- if tags.service %}",
+            ", {{ tagTrans('railway=rail service', tags.service) }}",
+            "{% endif -%}"
+        ],
         "body": [
             "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}",
             "{% if tags.usage %}{{ keyTrans('railway=rail usage') }}: {{ tagTrans('railway=rail usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}",
