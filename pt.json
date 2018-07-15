@@ -21,7 +21,12 @@
     },
     "query": {
         "12": "relation[type=route][route~\"^(subway|monorail|ferry|train)$\"];",
-        "14": "relation[type=route][route~\"^(subway|monorail|aerialway|bus|trolleybus|ferry|train|tram)$\"];"
+        "14": [
+            "(",
+            "relation[type=route][route~\"^(subway|monorail|aerialway|bus|trolleybus|ferry|train|tram)$\"];",
+            "relation[type=public_transport][public_transport=stop_area];",
+            ")"
+        ]
     },
     "members": true,
     "lists": {
@@ -57,6 +62,8 @@
         }
     },
     "feature": {
+        "pre": "{% set isStopArea = tags.public_transport == 'stop_area' %}",
+        "listRoutesExclude": "{{ isStopArea }}",
         "styles": "",
         "title": [
             "{% if tags.ref %}{{ tags.ref }} - {% endif %}",
@@ -79,6 +86,14 @@
         "listRoutesMarkerSymbol": "{{ markerCircle({fillColor:const[tags.route].color})|raw }}"
     },
     "memberFeature": {
+        "pre": [
+            "{% set stopName = '' %}",
+            "{% for master in masters %}",
+            "  {% if master.tags.public_transport == 'stop_area' %}",
+            "  {% set stopName = master.tags.name %}",
+            "  {% endif %}",
+            "{% endfor %}"
+        ],
         "listStopsMarkerSymbol": "{{ markerCircle({})|raw }}",
         "style": {
             "color": [
@@ -91,14 +106,16 @@
             "textOffset": "12",
             "textFontWeight": "bold"
         },
-        "title": "{% if tags.public_transport == 'stop_position' %}{{ tags.name }}{% endif %}",
-        "listStopsTitle": "{{ tags.name }}",
+        "title": "{% if tags.public_transport == 'stop_position' %}{{ tags.name|default(stopName)|default(id) }}{% endif %}",
+        "listStopsTitle": "{{ tags.name|default(stopName)|default(id) }}",
         "listStopsDescription": "{% for master in masters %}{{ master.tags.ref }} {% endfor %}",
         "body": [
             "<h4>Routes</h4>",
             "<ul>",
             "{% for master in masters %}",
+            "  {% if master.tags.public_transport != 'stop_area' %}",
             "  <li data-object=\"{{ master.id }}\"><b>{{ master.tags.name|default(master.tags.ref) }}</li>",
+            "  {% endif %}",
             "{% endfor %}",
             "</ul>"
         ],
