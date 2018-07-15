@@ -91,6 +91,7 @@
             "{% set isStop = false %}",
             "{% set isWay = false %}",
             "{% set aRoute = null %}",
+            "{% set refs = [] %}",
             "{% for master in masters %}",
             "  {% if master.tags.public_transport == 'stop_area' %}",
             "    {% set stopName = master.tags.name %}",
@@ -101,8 +102,14 @@
             "      {% set isWay = true %}",
             "    {% endif %}",
             "    {% set aRoute = master %}",
+            "",
+            "    {% if master.tags.ref %}",
+            "      {% set refs = refs|merge([ master.tags.ref ]) %}",
+            "    {% endif %}",
             "  {% endif %}",
-            "{% endfor %}"
+            "{% endfor %}",
+            "",
+            "{% set refs = refs|unique|natsort({ insensitive: true }) %}"
         ],
         "listStopsMarkerSymbol": "{{ markerCircle({})|raw }}",
         "styles": "{% if isStop %}stop{% elseif isWay %}way{% else %}platform{% endif %}",
@@ -111,7 +118,7 @@
                 "{{ const[aRoute.tags.route].color|default('#ff0000') }}"
             ],
             "width": "3",
-            "text": "{% for master in masters %}{{ master.tags.ref }}  {% endfor %}             ",
+            "text": "{{ refs|join('  ') }}             ",
             "textRepeat": "1",
             "textOffset": "12",
             "textFontWeight": "bold"
@@ -129,7 +136,7 @@
         },
         "title": "{% if tags.public_transport == 'stop_position' %}{{ tags.name|default(stopName)|default(id) }}{% endif %}",
         "listStopsTitle": "{{ tags.name|default(stopName)|default(id) }}",
-        "listStopsDescription": "{% for master in masters %}{{ master.tags.ref }} {% endfor %}",
+        "listStopsDescription": "{{ refs|join(' ') }}",
         "body": [
             "<h4>Routes</h4>",
             "<ul>",
