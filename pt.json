@@ -85,7 +85,11 @@
                 "{% set master = masters[0] %}",
                 "{{ const[master.tags.route].color|default('#ff0000') }}"
             ],
-            "width": "{% if map.zoom>=15 %}5{% else %}3{% endif %}"
+            "width": "3",
+            "text": "{% for master in masters %}{{ master.tags.ref }}  {% endfor %}             ",
+            "textRepeat": "1",
+            "textOffset": "12",
+            "textFontWeight": "bold"
         },
         "title": "{% if tags.public_transport == 'stop_position' %}{{ tags.name }}{% endif %}",
         "listStopsTitle": "{{ tags.name }}",
