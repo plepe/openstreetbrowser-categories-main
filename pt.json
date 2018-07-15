@@ -88,23 +88,44 @@
     "memberFeature": {
         "pre": [
             "{% set stopName = '' %}",
+            "{% set isStop = false %}",
+            "{% set isWay = false %}",
+            "{% set aRoute = null %}",
             "{% for master in masters %}",
             "  {% if master.tags.public_transport == 'stop_area' %}",
-            "  {% set stopName = master.tags.name %}",
+            "    {% set stopName = master.tags.name %}",
+            "  {% else %}",
+            "    {% if master.role|slice(-4) == 'stop' %}",
+            "      {% set isStop = true %}",
+            "    {% elseif master.role|matches('^(|forward|backward)$') %}",
+            "      {% set isWay = true %}",
+            "    {% endif %}",
+            "    {% set aRoute = master %}",
             "  {% endif %}",
             "{% endfor %}"
         ],
         "listStopsMarkerSymbol": "{{ markerCircle({})|raw }}",
-        "style": {
+        "styles": "{% if isStop %}stop{% elseif isWay %}way{% else %}platform{% endif %}",
+        "style:way": {
             "color": [
-                "{% set master = masters[0] %}",
-                "{{ const[master.tags.route].color|default('#ff0000') }}"
+                "{{ const[aRoute.tags.route].color|default('#ff0000') }}"
             ],
             "width": "3",
             "text": "{% for master in masters %}{{ master.tags.ref }}  {% endfor %}             ",
             "textRepeat": "1",
             "textOffset": "12",
             "textFontWeight": "bold"
+        },
+        "style:stop": {
+            "color": [
+                "{{ const[aRoute.tags.route].color|default('#ff0000') }}"
+            ],
+            "width": "5",
+            "radius": 3
+        },
+        "style:platform": {
+            "color": "#7f7f7f",
+            "width": "1"
         },
         "title": "{% if tags.public_transport == 'stop_position' %}{{ tags.name|default(stopName)|default(id) }}{% endif %}",
         "listStopsTitle": "{{ tags.name|default(stopName)|default(id) }}",
@@ -116,11 +137,12 @@
             "  {% if master.tags.public_transport != 'stop_area' %}",
             "  <li data-object=\"{{ master.id }}\"><b>{{ master.tags.name|default(master.tags.ref) }}</li>",
             "  {% endif %}",
+            "  {{ master.role }}",
             "{% endfor %}",
             "</ul>"
         ],
         "listRoutesExclude": "true",
-        "listStopsExclude": "{% set isStop = 0 %}{% for master in masters %}{% if master.role|slice(-4) == 'stop' %}{% set isStop = 1 %}{% endif %}{% endfor %}{{ not isStop }}"
+        "listStopsExclude": "{{ not isStop }}"
     },
     "info": [
         "<table>",
