@@ -113,7 +113,7 @@
             "{% set color = const[aRoute.tags.route].color %}"
         ],
         "listStopsMarkerSymbol": "{{ markerCircle({ width: 5, color: color, fillOpacity: '1', radius: 3 })|raw }}",
-        "listStopsMarkerSign": " ",
+        "listStopsMarkerSign": "",
         "styles": "{% if isStop %}stop{% elseif isWay %}way{% else %}{% endif %}",
         "style:way": {
             "color": [
@@ -142,7 +142,6 @@
             "  {% if master.tags.public_transport != 'stop_area' %}",
             "  <li data-object=\"{{ master.id }}\"><b>{{ master.tags.name|default(master.tags.ref) }}</li>",
             "  {% endif %}",
-            "  {{ master.role }}",
             "{% endfor %}",
             "</ul>"
         ],
