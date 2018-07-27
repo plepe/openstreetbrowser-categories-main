@@ -35,9 +35,10 @@
     "category:playgrounds": "Jeux pour enfants",
     "category:post": "",
     "category:power": "Énergie",
+    "category:pt": "Transports publics",
+    "category:pt:stops": "Arrêts/Stops, Stations",
+    "category:pt:routes": "Lignes",
     "category:pt_amenities": "Équipements",
-    "category:pt_routes": "Lignes",
-    "category:pt_stops": "Arrêts/Stops, Stations",
     "category:public": "Services Publics",
     "category:railway-electrification": "Puissance électrique ferroviaire",
     "category:railway-infrastructure": "Infrastructure ferroviaire",
@@ -62,6 +63,5 @@
     "category:transport": "Transports",
     "category:transport_car": "Transport automobile",
     "category:transport_cycle": "Cyclisme",
-    "category:transport_pt": "Transports publics",
     "category:transport_walk": "Marche à pied"
 }

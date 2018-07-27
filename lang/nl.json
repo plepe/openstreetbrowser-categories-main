@@ -35,9 +35,10 @@
     "category:playgrounds": "",
     "category:post": "Post",
     "category:power": "Stroomvoorziening",
+    "category:pt": "Openbaar vervoer",
+    "category:pt:stops": "Haltes en Stations",
+    "category:pt:routes": "",
     "category:pt_amenities": "Voorzieningen",
-    "category:pt_routes": "",
-    "category:pt_stops": "Haltes en Stations",
     "category:public": "Openbare diensten",
     "category:railway-electrification": "",
     "category:railway-infrastructure": "",
@@ -58,6 +59,5 @@
     "category:railway": "Spoorwegen",
     "category:services": "Dienstverlening",
     "category:transport": "Vervoer",
-    "category:transport_car": "Gemotoriseerd individueel verkeer",
-    "category:transport_pt": "Openbaar vervoer"
+    "category:transport_car": "Gemotoriseerd individueel verkeer"
 }

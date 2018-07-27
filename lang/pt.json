@@ -35,9 +35,10 @@
     "category:playgrounds": "Parques infantis",
     "category:post": "Correios",
     "category:power": "Eletricidade",
+    "category:pt": "Transportes públicos",
+    "category:pt:stops": "",
+    "category:pt:routes": "Rotas",
     "category:pt_amenities": "",
-    "category:pt_routes": "Rotas",
-    "category:pt_stops": "Paragens e estações",
     "category:public": "Serviços públicos",
     "category:railway-electrification": "Eletrificação ferroviária",
     "category:railway-infrastructure": "Infraestrutura ferroviária",
@@ -62,6 +63,5 @@
     "category:transport": "Transportes",
     "category:transport_car": "Transporte individual",
     "category:transport_cycle": "Ciclismo",
-    "category:transport_pt": "Transportes públicos",
     "category:transport_walk": "Pedestre"
 }

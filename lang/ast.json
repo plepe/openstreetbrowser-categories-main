@@ -35,9 +35,10 @@
     "category:playgrounds": "Xuegos infantiles",
     "category:post": "Corréu",
     "category:power": "Enerxía",
+    "category:pt": "Tresporte Públicu",
+    "category:pt:stops": "Paraes y estaciones",
+    "category:pt:routes": "",
     "category:pt_amenities": "Infraestructures",
-    "category:pt_routes": "",
-    "category:pt_stops": "Paraes y estaciones",
     "category:public": "Serviciu Públicu",
     "category:railway-electrification": "",
     "category:railway-infrastructure": "",
@@ -58,6 +59,5 @@
     "category:railway": "Ferrocarril",
     "category:services": "Servicios",
     "category:transport": "Tresporte",
-    "category:transport_car": "Tráficu individual",
-    "category:transport_pt": "Tresporte Públicu"
+    "category:transport_car": "Tráficu individual"
 }

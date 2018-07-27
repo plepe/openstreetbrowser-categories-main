@@ -35,9 +35,10 @@
     "category:playgrounds": "Дитячий майданчик",
     "category:post": "",
     "category:power": "",
+    "category:pt": "Громадський транспорт",
+    "category:pt:stops": "Зупинки та станції",
+    "category:pt:routes": "",
     "category:pt_amenities": "Amenities",
-    "category:pt_routes": "",
-    "category:pt_stops": "Зупинки та станції",
     "category:public": "Громадські місця",
     "category:railway-electrification": "",
     "category:railway-infrastructure": "",
@@ -57,6 +58,5 @@
     "category:leisure_sport_shopping": "Дозвілля",
     "category:services": "Послуги",
     "category:transport": "Транспорт",
-    "category:transport_car": "Приватний транспорт",
-    "category:transport_pt": "Громадський транспорт"
+    "category:transport_car": "Приватний транспорт"
 }

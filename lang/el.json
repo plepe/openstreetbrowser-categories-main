@@ -35,9 +35,10 @@
     "category:playgrounds": "",
     "category:post": "",
     "category:power": "",
+    "category:pt": "Δημόσιες Μεταφορές",
+    "category:pt:stops": "Στάσεις & Σταθμοί",
+    "category:pt:routes": "",
     "category:pt_amenities": "",
-    "category:pt_routes": "",
-    "category:pt_stops": "Στάσεις & Σταθμοί",
     "category:public": "Δημόσιες Υπηρεσίες",
     "category:railway-electrification": "",
     "category:railway-infrastructure": "",
@@ -56,6 +57,5 @@
     "category:works": "",
     "category:leisure_sport_shopping": "Αναψυχή, Αθλητισμός και Αγορές",
     "category:services": "Υπηρεσίες",
-    "category:transport": "Μεταφορές",
-    "category:transport_pt": "Δημόσιες Μεταφορές"
+    "category:transport": "Μεταφορές"
 }

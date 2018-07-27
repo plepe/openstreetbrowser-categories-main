@@ -35,9 +35,10 @@
     "category:playgrounds": "",
     "category:post": "",
     "category:power": "Energia",
+    "category:pt": "Trasporti pubblici",
+    "category:pt:stops": "Stazioni e fermate",
+    "category:pt:routes": "",
     "category:pt_amenities": "Infrastrutture",
-    "category:pt_routes": "",
-    "category:pt_stops": "Stazioni e fermate",
     "category:public": "Servizi pubblici",
     "category:railway-electrification": "",
     "category:railway-infrastructure": "",
@@ -58,6 +59,5 @@
     "category:railway": "Ferrovie",
     "category:services": "Servizi",
     "category:transport": "Trasporti",
-    "category:transport_car": "Trasporti individuali",
-    "category:transport_pt": "Trasporti pubblici"
+    "category:transport_car": "Trasporti individuali"
 }

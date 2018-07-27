@@ -35,9 +35,10 @@
     "category:playgrounds": "Spielplätze",
     "category:post": "Post",
     "category:power": "Energie",
+    "category:pt": "Öffentlicher Verkehr",
+    "category:pt:stops": "Haltestellen",
+    "category:pt:routes": "Routen",
     "category:pt_amenities": "Einrichtungen",
-    "category:pt_routes": "Routen",
-    "category:pt_stops": "Haltestellen",
     "category:public": "Öffentliche Dienste",
     "category:railway-electrification": "Eisenbahn Elektrifizierung",
     "category:railway-infrastructure": "Eisenbahn Infrastruktur",
@@ -62,6 +63,5 @@
     "category:transport": "Transport",
     "category:transport_car": "Motorisierter Individualverkehr",
     "category:transport_cycle": "Radfahren",
-    "category:transport_pt": "Öffentlicher Verkehr",
     "category:transport_walk": "Zu Fuß gehen"
 }
