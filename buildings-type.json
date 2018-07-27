@@ -1,0 +1,90 @@
+{
+    "type": "overpass",
+    "name": {
+        "de": "Typ",
+        "en": "Type"
+    },
+    "query": {
+        "16": [
+            "(",
+            "  way[building];",
+            "  relation[building];",
+            ")"
+        ]
+    },
+    "feature": {
+        "pre": [
+            "{% if tags.building == 'yes' %}",
+            "{% set color = '#7f7f7f' %}",
+            "{% else %}",
+            "{% set color = '#7f0000' %}",
+            "{% endif %}"
+        ],
+        "description": [
+            "{{ tagTrans('building', tags.building) }}"
+        ],
+        "markerSymbol": null,
+        "listMarkerSymbol": "{{ markerCircle({fillColor: color})|raw }}",
+        "priority": "{{ (approxHeight|default(0)) * -1 }}",
+        "style": {
+            "width": "1",
+            "color": "#000000",
+            "fillColor": "{{ color }}",
+            "fillOpacity": "1"
+        }
+    },
+    "info": [
+        "<div style='display: inline-block'>",
+        "{{ tagTrans('height') }}",
+        "<table>",
+        "  <tr>",
+        "    <td>{{ markerCircle({ 'fillColor': '#7f7f7f' })|raw }}</td>",
+        "    <td colspan>{{ trans('unknown') }}</td>",
+        "  </tr>",
+        "{% for i in range(0, 50, 10) %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({ 'fillColor': colorInterpolate(['green', 'red'], i / 50) })|raw }}</td>",
+        "    <td>{{ i }}m</td>",
+        "  </tr>",
+        "{% endfor %}",
+        "{% for i in range(100, 250, 50) %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({ 'fillColor': colorInterpolate(['red', 'yellow'], (i - 50) / 250) })|raw }}</td>",
+        "    <td>{{ i }}m</td>",
+        "  </tr>",
+        "{% endfor %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({ 'fillColor': 'yellow' })|raw }}</td>",
+        "    <td>≥300m</td>",
+        "  </tr>",
+        "</table>",
+        "</div>",
+        "",
+        "<div style='display: inline-block'>",
+        "{{ tagTrans('building:levels') }}",
+        "<table>",
+        "  <tr>",
+        "    <td>{{ markerCircle({ 'fillColor': '#7f7f7f' })|raw }}</td>",
+        "    <td colspan>{{ trans('unknown') }}</td>",
+        "  </tr>",
+        "{% for i in range(0, 12, 3) %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({ 'fillColor': colorInterpolate(['green', 'red'], (i * 3.5) / 50) })|raw }}</td>",
+        "    <td>{{ i }}</td>",
+        "  </tr>",
+        "{% endfor %}",
+        "{% for i in range(15, 84, 15) %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({ 'fillColor': colorInterpolate(['red', 'yellow'], (i * 3.5 - 50) / 250) })|raw }}</td>",
+        "    <td>{{ i }}</td>",
+        "  </tr>",
+        "{% endfor %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({ 'fillColor': 'yellow' })|raw }}</td>",
+        "    <td>≥85</td>",
+        "  </tr>",
+        "</table>",
+        "",
+        "</div>"
+    ]
+}
