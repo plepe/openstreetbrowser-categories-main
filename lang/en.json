@@ -35,9 +35,10 @@
     "category:playgrounds": "Playground",
     "category:post": "Post",
     "category:power": "Power",
+    "category:pt": "Public Transportation",
+    "category:pt:stops": "Stops & Stations",
+    "category:pt:routes": "Routes",
     "category:pt_amenities": "Amenities",
-    "category:pt_routes": "Routes",
-    "category:pt_stops": "Stops & Stations",
     "category:public": "Public Services",
     "category:railway-electrification": "Railway electrification",
     "category:railway-infrastructure": "Railway infrastructure",
@@ -62,6 +63,5 @@
     "category:transport": "Transportation",
     "category:transport_car": "Individual Traffic",
     "category:transport_cycle": "Cycling",
-    "category:transport_pt": "Public Transportation",
     "category:transport_walk": "Walking"
 }

@@ -35,9 +35,10 @@
     "category:playgrounds": "",
     "category:post": "Posta",
     "category:power": "Áramellátás",
+    "category:pt": "Tömegközlekedés",
+    "category:pt:stops": "Megállók és állomások",
+    "category:pt:routes": "",
     "category:pt_amenities": "",
-    "category:pt_routes": "",
-    "category:pt_stops": "Megállók és állomások",
     "category:public": "",
     "category:railway-electrification": "",
     "category:railway-infrastructure": "",
@@ -57,6 +58,5 @@
     "category:leisure_sport_shopping": "Szabadidő",
     "category:railway": "Vasút",
     "category:services": "Szolgáltatás",
-    "category:transport": "Közlekedés",
-    "category:transport_pt": "Tömegközlekedés"
+    "category:transport": "Közlekedés"
 }

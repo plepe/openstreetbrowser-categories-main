@@ -35,9 +35,10 @@
     "category:playgrounds": "",
     "category:post": "郵便",
     "category:power": "電力",
+    "category:pt": "公共輸送",
+    "category:pt:stops": "停留所と駅",
+    "category:pt:routes": "",
     "category:pt_amenities": "生活環境",
-    "category:pt_routes": "",
-    "category:pt_stops": "停留所と駅",
     "category:public": "公共サービス",
     "category:railway-electrification": "",
     "category:railway-infrastructure": "",
@@ -58,6 +59,5 @@
     "category:railway": "鉄道",
     "category:services": "サービス",
     "category:transport": "輸送",
-    "category:transport_car": "個人輸送機関",
-    "category:transport_pt": "公共輸送"
+    "category:transport_car": "個人輸送機関"
 }

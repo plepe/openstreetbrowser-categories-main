@@ -35,9 +35,10 @@
     "category:playgrounds": "Mänguväljak",
     "category:post": "",
     "category:power": "Elekter",
+    "category:pt": "Ühistransport",
+    "category:pt:stops": "",
+    "category:pt:routes": "",
     "category:pt_amenities": "",
-    "category:pt_routes": "",
-    "category:pt_stops": "",
     "category:public": "Kommunaalteenused",
     "category:railway-electrification": "",
     "category:railway-infrastructure": "",
@@ -57,6 +58,5 @@
     "category:leisure_sport_shopping": "Vaba aeg, sport ja ostmine",
     "category:railway": "Raudtee",
     "category:services": "Teenused",
-    "category:transport": "Transport",
-    "category:transport_pt": "Ühistransport"
+    "category:transport": "Transport"
 }

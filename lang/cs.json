@@ -35,9 +35,10 @@
     "category:playgrounds": "Hřiště",
     "category:post": "Poštovní služby",
     "category:power": "Elektřina",
+    "category:pt": "Veřejná doprava",
+    "category:pt:stops": "Zastávky & Stanice",
+    "category:pt:routes": "",
     "category:pt_amenities": "Občanská vybavenost",
-    "category:pt_routes": "",
-    "category:pt_stops": "Zastávky & Stanice",
     "category:public": "Veřejné služby",
     "category:railway-electrification": "",
     "category:railway-infrastructure": "",
@@ -58,6 +59,5 @@
     "category:railway": "Železnice",
     "category:services": "Služby",
     "category:transport": "Doprava",
-    "category:transport_car": "Individuální doprava",
-    "category:transport_pt": "Veřejná doprava"
+    "category:transport_car": "Individuální doprava"
 }

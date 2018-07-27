@@ -35,9 +35,10 @@
     "category:playgrounds": "Parquinhos",
     "category:post": "Correios",
     "category:power": "Energia",
+    "category:pt": "Transporte Público",
+    "category:pt:stops": "Paradas e Estações",
+    "category:pt:routes": "Rotas",
     "category:pt_amenities": "Equipamentos",
-    "category:pt_routes": "Rotas",
-    "category:pt_stops": "Paradas e Estações",
     "category:public": "Serviços Públicos",
     "category:railway-electrification": "Eletrificação Ferroviária",
     "category:railway-infrastructure": "Infraestrutura Ferroviária",
@@ -62,6 +63,5 @@
     "category:transport": "Transportes",
     "category:transport_car": "Tráfego Individual",
     "category:transport_cycle": "Ciclismo",
-    "category:transport_pt": "Transporte Público",
     "category:transport_walk": "Pedestre"
 }
