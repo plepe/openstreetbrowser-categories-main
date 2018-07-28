@@ -42,7 +42,7 @@
             "<ul>",
             "{% for master in masters %}",
             "  {% if master.tags.public_transport != 'stop_area' %}",
-            "  <li data-object=\"{{ master.id }}\"><b>{{ master.tags.name|default(master.tags.ref) }}</b> <i>{{ tagTrans('network', master.tags.network) }}</li>",
+            "  <li data-object=\"{{ master.id }}\"><b>{{ master.tags.name|default(master.tags.ref) }}</b> <i>{{ tagTrans('network', master.tags.network) }}</i></li>",
             "  {% endif %}",
             "{% endfor %}",
             "</ul>"
