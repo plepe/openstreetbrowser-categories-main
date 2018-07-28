@@ -17,6 +17,7 @@
     "feature": {
         "priority": "{{ {icn:0,ncn:1,rcn:2,lcn:3}[tags.network] }}",
         "description": "{{ tagTrans('network', tags.network) }}",
+        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': const[tags.network].color })|raw }}",
         "styles": ""
     },
     "memberFeature": {
@@ -59,16 +60,32 @@
     },
     "const": {
         "icn": {
-            "color": "#ff0000"
+            "color": "#ff0000",
+            "zoom": 6
         },
         "ncn": {
-            "color": "#ff007f"
+            "color": "#ff00ba",
+            "zoom": 9
         },
         "rcn": {
-            "color": "#7f00ff"
+            "color": "#ba00ff",
+            "zoom": 12
         },
         "lcn": {
-            "color": "#0000ff"
+            "color": "#0000ff",
+            "zoom": 15
         }
-    }
+    },
+    "info": [
+        "<table>",
+        "{% for value, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'width': 4, color: data.color })|raw }}</td>",
+        "    <td>{{ tagTrans('network', value) }}</td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "</table>"
+    ]
 }
