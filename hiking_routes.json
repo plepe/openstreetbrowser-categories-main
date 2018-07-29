@@ -13,27 +13,79 @@
         "12": "relation[type=route][route=hiking][network~\"^(iwn|nwn|rwn)$\"]",
         "14": "relation[type=route][route=hiking]"
     },
+    "members": true,
     "feature": {
+        "priority": "{{ {iwn:0,nwn:1,rwn:2,lwn:3}[tags.network] }}",
         "description": "{{ tagTrans('network', tags.network) }}",
-        "priority": [
-            "{% set network_data = const[tags.network] %}",
-            "{% if network_data %}",
-            "{{ network_data.priority }}",
-            "{% endif %}"
-        ]
+        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': const[tags.network].color })|raw }}",
+        "styles": ""
+    },
+    "memberFeature": {
+        "pre": [
+            "{% set priority = 4 %}",
+            "{% set network = '' %}",
+            "{% set refs = [] %}",
+            "",
+            "{% for master in masters %}",
+            "  {% set _p = {iwn:0,nwn:1,rwn:2,lwn:3}[master.tags.network] %}",
+            "  {% if _p < priority %}",
+            "    {% set priority = _p %}",
+            "    {% set network = master.tags.network %}",
+            "  {% endif %}",
+            "  {% if master.tags.ref %}",
+            "    {% set refs = refs|merge([ master.tags.ref ]) %}",
+            "  {% endif %}",
+            "{% endfor %}"
+        ],
+        "title": "",
+        "body": [
+            "<ul>",
+            "{% for master in masters %}",
+            "  {% if master.tags.public_transport != 'stop_area' %}",
+            "  <li data-object=\"{{ master.id }}\"><b>{{ master.tags.name|default(master.tags.ref) }}</b> <i>{{ tagTrans('network', master.tags.network) }}</i></li>",
+            "  {% endif %}",
+            "{% endfor %}",
+            "</ul>"
+        ],
+        "listExclude": "1",
+        "style": {
+            "color": "{{ const[network].color }}",
+            "width": 4,
+            "opacity": 1,
+            "text": "{{ refs|join('  ') }}             ",
+            "textRepeat": "1",
+            "textOffset": "12",
+            "textFontWeight": "bold"
+        }
     },
     "const": {
         "iwn": {
-            "priority": 1
+            "color": "#ff0000",
+            "zoom": 10
         },
         "nwn": {
-            "priority": 2
+            "color": "#ff00ba",
+            "zoom": 11
         },
         "rwn": {
-            "priority": 3
+            "color": "#ba00ff",
+            "zoom": 12
         },
         "lwn": {
-            "priority": 4
+            "color": "#0000ff",
+            "zoom": 14
         }
-    }
+    },
+    "info": [
+        "<table>",
+        "{% for value, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'width': 4, color: data.color })|raw }}</td>",
+        "    <td>{{ tagTrans('network', value) }}</td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "</table>"
+    ]
 }
