@@ -15,9 +15,9 @@
     },
     "members": true,
     "feature": {
-        "priority": "{{ {iwn:0,nwn:1,rwn:2,lwn:3}[tags.network] }}",
-        "description": "{{ tagTrans('network', tags.network) }}",
-        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': const[tags.network].color })|raw }}",
+        "priority": "{{ {iwn:0,nwn:1,rwn:2,lwn:3}[tags.network]|default(4) }}",
+        "description": "{% if tags.network %}{{ tagTrans('network', tags.network) }}{% endif %}",
+        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': const[tags.network|default('')].color })|raw }}",
         "styles": ""
     },
     "memberFeature": {
@@ -27,7 +27,7 @@
             "{% set refs = [] %}",
             "",
             "{% for master in masters %}",
-            "  {% set _p = {iwn:0,nwn:1,rwn:2,lwn:3}[master.tags.network] %}",
+            "  {% set _p = {iwn:0,nwn:1,rwn:2,lwn:3}[master.tags.network]|default(4) %}",
             "  {% if _p < priority %}",
             "    {% set priority = _p %}",
             "    {% set network = master.tags.network %}",
@@ -37,13 +37,11 @@
             "  {% endif %}",
             "{% endfor %}"
         ],
-        "title": "",
         "body": [
+            "<h4>Routes</h4>",
             "<ul>",
             "{% for master in masters %}",
-            "  {% if master.tags.public_transport != 'stop_area' %}",
-            "  <li data-object=\"{{ master.id }}\"><b>{{ master.tags.name|default(master.tags.ref) }}</b> <i>{{ tagTrans('network', master.tags.network) }}</i></li>",
-            "  {% endif %}",
+            "  <li data-object=\"{{ master.id }}\"><b>{{ master.tags.name|default(master.tags.ref) }}</b>{% if master.tags.network %} <i>{{ tagTrans('network', master.tags.network) }}</i>{% endif %}</li>",
             "{% endfor %}",
             "</ul>"
         ],
@@ -74,6 +72,10 @@
         "lwn": {
             "color": "#0000ff",
             "zoom": 14
+        },
+        "": {
+            "color": "#007fff",
+            "zoom": 14
         }
     },
     "info": [
@@ -82,7 +84,7 @@
         "{% if data.zoom <= map.zoom %}",
         "  <tr>",
         "    <td>{{ markerLine({ 'width': 4, color: data.color })|raw }}</td>",
-        "    <td>{{ tagTrans('network', value) }}</td>",
+        "    <td>{% if value %}{{ tagTrans('network', value) }}{% else %}{{ trans('unknown') }}{% endif %}</td>",
         "  </tr>",
         "{% endif %}",
         "{% endfor %}",
