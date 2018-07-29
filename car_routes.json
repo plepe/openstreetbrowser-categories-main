@@ -1,0 +1,47 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Car routes"
+    },
+    "query": {
+        "10": "relation[type=route][route=road]"
+    },
+    "members": true,
+    "feature": {
+        "description": "{% if tags.network %}{{ tagTrans('network', tags.network) }}{% endif %}",
+        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': '#ff0000' )].color })|raw }}",
+        "styles": ""
+    },
+    "memberFeature": {
+        "pre": [
+            "{% set refs = [] %}",
+            "{% if tags.ref %}",
+            "  {% set refs = refs|merge([ tags.ref ]) %}",
+            "{% endif %}",
+            "",
+            "{% for master in masters %}",
+            "  {% if master.tags.ref %}",
+            "    {% set refs = refs|merge([ master.tags.ref ]) %}",
+            "  {% endif %}",
+            "{% endfor %}"
+        ],
+        "body": [
+            "<h4>Routes</h4>",
+            "<ul>",
+            "{% for master in masters %}",
+            "  <li data-object=\"{{ master.id }}\"><b>{{ master.tags.name|default(master.tags.ref) }}</b>{% if master.tags.network %} <i>{{ tagTrans('network', master.tags.network) }}</i>{% endif %}</li>",
+            "{% endfor %}",
+            "</ul>"
+        ],
+        "listExclude": "1",
+        "style": {
+            "color": "#ff0000",
+            "width": 4,
+            "opacity": 1,
+            "text": "{{ refs|join('  ') }}             ",
+            "textRepeat": "1",
+            "textOffset": "12",
+            "textFontWeight": "bold"
+        }
+    }
+}

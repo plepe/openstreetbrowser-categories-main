@@ -186,6 +186,9 @@
                         },
                         {
                             "id": "car_maxspeed"
+                        },
+                        {
+                            "id": "car_routes"
                         }
                     ]
                 }
