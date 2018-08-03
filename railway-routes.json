@@ -8,16 +8,22 @@
     },
     "members": true,
     "feature": {
-        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': '#ff0000' })|raw }}",
+        "pre": "{% set color = '#' ~ tags.operator|default('')|md5|slice(0, 6) %}",
+        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': color })|raw }}",
         "description": "{{ tags.operator }}",
         "title": "{% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}",
-        "styles": ""
+        "styles": "",
+        "markerSymbol": ""
     },
     "memberFeature": {
         "pre": [
             "{% set refs = [] %}",
+            "{% set color = '#d41d8c' %}",
             "",
             "{% for master in masters %}",
+            "  {% if master.tags.operator %}",
+            "    {% set color = '#' ~ master.tags.operator|md5|slice(0, 6) %}",
+            "  {% endif %}",
             "  {% if master.tags.ref %}",
             "    {% set refs = refs|merge([ master.tags.ref ]) %}",
             "  {% endif %}",
@@ -28,13 +34,14 @@
             "<h4>Routes</h4>",
             "<ul>",
             "{% for master in masters %}",
-            "  <li data-object=\"{{ master.id }}\"><b>{{ master.tags.name|default(master.tags.ref) }}</b>{% if master.tags.network %} <i>{{ tagTrans('network', master.tags.network) }}</i>{% endif %}</li>",
+            "  {% set _color = '#' ~ master.tags.operator|default('')|md5|slice(0, 6) %}",
+            "  <li data-object=\"{{ master.id }}\" style='list-style: none;'>{{ markerLine({ width: 4, color: _color })|raw }}<b>{{ master.tags.name|default(master.tags.ref) }}</b>{% if master.tags.network %} <i>{{ master.tags.operator }}</i>{% endif %}</li>",
             "{% endfor %}",
             "</ul>"
         ],
         "listExclude": "1",
         "style": {
-            "color": "#ff0000",
+            "color": "{{ color }}",
             "width": 4,
             "opacity": 1,
             "text": "{{ refs|join('  ') }}             ",
