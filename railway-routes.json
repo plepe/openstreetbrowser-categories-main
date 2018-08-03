@@ -1,0 +1,46 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Railway Routes"
+    },
+    "query": {
+        "12": "relation[type=route][route=railway]"
+    },
+    "members": true,
+    "feature": {
+        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': '#ff0000' })|raw }}",
+        "description": "{{ tags.operator }}",
+        "title": "{% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}",
+        "styles": ""
+    },
+    "memberFeature": {
+        "pre": [
+            "{% set refs = [] %}",
+            "",
+            "{% for master in masters %}",
+            "  {% if master.tags.ref %}",
+            "    {% set refs = refs|merge([ master.tags.ref ]) %}",
+            "  {% endif %}",
+            "{% endfor %}"
+        ],
+        "title": "",
+        "body": [
+            "<h4>Routes</h4>",
+            "<ul>",
+            "{% for master in masters %}",
+            "  <li data-object=\"{{ master.id }}\"><b>{{ master.tags.name|default(master.tags.ref) }}</b>{% if master.tags.network %} <i>{{ tagTrans('network', master.tags.network) }}</i>{% endif %}</li>",
+            "{% endfor %}",
+            "</ul>"
+        ],
+        "listExclude": "1",
+        "style": {
+            "color": "#ff0000",
+            "width": 4,
+            "opacity": 1,
+            "text": "{{ refs|join('  ') }}             ",
+            "textRepeat": "1",
+            "textOffset": "12",
+            "textFontWeight": "bold"
+        }
+    }
+}
