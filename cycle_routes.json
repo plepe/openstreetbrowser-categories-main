@@ -17,8 +17,10 @@
     "feature": {
         "priority": "{{ {icn:0,ncn:1,rcn:2,lcn:3}[tags.network] }}",
         "description": "{{ tagTrans('network', tags.network) }}",
-        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': const[tags.network].color })|raw }}",
-        "styles": ""
+        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': const[tags.network].color|default(const[''].color) })|raw }}",
+        "title": "{% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}",
+        "styles": "",
+        "markerSymbol": ""
     },
     "memberFeature": {
         "pre": [
@@ -42,7 +44,11 @@
             "<h4>Routes</h4>",
             "<ul>",
             "{% for master in masters %}",
-            "  <li data-object=\"{{ master.id }}\"><b>{{ master.tags.name|default(master.tags.ref) }}</b>{% if master.tags.network %} <i>{{ tagTrans('network', master.tags.network) }}</i>{% endif %}</li>",
+            "  <li data-object=\"{{ master.id }}\" style='list-style: none;'>",
+            "    {{ markerLine({ width: 4, color: const[master.tags.network].color|default(const[''].color) })|raw }}",
+            "    {% if master.tags.ref and master.tags.name %}{{ master.tags.ref }} - {{ master.tags.name|default(master.tags.ref) }}{% elseif master.tags.ref %}{{ master.tags.ref }}{% elseif master.tags.name %}{{ master.tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}",
+            "    <i style='color: #707070'>{{ tagTrans('network', master.tags.network) }}</i>",
+            "  </li>",
             "{% endfor %}",
             "</ul>"
         ],
