@@ -15,7 +15,7 @@
     },
     "members": true,
     "feature": {
-        "priority": "{{ {icn:0,ncn:1,rcn:2,lcn:3}[tags.network] }}",
+        "priority": "{{ const[tags.network].priority|default(4) }}",
         "description": "{{ tagTrans('network', tags.network) }}",
         "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': const[tags.network].color|default(const[''].color) })|raw }}",
         "title": "{% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}",
@@ -29,7 +29,7 @@
             "{% set refs = [] %}",
             "",
             "{% for master in masters %}",
-            "  {% set _p = {icn:0,ncn:1,rcn:2,lcn:3}[master.tags.network]|default(4) %}",
+            "  {% set _p = const[master.tags.network].priority|default(4) %}",
             "  {% if _p < priority %}",
             "    {% set priority = _p %}",
             "    {% set network = master.tags.network %}",
@@ -66,22 +66,27 @@
     "const": {
         "icn": {
             "color": "#ff0000",
+            "priority": 0,
             "zoom": 6
         },
         "ncn": {
             "color": "#ff00ba",
+            "priority": 1,
             "zoom": 9
         },
         "rcn": {
             "color": "#ba00ff",
+            "priority": 2,
             "zoom": 12
         },
         "lcn": {
             "color": "#0000ff",
+            "priority": 3,
             "zoom": 15
         },
         "": {
             "color": "#007fff",
+            "priority": 4,
             "zoom": 15
         }
     },
