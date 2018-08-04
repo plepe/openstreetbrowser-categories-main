@@ -43,6 +43,9 @@
                 },
                 {
                     "id": "children"
+                },
+                {
+                    "id": "outdoor"
                 }
             ]
         },
