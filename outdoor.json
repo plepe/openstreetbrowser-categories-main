@@ -1,0 +1,12 @@
+{
+    "type": "index",
+    "name": {
+        "de": "Freiluftaktivitäten",
+        "en": "Outdoor activities"
+    },
+    "subCategories": [
+        {
+            "id": "mtb-routes"
+        }
+    ]
+}
