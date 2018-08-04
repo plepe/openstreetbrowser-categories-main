@@ -42,12 +42,12 @@
         "title": "",
         "body": [
             "<h4>Routes</h4>",
-            "<ul>",
+            "<ul class='overpass-layer-list'>",
             "{% for master in masters %}",
-            "  <li data-object=\"{{ master.id }}\" style='list-style: none;'>",
-            "    {{ markerLine({ width: 4, color: const[master.tags.network].color|default(const[''].color) })|raw }}",
-            "    {% if master.tags.ref and master.tags.name %}{{ master.tags.ref }} - {{ master.tags.name|default(master.tags.ref) }}{% elseif master.tags.ref %}{{ master.tags.ref }}{% elseif master.tags.name %}{{ master.tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}",
-            "    <i style='color: #707070'>{{ tagTrans('network', master.tags.network) }}</i>",
+            "  <li data-object=\"{{ master.id }}\">",
+            "    <span class='markerParent'><div class='marker'>{{ markerLine({ width: 4, color: const[master.tags.network].color|default(const[''].color) })|raw }}</div></span>",
+            "    <span class='title'>{% if master.tags.ref and master.tags.name %}{{ master.tags.ref }} - {{ master.tags.name|default(master.tags.ref) }}{% elseif master.tags.ref %}{{ master.tags.ref }}{% elseif master.tags.name %}{{ master.tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}</span>",
+            "    <span class='description'>{{ tagTrans('network', master.tags.network) }}</span>",
             "  </li>",
             "{% endfor %}",
             "</ul>"

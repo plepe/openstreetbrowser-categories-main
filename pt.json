@@ -137,10 +137,14 @@
         "listStopsDescription": "{{ refs|join(' ') }}",
         "body": [
             "<h4>Routes</h4>",
-            "<ul>",
+            "<ul class='overpass-layer-list'>",
             "{% for master in masters %}",
             "  {% if master.tags.public_transport != 'stop_area' %}",
-            "  <li data-object=\"{{ master.id }}\"><b>{{ master.tags.name|default(master.tags.ref) }}</li>",
+            "  <li data-object=\"{{ master.id }}\">",
+            "    <span class='markerParent'><div class='marker'>{{ markerLine({ width: 4, color: const[master.tags.route].color })|raw }}</div></span>",
+            "    <span class='title'>{{ master.tags.name|default(master.tags.ref) }}</a></span>",
+            "    <span class='description'>{{ tagTrans('route', master.tags.route) }}</span>",
+            "  </li>",
             "  {% endif %}",
             "{% endfor %}",
             "</ul>"
