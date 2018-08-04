@@ -74,7 +74,7 @@
         "body": [
             "<h4>Stops</h4><ul>",
             "{% for member in members %}",
-            "{% if member.role|slice(-4) == 'stop' %}",
+            "{% if member.tags.highway == 'bus_stop' or member.tags.amenity == 'bus_station' or member.tags.amenity == 'ferry_terminal' or member.tags.railway == 'tram_stop' or member.tags.railway == 'halt' or member.tags.railway == 'station' or member.tags.aerialway == 'station' or member.tags.public_transport == 'stop_position' or member.role|slice(-4) == 'stop' %}",
             "<li data-object='{{ member.id }}' data-sublayer='member'><b>{{ member.tags.name|default(member.id) }}</li>",
             "{% endif %}",
             "{% endfor %}",
@@ -89,6 +89,7 @@
         "pre": [
             "{% set stopName = '' %}",
             "{% set isStop = false %}",
+            "{% if tags.highway == 'bus_stop' or tags.amenity == 'bus_station' or tags.amenity == 'ferry_terminal' or tags.railway == 'tram_stop' or tags.railway == 'halt' or tags.railway == 'station' or tags.aerialway == 'station' or tags.public_transport == 'stop_position' %}{% set isStop = true %}{% endif %}",
             "{% set isWay = false %}",
             "{% set aRoute = null %}",
             "{% set refs = [] %}",
@@ -96,9 +97,9 @@
             "  {% if master.tags.public_transport == 'stop_area' %}",
             "    {% set stopName = master.tags.name %}",
             "  {% else %}",
-            "    {% if master.role|slice(-4) == 'stop' %}",
+            "    {% if master.role|matches('^(|.*stop)$') and isStop %}",
             "      {% set isStop = true %}",
-            "    {% elseif master.role|matches('^(|forward|backward)$') %}",
+            "    {% elseif master.role|matches('^(|forward|backward)$') and type == 'way' %}",
             "      {% set isWay = true %}",
             "    {% endif %}",
             "    {% set aRoute = master %}",
@@ -132,7 +133,7 @@
             "width": "5",
             "radius": 3
         },
-        "title": "{% if tags.public_transport == 'stop_position' %}{{ tags.name|default(stopName)|default(id) }}{% endif %}",
+        "title": "{% if isStop %}{{ tags.name|default(stopName)|default(id) }}{% endif %}",
         "listStopsTitle": "{{ tags.name|default(stopName)|default(id) }}",
         "listStopsDescription": "{{ refs|join(' ') }}",
         "body": [
@@ -142,7 +143,7 @@
             "  {% if master.tags.public_transport != 'stop_area' %}",
             "  <li data-object=\"{{ master.id }}\">",
             "    <span class='markerParent'><div class='marker'>{{ markerLine({ width: 4, color: const[master.tags.route].color })|raw }}</div></span>",
-            "    <span class='title'>{{ master.tags.name|default(master.tags.ref) }}</a></span>",
+            "    <span class='title'>{% if master.tags.ref and master.tags.name %}{{ master.tags.ref }} - {{ master.tags.name|default(master.tags.ref) }}{% elseif master.tags.ref %}{{ master.tags.ref }}{% elseif master.tags.name %}{{ master.tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}</span>",
             "    <span class='description'>{{ tagTrans('route', master.tags.route) }}</span>",
             "  </li>",
             "  {% endif %}",
