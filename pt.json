@@ -1,23 +1,8 @@
 {
     "type": "overpass",
     "name": {
-        "ast": "Tresporte Públicu",
-        "cs": "Veřejná doprava",
-        "de": "Öffentlicher Verkehr",
-        "el": "Δημόσιες Μεταφορές",
-        "en": "Public Transportation",
-        "et": "Ühistransport",
-        "fr": "Transports publics",
-        "hu": "Tömegközlekedés",
-        "it": "Trasporti pubblici",
-        "ja": "公共輸送",
-        "nl": "Openbaar vervoer",
-        "pl": "Transport Publiczny",
-        "ro": "Transport public",
-        "ru": "Общественный транспорт",
-        "uk": "Громадський транспорт",
-        "pt-br": "Transporte Público",
-        "pt": "Transportes públicos"
+        "en": "Public transport map",
+        "de": "ÖV Karte"
     },
     "query": {
         "12": "relation[type=route][route~\"^(subway|monorail|ferry|train)$\"];",
