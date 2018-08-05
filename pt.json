@@ -74,6 +74,7 @@
         "pre": [
             "{% set stopName = '' %}",
             "{% set isStop = false %}",
+            "{% set stopCount = 0 %}",
             "{% if tags.highway == 'bus_stop' or tags.amenity == 'bus_station' or tags.amenity == 'ferry_terminal' or tags.railway == 'tram_stop' or tags.railway == 'halt' or tags.railway == 'station' or tags.aerialway == 'station' or tags.public_transport == 'stop_position' %}{% set isStop = true %}{% endif %}",
             "{% set isWay = false %}",
             "{% set aRoute = null %}",
@@ -84,6 +85,7 @@
             "  {% else %}",
             "    {% if master.role|matches('^(|.*stop)$') and isStop %}",
             "      {% set isStop = true %}",
+            "      {% set stopCount = stopCount + 1 %}",
             "    {% elseif master.role|matches('^(|forward|backward)$') and type == 'way' %}",
             "      {% set isWay = true %}",
             "    {% endif %}",
@@ -100,7 +102,7 @@
         ],
         "listStopsMarkerSymbol": "{{ markerCircle({ width: 5, color: color, fillOpacity: '1', radius: 3 })|raw }}",
         "listStopsMarkerSign": "",
-        "styles": "{% if isStop %}stop{% elseif isWay %}way{% else %}{% endif %}",
+        "styles": "{% if isStop and stopCount > 0 %}stop{% elseif isWay %}way{% else %}{% endif %}",
         "style:way": {
             "color": [
                 "{{ color|default('#ff0000') }}"
@@ -136,7 +138,7 @@
             "</ul>"
         ],
         "listRoutesExclude": "true",
-        "listStopsExclude": "{{ not isStop }}"
+        "listStopsExclude": "{{ not isStop or stopCount == 0 }}"
     },
     "info": [
         "<table>",
