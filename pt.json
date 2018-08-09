@@ -13,27 +13,26 @@
             ")"
         ]
     },
-    "members": true,
     "lists": {
         "stops": {
             "prefix": "listStops",
-	    "name": {
-		"ast": "Paraes y estaciones",
-		"cs": "Zastávky & Stanice",
-		"de": "Haltestellen",
-		"el": "Στάσεις & Σταθμοί",
-		"en": "Stops & Stations",
-		"es": "Paradas y estaciones",
-		"fr": "Arrêts/Stops, Stations",
-		"hu": "Megállók és állomások",
-		"it": "Stazioni e fermate",
-		"ja": "停留所と駅",
-		"nl": "Haltes en Stations",
-		"pl": "Przystanki i Stacje",
-		"pt-br": "Paradas e Estações",
-		"ru": "Остановки и станции",
-		"uk": "Зупинки та станції"
-	    }
+            "name": {
+                "ast": "Paraes y estaciones",
+                "cs": "Zastávky & Stanice",
+                "de": "Haltestellen",
+                "el": "Στάσεις & Σταθμοί",
+                "en": "Stops & Stations",
+                "es": "Paradas y estaciones",
+                "fr": "Arrêts/Stops, Stations",
+                "hu": "Megállók és állomások",
+                "it": "Stazioni e fermate",
+                "ja": "停留所と駅",
+                "nl": "Haltes en Stations",
+                "pl": "Przystanki i Stacje",
+                "pt-br": "Paradas e Estações",
+                "ru": "Остановки и станции",
+                "uk": "Зупинки та станції"
+            }
         },
         "routes": {
             "prefix": "listRoutes",
@@ -48,8 +47,6 @@
     },
     "feature": {
         "pre": "{% set isStopArea = tags.public_transport == 'stop_area' %}",
-        "listRoutesExclude": "{{ isStopArea }}",
-        "styles": "",
         "title": [
             "{% if tags.ref %}{{ tags.ref }} - {% endif %}",
             "",
@@ -65,11 +62,14 @@
             "{% endfor %}",
             "</ul>"
         ],
-	"listStopsExclude": "true",
+        "markerSymbol": "",
+        "styles": "",
+        "listStopsExclude": "true",
         "listRoutesMarkerSign": "{{ const[tags.route].sign|raw }}",
-        "markerSymbol": null,
-        "listRoutesMarkerSymbol": "{{ markerCircle({fillColor:const[tags.route].color})|raw }}"
+        "listRoutesMarkerSymbol": "{{ markerCircle({fillColor:const[tags.route].color})|raw }}",
+        "listRoutesExclude": "{{ isStopArea }}"
     },
+    "members": true,
     "memberFeature": {
         "pre": [
             "{% set stopName = '' %}",
@@ -100,29 +100,7 @@
             "{% set refs = refs|unique|natsort({ insensitive: true }) %}",
             "{% set color = const[aRoute.tags.route].color %}"
         ],
-        "listStopsMarkerSymbol": "{{ markerCircle({ width: 5, color: color, fillOpacity: '1', radius: 3 })|raw }}",
-        "listStopsMarkerSign": "",
-        "styles": "{% if isStop and stopCount > 0 %}stop{% elseif isWay %}way{% else %}{% endif %}",
-        "style:way": {
-            "color": [
-                "{{ color|default('#ff0000') }}"
-            ],
-            "width": "3",
-            "text": "{{ refs|join('  ') }}             ",
-            "textRepeat": "1",
-            "textOffset": "12",
-            "textFontWeight": "bold"
-        },
-        "style:stop": {
-            "color": [
-                "{{ color|default('#ff0000') }}"
-            ],
-            "width": "5",
-            "radius": 3
-        },
         "title": "{% if isStop %}{{ tags.name|default(stopName)|default(id) }}{% endif %}",
-        "listStopsTitle": "{{ tags.name|default(stopName)|default(id) }}",
-        "listStopsDescription": "{{ refs|join(' ') }}",
         "body": [
             "<h4>Routes</h4>",
             "<ul class='overpass-layer-list'>",
@@ -137,8 +115,26 @@
             "{% endfor %}",
             "</ul>"
         ],
+        "styles": "{% if isStop and stopCount > 0 %}stop{% elseif isWay %}way{% else %}{% endif %}",
+        "listStopsMarkerSign": null,
+        "listStopsMarkerSymbol": "{{ markerCircle({ width: 5, color: color, fillOpacity: '1', radius: 3 })|raw }}",
+        "listStopsExclude": "{{ not isStop or stopCount == 0 }}",
+        "listStopsTitle": "{{ tags.name|default(stopName)|default(id) }}",
+        "listStopsDescription": "{{ refs|join(' ') }}",
         "listRoutesExclude": "true",
-        "listStopsExclude": "{{ not isStop or stopCount == 0 }}"
+        "style:way": {
+            "width": "3",
+            "color": "{{ color|default('#ff0000') }}",
+            "text": "{{ refs|join('  ') }}             ",
+            "textRepeat": "1",
+            "textOffset": "12",
+            "textFontWeight": "bold"
+        },
+        "style:stop": {
+            "width": "5",
+            "color": "{{ color|default('#ff0000') }}",
+            "radius": "3"
+        }
     },
     "info": [
         "<table>",
