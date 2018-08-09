@@ -115,4 +115,25 @@
 </li>
 {% endif %}
 
+{% set wikipedia = null %}
+{% if attribute(tags, 'wikipedia') %}
+  {% set wikipedia = tags.wikipedia|matches("^([^:]+):(.*)$") %}
+{% endif %}
+
+{% if not wikipedia %}
+  {% for k, v in tags %}
+    {% set m = k|matches("^wikipedia:(.*)$") %}
+    {% if m %}
+      {% set wikipedia = [ 0, m[1], v ] %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if wikipedia %}
+<li class='hasSymbol'>
+  <i class="fa fa-wikipedia-w" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('wikipedia') }}:</span>
+  <span class='value'><a href="https://{{ wikipedia[1] }}.wikipedia.org/wiki/{{ wikipedia[2]|replace({ ' ': '_' }) }}">{{ wikipedia[2] }}</a></span>
+{% endif %}
+
 </ul>
