@@ -36,21 +36,20 @@
     },
     "filter": {
         "amenity": {
-            "name": "tag:amenity",
             "type": "select",
-            "values": "auto",
+            "values": [
+              "bar",
+              "biergarten",
+              "cafe",
+              "fast_food",
+              "ice_cream",
+              "pub"
+            ],
             "op": "="
         },
         "cuisine": {
-            "name": "tag:cuisine",
-            "type": "select",
-            "values": [
-                "kebab",
-                "pizza",
-                "sausage",
-                "asian",
-                "chinese"
-            ],
+            "type": "autocomplete",
+            "values": [ "afghan", "arab", "asian", "australian", "austrian", "barbecue", "burger", "cake", "caribbean", "caribean", "chinese", "coffee", "coffee_shop", "crepe", "empanada", "fish_and_chips", "french", "fried_food", "friture", "greek", "gyros", "ice_cream", "indian", "international", "italian", "japanese", "juice", "kebab", "korean", "local", "mexican", "noodles", "pasta", "pie", "pizza", "regional", "salad", "sandwich", "sausage", "seafood", "soup", "spanish", "steak_house", "sushi", "thai", "turkish", "vegan", "vegetarian", "vietnamese" ],
             "op": "has"
         }
     }
