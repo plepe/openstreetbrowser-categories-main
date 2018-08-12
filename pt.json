@@ -189,5 +189,19 @@
             "zoom": 12,
             "color": "#007fff"
         }
+    },
+    "filter": {
+        "route": {
+            "type": "select",
+            "values": [
+                "aerialway",
+                "bus",
+                "ferry",
+                "subway",
+                "train",
+                "tram",
+                "trolleybus"
+            ]
+        }
     }
 }
