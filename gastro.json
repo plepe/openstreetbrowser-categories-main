@@ -57,6 +57,11 @@
             "type": "autocomplete",
             "values": [ "afghan", "arab", "asian", "australian", "austrian", "barbecue", "burger", "cake", "caribbean", "caribean", "chinese", "coffee", "coffee_shop", "crepe", "empanada", "fish_and_chips", "french", "fried_food", "friture", "greek", "gyros", "ice_cream", "indian", "international", "italian", "japanese", "juice", "kebab", "korean", "local", "mexican", "noodles", "pasta", "pie", "pizza", "regional", "salad", "sandwich", "sausage", "seafood", "soup", "spanish", "steak_house", "sushi", "thai", "turkish", "vegan", "vegetarian", "vietnamese" ],
             "op": "has"
+        },
+        "diet": {
+            "type": "autocomplete",
+            "values": [ "diet:vegan", "diet:vegetarian", "diet:pescetarian", "diet:lacto_vegetarian", "diet:ovo_vegetarian", "diet:fruitarian", "diet:raw", "diet:gluten_free", "diet:dairy_free", "diet:lactose_free", "diet:halal", "diet:kosher" ],
+            "op": "has_key_value"
         }
     }
 }
