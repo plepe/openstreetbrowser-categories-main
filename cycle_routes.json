@@ -4,6 +4,7 @@
         "de": "Radrouten",
         "en": "Cycle Routes",
         "fr": "Itinéraires vélo",
+        "pt": "Ciclovias",
         "pt-br": "Ciclorrotas"
     },
     "query": {
@@ -12,12 +13,93 @@
         "12": "relation[type=route][route=bicycle][network~'^(icn|ncn|rcn)$']",
         "15": "relation[type=route][route=bicycle]"
     },
+    "members": true,
     "feature": {
-        "priority": "{% if tags.network=='icn' %}0{% elseif tags.network=='ncn' %}1{% elseif tags.network=='rcn' %}2{% else %}3{% endif %}",
+        "priority": "{{ const[tags.network].priority|default(4) }}",
+        "description": "{{ tagTrans('network', tags.network) }}",
+        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': const[tags.network].color|default(const[''].color) })|raw }}",
+        "title": "{% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}",
+        "styles": "",
+        "markerSymbol": ""
+    },
+    "memberFeature": {
+        "pre": [
+            "{% set priority = 4 %}",
+            "{% set network = '' %}",
+            "{% set refs = [] %}",
+            "",
+            "{% for master in masters %}",
+            "  {% set _p = const[master.tags.network].priority|default(4) %}",
+            "  {% if _p < priority %}",
+            "    {% set priority = _p %}",
+            "    {% set network = master.tags.network %}",
+            "  {% endif %}",
+            "  {% if master.tags.ref %}",
+            "    {% set refs = refs|merge([ master.tags.ref ]) %}",
+            "  {% endif %}",
+            "{% endfor %}"
+        ],
+        "title": "",
+        "body": [
+            "<h4>Routes</h4>",
+            "<ul class='overpass-layer-list'>",
+            "{% for master in masters %}",
+            "  <li data-object=\"{{ master.id }}\">",
+            "    <span class='markerParent'><div class='marker'>{{ markerLine({ width: 4, color: const[master.tags.network].color|default(const[''].color) })|raw }}</div></span>",
+            "    <span class='title'>{% if master.tags.ref and master.tags.name %}{{ master.tags.ref }} - {{ master.tags.name|default(master.tags.ref) }}{% elseif master.tags.ref %}{{ master.tags.ref }}{% elseif master.tags.name %}{{ master.tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}</span>",
+            "    <span class='description'>{{ tagTrans('network', master.tags.network) }}</span>",
+            "  </li>",
+            "{% endfor %}",
+            "</ul>"
+        ],
+        "listExclude": "1",
         "style": {
+            "color": "{{ const[network].color }}",
             "width": 4,
-            "color": "{% if tags.network=='icn' %}#ff0000{% elseif tags.network=='ncn' %}#ff007f{% elseif tags.network=='rcn' %}#7f00ff{% else %}#0000ff{% endif %}",
-            "opacity": 1
+            "opacity": 1,
+            "text": "{{ refs|join('  ') }}             ",
+            "textRepeat": "1",
+            "textOffset": "12",
+            "textFontWeight": "bold"
         }
-    }
+    },
+    "const": {
+        "icn": {
+            "color": "#ff0000",
+            "priority": 0,
+            "zoom": 6
+        },
+        "ncn": {
+            "color": "#ff00ba",
+            "priority": 1,
+            "zoom": 9
+        },
+        "rcn": {
+            "color": "#ba00ff",
+            "priority": 2,
+            "zoom": 12
+        },
+        "lcn": {
+            "color": "#0000ff",
+            "priority": 3,
+            "zoom": 15
+        },
+        "": {
+            "color": "#007fff",
+            "priority": 4,
+            "zoom": 15
+        }
+    },
+    "info": [
+        "<table>",
+        "{% for value, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'width': 4, color: data.color })|raw }}</td>",
+        "    <td>{% if value %}{{ tagTrans('network', value) }}{% else %}{{ trans('unknown') }}{% endif %}</td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "</table>"
+    ]
 }

@@ -4,6 +4,7 @@
         "de": "Eisenbahn Infrastruktur",
         "en": "Railway infrastructure",
         "fr": "Infrastructure ferroviaire",
+        "pt": "Infraestrutura ferroviária",
         "pt-br": "Infraestrutura Ferroviária"
     },
     "query": {
@@ -13,14 +14,21 @@
     },
     "feature": {
         "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
-        "description": "{{ tagTrans('railway', tags.railway) }}",
+        "description": [
+            "{{ tagTrans('railway', tags.railway) -}}",
+            "{%- if tags.usage %}",
+            ", {{ tagTrans('railway=rail usage', tags.usage) }}",
+            "{% endif -%}",
+            "{%- if tags.service %}",
+            ", {{ tagTrans('railway=rail service', tags.service) }}",
+            "{% endif -%}"
+        ],
         "body": [
             "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}",
-            "{% if tags.usage %}{{ keyTrans('usage') }}: {{ tagTrans('usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}",
-            "{% if tags.service %}{{ keyTrans('service') }}: {{ tagTrans('service', tags.service ) }}<br/>{% endif %}",
+            "{% if tags.usage %}{{ keyTrans('railway=rail usage') }}: {{ tagTrans('railway=rail usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}",
+            "{% if tags.service %}{{ keyTrans('railway=rail service') }}: {{ tagTrans('railway=rail service', tags.service ) }}<br/>{% endif %}",
             "{{ keyTrans('gauge') }}: {{ tags.gauge|default(trans('unknown')) }}<br/>",
-            "{% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}",
-            ""
+            "{% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}"
         ],
         "markerSign": "{% if tags.railway in [ 'halt', 'tram_stop', 'station', 'stop', 'subway_entrance' ] %}X{% endif %}",
         "markerSymbol": [

@@ -1,0 +1,193 @@
+{
+    "type": "overpass",
+    "name": {
+        "de": "ÖV Karte",
+        "en": "Public transport map"
+    },
+    "query": {
+        "12": "relation[type=route][route~\"^(subway|monorail|ferry|train)$\"];",
+        "14": [
+            "(",
+            "relation[type=route][route~\"^(subway|monorail|aerialway|bus|trolleybus|ferry|train|tram)$\"];",
+            "relation[type=public_transport][public_transport=stop_area];",
+            ")"
+        ]
+    },
+    "lists": {
+        "stops": {
+            "prefix": "listStops",
+            "name": {
+                "ast": "Paraes y estaciones",
+                "cs": "Zastávky & Stanice",
+                "de": "Haltestellen",
+                "el": "Στάσεις & Σταθμοί",
+                "en": "Stops & Stations",
+                "es": "Paradas y estaciones",
+                "fr": "Arrêts/Stops, Stations",
+                "hu": "Megállók és állomások",
+                "it": "Stazioni e fermate",
+                "ja": "停留所と駅",
+                "nl": "Haltes en Stations",
+                "pl": "Przystanki i Stacje",
+                "pt-br": "Paradas e Estações",
+                "ru": "Остановки и станции",
+                "uk": "Зупинки та станції"
+            }
+        },
+        "routes": {
+            "prefix": "listRoutes",
+            "name": {
+                "de": "Routen",
+                "en": "Routes",
+                "fr": "Lignes",
+                "pt": "Rotas",
+                "pt-br": "Rotas"
+            }
+        }
+    },
+    "feature": {
+        "pre": "{% set isStopArea = tags.public_transport == 'stop_area' %}",
+        "title": [
+            "{% if tags.ref %}{{ tags.ref }} - {% endif %}",
+            "",
+            "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}"
+        ],
+        "description": "{{ tagTrans('route', tags.route) }}",
+        "body": [
+            "<h4>Stops</h4><ul>",
+            "{% for member in members %}",
+            "{% if member.tags.highway == 'bus_stop' or member.tags.amenity == 'bus_station' or member.tags.amenity == 'ferry_terminal' or member.tags.railway == 'tram_stop' or member.tags.railway == 'halt' or member.tags.railway == 'station' or member.tags.aerialway == 'station' or member.tags.public_transport == 'stop_position' or member.role|slice(-4) == 'stop' %}",
+            "<li data-object='{{ member.id }}' data-sublayer='member'><b>{{ member.tags.name|default(member.id) }}</li>",
+            "{% endif %}",
+            "{% endfor %}",
+            "</ul>"
+        ],
+        "markerSymbol": "",
+        "styles": "",
+        "listStopsExclude": "true",
+        "listRoutesMarkerSign": "{{ const[tags.route].sign|raw }}",
+        "listRoutesMarkerSymbol": "{{ markerCircle({fillColor:const[tags.route].color})|raw }}",
+        "listRoutesExclude": "{{ isStopArea }}"
+    },
+    "members": true,
+    "memberFeature": {
+        "pre": [
+            "{% set stopName = '' %}",
+            "{% set isStop = false %}",
+            "{% set stopCount = 0 %}",
+            "{% if tags.highway == 'bus_stop' or tags.amenity == 'bus_station' or tags.amenity == 'ferry_terminal' or tags.railway == 'tram_stop' or tags.railway == 'halt' or tags.railway == 'station' or tags.aerialway == 'station' or tags.public_transport == 'stop_position' %}{% set isStop = true %}{% endif %}",
+            "{% set isWay = false %}",
+            "{% set aRoute = null %}",
+            "{% set refs = [] %}",
+            "{% for master in masters %}",
+            "  {% if master.tags.public_transport == 'stop_area' %}",
+            "    {% set stopName = master.tags.name %}",
+            "  {% else %}",
+            "    {% if master.role|matches('^(|.*stop)$') and isStop %}",
+            "      {% set isStop = true %}",
+            "      {% set stopCount = stopCount + 1 %}",
+            "    {% elseif master.role|matches('^(|forward|backward)$') and type == 'way' %}",
+            "      {% set isWay = true %}",
+            "    {% endif %}",
+            "    {% set aRoute = master %}",
+            "",
+            "    {% if master.tags.ref %}",
+            "      {% set refs = refs|merge([ master.tags.ref ]) %}",
+            "    {% endif %}",
+            "  {% endif %}",
+            "{% endfor %}",
+            "",
+            "{% set refs = refs|unique|natsort({ insensitive: true }) %}",
+            "{% set color = const[aRoute.tags.route].color %}"
+        ],
+        "title": "{% if isStop %}{{ tags.name|default(stopName)|default(id) }}{% endif %}",
+        "body": [
+            "<h4>Routes</h4>",
+            "<ul class='overpass-layer-list'>",
+            "{% for master in masters %}",
+            "  {% if master.tags.public_transport != 'stop_area' %}",
+            "  <li data-object=\"{{ master.id }}\">",
+            "    <span class='markerParent'><div class='marker'>{{ markerCircle({fillColor:const[master.tags.route].color})|raw }}</div><div class='icon'>{{ const[master.tags.route].sign|raw }}</div></span>",
+            "    <span class='title'>{% if master.tags.ref and master.tags.name %}{{ master.tags.ref }} - {{ master.tags.name|default(master.tags.ref) }}{% elseif master.tags.ref %}{{ master.tags.ref }}{% elseif master.tags.name %}{{ master.tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}</span>",
+            "    <span class='description'>{{ tagTrans('route', master.tags.route) }}</span>",
+            "  </li>",
+            "  {% endif %}",
+            "{% endfor %}",
+            "</ul>"
+        ],
+        "styles": "{% if isStop and stopCount > 0 %}stop{% elseif isWay %}way{% else %}{% endif %}",
+        "listStopsMarkerSign": null,
+        "listStopsMarkerSymbol": "{{ markerCircle({ width: 5, color: color, fillOpacity: '1', radius: 3 })|raw }}",
+        "listStopsExclude": "{{ not isStop or stopCount == 0 }}",
+        "listStopsTitle": "{{ tags.name|default(stopName)|default(id) }}",
+        "listStopsDescription": "{{ refs|join(' ') }}",
+        "listRoutesExclude": "true",
+        "style:way": {
+            "width": "3",
+            "color": "{{ color|default('#ff0000') }}",
+            "text": "{{ refs|join('  ') }}             ",
+            "textRepeat": "1",
+            "textOffset": "12",
+            "textFontWeight": "bold"
+        },
+        "style:stop": {
+            "width": "5",
+            "color": "{{ color|default('#ff0000') }}",
+            "radius": "3"
+        }
+    },
+    "info": [
+        "<table>",
+        "{% for value, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({fillColor:data.color})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "    <td>{{ tagTrans('route', value) }}</td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "</table>"
+    ],
+    "const": {
+        "train": {
+            "sign": "<img src='maki:rail?fill=#ffffff'>",
+            "zoom": 12,
+            "color": "#00007f"
+        },
+        "subway": {
+            "sign": "<img src='maki:rail-metro?fill=#ffffff'>",
+            "zoom": 12,
+            "color": "#0000ff"
+        },
+        "monorail": {
+            "sign": "<span style='color: #ffffff'>M</span>",
+            "zoom": 12,
+            "color": "#006f8f"
+        },
+        "tram": {
+            "sign": "<img src='maki:rail-light?fill=#ffffff'>",
+            "zoom": 12,
+            "color": "#7f007f"
+        },
+        "bus": {
+            "sign": "<img src='maki:bus?fill=#ffffff'>",
+            "zoom": 12,
+            "color": "#af0000"
+        },
+        "trolleybus": {
+            "sign": "<img src='maki:bus?fill=#ffffff'>",
+            "zoom": 12,
+            "color": "#af3f00"
+        },
+        "aerialway": {
+            "sign": "<img src='maki:aerialway?fill=#ffffff'>",
+            "zoom": 12,
+            "color": "#00aaaa"
+        },
+        "ferry": {
+            "sign": "<img src='maki:ferry?fill=#ffffff'>",
+            "zoom": 12,
+            "color": "#007fff"
+        }
+    }
+}

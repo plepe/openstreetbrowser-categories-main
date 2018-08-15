@@ -1,0 +1,58 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Railway Routes",
+        "fr": "Lignes ferroviaires"
+    },
+    "query": {
+        "12": "relation[type=route][route=railway]"
+    },
+    "members": true,
+    "feature": {
+        "pre": "{% set color = '#' ~ tags.operator|default('')|md5|slice(0, 6) %}",
+        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': color })|raw }}",
+        "description": "{{ tags.operator }}",
+        "title": "{% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}",
+        "styles": "",
+        "markerSymbol": ""
+    },
+    "memberFeature": {
+        "pre": [
+            "{% set refs = [] %}",
+            "{% set color = '#d41d8c' %}",
+            "",
+            "{% for master in masters %}",
+            "  {% if master.tags.operator %}",
+            "    {% set color = '#' ~ master.tags.operator|md5|slice(0, 6) %}",
+            "  {% endif %}",
+            "  {% if master.tags.ref %}",
+            "    {% set refs = refs|merge([ master.tags.ref ]) %}",
+            "  {% endif %}",
+            "{% endfor %}"
+        ],
+        "title": "",
+        "body": [
+            "<h4>Routes</h4>",
+            "<ul>",
+            "{% for master in masters %}",
+            "  {% set _color = '#' ~ master.tags.operator|default('')|md5|slice(0, 6) %}",
+            "  <li data-object=\"{{ master.id }}\" style='list-style: none;'>",
+            "    <span class='markerParent'><div class='marker'>{{ markerLine({ width: 4, color: _color })|raw }}</div></span>",
+            "    <span class='title'>{% if master.tags.ref and master.tags.name %}{{ master.tags.ref }} - {{ master.tags.name|default(master.tags.ref) }}{% elseif master.tags.ref %}{{ master.tags.ref }}{% elseif master.tags.name %}{{ master.tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}</span>",
+            "    <span class='description'>{{ master.tags.operator }}</span>",
+            "  </li>",
+            "{% endfor %}",
+            "</ul>"
+        ],
+        "listExclude": "1",
+        "style": {
+            "color": "{{ color }}",
+            "width": 4,
+            "opacity": 1,
+            "text": "{{ refs|join('  ') }}             ",
+            "textRepeat": "1",
+            "textOffset": "12",
+            "textFontWeight": "bold"
+        }
+    }
+}
