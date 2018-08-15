@@ -1,8 +1,8 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Public transport map",
-        "de": "ÖV Karte"
+        "de": "ÖV Karte",
+        "en": "Public transport map"
     },
     "query": {
         "12": "relation[type=route][route~\"^(subway|monorail|ferry|train)$\"];",

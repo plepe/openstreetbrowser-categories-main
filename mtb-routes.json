@@ -1,7 +1,8 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Mountain bike routes"
+        "en": "Mountain bike routes",
+        "fr": "Itinéraires de VTT"
     },
     "query": {
         "13": "relation[type=route][route=mtb]"
