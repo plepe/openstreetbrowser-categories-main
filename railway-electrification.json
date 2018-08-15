@@ -4,6 +4,7 @@
         "de": "Eisenbahn Elektrifizierung",
         "en": "Railway electrification",
         "fr": "Puissance électrique ferroviaire",
+        "pt": "Eletrificação ferroviária",
         "pt-br": "Eletrificação Ferroviária"
     },
     "query": {
@@ -38,12 +39,12 @@
         ],
         "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
         "description": [
-            "{{ tagTrans('railway', tags.railway) }} -",
+            "{{ tagTrans('railway', tags.railway) }}",
             "",
             "{% if tags.electrified == 'no' %}",
-            "  {{ trans('not electrified') }}",
+            "  - {{ tagTrans('electrified', 'no') }}",
             "{% elseif tags.electrified %}",
-            "  {{ tags.voltage|default(trans('unknown')) }}V, {{ tags.frequency|default(trans('unknown')) }}Hz",
+            "  - {{ tags.voltage|default(trans('unknown')) }}V, {{ tags.frequency|default(trans('unknown')) }}Hz",
             "{% endif %}"
         ],
         "body": [

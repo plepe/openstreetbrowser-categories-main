@@ -22,7 +22,8 @@
                 "ro": "Timp liber, Sport si Cumparaturi",
                 "ru": "Досуг",
                 "uk": "Дозвілля",
-                "pt-br": "Lazer, Esportes e Compras"
+                "pt-br": "Lazer, Esportes e Compras",
+                "pt": "Lazer, desporto e compras"
             },
             "subCategories": [
                 {
@@ -42,6 +43,9 @@
                 },
                 {
                     "id": "children"
+                },
+                {
+                    "id": "outdoor"
                 }
             ]
         },
@@ -66,7 +70,8 @@
                 "ro": "Servicii",
                 "ru": "Услуги",
                 "uk": "Послуги",
-                "pt-br": "Serviços"
+                "pt-br": "Serviços",
+                "pt": "Serviços"
             },
             "subCategories": [
                 {
@@ -114,7 +119,8 @@
                 "ro": "Transport",
                 "ru": "Транспорт",
                 "uk": "Транспорт",
-                "pt-br": "Transportes"
+                "pt-br": "Transportes",
+                "pt": "Transportes"
             },
             "subCategories": [
                 {
@@ -124,7 +130,8 @@
                         "de": "Zu Fuß gehen",
                         "en": "Walking",
                         "fr": "Marche à pied",
-                        "pt-br": "Pedestre"
+                        "pt-br": "Pedestre",
+                        "pt": "Pedestre"
                     },
                     "subCategories": [
                         {
@@ -142,7 +149,8 @@
                         "de": "Radfahren",
                         "en": "Cycling",
                         "fr": "Cyclisme",
-                        "pt-br": "Ciclismo"
+                        "pt-br": "Ciclismo",
+                        "pt": "Ciclismo"
                     },
                     "subCategories": [
                         {
@@ -172,17 +180,15 @@
                         "ro": "Transport public",
                         "ru": "Общественный транспорт",
                         "uk": "Громадський транспорт",
-                        "pt-br": "Transporte Público"
+                        "pt-br": "Transporte Público",
+                        "pt": "Transportes públicos"
                     },
                     "subCategories": [
                         {
                             "id": "pt_amenities"
                         },
                         {
-                            "id": "pt_stops"
-                        },
-                        {
-                            "id": "pt_routes"
+                            "id": "pt"
                         }
                     ]
                 },
@@ -202,7 +208,8 @@
                         "ro": "Trafic individual",
                         "ru": "Частный транспорт",
                         "uk": "Приватний транспорт",
-                        "pt-br": "Tráfego Individual"
+                        "pt-br": "Tráfego Individual",
+                        "pt": "Transporte individual"
                     },
                     "subCategories": [
                         {
@@ -210,6 +217,9 @@
                         },
                         {
                             "id": "car_maxspeed"
+                        },
+                        {
+                            "id": "car_routes"
                         }
                     ]
                 }
@@ -222,7 +232,8 @@
                 "de": "Infrastruktur",
                 "en": "Infrastructure",
                 "fr": "Infrastructures",
-                "pt-br": "Infraestrutura"
+                "pt-br": "Infraestrutura",
+                "pt": "Infraestrutura"
             },
             "subCategories": [
                 {
@@ -252,7 +263,8 @@
                         "ja": "鉄道",
                         "nl": "Spoorwegen",
                         "ru": "Железные дороги",
-                        "pt-br": "Ferrovia"
+                        "pt-br": "Ferrovia",
+                        "pt": "Linhas ferroviárias"
                     },
                     "subCategories": [
                         {
@@ -260,6 +272,9 @@
                         },
                         {
                             "id": "railway-electrification"
+                        },
+                        {
+                            "id": "railway-routes"
                         }
                     ]
                 },
@@ -287,7 +302,8 @@
                 "en": "Special",
                 "de": "Spezial",
                 "pt-br": "Especial",
-                "fr": "Catégories spéciales"
+                "fr": "Catégories spéciales",
+                "pt": "Especial"
             },
             "subCategories": [
                 {
