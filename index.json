@@ -246,7 +246,10 @@
                             "id": "electric_power"
                         },
                         {
-                            "id": "fossil-energy"
+                            "id": "coal"
+                        },
+                        {
+                            "id": "oil_gas"
                         }
                     ]
                 },
