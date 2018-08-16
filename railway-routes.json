@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "en": "Railway Routes",
-        "fr": "Lignes ferroviaires"
+        "fr": "Lignes ferroviaires",
+        "pt-br": "Rotas ferroviárias"
     },
     "query": {
         "12": "relation[type=route][route=railway]"

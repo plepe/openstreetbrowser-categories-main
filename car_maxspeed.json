@@ -5,7 +5,7 @@
         "en": "Maxspeed",
         "fr": "Limites de vitesse",
         "pt": "Velocidade máxima",
-        "pt-br": "Velocidade Máxima"
+        "pt-br": "Velocidade máxima"
     },
     "query": {
         "11": "way[highway~\"^(motorway|trunk)$\"];",

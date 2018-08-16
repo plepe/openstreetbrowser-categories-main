@@ -5,7 +5,7 @@
         "en": "Hiking routes",
         "fr": "Itinéraires pédestres",
         "pt": "Rotas de caminhada",
-        "pt-br": "Rotas de Caminhada"
+        "pt-br": "Rotas de caminhada"
     },
     "query": {
         "10": "relation[type=route][route=hiking][network~\"^(iwn)$\"]",
