@@ -28,6 +28,9 @@
         }
     },
     "memberFeature": {
+        "pre": [
+          "{% set master0 = masters[0] %}"
+        ],
         "title": "{{ tags.name }}",
         "body": [
             "<h4>Routes</h4>",
@@ -53,6 +56,8 @@
         },
         "style:hover": {
             "radius": "4"
-        }
+        },
+        "markerSymbol": "{% if master0.role == 'station' %}{{ markerPointer({})|raw }}{% endif %}",
+        "markerSign": "{% if master0.role == 'station' %}S{% endif %} "
     }
 }
