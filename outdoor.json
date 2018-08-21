@@ -9,6 +9,9 @@
     "subCategories": [
         {
             "id": "mtb-routes"
+        },
+        {
+            "id": "fitness_trail"
         }
     ]
 }
