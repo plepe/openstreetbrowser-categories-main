@@ -5,7 +5,7 @@
         "en": "Railway infrastructure",
         "fr": "Infrastructure ferroviaire",
         "pt": "Infraestrutura ferroviária",
-        "pt-br": "Infraestrutura Ferroviária"
+        "pt-br": "Infraestrutura ferroviária"
     },
     "query": {
         "11": "(way[railway=rail][usage~'^(main|branch)$'];node[railway~'^(station)$'];)",
