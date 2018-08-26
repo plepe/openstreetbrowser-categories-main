@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "ÖV Karte",
-        "en": "Public transport map"
+        "en": "Public transport map",
+        "pt-br": "Mapa de transporte público"
     },
     "query": {
         "12": "relation[type=route][route~\"^(subway|monorail|ferry|train)$\"];",
@@ -29,7 +30,7 @@
                 "ja": "停留所と駅",
                 "nl": "Haltes en Stations",
                 "pl": "Przystanki i Stacje",
-                "pt-br": "Paradas e Estações",
+                "pt-br": "Paradas e estações",
                 "ru": "Остановки и станции",
                 "uk": "Зупинки та станції"
             }

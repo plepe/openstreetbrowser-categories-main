@@ -22,7 +22,7 @@
                 "ro": "Timp liber, Sport si Cumparaturi",
                 "ru": "Досуг",
                 "uk": "Дозвілля",
-                "pt-br": "Lazer, Esportes e Compras",
+                "pt-br": "Lazer, esportes e compras",
                 "pt": "Lazer, desporto e compras"
             },
             "subCategories": [
@@ -70,7 +70,7 @@
                 "ro": "Servicii",
                 "ru": "Услуги",
                 "uk": "Послуги",
-                "pt-br": "Serviços",
+                "pt-br": "Prestação de serviços",
                 "pt": "Serviços"
             },
             "subCategories": [
@@ -180,7 +180,7 @@
                         "ro": "Transport public",
                         "ru": "Общественный транспорт",
                         "uk": "Громадський транспорт",
-                        "pt-br": "Transporte Público",
+                        "pt-br": "Transporte público",
                         "pt": "Transportes públicos"
                     },
                     "subCategories": [
@@ -208,7 +208,7 @@
                         "ro": "Trafic individual",
                         "ru": "Частный транспорт",
                         "uk": "Приватний транспорт",
-                        "pt-br": "Tráfego Individual",
+                        "pt-br": "Tráfego individual",
                         "pt": "Transporte individual"
                     },
                     "subCategories": [
@@ -315,5 +315,7 @@
             ]
         }
     ],
-    "name": {}
+    "name": {
+        "pt-br": "Índice"
+    }
 }
