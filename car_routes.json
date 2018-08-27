@@ -1,7 +1,8 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Car routes"
+        "en": "Car routes",
+        "pt-br": "Rota rodoviária"
     },
     "query": {
         "10": "relation[type=route][route=road]"
