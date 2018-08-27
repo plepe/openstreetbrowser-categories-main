@@ -94,7 +94,7 @@
     {% set i = 0 %}
     {% for k, tag in payment %}
     {%- if i > 0 %},{% endif %}
-    {% if tags[tag] == 'no' %}<s>{{ keyTrans(tag, { default: k }) }}</s>{% else %}{{ keyTrans(tag, { default: k }) }}{% endif -%}
+    <span title="{{ tagTrans(k, tags[tag]) }}">{% if tags[tag] == 'no' %}<s>{{ keyTrans(tag, { default: k }) }}</s>{% else %}{{ keyTrans(tag, { default: k }) }}{% endif -%}</span>
     {% set i = i + 1 -%}
     {% endfor %}
   </span>
