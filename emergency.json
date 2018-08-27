@@ -44,11 +44,12 @@
             "{% elseif tags.emergency %}",
             "{% set key = 'emergency' %}",
             "{% set value = tags.emergency %}",
-            "{% endif %}"
+            "{% endif %}",
+            "{% set kv = key ~ \"=\" ~ value %}"
         ],
-        "description": "{{ tagTrans('amenity', tags.amenity) }}",
+        "description": "{{ tagTrans(key, value) }}",
         "markerSign": [
-            "{% set data = const[tags.amenity] %}",
+            "{% set data = const[kv] %}",
             "{% if data %}",
             "{{ data.sign }}",
             "{% endif %}"
