@@ -51,7 +51,7 @@
             "0",
             "{% elseif tags.waterway == 'river' %}",
             "1",
-            "{% elseif tags.waterway == 'stream' %}",
+            "{% elseif tags.waterway == 'stream' or tags.waterway == 'drain' %}",
             "3",
             "{% elseif tags.waterway == 'ditch' %}",
             "5",
@@ -63,7 +63,7 @@
             "width": [
                 "{% if tags.waterway == 'river' %}",
                 "4",
-                "{% elseif tags.waterway == 'stream' %}",
+                "{% elseif tags.waterway == 'stream' or tags.waterway == 'drain' %}",
                 "2",
                 "{% elseif tags.waterway == 'ditch' %}",
                 "1",
@@ -81,7 +81,7 @@
                 "{% endif %}"
             ],
             "text": [
-                "{% if type=='way' and tags.waterway in [ 'river', 'stream', 'canal', 'ditch', 'wadi', 'drystream' ] %}",
+                "{% if type=='way' and tags.waterway in [ 'river', 'stream', 'canal', 'ditch', 'wadi', 'drystream', 'drain' ] %}",
                 "{{ tags.name }}   ➔   ",
                 "{% endif %}"
             ],
@@ -102,7 +102,7 @@
         "{% if map.zoom >= 13 %}",
         "  <tr>",
         "    <td>{{ markerLine(evaluate({ \"waterway\": \"stream\" }))|raw }}</td>",
-        "    <td>{{ tagTrans('waterway', 'stream') }}</td>",
+        "    <td>{{ tagTrans('waterway', 'stream') }}, {{ tagTrans('waterway', 'drain') }}</td>",
         "  </tr>",
         "  <tr>",
         "    <td>{{ markerLine(evaluate({ \"waterway\": \"ditch\" }))|raw }}</td>",
