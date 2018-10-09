@@ -3,6 +3,7 @@
     "name": {
         "en": "Railway Routes",
         "fr": "Lignes ferroviaires",
+        "hu": "Vasútvonalak",
         "pt-br": "Rotas ferroviárias"
     },
     "query": {
