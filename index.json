@@ -131,7 +131,8 @@
                         "en": "Walking",
                         "fr": "Marche à pied",
                         "pt-br": "Pedestre",
-                        "pt": "Pedestre"
+                        "pt": "Pedestre",
+                        "hu": "Gyalogos közlekedés"
                     },
                     "subCategories": [
                         {
@@ -150,7 +151,8 @@
                         "en": "Cycling",
                         "fr": "Cyclisme",
                         "pt-br": "Ciclismo",
-                        "pt": "Ciclismo"
+                        "pt": "Ciclismo",
+                        "hu": "Kerékpáros közlekedés"
                     },
                     "subCategories": [
                         {
@@ -209,7 +211,8 @@
                         "ru": "Частный транспорт",
                         "uk": "Приватний транспорт",
                         "pt-br": "Tráfego individual",
-                        "pt": "Transporte individual"
+                        "pt": "Transporte individual",
+                        "hu": "Autós közlekedés"
                     },
                     "subCategories": [
                         {
@@ -233,7 +236,8 @@
                 "en": "Infrastructure",
                 "fr": "Infrastructures",
                 "pt-br": "Infraestrutura",
-                "pt": "Infraestrutura"
+                "pt": "Infraestrutura",
+                "hu": "Infrastruktúra"
             },
             "subCategories": [
                 {
@@ -303,7 +307,8 @@
                 "de": "Spezial",
                 "pt-br": "Especial",
                 "fr": "Catégories spéciales",
-                "pt": "Especial"
+                "pt": "Especial",
+                "hu": "Speciális"
             },
             "subCategories": [
                 {
@@ -316,6 +321,7 @@
         }
     ],
     "name": {
+        "hu": "Tartalom",
         "pt-br": "Índice"
     }
 }
