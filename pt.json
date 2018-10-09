@@ -3,6 +3,7 @@
     "name": {
         "de": "ÖV Karte",
         "en": "Public transport map",
+        "hu": "Tömegközlekedési térkép",
         "pt-br": "Mapa de transporte público"
     },
     "query": {
@@ -41,6 +42,7 @@
                 "de": "Routen",
                 "en": "Routes",
                 "fr": "Lignes",
+                "hu": "Útvonalak",
                 "pt": "Rotas",
                 "pt-br": "Rotas"
             }
