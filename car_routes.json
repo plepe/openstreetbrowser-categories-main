@@ -2,7 +2,7 @@
     "type": "overpass",
     "name": {
         "en": "Car routes",
-        "hu": "Autós útvonalak",
+        "hu": "Főútvonalak",
         "pt-br": "Rotas rodoviárias"
     },
     "query": {
