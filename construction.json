@@ -6,11 +6,12 @@
         "de": "Baustellen",
         "en": "Construction Sites",
         "fr": "Constructions",
+        "hu": "Építési terület",
         "it": "Cantieri",
         "ja": "工事中",
         "nl": "Bouwterrein",
         "pt": "Locais de construção",
-        "pt-br": "Terrenos e Obras",
+        "pt-br": "Terrenos vazios e obras",
         "ru": "Места строительства"
     },
     "query": {

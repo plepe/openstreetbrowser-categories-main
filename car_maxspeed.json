@@ -4,8 +4,9 @@
         "de": "Höchstgeschwindigkeiten",
         "en": "Maxspeed",
         "fr": "Limites de vitesse",
+        "hu": "Sebességkorlátozás",
         "pt": "Velocidade máxima",
-        "pt-br": "Velocidade Máxima"
+        "pt-br": "Velocidade máxima"
     },
     "query": {
         "11": "way[highway~\"^(motorway|trunk)$\"];",

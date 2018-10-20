@@ -8,7 +8,7 @@
         "en": "Historic",
         "et": "Ajalooline",
         "fr": "Histoire",
-        "hu": "Historikus",
+        "hu": "Történelmi objektumok",
         "it": "Storia",
         "ja": "記念",
         "nl": "Historisch",
@@ -36,8 +36,14 @@
         ]
     },
     "feature": {
-        "description": "{{ tagTransList('historic', tags.historic) }}",
-        "markerSign": "{{ const[tags.historic].sign|raw }}"
+        "pre": [
+            "{% set value = tags.historic %}",
+            "{% if const[tags.historic ~ ' memorial=' ~ tags.memorial] %}",
+            "  {% set value = tags.historic ~ ' memorial=' ~ tags.memorial %}",
+            "{% endif %}"
+        ],
+        "description": "{{ tagTransList('historic', value) }}",
+        "markerSign": "{{ const[value].sign|raw }}"
     },
     "info": [
         "<table>",
@@ -76,6 +82,10 @@
         },
         "memorial": {
             "sign": "<span  style='position: relative; top: -2px;'><img src='maki:monument?size=11'></span>",
+            "zoom": 14
+        },
+        "memorial memorial=plaque": {
+            "sign": "",
             "zoom": 14
         },
         "monument": {

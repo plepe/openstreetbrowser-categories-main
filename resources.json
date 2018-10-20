@@ -6,10 +6,11 @@
         "de": "Ressourcengewinnung",
         "en": "Resource Extraction",
         "fr": "Extraction des ressources",
+        "hu": "Bányászat",
         "it": "Areee estrattive",
         "nl": "Grondstoffenwinning",
         "pt": "Extração de recursos",
-        "pt-br": "Extração de Recursos",
+        "pt-br": "Extração de recursos",
         "ru": "Добыча ресурсов"
     },
     "query": {
