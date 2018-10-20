@@ -61,7 +61,7 @@
             "{{ tagTransList('healthcare:speciality', attribute(tags, 'healthcare:speciality')) }}",
             "{% endif %}"
         ],
-        "markerSign": "{{ const[concat(key, '=', value)]|raw }}"
+        "markerSign": "{{ const[key ~ '=' ~ value]|raw }}"
     },
     "info": [
         "<table>",
