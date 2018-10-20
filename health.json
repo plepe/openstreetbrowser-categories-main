@@ -7,12 +7,13 @@
         "el": "Υγεία",
         "en": "Health",
         "fr": "Santé",
+        "hu": "Egészségügy",
         "it": "Sanità",
         "ja": "健康",
         "nl": "Gezondheid",
         "pl": "Zdrowie",
         "pt": "Saúde",
-        "pt-br": "Saúde e Assistência",
+        "pt-br": "Saúde e assistência",
         "ro": "Sanatate",
         "ru": "Медицина",
         "uk": "Здоров'я"
@@ -60,7 +61,7 @@
             "{{ tagTransList('healthcare:speciality', attribute(tags, 'healthcare:speciality')) }}",
             "{% endif %}"
         ],
-        "markerSign": "{{ const[concat(key, '=', value)]|raw }}"
+        "markerSign": "{{ const[key ~ '=' ~ value]|raw }}"
     },
     "info": [
         "<table>",

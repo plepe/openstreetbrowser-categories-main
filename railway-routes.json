@@ -1,7 +1,10 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Railway Routes"
+        "en": "Railway Routes",
+        "fr": "Lignes ferroviaires",
+        "hu": "Vasútvonalak",
+        "pt-br": "Rotas ferroviárias"
     },
     "query": {
         "12": "relation[type=route][route=railway]"

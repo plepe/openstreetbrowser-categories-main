@@ -14,7 +14,7 @@
                 "es": "Ocio, deporte y compras",
                 "et": "Vaba aeg, sport ja ostmine",
                 "fr": "Loisirs",
-                "hu": "Szabadidő",
+                "hu": "Szabadidő, sport és vásárlás",
                 "it": "Tempo libero, sport e shopping",
                 "ja": "レジャー",
                 "nl": "Vrije tijd, Sport en Winkelen",
@@ -22,7 +22,7 @@
                 "ro": "Timp liber, Sport si Cumparaturi",
                 "ru": "Досуг",
                 "uk": "Дозвілля",
-                "pt-br": "Lazer, Esportes e Compras",
+                "pt-br": "Lazer, esportes e compras",
                 "pt": "Lazer, desporto e compras"
             },
             "subCategories": [
@@ -62,7 +62,7 @@
                 "es": "Servicios",
                 "et": "Teenused",
                 "fr": "Services",
-                "hu": "Szolgáltatás",
+                "hu": "Szolgáltatások",
                 "it": "Servizi",
                 "ja": "サービス",
                 "nl": "Dienstverlening",
@@ -70,7 +70,7 @@
                 "ro": "Servicii",
                 "ru": "Услуги",
                 "uk": "Послуги",
-                "pt-br": "Serviços",
+                "pt-br": "Prestação de serviços",
                 "pt": "Serviços"
             },
             "subCategories": [
@@ -119,7 +119,7 @@
                 "ro": "Transport",
                 "ru": "Транспорт",
                 "uk": "Транспорт",
-                "pt-br": "Transportes",
+                "pt-br": "Mobilidade",
                 "pt": "Transportes"
             },
             "subCategories": [
@@ -131,7 +131,8 @@
                         "en": "Walking",
                         "fr": "Marche à pied",
                         "pt-br": "Pedestre",
-                        "pt": "Pedestre"
+                        "pt": "Pedestre",
+                        "hu": "Gyalogos közlekedés"
                     },
                     "subCategories": [
                         {
@@ -150,7 +151,8 @@
                         "en": "Cycling",
                         "fr": "Cyclisme",
                         "pt-br": "Ciclismo",
-                        "pt": "Ciclismo"
+                        "pt": "Ciclismo",
+                        "hu": "Kerékpáros közlekedés"
                     },
                     "subCategories": [
                         {
@@ -180,7 +182,7 @@
                         "ro": "Transport public",
                         "ru": "Общественный транспорт",
                         "uk": "Громадський транспорт",
-                        "pt-br": "Transporte Público",
+                        "pt-br": "Transporte público",
                         "pt": "Transportes públicos"
                     },
                     "subCategories": [
@@ -208,8 +210,9 @@
                         "ro": "Trafic individual",
                         "ru": "Частный транспорт",
                         "uk": "Приватний транспорт",
-                        "pt-br": "Tráfego Individual",
-                        "pt": "Transporte individual"
+                        "pt-br": "Tráfego individual",
+                        "pt": "Transporte individual",
+                        "hu": "Autós közlekedés"
                     },
                     "subCategories": [
                         {
@@ -233,7 +236,8 @@
                 "en": "Infrastructure",
                 "fr": "Infrastructures",
                 "pt-br": "Infraestrutura",
-                "pt": "Infraestrutura"
+                "pt": "Infraestrutura",
+                "hu": "Infrastruktúra"
             },
             "subCategories": [
                 {
@@ -303,7 +307,8 @@
                 "de": "Spezial",
                 "pt-br": "Especial",
                 "fr": "Catégories spéciales",
-                "pt": "Especial"
+                "pt": "Especial",
+                "hu": "Speciális"
             },
             "subCategories": [
                 {
@@ -315,5 +320,8 @@
             ]
         }
     ],
-    "name": {}
+    "name": {
+        "hu": "Tartalom",
+        "pt-br": "Índice"
+    }
 }

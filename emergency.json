@@ -10,6 +10,7 @@
         "es": "Servicios de emergencia",
         "et": "Hädaabi teenused",
         "fr": "Services d'urgence",
+        "hu": "Vészhelyzet",
         "it": "Servizi d'emergenza",
         "ja": "緊急サービス",
         "nl": "Hulpdiensten",
@@ -44,11 +45,12 @@
             "{% elseif tags.emergency %}",
             "{% set key = 'emergency' %}",
             "{% set value = tags.emergency %}",
-            "{% endif %}"
+            "{% endif %}",
+            "{% set kv = key ~ \"=\" ~ value %}"
         ],
-        "description": "{{ tagTrans('amenity', tags.amenity) }}",
+        "description": "{{ tagTrans(key, value) }}",
         "markerSign": [
-            "{% set data = const[tags.amenity] %}",
+            "{% set data = const[kv] %}",
             "{% if data %}",
             "{{ data.sign }}",
             "{% endif %}"

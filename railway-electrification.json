@@ -4,8 +4,9 @@
         "de": "Eisenbahn Elektrifizierung",
         "en": "Railway electrification",
         "fr": "Puissance électrique ferroviaire",
+        "hu": "Vasút villamosítottsága",
         "pt": "Eletrificação ferroviária",
-        "pt-br": "Eletrificação Ferroviária"
+        "pt-br": "Eletrificação ferroviária"
     },
     "query": {
         "11": "way[railway=rail][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'][usage~'^(main|branch)$'];",

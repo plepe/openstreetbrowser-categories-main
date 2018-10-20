@@ -1,7 +1,9 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Car routes"
+        "en": "Car routes",
+        "hu": "Főútvonalak",
+        "pt-br": "Rotas rodoviárias"
     },
     "query": {
         "10": "relation[type=route][route=road]"
