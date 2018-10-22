@@ -47,13 +47,8 @@
         "markerSign": "{% if tags.amenity=='bar' %}&#127864;{% elseif tags.amenity=='biergarten'%}&#127867;{% elseif tags.amenity=='cafe' %}&#9749;{% elseif tags.amenity=='fast_food' %}&#127828;{% elseif tags.amenity=='ice_cream' %}&#127848;{% elseif tags.amenity=='pub' %}&#127866;{% else %}&#127860;{% endif %}"
     },
     "filter": {
-        "name": {
-            "toCheck": [ "name", "operator", "amenity" ],
-            "name": "tag:name",
-            "type": "text",
-            "op": "strsearch"
-        },
         "amenity": {
+            "name": "{{ keyTrans('amenity') }}",
             "type": "select",
             "values": [
               "bar",
@@ -61,18 +56,24 @@
               "cafe",
               "fast_food",
               "ice_cream",
-              "pub"
+              "pub",
+              "restaurant"
             ],
+            "valueName": "{{ tagTrans('amenity', value) }}",
             "op": "="
         },
         "cuisine": {
-            "type": "autocomplete",
+            "name": "{{ keyTrans('cuisine') }}",
+            "type": "select",
             "values": [ "afghan", "arab", "asian", "australian", "austrian", "barbecue", "burger", "cake", "caribbean", "caribean", "chinese", "coffee", "coffee_shop", "crepe", "empanada", "fish_and_chips", "french", "fried_food", "friture", "greek", "gyros", "ice_cream", "indian", "international", "italian", "japanese", "juice", "kebab", "korean", "local", "mexican", "noodles", "pasta", "pie", "pizza", "regional", "salad", "sandwich", "sausage", "seafood", "soup", "spanish", "steak_house", "sushi", "thai", "turkish", "vegan", "vegetarian", "vietnamese" ],
+            "valueName": "{{ tagTrans('cuisine', value) }}",
             "op": "has"
         },
         "diet": {
-            "type": "autocomplete",
+            "name": "{{ keyTrans('diet') }}",
+            "type": "select",
             "values": [ "diet:vegan", "diet:vegetarian", "diet:pescetarian", "diet:lacto_vegetarian", "diet:ovo_vegetarian", "diet:fruitarian", "diet:raw", "diet:gluten_free", "diet:dairy_free", "diet:lactose_free", "diet:halal", "diet:kosher" ],
+            "valueName": "{{ keyTrans(value) }}",
             "op": "has_key_value"
         }
     }
