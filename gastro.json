@@ -62,10 +62,27 @@
             "valueName": "{{ tagTrans('amenity', value) }}",
             "op": "="
         },
-        "cuisine": {
-            "name": "{{ keyTrans('cuisine') }}",
+        "cuisine_food": {
+            "name": "{{ keyTrans('cuisine/food') }}",
             "type": "select",
-            "values": [ "afghan", "arab", "asian", "australian", "austrian", "barbecue", "burger", "cake", "caribbean", "caribean", "chinese", "coffee", "coffee_shop", "crepe", "empanada", "fish_and_chips", "french", "fried_food", "friture", "greek", "gyros", "ice_cream", "indian", "international", "italian", "japanese", "juice", "kebab", "korean", "local", "mexican", "noodles", "pasta", "pie", "pizza", "regional", "salad", "sandwich", "sausage", "seafood", "soup", "spanish", "steak_house", "sushi", "thai", "turkish", "vegan", "vegetarian", "vietnamese" ],
+            "key": "cuisine",
+            "values": [ "barbecue", "burger", "casserole", "chicken", "couscous", "curry", "fish", "fish_and_chips", "fried_food", "friture", "gyros", "kebab", "noodle", "pasta", "pizza", "sandwich", "sausage", "seafood", "soup", "steak_house", "sub", "sushi", "tapas", "wings" ],
+            "valueName": "{{ tagTrans('cuisine', value) }}",
+            "op": "has"
+        },
+        "cuisine_dessert": {
+            "name": "{{ keyTrans('cuisine/dessert') }}",
+            "type": "select",
+            "key": "cuisine",
+            "values": [ "bagel", "biscuit", "bougatsa", "cake", "coffee_shop", "cookie", "crepe", "dessert", "donut", "empanada", "frozen_yogurt", "gingerbread", "ice_cream", "chimney_cake", "langos", "pancake", "pastry", "petit_four", "pie", "pogacha", "poppy_seed_roll", "profiterole", "punch_cake", "savory_pancakes", "strudel", "teahouse", "waffle" ],
+            "valueName": "{{ tagTrans('cuisine', value) }}",
+            "op": "has"
+        },
+        "cuisine_ethnicity": {
+            "name": "{{ keyTrans('cuisine/ethnicity') }}",
+            "type": "select",
+            "key": "cuisine",
+            "values": [ "afghan", "african", "american", "arab", "argentinian", "asian", "australian", "baiana", "balkan", "basque", "bavarian", "belarusan", "bolivian", "brazilian", "cantonese", "capixaba", "caribbean", "chinese", "croatian", "czech", "danish", "french", "gaucho", "german", "greek", "hawaiian", "hunan", "hungarian", "indian", "international", "iranian", "italian", "japanese", "jewish", "korean", "kyo_ryouri", "latin_american", "lebanese", "malagasy", "mediterranean", "mexican", "mineira", "new_mexican", "okinawa_ryori", "pakistani", "peruvian", "polish", "portuguese", "regional", "rhenish", "russian", "shandong", "sichuan", "spanish", "texan", "tex-mex", "thai", "turkish", "vietnamese", "westphalian" ],
             "valueName": "{{ tagTrans('cuisine', value) }}",
             "op": "has"
         },
