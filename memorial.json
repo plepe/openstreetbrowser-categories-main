@@ -23,8 +23,10 @@
     "feature": {
         "pre": [
             "{% set value = tags.historic %}",
-            "{% if const[tags.historic ~ ' memorial=' ~ tags.memorial] %}",
+            "{% if tags.historic == 'memorial' and tags.memorial %}",
             "  {% set value = tags.historic ~ ' memorial=' ~ tags.memorial %}",
+            "{% elseif tags.historic == 'memorial' and attribute(tags, 'memorial:type') %}",
+            "  {% set value = tags.historic ~ ' memorial=' ~ attribute(tags, 'memorial:type') %}",
             "{% endif %}"
         ],
         "description": "{{ tagTransList('historic', value) }}",
