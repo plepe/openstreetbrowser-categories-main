@@ -63,5 +63,25 @@
             "sign": "<img src='maki:monument?size=15'>",
             "zoom": 11
         }
+    },
+    "filter": {
+        "type": {
+            "name": "Type",
+            "type": "select",
+            "values": {
+                "monument": {
+                    "name": "{{ tagTrans('historic', 'monument') }}",
+                    "query": "nwr[historic=monument]"
+                },
+                "memorial": {
+                    "name": "{{ tagTrans('historic', 'memorial') }}",
+                    "query": "nwr[historic=memorial]"
+                },
+                "stolperstein": {
+                    "name": "{{ tagTrans('historic', 'memorial memorial=stolperstein') }}",
+                    "query": "(nwr[memorial=stolperstein];nwr[\"memorial:type\"=stolperstein];)"
+                }
+            }
+        }
     }
 }
