@@ -1,0 +1,65 @@
+{
+    "type": "overpass",
+    "name": {
+        "de": "Denkmäler",
+        "en": "Memorials"
+    },
+    "query": {
+        "11": [
+            "(",
+            "node[historic~\"^(monument)$\"];",
+            "way[historic~\"^(monument)$\"];",
+            "relation[historic~\"^(monument)$\"];",
+            ")"
+        ],
+        "14": [
+            "(",
+            "node[historic~\"^(memorial|monument)$\"];",
+            "way[historic~\"^(memorial|monument)$\"];",
+            "relation[historic~\"^(memorial|monument)$\"];",
+            ")"
+        ]
+    },
+    "feature": {
+        "pre": [
+            "{% set value = tags.historic %}",
+            "{% if const[tags.historic ~ ' memorial=' ~ tags.memorial] %}",
+            "  {% set value = tags.historic ~ ' memorial=' ~ tags.memorial %}",
+            "{% endif %}"
+        ],
+        "description": "{{ tagTransList('historic', value) }}",
+        "markerSign": "{{ const[value].sign|raw }}"
+    },
+    "info": [
+        "<table>",
+        "{% for value, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "    <td>{{ tagTrans('historic', value) }}</td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "{% if 14 <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'></div></td>",
+        "    <td>{{ trans('other') }}</td>",
+        "  </tr>",
+        "{% endif %}",
+        "</table>"
+    ],
+    "const": {
+        "memorial": {
+            "sign": "<span  style='position: relative; top: -2px;'><img src='maki:monument?size=11'></span>",
+            "zoom": 14
+        },
+        "memorial memorial=plaque": {
+            "sign": "",
+            "zoom": 14
+        },
+        "monument": {
+            "sign": "<img src='maki:monument?size=15'>",
+            "zoom": 11
+        }
+    }
+}
