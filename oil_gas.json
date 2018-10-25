@@ -1,8 +1,8 @@
 {
     "type": "overpass",
     "name": {
-        "de": "Erdgas",
-        "en": "Natural gas"
+        "de": "Erdöl und Erdgas",
+        "en": "Petroleum and natural gas"
     },
     "query": {
         "11": [
@@ -49,10 +49,12 @@
             "{{ tagTrans('man_made', 'pipeline') }} ({{ tagTrans('substance', tags.substance) }})",
             "{% elseif tags.man_made %}",
             "{{ tagTrans('man_made', tags.man_made) }}",
-            "{% elseif tags.landuse == 'industrial' %}",
-            "{{ tagTrans('landuse', tags.landuse) }} ({{ tagTrans('industrial', tags.industrial) }})",
+            "{% elseif tags.power == 'plant' %}",
+            "{{ tagTrans('power', 'plant') }} {% if attribute(tags, 'generator:source') %}({{ tagTransList('generator:source', attribute(tags, 'generator:source')) }}){% endif %}",
             "{% elseif tags.waterway == 'offshore_field' %}",
             "{{ tagTrans('waterway', tags.waterway) }}",
+            "{% elseif tags.landuse == 'industrial' %}",
+            "{{ tagTrans('landuse', tags.landuse) }} ({{ tagTrans('industrial', tags.industrial) }})",
             "{% endif %}"
         ],
         "markerSymbol": null
