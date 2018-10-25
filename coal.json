@@ -26,6 +26,10 @@
             "{{ tagTrans('man_made', 'pipeline') }} ({{ tagTrans('substance', tags.substance) }})",
             "{% elseif tags.man_made %}",
             "{{ tagTrans('man_made', tags.man_made) }}",
+            "{% elseif tags.power == 'plant' %}",
+            "{{ tagTrans('power', 'plant') }} {% if attribute(tags, 'generator:source') %}({{ tagTransList('generator:source', attribute(tags, 'generator:source')) }}){% endif %}",
+            "{% elseif tags.landuse == 'quarry' %}",
+            "{{ tagTrans('landuse', tags.landuse) }} {% if tags.resource %}({{ tagTrans('resource', tags.resource) }}){% endif %}",
             "{% elseif tags.landuse == 'industrial' %}",
             "{{ tagTrans('landuse', tags.landuse) }} ({{ tagTrans('industrial', tags.industrial) }})",
             "{% endif %}"
