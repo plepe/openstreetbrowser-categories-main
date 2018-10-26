@@ -250,7 +250,23 @@
                     "id": "military"
                 },
                 {
-                    "id": "power"
+                    "id": "energy",
+                    "type": "index",
+                    "name": {
+                        "en": "Energy",
+                        "de": "Energie"
+                    },
+                    "subCategories": [
+                        {
+                            "id": "electric_power"
+                        },
+                        {
+                            "id": "coal"
+                        },
+                        {
+                            "id": "oil_gas"
+                        }
+                    ]
                 },
                 {
                     "id": "railway",
