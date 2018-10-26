@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "en": "Car routes",
-        "pt-br": "Rota rodoviária"
+        "hu": "Főútvonalak",
+        "pt-br": "Rotas rodoviárias"
     },
     "query": {
         "10": "relation[type=route][route=road]"
@@ -21,7 +22,9 @@
             "{% set refs = [] %}",
             "{% set color = '#d41d8c' %}",
             "{% if tags.ref %}",
-            "  {% set refs = refs|merge([ tags.ref ]) %}",
+            "  {% for ref in tags.ref|split(';') %}",
+            "    {% set refs = refs|merge([ ref|trim ]) %}",
+            "  {% endfor %}",
             "{% endif %}",
             "",
             "{% for master in masters %}",
@@ -31,7 +34,9 @@
             "  {% if master.tags.ref %}",
             "    {% set refs = refs|merge([ master.tags.ref ]) %}",
             "  {% endif %}",
-            "{% endfor %}"
+            "{% endfor %}",
+            "",
+            "{% set refs = refs|unique|natsort({ insensitive: true }) %}"
         ],
         "body": [
             "<h4>Routes</h4>",
@@ -51,7 +56,7 @@
             "color": "{{ color }}",
             "width": 4,
             "opacity": 1,
-            "text": "{{ refs|join('  ') }}             ",
+            "text": "{{ refs|join(' · ') }}             ",
             "textRepeat": "1",
             "textOffset": "12",
             "textFontWeight": "bold"

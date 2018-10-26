@@ -3,6 +3,7 @@
     "name": {
         "en": "Railway Routes",
         "fr": "Lignes ferroviaires",
+        "hu": "Vasútvonalak",
         "pt-br": "Rotas ferroviárias"
     },
     "query": {
@@ -50,7 +51,7 @@
             "color": "{{ color }}",
             "width": 4,
             "opacity": 1,
-            "text": "{{ refs|join('  ') }}             ",
+            "text": "{{ refs|join(' · ') }}             ",
             "textRepeat": "1",
             "textOffset": "12",
             "textFontWeight": "bold"
