@@ -1,8 +1,8 @@
 {
     "type": "overpass",
     "name": {
-        "de": "Höchstgeschwindigkeiten",
-        "en": "Maxspeed",
+        "de": "Eisenbahn Höchstgeschwindigkeiten",
+        "en": "Railway Maxspeed",
         "fr": "Limites de vitesse",
         "hu": "Sebességkorlátozás",
         "pt": "Velocidade máxima",
