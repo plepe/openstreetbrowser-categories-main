@@ -60,7 +60,7 @@
             "<h4>Stops</h4><ul>",
             "{% for member in members %}",
             "{% if member.tags.highway == 'bus_stop' or member.tags.amenity == 'bus_station' or member.tags.amenity == 'ferry_terminal' or member.tags.railway == 'tram_stop' or member.tags.railway == 'halt' or member.tags.railway == 'station' or member.tags.aerialway == 'station' or member.tags.public_transport == 'stop_position' or member.role|slice(-4) == 'stop' %}",
-            "<li data-object='{{ member.id }}' data-sublayer='member'><b>{{ member.tags.name|default(member.id) }}</li>",
+            "<li data-object='{{ member.id }}' data-sublayer='member'><b>{% if member.tags %}{{ member.tags.name|default(trans('unknown')) }}{% else %}<i>{{ trans('loading') }}</i>{% endif %}</li>",
             "{% endif %}",
             "{% endfor %}",
             "</ul>"
@@ -122,7 +122,7 @@
         "listStopsMarkerSign": null,
         "listStopsMarkerSymbol": "{{ markerCircle({ width: 5, color: color, fillOpacity: '1', radius: 3 })|raw }}",
         "listStopsExclude": "{{ not isStop or stopCount == 0 }}",
-        "listStopsTitle": "{{ tags.name|default(stopName)|default(id) }}",
+        "listStopsTitle": "{% if tags %}{{ tags.name|default(stopName)|default(trans('unknown')) }}{% else %}<li>{{ trans('loading') }}</li>{% endif %}",
         "listStopsDescription": "{{ refs|join(' · ') }}",
         "listRoutesExclude": "true",
         "style:way": {
