@@ -123,12 +123,12 @@
         "listStopsMarkerSymbol": "{{ markerCircle({ width: 5, color: color, fillOpacity: '1', radius: 3 })|raw }}",
         "listStopsExclude": "{{ not isStop or stopCount == 0 }}",
         "listStopsTitle": "{{ tags.name|default(stopName)|default(id) }}",
-        "listStopsDescription": "{{ refs|join(' ') }}",
+        "listStopsDescription": "{{ refs|join(' · ') }}",
         "listRoutesExclude": "true",
         "style:way": {
             "width": "3",
             "color": "{{ color|default('#ff0000') }}",
-            "text": "{{ refs|join('  ') }}             ",
+            "text": "{{ refs|join(' · ') }}             ",
             "textRepeat": "1",
             "textOffset": "12",
             "textFontWeight": "bold"
