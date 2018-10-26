@@ -27,6 +27,18 @@
             "way[landuse~\"^(cemetery)$\"];",
             "relation[landuse~\"^(cemetery)$\"];",
             ")"
+        ],
+        "14": [
+            "(",
+            "node[amenity~\"^(place_of_worship|grave_yard|crematorium)$\"];",
+            "way[amenity~\"^(place_of_worship|grave_yard|crematorium)$\"];",
+            "relation[amenity~\"^(place_of_worship|grave_yard|crematorium)$\"];",
+            "way[landuse~\"^(cemetery)$\"];",
+            "relation[landuse~\"^(cemetery)$\"];",
+            "node[historic~\"^wayside_(cross|shrine)$\"];",
+            "way[historic~\"^wayside_(cross|shrine)$\"];",
+            "relation[historic~\"^wayside_(cross|shrine)$\"];",
+            ")"
         ]
     },
     "feature": {
@@ -34,6 +46,9 @@
             "{% if tags.landuse == 'cemetery' %}",
             "{% set key = 'landuse' %}",
             "{% set value = tags.landuse %}",
+            "{% elseif tags.historic == 'wayside_cross' or tags.historic == 'wayside_shrine' %}",
+            "{% set key = 'historic' %}",
+            "{% set value = tags.historic %}",
             "{% else %}",
             "{% set key = 'amenity' %}",
             "{% set value = tags.amenity %}",
