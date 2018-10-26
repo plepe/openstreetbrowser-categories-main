@@ -14,7 +14,7 @@
                 "es": "Ocio, deporte y compras",
                 "et": "Vaba aeg, sport ja ostmine",
                 "fr": "Loisirs",
-                "hu": "Szabadidő",
+                "hu": "Szabadidő, sport és vásárlás",
                 "it": "Tempo libero, sport e shopping",
                 "ja": "レジャー",
                 "nl": "Vrije tijd, Sport en Winkelen",
@@ -62,7 +62,7 @@
                 "es": "Servicios",
                 "et": "Teenused",
                 "fr": "Services",
-                "hu": "Szolgáltatás",
+                "hu": "Szolgáltatások",
                 "it": "Servizi",
                 "ja": "サービス",
                 "nl": "Dienstverlening",
@@ -131,7 +131,8 @@
                         "en": "Walking",
                         "fr": "Marche à pied",
                         "pt-br": "Pedestre",
-                        "pt": "Pedestre"
+                        "pt": "Pedestre",
+                        "hu": "Gyalogos közlekedés"
                     },
                     "subCategories": [
                         {
@@ -150,7 +151,8 @@
                         "en": "Cycling",
                         "fr": "Cyclisme",
                         "pt-br": "Ciclismo",
-                        "pt": "Ciclismo"
+                        "pt": "Ciclismo",
+                        "hu": "Kerékpáros közlekedés"
                     },
                     "subCategories": [
                         {
@@ -209,7 +211,8 @@
                         "ru": "Частный транспорт",
                         "uk": "Приватний транспорт",
                         "pt-br": "Tráfego individual",
-                        "pt": "Transporte individual"
+                        "pt": "Transporte individual",
+                        "hu": "Autós közlekedés"
                     },
                     "subCategories": [
                         {
@@ -233,7 +236,8 @@
                 "en": "Infrastructure",
                 "fr": "Infrastructures",
                 "pt-br": "Infraestrutura",
-                "pt": "Infraestrutura"
+                "pt": "Infraestrutura",
+                "hu": "Infrastruktúra"
             },
             "subCategories": [
                 {
@@ -246,7 +250,23 @@
                     "id": "military"
                 },
                 {
-                    "id": "power"
+                    "id": "energy",
+                    "type": "index",
+                    "name": {
+                        "en": "Energy",
+                        "de": "Energie"
+                    },
+                    "subCategories": [
+                        {
+                            "id": "electric_power"
+                        },
+                        {
+                            "id": "coal"
+                        },
+                        {
+                            "id": "oil_gas"
+                        }
+                    ]
                 },
                 {
                     "id": "railway",
@@ -272,6 +292,9 @@
                         },
                         {
                             "id": "railway-electrification"
+                        },
+                        {
+                            "id": "railway-maxspeed"
                         },
                         {
                             "id": "railway-routes"
@@ -303,7 +326,8 @@
                 "de": "Spezial",
                 "pt-br": "Especial",
                 "fr": "Catégories spéciales",
-                "pt": "Especial"
+                "pt": "Especial",
+                "hu": "Speciális"
             },
             "subCategories": [
                 {
@@ -316,6 +340,7 @@
         }
     ],
     "name": {
+        "hu": "Tartalom",
         "pt-br": "Índice"
     }
 }

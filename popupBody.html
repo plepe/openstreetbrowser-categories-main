@@ -91,8 +91,11 @@
   <i class="fa fa-money" aria-hidden="true"></i>
   <span class='key'>{{ keyTrans('payment') }}:</span>
   <span class='value'>
+    {% set i = 0 %}
     {% for k, tag in payment %}
-    {% if tags[tag] == 'no' %}<s>{{ k }}</s> {% else %}{{ k }} {% endif %}
+    {%- if i > 0 %},{% endif %}
+    <span title="{{ tagTrans(k, tags[tag]) }}">{% if tags[tag] == 'no' %}<s>{{ keyTrans(tag, { default: k }) }}</s>{% else %}{{ keyTrans(tag, { default: k }) }}{% endif -%}</span>
+    {% set i = i + 1 -%}
     {% endfor %}
   </span>
 </li>

@@ -4,6 +4,7 @@
         "de": "Wanderrouten",
         "en": "Hiking routes",
         "fr": "Itinéraires pédestres",
+        "hu": "Turistautak",
         "pt": "Rotas de caminhada",
         "pt-br": "Rotas de caminhada"
     },
@@ -56,7 +57,7 @@
             "color": "{{ const[network].color }}",
             "width": 4,
             "opacity": 1,
-            "text": "{{ refs|join('  ') }}             ",
+            "text": "{{ refs|join(' · ') }}             ",
             "textRepeat": "1",
             "textOffset": "12",
             "textFontWeight": "bold"

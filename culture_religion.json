@@ -10,7 +10,7 @@
         "es": "Cultura y religión",
         "et": "Kultuur ja religioon",
         "fr": "Culture et Religion",
-        "hu": "Kultúra",
+        "hu": "Kultúra és vallás",
         "it": "Cultura",
         "ja": "文化",
         "nl": "Cultuur",
@@ -27,6 +27,9 @@
         },
         {
             "id": "historic"
+        },
+        {
+            "id": "memorial"
         },
         {
             "id": "religion"

@@ -8,7 +8,7 @@
         "en": "Historic",
         "et": "Ajalooline",
         "fr": "Histoire",
-        "hu": "Historikus",
+        "hu": "Történelmi objektumok",
         "it": "Storia",
         "ja": "記念",
         "nl": "Historisch",
@@ -22,16 +22,16 @@
     "query": {
         "11": [
             "(",
-            "node[historic~\"^(castle|archaeological_site|battlefield|monument)$\"];",
-            "way[historic~\"^(castle|archaeological_site|battlefield|monument)$\"];",
-            "relation[historic~\"^(castle|archaeological_site|battlefield|monument)$\"];",
+            "node[historic~\"^(castle|archaeological_site|battlefield)$\"];",
+            "way[historic~\"^(castle|archaeological_site|battlefield)$\"];",
+            "relation[historic~\"^(castle|archaeological_site|battlefield)$\"];",
             ")"
         ],
         "14": [
             "(",
-            "node[historic];",
-            "way[historic];",
-            "relation[historic];",
+            "node[historic][historic!~\"^(memorial|monument|wayside_cross|wayside_shrine|wayside_chapel)$\"];",
+            "way[historic][historic!~\"^(memorial|monument|wayside_cross|wayside_shrine|wayside_chapel)$\"];",
+            "relation[historic][historic!~\"^(memorial|monument|wayside_cross|wayside_shrine|wayside_chapel)$\"];",
             ")"
         ]
     },
@@ -73,14 +73,6 @@
         "aircraft": {
             "sign": "<img src='maki:airport'>",
             "zoom": 14
-        },
-        "memorial": {
-            "sign": "<span  style='position: relative; top: -2px;'><img src='maki:monument?size=11'></span>",
-            "zoom": 14
-        },
-        "monument": {
-            "sign": "<img src='maki:monument?size=15'>",
-            "zoom": 11
         }
     }
 }
