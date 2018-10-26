@@ -278,6 +278,9 @@
                             "id": "railway-electrification"
                         },
                         {
+                            "id": "railway-maxspeed"
+                        },
+                        {
                             "id": "railway-routes"
                         }
                     ]
