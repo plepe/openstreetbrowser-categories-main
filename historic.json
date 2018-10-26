@@ -29,9 +29,9 @@
         ],
         "14": [
             "(",
-            "node[historic][historic!~\"^(memorial|monument|wayside_cross|wayside_shrine)$\"];",
-            "way[historic][historic!~\"^(memorial|monument|wayside_cross|wayside_shrine)$\"];",
-            "relation[historic][historic!~\"^(memorial|monument|wayside_cross|wayside_shrine)$\"];",
+            "node[historic][historic!~\"^(memorial|monument|wayside_cross|wayside_shrine|wayside_chapel)$\"];",
+            "way[historic][historic!~\"^(memorial|monument|wayside_cross|wayside_shrine|wayside_chapel)$\"];",
+            "relation[historic][historic!~\"^(memorial|monument|wayside_cross|wayside_shrine|wayside_chapel)$\"];",
             ")"
         ]
     },
