@@ -55,7 +55,10 @@
         "listMarkerSymbol": "line",
         "style": {
             "width": "3",
-            "color": "{{ color }}"
+            "color": "{{ color }}",
+            "text": "{{ maxspeed }}          ",
+            "textRepeat": "1",
+            "textFontWeight": "bold"
         }
     },
     "const": {
