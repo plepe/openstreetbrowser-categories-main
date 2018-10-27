@@ -261,6 +261,9 @@
                             "id": "electric_power"
                         },
                         {
+                            "id": "power_routes"
+                        },
+                        {
                             "id": "coal"
                         },
                         {
