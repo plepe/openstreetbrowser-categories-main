@@ -28,6 +28,8 @@
             "{{ tagTrans('man_made', tags.man_made) }}",
             "{% elseif tags.power == 'plant' %}",
             "{{ tagTrans('power', 'plant') }} {% if attribute(tags, 'generator:source') %}({{ tagTransList('generator:source', attribute(tags, 'generator:source')) }}){% endif %}",
+            "{% elseif tags.power == 'generator' %}",
+            "{{ tagTrans('power', 'generator') }} {% if attribute(tags, 'generator:source') %}({{ tagTransList('generator:source', attribute(tags, 'generator:source')) }}){% endif %}",
             "{% elseif tags.landuse == 'quarry' %}",
             "{{ tagTrans('landuse', tags.landuse) }} {% if tags.resource %}({{ tagTrans('resource', tags.resource) }}){% endif %}",
             "{% elseif tags.landuse == 'industrial' %}",
