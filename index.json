@@ -265,6 +265,9 @@
                         },
                         {
                             "id": "oil_gas"
+                        },
+                        {
+                            "id": "renewables"
                         }
                     ]
                 },
