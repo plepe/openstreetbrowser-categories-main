@@ -21,6 +21,12 @@
         "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': const[tags.network].color|default(const[''].color) })|raw }}",
         "title": "{% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}",
         "styles": "",
+        "style:hover": {
+            "width": 0
+        },
+        "style:selected": {
+            "width": 0
+        },
         "markerSymbol": ""
     },
     "memberFeature": {
@@ -30,6 +36,8 @@
             "{% set refs = [] %}",
             "{% set dirForward = false %}",
             "{% set dirBackward = false %}",
+            "{% set hover = false %}",
+            "{% set selected = false %}",
             "",
             "{% for master in masters %}",
             "  {% set _p = const[master.tags.network].priority|default(4) %}",
@@ -44,6 +52,8 @@
             "  {% elseif master.role == 'backward' %}{% set dirBackward = true %}",
             "  {% else %}{% set dirForward = true %}{% set dirBackward = true %}",
             "  {% endif %}",
+            "  {% if master.flags.hover %}{% set hover = master.role|default('both') %}{% endif %}",
+            "  {% if master.flags.selected %}{% set selected = master.role|default('both') %}{% endif %}",
             "{% endfor %}"
         ],
         "title": "",
@@ -60,6 +70,7 @@
             "</ul>"
         ],
         "listExclude": "1",
+        "styles": "default{% if hover %},hover{% endif %}{% if selected %},selected{% endif %}",
         "style": {
             "color": "{{ const[network].color }}",
             "width": "{% if not dirForward or not dirBackward %}0{% else %}4{% endif %}",
@@ -75,6 +86,30 @@
             "pattern-path-weight": "2",
             "pattern-path-color": "{{ const[network].color }}",
             "pattern-path-angleCorrection": "{% if dirBackward %}180{% else %}0{% endif %}"
+        },
+        "style:hover": {
+            "pane": "hover",
+            "width": "{% if hover == 'forward' or hover == 'backward' %}0{% else %}4{% endif %}",
+            "color": "black",
+            "pattern": "{% if hover == 'forward' or hover == 'backward' %}arrowHead{% endif %}",
+            "pattern-pixelSize": "4",
+            "pattern-repeat": "7",
+            "pattern-polygon": "",
+            "pattern-path-weight": "2",
+            "pattern-path-color": "black",
+            "pattern-path-angleCorrection": "{% if hover == 'backward' %}180{% else %}0{% endif %}"
+        },
+        "style:selected": {
+            "pane": "selected",
+            "width": "{% if selected == 'forward' or selected == 'backward' %}0{% else %}3{% endif %}",
+            "color": "#3f3f3f",
+            "pattern": "{% if selected == 'forward' or selected == 'backward' %}arrowHead{% endif %}",
+            "pattern-pixelSize": "4",
+            "pattern-repeat": "7",
+            "pattern-polygon": "",
+            "pattern-path-weight": "2",
+            "pattern-path-color": "#3f3f3f",
+            "pattern-path-angleCorrection": "{% if selected == 'backward' %}180{% else %}0{% endif %}"
         }
     },
     "const": {
