@@ -28,6 +28,8 @@
             "{% set priority = 4 %}",
             "{% set network = '' %}",
             "{% set refs = [] %}",
+            "{% set dirForward = false %}",
+            "{% set dirBackward = false %}",
             "",
             "{% for master in masters %}",
             "  {% set _p = const[master.tags.network].priority|default(4) %}",
@@ -37,6 +39,10 @@
             "  {% endif %}",
             "  {% if master.tags.ref %}",
             "    {% set refs = refs|merge([ master.tags.ref ]) %}",
+            "  {% endif %}",
+            "  {% if master.role == 'forward' %}{% set dirForward = true %}",
+            "  {% elseif master.role == 'backward' %}{% set dirBackward = true %}",
+            "  {% else %}{% set dirForward = true %}{% set dirBackward = true %}",
             "  {% endif %}",
             "{% endfor %}"
         ],
@@ -56,12 +62,19 @@
         "listExclude": "1",
         "style": {
             "color": "{{ const[network].color }}",
-            "width": 4,
+            "width": "{% if not dirForward or not dirBackward %}0{% else %}4{% endif %}",
             "opacity": 1,
             "text": "{{ refs|join(' · ') }}             ",
             "textRepeat": "1",
             "textOffset": "12",
-            "textFontWeight": "bold"
+            "textFontWeight": "bold",
+            "pattern": "{% if dirForward and dirBackward %}{% else %}arrowHead{% endif %}",
+            "pattern-pixelSize": "4",
+            "pattern-repeat": "7",
+            "pattern-polygon": "",
+            "pattern-path-weight": "2",
+            "pattern-path-color": "{{ const[network].color }}",
+            "pattern-path-angleCorrection": "{% if dirBackward %}180{% else %}0{% endif %}"
         }
     },
     "const": {
