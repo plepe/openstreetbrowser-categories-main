@@ -82,6 +82,8 @@
             "{% set isWay = false %}",
             "{% set aRoute = null %}",
             "{% set refs = [] %}",
+            "{% set dirForward = false %}",
+            "{% set dirBackward = false %}",
             "{% for master in masters %}",
             "  {% if master.tags.public_transport == 'stop_area' %}",
             "    {% set stopName = master.tags.name %}",
@@ -96,6 +98,10 @@
             "",
             "    {% if master.tags.ref %}",
             "      {% set refs = refs|merge([ master.tags.ref ]) %}",
+            "    {% endif %}",
+            "    {% if master.dir == 'forward' %}{% set dirForward = true %}",
+            "    {% elseif master.dir == 'backward' %}{% set dirBackward = true %}",
+            "    {% else %}{% set dirForward = true %}{% set dirBackward = true %}",
             "    {% endif %}",
             "  {% endif %}",
             "{% endfor %}",
@@ -128,11 +134,19 @@
         "markerSymbol": "{% if isStop and stopCount > 0 %}{{ markerCircle({ width: 0, fill: true, fillColor: color, fillOpacity: '1', radius: 5 })|raw }}{% endif %}",
         "style:way": {
             "width": "3",
+            "opacity": "{% if (dirForward and dirBackward) or (not dirForward and not dirBackward) %}1{% else %}0{% endif %}",
             "color": "{{ color|default('#ff0000') }}",
             "text": "{{ refs|join(' · ') }}             ",
             "textRepeat": "1",
             "textOffset": "12",
-            "textFontWeight": "bold"
+            "textFontWeight": "bold",
+            "pattern": "{% if dirForward and dirBackward %}{% else %}arrowHead{% endif %}",
+            "pattern-pixelSize": "4",
+            "pattern-repeat": "7",
+            "pattern-polygon": "",
+            "pattern-angleCorrection": "{% if dirBackward %}180{% else %}0{% endif %}",
+            "pattern-path-weight": "2",
+            "pattern-path-color": "{{ color|default('#ff0000') }}"
         }
     },
     "info": [
