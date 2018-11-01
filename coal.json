@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Kohle",
-        "en": "Coal"
+        "en": "Coal",
+        "pt-br": "Carvão"
     },
     "query": {
         "11": [
