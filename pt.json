@@ -118,13 +118,14 @@
             "{% endfor %}",
             "</ul>"
         ],
-        "styles": "{% if isStop and stopCount > 0 %}stop{% elseif isWay %}way{% else %}{% endif %}",
+        "styles": "{% if isStop and stopCount > 0 %}{% elseif isWay %}way{% else %}{% endif %}",
         "listStopsMarkerSign": null,
         "listStopsMarkerSymbol": "{{ markerCircle({ width: 5, color: color, fillOpacity: '1', radius: 3 })|raw }}",
         "listStopsExclude": "{{ not isStop or stopCount == 0 }}",
         "listStopsTitle": "{% if tags %}{{ tags.name|default(stopName)|default(trans('unknown')) }}{% else %}<li>{{ trans('loading') }}</li>{% endif %}",
         "listStopsDescription": "{{ refs|join(' · ') }}",
         "listRoutesExclude": "true",
+        "markerSymbol": "{% if isStop and stopCount > 0 %}{{ markerCircle({ width: 0, fill: true, fillColor: color, fillOpacity: '1', radius: 5 })|raw }}{% endif %}",
         "style:way": {
             "width": "3",
             "color": "{{ color|default('#ff0000') }}",
@@ -132,11 +133,6 @@
             "textRepeat": "1",
             "textOffset": "12",
             "textFontWeight": "bold"
-        },
-        "style:stop": {
-            "width": "5",
-            "color": "{{ color|default('#ff0000') }}",
-            "radius": "3"
         }
     },
     "info": [
