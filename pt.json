@@ -139,19 +139,20 @@
         "markerSymbol": "{% if isStop and stopCount > 0 %}{% if hover or selected %}{{ markerCircle({ width: 0, fill: true, fillColor: hover ? '#000000' : '#3f3f3f', fillOpacity: '1', radius: 7 })|raw }}{% else %}{{ markerCircle({ width: 0, fill: true, fillColor: color, fillOpacity: '1', radius: 5 })|raw }}{% endif %}{% endif %}",
         "style:way": {
             "width": "3",
-            "opacity": "{% if (dirForward and dirBackward) or (not dirForward and not dirBackward) %}1{% else %}0{% endif %}",
+            "opacity": "{% if (dirForward and dirBackward) or (not dirForward and not dirBackward) %}1{% else %}1{% endif %}",
             "color": "{{ color|default('#ff0000') }}",
             "text": "{{ refs|join(' · ') }}             ",
             "textRepeat": "1",
             "textOffset": "12",
             "textFontWeight": "bold",
             "pattern": "{% if dirForward and dirBackward %}{% else %}arrowHead{% endif %}",
-            "pattern-pixelSize": "4",
-            "pattern-repeat": "7",
+            "pattern-pixelSize": "8",
+            "pattern-repeat": "35",
             "pattern-polygon": "",
             "pattern-angleCorrection": "{% if dirBackward %}180{% else %}0{% endif %}",
             "pattern-path-weight": "2",
-            "pattern-path-color": "{{ color|default('#ff0000') }}"
+            "pattern-path-color": "{{ color|default('#ff0000') }}",
+            "pattern-offset": "10"
         },
         "style:hover": {
             "pane": "hover",
@@ -163,7 +164,9 @@
             "pattern-polygon": "",
             "pattern-path-weight": "2",
             "pattern-path-color": "black",
-            "pattern-path-angleCorrection": "{% if hover == 'backward' %}180{% else %}0{% endif %}"
+            "pattern-path-angleCorrection": "{% if hover == 'backward' %}180{% else %}0{% endif %}",
+            "pattern-path-pane": "hover",
+            "pane": "hover"
         },
         "style:selected": {
             "pane": "selected",
