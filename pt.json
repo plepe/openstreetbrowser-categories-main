@@ -135,14 +135,21 @@
             "{% endfor %}",
             "</ul>"
         ],
-        "styles": "{% if isStop and stopCount > 0 %}{% elseif isWay %}casing,way{% if hover %},hover{% endif %}{% if selected %},selected{% endif %}{% endif %}",
+        "styles": "{% if isStop and stopCount > 0 %}stop{% elseif isWay %}casing,way{% if hover %},hover{% endif %}{% if selected %},selected{% endif %}{% endif %}",
         "listStopsMarkerSign": null,
         "listStopsMarkerSymbol": "{{ markerCircle({ width: 5, color: color, fillOpacity: '1', radius: 3 })|raw }}",
         "listStopsExclude": "{{ not isStop or stopCount == 0 }}",
         "listStopsTitle": "{% if tags %}{{ tags.name|default(stopName)|default(trans('unknown')) }}{% else %}<li>{{ trans('loading') }}</li>{% endif %}",
         "listStopsDescription": "{{ refs|join(' · ') }}",
         "listRoutesExclude": "true",
-        "markerSymbol": "{% if isStop and stopCount > 0 %}{% if hover or selected %}{{ markerCircle({ width: 0, fill: true, fillColor: hover ? '#000000' : '#3f3f3f', fillOpacity: '1', radius: 7 })|raw }}{% else %}{{ markerCircle({ width: 0, fill: true, fillColor: color, fillOpacity: '1', radius: 5 })|raw }}{% endif %}{% endif %}",
+        "markerSymbol": "{% if isStop and stopCount > 0 %}{% if hover or selected %}{{ markerPointer({ })|raw }}{% endif %}{% endif %}",
+        "markerSign": " ",
+        "style:stop": {
+            "color": "{{ color|default('#ff0000') }}",
+            "width": "4",
+            "radius": "3",
+            "zIndex": "1"
+        },
         "style:way": {
             "color": "{{ color|default('#ff0000') }}",
             "width": "4",
