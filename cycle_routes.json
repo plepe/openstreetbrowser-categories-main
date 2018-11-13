@@ -89,7 +89,7 @@
             "pattern-offset": "{% if dirBackward %}4{% else %}30.5{% endif %}",
             "pattern-polygon": "true",
             "pattern-angleCorrection": "{% if dirBackward %}180{% else %}0{% endif %}",
-            "pattern-path-weight": "0",
+            "pattern-path-width": "0",
             "pattern-path-fillOpacity": "1",
             "pattern-path-color": "{{ const[network].color }}"
         },
@@ -107,7 +107,7 @@
             "pattern-offset": "{% if hover == 'backward' %}4{% else %}30.5{% endif %}",
             "pattern-polygon": "true",
             "pattern-angleCorrection": "{% if hover == 'backward' %}180{% else %}0{% endif %}",
-            "pattern-path-weight": "0",
+            "pattern-path-width": "0",
             "pattern-path-fillOpacity": "1",
             "pattern-path-color": "black"
         },
@@ -125,7 +125,7 @@
             "pattern-offset": "{% if selected == 'backward' %}4{% else %}30.5{% endif %}",
             "pattern-polygon": "true",
             "pattern-angleCorrection": "{% if selected == 'backward' %}180{% else %}0{% endif %}",
-            "pattern-path-weight": "0",
+            "pattern-path-width": "0",
             "pattern-path-fillOpacity": "1",
             "pattern-path-color": "#3f3f3f"
         }
