@@ -1,0 +1,48 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Swimming and bathing",
+        "de": "Schwimmen und Baden"
+    },
+    "query": {
+        "13": [
+            "(",
+            "nwr[leisure=swimming_area];",
+            "nwr[natural~\"^(water|beach)\"][sport~\"^(|.*;)swimming(.*|)$\"];",
+            "nwr[leisure~\"^(water_park|beach_resort)$\"];",
+            "nwr[leisure=sports_centre][sport~\"^(|.*;)swimming(.*|)$\"];",
+            "nwr[amenity=public_bath];",
+            "nwr[tourism=spa_resort];",
+            ")"
+        ],
+        "16": [
+            "(",
+            "nwr[leisure=swimming_area];",
+            "nwr[natural~\"^(water|beach)\"][sport~\"^(|.*;)swimming(;.*|)$\"];",
+            "nwr[leisure~\"^(water_park|beach_resort)$\"];",
+            "nwr[leisure=sports_centre][sport~\"^(|.*;)swimming(;.*|)$\"];",
+            "nwr[amenity=public_bath];",
+            "nwr[tourism=spa_resort];",
+            "",
+            "nwr[leisure=swimming_pool][access!=private];",
+            "nwr[leisure=sauna];",
+            ")"
+        ]
+    },
+    "feature": {
+        "pre": "",
+        "description": [
+            "{% if tags.amenity == 'public_path' %}",
+            "  {{ tagTrans('amenity', 'public_path') }}",
+            "  {% if attribute(tags, 'bath:type') %}({{ tagTrans('bath:type', attribute(tags, 'bath:type')) }}){% endif %}",
+            "{% elseif tags.tourism == 'spa_resort' %}",
+            "{{ tagTrans('tourism', tags.tourism ) }}",
+            "{% elseif tags.leisure %}",
+            "{{ tagTrans('leisure', tags.leisure) }}",
+            "{% elseif tags.natural %}",
+            "{{ tagTrans('natural', tags.natural) }}",
+            "{% endif %}"
+        ],
+        "priority": "{% if tags.name %}0{% else %}1{% endif %}"
+    }
+}
