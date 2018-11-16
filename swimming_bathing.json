@@ -32,11 +32,14 @@
     "feature": {
         "pre": "",
         "description": [
-            "{% if tags.amenity == 'public_path' %}",
-            "  {{ tagTrans('amenity', 'public_path') }}",
-            "  {% if attribute(tags, 'bath:type') %}({{ tagTrans('bath:type', attribute(tags, 'bath:type')) }}){% endif %}",
+            "{% if tags.amenity == 'public_bath' %}",
+            "{{ tagTrans('amenity', 'public_bath' ) }}",
+            "{% if attribute(tags, 'bath:type') %}({{ tagTrans('bath:type', attribute(tags, 'bath:type')) }}){% endif %}",
             "{% elseif tags.tourism == 'spa_resort' %}",
             "{{ tagTrans('tourism', tags.tourism ) }}",
+            "{% elseif tags.leisure == 'sauna' %}",
+            "  {{ tagTrans('leisure', 'sauna') }}",
+            "  {% if tags.sauna and tags.sauna != 'yes' %}({{ tagTransList('sauna', tags.sauna) }}){% endif %}",
             "{% elseif tags.leisure %}",
             "{{ tagTrans('leisure', tags.leisure) }}",
             "{% elseif tags.natural %}",
