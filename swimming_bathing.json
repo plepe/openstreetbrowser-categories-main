@@ -8,7 +8,8 @@
         "13": [
             "(",
             "nwr[leisure=swimming_area];",
-            "nwr[natural~\"^(water|beach)\"][sport~\"^(|.*;)swimming(.*|)$\"];",
+            "nwr[natural~\"^(water)\"][sport~\"^(|.*;)swimming(.*|)$\"];",
+            "nwr[natural~\"^(beach)\"];",
             "nwr[leisure~\"^(water_park|beach_resort)$\"];",
             "nwr[leisure=sports_centre][sport~\"^(|.*;)swimming(.*|)$\"];",
             "nwr[amenity=public_bath];",
@@ -18,7 +19,8 @@
         "16": [
             "(",
             "nwr[leisure=swimming_area];",
-            "nwr[natural~\"^(water|beach)\"][sport~\"^(|.*;)swimming(;.*|)$\"];",
+            "nwr[natural~\"^(water)\"][sport~\"^(|.*;)swimming(.*|)$\"];",
+            "nwr[natural~\"^(beach)\"];",
             "nwr[leisure~\"^(water_park|beach_resort)$\"];",
             "nwr[leisure=sports_centre][sport~\"^(|.*;)swimming(;.*|)$\"];",
             "nwr[amenity=public_bath];",
@@ -69,7 +71,7 @@
         "{% if data.zoom <= map.zoom %}",
         "  <tr>",
         "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
-        "    <td>{{ keyTrans(value) }}</td>",
+        "    <td>{{ keyTrans(value) }} {% if data.append %}({{ trans(data.append) }}){% endif %}</td>",
         "  </tr>",
         "{% endif %}",
         "{% endfor %}",
@@ -90,10 +92,12 @@
         },
         "leisure=sports_centre": {
           "zoom": 13,
+          "append": "tag:sport=swimming",
           "sign": "<img data-src='maki:basketball'>"
         },
         "natural=water": {
           "zoom": 13,
+          "append": "tag:sport=swimming",
           "sign": "<img data-src='maki:swimming?fill=blue'>"
         },
         "natural=beach": {
@@ -110,6 +114,7 @@
         },
         "leisure=swimming_pool": {
           "zoom": 16,
+          "append": "tag:access!=private",
           "sign": "<img data-src='maki:swimming?size=11'>"
         },
         "leisure=sauna": {
