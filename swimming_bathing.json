@@ -30,22 +30,91 @@
         ]
     },
     "feature": {
-        "pre": "",
-        "description": [
+        "pre": [
+            "{% set k = null %}{% set v = null %}{% set append = null %}",
             "{% if tags.amenity == 'public_bath' %}",
-            "{{ tagTrans('amenity', 'public_bath' ) }}",
-            "{% if attribute(tags, 'bath:type') %}({{ tagTrans('bath:type', attribute(tags, 'bath:type')) }}){% endif %}",
+            "  {% set k = 'amenity' %}",
+            "  {% set v = 'public_bath' %}",
+            "  {% if attribute(tags, 'bath:type') %}{% set append = tagTrans('bath:type', attribute(tags, 'bath:type')) %}{% endif %}",
             "{% elseif tags.tourism == 'spa_resort' %}",
-            "{{ tagTrans('tourism', tags.tourism ) }}",
+            "  {% set k = 'tourism' %}",
+            "  {% set v = tags.tourism %}",
             "{% elseif tags.leisure == 'sauna' %}",
-            "  {{ tagTrans('leisure', 'sauna') }}",
-            "  {% if tags.sauna and tags.sauna != 'yes' %}({{ tagTransList('sauna', tags.sauna) }}){% endif %}",
+            "  {% set k = 'leisure' %}",
+            "  {% set v = tags.leisure %}",
+            "  {% if tags.sauna and tags.sauna != 'yes' %}{% set append = tagTransList('sauna', tags.sauna) %}{% endif %}",
+            "{% elseif tags.leisure == 'sports_centre' %}",
+            "  {% set k = 'leisure' %}",
+            "  {% set v = tags.leisure %}",
+            "  {% set append = tagTrans('sport', 'swimming') %}",
             "{% elseif tags.leisure %}",
-            "{{ tagTrans('leisure', tags.leisure) }}",
+            "  {% set k = 'leisure' %}",
+            "  {% set v = tags.leisure %}",
             "{% elseif tags.natural %}",
-            "{{ tagTrans('natural', tags.natural) }}",
+            "  {% set k = 'natural' %}",
+            "  {% set v = tags.natural %}",
+            "  {% if tags.sport %}{% set append = tagTrans('sport', 'swimming') %}{% endif %}",
             "{% endif %}"
         ],
+        "description": [
+            "{{ tagTrans(k, v) }}",
+            "{% if append %}({{ append }}){% endif %}"
+        ],
+        "markerSign": "{{ const[k ~ '=' ~ v].sign|raw }}",
         "priority": "{% if tags.name %}0{% else %}1{% endif %}"
+    },
+    "info": [
+        "<table>",
+        "{% for value, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "    <td>{{ keyTrans(value) }}</td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "</table>"
+    ],
+    "const": {
+        "leisure=swimming_area": {
+          "zoom": 13,
+          "sign": "<img data-src='maki:swimming?size=11&fill=blue'>"
+        },
+        "leisure=water_park": {
+          "zoom": 13,
+          "sign": "<img data-src='maki:swimming'>"
+        },
+        "leisure=beach_resort": {
+          "zoom": 13,
+          "sign": "<img data-src='temaki:beach'>"
+        },
+        "leisure=sports_centre": {
+          "zoom": 13,
+          "sign": "<img data-src='maki:basketball'>"
+        },
+        "natural=water": {
+          "zoom": 13,
+          "sign": "<img data-src='maki:swimming?fill=blue'>"
+        },
+        "natural=beach": {
+          "zoom": 13,
+          "sign": "<img data-src='temaki:beach?fill=green'>"
+        },
+        "amenity=public_bath": {
+          "zoom": 13,
+          "sign": "<i class=\"fa fa-bath\" style='color: black' aria-hidden=\"true\"></i>"
+        },
+        "tourism=spa_resort": {
+          "zoom": 13,
+          "sign": "<i class=\"fa fa-bath\" style='color: blue' aria-hidden=\"true\"></i>"
+        },
+        "leisure=swimming_pool": {
+          "zoom": 16,
+          "sign": "<img data-src='maki:swimming?size=11'>"
+        },
+        "leisure=sauna": {
+          "zoom": 16,
+          "sign": "<i class=\"fa fa-thermometer-full\" aria-hidden=\"true\"></i>"
+        }
     }
 }
