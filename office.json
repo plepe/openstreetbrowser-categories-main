@@ -8,6 +8,9 @@
         "14": "nwr[office]"
     },
     "feature": {
-        "description": "{{ tagTrans('office', tags.office) }}"
+        "description": [
+            "{{ tagTrans('office', tags.office) }}",
+            "{% if tags.office == 'government' and tags.government %}({{ tagTrans('government', tags.government) }}){% endif %}"
+        ]
     }
 }
