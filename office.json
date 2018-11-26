@@ -1,0 +1,13 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Offices",
+        "de": "Büros"
+    },
+    "query": {
+        "14": "nwr[office]"
+    },
+    "feature": {
+        "description": "{{ tagTrans('office', tags.office) }}"
+    }
+}
