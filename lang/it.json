@@ -63,6 +63,7 @@
     "category:shop": "Acquisti",
     "category:special": "",
     "category:sport": "Sport",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Turismo",
     "category:tourism_services": "Turismo",
     "category:transport": "Trasporti",
@@ -75,5 +76,6 @@
     "category:waste": "Smaltimento",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": "Fabbriche"
+    "category:works": "Fabbriche",
+    "category:xmas": ""
 }

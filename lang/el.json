@@ -63,6 +63,7 @@
     "category:shop": "Αγορές",
     "category:special": "",
     "category:sport": "Άθληση",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Τουρισμός",
     "category:tourism_services": "Τουρισμός",
     "category:transport": "Μεταφορές",
@@ -75,5 +76,6 @@
     "category:waste": "",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": ""
+    "category:works": "",
+    "category:xmas": ""
 }

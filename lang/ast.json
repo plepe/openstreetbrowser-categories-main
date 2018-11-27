@@ -63,6 +63,7 @@
     "category:shop": "Compres",
     "category:special": "",
     "category:sport": "Deportes",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Turismu",
     "category:tourism_services": "Turismu",
     "category:transport": "Tresporte",
@@ -75,5 +76,6 @@
     "category:waste": "Basures",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": "Fábriques"
+    "category:works": "Fábriques",
+    "category:xmas": ""
 }
