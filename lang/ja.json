@@ -63,6 +63,7 @@
     "category:shop": "ショッピング",
     "category:special": "",
     "category:sport": "スポーツ",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "観光",
     "category:tourism_services": "観光",
     "category:transport": "輸送",
@@ -75,5 +76,6 @@
     "category:waste": "処理場",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": "工場"
+    "category:works": "工場",
+    "category:xmas": ""
 }

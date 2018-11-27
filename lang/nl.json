@@ -63,6 +63,7 @@
     "category:shop": "Winkelen",
     "category:special": "",
     "category:sport": "Sport",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Toerisme",
     "category:tourism_services": "Toerisme",
     "category:transport": "Vervoer",
@@ -75,5 +76,6 @@
     "category:waste": "Afvalverwijdering",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": "Fabrieken"
+    "category:works": "Fabrieken",
+    "category:xmas": ""
 }

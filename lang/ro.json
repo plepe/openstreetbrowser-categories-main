@@ -63,6 +63,7 @@
     "category:shop": "Cumpărături",
     "category:special": "",
     "category:sport": "",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Turism",
     "category:tourism_services": "Turism",
     "category:transport": "Transport",
@@ -75,5 +76,6 @@
     "category:waste": "",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": ""
+    "category:works": "",
+    "category:xmas": ""
 }

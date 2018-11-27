@@ -63,6 +63,7 @@
     "category:shop": "Vásárlás",
     "category:special": "Speciális",
     "category:sport": "Sport",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Látnivalók",
     "category:tourism_services": "Turisztikai szolgáltatások",
     "category:transport": "Közlekedés",
@@ -75,5 +76,6 @@
     "category:waste": "Hulladék",
     "category:water": "Vizek",
     "category:wikipedia": "Wikipédia",
-    "category:works": "Üzemek"
+    "category:works": "Üzemek",
+    "category:xmas": ""
 }

@@ -63,6 +63,7 @@
     "category:shop": "Shopping",
     "category:special": "Special",
     "category:sport": "Sport",
+    "category:swimming_bathing": "Swimming and bathing",
     "category:tourism_attractions": "Tourism",
     "category:tourism_services": "Tourism",
     "category:transport": "Transportation",
@@ -75,5 +76,6 @@
     "category:waste": "Disposal",
     "category:water": "Waterbodies",
     "category:wikipedia": "Wikipedia",
-    "category:works": "Works"
+    "category:works": "Works",
+    "category:xmas": "Christmas"
 }

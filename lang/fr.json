@@ -63,6 +63,7 @@
     "category:shop": "Magasins/Boutiques",
     "category:special": "Catégories spéciales",
     "category:sport": "Sports",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Tourisme",
     "category:tourism_services": "Tourisme",
     "category:transport": "Transports",
@@ -75,5 +76,6 @@
     "category:waste": "Déchets/Recyclage",
     "category:water": "Hydrographie",
     "category:wikipedia": "Wikipédia",
-    "category:works": "Zones industrielles"
+    "category:works": "Zones industrielles",
+    "category:xmas": ""
 }

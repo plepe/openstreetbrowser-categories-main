@@ -63,6 +63,7 @@
     "category:shop": "Покупки",
     "category:special": "",
     "category:sport": "Спорт",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Туризм",
     "category:tourism_services": "Туризм",
     "category:transport": "Транспорт",
@@ -75,5 +76,6 @@
     "category:waste": "Переработка отходов",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": "Промышленность"
+    "category:works": "Промышленность",
+    "category:xmas": ""
 }
