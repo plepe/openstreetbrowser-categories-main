@@ -258,7 +258,8 @@
                     "name": {
                         "en": "Energy",
                         "de": "Energie",
-                        "pt-br": "Energia"
+                        "pt-br": "Energia",
+                        "fr": "Énergie"
                     },
                     "subCategories": [
                         {
