@@ -82,52 +82,52 @@
     ],
     "const": {
         "leisure=swimming_area": {
-          "zoom": 13,
-          "sign": "<img data-src='maki:swimming?size=11&fill=blue'>"
+            "zoom": 13,
+            "sign": "<img data-src='maki:swimming?size=11&fill=blue'>"
         },
         "leisure=water_park": {
-          "zoom": 13,
-          "sign": "<img data-src='maki:swimming'>"
+            "zoom": 13,
+            "sign": "<img data-src='maki:swimming'>"
         },
         "leisure=beach_resort": {
-          "zoom": 13,
-          "sign": "<img data-src='temaki:beach'>"
+            "zoom": 13,
+            "sign": "<img data-src='temaki:beach'>"
         },
         "leisure=sports_centre": {
-          "zoom": 13,
-          "append": "tag:sport=swimming",
-          "taginfo": "leisure=swimming_area, sport=swimming",
-          "sign": "<img data-src='maki:basketball'>"
+            "zoom": 13,
+            "append": "tag:sport=swimming",
+            "taginfo": "leisure=swimming_area, sport=swimming",
+            "sign": "<img data-src='maki:basketball'>"
         },
         "natural=water": {
-          "zoom": 13,
-          "append": "tag:sport=swimming",
-          "taginfo": "natural=water, sport=swimming",
-          "sign": "<i style='color: blue' class=\"fas fa-water\"></i>"
+            "zoom": 13,
+            "append": "tag:sport=swimming",
+            "taginfo": "natural=water, sport=swimming",
+            "sign": "<i style='color: blue' class=\"fas fa-water\"></i>"
         },
         "natural=beach": {
-          "zoom": 13,
-          "sign": "<img data-src='temaki:beach?fill=green'>"
+            "zoom": 13,
+            "sign": "<img data-src='temaki:beach?fill=green'>"
         },
         "amenity=public_bath": {
-          "zoom": 13,
-          "taginfo": "amenity=public_bath, bath:type=*",
-          "sign": "<i class=\"fa fa-bath\" style='color: black' aria-hidden=\"true\"></i>"
+            "zoom": 13,
+            "taginfo": "amenity=public_bath, bath:type=*",
+            "sign": "<i class=\"fa fa-bath\" style='color: black' aria-hidden=\"true\"></i>"
         },
         "tourism=spa_resort": {
-          "zoom": 13,
-          "sign": "<i class=\"fa fa-bath\" style='color: blue' aria-hidden=\"true\"></i>"
+            "zoom": 13,
+            "sign": "<i class=\"fa fa-bath\" style='color: blue' aria-hidden=\"true\"></i>"
         },
         "leisure=swimming_pool": {
-          "zoom": 16,
-          "append": "tag:access!=private",
-          "taginfo": "leisure=swimming_pool, access!=private",
-          "sign": "<i style='font-size: 80%; color: black;' class='fas fa-swimming-pool'></i>"
+            "zoom": 16,
+            "append": "tag:access!=private",
+            "taginfo": "leisure=swimming_pool, access!=private",
+            "sign": "<i style='font-size: 80%; color: black;' class='fas fa-swimming-pool'></i>"
         },
         "leisure=sauna": {
-          "zoom": 16,
-          "taginfo": "leisure=sauna, sauna:type=*",
-          "sign": "<i class=\"fa fa-thermometer-full\" aria-hidden=\"true\"></i>"
+            "zoom": 16,
+            "taginfo": "leisure=sauna, sauna:type=*",
+            "sign": "<i class=\"fa fa-thermometer-full\" aria-hidden=\"true\"></i>"
         }
     }
 }
