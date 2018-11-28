@@ -1,8 +1,8 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Swimming and bathing",
-        "de": "Schwimmen und Baden"
+        "de": "Schwimmen und Baden",
+        "en": "Swimming and bathing"
     },
     "query": {
         "13": [
