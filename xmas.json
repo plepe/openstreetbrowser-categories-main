@@ -1,7 +1,8 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Christmas"
+        "en": "Christmas",
+        "fr": "Noël"
     },
     "query": {
         "14": [
