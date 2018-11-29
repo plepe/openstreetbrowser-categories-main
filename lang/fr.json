@@ -18,7 +18,7 @@
     "category:cycle_amenities": "Équipements vélo",
     "category:cycle_routes": "Itinéraires vélo",
     "category:education": "Éducation",
-    "category:electric_power": "Énergie électrique",
+    "category:electric_power": "Production/transport électrique",
     "category:emergency": "Services d'urgence",
     "category:energy": "Énergie",
     "category:financial": "Finance",
@@ -36,7 +36,7 @@
     "category:military": "Militaire",
     "category:mtb-routes": "Itinéraires de VTT",
     "category:natural": "Éléments naturels",
-    "category:office": "",
+    "category:office": "Bureaux",
     "category:oil_gas": "Pétrole et gaz naturel",
     "category:other": "Autres",
     "category:outdoor": "Activités de plein air",
@@ -45,7 +45,7 @@
     "category:places_geo": "Lieux",
     "category:playgrounds": "Jeux pour enfants",
     "category:post": "",
-    "category:power_routes": "",
+    "category:power_routes": "Réseaux électriques",
     "category:pt": "Carte des transports publics",
     "category:pt:routes": "Lignes",
     "category:pt:stops": "Arrêts/Stops, Stations",
@@ -64,7 +64,7 @@
     "category:shop": "Magasins/Boutiques",
     "category:special": "Catégories spéciales",
     "category:sport": "Sports",
-    "category:swimming_bathing": "",
+    "category:swimming_bathing": "Natation/Baignade/Bains",
     "category:tourism_attractions": "Tourisme",
     "category:tourism_services": "Tourisme",
     "category:transport": "Transports",
@@ -78,5 +78,5 @@
     "category:water": "Hydrographie",
     "category:wikipedia": "Wikipédia",
     "category:works": "Zones industrielles",
-    "category:xmas": ""
+    "category:xmas": "Noël"
 }
