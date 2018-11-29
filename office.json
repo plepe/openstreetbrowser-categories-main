@@ -1,8 +1,9 @@
 {
     "type": "overpass",
     "name": {
+        "de": "Ämter, Dienst- und Geschäftsstellen",
         "en": "Offices",
-        "de": "Ämter, Dienst- und Geschäftsstellen"
+        "fr": "Bureaux"
     },
     "query": {
         "14": "nwr[office]"

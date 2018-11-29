@@ -1,7 +1,8 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Power routes"
+        "en": "Power routes",
+        "fr": "Réseaux électriques"
     },
     "query": {
         "10": "relation[type=route][route=power]"
