@@ -32,6 +32,7 @@
             "node[amenity~'^(college|university|library|school|kindergarten|language_school)$'];",
             "way[amenity~'^(college|university|library|school|kindergarten|language_school)$'];",
             "relation[amenity~'^(college|university|library|school|kindergarten|language_school)$'];",
+            "nwr[office~\"^(educational_institution|research)$\"];",
             ")"
         ],
         "16": [
@@ -39,20 +40,30 @@
             "node[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];",
             "way[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];",
             "relation[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];",
+            "nwr[office~\"^(educational_institution|research)$\"];",
             ")"
         ]
     },
     "feature": {
-        "description": "{{ tagTrans('amenity', tags.amenity) }}",
+        "pre": [
+            "{% if tags.office == 'educational_institution' or tags.office == 'research' %}",
+            "  {% set key = 'office' %}",
+            "  {% set value = tags.office %}",
+            "{% else %}",
+            "  {% set key = 'amenity' %}",
+            "  {% set value = tags.amenity %}",
+            "{% endif %}"
+        ],
+        "description": "{{ tagTrans(key, value) }}",
         "body": "{% if tags.operator %}{{ keyTrans('operator') }}: {{ tags.operator }}<br/>{% endif %}",
         "markerSign": [
-            "{% set data = const[tags.amenity] %}",
+            "{% set data = const[key ~ '=' ~ value] %}",
             "{% if data %}",
-            "{{ data.sign }}",
+            "{{ data.sign|raw }}",
             "{% endif %}"
         ],
         "priority": [
-            "{% set data = const[tags.amenity] %}",
+            "{% set data = const[key ~ '=' ~ value] %}",
             "{% if data %}",
             "{{ data.priority }}",
             "{% endif %}"
@@ -60,51 +71,63 @@
     },
     "info": [
         "<table>",
-        "{% for value, data in const %}",
+        "{% for kv, data in const %}",
         "{% if data.zoom <= map.zoom %}",
         "  <tr>",
-        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign }}</div></td>",
-        "    <td>{{ tagTrans('amenity', value) }}</td>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "    <td>",
+        "      {{ tagTrans(kv|split('=')[0], kv|split('=')[1]) }}",
+        "    </td>",
         "  </tr>",
         "{% endif %}",
         "{% endfor %}",
         "</table>"
     ],
     "const": {
-        "university": {
+        "amenity=university": {
             "priority": 0,
             "sign": "🎓",
             "zoom": 11
         },
-        "college": {
+        "amenity=college": {
             "priority": 1,
             "sign": "🎓",
             "zoom": 11
         },
-        "library": {
+        "amenity=library": {
             "priority": 2,
             "sign": "🕮",
             "zoom": 11
         },
-        "school": {
+        "amenity=school": {
             "priority": 3,
             "sign": "🏫",
             "zoom": 14
         },
-        "language_school": {
+        "amenity=language_school": {
             "priority": 3,
             "sign": "🏫",
             "zoom": 14
         },
-        "kindergarten": {
+        "amenity=kindergarten": {
             "priority": 4,
             "sign": "⛹",
             "zoom": 14
         },
-        "public_bookcase": {
+        "amenity=public_bookcase": {
             "priority": 5,
             "sign": "📚",
             "zoom": 16
+        },
+        "office=educational_institution": {
+            "priority": 3,
+            "sign": "🏢",
+            "zoom": 14
+        },
+        "office=research": {
+            "priority": 3,
+            "sign": "<i class='fas fa-vials'></i>",
+            "zoom": 14
         }
     }
 }
