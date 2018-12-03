@@ -5,7 +5,7 @@
         "fr": "Noël"
     },
     "query": {
-        "14": [
+        "13": [
             "(",
             "node[\"xmas:feature\"];",
             "way[\"xmas:feature\"];",
