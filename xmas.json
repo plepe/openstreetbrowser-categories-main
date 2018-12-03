@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "en": "Christmas",
-        "fr": "Noël"
+        "fr": "Noël",
+        "de": "Weihnachten"
     },
     "query": {
         "13": [
@@ -65,18 +66,15 @@
             "</li>",
             "{% endif %}"
         ],
-        "markerSign": [
-            "{{ attribute(const, attribute(tags, 'xmas:feature'))|raw }}",
-            ""
-        ],
+        "markerSign": "{{ attribute(const, attribute(tags, 'xmas:feature'))|raw }}",
         "markerSymbol": "{{ markerPointer({\"fillColor\":bgColor})|raw }}",
         "listMarkerSymbol": "{{ markerCircle({\"fillColor\":bgColor})|raw }}"
     },
     "const": {
-        "market": "<img src='maki:commercial'>",
+        "market": "<img data-src='maki:commercial'>",
         "tree": "<i class=\"fa fa-tree\" aria-hidden=\"true\"></i>",
         "shop": "<i class=\"fa fa-shopping-basket\" aria-hidden=\"true\"></i>",
-        "event": "<img src='maki:amusement-park'>"
+        "event": "<img data-src='maki:amusement-park'>"
     },
     "info": [
         "<table>",
