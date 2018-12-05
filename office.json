@@ -3,7 +3,8 @@
     "name": {
         "de": "Ämter, Dienst- und Geschäftsstellen",
         "en": "Offices",
-        "fr": "Bureaux"
+        "fr": "Bureaux",
+        "pt-br": "Escritórios e agências"
     },
     "query": {
         "14": "nwr[office]"
