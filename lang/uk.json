@@ -36,6 +36,7 @@
     "category:military": "",
     "category:mtb-routes": "",
     "category:natural": "Природне середовище",
+    "category:office": "",
     "category:oil_gas": "",
     "category:other": "Інше",
     "category:outdoor": "",
@@ -44,6 +45,7 @@
     "category:places_geo": "Місцевість",
     "category:playgrounds": "Дитячий майданчик",
     "category:post": "",
+    "category:power_routes": "",
     "category:pt": "",
     "category:pt:routes": "",
     "category:pt:stops": "Зупинки та станції",
@@ -62,6 +64,7 @@
     "category:shop": "Торгівля",
     "category:special": "",
     "category:sport": "Спорт. Інше.",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Туризм",
     "category:tourism_services": "Туризм",
     "category:transport": "Транспорт",
@@ -74,5 +77,6 @@
     "category:waste": "",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": ""
+    "category:works": "",
+    "category:xmas": ""
 }

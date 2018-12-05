@@ -36,6 +36,7 @@
     "category:military": "",
     "category:mtb-routes": "",
     "category:natural": "",
+    "category:office": "",
     "category:oil_gas": "",
     "category:other": "Ülejäänud",
     "category:outdoor": "",
@@ -44,6 +45,7 @@
     "category:places_geo": "Kohad",
     "category:playgrounds": "Mänguväljak",
     "category:post": "",
+    "category:power_routes": "",
     "category:pt": "",
     "category:pt:routes": "",
     "category:pt:stops": "",
@@ -62,6 +64,7 @@
     "category:shop": "Ostmine",
     "category:special": "",
     "category:sport": "",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Turism",
     "category:tourism_services": "Turism",
     "category:transport": "Transport",
@@ -74,5 +77,6 @@
     "category:waste": "",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": ""
+    "category:works": "",
+    "category:xmas": ""
 }

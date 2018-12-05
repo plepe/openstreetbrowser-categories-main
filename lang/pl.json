@@ -36,6 +36,7 @@
     "category:military": "",
     "category:mtb-routes": "",
     "category:natural": "",
+    "category:office": "",
     "category:oil_gas": "",
     "category:other": "",
     "category:outdoor": "",
@@ -44,6 +45,7 @@
     "category:places_geo": "Miejsca",
     "category:playgrounds": "",
     "category:post": "",
+    "category:power_routes": "",
     "category:pt": "",
     "category:pt:routes": "",
     "category:pt:stops": "Przystanki i Stacje",
@@ -62,6 +64,7 @@
     "category:shop": "Zakupy",
     "category:special": "",
     "category:sport": "",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Turystyka",
     "category:tourism_services": "Turystyka",
     "category:transport": "Transport",
@@ -74,5 +77,6 @@
     "category:waste": "",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": ""
+    "category:works": "",
+    "category:xmas": ""
 }

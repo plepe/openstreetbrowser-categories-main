@@ -4,7 +4,7 @@
         "en": "Mountain bike routes",
         "fr": "Itinéraires de VTT",
         "hu": "Hegyikerékpáros útvonalak",
-        "pt-br": "Rotas mountain bike"
+        "pt-br": "Rotas de mountain bike"
     },
     "query": {
         "13": "relation[type=route][route=mtb]"

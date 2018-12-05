@@ -3,6 +3,7 @@
     "name": {
         "de": "ÖV Karte",
         "en": "Public transport map",
+        "fr": "Carte des transports publics",
         "hu": "Tömegközlekedési térkép",
         "pt-br": "Mapa de transporte público"
     },
@@ -67,6 +68,12 @@
         ],
         "markerSymbol": "",
         "styles": "",
+        "style:hover": {
+            "width": 0
+        },
+        "style:selected": {
+            "width": 0
+        },
         "listStopsExclude": "true",
         "listRoutesMarkerSign": "{{ const[tags.route].sign|raw }}",
         "listRoutesMarkerSymbol": "{{ markerCircle({fillColor:const[tags.route].color})|raw }}",
@@ -82,6 +89,10 @@
             "{% set isWay = false %}",
             "{% set aRoute = null %}",
             "{% set refs = [] %}",
+            "{% set dirForward = false %}",
+            "{% set dirBackward = false %}",
+            "{% set hover = false %}",
+            "{% set selected = false %}",
             "{% for master in masters %}",
             "  {% if master.tags.public_transport == 'stop_area' %}",
             "    {% set stopName = master.tags.name %}",
@@ -97,7 +108,14 @@
             "    {% if master.tags.ref %}",
             "      {% set refs = refs|merge([ master.tags.ref ]) %}",
             "    {% endif %}",
+            "    {% if master.dir == 'forward' %}{% set dirForward = true %}",
+            "    {% elseif master.dir == 'backward' %}{% set dirBackward = true %}",
+            "    {% else %}{% set dirForward = true %}{% set dirBackward = true %}",
+            "    {% endif %}",
             "  {% endif %}",
+            "",
+            "  {% if master.flags.hover %}{% set hover = master.dir|default('both') %}{% endif %}",
+            "  {% if master.flags.selected %}{% set selected = master.dir|default('both') %}{% endif %}",
             "{% endfor %}",
             "",
             "{% set refs = refs|unique|natsort({ insensitive: true }) %}",
@@ -118,25 +136,78 @@
             "{% endfor %}",
             "</ul>"
         ],
-        "styles": "{% if isStop and stopCount > 0 %}stop{% elseif isWay %}way{% else %}{% endif %}",
+        "styles": "{% if isStop and stopCount > 0 %}stop{% elseif isWay %}casing,way{% if hover %},hover{% endif %}{% if selected %},selected{% endif %}{% endif %}",
         "listStopsMarkerSign": null,
         "listStopsMarkerSymbol": "{{ markerCircle({ width: 5, color: color, fillOpacity: '1', radius: 3 })|raw }}",
         "listStopsExclude": "{{ not isStop or stopCount == 0 }}",
         "listStopsTitle": "{% if tags %}{{ tags.name|default(stopName)|default(trans('unknown')) }}{% else %}<li>{{ trans('loading') }}</li>{% endif %}",
         "listStopsDescription": "{{ refs|join(' · ') }}",
         "listRoutesExclude": "true",
-        "style:way": {
-            "width": "3",
+        "markerSymbol": "{% if isStop and stopCount > 0 %}{% if hover or selected %}{{ markerPointer({ })|raw }}{% endif %}{% endif %}",
+        "markerSign": " ",
+        "style:stop": {
             "color": "{{ color|default('#ff0000') }}",
+            "width": "4",
+            "radius": "3",
+            "zIndex": "1"
+        },
+        "style:way": {
+            "color": "{{ color|default('#ff0000') }}",
+            "width": "4",
+            "dashArray": "{% if not dirForward or not dirBackward %}27,8{% endif %}",
+            "dashOffset": "{% if dirBackward %}28{% else %}0{% endif %}",
+            "lineCap": "{% if not dirForward or not dirBackward %}butt{% else %}round{% endif %}",
+            "noClip": "{% if not dirForward or not dirBackward %}true{% else %}false{% endif %}",
+            "opacity": 1,
             "text": "{{ refs|join(' · ') }}             ",
             "textRepeat": "1",
             "textOffset": "12",
-            "textFontWeight": "bold"
+            "textFontWeight": "bold",
+            "pattern": "{% if dirForward and dirBackward %}{% else %}arrowHead{% endif %}",
+            "pattern-pixelSize": "9",
+            "pattern-repeat": "35",
+            "pattern-offset": "{% if dirBackward %}4{% else %}30.5{% endif %}",
+            "pattern-polygon": "true",
+            "pattern-angleCorrection": "{% if dirBackward %}180{% else %}0{% endif %}",
+            "pattern-path-width": "0",
+            "pattern-path-fillOpacity": "1",
+            "pattern-path-color": "{{ color|default('#ff0000') }}"
         },
-        "style:stop": {
-            "width": "5",
-            "color": "{{ color|default('#ff0000') }}",
-            "radius": "3"
+        "style:hover": {
+            "pane": "hover",
+            "width": "4",
+            "dashArray": "{% if hover == 'forward' or hover == 'backward' %}27,8{% endif %}",
+            "dashOffset": "{% if hover == 'backward' %}28{% else %}0{% endif %}",
+            "lineCap": "{% if hover == 'forward' or hover == 'backward' %}butt{% else %}round{% endif %}",
+            "noClip": "{% if hover == 'forward' or hover == 'backward' %}true{% else %}false{% endif %}",
+            "color": "black",
+            "pattern": "{% if hover == 'forward' or hover == 'backward' %}arrowHead{% endif %}",
+            "pattern-pixelSize": "9",
+            "pattern-repeat": "35",
+            "pattern-offset": "{% if hover == 'backward' %}4{% else %}30.5{% endif %}",
+            "pattern-polygon": "true",
+            "pattern-angleCorrection": "{% if hover == 'backward' %}180{% else %}0{% endif %}",
+            "pattern-path-width": "0",
+            "pattern-path-fillOpacity": "1",
+            "pattern-path-color": "black"
+        },
+        "style:selected": {
+            "pane": "selected",
+            "width": "4",
+            "dashArray": "{% if selected == 'forward' or selected == 'backward' %}27,8{% endif %}",
+            "dashOffset": "{% if selected == 'backward' %}28{% else %}0{% endif %}",
+            "lineCap": "{% if selected == 'forward' or selected == 'backward' %}butt{% else %}round{% endif %}",
+            "noClip": "{% if selected == 'forward' or selected == 'backward' %}true{% else %}false{% endif %}",
+            "color": "#3f3f3f",
+            "pattern": "{% if selected == 'forward' or selected == 'backward' %}arrowHead{% endif %}",
+            "pattern-pixelSize": "9",
+            "pattern-repeat": "35",
+            "pattern-offset": "{% if selected == 'backward' %}4{% else %}30.5{% endif %}",
+            "pattern-polygon": "true",
+            "pattern-angleCorrection": "{% if selected == 'backward' %}180{% else %}0{% endif %}",
+            "pattern-path-width": "0",
+            "pattern-path-fillOpacity": "1",
+            "pattern-path-color": "#3f3f3f"
         }
     },
     "info": [

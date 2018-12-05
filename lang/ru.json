@@ -36,6 +36,7 @@
     "category:military": "Вооружённые силы",
     "category:mtb-routes": "",
     "category:natural": "Природные образования",
+    "category:office": "",
     "category:oil_gas": "",
     "category:other": "Прочее",
     "category:outdoor": "",
@@ -44,6 +45,7 @@
     "category:places_geo": "Места",
     "category:playgrounds": "",
     "category:post": "",
+    "category:power_routes": "",
     "category:pt": "",
     "category:pt:routes": "",
     "category:pt:stops": "Остановки и станции",
@@ -62,6 +64,7 @@
     "category:shop": "Покупки",
     "category:special": "",
     "category:sport": "Спорт",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Туризм",
     "category:tourism_services": "Туризм",
     "category:transport": "Транспорт",
@@ -74,5 +77,6 @@
     "category:waste": "Переработка отходов",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": "Промышленность"
+    "category:works": "Промышленность",
+    "category:xmas": ""
 }

@@ -2,7 +2,9 @@
     "type": "overpass",
     "name": {
         "de": "Erneuerbare Energien",
-        "en": "Renewables"
+        "en": "Renewables",
+        "fr": "Énergies renouvelables",
+        "pt-br": "Renováveis"
     },
     "query": {
         "11": [

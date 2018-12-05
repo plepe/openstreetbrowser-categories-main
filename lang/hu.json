@@ -36,6 +36,7 @@
     "category:military": "Katonai objektumok",
     "category:mtb-routes": "Hegyikerékpáros útvonalak",
     "category:natural": "Természeti képződmények",
+    "category:office": "",
     "category:oil_gas": "",
     "category:other": "Egyéb",
     "category:outdoor": "Szabadtéri tevékenységek",
@@ -44,6 +45,7 @@
     "category:places_geo": "Helyek",
     "category:playgrounds": "Játszóterek",
     "category:post": "Posta",
+    "category:power_routes": "",
     "category:pt": "Tömegközlekedési térkép",
     "category:pt:routes": "Útvonalak",
     "category:pt:stops": "Megállók és állomások",
@@ -62,6 +64,7 @@
     "category:shop": "Vásárlás",
     "category:special": "Speciális",
     "category:sport": "Sport",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Látnivalók",
     "category:tourism_services": "Turisztikai szolgáltatások",
     "category:transport": "Közlekedés",
@@ -74,5 +77,6 @@
     "category:waste": "Hulladék",
     "category:water": "Vizek",
     "category:wikipedia": "Wikipédia",
-    "category:works": "Üzemek"
+    "category:works": "Üzemek",
+    "category:xmas": ""
 }

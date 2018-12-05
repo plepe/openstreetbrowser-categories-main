@@ -2,7 +2,9 @@
     "type": "overpass",
     "name": {
         "de": "Denkmäler",
-        "en": "Memorials"
+        "en": "Memorials",
+        "fr": "Mémoriaux",
+        "pt-br": "Memoriais"
     },
     "query": {
         "11": [

@@ -1,0 +1,81 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Christmas",
+        "fr": "Noël"
+    },
+    "query": {
+        "14": [
+            "(",
+            "node[\"xmas:feature\"];",
+            "way[\"xmas:feature\"];",
+            "relation[\"xmas:feature\"];",
+            ")"
+        ]
+    },
+    "feature": {
+        "title": "{{ attribute(tags, \"xmas:name\")|default(trans(\"unnamed\")) }}",
+        "description": "{{ tagTransList(\"xmas:feature\", attribute(tags, \"xmas:feature\")) }}",
+        "body": [
+            "{% if attribute(tags, 'xmas:location') %}",
+            "<li class='hasSymbol'>",
+            "  <i class=\"fa fa-globe\" aria-hidden=\"true\"></i>",
+            "  <span class='key'>{{ keyTrans('location') }}:</span>",
+            "  <span class='value'>",
+            "    {{ attribute(tags, 'xmas:location') }}",
+            "  </span>",
+            "</li>",
+            "{% endif %}",
+            "",
+            "{% if attribute(tags, 'xmas:day_date') %}",
+            "<li class='hasSymbol'>",
+            "  <i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i>",
+            "  <span class='key'>Open:</span>",
+            "  <span class='value'>",
+            "    {{ attribute(tags, 'xmas:day_date') }}",
+            "  </span>",
+            "</li>",
+            "{% endif %}",
+            "",
+            "{% if attribute(tags, 'xmas:opening_hours') %}",
+            "<li class='hasSymbol'>",
+            "  <i class=\"fa fa-clock-o\" aria-hidden=\"true\"></i>",
+            "  <span class='key'>{{ keyTrans('opening_hours') }}:</span>",
+            "  <span class='value'>",
+            "    {{ attribute(tags, 'xmas:opening_hours') }}",
+            "  </span>",
+            "</li>",
+            "{% endif %}",
+            "",
+            "{% if attribute(tags, 'xmas:url') %}",
+            "<li class='hasSymbol'>",
+            "  <i class=\"fa fa-globe\" aria-hidden=\"true\"></i>",
+            "  <span class='key'>{{ keyTrans('website') }}:</span>",
+            "  <span class='value'>",
+            "    <a target='_blank' href='{{ attribute(tags, 'xmas:url')|websiteUrl }}'>{{ attribute(tags, 'xmas:url') }}</a>",
+            "  </span>",
+            "</li>",
+            "{% endif %}"
+        ],
+        "markerSign": [
+            "{{ attribute(const, attribute(tags, 'xmas:feature'))|raw }}",
+            ""
+        ]
+    },
+    "const": {
+        "market": "<img src='maki:commercial'>",
+        "tree": "<i class=\"fa fa-tree\" aria-hidden=\"true\"></i>",
+        "shop": "<i class=\"fa fa-shopping-basket\" aria-hidden=\"true\"></i>",
+        "event": "<img src='maki:amusement-park'>"
+    },
+    "info": [
+        "<table>",
+        "{% for value, icon in const %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ icon|raw }}</div></td>",
+        "    <td>{{ tagTrans('xmas:feature', value) }}</td>",
+        "  </tr>",
+        "{% endfor %}",
+        "</table>"
+    ]
+}
