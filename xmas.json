@@ -1,9 +1,10 @@
 {
     "type": "overpass",
     "name": {
+        "de": "Weihnachten",
         "en": "Christmas",
         "fr": "Noël",
-        "de": "Weihnachten"
+        "pt-br": "Natal"
     },
     "query": {
         "13": [
