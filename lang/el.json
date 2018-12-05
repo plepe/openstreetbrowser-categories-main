@@ -36,6 +36,7 @@
     "category:military": "Στρατιωτικό",
     "category:mtb-routes": "",
     "category:natural": "Φυσικοί Σχηματισμοί",
+    "category:office": "",
     "category:oil_gas": "",
     "category:other": "",
     "category:outdoor": "",
@@ -44,6 +45,7 @@
     "category:places_geo": "Μέρη",
     "category:playgrounds": "",
     "category:post": "",
+    "category:power_routes": "",
     "category:pt": "",
     "category:pt:routes": "",
     "category:pt:stops": "Στάσεις & Σταθμοί",
@@ -62,6 +64,7 @@
     "category:shop": "Αγορές",
     "category:special": "",
     "category:sport": "Άθληση",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Τουρισμός",
     "category:tourism_services": "Τουρισμός",
     "category:transport": "Μεταφορές",
@@ -74,5 +77,6 @@
     "category:waste": "",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": ""
+    "category:works": "",
+    "category:xmas": ""
 }

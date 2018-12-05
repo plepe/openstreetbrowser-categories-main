@@ -36,6 +36,7 @@
     "category:military": "Militare",
     "category:mtb-routes": "",
     "category:natural": "Natura",
+    "category:office": "",
     "category:oil_gas": "",
     "category:other": "Altri",
     "category:outdoor": "",
@@ -44,6 +45,7 @@
     "category:places_geo": "Luoghi",
     "category:playgrounds": "",
     "category:post": "",
+    "category:power_routes": "",
     "category:pt": "",
     "category:pt:routes": "",
     "category:pt:stops": "Stazioni e fermate",
@@ -62,6 +64,7 @@
     "category:shop": "Acquisti",
     "category:special": "",
     "category:sport": "Sport",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Turismo",
     "category:tourism_services": "Turismo",
     "category:transport": "Trasporti",
@@ -74,5 +77,6 @@
     "category:waste": "Smaltimento",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": "Fabbriche"
+    "category:works": "Fabbriche",
+    "category:xmas": ""
 }

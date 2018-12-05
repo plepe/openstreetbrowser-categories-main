@@ -46,6 +46,9 @@
                 },
                 {
                     "id": "outdoor"
+                },
+                {
+                    "id": "swimming_bathing"
                 }
             ]
         },
@@ -85,6 +88,9 @@
                 },
                 {
                     "id": "communication"
+                },
+                {
+                    "id": "office"
                 },
                 {
                     "id": "financial"
@@ -254,11 +260,16 @@
                     "type": "index",
                     "name": {
                         "en": "Energy",
-                        "de": "Energie"
+                        "de": "Energie",
+                        "pt-br": "Energia",
+                        "fr": "Énergie"
                     },
                     "subCategories": [
                         {
                             "id": "electric_power"
+                        },
+                        {
+                            "id": "power_routes"
                         },
                         {
                             "id": "coal"
@@ -338,6 +349,9 @@
                 },
                 {
                     "id": "wikipedia"
+                },
+                {
+                    "id": "xmas"
                 }
             ]
         }

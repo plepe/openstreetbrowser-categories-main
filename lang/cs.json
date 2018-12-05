@@ -36,6 +36,7 @@
     "category:military": "Vojenské",
     "category:mtb-routes": "",
     "category:natural": "Přírodní úkazy",
+    "category:office": "",
     "category:oil_gas": "",
     "category:other": "Jiné",
     "category:outdoor": "",
@@ -44,6 +45,7 @@
     "category:places_geo": "Sídla",
     "category:playgrounds": "Hřiště",
     "category:post": "Poštovní služby",
+    "category:power_routes": "",
     "category:pt": "",
     "category:pt:routes": "",
     "category:pt:stops": "Zastávky & Stanice",
@@ -62,6 +64,7 @@
     "category:shop": "Obchody",
     "category:special": "",
     "category:sport": "Sport",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Turistika",
     "category:tourism_services": "Turistika",
     "category:transport": "Doprava",
@@ -74,5 +77,6 @@
     "category:waste": "Nakládání s odpady",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": "Továrny"
+    "category:works": "Továrny",
+    "category:xmas": ""
 }

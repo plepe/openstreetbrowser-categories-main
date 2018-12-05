@@ -36,6 +36,7 @@
     "category:military": "軍事",
     "category:mtb-routes": "",
     "category:natural": "自然地層",
+    "category:office": "",
     "category:oil_gas": "",
     "category:other": "その他",
     "category:outdoor": "",
@@ -44,6 +45,7 @@
     "category:places_geo": "場所",
     "category:playgrounds": "",
     "category:post": "郵便",
+    "category:power_routes": "",
     "category:pt": "",
     "category:pt:routes": "",
     "category:pt:stops": "停留所と駅",
@@ -62,6 +64,7 @@
     "category:shop": "ショッピング",
     "category:special": "",
     "category:sport": "スポーツ",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "観光",
     "category:tourism_services": "観光",
     "category:transport": "輸送",
@@ -74,5 +77,6 @@
     "category:waste": "処理場",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": "工場"
+    "category:works": "工場",
+    "category:xmas": ""
 }

@@ -2,7 +2,9 @@
     "type": "overpass",
     "name": {
         "de": "Erdöl und Erdgas",
-        "en": "Petroleum and natural gas"
+        "en": "Petroleum and natural gas",
+        "fr": "Pétrole et gaz naturel",
+        "pt-br": "Petróleo e gás"
     },
     "query": {
         "11": [
@@ -23,7 +25,7 @@
             ")"
         ],
         "13": [
-          "(",
+            "(",
             "way[man_made~\"^(pipeline|goods_conveyor)$\"][substance~\"^(|.*;)(oil|gas|lng|cng|multiphase)(|;.*)$\"];",
             "relation[man_made~\"^(pipeline|goods_conveyor)$\"][substance~\"^(|.*;)(oil|gas|lng|cng|multiphase)(|;.*)$\"];",
             "node[landuse=industrial][industrial~\"^(|.*;)(oil|gas|lng|cng|multiphase|refinery|oil_refinery)(|;.*)$\"];",

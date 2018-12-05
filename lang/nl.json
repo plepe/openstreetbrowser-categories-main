@@ -36,6 +36,7 @@
     "category:military": "Militair",
     "category:mtb-routes": "",
     "category:natural": "Natuurlijke Formaties",
+    "category:office": "",
     "category:oil_gas": "",
     "category:other": "Andere",
     "category:outdoor": "",
@@ -44,6 +45,7 @@
     "category:places_geo": "Plaatsen",
     "category:playgrounds": "",
     "category:post": "Post",
+    "category:power_routes": "",
     "category:pt": "",
     "category:pt:routes": "",
     "category:pt:stops": "Haltes en Stations",
@@ -62,6 +64,7 @@
     "category:shop": "Winkelen",
     "category:special": "",
     "category:sport": "Sport",
+    "category:swimming_bathing": "",
     "category:tourism_attractions": "Toerisme",
     "category:tourism_services": "Toerisme",
     "category:transport": "Vervoer",
@@ -74,5 +77,6 @@
     "category:waste": "Afvalverwijdering",
     "category:water": "",
     "category:wikipedia": "",
-    "category:works": "Fabrieken"
+    "category:works": "Fabrieken",
+    "category:xmas": ""
 }
