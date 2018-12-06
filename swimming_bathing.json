@@ -25,7 +25,7 @@
             "nwr[natural~\"^(beach)\"];",
             "nwr[leisure~\"^(water_park|beach_resort)$\"];",
             "nwr[leisure=sports_centre][sport~\"^(|.*;)swimming(;.*|)$\"];",
-            "nwr[amenity=public_bath];",
+            "nwr[amenity~\"^(public_bath|shower)$\"];",
             "nwr[tourism=spa_resort];",
             "",
             "nwr[leisure=swimming_pool][access!=private];",
@@ -40,6 +40,9 @@
             "  {% set k = 'amenity' %}",
             "  {% set v = 'public_bath' %}",
             "  {% if attribute(tags, 'bath:type') %}{% set append = tagTrans('bath:type', attribute(tags, 'bath:type')) %}{% endif %}",
+            "{% elseif tags.amenity == 'shower' %}",
+            "  {% set k = 'amenity' %}",
+            "  {% set v = 'shower' %}",
             "{% elseif tags.tourism == 'spa_resort' %}",
             "  {% set k = 'tourism' %}",
             "  {% set v = tags.tourism %}",
@@ -130,6 +133,10 @@
             "zoom": 16,
             "taginfo": "leisure=sauna, sauna:type=*",
             "sign": "<i class=\"fa fa-thermometer-full\" aria-hidden=\"true\"></i>"
+        },
+        "amenity=shower": {
+            "zoom": 16,
+            "sign": "🚿 "
         }
     }
 }
