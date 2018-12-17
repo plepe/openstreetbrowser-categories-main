@@ -1,8 +1,8 @@
 {
     "type": "overpass",
     "name": {
-        "de": "Typ",
-        "en": "Type"
+        "de": "Gebäudearten",
+        "en": "Building types"
     },
     "query": {
         "16": [
@@ -14,17 +14,20 @@
     },
     "feature": {
         "pre": [
-            "{% if tags.building == 'yes' %}",
-            "{% set color = '#7f7f7f' %}",
-            "{% else %}",
-            "{% set color = '#7f0000' %}",
+            "{% set color = \"#7f7f7f\" %}",
+            "{% if tags.building in const %}",
+            "{% set color = const[tags.building] %}",
             "{% endif %}"
         ],
         "description": [
-            "{{ tagTrans('building', tags.building) }}"
+            "{% if tags.building == 'yes' %}",
+            "{{ keyTrans('building') }}",
+            "{% else %}",
+            "{{ tagTrans('building', tags.building) }}",
+            "{% endif %}"
         ],
         "markerSymbol": null,
-        "listMarkerSymbol": "{{ markerCircle({fillColor: color})|raw }}",
+        "listMarkerSymbol": "{{ markerPolygon({\"fillColor\": color, \"fillOpacity\": 0.8, \"width\": 1, \"color\": \"#000000\" })|raw }}",
         "priority": "{{ (approxHeight|default(0)) * -1 }}",
         "style": {
             "width": "1",
@@ -38,23 +41,23 @@
         "{{ tagTrans('height') }}",
         "<table>",
         "  <tr>",
-        "    <td>{{ markerCircle({ 'fillColor': '#7f7f7f' })|raw }}</td>",
+        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\" }))|raw }}</td>",
         "    <td colspan>{{ trans('unknown') }}</td>",
         "  </tr>",
         "{% for i in range(0, 50, 10) %}",
         "  <tr>",
-        "    <td>{{ markerCircle({ 'fillColor': colorInterpolate(['green', 'red'], i / 50) })|raw }}</td>",
+        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\", \"height\": i }))|raw }}</td>",
         "    <td>{{ i }}m</td>",
         "  </tr>",
         "{% endfor %}",
         "{% for i in range(100, 250, 50) %}",
         "  <tr>",
-        "    <td>{{ markerCircle({ 'fillColor': colorInterpolate(['red', 'yellow'], (i - 50) / 250) })|raw }}</td>",
+        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\", \"height\": i }))|raw }}</td>",
         "    <td>{{ i }}m</td>",
         "  </tr>",
         "{% endfor %}",
         "  <tr>",
-        "    <td>{{ markerCircle({ 'fillColor': 'yellow' })|raw }}</td>",
+        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\", \"height\": \"300\" }))|raw }}</td>",
         "    <td>≥300m</td>",
         "  </tr>",
         "</table>",
@@ -64,27 +67,32 @@
         "{{ tagTrans('building:levels') }}",
         "<table>",
         "  <tr>",
-        "    <td>{{ markerCircle({ 'fillColor': '#7f7f7f' })|raw }}</td>",
+        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\" }))|raw }}</td>",
         "    <td colspan>{{ trans('unknown') }}</td>",
         "  </tr>",
         "{% for i in range(0, 12, 3) %}",
         "  <tr>",
-        "    <td>{{ markerCircle({ 'fillColor': colorInterpolate(['green', 'red'], (i * 3.5) / 50) })|raw }}</td>",
+        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\", \"building:levels\": i }))|raw }}</td>",
         "    <td>{{ i }}</td>",
         "  </tr>",
         "{% endfor %}",
         "{% for i in range(15, 84, 15) %}",
         "  <tr>",
-        "    <td>{{ markerCircle({ 'fillColor': colorInterpolate(['red', 'yellow'], (i * 3.5 - 50) / 250) })|raw }}</td>",
+        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\", \"building:levels\": i }))|raw }}</td>",
         "    <td>{{ i }}</td>",
         "  </tr>",
         "{% endfor %}",
         "  <tr>",
-        "    <td>{{ markerCircle({ 'fillColor': 'yellow' })|raw }}</td>",
+        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\", \"building:levels\": \"85\" }))|raw }}</td>",
         "    <td>≥85</td>",
         "  </tr>",
         "</table>",
         "",
         "</div>"
-    ]
+    ],
+    "const": {
+        "yes": "#7f7f7f",
+        "apartments": "#ff0000",
+        "place_of_worship": "#af29cc"
+    }
 }
