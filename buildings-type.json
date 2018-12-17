@@ -14,10 +14,12 @@
     },
     "feature": {
         "pre": [
-            "{% set color = \"#7f7f7f\" %}",
-            "{% if tags.building in const %}",
-            "{% set color = const[tags.building] %}",
-            "{% endif %}"
+            "{% set color = const.other.color %}",
+            "{% for cat, data in const %}",
+            "  {% if tags.building in data.types %}",
+            "    {% set color = data.color %}",
+            "  {% endif %}",
+            "{% endfor %}"
         ],
         "description": [
             "{% if tags.building == 'yes' %}",
@@ -26,73 +28,90 @@
             "{{ tagTrans('building', tags.building) }}",
             "{% endif %}"
         ],
+        "priority": [
+            "{% set p = 100 %}",
+            "{% if tags.name %}{% set p = p - 10 %}{% endif %}",
+            "{% if tags.amenity %}{% set p = p - 1 %}{% endif %}",
+            "{% if tags.historic %}{% set p = p - 1 %}{% endif %}",
+            "{% if tags.culture %}{% set p = p - 1 %}{% endif %}",
+            "{% if tags.highway %}{% set p = p - 1 %}{% endif %}",
+            "{% if tags.railway %}{% set p = p - 1 %}{% endif %}",
+            "{% if tags.aeroway %}{% set p = p - 1 %}{% endif %}",
+            "{% if tags.amenity %}{% set p = p - 1 %}{% endif %}",
+            "{% if tags.tourism %}{% set p = p - 1 %}{% endif %}",
+            "{{ p }}"
+        ],
         "markerSymbol": null,
         "listMarkerSymbol": "{{ markerPolygon({\"fillColor\": color, \"fillOpacity\": 0.8, \"width\": 1, \"color\": \"#000000\" })|raw }}",
-        "priority": "{{ (approxHeight|default(0)) * -1 }}",
         "style": {
             "width": "1",
             "color": "#000000",
             "fillColor": "{{ color }}",
-            "fillOpacity": "1"
+            "fillOpacity": "0.8"
         }
     },
     "info": [
-        "<div style='display: inline-block'>",
-        "{{ tagTrans('height') }}",
         "<table>",
+        "{% for cat, data in const %}",
         "  <tr>",
-        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\" }))|raw }}</td>",
-        "    <td colspan>{{ trans('unknown') }}</td>",
-        "  </tr>",
-        "{% for i in range(0, 50, 10) %}",
-        "  <tr>",
-        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\", \"height\": i }))|raw }}</td>",
-        "    <td>{{ i }}m</td>",
+        "    <td>{{ markerPolygon({ \"fillColor\": data.color, \"fillOpacity\": \"0.8\", \"width\": 1, \"color\": \"#000000\" })|raw }}</td>",
+        "    <td>{{ cat }}</td>",
         "  </tr>",
         "{% endfor %}",
-        "{% for i in range(100, 250, 50) %}",
-        "  <tr>",
-        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\", \"height\": i }))|raw }}</td>",
-        "    <td>{{ i }}m</td>",
-        "  </tr>",
-        "{% endfor %}",
-        "  <tr>",
-        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\", \"height\": \"300\" }))|raw }}</td>",
-        "    <td>≥300m</td>",
-        "  </tr>",
-        "</table>",
-        "</div>",
-        "",
-        "<div style='display: inline-block'>",
-        "{{ tagTrans('building:levels') }}",
-        "<table>",
-        "  <tr>",
-        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\" }))|raw }}</td>",
-        "    <td colspan>{{ trans('unknown') }}</td>",
-        "  </tr>",
-        "{% for i in range(0, 12, 3) %}",
-        "  <tr>",
-        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\", \"building:levels\": i }))|raw }}</td>",
-        "    <td>{{ i }}</td>",
-        "  </tr>",
-        "{% endfor %}",
-        "{% for i in range(15, 84, 15) %}",
-        "  <tr>",
-        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\", \"building:levels\": i }))|raw }}</td>",
-        "    <td>{{ i }}</td>",
-        "  </tr>",
-        "{% endfor %}",
-        "  <tr>",
-        "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\", \"building:levels\": \"85\" }))|raw }}</td>",
-        "    <td>≥85</td>",
-        "  </tr>",
-        "</table>",
-        "",
-        "</div>"
+        "</table>"
     ],
     "const": {
-        "yes": "#7f7f7f",
-        "apartments": "#ff0000",
-        "place_of_worship": "#af29cc"
+        "residential": {
+            "color": "#25a000",
+            "types": [ "house", "apartments", "block", "flats", "farm", "detached", "dormitory", "terrace", "houseboat", "bungalow", "static_caravan", "cabin", "residential", "semidetached_house", "ger", "trullo" ]
+        },
+        "tourism": {
+            "color": "#814ce2",
+            "types": [ "hotel", "ruins", "conservatory" ]
+        },
+        "commercial": {
+            "color": "#ec5bcf",
+            "types": [ "commercial", "office", "industrial", "retail", "supermarket", "warehouse", "kiosk", "mall", "shop" ]
+        },
+        "religious": {
+            "color": "#af29cc",
+            "types": [ "religious", "cathedral", "chapel", "church", "mosque", "temple", "synagogue", "shrine", "monastery" ]
+        },
+        "amenity": {
+            "color": "#2935cc",
+            "types": [ "kindergarten", "civic", "government", "hospital", "school", "university", "grandstand", "public", "toilets", "college" ]
+        },
+        "farm": {
+            "color": "#92e934",
+            "types": [ "bakehouse", "barn", "cowshed", "farm_auxiliary", "greenhouse", "stable", "sty", "kitchen", "slurry_tank", "silo" ]
+        },
+        "industrial": {
+            "color": "#e2da1b",
+            "types": [ "construction", "garbage_shed", "transformer_tower", "service", "water_tower", "industrial", "warehouse", "storage_tank" ]
+        },
+        "transport": {
+            "color": "#1bb5e2",
+            "types": [ "carport", "garage", "garages", "bridge", "hangar", "parking", "train_station", "transportation" ]
+        },
+        "sport": {
+            "color": "#e21b66",
+            "types": [ "pavilion", "riding_hall", "stadium", "sports_hall" ]
+        },
+        "simple": {
+            "color": "#cc8725",
+            "types": [ "hut", "roof", "shed" ]
+        },
+        "military": {
+            "color": "#4a7300",
+            "types": [ "bunker", "riding_hall", "sports_hall" ]
+        },
+        "other": {
+            "color": "#ff0000",
+            "types": []
+        },
+        "unspecified": {
+            "color": "#7f7f7f",
+            "types": [ "yes" ]
+        }
     }
 }
