@@ -7,16 +7,17 @@
     "query": {
         "16": [
             "(",
-            "  way[building];",
-            "  relation[building];",
+            "  way[building][building!=no];",
+            "  relation[building][building!=no];",
             ")"
         ]
     },
     "feature": {
         "pre": [
+            "{% set type = tags.building|split(';')[0] %}",
             "{% set color = const.other.color %}",
             "{% for cat, data in const %}",
-            "  {% if tags.building in data.types %}",
+            "  {% if type in data.types %}",
             "    {% set color = data.color %}",
             "  {% endif %}",
             "{% endfor %}"
@@ -25,7 +26,7 @@
             "{% if tags.building == 'yes' %}",
             "{{ keyTrans('building') }}",
             "{% else %}",
-            "{{ tagTrans('building', tags.building) }}",
+            "{{ tagTransList('building', tags.building) }}",
             "{% endif %}"
         ],
         "priority": [
