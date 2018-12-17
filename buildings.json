@@ -8,6 +8,9 @@
     },
     "subCategories": [
         {
+            "id": "buildings-type"
+        },
+        {
             "id": "buildings-figure-ground"
         },
         {
