@@ -27,6 +27,9 @@
             "{{ keyTrans('building') }}",
             "{% else %}",
             "{{ tagTransList('building', tags.building) }}",
+            "{% endif %}",
+            "{% if tags.building == 'construction' and tags.construction %}",
+            "({{ tagTransList('building', tags.construction) }})",
             "{% endif %}"
         ],
         "priority": [
