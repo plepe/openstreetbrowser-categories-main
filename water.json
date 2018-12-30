@@ -83,10 +83,18 @@
             ],
             "text": [
                 "{% if type=='way' and tags.waterway in [ 'river', 'stream', 'canal', 'ditch', 'wadi', 'drystream', 'drain' ] %}",
-                "{{ tags.name }}   ➔   ",
+                "{{ tags.name }}  ❱",
                 "{% endif %}"
             ],
-            "textRepeat": "1"
+            "textTurned": [
+                "{% if type=='way' and tags.waterway in [ 'river', 'stream', 'canal', 'ditch', 'wadi', 'drystream', 'drain' ] %}",
+                "❰  {{ tags.name }}",
+                "{% endif %}"
+            ],
+            "noClip": "false",
+            "textOrientation": "auto",
+            "textRepeat": "200",
+            "textCenter": "true"
         }
     },
     "info": [
