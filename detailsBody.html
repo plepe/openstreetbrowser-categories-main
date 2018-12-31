@@ -1,4 +1,12 @@
 <ul>
+{% set hasDescription = tagsPrefix(tags, 'description:') %}
+{% if tags.description or hasDescription %}
+<li class='hasSymbol'>
+  <i class="fa fa-info" aria-hidden="true"></i>
+  <span class='value'>{{ localizedTag(tags, 'description')|default(attribute(tags, 'description:' ~ hasDescription|keys[0])) }}</span>
+</li>
+{% endif %}
+
 {% set address = tagsPrefix(tags, 'addr:') %}
 {% if address %}
 <li class='hasSymbol'>
@@ -131,6 +139,30 @@
   </ul>
   </span>
 </li>
+{% endif %}
+
+{% if tags.start_date %}
+  <li class='hasSymbol'>
+   <i class="fa fa-clock-o" aria-hidden="true"></i>
+   <span class='key'>{{ keyTrans('start_date') }}:</span>
+   <span class='value'>{{ enumerate(tags.start_date) }}</span>
+  </li>
+{% endif %}
+
+{% if tags.opening_date %}
+  <li class='hasSymbol'>
+   <i class="fa fa-clock-o" aria-hidden="true"></i>
+   <span class='key'>{{ keyTrans('opening_date') }}:</span>
+   <span class='value'>{{ enumerate(tags.opening_date) }}</span>
+  </li>
+{% endif %}
+
+{% if tags.material %}
+  <li class='hasSymbol'>
+   <img data-src="maki:warehouse">
+   <span class='key'>{{ keyTrans('material') }}:</span>
+   <span class='value'>{{ tagTransList('material', tags.material) }}</span>
+  </li>
 {% endif %}
 
 </ul>
