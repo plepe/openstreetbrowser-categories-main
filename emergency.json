@@ -34,6 +34,7 @@
             "way[amenity~\"^(fire_station|hospital|police)$\"];",
             "relation[amenity~\"^(fire_station|hospital|police)$\"];",
             "node[emergency~\"^(phone)$\"];",
+            "node[highway=emergency_access_point];",
             ")"
         ]
     },
@@ -45,6 +46,9 @@
             "{% elseif tags.emergency %}",
             "{% set key = 'emergency' %}",
             "{% set value = tags.emergency %}",
+            "{% elseif tags.highway == 'emergency_access_point' %}",
+            "{% set key = 'highway' %}",
+            "{% set value = tags.highway %}",
             "{% endif %}",
             "{% set kv = key ~ \"=\" ~ value %}"
         ],
@@ -52,9 +56,11 @@
         "markerSign": [
             "{% set data = const[kv] %}",
             "{% if data %}",
-            "{{ data.sign }}",
+            "{{ data.sign|raw }}",
             "{% endif %}"
-        ]
+        ],
+        "markerSymbol": "{{ markerPointer({ fillColor: data.background|default('#f27f6a') })|raw }}",
+        "listMarkerSymbol": "{{ markerCircle({ fillColor: data.background|default('#f27f6a') })|raw }}"
     },
     "info": [
         "<table>",
@@ -84,6 +90,11 @@
         "emergency=phone": {
             "zoom": "13",
             "sign": "📞"
+        },
+        "highway=emergency_access_point": {
+            "zoom": "13",
+            "sign": "<img data-src='maki:hospital?fill=white'>",
+            "background": "#009262"
         }
     }
 }
