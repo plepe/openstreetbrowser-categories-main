@@ -67,7 +67,7 @@
         "{% for value, data in const %}",
         "{% if data.zoom <= map.zoom %}",
         "  <tr>",
-        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign }}</div></td>",
+        "    <td>{{ markerCircle({ fillColor: data.background|default('#f27f6a') })|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
         "    <td>{{ tagTrans(value|split('=')[0], value|split('=')[1]) }}</td>",
         "  </tr>",
         "{% endif %}",
