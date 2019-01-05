@@ -66,6 +66,15 @@
             "   <span class='value'>{{ enumerate(tags.artist_name) }}</span>",
             "  </li>",
             "{% endif %}",
+            "",
+            "{% if tags.material %}",
+            "  <li class='hasSymbol'>",
+            "   <img data-src=\"maki:warehouse\">",
+            "   <span class='key'>{{ keyTrans('material') }}:</span>",
+            "   <span class='value'>{{ tagTransList('material', tags.material) }}</span>",
+            "  </li>",
+            "{% endif %}",
+            "",
             "</ul>"
         ],
         "markerSign": "{{ attribute(const, key ~ '=' ~ value) }}"
