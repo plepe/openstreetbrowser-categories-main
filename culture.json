@@ -30,6 +30,7 @@
             "node[tourism~\"^(artwork|gallery|museum|theme_park)$\"];",
             "way[tourism~\"^(artwork|gallery|museum|theme_park)$\"];",
             "relation[tourism~\"^(artwork|gallery|museum|theme_park)$\"];",
+            "nwr[shop~\"^(art)$\"];",
             ")"
         ]
     },
@@ -41,10 +42,17 @@
             "{% elseif tags.tourism %}",
             "{% set key = 'tourism' %}",
             "{% set value = tags.tourism %}",
+            "{% elseif tags.shop %}",
+            "{% set key = 'shop' %}",
+            "{% set value = tags.shop %}",
             "{% endif %}"
         ],
         "description": [
-            "{{ tagTrans(key, value) }}",
+            "{% if key == 'shop' %}",
+            "  {{ keyTrans(key) }} ({{ tagTrans(key, value) }})",
+            "{% else %}",
+            "  {{ tagTrans(key, value) }}",
+            "{% endif %}",
             "",
             "{% if tags.tourism == 'museum' and tags.museum %}",
             "({{ tagTrans('museum', tags.museum) }})",
@@ -83,7 +91,7 @@
             "",
             "</ul>"
         ],
-        "markerSign": "{{ attribute(const, key ~ '=' ~ value) }}"
+        "markerSign": "{{ attribute(const, key ~ '=' ~ value)|raw }}"
     },
     "const": {
         "amenity=arts_centre": "🎨",
@@ -95,13 +103,14 @@
         "tourism=artwork": "🎨 ",
         "tourism=gallery": "🖼",
         "tourism=museum": "🏛 ",
-        "tourism=theme_park": ""
+        "tourism=theme_park": "",
+        "shop=art": "<i class=\"fa fa-shopping-cart\"></i>"
     },
     "info": [
         "<table>",
         "{% for value, sign in const %}",
         "  <tr>",
-        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ sign }}</div></td>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ sign|raw }}</div></td>",
         "    <td>{{ tagTrans(value|split('=')[0], value|split('=')[1]) }}</td>",
         "  </tr>",
         "{% endfor %}",
