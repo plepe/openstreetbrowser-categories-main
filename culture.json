@@ -43,7 +43,13 @@
             "{% set value = tags.tourism %}",
             "{% endif %}"
         ],
-        "description": "{{ tagTrans(key, value) }}",
+        "description": [
+            "{{ tagTrans(key, value) }}",
+            "",
+            "{% if tags.tourism == 'museum' and tags.museum %}",
+            "({{ tagTrans('museum', tags.museum) }})",
+            "{% endif %}"
+        ],
         "body": [
             "<ul>",
             "{% if tags.inscription %}",
