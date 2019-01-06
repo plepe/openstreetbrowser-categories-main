@@ -18,6 +18,9 @@
         },
         {
             "id": "buildings-start_date"
+        },
+        {
+            "id": "buildings-entrances"
         }
     ]
 }
