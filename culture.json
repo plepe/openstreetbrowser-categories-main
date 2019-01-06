@@ -56,6 +56,12 @@
             "",
             "{% if tags.tourism == 'museum' and tags.museum %}",
             "({{ tagTrans('museum', tags.museum) }})",
+            "{% endif %}",
+            "{% if tags.amenity == 'theatre' and attribute(tags, 'theatre:genre') %}",
+            "({{ tagTrans('theatre:genre', attribute(tags, 'theatre:genre')) }})",
+            "{% endif %}",
+            "{% if tags.amenity == 'community_centre' and tags.community_centre %}",
+            "({{ tagTrans('community_centre', tags.community_centre) }})",
             "{% endif %}"
         ],
         "body": [
