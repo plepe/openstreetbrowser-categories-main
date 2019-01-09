@@ -46,6 +46,7 @@
         ],
         "markerSign": "{% if tags.amenity=='bar' %}&#127864;{% elseif tags.amenity=='biergarten'%}&#127867;{% elseif tags.amenity=='cafe' %}&#9749;{% elseif tags.amenity=='fast_food' %}&#127828;{% elseif tags.amenity=='ice_cream' %}&#127848;{% elseif tags.amenity=='pub' %}&#127866;{% else %}&#127860;{% endif %}"
     },
+    "info": "{{ repoTrans('Objects with diet information') }}",
     "filter": {
         "amenity": {
             "name": "{{ keyTrans('amenity') }}",
@@ -89,7 +90,24 @@
         "diet": {
             "name": "{{ keyTrans('diet') }}",
             "type": "select",
-            "values": [ "diet:vegan", "diet:vegetarian", "diet:pescetarian", "diet:lacto_vegetarian", "diet:ovo_vegetarian", "diet:fruitarian", "diet:raw", "diet:gluten_free", "diet:dairy_free", "diet:lactose_free", "diet:halal", "diet:kosher" ],
+            "values": {
+               "*": {
+                 "name": "{{ repoTrans('Objects with diet information') }}",
+                 "query": "nwr[~\"^diet:\"~\".\"]"
+               },
+               "diet:vegan": {},
+               "diet:vegetarian": {},
+               "diet:pescetarian": {},
+               "diet:lacto_vegetarian": {},
+               "diet:ovo_vegetarian": {},
+               "diet:fruitarian": {},
+               "diet:raw": {},
+               "diet:gluten_free": {},
+               "diet:dairy_free": {},
+               "diet:lactose_free": {},
+               "diet:halal": {},
+               "diet:kosher": {}
+            },
             "valueName": "{{ keyTrans(value) }}",
             "op": "has_key_value"
         }
