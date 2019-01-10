@@ -1,0 +1,25 @@
+{
+    "type": "overpass",
+    "name": {
+        "de": "Eingänge",
+        "en": "Entrances"
+    },
+    "query": {
+        "16": [
+            "(",
+            "  node[entrance];",
+            "  node[building=entrance];",
+            ")"
+        ]
+    },
+    "feature": {
+        "description": [
+            "{% if tags.entrance == 'yes' or (not tags.entrance and tags.building == 'entrance') %}",
+            "{{ keyTrans('entrance') }}",
+            "{% else %}",
+            "{{ tagTrans('entrance', tags.entrance) }}",
+            "{% endif %}"
+        ],
+        "styles": ""
+    }
+}
