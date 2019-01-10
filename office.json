@@ -3,7 +3,9 @@
     "name": {
         "de": "Ämter, Dienst- und Geschäftsstellen",
         "en": "Offices",
-        "fr": "Bureaux"
+        "fr": "Bureaux",
+        "hu": "Irodák, hivatalok",
+        "pt-br": "Escritórios e agências"
     },
     "query": {
         "14": "nwr[office]"

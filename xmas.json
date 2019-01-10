@@ -1,11 +1,14 @@
 {
     "type": "overpass",
     "name": {
+        "de": "Weihnachten",
         "en": "Christmas",
-        "fr": "Noël"
+        "fr": "Noël",
+        "hu": "Karácsony",
+        "pt-br": "Natal"
     },
     "query": {
-        "14": [
+        "13": [
             "(",
             "node[\"xmas:feature\"];",
             "way[\"xmas:feature\"];",
@@ -14,9 +17,17 @@
         ]
     },
     "feature": {
+        "pre": [
+            "{% set isCurrent = meta.timestamp > now|date_modify('-1 month')|date('Y') %}",
+            "{% set bgColor = isCurrent ? '#f2756a' : 'red' %}"
+        ],
         "title": "{{ attribute(tags, \"xmas:name\")|default(trans(\"unnamed\")) }}",
         "description": "{{ tagTransList(\"xmas:feature\", attribute(tags, \"xmas:feature\")) }}",
         "body": [
+            "{% if not isCurrent %}",
+            "<div style='border: 1px solid red; padding: 2px; margin-bottom: 2px;'>Feature has not been updated for the current season! Please check and set the tag 'xmas:lastcheck' to the current date.</div>",
+            "{% endif %}",
+            "",
             "{% if attribute(tags, 'xmas:location') %}",
             "<li class='hasSymbol'>",
             "  <i class=\"fa fa-globe\" aria-hidden=\"true\"></i>",
@@ -57,16 +68,15 @@
             "</li>",
             "{% endif %}"
         ],
-        "markerSign": [
-            "{{ attribute(const, attribute(tags, 'xmas:feature'))|raw }}",
-            ""
-        ]
+        "markerSign": "{{ attribute(const, attribute(tags, 'xmas:feature'))|raw }}",
+        "markerSymbol": "{{ markerPointer({\"fillColor\":bgColor})|raw }}",
+        "listMarkerSymbol": "{{ markerCircle({\"fillColor\":bgColor})|raw }}"
     },
     "const": {
-        "market": "<img src='maki:commercial'>",
+        "market": "<img data-src='maki:commercial'>",
         "tree": "<i class=\"fa fa-tree\" aria-hidden=\"true\"></i>",
         "shop": "<i class=\"fa fa-shopping-basket\" aria-hidden=\"true\"></i>",
-        "event": "<img src='maki:amusement-park'>"
+        "event": "<img data-src='maki:amusement-park'>"
     },
     "info": [
         "<table>",
@@ -76,6 +86,10 @@
         "    <td>{{ tagTrans('xmas:feature', value) }}</td>",
         "  </tr>",
         "{% endfor %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({\"fillColor\":\"red\"})|raw }}</td>",
+        "    <td>outdated feature</td>",
+        "  </tr>",
         "</table>"
     ]
 }
