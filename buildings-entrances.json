@@ -19,6 +19,7 @@
             "{% else %}",
             "{{ tagTrans('entrance', tags.entrance) }}",
             "{% endif %}"
-        ]
+        ],
+        "styles": ""
     }
 }
