@@ -25,7 +25,7 @@
             "node[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|motel|wilderness_hut)$\"];",
             "way[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|motel|wilderness_hut)$\"];",
             "relation[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|motel|wilderness_hut)$\"];",
-            "nwr[office~\"^(guide|tourism|tourist_accommodation)$\"];",
+            "nwr[office~\"^(guide|tourism|tourist_accommodation|camping)$\"];",
             ")"
         ],
         "16": [
@@ -33,7 +33,7 @@
             "node[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];",
             "way[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];",
             "relation[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];",
-            "nwr[office~\"^(guide|tourism|tourist_accommodation)$\"];",
+            "nwr[office~\"^(guide|tourism|tourist_accommodation|camping)$\"];",
             ")"
         ]
     },
@@ -131,6 +131,10 @@
         },
         "office=tourist_accommodation": {
             "sign": "🛌",
+            "zoom": 13
+        },
+        "office=camping": {
+            "sign": "⛺",
             "zoom": 13
         },
         "tourism=information": {
