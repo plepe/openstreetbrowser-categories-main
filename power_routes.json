@@ -2,7 +2,9 @@
     "type": "overpass",
     "name": {
         "en": "Power routes",
-        "fr": "Réseaux électriques"
+        "fr": "Réseaux électriques",
+        "hu": "Távvezetékek",
+        "pt-br": "Rotas de energia"
     },
     "query": {
         "10": "relation[type=route][route=power]"
