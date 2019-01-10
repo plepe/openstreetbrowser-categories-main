@@ -32,6 +32,8 @@
             "({{ tagTransList('building', tags.construction) }})",
             "{% endif %}"
         ],
+        "markerSymbol": "",
+        "listMarkerSymbol": "{{ markerPolygon({\"fillColor\": color, \"fillOpacity\": 0.8, \"width\": 1, \"color\": \"#000000\" })|raw }}",
         "priority": [
             "{% set p = 100 %}",
             "{% if tags.name %}{% set p = p - 10 %}{% endif %}",
@@ -45,8 +47,6 @@
             "{% if tags.tourism %}{% set p = p - 1 %}{% endif %}",
             "{{ p }}"
         ],
-        "markerSymbol": null,
-        "listMarkerSymbol": "{{ markerPolygon({\"fillColor\": color, \"fillOpacity\": 0.8, \"width\": 1, \"color\": \"#000000\" })|raw }}",
         "style": {
             "width": "1",
             "color": "#000000",
@@ -58,64 +58,182 @@
         "<table>",
         "{% for cat, data in const %}",
         "  <tr>",
-        "    <td>{{ markerPolygon({ \"fillColor\": data.color, \"fillOpacity\": \"0.8\", \"width\": 1, \"color\": \"#000000\" })|raw }}</td>",
-        "    <td>{{ cat }}</td>",
+        "    <td valign='top'>{{ markerPolygon({ \"fillColor\": data.color, \"fillOpacity\": \"0.8\", \"width\": 1, \"color\": \"#000000\" })|raw }}</td>",
+        "    <td onclick='this.classList.toggle(\"infoShowDetails\")'><b>{{ trans(data.name) }}</b><span class='details'>:",
+        "      {% for i, type in data.types %}<span title='building={{ type }}'>{% if i > 0 %}, {% endif %}{{ tagTrans('building', type) }}</span>{% endfor %}",
+        "      </span>",
+        "<span class='summary'><i class=\"fa fa-info-circle\" aria-hidden=\"true\"></i></span>",
+        "    </td>",
         "  </tr>",
         "{% endfor %}",
         "</table>"
     ],
     "const": {
         "residential": {
+            "name": "tag:building=residential",
             "color": "#25a000",
-            "types": [ "house", "apartments", "block", "flats", "farm", "detached", "dormitory", "terrace", "houseboat", "bungalow", "static_caravan", "cabin", "residential", "semidetached_house", "ger", "trullo" ]
+            "types": [
+                "house",
+                "apartments",
+                "block",
+                "flats",
+                "farm",
+                "detached",
+                "dormitory",
+                "terrace",
+                "houseboat",
+                "bungalow",
+                "static_caravan",
+                "residential",
+                "semidetached_house",
+                "ger",
+                "trullo"
+            ]
         },
         "tourism": {
+            "name": "tag:tourism",
             "color": "#814ce2",
-            "types": [ "hotel", "ruins", "conservatory" ]
+            "types": [
+                "hotel",
+                "ruins",
+                "conservatory"
+            ]
         },
         "commercial": {
+            "name": "tag:building=commercial",
             "color": "#ec5bcf",
-            "types": [ "commercial", "office", "industrial", "retail", "supermarket", "warehouse", "kiosk", "mall", "shop" ]
+            "types": [
+                "commercial",
+                "office",
+                "industrial",
+                "retail",
+                "supermarket",
+                "warehouse",
+                "kiosk",
+                "mall",
+                "shop"
+            ]
         },
         "religious": {
+            "name": "tag:building=religious",
             "color": "#af29cc",
-            "types": [ "religious", "cathedral", "chapel", "church", "mosque", "temple", "synagogue", "shrine", "monastery" ]
+            "types": [
+                "religious",
+                "cathedral",
+                "chapel",
+                "church",
+                "mosque",
+                "temple",
+                "synagogue",
+                "shrine",
+                "monastery"
+            ]
         },
         "amenity": {
+            "name": "tag:amenity",
             "color": "#2935cc",
-            "types": [ "kindergarten", "civic", "government", "hospital", "school", "university", "grandstand", "public", "toilets", "college" ]
+            "types": [
+                "kindergarten",
+                "civic",
+                "government",
+                "hospital",
+                "school",
+                "university",
+                "grandstand",
+                "public",
+                "toilets",
+                "college"
+            ]
         },
-        "farm": {
+        "agriculture": {
+            "name": "tag:landuse=agriculture",
             "color": "#92e934",
-            "types": [ "bakehouse", "barn", "cowshed", "farm_auxiliary", "greenhouse", "stable", "sty", "kitchen", "slurry_tank", "silo" ]
+            "types": [
+                "bakehouse",
+                "barn",
+                "cowshed",
+                "farm_auxiliary",
+                "greenhouse",
+                "stable",
+                "sty",
+                "kitchen",
+                "slurry_tank",
+                "silo"
+            ]
         },
         "industrial": {
+            "name": "tag:landuse=industrial",
             "color": "#e2da1b",
-            "types": [ "construction", "garbage_shed", "transformer_tower", "service", "water_tower", "industrial", "warehouse", "storage_tank" ]
+            "types": [
+                "construction",
+                "garbage_shed",
+                "transformer_tower",
+                "service",
+                "water_tower",
+                "industrial",
+                "warehouse",
+                "storage_tank"
+            ]
         },
-        "transport": {
+        "transportation": {
+            "name": "tag:building=transportation",
             "color": "#1bb5e2",
-            "types": [ "carport", "garage", "garages", "bridge", "hangar", "parking", "train_station", "transportation" ]
+            "types": [
+                "carport",
+                "garage",
+                "garages",
+                "bridge",
+                "hangar",
+                "parking",
+                "train_station",
+                "transportation"
+            ]
         },
         "sport": {
+            "name": "tag:sport",
             "color": "#e21b66",
-            "types": [ "pavilion", "riding_hall", "stadium", "sports_hall" ]
+            "types": [
+                "pavilion",
+                "riding_hall",
+                "stadium",
+                "sports_hall"
+            ]
         },
-        "simple": {
+        "roof": {
+            "name": "tag:building=roof",
+            "color": "#afafaf7f",
+            "types": [
+                "roof"
+            ]
+        },
+        "shelter": {
+            "name": "tag:amenity=shelter",
             "color": "#cc8725",
-            "types": [ "hut", "roof", "shed" ]
+            "types": [
+                "cabin",
+                "hut",
+                "shed"
+            ]
         },
         "military": {
+            "name": "tag:military",
             "color": "#4a7300",
-            "types": [ "bunker", "riding_hall", "sports_hall" ]
-        },
-        "other": {
-            "color": "#ff0000",
-            "types": []
+            "types": [
+                "bunker"
+            ]
         },
         "unspecified": {
+            "name": "tag:building=generic",
             "color": "#7f7f7f",
-            "types": [ "yes" ]
+            "types": [
+                "yes",
+                "generic"
+            ]
+        },
+        "other": {
+            "name": "other",
+            "color": "#ff0000",
+            "types": []
         }
     }
 }
