@@ -25,14 +25,14 @@
             "node[amenity~'^(post_office|internet_cafe)$'];",
             "way[amenity~'^(post_office|internet_cafe)$'];",
             "relation[amenity~'^(post_office|internet_cafe)$'];",
-            "nwr[office~\"^(telecommunication|it)$\"];",
+            "nwr[office~\"^(telecommunication|it|newspaper|publisher|advertising_agency)$\"];",
             ");"
         ],
         "16": [
             "(node[amenity~'^(post_office|internet_cafe|post_box|telephone)$'];",
             "way[amenity~'^(post_office|internet_cafe)$'];",
             "relation[amenity~'^(post_office|internet_cafe)$'];",
-            "nwr[office~\"^(telecommunication|it)$\"];",
+            "nwr[office~\"^(telecommunication|it|newspaper|publisher|advertising_agency)$\"];",
             ");"
         ]
     },
@@ -95,11 +95,35 @@
             "zoom": 13
         },
         "office=telecommunication": {
-            "sign": "<img src='maki:building'>",
+            "sign": "<i class='fas fa-mobile-alt'></i>",
             "zoom": 13
         },
         "office=it": {
             "sign": "<i class='fas fa-desktop'></i>",
+            "zoom": 13
+        },
+        "office=newspaper": {
+            "sign": "<i class='fas fa-newspaper'></i>",
+            "zoom": 13
+        },
+        "office=publisher": {
+            "sign": "<i class='fas fa-book'></i>",
+            "zoom": 13
+        },
+        "office=advertising_agency": {
+            "sign": "<i class='fas fa-sign'></i>",
+            "zoom": 13
+        },
+        "office=public_relations": {
+            "sign": "<i class='fas fa-sign'></i>",
+            "zoom": 13
+        },
+        "office=audiovisual_production": {
+            "sign": "<i class='fas fa-film'></i>",
+            "zoom": 13
+        },
+        "office=film_production": {
+            "sign": "<i class='fas fa-film'></i>",
             "zoom": 13
         },
         "amenity=telephone": {
