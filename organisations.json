@@ -1,0 +1,80 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Organisations"
+    },
+    "query": {
+        "13": [
+            "(",
+            "nwr[office~\"^(ngo|quango|political_party|association|charity)$\"];",
+            ")"
+        ]
+    },
+    "feature": {
+        "pre": [
+            "{% set key = 'office' %}",
+            "{% set value = tags.office %}",
+            ""
+        ],
+        "description": "{{ tagTrans(key, value) }}",
+        "body": "{% if tags.operator %}{{ keyTrans('operator') }}: {{ tags.operator }}<br/>{% endif %}",
+        "markerSign": [
+            "{% set data = const[key ~ '=' ~ value] %}",
+            "{% if data %}",
+            "{{ data.sign|raw }}",
+            "{% endif %}"
+        ],
+        "priority": [
+            "{% set data = const[key ~ '=' ~ value] %}",
+            "{% if data %}",
+            "{{ data.priority }}",
+            "{% endif %}"
+        ]
+    },
+    "info": [
+        "<table>",
+        "{% for kv, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "    <td>",
+        "      {{ tagTrans(kv|split('=')[0], kv|split('=')[1]) }}",
+        "    </td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "</table>"
+    ],
+    "const": {
+        "office=ngo": {
+            "priority": 0,
+            "sign": "<i class='fas fa-users'></i>",
+            "zoom": 13
+        },
+        "office=quango": {
+            "priority": 0,
+            "sign": "<i class='fas fa-users'></i>",
+            "zoom": 13
+        },
+        "office=political_party": {
+            "priority": 0,
+            "sign": "<i class='fas fa-flag'></i>",
+            "zoom": 13
+        },
+        "office=association": {
+            "priority": 0,
+            "sign": "<i class='fas fa-people-carry'></i>",
+            "zoom": 13
+        },
+        "office=foundation": {
+            "priority": 0,
+            "sign": "<i class='fas fa-people-carry'></i>",
+            "zoom": 13
+        },
+        "office=charity": {
+            "priority": 0,
+            "sign": "<i class='fas fa-hands-helping'></i>",
+            "zoom": 13
+        }
+    }
+}
