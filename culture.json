@@ -102,14 +102,14 @@
     "const": {
         "amenity=arts_centre": "🎨",
         "amenity=cinema": "🎦",
-        "amenity=community_centre": "",
+        "amenity=community_centre": "<i class=\"fas fa-users\" aria-hidden=\"true\"></i>",
         "amenity=fountain": "⛲",
-        "amenity=studio": "",
+        "amenity=studio": "<i class=\"fas fa-microphone\"></i>",
         "amenity=theatre": "🎭",
         "tourism=artwork": "🎨 ",
         "tourism=gallery": "🖼",
         "tourism=museum": "🏛 ",
-        "tourism=theme_park": "",
+        "tourism=theme_park": "<img data-src='maki:amusement-park'>",
         "shop=art": "<i class=\"fa fa-shopping-cart\"></i>"
     },
     "info": [

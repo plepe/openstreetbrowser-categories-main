@@ -102,7 +102,7 @@
             "zoom": 14
         },
         "monument": {
-            "sign": "<img src='maki:monument?size=15'>",
+            "sign": "<img data-src='maki:monument?size=15'>",
             "zoom": 11
         }
     }
