@@ -21,37 +21,51 @@
     "query": {
         "12": [
             "(",
-            "node[amenity~'^(courthouse|embassy|public_building|townhall)$'];",
-            "way[amenity~'^(courthouse|embassy|public_building|townhall)$'];",
-            "relation[amenity~'^(courthouse|embassy|public_building|townhall)$'];",
+            "node[amenity~'^(embassy|public_building|townhall)$'];",
+            "way[amenity~'^(embassy|public_building|townhall)$'];",
+            "relation[amenity~'^(embassy|public_building|townhall)$'];",
             "node[amenity=recycling][recyling_type=centre];",
             "way[amenity=recycling][recyling_type=centre];",
             "relation[amenity=recycling][recyling_type=centre];",
+            "nwr[office~\"^(government|administration)$\"];",
             ");"
         ],
         "16": [
             "(",
-            "node[amenity~'^(courthouse|embassy|public_building|townhall|clock|drinking_water|recycling|toilets)$'];",
-            "way[amenity~'^(courthouse|embassy|public_building|townhall|recycling|toilets)$'];",
-            "relation[amenity~'^(courthouse|embassy|public_building|townhall|recycling|toilets)$'];",
+            "node[amenity~'^(embassy|public_building|townhall|clock|drinking_water|recycling|toilets)$'];",
+            "way[amenity~'^(embassy|public_building|townhall|recycling|toilets)$'];",
+            "relation[amenity~'^(embassy|public_building|townhall|recycling|toilets)$'];",
             "node[drinking_water];",
+            "nwr[office~\"^(government|administration)$\"];",
             ");"
         ]
     },
     "feature": {
         "pre": [
             "{% if tags.drinking_water %}",
+            "{% set key = 'amenity' %}",
             "{% set value = 'drinking_water' %}",
-            "{% else %}",
+            "{% elseif tags.amenity %}",
+            "{% set key = 'amenity' %}",
             "{% set value = tags.amenity %}",
+            "{% elseif tags.office %}",
+            "{% set key = 'office' %}",
+            "{% set value = tags.office %}",
             "{% endif %}"
         ],
         "title": "{{ tags.name|default(tags.operator)|default(tagTrans('amenity', value)) }}",
-        "description": "{{ tagTrans('amenity', value) }}",
+        "description": [
+            "{% if key == 'office' %}",
+            "  {{ keyTrans('office') }} ({{ tagTrans('office', tags.office) }})",
+            "{% else %}",
+            "  {{ tagTrans(key, value) }}",
+            "{% endif %}"
+        ],
         "body": "{% if tags.operator %}{{ keyTrans('operator') }}: {{ tags.operator }}<br/>{% endif %}",
         "markerSign": [
-            "{% if const[value] %}",
-            "{{ const[value]|raw }}",
+            "{% set kv = key ~ '=' ~ value %}",
+            "{% if const[kv] %}",
+            "{{ const[kv]|raw }}",
             "{% endif %}"
         ]
     },
@@ -66,13 +80,14 @@
         "</table>"
     ],
     "const": {
-        "courthouse": "⚖",
-        "clock": "<i class='fa fa-clock-o' aria-hidden='true'></i>",
-        "drinking_water": "<img src='maki:drinking-water'>",
-        "embassy": "<img src='maki:embassy'>",
-        "public_building": "<img src='maki:building'>",
-        "recycling": "<img src='maki:recycling'>",
-        "toilets": "<img src='maki:toilet'>",
-        "townhall": "<img src='maki:town-hall'>"
+        "amenity=clock": "<i class='fa fa-clock-o' aria-hidden='true'></i>",
+        "amenity=drinking_water": "<img data-src='maki:drinking-water'>",
+        "amenity=embassy": "<img data-src='maki:embassy'>",
+        "amenity=public_building": "<img data-src='maki:building'>",
+        "amenity=recycling": "<img data-src='maki:recycling'>",
+        "amenity=toilets": "<img data-src='maki:toilet'>",
+        "amenity=townhall": "<img data-src='maki:town-hall'>",
+        "office=administration": "<img data-src='maki:town-hall'>",
+        "office=government": "<img data-src='maki:town-hall'>"
     }
 }

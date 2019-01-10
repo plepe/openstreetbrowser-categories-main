@@ -38,6 +38,7 @@
             "node[historic~\"^wayside_(cross|shrine|chapel)$\"];",
             "way[historic~\"^wayside_(cross|shrine|chapel)$\"];",
             "relation[historic~\"^wayside_(cross|shrine|chapel)$\"];",
+            "nwr[office~\"^(parish|religion)$\"];",
             ")"
         ]
     },
@@ -49,6 +50,9 @@
             "{% elseif tags.historic in [ 'wayside_cross', 'wayside_shrine', 'wayside_chapel' ] %}",
             "{% set key = 'historic' %}",
             "{% set value = tags.historic %}",
+            "{% elseif tags.office %}",
+            "{% set key = 'office' %}",
+            "{% set value = tags.office %}",
             "{% else %}",
             "{% set key = 'amenity' %}",
             "{% set value = tags.amenity %}",

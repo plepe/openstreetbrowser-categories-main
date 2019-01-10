@@ -96,10 +96,16 @@
                     "id": "financial"
                 },
                 {
+                    "id": "law"
+                },
+                {
                     "id": "public"
                 },
                 {
                     "id": "tourism_services"
+                },
+                {
+                    "id": "organisations"
                 }
             ]
         },
