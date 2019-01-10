@@ -37,6 +37,37 @@
     },
     "feature": {
         "description": "{{ tagTransList('historic', tags.historic) }}",
+        "body": [
+            "<ul>",
+            "{% if tags.inscription %}",
+            "  <li class='hasSymbol'>",
+            "   <i class=\"fa fa-pencil-alt\" aria-hidden=\"true\"></i>",
+            "   <span class='key'>{{ keyTrans('inscription') }}:</span>",
+            "   <span class='value'>{{ localizedTag(tags, 'inscription') }}</span>",
+            "  </li>",
+            "{% elseif attribute(tags, 'inscription:url') %}",
+            "  <li class='hasSymbol'>",
+            "   <i class=\"fa fa-pencil-alt\" aria-hidden=\"true\"></i>",
+            "   <span class='key'><a href=\"{{ attribute(tags, 'inscription:url') }}\">{{ keyTrans('inscription') }}</a></span>",
+            "  </li>",
+            "{% endif %}",
+            "",
+            "{% if attribute(tags, 'historic:civilization') %}",
+            "  <li class='hasSymbol'>",
+            "   <i class=\"fa fa-users\" aria-hidden=\"true\"></i>",
+            "   <span class='key'>{{ keyTrans('historic:civilization') }}:</span>",
+            "   <span class='value'>{{ tagTrans('historic:civilization', attribute(tags, 'historic:civilization')) }}</span>",
+            "  </li>",
+            "{% endif %}",
+            "",
+            "{% if attribute(tags, 'memorial:conflict') %}",
+            "  <li class='hasSymbol'>",
+            "   <i class=\"fa fa-bolt\" aria-hidden=\"true\"></i>",
+            "   <span class='key'>{{ keyTrans('memorial:conflict') }}:</span>",
+            "   <span class='value'>{{ tagTransList('memorial:conflict', attribute(tags, 'memorial:conflict')) }}</span>",
+            "  </li>",
+            "{% endif %}"
+        ],
         "markerSign": "{{ const[tags.historic].sign|raw }}"
     },
     "info": [
@@ -59,19 +90,27 @@
     ],
     "const": {
         "archaeological_site": {
-            "sign": "",
+            "sign": "<i class=\"fas fa-archway\"></i>",
             "zoom": 11
         },
         "battlefield": {
-            "sign": "",
+            "sign": "⚔️",
             "zoom": 11
         },
         "castle": {
-            "sign": "<img src='maki:castle'>",
+            "sign": "<img data-src='maki:castle'>",
             "zoom": 11
         },
+        "building": {
+            "sign": "<img data-src='maki:building'>",
+            "zoom": 14
+        },
         "aircraft": {
-            "sign": "<img src='maki:airport'>",
+            "sign": "<img data-src='maki:airport'>",
+            "zoom": 14
+        },
+        "ruins": {
+            "sign": "<img data-src='temaki:ruins'>",
             "zoom": 14
         }
     }
