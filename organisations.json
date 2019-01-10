@@ -66,6 +66,11 @@
             "sign": "<i class='fas fa-people-carry'></i>",
             "zoom": 13
         },
+        "office=foundation": {
+            "priority": 0,
+            "sign": "<i class='fas fa-people-carry'></i>",
+            "zoom": 13
+        },
         "office=charity": {
             "priority": 0,
             "sign": "<i class='fas fa-hands-helping'></i>",

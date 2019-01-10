@@ -21,9 +21,9 @@
     "query": {
         "12": [
             "(",
-            "node[amenity~'^(courthouse|embassy|public_building|townhall)$'];",
-            "way[amenity~'^(courthouse|embassy|public_building|townhall)$'];",
-            "relation[amenity~'^(courthouse|embassy|public_building|townhall)$'];",
+            "node[amenity~'^(embassy|public_building|townhall)$'];",
+            "way[amenity~'^(embassy|public_building|townhall)$'];",
+            "relation[amenity~'^(embassy|public_building|townhall)$'];",
             "node[amenity=recycling][recyling_type=centre];",
             "way[amenity=recycling][recyling_type=centre];",
             "relation[amenity=recycling][recyling_type=centre];",
@@ -32,9 +32,9 @@
         ],
         "16": [
             "(",
-            "node[amenity~'^(courthouse|embassy|public_building|townhall|clock|drinking_water|recycling|toilets)$'];",
-            "way[amenity~'^(courthouse|embassy|public_building|townhall|recycling|toilets)$'];",
-            "relation[amenity~'^(courthouse|embassy|public_building|townhall|recycling|toilets)$'];",
+            "node[amenity~'^(embassy|public_building|townhall|clock|drinking_water|recycling|toilets)$'];",
+            "way[amenity~'^(embassy|public_building|townhall|recycling|toilets)$'];",
+            "relation[amenity~'^(embassy|public_building|townhall|recycling|toilets)$'];",
             "node[drinking_water];",
             "nwr[office~\"^(government|administration)$\"];",
             ");"
@@ -80,7 +80,6 @@
         "</table>"
     ],
     "const": {
-        "amenity=courthouse": "⚖",
         "amenity=clock": "<i class='fa fa-clock-o' aria-hidden='true'></i>",
         "amenity=drinking_water": "<img data-src='maki:drinking-water'>",
         "amenity=embassy": "<img data-src='maki:embassy'>",
