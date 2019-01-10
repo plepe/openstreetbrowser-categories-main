@@ -49,12 +49,12 @@
     "const": {
         "aquarium": "🐟",
         "artwork": "🎨 ",
-        "attraction": "<img src='maki:attraction'>",
+        "attraction": "<img data-src='maki:attraction'>",
         "gallery": "🖼",
-        "museum": "<img src='maki:museum'>",
-        "picnic_site": "<img src='maki:picnic-site'>",
-        "theme_park": "<img src='maki:amusement-park'>",
-        "viewpoint": "<i class='fa fa-eye' aria-hidden='true'></i>",
+        "museum": "<img data-src='maki:museum'>",
+        "picnic_site": "<img data-src='maki:picnic-site'>",
+        "theme_park": "<img data-src='maki:amusement-park'>",
+        "viewpoint": "<i class='fas fa-eye' aria-hidden='true'></i>",
         "zoo": "🦁"
     }
 }
