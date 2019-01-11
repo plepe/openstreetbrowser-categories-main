@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Schwarzplan",
-        "en": "Figure-ground diagram"
+        "en": "Figure-ground diagram",
+        "pt-br": "Cheios e vazios"
     },
     "query": {
         "16": [
