@@ -4,6 +4,11 @@
     "category:alternative_amenities": "Einrichtungen",
     "category:alternative_routes": "(ausgeschilderte) Routen",
     "category:buildings": "Gebäude",
+    "category:buildings-entrances": "Eingänge",
+    "category:buildings-figure-ground": "Schwarzplan",
+    "category:buildings-height": "Gebäudehöhen",
+    "category:buildings-start_date": "Gebäudealter",
+    "category:buildings-type": "Gebäudearten",
     "category:car_amenities": "Einrichtungen",
     "category:car_furniture": "Straßenausstattung",
     "category:car_maxspeed": "Höchstgeschwindigkeiten",
@@ -30,6 +35,7 @@
     "category:index": "",
     "category:infrastructure": "Infrastruktur",
     "category:internet": "Internetzugang",
+    "category:law": "",
     "category:leisure": "Freizeit",
     "category:leisure_sport_shopping": "Freizeit, Sport und Einkauf",
     "category:memorial": "Denkmäler",
@@ -38,6 +44,7 @@
     "category:natural": "Geographische Objekte",
     "category:office": "Ämter, Dienst- und Geschäftsstellen",
     "category:oil_gas": "Erdöl und Erdgas",
+    "category:organisations": "",
     "category:other": "Andere",
     "category:outdoor": "Freiluftaktivitäten",
     "category:phone": "Telekommunikation",
@@ -78,5 +85,5 @@
     "category:water": "Gewässer",
     "category:wikipedia": "Wikipedia",
     "category:works": "Fabriken",
-    "category:xmas": ""
+    "category:xmas": "Weihnachten"
 }
