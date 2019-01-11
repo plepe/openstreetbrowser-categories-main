@@ -1,8 +1,9 @@
 {
     "type": "overpass",
     "name": {
+        "de": "Gebäudealter",
         "en": "Building age",
-        "de": "Gebäudealter"
+        "pt-br": "Idade"
     },
     "query": {
         "16": [

@@ -2,7 +2,8 @@
     "type": "overpass",
     "name": {
         "de": "Gebäudearten",
-        "en": "Building types"
+        "en": "Building types",
+        "pt-br": "Tipologias"
     },
     "query": {
         "16": [

@@ -1,7 +1,8 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Law"
+        "en": "Law",
+        "pt-br": "Direito"
     },
     "query": {
         "14": [
