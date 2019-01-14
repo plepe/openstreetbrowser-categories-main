@@ -2,6 +2,7 @@
     "type": "overpass",
     "name": {
         "en": "Organisations",
+        "fr": "Organisations",
         "pt-br": "Organizações"
     },
     "query": {
