@@ -44,7 +44,12 @@
         ],
         "description": [
             "{% if tags.start_date %}",
-            "{{ tags.start_date }}",
+            "{{ tags.start_date|osmFormatDate({ format: 'short' }) }}",
+            "{% endif %}"
+        ],
+        "popupDescription": [
+            "{% if tags.start_date %}",
+            "{{ tags.start_date|osmFormatDate }}",
             "{% endif %}"
         ],
         "markerSymbol": null,
