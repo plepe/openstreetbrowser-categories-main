@@ -2,6 +2,7 @@
     "type": "overpass",
     "name": {
         "en": "Law",
+        "fr": "Services législatifs",
         "pt-br": "Direito"
     },
     "query": {

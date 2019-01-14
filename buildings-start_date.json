@@ -3,6 +3,7 @@
     "name": {
         "de": "Gebäudealter",
         "en": "Building age",
+        "fr": "Date de construction",
         "pt-br": "Idade"
     },
     "query": {
