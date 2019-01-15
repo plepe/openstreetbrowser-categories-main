@@ -145,7 +145,7 @@
   <li class='hasSymbol'>
    <i class="fa fa-clock-o" aria-hidden="true"></i>
    <span class='key'>{{ keyTrans('start_date') }}:</span>
-   <span class='value'>{{ enumerate(tags.start_date) }}</span>
+   <span class='value'>{{ tags.start_date|osmFormatDate }}</span>
   </li>
 {% endif %}
 
@@ -153,7 +153,7 @@
   <li class='hasSymbol'>
    <i class="fa fa-clock-o" aria-hidden="true"></i>
    <span class='key'>{{ keyTrans('opening_date') }}:</span>
-   <span class='value'>{{ enumerate(tags.opening_date) }}</span>
+   <span class='value'>{{ tags.opening_date|osmFormatDate }}</span>
   </li>
 {% endif %}
 
