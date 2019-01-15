@@ -85,5 +85,6 @@
     "category:water": "Gewässer",
     "category:wikipedia": "Wikipedia",
     "category:works": "Fabriken",
-    "category:xmas": "Weihnachten"
+    "category:xmas": "Weihnachten",
+    "date format not understood": "Datumsformat nicht erkannt"
 }
