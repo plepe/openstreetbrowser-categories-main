@@ -86,5 +86,7 @@
     "category:wikipedia": "Wikipedia",
     "category:works": "Works",
     "category:xmas": "Christmas",
-    "date format not understood": ""
+    "date format not understood": "",
+    "outdated feature": "",
+    "xmas:outdated-warning": "Feature has not been updated for the current season! Please check and set the tag 'xmas:lastcheck' to the current date."
 }
