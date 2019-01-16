@@ -2,7 +2,9 @@
     "type": "overpass",
     "name": {
         "de": "Eingänge",
-        "en": "Entrances"
+        "en": "Entrances",
+        "fr": "Entrées",
+        "pt-br": "Acessos"
     },
     "query": {
         "16": [

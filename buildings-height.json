@@ -2,7 +2,9 @@
     "type": "overpass",
     "name": {
         "de": "Gebäudehöhen",
-        "en": "Building height"
+        "en": "Building height",
+        "fr": "Hauteur",
+        "pt-br": "Altura"
     },
     "query": {
         "16": [
