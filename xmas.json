@@ -18,7 +18,7 @@
     },
     "feature": {
         "pre": [
-            "{% set isCurrent = meta.timestamp > now|date_modify('-1 month')|date('Y') %}",
+            "{% set isCurrent = meta.timestamp >= \"now\"|date_modify('-10 month')|date('Y') %}",
             "{% set bgColor = isCurrent ? '#f2756a' : 'red' %}"
         ],
         "title": "{{ attribute(tags, \"xmas:name\")|default(trans(\"unnamed\")) }}",
