@@ -63,6 +63,12 @@
             },
             {
                 "types": [
+                    "bicycle"
+                ],
+                "sign": "&#128690;"
+            },
+            {
+                "types": [
                     "boutique",
                     "clothes",
                     "fabric",
@@ -106,6 +112,18 @@
                     "mall"
                 ],
                 "sign": "fa-building"
+            },
+            {
+                "types": [
+                    "electronics"
+                ],
+                "sign": "&#128250;"
+            },
+            {
+                "types": [
+                    "fishing"
+                ],
+                "sign": "&#127907;"
             },
             {
                 "types": [
