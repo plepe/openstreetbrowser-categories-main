@@ -85,5 +85,8 @@
     "category:water": "Hydrographie",
     "category:wikipedia": "Wikipédia",
     "category:works": "Zones industrielles",
-    "category:xmas": "Noël"
+    "category:xmas": "Noël",
+    "date format not understood": "",
+    "outdated feature": "",
+    "xmas:outdated-warning": ""
 }

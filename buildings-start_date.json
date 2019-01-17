@@ -120,11 +120,11 @@
         "  </tr>",
         "  <tr>",
         "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\", \"start_date\": \"xxx\" }))|raw }}</td>",
-        "    <td>unparseable start_date</td>",
+        "    <td>{{ repoTrans('date format not understood') }}</td>",
         "  </tr>",
         "  <tr>",
         "    <td>{{ markerPolygon(evaluate({ \"building\": \"yes\" }))|raw }}</td>",
-        "    <td>no start_date</td>",
+        "    <td>{{ trans('unknown') }}</td>",
         "  </tr>",
         "</table>"
     ]
