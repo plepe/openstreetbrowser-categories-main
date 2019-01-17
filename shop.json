@@ -127,6 +127,12 @@
             },
             {
                 "types": [
+                    "florist"
+                ],
+                "sign": "&#127799;"
+            },
+            {
+                "types": [
                     "hairdresser"
                 ],
                 "sign": "&#128113;"
@@ -154,6 +160,12 @@
                     "shoes"
                 ],
                 "sign": "&#128095;"
+            },
+            {
+                "types": [
+                    "travel_agency"
+                ],
+                "sign": "&#129523;"
             },
             {
                 "types": [
