@@ -4,7 +4,7 @@
         "en": "Power routes",
         "fr": "Réseaux électriques",
         "hu": "Távvezetékek",
-        "pt-br": "Rotas de energia"
+        "pt-br": "Rotas energéticas"
     },
     "query": {
         "10": "relation[type=route][route=power]"
