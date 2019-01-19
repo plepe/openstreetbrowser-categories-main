@@ -52,7 +52,7 @@
     "category:places_geo": "Lugares",
     "category:playgrounds": "Parquinhos",
     "category:post": "Correios",
-    "category:power_routes": "Rotas de energia",
+    "category:power_routes": "Rotas energéticas",
     "category:pt": "Mapa de transporte público",
     "category:pt:routes": "Rotas",
     "category:pt:stops": "Paradas e estações",
@@ -87,6 +87,6 @@
     "category:works": "Produção",
     "category:xmas": "Natal",
     "date format not understood": "",
-    "outdated feature": "",
-    "xmas:outdated-warning": ""
+    "outdated feature": "Objeto antigo",
+    "xmas:outdated-warning": "O objeto não foi atualizado para a temporada atual! Por favor, verifique e defina a tag 'xmas:lastcheck' para a data atual."
 }
