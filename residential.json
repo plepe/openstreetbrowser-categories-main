@@ -35,6 +35,12 @@
         ]
     },
     "feature": {
-        "description": "{{ tagTrans('landuse', tags.landuse) }}"
+        "description": [
+            "{{ tagTrans('landuse', tags.landuse) }}",
+            "",
+            "{% if tags.residential %}",
+            "({{ tagTransList('residential', tags.residential) }})",
+            "{% endif %}"
+        ]
     }
 }
