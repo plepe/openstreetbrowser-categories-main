@@ -1,0 +1,47 @@
+{
+    "type": "overpass",
+    "name": {
+        "de": "Ämter, Dienst- und Geschäftsstellen",
+        "en": "Offices",
+        "fr": "Bureaux",
+        "hu": "Irodák, hivatalok",
+        "pt-br": "Escritórios e agências"
+    },
+    "query": {
+        "14": "nwr[office]"
+    },
+    "feature": {
+        "description": [
+            "{{ tagTrans('office', tags.office) }}",
+            "{% if tags.office == 'government' and tags.government %}({{ tagTrans('government', tags.government) }}){% endif %}"
+        ],
+        "markerSign": "{{ const[tags.office]|raw }}"
+    },
+    "const": {
+        "government": "<i class='fas fa-landmark'></i>",
+        "company": "<i class='fas fa-building'></i>",
+        "estate_agent": "<i class='fas fa-home'></i>",
+        "insurance": "<i class='fas fa-file-signature'></i>",
+        "lawyer": "<i class='fas fa-gavel'></i>",
+        "educational_institution": "<i class='fas fa-school'></i>",
+        "administrative": "<i class='fas fa-landmark'></i>",
+        "telecommunication": "<i class='fas fa-phone'></i>",
+        "ngo": "<i class='fas fa-people-carry'></i>",
+        "quango": "<i class='fas fa-people-carry'></i>",
+        "association": "<i class='fas fa-people-carry'></i>",
+        "it": "<i class='fas fa-desktop'></i>",
+        "accountant": "<i class='fas fa-money-bill-alt'></i>",
+        "tax_advisor": "<i class='fas fa-money-bill-alt'></i>",
+        "employment_agency": "<i class='fas fa-user'></i>",
+        "research": "<i class='fas fa-flask'></i>",
+        "religion": "<i class='fas fa-pray'></i>",
+        "architect": "<i class='fas fa-torii-gate'></i>",
+        "financial": "<i class='fas fa-money-bill'></i>",
+        "newspaper": "<i class='fas fa-newspaper'></i>",
+        "political_party": "<i class='fas fa-flag'></i>",
+        "advertising_agency": "<i class='fas fa-ad'></i>",
+        "therapist": "<i class='fas fa-couch'></i>",
+        "travel_agent": "<i class='fas fa-plane-departure'></i>",
+        "publisher": "<i class='fas fa-book'></i>"
+    }
+}

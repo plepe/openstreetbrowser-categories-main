@@ -13,7 +13,7 @@
                 "en": "Leisure, Sport and Shopping",
                 "es": "Ocio, deporte y compras",
                 "et": "Vaba aeg, sport ja ostmine",
-                "fr": "Loisirs",
+                "fr": "Vie quotidienne, loisirs et sports",
                 "hu": "Szabadidő, sport és vásárlás",
                 "it": "Tempo libero, sport e shopping",
                 "ja": "レジャー",
@@ -46,6 +46,9 @@
                 },
                 {
                     "id": "outdoor"
+                },
+                {
+                    "id": "swimming_bathing"
                 }
             ]
         },
@@ -87,13 +90,22 @@
                     "id": "communication"
                 },
                 {
+                    "id": "office"
+                },
+                {
                     "id": "financial"
+                },
+                {
+                    "id": "law"
                 },
                 {
                     "id": "public"
                 },
                 {
                     "id": "tourism_services"
+                },
+                {
+                    "id": "organisations"
                 }
             ]
         },
@@ -250,7 +262,32 @@
                     "id": "military"
                 },
                 {
-                    "id": "power"
+                    "id": "energy",
+                    "type": "index",
+                    "name": {
+                        "en": "Energy",
+                        "de": "Energie",
+                        "pt-br": "Energia",
+                        "fr": "Énergie",
+                        "hu": "Energiaellátás"
+                    },
+                    "subCategories": [
+                        {
+                            "id": "electric_power"
+                        },
+                        {
+                            "id": "power_routes"
+                        },
+                        {
+                            "id": "coal"
+                        },
+                        {
+                            "id": "oil_gas"
+                        },
+                        {
+                            "id": "renewables"
+                        }
+                    ]
                 },
                 {
                     "id": "railway",
@@ -276,6 +313,9 @@
                         },
                         {
                             "id": "railway-electrification"
+                        },
+                        {
+                            "id": "railway-maxspeed"
                         },
                         {
                             "id": "railway-routes"
@@ -316,6 +356,9 @@
                 },
                 {
                     "id": "wikipedia"
+                },
+                {
+                    "id": "xmas"
                 }
             ]
         }

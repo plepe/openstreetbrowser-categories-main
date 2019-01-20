@@ -1,18 +1,16 @@
 {
     "type": "overpass",
     "name": {
-        "de": "Höchstgeschwindigkeiten",
-        "en": "Maxspeed",
+        "de": "Eisenbahn Höchstgeschwindigkeiten",
+        "en": "Railway Maxspeed",
         "fr": "Limites de vitesse",
         "hu": "Sebességkorlátozás",
         "pt": "Velocidade máxima",
         "pt-br": "Velocidade máxima"
     },
     "query": {
-        "11": "way[highway~\"^(motorway|trunk)$\"];",
-        "13": "way[highway~\"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|tertiary)$\"];",
-        "15": "way[highway~\"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|residential|unclassified)$\"];",
-        "17": "way[highway~\"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|residential|unclassified|service|living_street|pedestrian|track|road)$\"];"
+        "11": "way[railway=rail][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'][usage~'^(main|branch)$'];",
+        "14": "way[railway][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'];"
     },
     "feature": {
         "pre": [
@@ -84,7 +82,7 @@
             "{{ trans('unknown') }}",
             "{% endif %}"
         ],
-        "markerSymbol": "",
+        "markerSymbol": null,
         "listMarkerSymbol": "line",
         "styles": "{% if maxspeedB or maxspeedF %}left,right,default{% else %}default{% endif %}",
         "style": {
@@ -119,8 +117,8 @@
             "#ff0000",
             "#af00af"
         ],
-        "highestColorSpeed": 150,
-        "offsetColorSpeed": 10
+        "highestColorSpeed": 300,
+        "offsetColorSpeed": 20
     },
     "info": [
         "<div style='display: inline-block'>",
@@ -129,15 +127,15 @@
         "    <td>{{ markerLine(evaluate({}))|raw }}</td>",
         "    <td colspan>{{ trans('unknown') }}</td>",
         "  </tr>",
-        "{% for i in range(10, 140, 20) %}",
+        "{% for i in range(25, 280, 25) %}",
         "  <tr>",
         "    <td>{{ markerLine(evaluate({ \"maxspeed\": i }))|raw }}</td>",
         "    <td>{{ i }}km/h</td>",
         "  </tr>",
         "{% endfor %}",
         "  <tr>",
-        "    <td>{{ markerLine(evaluate({ \"maxspeed\": 150 }))|raw }}</td>",
-        "    <td>≥150km/h</td>",
+        "    <td>{{ markerLine(evaluate({ \"maxspeed\": 300 }))|raw }}</td>",
+        "    <td>≥300km/h</td>",
         "  </tr>",
         "</table>",
         "</div>",
@@ -148,19 +146,19 @@
         "    <td>{{ markerLine(evaluate({}))|raw }}</td>",
         "    <td colspan>{{ trans('unknown') }}</td>",
         "  </tr>",
-        "{% for i in range(10, 60, 10) %}",
+        "{% for i in range(15, 150, 15) %}",
         "  <tr>",
         "    <td>{{ markerLine(evaluate({ \"maxspeed\": (i * 1.60934)|round }))|raw }}</td>",
         "    <td>{{ i }}mph</td>",
         "  </tr>",
         "{% endfor %}",
         "  <tr>",
-        "    <td>{{ markerLine(evaluate({ \"maxspeed\": (75 * 1.60934)|round }))|raw }}</td>",
-        "    <td>75mph</td>",
+        "    <td>{{ markerLine(evaluate({ \"maxspeed\": (175 * 1.60934)|round }))|raw }}</td>",
+        "    <td>175mph</td>",
         "  </tr>",
         "  <tr>",
-        "    <td>{{ markerLine(evaluate({ \"maxspeed\": (95 * 1.60934)|round }))|raw }}</td>",
-        "    <td>≥95mph</td>",
+        "    <td>{{ markerLine(evaluate({ \"maxspeed\": (200 * 1.60934)|round }))|raw }}</td>",
+        "    <td>≥200mph</td>",
         "  </tr>",
         "</table>",
         "</div>"

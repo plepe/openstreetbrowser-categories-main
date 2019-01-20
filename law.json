@@ -1,0 +1,61 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Law",
+        "fr": "Services législatifs",
+        "pt-br": "Direito"
+    },
+    "query": {
+        "14": [
+            "(",
+            "node[amenity~\"^(courthouse)$\"];",
+            "way[amenity~\"^(courthouse)$\"];",
+            "relation[amenity~\"^(courthouse)$\"];",
+            "node[office~\"^(lawyer|notary)$\"];",
+            "way[office~\"^(lawyer|notary)$\"];",
+            "relation[office~\"^(lawyer|notary)$\"];",
+            ")"
+        ]
+    },
+    "feature": {
+        "pre": [
+            "{% if tags.amenity %}",
+            "  {% set key = 'amenity' %}",
+            "  {% set value = tags.amenity %}",
+            "{% else %}",
+            "  {% set key = 'office' %}",
+            "  {% set value = tags.office %}",
+            "{% endif %}"
+        ],
+        "description": "{{ tagTrans(key, value) }}",
+        "markerSign": "{{ const[key ~ '=' ~ value].sign|raw }}"
+    },
+    "info": [
+        "<table>",
+        "{% for kv, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "    <td>",
+        "      {{ tagTrans(kv|split('=')[0], kv|split('=')[1]) }}",
+        "    </td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "</table>"
+    ],
+    "const": {
+        "amenity=courthouse": {
+            "sign": "<i class=\"fas fa-gavel\"></i>",
+            "zoom": 14
+        },
+        "office=lawyer": {
+            "sign": "⚖",
+            "zoom": 14
+        },
+        "office=notary": {
+            "sign": "<i class=\"fas fa-file-signature\"></i>",
+            "zoom": 14
+        }
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "type": "overpass",
+    "name": {
+        "de": "Kohle",
+        "en": "Coal",
+        "fr": "Charbon",
+        "hu": "Kőszén",
+        "pt-br": "Carvão"
+    },
+    "query": {
+        "11": [
+            "(",
+            "node[landuse~\"^(quarry)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
+            "way[landuse~\"^(quarry)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
+            "relation[landuse~\"^(quarry)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
+            "node[man_made~\"^(mineshaft)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
+            "way[man_made~\"^(mineshaft)$\"][resource~\"^(|.*;)coal(|;.*)$\"];",
+            "way[man_made~\"^(pipeline|goods_conveyor)$\"][substance~\"^(|.*;)(coal)(|;.*)$\"];",
+            "relation[man_made~\"^(pipeline|goods_conveyor)$\"][substance~\"^(|.*;)(coal)(|;.*)$\"];",
+            "node[power~\"^(plant)$\"][\"generator:source\"~\"^(|.*;)(coal)(|;.*)$\"];",
+            "way[power~\"^(plant)$\"][\"generator:source\"~\"^(|.*;)(coal)(|;.*)$\"];",
+            "relation[power~\"^(plant)$\"][\"generator:source\"~\"^(|.*;)(coal)(|;.*)$\"];",
+            ")"
+        ]
+    },
+    "feature": {
+        "description": [
+            "{% if tags.man_made == 'pipeline' %}",
+            "{{ tagTrans('man_made', 'pipeline') }} ({{ tagTrans('substance', tags.substance) }})",
+            "{% elseif tags.man_made %}",
+            "{{ tagTrans('man_made', tags.man_made) }}",
+            "{% elseif tags.power == 'plant' %}",
+            "{{ tagTrans('power', 'plant') }} {% if attribute(tags, 'generator:source') %}({{ tagTransList('generator:source', attribute(tags, 'generator:source')) }}){% endif %}",
+            "{% elseif tags.power == 'generator' %}",
+            "{{ tagTrans('power', 'generator') }} {% if attribute(tags, 'generator:source') %}({{ tagTransList('generator:source', attribute(tags, 'generator:source')) }}){% endif %}",
+            "{% elseif tags.landuse == 'quarry' %}",
+            "{{ tagTrans('landuse', tags.landuse) }} {% if tags.resource %}({{ tagTrans('resource', tags.resource) }}){% endif %}",
+            "{% elseif tags.landuse == 'industrial' %}",
+            "{{ tagTrans('landuse', tags.landuse) }} ({{ tagTrans('industrial', tags.industrial) }})",
+            "{% endif %}"
+        ],
+        "markerSymbol": null
+    }
+}
