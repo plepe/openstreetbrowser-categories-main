@@ -96,5 +96,33 @@
             "sign": "<img data-src='maki:hospital?fill=white'>",
             "background": "#009262"
         }
+    },
+    "filter": {
+        "type": {
+            "name": "{{ keyTrans('amenity') }}",
+            "type": "select",
+            "values": {
+                "fire_station": {
+                    "name": "{{ tagTrans('amenity', 'fire_station') }}",
+                    "query": "nwr[amenity=fire_station]"
+                },
+                "hospital": {
+                    "name": "{{ tagTrans('amenity', 'hospital') }}",
+                    "query": "nwr[amenity=hospital]"
+                },
+                "police": {
+                    "name": "{{ tagTrans('amenity', 'police') }}",
+                    "query": "nwr[amenity=police]"
+                },
+                "emergency_phone": {
+                    "name": "{{ tagTrans('emergency', 'phone') }}",
+                    "query": "node[emergency=phone]"
+                },
+                "emergency_access_point": {
+                    "name": "{{ tagTrans('highway', 'emergency_access_point') }}",
+                    "query": "node[highway=emergency_access_point]"
+                }
+            }
+        }
     }
 }
