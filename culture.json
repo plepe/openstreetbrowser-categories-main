@@ -121,5 +121,14 @@
         "  </tr>",
         "{% endfor %}",
         "</table>"
-    ]
+    ],
+    "filter": {
+        "type": {
+            "name": "Type",
+            "query": "nwr[{{ value }}]",
+            "type": "select",
+            "values": "const",
+            "valueName": "{{ trans('tag' ~ value) }}"
+        }
+    }
 }

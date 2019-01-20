@@ -125,6 +125,42 @@
                     "query": "(nwr[memorial=stolperstein];nwr[\"memorial:type\"=stolperstein];)"
                 }
             }
+        },
+        "conflict": {
+            "key": "memorial:conflict",
+            "op": "has",
+            "name": "{{ keyTrans('memorial:conflict') }}",
+            "type": "select",
+            "values": [
+                "WW1",
+                "WW2"
+            ],
+            "valueName": "{{ tagTrans('memorial:conflict', value) }}"
+        },
+        "civilization": {
+            "key": "historic:civilization",
+            "op": "has",
+            "name": "{{ keyTrans('historic:civilization') }}",
+            "type": "select",
+            "values": [
+                "ancient_egyptian",
+                "ancient_greek",
+                "ancient_roman",
+                "byzantine",
+                "celtic",
+                "etruscan",
+                "imperial_chinese",
+                "korean",
+                "medieval",
+                "modern",
+                "neolithic",
+                "nuragic",
+                "ottoman",
+                "prehistoric",
+                "roman",
+                "western_roman"
+            ],
+            "valueName": "{{ tagTrans('historic:civilization', value) }}"
         }
     }
 }
