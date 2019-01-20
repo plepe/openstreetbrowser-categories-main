@@ -2,7 +2,10 @@
     "type": "overpass",
     "name": {
         "de": "Denkmäler",
-        "en": "Memorials"
+        "en": "Memorials",
+        "fr": "Mémoriaux",
+        "hu": "Emlékművek",
+        "pt-br": "Memoriais"
     },
     "query": {
         "11": [
@@ -30,6 +33,46 @@
             "{% endif %}"
         ],
         "description": "{{ tagTransList('historic', value) }}",
+        "body": [
+            "<ul>",
+            "{% if tags.inscription %}",
+            "  <li class='hasSymbol'>",
+            "   <i class=\"fa fa-pencil-alt\" aria-hidden=\"true\"></i>",
+            "   <span class='key'>{{ keyTrans('inscription') }}:</span>",
+            "   <span class='value'>{{ localizedTag(tags, 'inscription') }}</span>",
+            "  </li>",
+            "{% elseif attribute(tags, 'inscription:url') %}",
+            "  <li class='hasSymbol'>",
+            "   <i class=\"fa fa-pencil-alt\" aria-hidden=\"true\"></i>",
+            "   <span class='key'><a href=\"{{ attribute(tags, 'inscription:url') }}\">{{ keyTrans('inscription') }}</a></span>",
+            "  </li>",
+            "{% endif %}",
+            "",
+            "{% if attribute(tags, 'historic:civilization') %}",
+            "  <li class='hasSymbol'>",
+            "   <i class=\"fa fa-users\" aria-hidden=\"true\"></i>",
+            "   <span class='key'>{{ keyTrans('historic:civilization') }}:</span>",
+            "   <span class='value'>{{ tagTrans('historic:civilization', attribute(tags, 'historic:civilization')) }}</span>",
+            "  </li>",
+            "{% endif %}",
+            "",
+            "{% if attribute(tags, 'memorial:conflict') %}",
+            "  <li class='hasSymbol'>",
+            "   <i class=\"fa fa-bolt\" aria-hidden=\"true\"></i>",
+            "   <span class='key'>{{ keyTrans('memorial:conflict') }}:</span>",
+            "   <span class='value'>{{ tagTransList('memorial:conflict', attribute(tags, 'memorial:conflict')) }}</span>",
+            "  </li>",
+            "{% endif %}",
+            "",
+            "{% if tags.artist_name %}",
+            "  <li class='hasSymbol'>",
+            "   <i class=\"fa fa-palette\" aria-hidden=\"true\"></i>",
+            "   <span class='key'>{{ keyTrans('artist_name') }}:</span>",
+            "   <span class='value'>{{ enumerate(tags.artist_name) }}</span>",
+            "  </li>",
+            "{% endif %}",
+            "</ul>"
+        ],
         "markerSign": "{{ const[value].sign|raw }}"
     },
     "info": [
@@ -60,7 +103,7 @@
             "zoom": 14
         },
         "monument": {
-            "sign": "<img src='maki:monument?size=15'>",
+            "sign": "<img data-src='maki:monument?size=15'>",
             "zoom": 11
         }
     },

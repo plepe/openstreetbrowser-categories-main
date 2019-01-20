@@ -8,13 +8,13 @@
         "en": "Tourism",
         "et": "Turism",
         "fr": "Tourisme",
-        "hu": "Turisztikai szolgáltatások",
+        "hu": "Szálláshelyek, turisztikai információk",
         "it": "Turismo",
         "ja": "観光",
         "nl": "Toerisme",
         "pl": "Turystyka",
         "pt": "Turismo",
-        "pt-br": "Serviços de turismo",
+        "pt-br": "Serviços turísticos",
         "ro": "Turism",
         "ru": "Туризм",
         "uk": "Туризм"
@@ -25,6 +25,7 @@
             "node[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|motel|wilderness_hut)$\"];",
             "way[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|motel|wilderness_hut)$\"];",
             "relation[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|motel|wilderness_hut)$\"];",
+            "nwr[office~\"^(guide|tourism|tourist_accommodation|camping)$\"];",
             ")"
         ],
         "16": [
@@ -32,67 +33,111 @@
             "node[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];",
             "way[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];",
             "relation[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];",
+            "nwr[office~\"^(guide|tourism|tourist_accommodation|camping)$\"];",
             ")"
         ]
     },
     "feature": {
-        "description": "{{ tagTrans('tourism', tags.tourism) }}",
-        "markerSign": "{{ const[tags.tourism].sign|raw }}"
+        "pre": [
+            "{% if tags.tourism %}",
+            "  {% set key = 'tourism' %}",
+            "  {% set value = tags.tourism %}",
+            "{% else %}",
+            "  {% set key = 'office' %}",
+            "  {% set value = tags.office %}",
+            "{% endif %}"
+        ],
+        "description": [
+            "{% if key == 'office' %}",
+            "  {{ keyTrans('office') }} ({{ tagTrans('office', tags.office) }})",
+            "{% else %}",
+            "  {{ tagTrans(key, value) }}",
+            "{% endif %}"
+        ],
+        "markerSign": [
+            "{% set data = const[key ~ '=' ~ value] %}",
+            "{% if data %}",
+            "{{ data.sign|raw }}",
+            "{% endif %}"
+        ]
     },
     "info": [
         "<table>",
-        "{% for value, data in const %}",
+        "{% for kv, data in const %}",
         "{% if data.zoom <= map.zoom %}",
         "  <tr>",
         "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
-        "    <td>{{ tagTrans('tourism', value) }}</td>",
+        "    <td>",
+        "      {% if kv|split('=')[0] == 'office' %}",
+        "        {{ keyTrans('office') }}",
+        "        ({{ tagTrans('office', kv|split('=')[1]) }})",
+        "      {% else %}",
+        "        {{ tagTrans(kv|split('=')[0], kv|split('=')[1]) }}",
+        "      {% endif %}",
+        "    </td>",
         "  </tr>",
         "{% endif %}",
         "{% endfor %}",
         "</table>"
     ],
     "const": {
-        "alpine_hut": {
+        "tourism=alpine_hut": {
             "sign": "🛌",
             "zoom": 13
         },
-        "apartment": {
+        "tourism=apartment": {
             "sign": "🛌",
             "zoom": 13
         },
-        "camp_site": {
+        "tourism=camp_site": {
             "sign": "⛺",
             "zoom": 13
         },
-        "caravan_site": {
+        "tourism=caravan_site": {
             "sign": "⛺",
             "zoom": 13
         },
-        "chalet": {
+        "tourism=chalet": {
             "sign": "🛌",
             "zoom": 13
         },
-        "guest_house": {
+        "tourism=guest_house": {
             "sign": "🛌",
             "zoom": 13
         },
-        "hostel": {
+        "tourism=hostel": {
             "sign": "🛌",
             "zoom": 13
         },
-        "hotel": {
+        "tourism=hotel": {
             "sign": "🛌",
             "zoom": 13
         },
-        "motel": {
+        "tourism=motel": {
             "sign": "🛌",
             "zoom": 13
         },
-        "wilderness_hut": {
+        "tourism=wilderness_hut": {
             "sign": "",
             "zoom": 13
         },
-        "information": {
+        "office=tourism": {
+            "sign": "<i class=\"fas fa-info-circle\"></i>",
+            "zoom": 13
+        },
+        "office=guide": {
+            "sign": "<i class=\"fas fa-flag\"></i>",
+            "zoom": 13
+        },
+        "office=tourist_accommodation": {
+            "sign": "🛌",
+            "zoom": 13
+        },
+        "office=camping": {
+            "sign": "⛺",
+            "zoom": 13
+        },
+        "tourism=information": {
             "sign": "ℹ️",
             "zoom": 16
         }

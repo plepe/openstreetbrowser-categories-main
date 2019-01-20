@@ -25,21 +25,38 @@
             "node[amenity~'^(post_office|internet_cafe)$'];",
             "way[amenity~'^(post_office|internet_cafe)$'];",
             "relation[amenity~'^(post_office|internet_cafe)$'];",
+            "nwr[office~\"^(telecommunication|it|newspaper|publisher|advertising_agency)$\"];",
             ");"
         ],
         "16": [
             "(node[amenity~'^(post_office|internet_cafe|post_box|telephone)$'];",
             "way[amenity~'^(post_office|internet_cafe)$'];",
             "relation[amenity~'^(post_office|internet_cafe)$'];",
+            "nwr[office~\"^(telecommunication|it|newspaper|publisher|advertising_agency)$\"];",
             ");"
         ]
     },
     "feature": {
+        "pre": [
+            "{% if tags.amenity %}",
+            "  {% set key = 'amenity' %}",
+            "  {% set value = tags.amenity %}",
+            "{% else %}",
+            "  {% set key = 'office' %}",
+            "  {% set value = tags.office %}",
+            "{% endif %}"
+        ],
         "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) |default(tagTrans('amenity', tags.amenity)) }}",
-        "description": "{{ tagTrans('amenity', tags.amenity) }}",
+        "description": [
+            "{% if key == 'office' %}",
+            "  {{ keyTrans('office') }} ({{ tagTrans('office', tags.office) }})",
+            "{% else %}",
+            "  {{ tagTrans(key, value) }}",
+            "{% endif %}"
+        ],
         "body": "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br/>{% endif %}",
         "markerSign": [
-            "{% set data = const[tags.amenity] %}",
+            "{% set data = const[key ~ '=' ~ value] %}",
             "{% if data %}",
             "{{ data.sign|raw }}",
             "{% endif %}"
@@ -47,30 +64,69 @@
     },
     "info": [
         "<table>",
-        "{% for value, data in const %}",
+        "{% for kv, data in const %}",
         "{% if data.zoom <= map.zoom %}",
         "  <tr>",
         "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
-        "    <td>{{ tagTrans('amenity', value) }}</td>",
+        "    <td>",
+        "      {% if kv|split('=')[0] == 'office' %}",
+        "        {{ keyTrans('office') }}",
+        "        ({{ tagTrans('office', kv|split('=')[1]) }})",
+        "      {% else %}",
+        "        {{ tagTrans(kv|split('=')[0], kv|split('=')[1]) }}",
+        "      {% endif %}",
+        "    </td>",
         "  </tr>",
         "{% endif %}",
         "{% endfor %}",
         "</table>"
     ],
     "const": {
-        "post_office": {
+        "amenity=post_office": {
             "sign": "<img src='maki:post?size=15'>",
             "zoom": 13
         },
-        "post_box": {
+        "amenity=post_box": {
             "sign": "<img src='maki:post?size=11'>",
             "zoom": 16
         },
-        "internet_cafe": {
+        "amenity=internet_cafe": {
             "sign": "<i class='fa fa-laptop' aria-hidden='true'></i>",
             "zoom": 13
         },
-        "telephone": {
+        "office=telecommunication": {
+            "sign": "<i class='fas fa-mobile-alt'></i>",
+            "zoom": 13
+        },
+        "office=it": {
+            "sign": "<i class='fas fa-desktop'></i>",
+            "zoom": 13
+        },
+        "office=newspaper": {
+            "sign": "<i class='fas fa-newspaper'></i>",
+            "zoom": 13
+        },
+        "office=publisher": {
+            "sign": "<i class='fas fa-book'></i>",
+            "zoom": 13
+        },
+        "office=advertising_agency": {
+            "sign": "<i class='fas fa-sign'></i>",
+            "zoom": 13
+        },
+        "office=public_relations": {
+            "sign": "<i class='fas fa-sign'></i>",
+            "zoom": 13
+        },
+        "office=audiovisual_production": {
+            "sign": "<i class='fas fa-film'></i>",
+            "zoom": 13
+        },
+        "office=film_production": {
+            "sign": "<i class='fas fa-film'></i>",
+            "zoom": 13
+        },
+        "amenity=telephone": {
             "sign": "<img src='maki:telephone'>",
             "zoom": 16
         }

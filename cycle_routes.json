@@ -16,18 +16,28 @@
     },
     "members": true,
     "feature": {
-        "priority": "{{ const[tags.network].priority|default(4) }}",
-        "description": "{{ tagTrans('network', tags.network) }}",
-        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': const[tags.network].color|default(const[''].color) })|raw }}",
         "title": "{% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}",
+        "description": "{{ tagTrans('network', tags.network) }}",
+        "markerSymbol": "",
+        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': const[tags.network].color|default(const[''].color) })|raw }}",
+        "priority": "{{ const[tags.network].priority|default(4) }}",
         "styles": "",
-        "markerSymbol": ""
+        "style:hover": {
+            "width": "0"
+        },
+        "style:selected": {
+            "width": "0"
+        }
     },
     "memberFeature": {
         "pre": [
             "{% set priority = 4 %}",
             "{% set network = '' %}",
             "{% set refs = [] %}",
+            "{% set dirForward = false %}",
+            "{% set dirBackward = false %}",
+            "{% set hover = false %}",
+            "{% set selected = false %}",
             "",
             "{% for master in masters %}",
             "  {% set _p = const[master.tags.network].priority|default(4) %}",
@@ -38,6 +48,12 @@
             "  {% if master.tags.ref %}",
             "    {% set refs = refs|merge([ master.tags.ref ]) %}",
             "  {% endif %}",
+            "  {% if master.role == 'forward' %}{% set dirForward = true %}",
+            "  {% elseif master.role == 'backward' %}{% set dirBackward = true %}",
+            "  {% else %}{% set dirForward = true %}{% set dirBackward = true %}",
+            "  {% endif %}",
+            "  {% if master.flags.hover %}{% set hover = master.role|default('both') %}{% endif %}",
+            "  {% if master.flags.selected %}{% set selected = master.role|default('both') %}{% endif %}",
             "{% endfor %}"
         ],
         "title": "",
@@ -54,14 +70,64 @@
             "</ul>"
         ],
         "listExclude": "1",
+        "styles": "default{% if hover %},hover{% endif %}{% if selected %},selected{% endif %}",
         "style": {
+            "width": "4",
             "color": "{{ const[network].color }}",
-            "width": 4,
-            "opacity": 1,
-            "text": "{{ refs|join('  ') }}             ",
+            "opacity": "1",
+            "lineCap": "{% if not dirForward or not dirBackward %}butt{% else %}round{% endif %}",
+            "dashArray": "{% if not dirForward or not dirBackward %}27,8{% endif %}",
+            "dashOffset": "{% if dirBackward %}28{% else %}0{% endif %}",
+            "noClip": "{% if not dirForward or not dirBackward %}true{% else %}false{% endif %}",
+            "text": "{{ refs|join(' · ') }}             ",
             "textRepeat": "1",
             "textOffset": "12",
+            "pattern": "{% if dirForward and dirBackward %}{% else %}arrowHead{% endif %}",
+            "pattern-offset": "{% if dirBackward %}4{% else %}30.5{% endif %}",
+            "pattern-repeat": "35",
+            "pattern-polygon": "true",
+            "pattern-pixelSize": "9",
+            "pattern-angleCorrection": "{% if dirBackward %}180{% else %}0{% endif %}",
+            "pattern-path-width": "0",
+            "pattern-path-color": "{{ const[network].color }}",
+            "pattern-path-fillOpacity": "1",
             "textFontWeight": "bold"
+        },
+        "style:hover": {
+            "pane": "hover",
+            "width": "4",
+            "color": "black",
+            "lineCap": "{% if hover == 'forward' or hover == 'backward' %}butt{% else %}round{% endif %}",
+            "dashArray": "{% if hover == 'forward' or hover == 'backward' %}27,8{% endif %}",
+            "dashOffset": "{% if hover == 'backward' %}28{% else %}0{% endif %}",
+            "noClip": "{% if hover == 'forward' or hover == 'backward' %}true{% else %}false{% endif %}",
+            "pattern": "{% if hover == 'forward' or hover == 'backward' %}arrowHead{% endif %}",
+            "pattern-offset": "{% if hover == 'backward' %}4{% else %}30.5{% endif %}",
+            "pattern-repeat": "35",
+            "pattern-polygon": "true",
+            "pattern-pixelSize": "9",
+            "pattern-angleCorrection": "{% if hover == 'backward' %}180{% else %}0{% endif %}",
+            "pattern-path-width": "0",
+            "pattern-path-color": "black",
+            "pattern-path-fillOpacity": "1"
+        },
+        "style:selected": {
+            "pane": "selected",
+            "width": "4",
+            "color": "#3f3f3f",
+            "lineCap": "{% if selected == 'forward' or selected == 'backward' %}butt{% else %}round{% endif %}",
+            "dashArray": "{% if selected == 'forward' or selected == 'backward' %}27,8{% endif %}",
+            "dashOffset": "{% if selected == 'backward' %}28{% else %}0{% endif %}",
+            "noClip": "{% if selected == 'forward' or selected == 'backward' %}true{% else %}false{% endif %}",
+            "pattern": "{% if selected == 'forward' or selected == 'backward' %}arrowHead{% endif %}",
+            "pattern-offset": "{% if selected == 'backward' %}4{% else %}30.5{% endif %}",
+            "pattern-repeat": "35",
+            "pattern-polygon": "true",
+            "pattern-pixelSize": "9",
+            "pattern-angleCorrection": "{% if selected == 'backward' %}180{% else %}0{% endif %}",
+            "pattern-path-width": "0",
+            "pattern-path-color": "#3f3f3f",
+            "pattern-path-fillOpacity": "1"
         }
     },
     "const": {
