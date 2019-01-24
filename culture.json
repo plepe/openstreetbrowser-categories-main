@@ -127,8 +127,8 @@
             "name": "Type",
             "query": "nwr[{{ value }}]",
             "type": "select",
-            "values": "const",
-            "valueName": "{{ trans('tag' ~ value) }}"
+            "values": "{% for k, v in const %}<option value=\"{{ k }}\">{{ trans('tag:' ~ k) }}</option>{% endfor %}<option value=\"other\" query=\"nwr[amenity=fountain]\">{{ trans('other') }}</option>",
+            "valueName": "{{ trans('tag:' ~ value) }}"
         }
     }
 }
