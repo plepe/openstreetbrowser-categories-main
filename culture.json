@@ -121,5 +121,15 @@
         "  </tr>",
         "{% endfor %}",
         "</table>"
-    ]
+    ],
+    "filter": {
+        "type": {
+            "name": "{{ trans('filter:type') }}",
+            "show_default": "true",
+            "query": "nwr[{{ value }}]",
+            "type": "select",
+            "values": "{% for k, v in const %}<option value=\"{{ k }}\">{{ trans('tag:' ~ k) }}</option>{% endfor %}<option value=\"other\" query=\"nwr[amenity=fountain]\">{{ trans('other') }}</option>",
+            "valueName": "{{ trans('tag:' ~ value) }}"
+        }
+    }
 }

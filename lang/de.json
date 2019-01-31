@@ -88,5 +88,6 @@
     "category:xmas": "Weihnachten",
     "date format not understood": "Datumsformat nicht erkannt",
     "outdated feature": "Informationen nicht aktuell",
-    "xmas:outdated-warning": "Objekt wurde nicht für die aktuelle Saison aktualisiert. Bitte prüfen und das Tag 'xmas:lastcheck' auf das aktuelle Datum setzen."
+    "xmas:outdated-warning": "Objekt wurde nicht für die aktuelle Saison aktualisiert. Bitte prüfen und das Tag 'xmas:lastcheck' auf das aktuelle Datum setzen.",
+    "Objects with diet information": "Objekte mit Ernährungsinformationen"
 }
