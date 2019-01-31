@@ -83,14 +83,88 @@
             "  {{ keyTrans('denomination') }}: {{ tagTransList('denomination', tags.denomination) }}<br/>",
             "{% endif %}"
         ],
-        "markerSign": [
-            "{% if tags.religion == 'christian' %}✝",
-            "{% elseif tags.religion == 'muslim' %}☪",
-            "{% elseif tags.religion == 'buddhist' %}☸",
-            "{% elseif tags.religion == 'hindu' %}ॐ",
-            "{% elseif tags.religion == 'jewish' %}✡",
-            "{% elseif tags.religion == 'pagan' %}☆",
-            "{% endif %}"
-        ]
+        "markerSign": "{{ const.religion[tags.religion] }}"
+    },
+    "const": {
+        "religion": {
+            "christian": "✝",
+            "muslim": "☪",
+            "buddhist": "☸",
+            "shinto": "",
+            "hindu": "ॐ",
+            "jewish": "✡",
+            "taoist": "",
+            "sikh": "",
+            "none": "",
+            "multifaith": "",
+            "unitarian_universialist": "",
+            "spiritualist": "",
+            "jain": "",
+            "voodoo": "",
+            "confucian": "",
+            "bahai": "",
+            "caodaism": "",
+            "tenrikyo": "",
+            "vietnamese_folk": "",
+            "pagan": "☆",
+            "scientologist": "",
+            "zoroastrian": "",
+            "pentecostal": "",
+            "shamanic": ""
+        }
+    },
+    "filter": {
+        "type": {
+            "name": "{{ trans('filter:type') }}",
+            "show_default": "true",
+            "query": "nwr[{{ value }}]",
+            "type": "select",
+            "values": {
+              "place_of_worship": {
+                "name": "{{ tagTrans('amenity', 'place_of_worship') }}",
+                "query": "nwr[amenity=place_of_worship]"
+              },
+              "grave_yard": {
+                "name": "{{ tagTrans('amenity', 'grave_yard') }}",
+                "query": "nwr[amenity=grave_yard]"
+              },
+              "crematorium": {
+                "name": "{{ tagTrans('amenity', 'crematorium') }}",
+                "query": "nwr[amenity=crematorium]"
+              },
+              "cemetery": {
+                "name": "{{ tagTrans('landuse', 'cemetery') }}",
+                "query": "nwr[landuse=cemetery]"
+              },
+              "wayside_cross": {
+                "name": "{{ tagTrans('historic', 'wayside_cross') }}",
+                "query": "nwr[historic=wayside_cross]"
+              },
+              "wayside_shrine": {
+                "name": "{{ tagTrans('historic', 'wayside_shrine') }}",
+                "query": "nwr[historic=wayside_shrine]"
+              },
+              "wayside_chapel": {
+                "name": "{{ tagTrans('historic', 'wayside_chapel') }}",
+                "query": "nwr[historic=wayside_chapel]"
+              },
+              "parish": {
+                "name": "{{ tagTrans('office', 'parish') }}",
+                "query": "nwr[office=parish]"
+              },
+              "office": {
+                "name": "{{ tagTrans('office', 'religion') }}",
+                "query": "nwr[office=religion]"
+              }
+            }
+        },
+        "religion": {
+            "name": "{{ keyTrans('religion') }}",
+            "show_default": "true",
+            "type": "select",
+            "valueName": "{{ tagTrans('religion', value) }}",
+            "values": "{% set list = [] %}{% for t, v in const.religion %}<option value=\"{{ t }}\">{% set list = list|merge([ t ]) %}{{ tagTrans('religion', t) }}</option>{% endfor %}<option value='other' query='nwr[religion][religion!~\"^({{ list|join('|') }})$\"]'>{{ trans('other') }}</option>",
+            "op": "has"
+        }
     }
 }

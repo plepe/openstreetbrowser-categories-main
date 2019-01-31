@@ -56,5 +56,16 @@
         "theme_park": "<img data-src='maki:amusement-park'>",
         "viewpoint": "<i class='fas fa-eye' aria-hidden='true'></i>",
         "zoo": "🦁"
+    },
+    "filter": {
+        "type": {
+            "name": "{{ trans('filter:type') }}",
+            "show_default": "true",
+            "query": "nwr[{{ value }}]",
+            "type": "select",
+            "key": "tourism",
+            "values": "{% set list = [] %}{% for t, v in const %}<option value=\"{{ t }}\">{% set list = list|merge([ t ]) %}{{ tagTrans('tourism', t) }}</option>{% endfor %}",
+            "op": "has"
+        }
     }
 }

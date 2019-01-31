@@ -73,5 +73,13 @@
             "window_construction": "",
             "winery": "🍷"
         }
+    },
+    "filter": {
+        "craft": {
+            "name": "{{ trans('filter:type') }}",
+            "type": "select",
+            "show_default": "true",
+            "values": "{% set list = [] %}{% for t, v in const.crafts %}<option value=\"{{ t }}\">{% set list = list|merge([ t ]) %}{{ tagTrans('craft', t) }}</option>{% endfor %}<option value='other' query='nwr[craft][craft!~\"^({{ list|join('|') }})$\"]'>{{ trans('other') }}</option>"
+        }
     }
 }

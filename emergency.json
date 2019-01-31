@@ -99,8 +99,9 @@
     },
     "filter": {
         "type": {
-            "name": "{{ keyTrans('amenity') }}",
+            "name": "{{ trans('filter:type') }}",
             "type": "select",
+            "show_default": "true",
             "values": {
                 "fire_station": {
                     "name": "{{ tagTrans('amenity', 'fire_station') }}",
