@@ -109,7 +109,7 @@
     },
     "filter": {
         "type": {
-            "name": "Type",
+            "name": "{{ trans('filter:type') }}",
             "type": "select",
             "values": {
                 "monument": {

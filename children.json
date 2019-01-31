@@ -81,5 +81,41 @@
         "    <td>{{ tagTrans('amenity', 'toilets diaper=yes') }}</td>",
         "  </tr>",
         "</table>"
-    ]
+    ],
+    "filter": {
+        "type": {
+            "name": "{{ trans('filter:type') }}",
+            "type": "select",
+            "values": {
+                "playground": {
+                    "name": "{{ tagTrans('leisure', 'playground') }}",
+                    "query": "nwr[leisure=playground]"
+                },
+                "indoor_play": {
+                    "name": "{{ tagTrans('leisure', 'indoor_play') }}",
+                    "query": "nwr[leisure=indoor_play]"
+                },
+                "summer_camp": {
+                    "name": "{{ tagTrans('leisure', 'summer_camp') }}",
+                    "query": "nwr[leisure=summer_camp]"
+                },
+                "kids_area": {
+                    "name": "{{ keyTrans('kids_area') }}",
+                    "query": "nwr[kids_area]"
+                },
+                "shop_baby_goods": {
+                    "name": "{{ tagTrans('shop', 'baby_goods') }}",
+                    "query": "nwr[shop=baby_goods]"
+                },
+                "shop_toys": {
+                    "name": "{{ tagTrans('shop', 'toys') }}",
+                    "query": "nwr[shop=toys]"
+                },
+                "toilets": {
+                    "name": "{{ tagTrans('amenities', 'toilets diaper=yes') }}",
+                    "query": "nwr[amenity=toilets][diaper]"
+                }
+            }
+        }
+    }
 }

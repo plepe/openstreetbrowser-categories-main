@@ -117,9 +117,10 @@
     "filter": {
         "type": {
             "key": "historic",
-            "name": "Type",
+            "show_default": "true",
+            "name": "{{ trans('filter:type') }}",
             "type": "select",
-            "values": "const",
+            "values": "{% set list = [] %}{% for t, v in const %}<option value=\"{{ t }}\">{% set list = list|merge([ t ]) %}{{ tagTrans('historic', t) }}</option>{% endfor %}<option value='other' query='nwr[historic][historic!~\"^({{ list|join('|') }})$\"]'>{{ trans('other') }}</option>",
             "valueName": "{{ tagTrans('historic', value) }}"
         },
         "conflict": {

@@ -49,8 +49,9 @@
     "info": "{{ repoTrans('Objects with diet information') }}",
     "filter": {
         "amenity": {
-            "name": "{{ keyTrans('amenity') }}",
+            "name": "{{ trans('filter:type') }}",
             "type": "select",
+            "show_default": "true",
             "values": [
               "bar",
               "biergarten",

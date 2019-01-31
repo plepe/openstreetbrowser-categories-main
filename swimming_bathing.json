@@ -139,5 +139,13 @@
             "zoom": 16,
             "sign": "🚿 "
         }
+    },
+    "filter": {
+        "type": {
+            "name": "{{ trans('filter:type') }}",
+            "type": "select",
+            "show_default": "true",
+            "values": "{% for k, v in const %}<option value=\"{{ k }}\" query=\"nwr[{{ k }}]\" minzoom=\"{{ v.zoom }}\">{{ tagTrans(k) }}</option>{% endfor %}"
+        }
     }
 }
