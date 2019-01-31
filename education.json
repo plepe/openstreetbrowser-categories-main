@@ -29,17 +29,13 @@
         ],
         "14": [
             "(",
-            "node[amenity~'^(college|university|library|school|kindergarten|language_school)$'];",
-            "way[amenity~'^(college|university|library|school|kindergarten|language_school)$'];",
-            "relation[amenity~'^(college|university|library|school|kindergarten|language_school)$'];",
+            "nwr[amenity~'^(college|university|library|school|kindergarten|language_school)$'];",
             "nwr[office~\"^(educational_institution|research)$\"];",
             ")"
         ],
         "16": [
             "(",
-            "node[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];",
-            "way[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];",
-            "relation[amenity~'^(college|university|library|school|kindergarten|public_bookcase)$'];",
+            "nwr[amenity~'^(college|university|library|school|kindergarten|language_school|public_bookcase)$'];",
             "nwr[office~\"^(educational_institution|research)$\"];",
             ")"
         ]
