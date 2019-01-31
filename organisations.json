@@ -78,5 +78,13 @@
             "sign": "<i class='fas fa-hands-helping'></i>",
             "zoom": 13
         }
+    },
+    "filter": {
+        "type": {
+            "name": "{{ trans('filter:type') }}",
+            "show_default": "true",
+            "type": "select",
+            "values": "{% for k, v in const %}<option value=\"{{ k }}\" query=\"nwr[{{ k }}]\" minzoom=\"{{ v.zoom }}\">{{ tagTrans(k) }}</option>{% endfor %}"
+        }
     }
 }

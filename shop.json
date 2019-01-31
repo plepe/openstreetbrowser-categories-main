@@ -180,5 +180,14 @@
                 "sign": "&#8986;"
             }
         ]
+    },
+    "filter": {
+        "shop": {
+            "name": "{{ trans('filter:type') }}",
+            "type": "select",
+            "show_default": "true",
+            "values": "{% set list = [] %}{% for k, v in const.shops %}{% for t in v.types %}<option value=\"{{ t }}\">{% set list = list|merge([ t ]) %}{{ tagTrans('shop', t) }}</option>{% endfor %}{% endfor %}<option value='other' query='nwr[shop][shop!~\"^(|.*;)({{ list|join('|') }})(|;.*)$\"]'>{{ trans('other') }}</option>",
+            "op": "has"
+        }
     }
 }
