@@ -12,6 +12,7 @@
     "feature": {
         "pre": [
             "{% set type = tags.building|split(';')[0] %}",
+            "{% if tags.military %}{% set type = 'military' %}{% endif %}",
             "{% set color = const.other.color %}",
             "{% for cat, data in const %}",
             "  {% if type in data.types %}",
@@ -20,13 +21,18 @@
             "{% endfor %}"
         ],
         "description": [
-            "{% if tags.building == 'yes' %}",
+            "{% if tags.building == 'yes' and tags.military %}",
+            "{{ tagTrans('building', 'military') }}",
+            "{% elseif tags.building == 'yes' %}",
             "{{ keyTrans('building') }}",
             "{% else %}",
             "{{ tagTransList('building', tags.building) }}",
             "{% endif %}",
             "{% if tags.building == 'construction' and tags.construction %}",
             "({{ tagTransList('building', tags.construction) }})",
+            "{% endif %}",
+            "{% if tags.building in  [ 'yes', 'military' ] and tags.military %}",
+            "({{ tagTransList('military', tags.military) }})",
             "{% endif %}"
         ],
         "markerSymbol": "",
@@ -213,10 +219,11 @@
             ]
         },
         "military": {
-            "name": "tag:military",
+            "name": "tag:building=military",
             "color": "#4a7300",
             "types": [
-                "bunker"
+                "bunker",
+                "military"
             ]
         },
         "unspecified": {
