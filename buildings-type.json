@@ -7,12 +7,7 @@
         "pt-br": "Tipologias"
     },
     "query": {
-        "16": [
-            "(",
-            "  way[building][building!=no];",
-            "  relation[building][building!=no];",
-            ")"
-        ]
+        "16": "nwr[building][building!=no];"
     },
     "feature": {
         "pre": [
