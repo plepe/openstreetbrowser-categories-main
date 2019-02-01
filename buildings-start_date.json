@@ -16,8 +16,11 @@
     },
     "feature": {
         "pre": [
-            "{% if tags.start_date %}",
-            "  {% set value = tags.start_date|osmParseDate %}",
+            "{% set start_date = tags.start_date %}",
+            "{% if attribute(tags, 'building:start_date') %}{% set start_date = attribute(tags, 'building:start_date') %}{% endif %}",
+            "",
+            "{% if start_date %}",
+            "  {% set value = start_date|osmParseDate %}",
             "  {% if value and value[0] and value[1] %}",
             "    {% set value = (value[1] - value[0]) / 2 + value[0] %}",
             "  {% elseif value and value[0] %}",
@@ -44,15 +47,15 @@
             "{% endif %}"
         ],
         "description": [
-            "{% if tags.start_date %}",
-            "{{ tags.start_date|osmFormatDate({ format: 'short' }) }}",
+            "{% if start_date %}",
+            "{{ start_date|osmFormatDate({ format: 'short' }) }}",
             "{% else %}",
             "{{ trans('unknown') }}",
             "{% endif %}"
         ],
         "popupDescription": [
-            "{% if tags.start_date %}",
-            "{{ tags.start_date|osmFormatDate }}",
+            "{% if start_date %}",
+            "{{ start_date|osmFormatDate }}",
             "{% else %}",
             "{{ trans('unknown') }}",
             "{% endif %}"
@@ -61,7 +64,7 @@
         "listMarkerSymbol": "{{ markerPolygon({ \"fillColor\": color, \"fillOpacity\": 0.8, \"width\": 1, \"color\": \"#000000\" })|raw }}",
         "priority": [
             "{% set p = 100 %}",
-            "{% if tags.start_date %}{% set p = p - 20 %}{% endif %}",
+            "{% if start_date %}{% set p = p - 20 %}{% endif %}",
             "{% if tags.name %}{% set p = p - 10 %}{% endif %}",
             "{% if tags.amenity %}{% set p = p - 1 %}{% endif %}",
             "{% if tags.historic %}{% set p = p - 1 %}{% endif %}",
