@@ -109,19 +109,33 @@
 </li>
 {% endif %}
 
-{% if attribute(tags, 'wheelchair') %}
+{% if attribute(tags, 'wheelchair') or tags.internet_access %}
 <li class='hasSymbol'>
   <i class="fa fa-info-circle" aria-hidden="true"></i>
   <span class='key'>{{ trans('facilities') }}:</span>
   <span class='value'>
 
   {% if attribute(tags, 'wheelchair') %}
+    <span class='part'>
     <i class="fa fa-wheelchair-alt {{ tags.wheelchair }}" aria-hidden="true" title='{{ keyTrans('wheelchair') }}: {{ tagTrans('wheelchair', tags.wheelchair) }}'></i>
 
     {% if attribute(tags, 'toilets:wheelchair') %}
       (<span class='{{ attribute(tags, 'toilets:wheelchair') }}' title='{{ keyTrans('toilets:wheelchair') }}: {{ tagTrans('toilets:wheelchair', attribute(tags, 'toilets:wheelchair')) }}'>&#128701;</span>)
-    {% endif %}
+    {% endif -%}
+    </span>
+  {% endif -%}
+
+  {% if tags.internet_access %}
+    <span class='part'>
+    <i
+      style="color: {% if tags.internet_access == 'no' %}red{% endif %}"
+      class="fa fa-wifi"
+      title="{% if attribute(tags, 'internet_access:fee') %}{{ tagTrans('internet_access', tags.internet_access ~ ' internet_access:fee=' ~ attribute(tags, 'internet_access:fee')) }}{% else %}{{ tagTrans('internet_access', tags.internet_access) }}{% endif %}"
+    ></i>
+    <i class="fa fa-coins"></i>
+    </span>
   {% endif %}
+    <span class='part'>X</span>
   </span>
 </li>
 {% endif %}
