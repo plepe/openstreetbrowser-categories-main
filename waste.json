@@ -84,6 +84,9 @@
         ],
         "description": "{{ tagTrans(key, value) }} {{ add }}",
         "body": [
+            "{% for tag in tagsPrefix(tags, 'recycling:') %}",
+            "{{ tag }}",
+            "{% endfor %}"
         ],
         "markerSign": [
             "{% if const[kv] %}",
