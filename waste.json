@@ -84,9 +84,17 @@
         ],
         "description": "{{ tagTrans(key, value) }} {{ add }}",
         "body": [
-            "{% for tag in tagsPrefix(tags, 'recycling:') %}",
-            "{{ tag }}",
-            "{% endfor %}"
+            "<ul>",
+            "{% set recycling_options = tagsPrefix(tags, 'recycling:') %}",
+            "{% if recycling_options %}",
+            "<li class='hasSymbol'><img data-src='maki:recycling'> {{ keyTrans('recycling') }}: ",
+            "{% set i = 0 %}",
+            "{% for tag in recycling_options %}",
+            "{% if attribute(tags, tag) == 'yes' %}{% if i > 0 %}, {% endif %}{{ keyTrans(tag)|slice(10) }}{% endif %}",
+            "{% set i = i + 1 %}",
+            "{% endfor %}",
+            "{% endif %}",
+            "</ul>"
         ],
         "markerSign": [
             "{% if const[kv] %}",
