@@ -30,7 +30,7 @@
             "nwr[power=generator][\"generator:source\"~\"^(.*;|)waste(;.*|)$\"];",
             ")"
         ],
-        "15": [
+        "16": [
             "(",
             "node[landuse=landfill];",
             "node[man_made~\"^(wastewater_plant|incinerator)$\"];",
@@ -68,7 +68,11 @@
             "{% elseif tags.man_made in [ 'incinerator', 'wastewater_plant' ] %}",
             "  {% set key = 'man_made' %}",
             "  {% set value = tags.man_made %}",
-            "{% elseif tags.amenity in [ 'recycling', 'waste_basket', 'waste_disposal', 'waste_transfer_station' ] %}",
+            "{% elseif tags.amenity == 'recycling' %}",
+            "  {% set key = 'amenity' %}",
+            "  {% set value = tags.amenity %}",
+            "  {% if tags.recycling_type %}{% set value = value ~ ' recycling_type=' ~ tags.recycling_type %}{% else %}{% set value = value ~ ' recycling_type=container' %}{% endif %}",
+            "{% elseif tags.amenity in [ 'waste_basket', 'waste_disposal', 'waste_transfer_station' ] %}",
             "  {% set key = 'amenity' %}",
             "  {% set value = tags.amenity %}",
             "{% elseif tags.power == 'generator' %}",
@@ -80,9 +84,6 @@
         ],
         "description": "{{ tagTrans(key, value) }} {{ add }}",
         "body": [
-            "{% if tags.recycling_type %}",
-            "{{ keyTrans('recycling_type') }}: {{ tagTrans('recycling_type', tags.recycling_type) }}",
-            "{% endif %}"
         ],
         "markerSign": [
             "{% if const[kv] %}",
@@ -102,14 +103,14 @@
         "  </tr>",
         "  {% endif %}",
         "{% endfor %}",
-        "  <tr>",
-        "    <td>{{ markerCircle({})|raw }}</td>",
-        "    <td>{{ trans('other') }}</td>",
-        "  </tr>",
         "</table>"
     ],
     "const": {
-        "amenity=recycling": {
+        "landuse=landfill": {
+            "minZoom": 13,
+            "sign": ""
+        },
+        "amenity=recycling recycling_type=centre": {
             "minZoom": 13,
             "sign": "<img data-src='maki:recycling'>"
         },
@@ -126,9 +127,17 @@
             "sign": "<i class='fas fa-bolt'></i>",
             "add": "tag:generator:source=waste"
         },
+        "amenity=waste_transfer_station": {
+            "minZoom": 13,
+            "sign": "<i class='fas fa-exchange-alt'></i>"
+        },
         "amenity=waste_disposal": {
-            "minZoom": 15,
+            "minZoom": 16,
             "sign": "<img data-src='maki:waste-basket'>"
+        },
+        "amenity=recycling recycling_type=container": {
+            "minZoom": 16,
+            "sign": "<img data-src='maki:recycling'>"
         },
         "amenity=waste_basket": {
             "minZoom": 18,
