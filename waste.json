@@ -26,6 +26,7 @@
             "relation[landuse=landfill];",
             "relation[man_made~\"^(wastewater_plant|incinerator)$\"];",
             "relation[amenity=recycling][recycling_type=centre];",
+            "nwr[amenity=waste_transfer_station];",
             "nwr[power=generator][\"generator:source\"~\"^(.*;|)waste(;.*|)$\"];",
             ")"
         ],
@@ -33,13 +34,13 @@
             "(",
             "node[landuse=landfill];",
             "node[man_made~\"^(wastewater_plant|incinerator)$\"];",
-            "node[amenity=recycling];",
+            "node[amenity~\"^(recycling|waste_disposal|waste_transfer_station)$\"];",
             "way[landuse=landfill];",
             "way[man_made~\"^(wastewater_plant|incinerator)$\"];",
-            "way[amenity=recycling];",
+            "way[amenity~\"^(recycling|waste_disposal|waste_transfer_station)$\"];",
             "relation[landuse=landfill];",
             "relation[man_made~\"^(wastewater_plant|incinerator)$\"];",
-            "relation[amenity=recycling];",
+            "relation[amenity~\"^(recycling|waste_disposal|waste_transfer_station)$\"];",
             "nwr[power=generator][\"generator:source\"~\"^(.*;|)waste(;.*|)$\"];",
             ")"
         ],
@@ -47,13 +48,13 @@
             "(",
             "node[landuse=landfill];",
             "node[man_made~\"^(wastewater_plant|incinerator)$\"];",
-            "node[amenity~\"^(recycling|waste_basket)$\"];",
+            "node[amenity~\"^(recycling|waste_basket|waste_disposal|waste_transfer_station)$\"];",
             "way[landuse=landfill];",
             "way[man_made~\"^(wastewater_plant|incinerator)$\"];",
-            "way[amenity=recycling];",
+            "way[amenity~\"^(recycling|waste_basket|waste_disposal|waste_transfer_station)$\"];",
             "relation[landuse=landfill];",
             "relation[man_made~\"^(wastewater_plant|incinerator)$\"];",
-            "relation[amenity=recycling];",
+            "relation[amenity~\"^(recycling|waste_basket|waste_disposal|waste_transfer_station)$\"];",
             "nwr[power=generator][\"generator:source\"~\"^(.*;|)waste(;.*|)$\"];",
             ")"
         ]
@@ -67,7 +68,7 @@
             "{% elseif tags.man_made in [ 'incinerator', 'wastewater_plant' ] %}",
             "  {% set key = 'man_made' %}",
             "  {% set value = tags.man_made %}",
-            "{% elseif tags.amenity == 'recycling' or tags.amenity == 'waste_basket' %}",
+            "{% elseif tags.amenity in [ 'recycling', 'waste_basket', 'waste_disposal', 'waste_transfer_station' ] %}",
             "  {% set key = 'amenity' %}",
             "  {% set value = tags.amenity %}",
             "{% elseif tags.power == 'generator' %}",
@@ -124,6 +125,10 @@
             "minZoom": 13,
             "sign": "<i class='fas fa-bolt'></i>",
             "add": "tag:generator:source=waste"
+        },
+        "amenity=waste_disposal": {
+            "minZoom": 15,
+            "sign": "<img data-src='maki:waste-basket'>"
         },
         "amenity=waste_basket": {
             "minZoom": 18,
