@@ -8,7 +8,7 @@
     "category:buildings-figure-ground": "",
     "category:buildings-height": "Altura del edificio",
     "category:buildings-start_date": "Edad del edificio",
-    "category:buildings-type": "",
+    "category:buildings-type": "Tipos de edificio",
     "category:car_amenities": "",
     "category:car_furniture": "Mobiliario Urbano",
     "category:car_maxspeed": "Velocidad máxima",
@@ -87,6 +87,6 @@
     "category:works": "Trabajos",
     "category:xmas": "Navidades",
     "date format not understood": "",
-    "outdated feature": "",
+    "outdated feature": "Característica obsoleta",
     "xmas:outdated-warning": "¡La característica no se ha actualizado para la temporada actual! Por favor verifique y establezca la etiqueta 'xmas: lastcheck' a la fecha actual."
 }
