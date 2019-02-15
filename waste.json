@@ -100,6 +100,21 @@
             "{% if const[kv] %}",
             "{{ const[kv].sign|raw }}",
             "{% endif %}"
+        ],
+        "obligatoryTags": [
+            "{% if tags.amenity == 'recycling' and tags.recycling_type == 'centre' %}",
+            "name",
+            "operator",
+            "{% endif %}",
+            "{% if tags.amenity == 'recycling' and not tags.recycling_type %}",
+            "recycling_type",
+            "{% endif %}",
+            "{% if tags.amenity == 'recycling' %}",
+            "recycling:",
+            "{% endif %}"
+        ],
+        "recommendedTags": [
+            "opening_hours"
         ]
     },
     "info": [
