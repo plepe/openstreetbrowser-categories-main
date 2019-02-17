@@ -149,7 +149,7 @@
             ]
         },
         "agriculture": {
-            "name": "tag:landuse=agriculture",
+            "name": "tag:building=agriculture",
             "color": "#92e934",
             "types": [
                 "bakehouse",
