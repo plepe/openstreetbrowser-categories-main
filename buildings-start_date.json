@@ -18,6 +18,12 @@
         "pre": [
             "{% set start_date = tags.start_date %}",
             "{% if attribute(tags, 'building:start_date') %}{% set start_date = attribute(tags, 'building:start_date') %}{% endif %}",
+            "{# Deprecated tags #}",
+            "{% if not start_date and attribute(tags, 'building:age') %}{% set start_date = attribute(tags, 'building:age') %}{% endif %}",
+            "{% if not start_date and attribute(tags, 'building:year_built') %}{% set start_date = attribute(tags, 'building:year_built') %}{% endif %}",
+            "{% if not start_date and attribute(tags, 'building:buildyear') %}{% set start_date = attribute(tags, 'building:buildyear') %}{% endif %}",
+            "{% if not start_date and attribute(tags, 'year_built') %}{% set start_date = attribute(tags, 'year_built') %}{% endif %}",
+            "{% if not start_date and attribute(tags, 'building:year') %}{% set start_date = attribute(tags, 'building:year') %}{% endif %}",
             "",
             "{% if start_date %}",
             "  {% set value = start_date|osmParseDate %}",
