@@ -88,5 +88,6 @@
     "category:xmas": "Karácsony",
     "date format not understood": "Felismerhetetlen dátumformátum",
     "outdated feature": "Elavult információ",
-    "xmas:outdated-warning": "Ebben a szezonban nem frissült az objektum. Ellenőrizze, és állítsa be az <xmas:lastcheck> kulcshoz tartozó értéket a jelenlegi dátumra."
+    "xmas:outdated-warning": "Ebben a szezonban nem frissült az objektum. Ellenőrizze, és állítsa be az <xmas:lastcheck> kulcshoz tartozó értéket a jelenlegi dátumra.",
+    "Objects with diet information": "Étrend-információt tartalmazó objektumok"
 }
