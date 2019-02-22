@@ -112,7 +112,7 @@
                     "query": "nwr[shop=toys]"
                 },
                 "toilets": {
-                    "name": "{{ tagTrans('amenities', 'toilets diaper=yes') }}",
+                    "name": "{{ tagTrans('amenity', 'toilets diaper=yes') }}",
                     "query": "nwr[amenity=toilets][diaper]"
                 }
             }
