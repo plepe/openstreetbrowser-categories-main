@@ -55,7 +55,7 @@
             "{% endif %}"
         ],
         "description": [
-            "{{ tagTrans(key, value) }}",
+            "{{ tagTransList(key, value) }}",
             "{% if attribute(tags, 'healthcare:speciality') %}",
             "-",
             "{{ tagTransList('healthcare:speciality', attribute(tags, 'healthcare:speciality')) }}",
