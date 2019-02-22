@@ -81,6 +81,52 @@
     "const": [
         {
             "types": [
+                "amenity=hospital",
+                "healthcare=hospital"
+            ],
+            "sign": "<i class=\"fas fa-hospital-alt\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=clinic"
+            ],
+            "sign": "<i class=\"fas fa-hospital\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=centre"
+            ],
+            "sign": "<i class=\"far fa-hospital\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=doctor",
+                "amenity=doctors"
+            ],
+            "sign": "<img data-src='maki:doctor'>"
+        },
+        {
+            "types": [
+                "amenity=pharmacy",
+                "healthcare=pharmacy"
+            ],
+            "sign": "<img data-src='maki:pharmacy'>"
+        },
+        {
+            "types": [
+                "emergency=defibrillator"
+            ],
+            "sign": "<img data-src='maki:defibrillator'>"
+        },
+        {
+            "types": [
+                "healthcare=dentist",
+                "amenity=dentist"
+            ],
+            "sign": "<img data-src='maki:dentist'>"
+        },
+        {
+            "types": [
                 "amenity=baby_hatch"
             ],
             "sign": "🚼"
@@ -99,57 +145,104 @@
         },
         {
             "types": [
-                "healthcare=clinic"
-            ],
-            "sign": "🏥"
-        },
-        {
-            "types": [
-                "emergency=defibrillator"
-            ],
-            "sign": "<img data-src='maki:defibrillator'>"
-        },
-        {
-            "types": [
-                "healthcare=dentist"
-            ],
-            "sign": "<img data-src='maki:dentist'>"
-        },
-        {
-            "types": [
-                "healthcare=doctor",
-                "amenity=doctors"
-            ],
-            "sign": "<img data-src='maki:doctor'>"
-        },
-        {
-            "types": [
-                "amenity=hospital",
-                "healthcare=hospital"
-            ],
-            "sign": "🏥"
-        },
-        {
-            "types": [
                 "amenity=nursing_home"
             ]
         },
         {
             "types": [
-                "amenity=pharmacy"
-            ],
-            "sign": "<img data-src='maki:pharmacy'>"
-        },
-        {
-            "types": [
                 "amenity=social_facility"
-            ]
+            ],
+            "sign": "<i class=\"fas fa-users\"></i>"
         },
         {
             "types": [
                 "amenity=veterinary"
             ],
             "sign": "<img data-src='maki:veterinary'>"
+        },
+        {
+            "types": [
+                "healthcare=physiotherapist"
+            ],
+            "sign": "<i class=\"fas fa-user-injured\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=psychotherapist"
+            ],
+            "sign": "<i class=\"fas fa-couch\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=alternative"
+            ],
+            "sign": ""
+        },
+        {
+            "types": [
+                "healthcare=audiologist"
+            ],
+            "sign": "<i class=\"fas fa-headphones-alt\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=birthing_center"
+            ],
+            "sign": "<i class=\"fas fa-baby\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=dialysis"
+            ],
+            "sign": ""
+        },
+        {
+            "types": [
+                "healthcare=laboratory"
+            ],
+            "sign": "<i class=\"fas fa-vials\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=midwife"
+            ],
+            "sign": ""
+        },
+        {
+            "types": [
+                "healthcare=nutrition_counseling"
+            ],
+            "sign": "<i class=\"fas fa-carrot\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=occupational_therapist"
+            ],
+            "sign": ""
+        },
+        {
+            "types": [
+                "healthcare=optometrist"
+            ],
+            "sign": "<i class=\"fas fa-eye\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=podiatrist"
+            ],
+            "sign": ""
+        },
+        {
+            "types": [
+                "healthcare=rehabilitation"
+            ],
+            "sign": "<i class=\"fas fa-crutch\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=speech_therapist"
+            ],
+            "sign": ""
         }
     ],
     "filter": {
