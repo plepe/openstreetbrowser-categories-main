@@ -267,6 +267,8 @@
     "filter": {
         "route": {
             "type": "select",
+            "show_default": "true",
+            "valueName": "{{ tagTrans('route', value) }}",
             "values": [
                 "aerialway",
                 "bus",
