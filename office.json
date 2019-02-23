@@ -49,7 +49,7 @@
             "name": "{{ trans('filter:type') }}",
             "show_default": "true",
             "type": "select",
-            "values": "{% for k, v in const %}<option value=\"{{ k }}\" query=\"nwr[{{ k }}]\" minzoom=\"{{ v.zoom }}\">{{ tagTrans(k) }}</option>{% endfor %}"
+            "values": "{% for k, v in const %}<option value=\"{{ k }}\" query=\"nwr[{{ k }}]\" minzoom=\"{{ v.zoom }}\">{{ tagTrans('office', k) }}</option>{% endfor %}"
         }
     }
 }
