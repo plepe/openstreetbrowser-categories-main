@@ -25,14 +25,33 @@
     },
     "feature": {
         "pre": [
-            "{% set value = tags.historic %}",
-            "{% if tags.historic == 'memorial' and tags.memorial %}",
-            "  {% set value = tags.historic ~ ' memorial=' ~ tags.memorial %}",
-            "{% elseif tags.historic == 'memorial' and attribute(tags, 'memorial:type') %}",
-            "  {% set value = tags.historic ~ ' memorial=' ~ attribute(tags, 'memorial:type') %}",
+            "{% set memtype = 'yes' %}",
+            "{% if tags.historic == 'monument' and tags.monument == 'war_monument' %}",
+            "  {% set memtype = 'war_memorial' %}",
+            "{% elseif tags.memorial %}",
+            "  {% set memtype = tags.memorial %}",
+            "{% elseif attribute(tags, 'memorial:type') %}",
+            "  {% set memtype = attribute(tags, 'memorial:type') %}",
+            "{% elseif attribute(tags, 'monument') %}",
+            "  {% set memtype = attribute(tags, 'monument') %}",
             "{% endif %}"
         ],
-        "description": "{{ tagTransList('historic', value) }}",
+        "description": [
+            "{% if tags.historic == 'monument' and tags.monument == 'war_monument' %}",
+            "  {{ tagTrans('historic', 'monument monument=war_monument') }}",
+            "{% elseif memtype == 'yes' %}",
+            "  {{ tagTrans('historic', tags.historic) }}",
+            "{% else %}",
+            "  {{ tagTrans('historic', 'memorial memorial=' ~ memtype) }}",
+            "{% endif %}",
+            "",
+            "{% if tags.historic == 'monument' %}",
+            "  ({{ tagTrans('historic', 'monument') }})",
+            "{% endif %}"
+        ],
+        "priority": [
+            "{% if tags.historic == 'monument' %}0[% else %}1{% endif %}"
+        ],
         "body": [
             "<ul>",
             "{% if tags.inscription %}",
@@ -73,7 +92,7 @@
             "{% endif %}",
             "</ul>"
         ],
-        "markerSign": "{{ const[value].sign|raw }}"
+        "markerSign": "{% if memtype == 'yes' %}<img data-src=\"maki:monument\">{% else %}{{ const[memtype].sign|raw }}{% endif %}"
     },
     "info": [
         "<table>",
@@ -87,44 +106,46 @@
         "{% endfor %}",
         "{% if 14 <= map.zoom %}",
         "  <tr>",
-        "    <td>{{ markerCircle({})|raw }}<div class='sign'></div></td>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'><img src='maki:monument'></div></td>",
         "    <td>{{ trans('other') }}</td>",
         "  </tr>",
         "{% endif %}",
         "</table>"
     ],
-    "const": {
+    "const1": {
+        "yes": {
+            "sign": "<img data-src='maki:monument?size=15'>",
+            "zoom": 11
+        },
         "memorial": {
-            "sign": "<span  style='position: relative; top: -2px;'><img src='maki:monument?size=11'></span>",
+            "sign": "<span style='position: relative; top: -2px;'><img src='maki:monument?size=11'></span>",
+            "zoom": 14
+        }
+    },
+    "const": {
+        "plaque": {
+            "sign": "<img data-src='img/plaque.svg'>",
             "zoom": 14
         },
-        "memorial memorial=plaque": {
+        "blue_plaque": {
+            "sign": "<img data-src='img/blue_plaque.svg'>",
+            "zoom": 14
+        },
+        "statue": {
             "sign": "",
             "zoom": 14
         },
-        "monument": {
-            "sign": "<img data-src='maki:monument?size=15'>",
-            "zoom": 11
+        "war_memorial": {
+            "sign": "<img data-src='maki:horse-riding'>",
+            "zoom": 14
         }
     },
     "filter": {
         "type": {
             "name": "{{ trans('filter:type') }}",
+            "show_default": "true",
             "type": "select",
-            "values": {
-                "monument": {
-                    "name": "{{ tagTrans('historic', 'monument') }}",
-                    "query": "nwr[historic=monument]"
-                },
-                "memorial": {
-                    "name": "{{ tagTrans('historic', 'memorial') }}",
-                    "query": "nwr[historic=memorial]"
-                },
-                "stolperstein": {
-                    "name": "{{ tagTrans('historic', 'memorial memorial=stolperstein') }}",
-                    "query": "(nwr[memorial=stolperstein];nwr[\"memorial:type\"=stolperstein];)"
-                }
-            }
+            "values": "{% for k, v in const %}<option value='{{ k }}' query='(nwr[memorial=\"{{ k }}\"];nwr[\"memorial:type\"=\"{{ k }}\"];nwr[\"monument\"=\"{{ k }}\"];{% if k == 'war_memorial' %}nwr[\"monument\"=\"war_monument\"];{% endif %})'>{{ tagTrans('historic', 'memorial memorial=' ~ k) }}</option>{% endfor %}"
         },
         "conflict": {
             "key": "memorial:conflict",
