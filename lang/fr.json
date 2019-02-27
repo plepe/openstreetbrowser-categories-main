@@ -88,5 +88,6 @@
     "category:xmas": "Noël",
     "date format not understood": "",
     "outdated feature": "",
-    "xmas:outdated-warning": "Cet élément n'a pas été mis à jour pour cette saison ! Veuillez vérifier son existence et régler la valeur de \"xmas:lastcheck\" à la date actuelle."
+    "xmas:outdated-warning": "Cet élément n'a pas été mis à jour pour cette saison ! Veuillez vérifier son existence et régler la valeur de \"xmas:lastcheck\" à la date actuelle.",
+    "Objects with diet information": "Objets avec information de régime alimentaire"
 }
