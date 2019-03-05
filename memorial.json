@@ -44,14 +44,10 @@
             "{% endfor %}"
         ],
         "description": [
-            "{% if memtype != 'yes' and tags.historic == 'monument' %}",
-            "  {{ tagTrans('historic', 'monument') }}",
-            "{% endif %}",
+            "{{ tagTrans('historic', tags.historic) }}",
             "",
-            "{% if memtype == 'yes' %}",
-            "  {{ tagTrans('historic', tags.historic) }}",
-            "{% else %}",
-            "  {{ tagTrans('memorial', memtype) }}",
+            "{% if memtype != 'yes' %}",
+            "  ({{ tagTrans('memorial', memtype) }})",
             "{% endif %}"
         ],
         "priority": [
@@ -111,7 +107,7 @@
         "{% endfor %}",
         "{% if 14 <= map.zoom %}",
         "  <tr>",
-        "    <td>{{ markerCircle({})|raw }}<div class='sign'><img src='maki:monument'></div></td>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'></div></td>",
         "    <td>{{ trans('other') }}</td>",
         "  </tr>",
         "{% endif %}",
