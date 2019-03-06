@@ -26,7 +26,7 @@
     "feature": {
         "pre": "{% set shop0 = tags.shop|split(';')[0] %}{% set current = const.default %}{% for v in const.shops %}{% if shop0 in v.types %}{% set current = v %}{% endif %}{% endfor %}",
         "description": "{{ tagTransList('shop', tags.shop) }}",
-        "markerSign": "{% set c = current.sign %}{% if c|slice(0, 3) == 'fa-' %}<i class=\"fa {{ c }}\"></i>{% else %}{{ c|raw }}{% endif %}"
+        "markerSign": "{% set c = current.sign %}{% if c|slice(0, 3) == 'fa-' %}<i class=\"fa {{ c }}\"></i>{% elseif c|slice(0, 5) == 'maki:' %}<img data-src=\"{{ c }}\">{% else %}{{ c|raw }}{% endif %}"
     },
     "const": {
         "default": {
@@ -35,10 +35,16 @@
         "shops": [
             {
                 "types": [
+                    "vacant"
+                ],
+                "sign": "fa-times"
+            },
+            {
+                "types": [
                     "alcohol",
                     "beverages"
                 ],
-                "sign": "fa-beer"
+                "sign": "fa-wine-bottle"
             },
             {
                 "types": [
@@ -49,7 +55,8 @@
             {
                 "types": [
                     "bag",
-                    "general"
+                    "general",
+                    "variety_store"
                 ],
                 "sign": "fa-shopping-bag"
             },
@@ -65,7 +72,13 @@
                 "types": [
                     "bicycle"
                 ],
-                "sign": "&#128690;"
+                "sign": "fa-bicycle"
+            },
+            {
+                "types": [
+                    "motorcycle"
+                ],
+                "sign": "fa-motorcycle"
             },
             {
                 "types": [
@@ -75,9 +88,16 @@
                     "fashion",
                     "leather",
                     "sewing",
-                    "tailor"
+                    "tailor",
+                    "dry_cleaning"
                 ],
                 "sign": "&#128090;"
+            },
+            {
+                "types": [
+                    "sea_food"
+                ],
+                "sign": "fa-fish"
             },
             {
                 "types": [
@@ -115,9 +135,22 @@
             },
             {
                 "types": [
-                    "electronics"
+                    "electronics",
+                    "computer"
                 ],
-                "sign": "&#128250;"
+                "sign": "fa-tv"
+            },
+            {
+                "types": [
+                    "electrical"
+                ],
+                "sign": "fa-bolt"
+            },
+            {
+                "types": [
+                    "lighting"
+                ],
+                "sign": "fa-bulb"
             },
             {
                 "types": [
@@ -127,7 +160,14 @@
             },
             {
                 "types": [
-                    "florist"
+                    "toys"
+                ],
+                "sign": "fa-dice"
+            },
+            {
+                "types": [
+                    "florist",
+                    "garden_centre"
                 ],
                 "sign": "&#127799;"
             },
@@ -147,11 +187,12 @@
                 "types": [
                     "jewelry"
                 ],
-                "sign": "&#128141;"
+                "sign": "fa-ring"
             },
             {
                 "types": [
-                    "kiosk"
+                    "kiosk",
+                    "newsagent"
                 ],
                 "sign": "fa-newspaper-o"
             },
@@ -159,7 +200,7 @@
                 "types": [
                     "shoes"
                 ],
-                "sign": "&#128095;"
+                "sign": "fa-shoe-prints"
             },
             {
                 "types": [
@@ -178,6 +219,120 @@
                     "watches"
                 ],
                 "sign": "&#8986;"
+            },
+            {
+                "types": [
+                    "gift"
+                ],
+                "sign": "fa-gift"
+            },
+            {
+                "types": [
+                    "locksmith"
+                ],
+                "sign": "fa-key"
+            },
+            {
+                "types": [
+                    "doityourself",
+                    "hardware"
+                ],
+                "sign": "fa-tools"
+            },
+            {
+                "types": [
+                    "art"
+                ],
+                "sign": "fa-palette"
+            },
+            {
+                "types": [
+                    "stationery"
+                ],
+                "sign": "fa-pencil-ruler"
+            },
+            {
+                "types": [
+                    "funeral_directors"
+                ],
+                "sign": "maki:monument"
+            },
+            {
+                "types": [
+                    "copyshop"
+                ],
+                "sign": "fa-copy"
+            },
+            {
+                "types": [
+                    "tobacco"
+                ],
+                "sign": "fa-smoking"
+            },
+            {
+                "types": [
+                    "furniture",
+                    "interior_decoration"
+                ],
+                "sign": "fa-couch"
+            },
+            {
+                "types": [
+                    "car_repair",
+                    "car",
+                    "car_parts",
+                    "tyres"
+                ],
+                "sign": "fa-car"
+            },
+            {
+                "types": [
+                    "beauty",
+                    "cosmetics"
+                ],
+                "sign": ""
+            },
+            {
+                "types": [
+                    "music"
+                ],
+                "sign": "fa-guitar"
+            },
+            {
+                "types": [
+                    "optician"
+                ],
+                "sign": "fa-glasses"
+            },
+            {
+                "types": [
+                    "books"
+                ],
+                "sign": "fa-book"
+            },
+            {
+                "types": [
+                    "sports"
+                ],
+                "sign": "fa-basketball-ball"
+            },
+            {
+                "types": [
+                    "chemist"
+                ],
+                "sign": "fa-tablets"
+            },
+            {
+                "types": [
+                    "pet"
+                ],
+                "sign": "fa-paw"
+            },
+            {
+                "types": [
+                    "mobile_phone"
+                ],
+                "sign": "fa-mobile-alt"
             }
         ]
     },
