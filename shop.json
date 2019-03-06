@@ -56,6 +56,9 @@
             "alcohol": {
                 "sign": "fas:wine-bottle"
             },
+            "wine": {
+                "sign": "fas:wine-bottle"
+            },
             "beverages": {
                 "sign": "fas:wine-bottle"
             },
@@ -212,6 +215,9 @@
             "locksmith": {
                 "sign": "fas:key"
             },
+            "houseware": {
+                "sign": "fas:tools"
+            },
             "doityourself": {
                 "sign": "fas:tools"
             },
@@ -274,6 +280,51 @@
             },
             "pet": {
                 "sign": "fas:paw"
+            },
+            "photo": {
+                "sign": "fas:camera"
+            },
+            "ticket": {
+                "sign": "fas:ticket-alt"
+            },
+            "outdoor": {
+                "sign": "fas:campground"
+            },
+            "massage": {
+                "sign": ""
+            },
+            "paint": {
+                "sign": "fas:paint-roller"
+            },
+            "fabric": {
+                "sign": ""
+            },
+            "trade": {
+                "sign": "fas:tools"
+            },
+            "bookmaker": {
+                "sign": "fas:money-bill-wave"
+            },
+            "kitchen": {
+                "sign": "fas:utensils"
+            },
+            "second_hand": {
+                "sign": ""
+            },
+            "lottery": {
+                "sign": "fas:money-bill-wave"
+            },
+            "pawnbroker": {
+                "sign": "fas:money-bill-wave"
+            },
+            "bed": {
+                "sign": "fas:bed"
+            },
+            "charity": {
+                "sign": "fas:hand-holding-heart"
+            },
+            "tattoo": {
+                "sign": ""
             },
             "mobile_phone": {
                 "sign": "fas:mobile-alt"
