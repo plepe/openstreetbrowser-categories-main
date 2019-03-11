@@ -49,6 +49,17 @@
             "{% else %}",
             "  {{ c|raw }}",
             "{% endif %}"
+        ],
+        "body": [
+            "<ul>",
+            "  {% if tags.clothes %}",
+            "  <li class='hasSymbol'>",
+            "    <i class=\"fas fa-tshirt\" aria-hidden=\"true\"></i>",
+            "    <span class='key'>{{ keyTrans('clothes') }}:</span>",
+            "    <span class='value'>{{ tagTransList('clothes', tags.clothes) }}</span>",
+            "  </li>",
+            "  {% endif %}",
+            "</ul>"
         ]
     },
     "const": {
@@ -335,7 +346,37 @@
             "mobile_phone": {
                 "sign": "fas:mobile-alt"
             }
-        }
+        },
+        "clothes": [
+            "women",
+            "men",
+            "leather",
+            "fur",
+            "underwear",
+            "children",
+            "wedding",
+            "sports",
+            "workwear",
+            "lingerie",
+            "babies",
+            "hats",
+            "fashion",
+            "suits",
+            "unisexs",
+            "traditional",
+            "costumes",
+            "bridal",
+            "oversize",
+            "swimwear",
+            "maternity",
+            "brand",
+            "military",
+            "vintage",
+            "accessories",
+            "schoolwear",
+            "motorcycle",
+            "denim"
+        ]
     },
     "filter": {
         "shop": {
@@ -343,6 +384,13 @@
             "type": "select",
             "show_default": "true",
             "values": "{% set list = [] %}{% for k, v in const.shops %}<option value=\"{{ k }}\">{% set list = list|merge([ k ]) %}{{ tagTrans('shop', k) }}</option>{% endfor %}<option weight='1' value='other' query='nwr[shop][shop!~\"^(|.*;)({{ list|join('|') }})(|;.*)$\"]'>{{ trans('other') }}</option>",
+            "sort": "natsort",
+            "op": "has"
+        },
+        "clothes": {
+            "name": "{{ keyTrans('clothes') }}",
+            "type": "select",
+            "values": "{% set list = [] %}<option weight='-1' value='*' query='nwr[clothes]'>{{ trans('any value') }}</option>{% for k in const.clothes %}{% set list = list|merge([ k ]) %}<option value='{{ k }}'>{{ tagTrans('clothes', k) }}</option>{% endfor %}<option weight='1' value='other' query='nwr[clothes][clothes!~\"^(|.*;)({{ list|join('|') }})(|;.*)$\"]'>{{ trans('other') }}</option>",
             "sort": "natsort",
             "op": "has"
         }
