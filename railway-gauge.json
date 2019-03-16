@@ -1,0 +1,72 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Railway gauge"
+    },
+    "query": {
+        "11": "way[railway=rail][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'][usage~'^(main|branch)$'];",
+        "14": "way[railway][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'];"
+    },
+    "feature": {
+        "pre": "{% set gauges = tags.gauge|split(';') %}",
+        "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
+        "description": [
+            "{% if not tags.gauge %}{{ trans('unknown') }}{% else %}{{ enumerate(tags.gauge|split(';')|join(',')) }}{% endif %}"
+        ],
+        "body": [
+            "{{ tagTrans('railway', tags.railway) }}<br/>",
+            "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}",
+            "{% if tags.usage %}{{ keyTrans('usage') }}: {{ tagTrans('usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}",
+            "{% if tags.service %}{{ keyTrans('service') }}: {{ tagTrans('service', tags.service ) }}<br/>{% endif %}",
+            "{{ keyTrans('gauge') }}: {{ tags.gauge|default(trans('unknown')) }}<br/>",
+            "{% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}"
+        ],
+        "markerSymbol": null,
+        "listMarkerSymbol": "line",
+        "styles": "{% if gauges|length < 2 %}default{% else %}{% for i, v in gauges %}gauge{{ i }}{% endfor %}{% endif %}",
+        "style": {
+            "width": "4",
+            "color": "{% if tags.gauge %}{{ colorInterpolate([ '#00ff00', '#0000ff' ], gauges[0] / 2000) }}{% else %}#404040{% endif %}"
+        },
+        "style:gauge0": {
+            "width": "4",
+            "lineCap": "butt",
+            "color": "{{ colorInterpolate([ '#00ff00', '#0000ff' ], gauges[0] / 2000) }}",
+            "dashArray": "5,{{ (gauges|length - 1) * 5 }}"
+        }
+    },
+    "info": [
+        "<table>",
+        "  {% set color = '#000000' %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'width': 3, 'color': color })|raw }}</td>",
+        "    <td>{{ trans('not electrified') }}</td>",
+        "  </tr>",
+        "{% for i in range(0, 1000, 200) %}",
+        "  {% set color = colorInterpolate([ '#00ff00', 'blue' ], i / 1000) %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'width': 3, 'color': color })|raw }}</td>",
+        "    <td>{{ i }}V</td>",
+        "  </tr>",
+        "{% endfor %}",
+        "",
+        "{% for i in range(3000, 25000, 2000) %}",
+        "  {% set color = colorInterpolate([ 'blue', 'red' ], (i - 1000) / 24000) %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'width': 3, 'color': color })|raw }}</td>",
+        "    <td>{{ i }}V</td>",
+        "  </tr>",
+        "{% endfor %}",
+        "",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'width': 3, 'color': color })|raw }}</td>",
+        "    <td>{{ trans('direct current') }}</td>",
+        "  </tr>",
+        "",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'styles': [ 'casing', 'default' ], 'style:casing': { 'width': 3, 'color': 'white' }, 'style': { 'width': '3', 'dashArray': '5,2', 'lineCap': 'butt', 'color': color } })|raw }}</td>",
+        "    <td>{{ trans('alternating current') }}</td>",
+        "  </tr>",
+        "</table>"
+    ]
+}
