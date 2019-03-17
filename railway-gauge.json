@@ -1,0 +1,82 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Railway gauge"
+    },
+    "query": {
+        "11": "way[railway=rail][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'][usage~'^(main|branch)$'];",
+        "14": "way[railway][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'];"
+    },
+    "feature": {
+        "pre": "{% set gauges = tags.gauge|split(';') %}",
+        "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
+        "description": "{{ tags.gauge|default(trans('unknown'))|enumerate }}",
+        "body": [
+            "{{ tagTrans('railway', tags.railway) }}<br/>",
+            "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}",
+            "{% if tags.usage %}{{ keyTrans('usage') }}: {{ tagTrans('usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}",
+            "{% if tags.service %}{{ keyTrans('service') }}: {{ tagTrans('service', tags.service ) }}<br/>{% endif %}",
+            "{{ keyTrans('gauge') }}: {{ tags.gauge|default(trans('unknown'))|enumerate }}<br/>",
+            "{% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}"
+        ],
+        "markerSymbol": null,
+        "listMarkerSymbol": "line",
+        "styles": "{% if gauges|length < 2 %}default{% else %}{% for i, v in gauges %}{% if i != 0 %},{% endif %}gauge{{ i }}{% endfor %}{% endif %}",
+        "style": {
+            "width": "3",
+            "color": "{% if tags.gauge %}{% if not tags.gauge|matches('^\\d+$') %}#ff0000{% else %}{{ colorInterpolate([ '#00ff00', '#0000ff' ], tags.gauge / 2000) }}{% endif %}{% else %}#404040{% endif %}"
+        },
+        "style:gauge0": {
+            "width": "3",
+            "lineCap": "butt",
+            "color": "{% if not gauges[0]|matches('^[0-9]+$') %}#ff0000{% else %}{{ colorInterpolate([ '#00ff00', '#0000ff' ], gauges[0] / 2000) }}{% endif %}",
+            "dashArray": "5,{{ (gauges|length - 1) * 5 }}"
+        },
+        "style:gauge1": {
+            "width": "3",
+            "lineCap": "butt",
+            "color": "{% if not gauges[1]|matches('^[0-9]+$') %}#ff0000{% else %}{{ colorInterpolate([ '#00ff00', '#0000ff' ], gauges[1] / 2000) }}{% endif %}",
+            "dashArray": "5,{{ (gauges|length - 1) * 5 }}",
+            "dashOffset": "5"
+        },
+        "style:gauge2": {
+            "width": "3",
+            "lineCap": "butt",
+            "color": "{% if not gauges[2]|matches('^\\d+$') %}#ff0000{% else %}{{ colorInterpolate([ '#00ff00', '#0000ff' ], gauges[2] / 2000) }}{% endif %}",
+            "dashArray": "5,{{ (gauges|length - 1) * 5 }}",
+            "dashOffset": "10"
+        },
+        "style:gauge3": {
+            "width": "3",
+            "lineCap": "butt",
+            "color": "{% if not gauges[3]|matches('^\\d+$') %}#ff0000{% else %}{{ colorInterpolate([ '#00ff00', '#0000ff' ], gauges[3] / 2000) }}{% endif %}",
+            "dashArray": "5,{{ (gauges|length - 1) * 5 }}",
+            "dashOffset": "15"
+        }
+    },
+    "info": [
+        "<table>",
+        "  {% set color = '#ff0000' %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'width': 3, 'color': color })|raw }}</td>",
+        "    <td>{{ trans('illegal value') }}</td>",
+        "  </tr>",
+        "  {% set color = '#404040' %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'width': 3, 'color': color })|raw }}</td>",
+        "    <td>{{ trans('unknown') }}</td>",
+        "  </tr>",
+        "{% for i in range(0, 1800, 250) %}",
+        "  {% set color = colorInterpolate([ '#00ff00', '#0000ff' ], i / 2000) %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'width': 3, 'color': color })|raw }}</td>",
+        "    <td>{{ i }}mm</td>",
+        "  </tr>",
+        "{% endfor %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ 'width': 3, 'color': '#0000ff' })|raw }}</td>",
+        "    <td>>2000mm</td>",
+        "  </tr>",
+        "</table>"
+    ]
+}
