@@ -1,4 +1,5 @@
 {
+    "Objects with diet information": "食事制限情報のあるオブジェクト",
     "category:administrative": "行政界",
     "category:agriculture": "農業",
     "category:alternative_amenities": "生活環境",
@@ -60,6 +61,7 @@
     "category:public": "公共サービス",
     "category:railway": "鉄道",
     "category:railway-electrification": "鉄道の電力",
+    "category:railway-gauge": "",
     "category:railway-infrastructure": "鉄道インフラ",
     "category:railway-maxspeed": "鉄道の最高速度",
     "category:railway-routes": "鉄道ルート",
@@ -88,6 +90,5 @@
     "category:xmas": "クリスマス",
     "date format not understood": "",
     "outdated feature": "",
-    "xmas:outdated-warning": "今のシーズンは地物が更新されていません! チェックして現在の日付に'xmas:lastcheck' タグをセットしてください。",
-    "Objects with diet information": "食事制限情報のあるオブジェクト"
+    "xmas:outdated-warning": "今のシーズンは地物が更新されていません! チェックして現在の日付に'xmas:lastcheck' タグをセットしてください。"
 }

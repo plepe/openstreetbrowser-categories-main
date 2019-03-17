@@ -1,4 +1,5 @@
 {
+    "Objects with diet information": "Objets avec information de régime alimentaire",
     "category:administrative": "Zones administratives",
     "category:agriculture": "Agriculture",
     "category:alternative_amenities": "Équipement",
@@ -60,6 +61,7 @@
     "category:public": "Services et équipements publics",
     "category:railway": "Chemins de fer",
     "category:railway-electrification": "Puissance électrique ferroviaire",
+    "category:railway-gauge": "",
     "category:railway-infrastructure": "Infrastructure ferroviaire",
     "category:railway-maxspeed": "Limites de vitesse",
     "category:railway-routes": "Lignes ferroviaires",
@@ -88,6 +90,5 @@
     "category:xmas": "Noël",
     "date format not understood": "",
     "outdated feature": "",
-    "xmas:outdated-warning": "Cet élément n'a pas été mis à jour pour cette saison ! Veuillez vérifier son existence et régler la valeur de \"xmas:lastcheck\" à la date actuelle.",
-    "Objects with diet information": "Objets avec information de régime alimentaire"
+    "xmas:outdated-warning": "Cet élément n'a pas été mis à jour pour cette saison ! Veuillez vérifier son existence et régler la valeur de \"xmas:lastcheck\" à la date actuelle."
 }
