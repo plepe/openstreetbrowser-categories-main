@@ -1,4 +1,5 @@
 {
+    "Objects with diet information": "Objekte mit Ernährungsinformationen",
     "category:administrative": "Administrative Gebiete",
     "category:agriculture": "Landwirtschaft",
     "category:alternative_amenities": "Einrichtungen",
@@ -60,6 +61,7 @@
     "category:public": "Öffentliche Dienste",
     "category:railway": "Eisenbahn",
     "category:railway-electrification": "Eisenbahn Elektrifizierung",
+    "category:railway-gauge": "",
     "category:railway-infrastructure": "Eisenbahn Infrastruktur",
     "category:railway-maxspeed": "Eisenbahn Höchstgeschwindigkeiten",
     "category:railway-routes": "Eisenbahnrouten",
@@ -88,6 +90,5 @@
     "category:xmas": "Weihnachten",
     "date format not understood": "Datumsformat nicht erkannt",
     "outdated feature": "Informationen nicht aktuell",
-    "xmas:outdated-warning": "Objekt wurde nicht für die aktuelle Saison aktualisiert. Bitte prüfen und das Tag 'xmas:lastcheck' auf das aktuelle Datum setzen.",
-    "Objects with diet information": "Objekte mit Ernährungsinformationen"
+    "xmas:outdated-warning": "Objekt wurde nicht für die aktuelle Saison aktualisiert. Bitte prüfen und das Tag 'xmas:lastcheck' auf das aktuelle Datum setzen."
 }

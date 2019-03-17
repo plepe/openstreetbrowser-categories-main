@@ -1,4 +1,5 @@
 {
+    "Objects with diet information": "",
     "category:administrative": "Административные границы",
     "category:agriculture": "Сельское хозяйство",
     "category:alternative_amenities": "Полезные места",
@@ -60,6 +61,7 @@
     "category:public": "Общественные места",
     "category:railway": "Железные дороги",
     "category:railway-electrification": "",
+    "category:railway-gauge": "",
     "category:railway-infrastructure": "",
     "category:railway-maxspeed": "",
     "category:railway-routes": "",

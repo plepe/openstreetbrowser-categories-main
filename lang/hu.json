@@ -1,4 +1,5 @@
 {
+    "Objects with diet information": "Étrend-információt tartalmazó objektumok",
     "category:administrative": "Közigazgatási határok",
     "category:agriculture": "Mezőgazdaság",
     "category:alternative_amenities": "Létesítmények",
@@ -60,6 +61,7 @@
     "category:public": "Közszolgáltatások",
     "category:railway": "Vasút",
     "category:railway-electrification": "Vasút villamosítottsága",
+    "category:railway-gauge": "",
     "category:railway-infrastructure": "Vasúti infrastruktúra",
     "category:railway-maxspeed": "Sebességkorlátozás",
     "category:railway-routes": "Vasútvonalak",
@@ -88,6 +90,5 @@
     "category:xmas": "Karácsony",
     "date format not understood": "Felismerhetetlen dátumformátum",
     "outdated feature": "Elavult információ",
-    "xmas:outdated-warning": "Ebben a szezonban nem frissült az objektum. Ellenőrizze, és állítsa be az <xmas:lastcheck> kulcshoz tartozó értéket a jelenlegi dátumra.",
-    "Objects with diet information": "Étrend-információt tartalmazó objektumok"
+    "xmas:outdated-warning": "Ebben a szezonban nem frissült az objektum. Ellenőrizze, és állítsa be az <xmas:lastcheck> kulcshoz tartozó értéket a jelenlegi dátumra."
 }

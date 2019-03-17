@@ -1,4 +1,5 @@
 {
+    "Objects with diet information": "Objecten met dieet informatie",
     "category:administrative": "Administratieve gebieden",
     "category:agriculture": "Landbouw",
     "category:alternative_amenities": "Voorzieningen",
@@ -60,6 +61,7 @@
     "category:public": "Openbare diensten",
     "category:railway": "Spoorwegen",
     "category:railway-electrification": "Spoorwegelektrificatie",
+    "category:railway-gauge": "",
     "category:railway-infrastructure": "Spoorweginfrastructuur",
     "category:railway-maxspeed": "Spoorweg snelheidslimiet",
     "category:railway-routes": "Spoorwegroutes",
@@ -88,6 +90,5 @@
     "category:xmas": "Kerstmis",
     "date format not understood": "Datumformaat onbekend",
     "outdated feature": "Achterhaalde informatie",
-    "xmas:outdated-warning": "Object werd niet geactualiseerd voor het huidige seizoen! Controleer en zet de tag 'xmas:lastcheck' op de huidige datum alstublieft.",
-    "Objects with diet information": "Objecten met dieet informatie"
+    "xmas:outdated-warning": "Object werd niet geactualiseerd voor het huidige seizoen! Controleer en zet de tag 'xmas:lastcheck' op de huidige datum alstublieft."
 }

@@ -1,4 +1,5 @@
 {
+    "Objects with diet information": "",
     "category:administrative": "Áreas Administrativas",
     "category:agriculture": "Agricultura",
     "category:alternative_amenities": "Instalaciones",
@@ -60,6 +61,7 @@
     "category:public": "Servicios públicos",
     "category:railway": "Ferrocarril",
     "category:railway-electrification": "Electrificación ferroviaria",
+    "category:railway-gauge": "",
     "category:railway-infrastructure": "Infraestructura ferroviaria",
     "category:railway-maxspeed": "Velocidad máxima del ferrocarril",
     "category:railway-routes": "Rutas de ferrocarril",

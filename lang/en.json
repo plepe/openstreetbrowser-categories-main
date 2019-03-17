@@ -1,4 +1,5 @@
 {
+    "Objects with diet information": "Objects with diet information",
     "category:administrative": "Administrative Areas",
     "category:agriculture": "Agriculture",
     "category:alternative_amenities": "Amenities",
@@ -60,6 +61,7 @@
     "category:public": "Public Services",
     "category:railway": "Railway",
     "category:railway-electrification": "Railway electrification",
+    "category:railway-gauge": "Railway gauge",
     "category:railway-infrastructure": "Railway infrastructure",
     "category:railway-maxspeed": "Railway Maxspeed",
     "category:railway-routes": "Railway Routes",
@@ -88,6 +90,5 @@
     "category:xmas": "Christmas",
     "date format not understood": "",
     "outdated feature": "",
-    "xmas:outdated-warning": "Feature has not been updated for the current season! Please check and set the tag 'xmas:lastcheck' to the current date.",
-    "Objects with diet information": "Objects with diet information"
+    "xmas:outdated-warning": "Feature has not been updated for the current season! Please check and set the tag 'xmas:lastcheck' to the current date."
 }

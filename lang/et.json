@@ -1,4 +1,5 @@
 {
+    "Objects with diet information": "",
     "category:administrative": "Administratiivalad",
     "category:agriculture": "Põllumajandus",
     "category:alternative_amenities": "",
@@ -60,6 +61,7 @@
     "category:public": "Kommunaalteenused",
     "category:railway": "Raudtee",
     "category:railway-electrification": "",
+    "category:railway-gauge": "",
     "category:railway-infrastructure": "",
     "category:railway-maxspeed": "",
     "category:railway-routes": "",

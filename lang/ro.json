@@ -1,4 +1,5 @@
 {
+    "Objects with diet information": "",
     "category:administrative": "Zona administrativa",
     "category:agriculture": "Agricultura",
     "category:alternative_amenities": "",
@@ -60,6 +61,7 @@
     "category:public": "Servicii publice",
     "category:railway": "",
     "category:railway-electrification": "",
+    "category:railway-gauge": "",
     "category:railway-infrastructure": "",
     "category:railway-maxspeed": "",
     "category:railway-routes": "",

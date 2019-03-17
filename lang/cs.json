@@ -1,4 +1,5 @@
 {
+    "Objects with diet information": "",
     "category:administrative": "Administrativní oblasti",
     "category:agriculture": "Zemědělství",
     "category:alternative_amenities": "Občanská vybavenost",
@@ -60,6 +61,7 @@
     "category:public": "Veřejné služby",
     "category:railway": "Železnice",
     "category:railway-electrification": "",
+    "category:railway-gauge": "",
     "category:railway-infrastructure": "",
     "category:railway-maxspeed": "",
     "category:railway-routes": "",
