@@ -32,11 +32,25 @@
             "node[historic][historic!~\"^(memorial|monument|wayside_cross|wayside_shrine|wayside_chapel)$\"];",
             "way[historic][historic!~\"^(memorial|monument|wayside_cross|wayside_shrine|wayside_chapel)$\"];",
             "relation[historic][historic!~\"^(memorial|monument|wayside_cross|wayside_shrine|wayside_chapel)$\"];",
+            "node[memorial~\"^(flood_mark|high_water_mark)$\"];",
+            "node[\"memorial:type\"~\"^(flood_mark|high_water_mark)$\"];",
+            "node[flood_mark];",
             ")"
         ]
     },
     "feature": {
-        "description": "{{ tagTransList('historic', tags.historic) }}",
+        "description": [
+            "{% set historic = tags.historic %}",
+            "{% if attribute(tags, 'memorial') == 'high_water_mark' or attribute(tags, 'memorial:type') == 'high_water_mark' or attribute(tags, 'memorial') == 'flood_mark' or attribute(tags, 'memorial:type') == 'flood_mark' or tags.historic == 'highwater_mark' or (tags.historic != 'flood_mark' and tags.flood_mark) %}",
+            "{{ tagTrans('historic', 'flood_mark') }}",
+            "{{ debug(id ~ ': Deprecated tagging. Please use historic=flood_mark.') }}",
+            "{% set historic = 'flood_mark' %}",
+            "{% else %}",
+            "{{ tagTransList('historic', tags.historic) }}",
+            "{% endif %}",
+            "",
+            "{% if tags.flood_mark and tags.flood_mark != 'yes' %}({{ tagTrans('flood_mark', tags.flood_mark) }}){% endif %}"
+        ],
         "body": [
             "<ul>",
             "{% if tags.inscription %}",
@@ -66,9 +80,23 @@
             "   <span class='key'>{{ keyTrans('memorial:conflict') }}:</span>",
             "   <span class='value'>{{ tagTransList('memorial:conflict', attribute(tags, 'memorial:conflict')) }}</span>",
             "  </li>",
+            "{% endif %}",
+            "",
+            "{% if tags.flood_date %}",
+            "  <li class='hasSymbol'>",
+            "   <i class=\"fas fa-calendar-alt\"></i>",
+            "   <span class='key'>{{ keyTrans('flood_date') }}:</span>",
+            "   <span class='value'>",
+            "     {% set flood_dates = [] %}",
+            "     {% for d in tags.flood_date|split(';') %}",
+            "       {% set flood_dates = flood_dates|merge([ d|trim|osmFormatDate ]) %}",
+            "     {% endfor %}",
+            "     {{ flood_dates|enumerate }}",
+            "   </span>",
+            "  </li>",
             "{% endif %}"
         ],
-        "markerSign": "{{ const[tags.historic].sign|raw }}"
+        "markerSign": "{{ const[historic].sign|raw }}"
     },
     "info": [
         "<table>",
@@ -112,6 +140,11 @@
         "ruins": {
             "sign": "<img data-src='temaki:ruins'>",
             "zoom": 14
+        },
+        "flood_mark": {
+            "sign": "<i class=\"fas fa-water\"></i>",
+            "zoom": 14,
+            "query": "(node[historic][memorial~\"^(flood_mark|high_water_mark)$\"];node[historic][\"memorial:type\"~\"^(flood_mark|high_water_mark)$\"];node[historic~\"^(highwater_mark|flood_mark)$\"];)"
         }
     },
     "filter": {
@@ -120,7 +153,7 @@
             "show_default": "true",
             "name": "{{ trans('filter:type') }}",
             "type": "select",
-            "values": "{% set list = [] %}{% for t, v in const %}<option value=\"{{ t }}\">{% set list = list|merge([ t ]) %}{{ tagTrans('historic', t) }}</option>{% endfor %}<option value='other' query='nwr[historic][historic!~\"^({{ list|join('|') }})$\"]'>{{ trans('other') }}</option>",
+            "values": "{% set list = [] %}{% for t, v in const %}<option value=\"{{ t }}\" {% if const[t].query %}query='{{ const[t].query }}'{% endif %}>{% set list = list|merge([ t ]) %}{{ tagTrans('historic', t) }}</option>{% endfor %}<option value='other' query='nwr[historic][historic!~\"^({{ list|join('|') }})$\"]'>{{ trans('other') }}</option>",
             "valueName": "{{ tagTrans('historic', value) }}"
         },
         "conflict": {
