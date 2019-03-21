@@ -94,7 +94,7 @@
         "{% if data.zoom <= map.zoom %}",
         "  <tr>",
         "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
-        "    <td>{{ tagTrans('memorial', value) }}{% for alias in data.alias %}, {{ tagTrans('memorial', alias) }}{% endfor %}</td>",
+        "    <td>{{ tagTrans('memorial', value) }}</td>",
         "  </tr>",
         "{% endif %}",
         "{% endfor %}",
@@ -134,12 +134,15 @@
             "zoom": 14
         },
         "bust": {
-            "alias": [ "person" ],
+            "alias": [ "person", "public_person" ],
             "sign": "<i class=\"fas fa-user-alt\"></i>",
             "zoom": 14
         },
         "stele": {
-            "alias": [ "obelisk" ],
+            "sign": "",
+            "zoom": 14
+        },
+        "obelisk": {
             "sign": "",
             "zoom": 14
         },
@@ -159,16 +162,6 @@
         "cross": {
             "sign": "<i class=\"fas fa-cross\"></i>",
             "zoom": 14
-        },
-        "flood_mark": {
-            "alias": [ "high_water_mark" ],
-            "sign": "<i class=\"fas fa-water\"></i>",
-            "zoom": 14
-        },
-        "grave": {
-            "alias": [ "graveyard" ],
-            "sign": "",
-            "zoom": 14
         }
     },
     "filter": {
@@ -176,7 +169,7 @@
             "name": "{{ trans('filter:type') }}",
             "show_default": "true",
             "type": "select",
-            "values": "{% for k, v in const %}<option value='{{ k }}' query='nwr[~\"^(memorial|memorial:type|memorial_type|monument)$\"~\"^({{ k }}{% for alias in v.alias %}|{{ alias }}{% endfor %})$\"]'>{{ tagTrans('memorial', k) }}{% for alias in v.alias %}, {{ tagTrans('memorial', alias) }}{% endfor %}</option>{% endfor %}"
+            "values": "{% for k, v in const %}<option value='{{ k }}' query='nwr[~\"^(memorial|memorial:type|memorial_type|monument)$\"~\"^({{ k }}{% for alias in v.alias %}|{{ alias }}{% endfor %})$\"]'>{{ tagTrans('memorial', k) }}</option>{% endfor %}"
         },
         "size": {
             "name": "{{ keyTrans('memorial') }} | {{ keyTrans('monument') }}",
