@@ -1,12 +1,5 @@
 {
     "type": "overpass",
-    "name": {
-        "de": "Denkmäler",
-        "en": "Memorials",
-        "fr": "Mémoriaux",
-        "hu": "Emlékművek",
-        "pt-br": "Memoriais"
-    },
     "query": {
         "11": [
             "(",
@@ -184,6 +177,12 @@
             "show_default": "true",
             "type": "select",
             "values": "{% for k, v in const %}<option value='{{ k }}' query='nwr[~\"^(memorial|memorial:type|memorial_type|monument)$\"~\"^({{ k }}{% for alias in v.alias %}|{{ alias }}{% endfor %})$\"]'>{{ tagTrans('memorial', k) }}{% for alias in v.alias %}, {{ tagTrans('memorial', alias) }}{% endfor %}</option>{% endfor %}"
+        },
+        "size": {
+            "name": "{{ keyTrans('memorial') }} | {{ keyTrans('monument') }}",
+            "type": "radio",
+            "values": "<option value='*' query=''>{{ trans('any value') }}</option>\n<option value='memorial' query='nwr[historic=memorial]'>{{ keyTrans('memorial') }}</option>\n<option value='monument' query='nwr[historic=monument]'>{{ keyTrans('monument') }}</option>",
+            "default": "*"
         },
         "conflict": {
             "key": "memorial:conflict",
