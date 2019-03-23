@@ -1,5 +1,5 @@
 {
-    "Objects with diet information": "",
+    "Objects with diet information": "Objetos com informações sobre dieta",
     "category:administrative": "Divisão político-administrativa",
     "category:agriculture": "Agricultura",
     "category:alternative_amenities": "Equipamentos",
@@ -61,7 +61,7 @@
     "category:public": "Utilidade pública",
     "category:railway": "Ferrovia",
     "category:railway-electrification": "Eletrificação ferroviária",
-    "category:railway-gauge": "",
+    "category:railway-gauge": "Calibre ferroviário",
     "category:railway-infrastructure": "Infraestrutura ferroviária",
     "category:railway-maxspeed": "Velocidade máxima",
     "category:railway-routes": "Rotas ferroviárias",
