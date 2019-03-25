@@ -22,23 +22,39 @@
             "nwr[natural~\"^(water|divide|bay|strait|spring|hot_spring|geyser)$\"];",
             "relation[type=multipolygon][natural=water];",
             "relation[type=multipolygon][waterway=riverbank];",
-            "way[waterway];",
+            "nwr[waterway];",
             ")"
         ]
     },
     "feature": {
-        "description": [
+        "pre": [
             "{% if tags.waterway %}",
-            "{{ tagTrans('waterway', tags.waterway) }}",
+            "  {% set key = 'waterway' %}",
+            "  {% set value = tags.waterway %}",
             "{% elseif tags.water %}",
-            "{{ tagTrans('water', tags.water) }}",
+            "  {% set key = 'water' %}",
+            "  {% set value = tags.water %}",
             "{% elseif tags.natural %}",
-            "{{ tagTrans('natural', tags.natural) }}",
+            "  {% set key = 'natural' %}",
+            "  {% set value = tags.natural %}",
+            "{% endif %}",
+            "{% set kv = key ~ '=' ~ value %}"
+        ],
+        "description": [
+            "{{ tagTrans(key, value) }}"
+        ],
+        "markerSign": [
+            "{{ const[kv].sign|raw }}"
+        ],
+        "markerSymbol": [
+            "{% if const[kv].symbol == 'pointer' %}",
+            "{{ markerPointer({ fillColor: '#3388ff' })|raw }}",
             "{% endif %}"
         ],
-        "markerSymbol": null,
         "listMarkerSymbol": [
-            "{% if tags.natural == 'water' %}",
+            "{% if const[kv].symbol == 'pointer' %}",
+            "{{ markerCircle({ fillColor: '#3388ff' })|raw }}",
+            "{% elseif tags.natural == 'water' %}",
             "polygon",
             "{% else %}",
             "line",
@@ -88,6 +104,24 @@
             "textRepeat": "1"
         }
     },
+    "const": {
+        "natural=spring": {
+            "sign": "<i class='fas fa-water'></i>",
+            "symbol": "pointer"
+        },
+        "natural=hot_spring": {
+            "sign": "<i style='color: orange;' class='fas fa-water'></i>",
+            "symbol": "pointer"
+        },
+        "natural=geyser": {
+            "sign": "<i style='color: red;' class='fas fa-water'></i>",
+            "symbol": "pointer"
+        },
+        "waterway=waterfall": {
+            "sign": "<img data-src='maki:waterfall'>",
+            "symbol": "pointer"
+        }
+    },
     "info": [
         "<table>",
         "  <tr>",
@@ -112,6 +146,12 @@
         "    <td>{{ markerLine(evaluate({ \"waterway\": \"dam\" }))|raw }}</td>",
         "    <td>{{ tagTrans('waterway', 'dam') }}, {{ tagTrans('waterway', 'weir') }}</td>",
         "  </tr>",
+        "  {% for k, data in const %}",
+        "    <tr>",
+        "      <td>{{ markerCircle({ fillColor: '#3388ff' })|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "      <td>{{ tagTrans(k) }}</td>",
+        "    </tr>",
+        "  {% endfor %}",
         "{% endif %}",
         "  <tr>",
         "    <td>{{ markerLine(evaluate({ \"natural\": \"divide\" }))|raw }}</td>",
