@@ -24,16 +24,12 @@
         ],
         "13": [
             "(",
-            "node[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
-            "way[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
-            "relation[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
+            "nwr[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|wetland|glacier|cape|beach|coastline|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
             ")"
         ],
         "16": [
             "(",
-            "node[natural][natural!~\"^(water)$\"];",
-            "way[natural][natural!~\"^(water)$\"];",
-            "relation[natural][natural!~\"^(water)$\"];",
+            "nwr[natural][natural!~\"^(water|divide|bay|strait|spring|hot_spring|geyser)$\"];",
             ")"
         ]
     },
@@ -126,19 +122,11 @@
             "color": "white",
             "group": "water"
         },
-        "bay": {
-            "sign": "",
-            "group": "water"
-        },
         "cape": {
             "sign": "",
             "group": "water"
         },
         "peninsula": {
-            "sign": "",
-            "group": "water"
-        },
-        "strait": {
             "sign": "",
             "group": "water"
         },
@@ -148,18 +136,6 @@
             "group": "water"
         },
         "coastline": {
-            "sign": "",
-            "group": "water"
-        },
-        "spring": {
-            "sign": "",
-            "group": "water"
-        },
-        "hot_spring": {
-            "sign": "",
-            "group": "water"
-        },
-        "geyser": {
             "sign": "",
             "group": "water"
         },
