@@ -46,6 +46,17 @@
         "markerSymbol": "{{ markerPointer({ fillColor: const[tags.natural].color|default('#f2756a') })|raw }}",
         "listMarkerSymbol": "{{ markerCircle({ fillColor: const[tags.natural].color|default('#f2756a') })|raw }}"
     },
+    "filter": {
+        "type": {
+            "name": "{{ trans('filter:type') }}",
+            "key": "natural",
+            "type": "select",
+            "show_default": "true",
+            "values": "{% set list = [] %}{% for k, v in const %}<option value=\"{{ k }}\">{% set list = list|merge([ k ]) %}{{ tagTrans('natural', k) }}</option>{% endfor %}<option weight='1' value='other' query='nwr[natural][natural!~\"^(|.*;)({{ list|join('|') }})(|;.*)$\"]'>{{ trans('other') }}</option>",
+            "sort": "natsort",
+            "op": "has"
+        }
+    },
     "const": {
         "wood": {
             "sign": "<i class='fas fa-tree'></i>",
