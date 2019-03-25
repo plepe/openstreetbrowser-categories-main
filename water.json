@@ -12,15 +12,14 @@
         "10": [
             "(",
             "way[waterway~\"^(river|canal)$\"];",
-            "way[natural~\"^(divide)$\"];",
+            "nwr[natural~\"^(divide|bay|strait)$\"];",
             "way[natural=water][water~\"^(lake|lagoon|reservoir|canal)$\"];",
             "relation[natural=water][type=multipolygon][water~\"^(lake|lagoon|reservoir|canal)$\"];",
             ")"
         ],
         "13": [
             "(",
-            "node[natural~\"^(water|divide)$\"];",
-            "way[natural~\"^(water|divide)$\"];",
+            "nwr[natural~\"^(water|divide|bay|strait|spring|hot_spring|geyser)$\"];",
             "relation[type=multipolygon][natural=water];",
             "relation[type=multipolygon][waterway=riverbank];",
             "way[waterway];",
