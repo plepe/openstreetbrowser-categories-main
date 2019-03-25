@@ -29,6 +29,9 @@
             "{% set current = const.default %}",
             "{% if const.shops[shop0] %}",
             "  {% set current = const.shops[shop0] %}",
+            "{% endif %}",
+            "{% if not tags.opening_hours %}",
+            "{{ qaSuggested({ key: 'opening_hours' }) }}",
             "{% endif %}"
         ],
         "description": [
