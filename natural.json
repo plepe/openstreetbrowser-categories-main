@@ -42,6 +42,192 @@
             "{{ localizedTag(tags, 'name') | default(trans('unnamed')) }}",
             "{% if tags.natural == 'peak' and tags.ele %}({{ tags.ele }}m){% endif %}"
         ],
-        "description": "{{ tagTrans('natural', tags.natural) }}"
+        "description": "{{ tagTrans('natural', tags.natural) }}",
+        "style": {
+            "color": "{{ const[tags.natural].color|default('#f2756a') }}"
+        },
+        "markerSign": "<span style='color: white'>{{ const[tags.natural].sign|raw }}</span>",
+        "markerSymbol": "{{ markerPointer({ fillColor: const[tags.natural].color|default('#f2756a') })|raw }}",
+        "listMarkerSymbol": "{{ markerCircle({ fillColor: const[tags.natural].color|default('#f2756a') })|raw }}"
+    },
+    "const": {
+        "wood": {
+            "sign": "<i class='fas fa-tree'></i>",
+            "color": "darkgreen",
+            "group": "vegetation"
+        },
+        "tree_row": {
+            "sign": "<i class='fas fa-tree'></i>",
+            "color": "darkgreen",
+            "group": "vegetation"
+        },
+        "tree": {
+            "sign": "<i class='fas fa-tree'></i>",
+            "color": "darkgreen",
+            "group": "vegetation"
+        },
+        "scrub": {
+            "sign": "",
+            "color": "green",
+            "group": "vegetation"
+        },
+        "heath": {
+            "sign": "",
+            "color": "green",
+            "group": "vegetation"
+        },
+        "moor": {
+            "sign": "",
+            "color": "#8aba50",
+            "group": "vegetation"
+        },
+        "grassland": {
+            "sign": "",
+            "color": "#00dd24",
+            "group": "vegetation"
+        },
+        "fell": {
+            "sign": "",
+            "color": "#49ba91",
+            "group": "vegetation"
+        },
+        "bare_rock": {
+            "sign": "",
+            "color": "#6f6f6f",
+            "group": "vegetation"
+        },
+        "scree": {
+            "sign": "",
+            "color": "#6f6f6f",
+            "group": "vegetation"
+        },
+        "shingle": {
+            "sign": "",
+            "color": "#6f6f6f",
+            "group": "vegetation"
+        },
+        "sand": {
+            "sign": "",
+            "color": "#f9d199",
+            "group": "vegetation"
+        },
+        "mud": {
+            "sign": "<img data-src='maki:wetland?fill=white'>",
+            "color": "#988b00",
+            "group": "vegetation"
+        },
+        "water": {
+            "sign": "<i class='fas fa-water'></i>",
+            "color": "blue",
+            "group": "water"
+        },
+        "wetland": {
+            "sign": "<img data-src='maki:wetland?fill=white'>",
+            "color": "#00baff",
+            "group": "water"
+        },
+        "glacier": {
+            "sign": "<i style='color: black;' class='fas fa-icicles'></i>",
+            "color": "white",
+            "group": "water"
+        },
+        "bay": {
+            "sign": "",
+            "group": "water"
+        },
+        "cape": {
+            "sign": "",
+            "group": "water"
+        },
+        "peninsula": {
+            "sign": "",
+            "group": "water"
+        },
+        "strait": {
+            "sign": "",
+            "group": "water"
+        },
+        "beach": {
+            "sign": "<i class='fas fa-umbrella-beach'></i>",
+            "color": "#f9d199",
+            "group": "water"
+        },
+        "coastline": {
+            "sign": "",
+            "group": "water"
+        },
+        "spring": {
+            "sign": "",
+            "group": "water"
+        },
+        "hot_spring": {
+            "sign": "",
+            "group": "water"
+        },
+        "geyser": {
+            "sign": "",
+            "group": "water"
+        },
+        "reef": {
+            "sign": "",
+            "group": "water"
+        },
+        "peak": {
+            "sign": "<i class='fas fa-mountain'></i>",
+            "color": "#4f4f4f",
+            "group": "landform"
+        },
+        "hill": {
+            "sign": "",
+            "group": "landform"
+        },
+        "volcano": {
+            "sign": "",
+            "group": "landform"
+        },
+        "valley": {
+            "sign": "",
+            "group": "landform"
+        },
+        "river_terrace": {
+            "sign": "",
+            "group": "landform"
+        },
+        "ridge": {
+            "sign": "",
+            "group": "landform"
+        },
+        "arete": {
+            "sign": "",
+            "group": "landform"
+        },
+        "cliff": {
+            "sign": "",
+            "color": "#4f4f4f",
+            "group": "landform"
+        },
+        "saddle": {
+            "sign": "",
+            "color": "#4f4f4f",
+            "group": "landform"
+        },
+        "rock": {
+            "sign": "",
+            "color": "#4f4f4f",
+            "group": "landform"
+        },
+        "stone": {
+            "sign": "",
+            "color": "#4f4f4f",
+            "group": "landform"
+        },
+        "sinkhole": {
+            "sign": "",
+            "group": "landform"
+        },
+        "cave_entrance": {
+            "sign": "",
+            "group": "landform"
+        }
     }
 }
