@@ -124,10 +124,12 @@
         },
         "cape": {
             "sign": "",
+            "color": "#1d7500",
             "group": "water"
         },
         "peninsula": {
             "sign": "",
+            "color": "#1d7500",
             "group": "water"
         },
         "beach": {
@@ -137,10 +139,12 @@
         },
         "coastline": {
             "sign": "",
+            "color": "blue",
             "group": "water"
         },
         "reef": {
             "sign": "",
+            "color": "#005fbd",
             "group": "water"
         },
         "peak": {
@@ -150,26 +154,32 @@
         },
         "hill": {
             "sign": "",
+            "color": "#4f4f4f",
             "group": "landform"
         },
         "volcano": {
             "sign": "",
+            "color": "#cf3a00",
             "group": "landform"
         },
         "valley": {
             "sign": "",
+            "color": "#1d7500",
             "group": "landform"
         },
         "river_terrace": {
             "sign": "",
+            "color": "#a0a500",
             "group": "landform"
         },
         "ridge": {
             "sign": "",
+            "color": "#4f4f4f",
             "group": "landform"
         },
         "arete": {
             "sign": "",
+            "color": "#4f4f4f",
             "group": "landform"
         },
         "cliff": {
@@ -194,10 +204,17 @@
         },
         "sinkhole": {
             "sign": "",
+            "color": "#a0a500",
             "group": "landform"
         },
         "cave_entrance": {
             "sign": "",
+            "color": "#000000",
+            "group": "landform"
+        },
+        "isthmus": {
+            "sign": "",
+            "color": "#1d7500",
             "group": "landform"
         }
     }
