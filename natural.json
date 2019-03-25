@@ -24,16 +24,16 @@
         ],
         "13": [
             "(",
-            "node[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|water|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
-            "way[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|water|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
-            "relation[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|water|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
+            "node[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
+            "way[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
+            "relation[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
             ")"
         ],
         "16": [
             "(",
-            "node[natural];",
-            "way[natural];",
-            "relation[natural];",
+            "node[natural][natural!~\"^(water)$\"];",
+            "way[natural][natural!~\"^(water)$\"];",
+            "relation[natural][natural!~\"^(water)$\"];",
             ")"
         ]
     },
@@ -115,11 +115,6 @@
             "sign": "<img data-src='maki:wetland?fill=white'>",
             "color": "#988b00",
             "group": "vegetation"
-        },
-        "water": {
-            "sign": "<i class='fas fa-water'></i>",
-            "color": "blue",
-            "group": "water"
         },
         "wetland": {
             "sign": "<img data-src='maki:wetland?fill=white'>",
