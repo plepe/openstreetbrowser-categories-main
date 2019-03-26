@@ -122,6 +122,16 @@
             "symbol": "pointer"
         }
     },
+    "filter": {
+        "type": {
+            "name": "{{ trans('filter:type') }}",
+            "key": "natural",
+            "type": "select",
+            "show_default": "true",
+            "values": "{% for k, v in const %}<option value=\"{{ k }}\" query=\"nwr[{{ k }}]\">{{ tagTrans(k) }}</option>{% endfor %}",
+            "sort": "natsort"
+        }
+    },
     "info": [
         "<table>",
         "  <tr>",
