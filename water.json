@@ -70,7 +70,9 @@
                 "{{ tags.name }}   ➔   ",
                 "{% endif %}"
             ],
-            "textRepeat": "1"
+            "textRepeat": "1",
+            "dashArray": "{% if tags.intermittent == 'yes' %}5,5{% endif %}",
+            "lineCap": "{% if tags.intermittent == 'yes' %}butt{% else %}round{% endif %}"
         }
     },
     "const": {
@@ -243,6 +245,10 @@
         "    </tr>",
         "    {% endif %}",
         "  {% endfor %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ width: 3, color: '#3388ff', dashArray: '5,5', lineCap: 'butt' })|raw }}</td>",
+        "    <td>{{ keyTrans('intermittent') }}</td>",
+        "  </tr>",
         "</table>"
     ]
 }
