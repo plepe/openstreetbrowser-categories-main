@@ -44,6 +44,16 @@
         "description": [
             "{{ tagTrans(key, value) }}"
         ],
+        "body": [
+            "<ul>",
+            "{% if tags.intermittent %}",
+            "  <li class='hasSymbol'>",
+            "   <i class=\"far fa-circle\"></i>",
+            "   <span class='key'>{{ keyTrans('intermittent') }}:</span>",
+            "   <span class='value'>{{ tagTrans('intermittent', tags.intermittent) }}</span>",
+            "{% endif %}",
+            "</ul>"
+        ],
         "markerSign": [
             "{{ const[kv].sign|raw }}"
         ],
@@ -225,6 +235,12 @@
             "show_default": "true",
             "values": "{% for k, data in const %}<option value=\"{{ k }}\" query=\"(nwr[{{ k }}];{% for a in data.alias %}nwr[{{ a }}];{% endfor %})\">{{ tagTrans(k) }}</option>{% endfor %}",
             "sort": "natsort"
+        },
+        "intermittent": {
+            "name": "{{ keyTrans('intermittent') }}",
+            "key": "intermittent",
+            "type": "radio",
+            "values": "<option value='yes' query=\"nwr[intermittent][intermittent!=no]\">{{ tagTrans('intermittent', 'yes') }}</option><option value='no' query=\"(nwr[!intermittent];nwr[intermittent=no];)\">{{ tagTrans('intermittent', 'no') }}</option>"
         }
     },
     "info": [
