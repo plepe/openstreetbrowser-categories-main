@@ -38,7 +38,8 @@
             "  {% set key = 'natural' %}",
             "  {% set value = tags.natural %}",
             "{% endif %}",
-            "{% set kv = key ~ '=' ~ value %}"
+            "{% set kv = key ~ '=' ~ value %}",
+            "{% set data = const[kv]|default(const['natural=water']) %}"
         ],
         "description": [
             "{{ tagTrans(key, value) }}"
@@ -47,57 +48,25 @@
             "{{ const[kv].sign|raw }}"
         ],
         "markerSymbol": [
-            "{% if const[kv].symbol == 'pointer' %}",
+            "{% if data.symbol == 'pointer' %}",
             "{{ markerPointer({ fillColor: '#3388ff' })|raw }}",
             "{% endif %}"
         ],
         "listMarkerSymbol": [
-            "{% if const[kv].symbol == 'pointer' %}",
+            "{% if data.symbol == 'pointer' %}",
             "{{ markerCircle({ fillColor: '#3388ff' })|raw }}",
-            "{% elseif tags.natural == 'water' %}",
+            "{% elseif data.symbol == 'polygon' %}",
             "polygon",
             "{% else %}",
             "line",
             "{% endif %}"
         ],
-        "priority": [
-            "{% if tags.natural == 'divide' %}",
-            "0",
-            "{% elseif tags.natural == 'water' and tags.water in ['lake', 'lagoon', 'reservoir', 'canal'] %}",
-            "0",
-            "{% elseif tags.waterway == 'river' %}",
-            "1",
-            "{% elseif tags.waterway == 'stream' or tags.waterway == 'drain' %}",
-            "3",
-            "{% elseif tags.waterway == 'ditch' %}",
-            "5",
-            "{% else %}",
-            "2",
-            "{% endif %}"
-        ],
+        "priority": "{{ data.priority }}",
         "style": {
-            "width": [
-                "{% if tags.waterway == 'river' %}",
-                "4",
-                "{% elseif tags.waterway == 'stream' or tags.waterway == 'drain' %}",
-                "2",
-                "{% elseif tags.waterway == 'ditch' %}",
-                "1",
-                "{% else %}",
-                "3",
-                "{% endif %}"
-            ],
-            "color": [
-                "{% if tags.natural == 'divide' %}",
-                "#ff0000",
-                "{% elseif tags.waterway in [ 'dam', 'weir' ] %}",
-                "#000000",
-                "{% else %}",
-                "#3388ff",
-                "{% endif %}"
-            ],
+            "width": "{{ data.style.width }}",
+            "color": "{{ data.style.color }}",
             "text": [
-                "{% if type=='way' and tags.waterway in [ 'river', 'stream', 'canal', 'ditch', 'wadi', 'drystream', 'drain' ] %}",
+                "{% if data.text %}",
                 "{{ tags.name }}   ➔   ",
                 "{% endif %}"
             ],
@@ -105,21 +74,145 @@
         }
     },
     "const": {
+        "natural=water": {
+            "zoom": 10,
+            "symbol": "polygon",
+            "style": {
+                "width": 3,
+                "color": "#3388ff"
+            },
+            "priority": 2
+        },
+        "water=lake": {
+            "zoom": 10,
+            "symbol": "polygon",
+            "style": {
+                "width": 3,
+                "color": "#3388ff"
+            },
+            "hideInfo": true,
+            "priority": 0
+        },
+        "water=lagoon": {
+            "zoom": 10,
+            "symbol": "polygon",
+            "style": {
+                "width": 3,
+                "color": "#3388ff"
+            },
+            "hideInfo": true,
+            "priority": 0
+        },
+        "water=reservoir": {
+            "zoom": 10,
+            "symbol": "polygon",
+            "style": {
+                "width": 3,
+                "color": "#3388ff"
+            },
+            "hideInfo": true,
+            "priority": 0
+        },
+        "waterway=river": {
+            "zoom": 10,
+            "symbol": "line",
+            "style": {
+                "width": 4,
+                "color": "#3388ff"
+            },
+            "text": true,
+            "priority": 1
+        },
+        "waterway=canal": {
+            "alias": [
+                "water=canal"
+            ],
+            "zoom": 10,
+            "symbol": "line",
+            "style": {
+                "width": 4,
+                "color": "#3388ff"
+            },
+            "text": true,
+            "priority": 1
+        },
+        "waterway=stream": {
+            "zoom": 13,
+            "symbol": "line",
+            "style": {
+                "width": 2,
+                "color": "#3388ff"
+            },
+            "text": true,
+            "priority": 3
+        },
+        "waterway=drain": {
+            "zoom": 13,
+            "symbol": "line",
+            "style": {
+                "width": 2,
+                "color": "#3388ff"
+            },
+            "text": true,
+            "priority": 3
+        },
+        "waterway=ditch": {
+            "zoom": 13,
+            "symbol": "line",
+            "style": {
+                "width": 1,
+                "color": "#3388ff"
+            },
+            "text": true,
+            "priority": 5
+        },
         "natural=spring": {
             "sign": "<i class='fas fa-water'></i>",
+            "zoom": 13,
             "symbol": "pointer"
         },
         "natural=hot_spring": {
             "sign": "<i style='color: orange;' class='fas fa-water'></i>",
+            "zoom": 13,
             "symbol": "pointer"
         },
         "natural=geyser": {
             "sign": "<i style='color: red;' class='fas fa-water'></i>",
+            "zoom": 13,
             "symbol": "pointer"
         },
         "waterway=waterfall": {
             "sign": "<img data-src='maki:waterfall'>",
+            "zoom": 13,
             "symbol": "pointer"
+        },
+        "waterway=dam": {
+            "zoom": 13,
+            "symbol": "line",
+            "style": {
+                "width": 3,
+                "color": "#000000"
+            },
+            "priority": 3
+        },
+        "waterway=weir": {
+            "zoom": 13,
+            "symbol": "line",
+            "style": {
+                "width": 3,
+                "color": "#000000"
+            },
+            "priority": 3
+        },
+        "natural=divide": {
+            "zoom": 10,
+            "symbol": "line",
+            "style": {
+                "width": 3,
+                "color": "#ff0000"
+            },
+            "text": true,
+            "priority": 0
         }
     },
     "filter": {
@@ -128,45 +221,28 @@
             "key": "natural",
             "type": "select",
             "show_default": "true",
-            "values": "{% for k, v in const %}<option value=\"{{ k }}\" query=\"nwr[{{ k }}]\">{{ tagTrans(k) }}</option>{% endfor %}",
+            "values": "{% for k, data in const %}<option value=\"{{ k }}\" query=\"(nwr[{{ k }}];{% for a in data.alias %}nwr[{{ a }}];{% endfor %})\">{{ tagTrans(k) }}</option>{% endfor %}",
             "sort": "natsort"
         }
     },
     "info": [
         "<table>",
-        "  <tr>",
-        "    <td>{{ markerPolygon(evaluate({ \"natural\": \"water\" }))|raw }}</td>",
-        "    <td>{{ tagTrans('natural', 'water') }}</td>",
-        "  </tr>",
-        "  <tr>",
-        "    <td>{{ markerLine(evaluate({ \"waterway\": \"river\" }))|raw }}</td>",
-        "    <td>{{ tagTrans('waterway', 'river') }},",
-        " {{ tagTrans('waterway', 'canal') }}</td>",
-        "  </tr>",
-        "{% if map.zoom >= 13 %}",
-        "  <tr>",
-        "    <td>{{ markerLine(evaluate({ \"waterway\": \"stream\" }))|raw }}</td>",
-        "    <td>{{ tagTrans('waterway', 'stream') }}, {{ tagTrans('waterway', 'drain') }}</td>",
-        "  </tr>",
-        "  <tr>",
-        "    <td>{{ markerLine(evaluate({ \"waterway\": \"ditch\" }))|raw }}</td>",
-        "    <td>{{ tagTrans('waterway', 'ditch') }}</td>",
-        "  </tr>",
-        "  <tr>",
-        "    <td>{{ markerLine(evaluate({ \"waterway\": \"dam\" }))|raw }}</td>",
-        "    <td>{{ tagTrans('waterway', 'dam') }}, {{ tagTrans('waterway', 'weir') }}</td>",
-        "  </tr>",
         "  {% for k, data in const %}",
+        "    {% if not data.hideInfo and data.zoom <= map.zoom %}",
         "    <tr>",
-        "      <td>{{ markerCircle({ fillColor: '#3388ff' })|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "      <td>",
+        "      {% if data.symbol == 'pointer' %}",
+        "        {{ markerCircle({ fillColor: '#3388ff' })|raw }}<div class='sign'>{{ data.sign|raw }}</div>",
+        "      {% elseif data.symbol == 'polygon' %}",
+        "        {{ markerPolygon(data.style)|raw }}",
+        "      {% elseif data.symbol == 'line' %}",
+        "        {{ markerLine(data.style)|raw }}",
+        "      {% endif %}",
+        "      </td>",
         "      <td>{{ tagTrans(k) }}</td>",
         "    </tr>",
+        "    {% endif %}",
         "  {% endfor %}",
-        "{% endif %}",
-        "  <tr>",
-        "    <td>{{ markerLine(evaluate({ \"natural\": \"divide\" }))|raw }}</td>",
-        "    <td>{{ tagTrans('natural', 'divide') }}</td>",
-        "  </tr>",
         "</table>"
     ]
 }
