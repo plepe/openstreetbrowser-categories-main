@@ -19,15 +19,20 @@
     "query": {
         "9": [
             "(",
-            "node[natural~\"^(peak|volcano)$\"];",
+            "node[natural~\"^(peak|volcano|valley)$\"];",
             ")"
         ],
         "13": [
             "(",
-            "nwr[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|wetland|glacier|cape|beach|coastline|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
+            "nwr[natural~\"^(peak|volcano|wood|glacier|cape|peninsula|beach|coastline|reef|hill|valley|ridge|arete|saddle|sinkhole|cave_entrance|isthmus)$\"];",
             ")"
         ],
         "16": [
+            "(",
+            "nwr[natural][natural!~\"^(water|divide|bay|strait|spring|hot_spring|geyser|tree)$\"];",
+            ")"
+        ],
+        "18": [
             "(",
             "nwr[natural][natural!~\"^(water|divide|bay|strait|spring|hot_spring|geyser)$\"];",
             ")"
@@ -71,19 +76,19 @@
             "group": "vegetation"
         },
         "tree": {
-            "zoom": 16,
+            "zoom": 18,
             "sign": "<i class='fas fa-tree'></i>",
             "color": "darkgreen",
             "group": "vegetation"
         },
         "scrub": {
-            "zoom": 13,
+            "zoom": 16,
             "sign": "",
             "color": "green",
             "group": "vegetation"
         },
         "heath": {
-            "zoom": 13,
+            "zoom": 16,
             "sign": "",
             "color": "green",
             "group": "vegetation"
@@ -95,49 +100,49 @@
             "group": "vegetation"
         },
         "grassland": {
-            "zoom": 13,
+            "zoom": 16,
             "sign": "",
             "color": "#00dd24",
             "group": "vegetation"
         },
         "fell": {
-            "zoom": 13,
+            "zoom": 16,
             "sign": "",
             "color": "#49ba91",
             "group": "vegetation"
         },
         "bare_rock": {
-            "zoom": 13,
+            "zoom": 16,
             "sign": "",
             "color": "#6f6f6f",
             "group": "vegetation"
         },
         "scree": {
-            "zoom": 13,
+            "zoom": 16,
             "sign": "",
             "color": "#6f6f6f",
             "group": "vegetation"
         },
         "shingle": {
-            "zoom": 13,
+            "zoom": 16,
             "sign": "",
             "color": "#6f6f6f",
             "group": "vegetation"
         },
         "sand": {
-            "zoom": 13,
+            "zoom": 16,
             "sign": "",
             "color": "#f9d199",
             "group": "vegetation"
         },
         "mud": {
-            "zoom": 13,
+            "zoom": 16,
             "sign": "<img data-src='maki:wetland?fill=white'>",
             "color": "#988b00",
             "group": "vegetation"
         },
         "wetland": {
-            "zoom": 13,
+            "zoom": 16,
             "sign": "<img data-src='maki:wetland?fill=white'>",
             "color": "#00baff",
             "group": "water"
@@ -149,13 +154,13 @@
             "group": "water"
         },
         "cape": {
-            "zoom": 16,
+            "zoom": 13,
             "sign": "",
             "color": "#1d7500",
             "group": "water"
         },
         "peninsula": {
-            "zoom": 16,
+            "zoom": 13,
             "sign": "",
             "color": "#1d7500",
             "group": "water"
@@ -185,7 +190,7 @@
             "group": "landform"
         },
         "hill": {
-            "zoom": 16,
+            "zoom": 13,
             "sign": "",
             "color": "#4f4f4f",
             "group": "landform"
@@ -197,7 +202,7 @@
             "group": "landform"
         },
         "valley": {
-            "zoom": 13,
+            "zoom": 9,
             "sign": "",
             "color": "#1d7500",
             "group": "landform"
@@ -221,7 +226,7 @@
             "group": "landform"
         },
         "cliff": {
-            "zoom": 13,
+            "zoom": 16,
             "sign": "",
             "color": "#4f4f4f",
             "group": "landform"
@@ -233,13 +238,13 @@
             "group": "landform"
         },
         "rock": {
-            "zoom": 13,
+            "zoom": 16,
             "sign": "",
             "color": "#4f4f4f",
             "group": "landform"
         },
         "stone": {
-            "zoom": 13,
+            "zoom": 16,
             "sign": "",
             "color": "#4f4f4f",
             "group": "landform"
@@ -257,7 +262,7 @@
             "group": "landform"
         },
         "isthmus": {
-            "zoom": 16,
+            "zoom": 13,
             "sign": "",
             "color": "#1d7500",
             "group": "landform"
