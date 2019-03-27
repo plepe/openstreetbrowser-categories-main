@@ -3,7 +3,7 @@
     "name": {
         "ast": "Formaciones naturales",
         "cs": "Přírodní úkazy",
-        "de": "Geographische Objekte",
+        "de": "Naturformationen",
         "el": "Φυσικοί Σχηματισμοί",
         "en": "Natural Formations",
         "fr": "Éléments naturels",
@@ -24,16 +24,12 @@
         ],
         "13": [
             "(",
-            "node[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|water|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
-            "way[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|water|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
-            "relation[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|water|wetland|glacier|bay|cape|beach|coastline|spring|hot_spring|geyser|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
+            "nwr[natural~\"^(peak|volcano|wood|scrub|heath|grassland|fell|bare_rock|scree|shingle|sand|mud|wetland|glacier|cape|beach|coastline|valley|ridge|arete|cliff|saddle|rock|stone|sinkhole|cave_entrance)$\"];",
             ")"
         ],
         "16": [
             "(",
-            "node[natural];",
-            "way[natural];",
-            "relation[natural];",
+            "nwr[natural][natural!~\"^(water|divide|bay|strait|spring|hot_spring|geyser)$\"];",
             ")"
         ]
     },
@@ -42,6 +38,195 @@
             "{{ localizedTag(tags, 'name') | default(trans('unnamed')) }}",
             "{% if tags.natural == 'peak' and tags.ele %}({{ tags.ele }}m){% endif %}"
         ],
-        "description": "{{ tagTrans('natural', tags.natural) }}"
+        "description": "{{ tagTrans('natural', tags.natural) }}",
+        "style": {
+            "color": "{{ const[tags.natural].color|default('#f2756a') }}"
+        },
+        "markerSign": "<span style='color: white'>{{ const[tags.natural].sign|raw }}</span>",
+        "markerSymbol": "{{ markerPointer({ fillColor: const[tags.natural].color|default('#f2756a') })|raw }}",
+        "listMarkerSymbol": "{{ markerCircle({ fillColor: const[tags.natural].color|default('#f2756a') })|raw }}"
+    },
+    "filter": {
+        "type": {
+            "name": "{{ trans('filter:type') }}",
+            "key": "natural",
+            "type": "select",
+            "show_default": "true",
+            "values": "{% set list = [] %}{% for k, v in const %}<option value=\"{{ k }}\">{% set list = list|merge([ k ]) %}{{ tagTrans('natural', k) }}</option>{% endfor %}<option weight='1' value='other' query='nwr[natural][natural!~\"^(|.*;)({{ list|join('|') }})(|;.*)$\"]'>{{ trans('other') }}</option>",
+            "sort": "natsort",
+            "op": "has"
+        }
+    },
+    "const": {
+        "wood": {
+            "sign": "<i class='fas fa-tree'></i>",
+            "color": "darkgreen",
+            "group": "vegetation"
+        },
+        "tree_row": {
+            "sign": "<i class='fas fa-tree'></i>",
+            "color": "darkgreen",
+            "group": "vegetation"
+        },
+        "tree": {
+            "sign": "<i class='fas fa-tree'></i>",
+            "color": "darkgreen",
+            "group": "vegetation"
+        },
+        "scrub": {
+            "sign": "",
+            "color": "green",
+            "group": "vegetation"
+        },
+        "heath": {
+            "sign": "",
+            "color": "green",
+            "group": "vegetation"
+        },
+        "moor": {
+            "sign": "",
+            "color": "#8aba50",
+            "group": "vegetation"
+        },
+        "grassland": {
+            "sign": "",
+            "color": "#00dd24",
+            "group": "vegetation"
+        },
+        "fell": {
+            "sign": "",
+            "color": "#49ba91",
+            "group": "vegetation"
+        },
+        "bare_rock": {
+            "sign": "",
+            "color": "#6f6f6f",
+            "group": "vegetation"
+        },
+        "scree": {
+            "sign": "",
+            "color": "#6f6f6f",
+            "group": "vegetation"
+        },
+        "shingle": {
+            "sign": "",
+            "color": "#6f6f6f",
+            "group": "vegetation"
+        },
+        "sand": {
+            "sign": "",
+            "color": "#f9d199",
+            "group": "vegetation"
+        },
+        "mud": {
+            "sign": "<img data-src='maki:wetland?fill=white'>",
+            "color": "#988b00",
+            "group": "vegetation"
+        },
+        "wetland": {
+            "sign": "<img data-src='maki:wetland?fill=white'>",
+            "color": "#00baff",
+            "group": "water"
+        },
+        "glacier": {
+            "sign": "<i style='color: black;' class='fas fa-icicles'></i>",
+            "color": "white",
+            "group": "water"
+        },
+        "cape": {
+            "sign": "",
+            "color": "#1d7500",
+            "group": "water"
+        },
+        "peninsula": {
+            "sign": "",
+            "color": "#1d7500",
+            "group": "water"
+        },
+        "beach": {
+            "sign": "<i class='fas fa-umbrella-beach'></i>",
+            "color": "#f9d199",
+            "group": "water"
+        },
+        "coastline": {
+            "sign": "",
+            "color": "blue",
+            "group": "water"
+        },
+        "reef": {
+            "sign": "",
+            "color": "#005fbd",
+            "group": "water"
+        },
+        "peak": {
+            "sign": "<i class='fas fa-mountain'></i>",
+            "color": "#4f4f4f",
+            "group": "landform"
+        },
+        "hill": {
+            "sign": "",
+            "color": "#4f4f4f",
+            "group": "landform"
+        },
+        "volcano": {
+            "sign": "",
+            "color": "#cf3a00",
+            "group": "landform"
+        },
+        "valley": {
+            "sign": "",
+            "color": "#1d7500",
+            "group": "landform"
+        },
+        "river_terrace": {
+            "sign": "",
+            "color": "#a0a500",
+            "group": "landform"
+        },
+        "ridge": {
+            "sign": "",
+            "color": "#4f4f4f",
+            "group": "landform"
+        },
+        "arete": {
+            "sign": "",
+            "color": "#4f4f4f",
+            "group": "landform"
+        },
+        "cliff": {
+            "sign": "",
+            "color": "#4f4f4f",
+            "group": "landform"
+        },
+        "saddle": {
+            "sign": "",
+            "color": "#4f4f4f",
+            "group": "landform"
+        },
+        "rock": {
+            "sign": "",
+            "color": "#4f4f4f",
+            "group": "landform"
+        },
+        "stone": {
+            "sign": "",
+            "color": "#4f4f4f",
+            "group": "landform"
+        },
+        "sinkhole": {
+            "sign": "",
+            "color": "#a0a500",
+            "group": "landform"
+        },
+        "cave_entrance": {
+            "sign": "",
+            "color": "#000000",
+            "group": "landform"
+        },
+        "isthmus": {
+            "sign": "",
+            "color": "#1d7500",
+            "group": "landform"
+        }
     }
 }
