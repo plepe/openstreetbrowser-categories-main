@@ -59,174 +59,222 @@
     },
     "const": {
         "wood": {
+            "zoom": 13,
             "sign": "<i class='fas fa-tree'></i>",
             "color": "darkgreen",
             "group": "vegetation"
         },
         "tree_row": {
+            "zoom": 16,
             "sign": "<i class='fas fa-tree'></i>",
             "color": "darkgreen",
             "group": "vegetation"
         },
         "tree": {
+            "zoom": 16,
             "sign": "<i class='fas fa-tree'></i>",
             "color": "darkgreen",
             "group": "vegetation"
         },
         "scrub": {
+            "zoom": 13,
             "sign": "",
             "color": "green",
             "group": "vegetation"
         },
         "heath": {
+            "zoom": 13,
             "sign": "",
             "color": "green",
             "group": "vegetation"
         },
         "moor": {
+            "zoom": 13,
             "sign": "",
             "color": "#8aba50",
             "group": "vegetation"
         },
         "grassland": {
+            "zoom": 13,
             "sign": "",
             "color": "#00dd24",
             "group": "vegetation"
         },
         "fell": {
+            "zoom": 13,
             "sign": "",
             "color": "#49ba91",
             "group": "vegetation"
         },
         "bare_rock": {
+            "zoom": 13,
             "sign": "",
             "color": "#6f6f6f",
             "group": "vegetation"
         },
         "scree": {
+            "zoom": 13,
             "sign": "",
             "color": "#6f6f6f",
             "group": "vegetation"
         },
         "shingle": {
+            "zoom": 13,
             "sign": "",
             "color": "#6f6f6f",
             "group": "vegetation"
         },
         "sand": {
+            "zoom": 13,
             "sign": "",
             "color": "#f9d199",
             "group": "vegetation"
         },
         "mud": {
+            "zoom": 13,
             "sign": "<img data-src='maki:wetland?fill=white'>",
             "color": "#988b00",
             "group": "vegetation"
         },
         "wetland": {
+            "zoom": 13,
             "sign": "<img data-src='maki:wetland?fill=white'>",
             "color": "#00baff",
             "group": "water"
         },
         "glacier": {
+            "zoom": 13,
             "sign": "<i style='color: black;' class='fas fa-icicles'></i>",
             "color": "white",
             "group": "water"
         },
         "cape": {
+            "zoom": 16,
             "sign": "",
             "color": "#1d7500",
             "group": "water"
         },
         "peninsula": {
+            "zoom": 16,
             "sign": "",
             "color": "#1d7500",
             "group": "water"
         },
         "beach": {
+            "zoom": 13,
             "sign": "<i class='fas fa-umbrella-beach'></i>",
             "color": "#f9d199",
             "group": "water"
         },
         "coastline": {
+            "zoom": 13,
             "sign": "",
             "color": "blue",
             "group": "water"
         },
         "reef": {
+            "zoom": 13,
             "sign": "",
             "color": "#005fbd",
             "group": "water"
         },
         "peak": {
+            "zoom": 9,
             "sign": "<i class='fas fa-mountain'></i>",
             "color": "#4f4f4f",
             "group": "landform"
         },
         "hill": {
+            "zoom": 16,
             "sign": "",
             "color": "#4f4f4f",
             "group": "landform"
         },
         "volcano": {
+            "zoom": 9,
             "sign": "",
             "color": "#cf3a00",
             "group": "landform"
         },
         "valley": {
+            "zoom": 13,
             "sign": "",
             "color": "#1d7500",
             "group": "landform"
         },
         "river_terrace": {
+            "zoom": 16,
             "sign": "",
             "color": "#a0a500",
             "group": "landform"
         },
         "ridge": {
+            "zoom": 13,
             "sign": "",
             "color": "#4f4f4f",
             "group": "landform"
         },
         "arete": {
+            "zoom": 13,
             "sign": "",
             "color": "#4f4f4f",
             "group": "landform"
         },
         "cliff": {
+            "zoom": 13,
             "sign": "",
             "color": "#4f4f4f",
             "group": "landform"
         },
         "saddle": {
+            "zoom": 13,
             "sign": "",
             "color": "#4f4f4f",
             "group": "landform"
         },
         "rock": {
+            "zoom": 13,
             "sign": "",
             "color": "#4f4f4f",
             "group": "landform"
         },
         "stone": {
+            "zoom": 13,
             "sign": "",
             "color": "#4f4f4f",
             "group": "landform"
         },
         "sinkhole": {
+            "zoom": 13,
             "sign": "",
             "color": "#a0a500",
             "group": "landform"
         },
         "cave_entrance": {
+            "zoom": 13,
             "sign": "",
             "color": "#000000",
             "group": "landform"
         },
         "isthmus": {
+            "zoom": 16,
             "sign": "",
             "color": "#1d7500",
             "group": "landform"
         }
-    }
+    },
+    "info": [
+        "<table>",
+        "  {% for k, data in const %}",
+        "    {% if data.zoom <= map.zoom %}",
+        "    <tr>",
+        "      <td>",
+        "        {{ markerCircle({ fillColor: data.color })|raw }}<div class='sign'>{{ data.sign|raw }}</div>",
+        "      </td>",
+        "      <td>{{ tagTrans('natural', k) }}</td>",
+        "    </tr>",
+        "    {% endif %}",
+        "  {% endfor %}",
+        "</table>"
+    ]
 }
