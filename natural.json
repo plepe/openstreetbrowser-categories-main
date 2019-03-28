@@ -168,7 +168,7 @@
         "beach": {
             "zoom": 13,
             "sign": "<i class='fas fa-umbrella-beach'></i>",
-            "color": "#f9d199",
+            "color": "#ff7f50",
             "group": "water"
         },
         "coastline": {
