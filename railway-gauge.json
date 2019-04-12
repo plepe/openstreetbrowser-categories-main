@@ -5,7 +5,7 @@
     },
     "query": {
         "11": "way[railway=rail][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'][usage~'^(main|branch)$'];",
-        "14": "way[railway][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'];"
+        "14": "way[railway~'^(disused|construction|funicular|light_rail|miniature|monorail|narrow_gauge|preserved|rail|subway|tram)$'];"
     },
     "feature": {
         "pre": "{% set gauges = tags.gauge|split(';') %}",
