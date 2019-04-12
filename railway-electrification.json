@@ -24,8 +24,10 @@
             "  {% else %}",
             "    {% set color = colorInterpolate([ 'blue', '#af0000' ], (tags.voltage - 1000) / 24000) %}",
             "  {% endif %}",
+            "{% elseif tags.electrified and tags.electrified == 'no' %}",
+            "  {% set color = '#000000' %}",
             "{% else %}",
-            "  {% set color = 'black' %}",
+            "  {% set color = '#7f7f7f' %}",
             "{% endif %}",
             "",
             "{% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}",
@@ -72,7 +74,7 @@
             "fill": null,
             "dashArray": [
                 "{% if not tags.electrified is defined  %}",
-                "{% elseif tags.frequency == 0 %}",
+                "{% elseif not tags.frequency is defined or tags.frequency == 0 %}",
                 "{% else %}",
                 "5,2",
                 "{% endif %}"
