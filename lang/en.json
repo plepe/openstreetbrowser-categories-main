@@ -33,7 +33,7 @@
     "category:health": "Health",
     "category:hiking_routes": "Hiking routes",
     "category:historic": "Historic",
-    "category:index": "",
+    "category:index": "Index of Categories",
     "category:infrastructure": "Infrastructure",
     "category:internet": "Internet access",
     "category:law": "Law",
@@ -77,7 +77,7 @@
     "category:tourism_attractions": "Tourism",
     "category:tourism_services": "Tourism",
     "category:transport": "Transportation",
-    "category:transport_alternative": "",
+    "category:transport_alternative": "Alternative Transportation modes",
     "category:transport_car": "Individual Traffic",
     "category:transport_cycle": "Cycling",
     "category:transport_pt": "Public Transportation",
@@ -88,7 +88,7 @@
     "category:wikipedia": "Wikipedia",
     "category:works": "Works",
     "category:xmas": "Christmas",
-    "date format not understood": "",
-    "outdated feature": "",
+    "date format not understood": "Invalid Date Format",
+    "outdated feature": "Features outdated",
     "xmas:outdated-warning": "Feature has not been updated for the current season! Please check and set the tag 'xmas:lastcheck' to the current date."
 }
