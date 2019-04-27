@@ -86,6 +86,7 @@
         "type": {
             "name": "{{ trans('filter:type') }}",
             "type": "select",
+            "show_default": "true",
             "values": {
                 "playground": {
                     "name": "{{ tagTrans('leisure', 'playground') }}",
