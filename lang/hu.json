@@ -33,7 +33,7 @@
     "category:health": "Egészségügy",
     "category:hiking_routes": "Turistautak",
     "category:historic": "Történelmi objektumok",
-    "category:index": "Tartalom",
+    "category:index": "Kategóriák jegyzéke",
     "category:infrastructure": "Infrastruktúra",
     "category:internet": "Internetcsatlakozás",
     "category:law": "Jog",
@@ -77,7 +77,7 @@
     "category:tourism_attractions": "Látnivalók",
     "category:tourism_services": "Szálláshelyek, turisztikai információk",
     "category:transport": "Közlekedés",
-    "category:transport_alternative": "Alternatív (Kerékpár, Túra)",
+    "category:transport_alternative": "Alternatív közlekedési módok",
     "category:transport_car": "Autós közlekedés",
     "category:transport_cycle": "Kerékpáros közlekedés",
     "category:transport_pt": "Tömegközlekedés",
@@ -88,7 +88,7 @@
     "category:wikipedia": "Wikipédia",
     "category:works": "Üzemek",
     "category:xmas": "Karácsony",
-    "date format not understood": "Felismerhetetlen dátumformátum",
-    "outdated feature": "Elavult információ",
+    "date format not understood": "Érvénytelen dátumformátum",
+    "outdated feature": "Elavult objektumok",
     "xmas:outdated-warning": "Ebben a szezonban nem frissült az objektum. Ellenőrizze, és állítsa be az <xmas:lastcheck> kulcshoz tartozó értéket a jelenlegi dátumra."
 }
