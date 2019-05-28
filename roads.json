@@ -1,0 +1,108 @@
+{
+    "type": "overpass",
+    "query": {
+        "10": "way[highway~'^(motorway|trunk)']",
+        "12": "way[highway~'^(motorway|trunk|primary)']",
+        "13": "way[highway~'^(motorway|trunk|primary|secondary)']",
+        "14": "way[highway~'^(motorway|trunk|primary|secondary|tertiary)']",
+        "15": "way[highway~'^(motorway|trunk|primary|secondary|tertiary|pedestrian|unclassified)']",
+        "16": "way[highway~'^(motorway|trunk|primary|secondary|tertiary|pedestrian|unclassified|residential)']",
+        "17": "way[highway~'^(motorway|trunk|primary|secondary|tertiary|pedestrian|unclassified|residential|living_street|service)']",
+        "18": "way[highway][highway!~'^(raceway|bus_guideway)$']"
+    },
+    "feature": {
+        "pre": [
+            "{% set highway = tags.highway %}{% set is_link = false %}",
+            "{% if tags.highway|matches('_link$') %}",
+            "  {% set highway = tags.highway|slice(0, tags.highway|length - 5) %}{% set is_link = true %}",
+            "{% endif %}"
+        ],
+        "description": "{{ tagTrans('highway', tags.highway) }}",
+        "priority": "{{ const.priorities[highway]|default(50) + (is_link ? 0.5 : 0) }}",
+        "markerSymbol": "",
+        "listMarkerSymbol": "line",
+        "style": {
+            "width": "{{ is_link ? 2 : 4 }}",
+            "color": "{{ const.colors[highway]|default('#ff0000') }}"
+        }
+    },
+    "info": [
+        "<table>",
+        "{% for k, color in const.colors  %}",
+        "  {% if map.zoom >= const.zooms[k] %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ \"width\": \"4\", \"color\": color })|raw }}</td>",
+        "    <td>{{ tagTrans('highway', k) }}</td>",
+        "  </tr>",
+        "  {% endif %}",
+        "{% endfor %}",
+        "  <tr>",
+        "    <td>{{ markerLine({ \"width\": \"2\", \"color\": const.colors.motorway })|raw }}</td>",
+        "    <td>{{ tagTrans('highway', 'motorway_link') }}</td>",
+        "  </tr>",
+        "  <tr>",
+        "    <td>{{ markerLine({ \"width\": \"4\", \"color\": \"#ff0000\" })|raw }}</td>",
+        "    <td>{{ trans('invalid value') }}</td>",
+        "  </tr>",
+        "</table>"
+    ],
+    "const": {
+        "priorities": {
+            "motorway": 1,
+            "trunk": 2,
+            "primary": 10,
+            "secondary": 11,
+            "tertiary": 12,
+            "pedestrian": 20,
+            "unclassified": 21,
+            "residential": 22,
+            "living_street": 23,
+            "service": 24,
+            "track": 30,
+            "escape": 31,
+            "cycleway": 41,
+            "bridleway": 42,
+            "footway": 43,
+            "path": 44,
+            "steps": 45
+        },
+        "colors": {
+            "motorway": "#af0000",
+            "trunk": "#af3f00",
+            "primary": "#ff3f00",
+            "secondary": "#ff7f00",
+            "tertiary": "#ffaf00",
+            "pedestrian": "#ff00ff",
+            "unclassified": "#0000ff",
+            "residential": "#7f00ff",
+            "living_street": "#af00ff",
+            "service": "#00007f",
+            "track": "#bb6300",
+            "escape": "#bb3300",
+            "cycleway": "#7faf00",
+            "bridleway": "#00af7f",
+            "footway": "#00af00",
+            "path": "#007f00",
+            "steps": "#00af00"
+        },
+        "zooms": {
+            "motorway": 10,
+            "trunk": 10,
+            "primary": 12,
+            "secondary": 13,
+            "tertiary": 14,
+            "pedestrian": 15,
+            "unclassified": 15,
+            "residential": 16,
+            "living_street": 17,
+            "service": 17,
+            "track": 18,
+            "escape": 18,
+            "cycleway": 18,
+            "bridleway": 18,
+            "footway": 18,
+            "path": 18,
+            "steps": 18
+        }
+    }
+}
