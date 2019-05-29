@@ -23,7 +23,10 @@
         "listMarkerSymbol": "line",
         "style": {
             "width": "{{ is_link ? 2 : 4 }}",
-            "color": "{{ const.colors[highway]|default('#ff0000') }}"
+            "color": "{{ const.colors[highway]|default('#ff0000') }}",
+            "text": "  {{ localizedTag(tags, 'name') }}              ",
+            "textRepeat": "1",
+            "textFontWeight": "bold"
         }
     },
     "info": [
@@ -67,16 +70,16 @@
             "steps": 45
         },
         "colors": {
-            "motorway": "#af0000",
-            "trunk": "#af3f00",
-            "primary": "#ff3f00",
-            "secondary": "#ff7f00",
-            "tertiary": "#ffaf00",
+            "motorway": "#ff2f2f",
+            "trunk": "#ff4f4f",
+            "primary": "#ff7f00",
+            "secondary": "#ffaf00",
+            "tertiary": "#ffff00",
             "pedestrian": "#ff00ff",
-            "unclassified": "#0000ff",
-            "residential": "#7f00ff",
-            "living_street": "#af00ff",
-            "service": "#00007f",
+            "unclassified": "#4f4fff",
+            "residential": "#7f4fff",
+            "living_street": "#af2fff",
+            "service": "#4f4f7f",
             "track": "#bb6300",
             "escape": "#bb3300",
             "cycleway": "#7faf00",
