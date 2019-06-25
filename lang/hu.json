@@ -3,7 +3,7 @@
     "category:administrative": "Közigazgatási határok",
     "category:agriculture": "Mezőgazdaság",
     "category:alternative_amenities": "Létesítmények",
-    "category:alternative_routes": "Útvonalak",
+    "category:alternative_routes": "(Jelzett) útvonalak",
     "category:buildings": "Épületek",
     "category:buildings-entrances": "Bejáratok",
     "category:buildings-figure-ground": "Fekete épületalaprajzok",
@@ -90,5 +90,6 @@
     "category:xmas": "Karácsony",
     "date format not understood": "Érvénytelen dátumformátum",
     "outdated feature": "Elavult objektumok",
-    "xmas:outdated-warning": "Ebben a szezonban nem frissült az objektum. Ellenőrizze, és állítsa be az <xmas:lastcheck> kulcshoz tartozó értéket a jelenlegi dátumra."
+    "xmas:outdated-warning": "Ebben a szezonban nem frissült az objektum. Ellenőrizze, és állítsa be az <xmas:lastcheck> kulcshoz tartozó értéket a jelenlegi dátumra.",
+    "category:roads": "Utak"
 }
