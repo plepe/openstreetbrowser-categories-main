@@ -90,5 +90,6 @@
     "category:xmas": "Calendas",
     "date format not understood": "Format de data non reconoissut",
     "outdated feature": "Caracteristicas obsoletas",
-    "xmas:outdated-warning": "Aquest element es pas estat actualizat per la session ! Siatz pregats de verificar e mai reglar la valor de \"xmas:lastcheck\" a la data actuala."
+    "xmas:outdated-warning": "Aquest element es pas estat actualizat per la session ! Siatz pregats de verificar e mai reglar la valor de \"xmas:lastcheck\" a la data actuala.",
+    "category:roads": "Rotas"
 }
