@@ -1,4 +1,5 @@
 {
+    "Objects with diet information": "Objetos com informações sobre dieta",
     "category:administrative": "Divisão político-administrativa",
     "category:agriculture": "Agricultura",
     "category:alternative_amenities": "Equipamentos",
@@ -38,7 +39,7 @@
     "category:law": "Direito",
     "category:leisure": "Lazer",
     "category:leisure_sport_shopping": "Lazer, esportes e compras",
-    "category:memorial": "Memoriais",
+    "category:memorial": "Memoriais e Memoriais",
     "category:military": "Militar",
     "category:mtb-routes": "Rotas de mountain bike",
     "category:natural": "Formações naturais",
@@ -52,7 +53,7 @@
     "category:places_geo": "Lugares",
     "category:playgrounds": "Parquinhos",
     "category:post": "Correios",
-    "category:power_routes": "Rotas de energia",
+    "category:power_routes": "Rotas energéticas",
     "category:pt": "Mapa de transporte público",
     "category:pt:routes": "Rotas",
     "category:pt:stops": "Paradas e estações",
@@ -60,6 +61,7 @@
     "category:public": "Utilidade pública",
     "category:railway": "Ferrovia",
     "category:railway-electrification": "Eletrificação ferroviária",
+    "category:railway-gauge": "Calibre ferroviário",
     "category:railway-infrastructure": "Infraestrutura ferroviária",
     "category:railway-maxspeed": "Velocidade máxima",
     "category:railway-routes": "Rotas ferroviárias",
@@ -87,6 +89,6 @@
     "category:works": "Produção",
     "category:xmas": "Natal",
     "date format not understood": "",
-    "outdated feature": "",
-    "xmas:outdated-warning": ""
+    "outdated feature": "Objeto antigo",
+    "xmas:outdated-warning": "O objeto não foi atualizado para a temporada atual! Por favor, verifique e defina a tag 'xmas:lastcheck' para a data atual."
 }

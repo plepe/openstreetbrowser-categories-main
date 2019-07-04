@@ -18,6 +18,9 @@
         "pre": [
             "{% if tags.height is defined %}",
             "{% set approxHeight = tags.height %}",
+            "{% set m = tags.height|matches('(.*)\\s*(m|ft)$') %}",
+            "{% if m and m[2] == 'm' %}{% set approxHeight = m[1] %}{% endif %}",
+            "{% if m and m[2] == 'ft' %}{% set approxHeight = m[1] / 3.2808 %}{% endif %}",
             "{% elseif attribute(tags, 'building:levels') is defined %}",
             "{% set approxHeight = attribute(tags, 'building:levels') * 3.5 %}",
             "{% endif %}",
@@ -32,10 +35,13 @@
         ],
         "description": [
             "{% if tags.height is defined %}",
-            "{{ tags.height }}m",
-            "{% endif %}",
+            "  {% if tags.height|matches('(m|ft)$') %}{{ tags.height -}}",
+            "  {% else %}{{ tags.height }}&nbsp;m",
+            "  {%- endif -%}",
+            "{% endif -%}",
             "",
-            "{% if attribute(tags, 'building:levels') is defined %}",
+            "{%- if attribute(tags, 'building:levels') is defined -%}",
+            "{%- if tags.height is defined %}, {% endif %}",
             "{{ attribute(tags, 'building:levels') }} {{ keyTrans('building:levels') }}",
             "{% endif %}"
         ],

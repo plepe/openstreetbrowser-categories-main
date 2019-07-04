@@ -1,4 +1,5 @@
 {
+    "Objects with diet information": "Objets avec information de régime alimentaire",
     "category:administrative": "Zones administratives",
     "category:agriculture": "Agriculture",
     "category:alternative_amenities": "Équipement",
@@ -16,7 +17,7 @@
     "category:children": "Équipements pour enfants",
     "category:coal": "Charbon",
     "category:communication": "Communication",
-    "category:construction": "Constructions",
+    "category:construction": "Chantiers de construction",
     "category:craft": "Artisanat",
     "category:culture": "Culture",
     "category:culture_religion": "Culture et religion",
@@ -55,11 +56,12 @@
     "category:power_routes": "Réseaux électriques",
     "category:pt": "Carte des transports publics",
     "category:pt:routes": "Lignes",
-    "category:pt:stops": "Arrêts/Stops, Stations",
+    "category:pt:stops": "Arrêts et stations",
     "category:pt_amenities": "Équipements",
     "category:public": "Services et équipements publics",
     "category:railway": "Chemins de fer",
     "category:railway-electrification": "Puissance électrique ferroviaire",
+    "category:railway-gauge": "",
     "category:railway-infrastructure": "Infrastructure ferroviaire",
     "category:railway-maxspeed": "Limites de vitesse",
     "category:railway-routes": "Lignes ferroviaires",
@@ -81,12 +83,12 @@
     "category:transport_pt": "Transports publics",
     "category:transport_walk": "Marche à pied",
     "category:walk_amenities": "Équipements piétons",
-    "category:waste": "Déchets/Recyclage",
+    "category:waste": "Déchets et recyclage",
     "category:water": "Hydrographie",
     "category:wikipedia": "Wikipédia",
     "category:works": "Zones industrielles",
     "category:xmas": "Noël",
     "date format not understood": "",
     "outdated feature": "",
-    "xmas:outdated-warning": ""
+    "xmas:outdated-warning": "Cet élément n'a pas été mis à jour pour cette saison ! Veuillez vérifier son existence et régler la valeur de \"xmas:lastcheck\" à la date actuelle."
 }

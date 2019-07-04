@@ -1,4 +1,5 @@
 {
+    "Objects with diet information": "",
     "category:administrative": "Divisiones Alministratives",
     "category:agriculture": "Agricultura",
     "category:alternative_amenities": "Infraestructures",
@@ -60,6 +61,7 @@
     "category:public": "Serviciu Públicu",
     "category:railway": "Ferrocarril",
     "category:railway-electrification": "",
+    "category:railway-gauge": "",
     "category:railway-infrastructure": "",
     "category:railway-maxspeed": "",
     "category:railway-routes": "",

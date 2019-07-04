@@ -253,6 +253,9 @@
             },
             "subCategories": [
                 {
+                    "id": "roads"
+                },
+                {
                     "id": "agriculture"
                 },
                 {
@@ -316,6 +319,9 @@
                         },
                         {
                             "id": "railway-maxspeed"
+                        },
+                        {
+                            "id": "railway-gauge"
                         },
                         {
                             "id": "railway-routes"
