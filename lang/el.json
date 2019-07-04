@@ -1,4 +1,5 @@
 {
+    "Objects with diet information": "",
     "category:administrative": "Διοικητικά Όρια",
     "category:agriculture": "Γεωργία",
     "category:alternative_amenities": "",
@@ -60,6 +61,7 @@
     "category:public": "Δημόσιες Υπηρεσίες",
     "category:railway": "",
     "category:railway-electrification": "",
+    "category:railway-gauge": "",
     "category:railway-infrastructure": "",
     "category:railway-maxspeed": "",
     "category:railway-routes": "",

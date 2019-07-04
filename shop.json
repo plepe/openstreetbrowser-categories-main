@@ -24,131 +24,375 @@
         "16": "(node[shop];way[shop];relation[shop];);"
     },
     "feature": {
-        "pre": "{% set shop0 = tags.shop|split(';')[0] %}{% set current = const.default %}{% for v in const.shops %}{% if shop0 in v.types %}{% set current = v %}{% endif %}{% endfor %}",
-        "description": "{{ tagTransList('shop', tags.shop) }}",
-        "markerSign": "{% set c = current.sign %}{% if c|slice(0, 3) == 'fa-' %}<i class=\"fa {{ c }}\"></i>{% else %}{{ c|raw }}{% endif %}"
+        "pre": [
+            "{% set shop0 = tags.shop|split(';')[0] %}",
+            "{% set current = const.default %}",
+            "{% if const.shops[shop0] %}",
+            "  {% set current = const.shops[shop0] %}",
+            "{% endif %}"
+        ],
+        "description": [
+            "{% if tags.shop == 'yes' %}",
+            "  {{ keyTrans('shop') }}",
+            "{% else %}",
+            "  {{ tagTransList('shop', tags.shop) }}",
+            "{% endif %}"
+        ],
+        "markerSign": [
+            "{% set c = current.sign %}",
+            "{% if c|slice(0, 4) == 'fas:' %}",
+            "  <i class=\"fas fa-{{ c|slice(4) }}\"></i>",
+            "{% elseif c|slice(0, 4) == 'far:' %}",
+            "  <i class=\"far fa-{{ c|slice(4) }}\"></i>",
+            "{% elseif c|slice(0, 5) == 'maki:' %}",
+            "  <img data-src=\"{{ c }}\">",
+            "{% else %}",
+            "  {{ c|raw }}",
+            "{% endif %}"
+        ],
+        "body": [
+            "<ul>",
+            "  {% if tags.clothes %}",
+            "  <li class='hasSymbol'>",
+            "    <i class=\"fas fa-tshirt\" aria-hidden=\"true\"></i>",
+            "    <span class='key'>{{ keyTrans('clothes') }}:</span>",
+            "    <span class='value'>{{ tagTransList('clothes', tags.clothes) }}</span>",
+            "  </li>",
+            "  {% endif %}",
+            "</ul>"
+        ]
     },
     "const": {
         "default": {
-            "sign": "fa-shopping-bag"
+            "sign": "fas:shopping-bag"
         },
-        "shops": [
-            {
-                "types": [
-                    "alcohol",
-                    "beverages"
-                ],
-                "sign": "fa-beer"
+        "shops": {
+            "vacant": {
+                "sign": "fas:times"
             },
-            {
-                "types": [
-                    "baby_goods"
-                ],
-                "sign": "&#128700;"
+            "alcohol": {
+                "sign": "fas:wine-bottle"
             },
-            {
-                "types": [
-                    "bag",
-                    "general"
-                ],
-                "sign": "fa-shopping-bag"
+            "wine": {
+                "sign": "fas:wine-bottle"
             },
-            {
-                "types": [
-                    "bakery",
-                    "confectionery",
-                    "pastry"
-                ],
-                "sign": "fa-birthday-cake"
+            "beverages": {
+                "sign": "fas:wine-bottle"
             },
-            {
-                "types": [
-                    "boutique",
-                    "clothes",
-                    "fabric",
-                    "fashion",
-                    "leather",
-                    "sewing",
-                    "tailor"
-                ],
+            "baby_goods": {
+                "sign": "fas:baby"
+            },
+            "bag": {
+                "sign": "fas:shopping-bag"
+            },
+            "general": {
+                "sign": "fas:shopping-bag"
+            },
+            "variety_store": {
+                "sign": "fas:shopping-bag"
+            },
+            "bakery": {
+                "sign": "fas:birthday-cake"
+            },
+            "confectionery": {
+                "sign": "fas:birthday-cake"
+            },
+            "pastry": {
+                "sign": "fas:birthday-cake"
+            },
+            "bicycle": {
+                "sign": "fas:bicycle"
+            },
+            "motorcycle": {
+                "sign": "fas:motorcycle"
+            },
+            "boutique": {
                 "sign": "&#128090;"
             },
-            {
-                "types": [
-                    "butcher",
-                    "cheese",
-                    "chocolate",
-                    "deli",
-                    "dairy",
-                    "farm",
-                    "greengrocer",
-                    "pasta",
-                    "spices"
-                ],
-                "sign": "fa-cutlery"
+            "clothes": {
+                "sign": "&#128090;"
             },
-            {
-                "types": [
-                    "coffee",
-                    "tea"
-                ],
-                "sign": "fa-coffee"
+            "fabric": {
+                "sign": "&#128090;"
             },
-            {
-                "types": [
-                    "convenience"
-                ],
-                "sign": "fa-shopping-basket"
+            "fashion": {
+                "sign": "&#128090;"
             },
-            {
-                "types": [
-                    "department_store",
-                    "mall"
-                ],
-                "sign": "fa-building"
+            "leather": {
+                "sign": "&#128090;"
             },
-            {
-                "types": [
-                    "hairdresser"
-                ],
+            "sewing": {
+                "sign": "&#128090;"
+            },
+            "tailor": {
+                "sign": "&#128090;"
+            },
+            "dry_cleaning": {
+                "sign": "&#128090;"
+            },
+            "sea_food": {
+                "sign": "fas:fish"
+            },
+            "butcher": {
+                "sign": "fas:utensils"
+            },
+            "cheese": {
+                "sign": "fas:utensils"
+            },
+            "chocolate": {
+                "sign": "fas:utensils"
+            },
+            "deli": {
+                "sign": "fas:utensils"
+            },
+            "dairy": {
+                "sign": "fas:utensils"
+            },
+            "farm": {
+                "sign": "fas:utensils"
+            },
+            "greengrocer": {
+                "sign": "fas:utensils"
+            },
+            "pasta": {
+                "sign": "fas:utensils"
+            },
+            "spices": {
+                "sign": "fas:utensils"
+            },
+            "coffee": {
+                "sign": "fas:coffee"
+            },
+            "tea": {
+                "sign": "fas:coffee"
+            },
+            "convenience": {
+                "sign": "fas:shopping-basket"
+            },
+            "department_store": {
+                "sign": "fas:building"
+            },
+            "mall": {
+                "sign": "fas:building"
+            },
+            "electronics": {
+                "sign": "fas:tv"
+            },
+            "computer": {
+                "sign": "fas:desktop"
+            },
+            "electrical": {
+                "sign": "fas:bolt"
+            },
+            "lighting": {
+                "sign": "fas:bulb"
+            },
+            "fishing": {
+                "sign": "fas:fish"
+            },
+            "toys": {
+                "sign": "fas:dice"
+            },
+            "florist": {
+                "sign": "&#127799;"
+            },
+            "garden_centre": {
+                "sign": "&#127799;"
+            },
+            "hairdresser": {
                 "sign": "&#128113;"
             },
-            {
-                "types": [
-                    "ice_cream"
-                ],
-                "sign": "&#127848;"
+            "ice_cream": {
+                "sign": "fas:ice-cream"
             },
-            {
-                "types": [
-                    "jewelry"
-                ],
-                "sign": "&#128141;"
+            "jewelry": {
+                "sign": "fas:ring"
             },
-            {
-                "types": [
-                    "kiosk"
-                ],
-                "sign": "fa-newspaper-o"
+            "kiosk": {
+                "sign": "fas:newspaper"
             },
-            {
-                "types": [
-                    "shoes"
-                ],
-                "sign": "&#128095;"
+            "newsagent": {
+                "sign": "fas:newspaper"
             },
-            {
-                "types": [
-                    "supermarket"
-                ],
-                "sign": "fa-shopping-cart"
+            "shoes": {
+                "sign": "fas:shoe-prints"
             },
-            {
-                "types": [
-                    "watches"
-                ],
-                "sign": "&#8986;"
+            "travel_agency": {
+                "sign": "&#129523;"
+            },
+            "supermarket": {
+                "sign": "fas:shopping-cart"
+            },
+            "watches": {
+                "sign": "far:clock"
+            },
+            "gift": {
+                "sign": "fas:gift"
+            },
+            "locksmith": {
+                "sign": "fas:key"
+            },
+            "houseware": {
+                "sign": "fas:tools"
+            },
+            "doityourself": {
+                "sign": "fas:tools"
+            },
+            "hardware": {
+                "sign": "fas:tools"
+            },
+            "art": {
+                "sign": "fas:palette"
+            },
+            "stationery": {
+                "sign": "fas:pencil-ruler"
+            },
+            "funeral_directors": {
+                "sign": "maki:monument"
+            },
+            "copyshop": {
+                "sign": "fas:copy"
+            },
+            "tobacco": {
+                "sign": "fas:smoking"
+            },
+            "furniture": {
+                "sign": "fas:couch"
+            },
+            "interior_decoration": {
+                "sign": "fas:couch"
+            },
+            "car_repair": {
+                "sign": "fas:car"
+            },
+            "car": {
+                "sign": "fas:car"
+            },
+            "car_parts": {
+                "sign": "fas:car"
+            },
+            "tyres": {
+                "sign": "fas:car"
+            },
+            "beauty": {
+                "sign": ""
+            },
+            "cosmetics": {
+                "sign": ""
+            },
+            "music": {
+                "sign": "fas:guitar"
+            },
+            "optician": {
+                "sign": "fas:glasses"
+            },
+            "books": {
+                "sign": "fas:book"
+            },
+            "sports": {
+                "sign": "fas:basketball-ball"
+            },
+            "chemist": {
+                "sign": "fas:tablets"
+            },
+            "pet": {
+                "sign": "fas:paw"
+            },
+            "photo": {
+                "sign": "fas:camera"
+            },
+            "ticket": {
+                "sign": "fas:ticket-alt"
+            },
+            "outdoor": {
+                "sign": "fas:campground"
+            },
+            "massage": {
+                "sign": ""
+            },
+            "paint": {
+                "sign": "fas:paint-roller"
+            },
+            "fabric": {
+                "sign": ""
+            },
+            "trade": {
+                "sign": "fas:tools"
+            },
+            "bookmaker": {
+                "sign": "fas:money-bill-wave"
+            },
+            "kitchen": {
+                "sign": "fas:utensils"
+            },
+            "second_hand": {
+                "sign": ""
+            },
+            "lottery": {
+                "sign": "fas:money-bill-wave"
+            },
+            "pawnbroker": {
+                "sign": "fas:money-bill-wave"
+            },
+            "bed": {
+                "sign": "fas:bed"
+            },
+            "charity": {
+                "sign": "fas:hand-holding-heart"
+            },
+            "tattoo": {
+                "sign": ""
+            },
+            "mobile_phone": {
+                "sign": "fas:mobile-alt"
             }
+        },
+        "clothes": [
+            "women",
+            "men",
+            "leather",
+            "fur",
+            "underwear",
+            "children",
+            "wedding",
+            "sports",
+            "workwear",
+            "lingerie",
+            "babies",
+            "hats",
+            "fashion",
+            "suits",
+            "unisexs",
+            "traditional",
+            "costumes",
+            "bridal",
+            "oversize",
+            "swimwear",
+            "maternity",
+            "brand",
+            "military",
+            "vintage",
+            "accessories",
+            "schoolwear",
+            "motorcycle",
+            "denim"
         ]
+    },
+    "filter": {
+        "shop": {
+            "name": "{{ trans('filter:type') }}",
+            "type": "select",
+            "show_default": "true",
+            "values": "{% set list = [] %}{% for k, v in const.shops %}<option value=\"{{ k }}\">{% set list = list|merge([ k ]) %}{{ tagTrans('shop', k) }}</option>{% endfor %}<option weight='1' value='other' query='nwr[shop][shop!~\"^(|.*;)({{ list|join('|') }})(|;.*)$\"]'>{{ trans('other') }}</option>",
+            "sort": "natsort",
+            "op": "has"
+        },
+        "clothes": {
+            "name": "{{ keyTrans('clothes') }}",
+            "type": "select",
+            "values": "{% set list = [] %}<option weight='-1' value='*' query='nwr[clothes]'>{{ trans('any value') }}</option>{% for k in const.clothes %}{% set list = list|merge([ k ]) %}<option value='{{ k }}'>{{ tagTrans('clothes', k) }}</option>{% endfor %}<option weight='1' value='other' query='nwr[clothes][clothes!~\"^(|.*;)({{ list|join('|') }})(|;.*)$\"]'>{{ trans('other') }}</option>",
+            "sort": "natsort",
+            "op": "has"
+        }
     }
 }

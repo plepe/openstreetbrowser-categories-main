@@ -48,45 +48,209 @@
             "  {% set value = tags.emergency %}",
             "{% elseif tags.healthcare %}",
             "  {% set key = 'healthcare' %}",
-            "  {% set value = tags.healthcare %}",
+            "  {% set value = tags.healthcare|split(';')[0] %}",
             "{% else %}",
             "  {% set key = 'amenity' %}",
             "  {% set value = tags.amenity %}",
-            "{% endif %}"
+            "{% endif %}",
+            "{% set kv = key ~ '=' ~ value %}",
+            "{% set found = { sign: '' } %}",
+            "{% for data in const %}",
+            "  {% if kv in data.types %}{% set found = data %}{% endif %}",
+            "{% endfor %}"
         ],
         "description": [
-            "{{ tagTrans(key, value) }}",
+            "{{ tagTransList(key, attribute(tags, key)) }}",
             "{% if attribute(tags, 'healthcare:speciality') %}",
             "-",
             "{{ tagTransList('healthcare:speciality', attribute(tags, 'healthcare:speciality')) }}",
             "{% endif %}"
         ],
-        "markerSign": "{{ const[key ~ '=' ~ value]|raw }}"
+        "markerSign": "{{ found.sign|raw }}"
     },
     "info": [
         "<table>",
-        "{% for value, sign in const %}",
+        "{% for data in const %}",
         "  <tr>",
-        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ sign|raw }}</div></td>",
-        "    <td>{{ tagTrans(value|split('=')[0], value|split('=')[1]) }}</td>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "    <td>{{ tagTrans(data.types[0]|split('=')[0], data.types[0]|split('=')[1]) }}</td>",
         "  </tr>",
         "{% endfor %}",
         "</table>"
     ],
-    "const": {
-        "amenity=baby_hatch": "🚼",
-        "healthcare=blood_bank": "<img src='maki:blood-bank'>",
-        "healthcare=blood_donation": "<img src='maki:blood-bank'>",
-        "healthcare=clinic": "🏥",
-        "emergency=defibrillator": "<img src='maki:defibrillator'>",
-        "healthcare=dentist": "<img src='maki:dentist'>",
-        "healthcare=doctor": "<img src='maki:doctor'>",
-        "amenity=doctors": "<img src='maki:doctor'>",
-        "amenity=hospital": "🏥",
-        "healthcare=hospital": "🏥",
-        "amenity=nursing_home": "",
-        "amenity=pharmacy": "<img src='maki:pharmacy'>",
-        "amenity=social_facility": "",
-        "amenity=veterinary": "<img src='maki:veterinary'>"
+    "const": [
+        {
+            "types": [
+                "amenity=hospital",
+                "healthcare=hospital"
+            ],
+            "sign": "<i class=\"fas fa-hospital-alt\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=clinic"
+            ],
+            "sign": "<i class=\"fas fa-hospital\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=centre"
+            ],
+            "sign": "<i class=\"far fa-hospital\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=doctor",
+                "amenity=doctors"
+            ],
+            "sign": "<img data-src='maki:doctor'>"
+        },
+        {
+            "types": [
+                "amenity=pharmacy",
+                "healthcare=pharmacy"
+            ],
+            "sign": "<img data-src='maki:pharmacy'>"
+        },
+        {
+            "types": [
+                "emergency=defibrillator"
+            ],
+            "sign": "<img data-src='maki:defibrillator'>"
+        },
+        {
+            "types": [
+                "healthcare=dentist",
+                "amenity=dentist"
+            ],
+            "sign": "<img data-src='maki:dentist'>"
+        },
+        {
+            "types": [
+                "amenity=baby_hatch"
+            ],
+            "sign": "🚼"
+        },
+        {
+            "types": [
+                "healthcare=blood_bank"
+            ],
+            "sign": "<img data-src='maki:blood-bank'>"
+        },
+        {
+            "types": [
+                "healthcare=blood_donation"
+            ],
+            "sign": "<img data-src='maki:blood-bank'>"
+        },
+        {
+            "types": [
+                "amenity=nursing_home"
+            ]
+        },
+        {
+            "types": [
+                "amenity=social_facility"
+            ],
+            "sign": "<i class=\"fas fa-users\"></i>"
+        },
+        {
+            "types": [
+                "amenity=veterinary"
+            ],
+            "sign": "<img data-src='maki:veterinary'>"
+        },
+        {
+            "types": [
+                "healthcare=physiotherapist"
+            ],
+            "sign": "<i class=\"fas fa-user-injured\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=psychotherapist"
+            ],
+            "sign": "<i class=\"fas fa-couch\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=alternative"
+            ],
+            "sign": ""
+        },
+        {
+            "types": [
+                "healthcare=audiologist"
+            ],
+            "sign": "<i class=\"fas fa-headphones-alt\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=birthing_center"
+            ],
+            "sign": "<i class=\"fas fa-baby\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=dialysis"
+            ],
+            "sign": ""
+        },
+        {
+            "types": [
+                "healthcare=laboratory"
+            ],
+            "sign": "<i class=\"fas fa-vials\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=midwife"
+            ],
+            "sign": ""
+        },
+        {
+            "types": [
+                "healthcare=nutrition_counseling"
+            ],
+            "sign": "<i class=\"fas fa-carrot\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=occupational_therapist"
+            ],
+            "sign": ""
+        },
+        {
+            "types": [
+                "healthcare=optometrist"
+            ],
+            "sign": "<i class=\"fas fa-eye\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=podiatrist"
+            ],
+            "sign": ""
+        },
+        {
+            "types": [
+                "healthcare=rehabilitation"
+            ],
+            "sign": "<i class=\"fas fa-crutch\"></i>"
+        },
+        {
+            "types": [
+                "healthcare=speech_therapist"
+            ],
+            "sign": ""
+        }
+    ],
+    "filter": {
+        "type": {
+            "name": "{{ trans('filter:type') }}",
+            "show_default": "true",
+            "type": "select",
+            "values": "{% for data in const %}<option value=\"{{ data.types[0] }}\" query=\"({% for t in data.types %}nwr[{{ t }}];{% endfor %})\" minzoom=\"{{ data.zoom }}\">{{ tagTrans(data.types[0]) }}</option>{% endfor %}"
+        }
     }
 }

@@ -19,7 +19,7 @@
         "uk": "Гастрономія"
     },
     "query": {
-        "16": "(node[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];way[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];relation[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];);"
+        "16": "(node[amenity~'^(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant)$'];way[amenity~'^(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant)$'];relation[amenity~'^(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant)$'];);"
     },
     "feature": {
         "description": "{{ tagTrans('amenity', tags.amenity) }}",
@@ -45,5 +45,72 @@
             "</ul>"
         ],
         "markerSign": "{% if tags.amenity=='bar' %}&#127864;{% elseif tags.amenity=='biergarten'%}&#127867;{% elseif tags.amenity=='cafe' %}&#9749;{% elseif tags.amenity=='fast_food' %}&#127828;{% elseif tags.amenity=='ice_cream' %}&#127848;{% elseif tags.amenity=='pub' %}&#127866;{% else %}&#127860;{% endif %}"
+    },
+    "filter": {
+        "amenity": {
+            "name": "{{ trans('filter:type') }}",
+            "type": "select",
+            "show_default": "true",
+            "values": [
+              "bar",
+              "biergarten",
+              "cafe",
+              "fast_food",
+              "food_court",
+              "ice_cream",
+              "pub",
+              "restaurant"
+            ],
+            "valueName": "{{ tagTrans('amenity', value) }}",
+            "op": "="
+        },
+        "cuisine_food": {
+            "name": "{{ keyTrans('cuisine/food') }}",
+            "type": "select",
+            "key": "cuisine",
+            "values": [ "barbecue", "burger", "casserole", "chicken", "couscous", "curry", "fish", "fish_and_chips", "fried_food", "friture", "gyros", "kebab", "noodle", "pasta", "pizza", "sandwich", "sausage", "seafood", "soup", "steak_house", "sub", "sushi", "tapas", "wings" ],
+            "valueName": "{{ tagTrans('cuisine', value) }}",
+            "op": "has"
+        },
+        "cuisine_dessert": {
+            "name": "{{ keyTrans('cuisine/dessert') }}",
+            "type": "select",
+            "key": "cuisine",
+            "values": [ "bagel", "biscuit", "bougatsa", "cake", "coffee_shop", "cookie", "crepe", "dessert", "donut", "empanada", "frozen_yogurt", "gingerbread", "ice_cream", "chimney_cake", "langos", "pancake", "pastry", "petit_four", "pie", "pogacha", "poppy_seed_roll", "profiterole", "punch_cake", "savory_pancakes", "strudel", "teahouse", "waffle" ],
+            "valueName": "{{ tagTrans('cuisine', value) }}",
+            "op": "has"
+        },
+        "cuisine_ethnicity": {
+            "name": "{{ keyTrans('cuisine/ethnicity') }}",
+            "type": "select",
+            "key": "cuisine",
+            "values": [ "afghan", "african", "american", "arab", "argentinian", "asian", "australian", "baiana", "balkan", "basque", "bavarian", "belarusan", "bolivian", "brazilian", "cantonese", "capixaba", "caribbean", "chinese", "croatian", "czech", "danish", "french", "gaucho", "german", "greek", "hawaiian", "hunan", "hungarian", "indian", "international", "iranian", "italian", "japanese", "jewish", "korean", "kyo_ryouri", "latin_american", "lebanese", "malagasy", "mediterranean", "mexican", "mineira", "new_mexican", "okinawa_ryori", "pakistani", "peruvian", "polish", "portuguese", "regional", "rhenish", "russian", "shandong", "sichuan", "spanish", "texan", "tex-mex", "thai", "turkish", "vietnamese", "westphalian" ],
+            "valueName": "{{ tagTrans('cuisine', value) }}",
+            "op": "has"
+        },
+        "diet": {
+            "name": "{{ keyTrans('diet') }}",
+            "type": "select",
+            "values": {
+               "*": {
+                 "name": "{{ repoTrans('Objects with diet information') }}",
+                 "query": "nwr[~\"^diet:\"~\".\"]"
+               },
+               "diet:vegan": {},
+               "diet:vegetarian": {},
+               "diet:pescetarian": {},
+               "diet:lacto_vegetarian": {},
+               "diet:ovo_vegetarian": {},
+               "diet:fruitarian": {},
+               "diet:raw": {},
+               "diet:gluten_free": {},
+               "diet:dairy_free": {},
+               "diet:lactose_free": {},
+               "diet:halal": {},
+               "diet:kosher": {}
+            },
+            "valueName": "{{ keyTrans(value) }}",
+            "op": "has_key_value"
+        }
     }
 }

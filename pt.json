@@ -224,12 +224,12 @@
     ],
     "const": {
         "train": {
-            "sign": "<img src='maki:rail?fill=#ffffff'>",
+            "sign": "<img data-src='maki:rail?fill=#ffffff'>",
             "zoom": 12,
             "color": "#00007f"
         },
         "subway": {
-            "sign": "<img src='maki:rail-metro?fill=#ffffff'>",
+            "sign": "<img data-src='maki:rail-metro?fill=#ffffff'>",
             "zoom": 12,
             "color": "#0000ff"
         },
@@ -239,29 +239,45 @@
             "color": "#006f8f"
         },
         "tram": {
-            "sign": "<img src='maki:rail-light?fill=#ffffff'>",
+            "sign": "<img data-src='maki:rail-light?fill=#ffffff'>",
             "zoom": 12,
             "color": "#7f007f"
         },
         "bus": {
-            "sign": "<img src='maki:bus?fill=#ffffff'>",
+            "sign": "<img data-src='maki:bus?fill=#ffffff'>",
             "zoom": 12,
             "color": "#af0000"
         },
         "trolleybus": {
-            "sign": "<img src='maki:bus?fill=#ffffff'>",
+            "sign": "<img data-src='maki:bus?fill=#ffffff'>",
             "zoom": 12,
             "color": "#af3f00"
         },
         "aerialway": {
-            "sign": "<img src='maki:aerialway?fill=#ffffff'>",
+            "sign": "<img data-src='maki:aerialway?fill=#ffffff'>",
             "zoom": 12,
             "color": "#00aaaa"
         },
         "ferry": {
-            "sign": "<img src='maki:ferry?fill=#ffffff'>",
+            "sign": "<img data-src='maki:ferry?fill=#ffffff'>",
             "zoom": 12,
             "color": "#007fff"
+        }
+    },
+    "filter": {
+        "route": {
+            "type": "select",
+            "show_default": "true",
+            "valueName": "{{ tagTrans('route', value) }}",
+            "values": [
+                "aerialway",
+                "bus",
+                "ferry",
+                "subway",
+                "train",
+                "tram",
+                "trolleybus"
+            ]
         }
     }
 }

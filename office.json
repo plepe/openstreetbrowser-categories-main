@@ -43,5 +43,13 @@
         "therapist": "<i class='fas fa-couch'></i>",
         "travel_agent": "<i class='fas fa-plane-departure'></i>",
         "publisher": "<i class='fas fa-book'></i>"
+    },
+    "filter": {
+        "type": {
+            "name": "{{ trans('filter:type') }}",
+            "show_default": "true",
+            "type": "select",
+            "values": "{% for k, v in const %}<option value=\"{{ k }}\" query=\"nwr[{{ k }}]\" minzoom=\"{{ v.zoom }}\">{{ tagTrans('office', k) }}</option>{% endfor %}"
+        }
     }
 }

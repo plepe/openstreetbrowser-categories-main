@@ -57,5 +57,13 @@
             "sign": "<i class=\"fas fa-file-signature\"></i>",
             "zoom": 14
         }
+    },
+    "filter": {
+        "type": {
+            "name": "{{ trans('filter:type') }}",
+            "show_default": "true",
+            "type": "select",
+            "values": "{% for k, v in const %}<option value=\"{{ k }}\" query=\"nwr[{{ k }}]\" minzoom=\"{{ v.zoom }}\">{{ tagTrans(k) }}</option>{% endfor %}"
+        }
     }
 }

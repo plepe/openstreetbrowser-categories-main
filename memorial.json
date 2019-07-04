@@ -1,12 +1,5 @@
 {
     "type": "overpass",
-    "name": {
-        "de": "Denkmäler",
-        "en": "Memorials",
-        "fr": "Mémoriaux",
-        "hu": "Emlékművek",
-        "pt-br": "Memoriais"
-    },
     "query": {
         "11": [
             "(",
@@ -25,14 +18,34 @@
     },
     "feature": {
         "pre": [
-            "{% set value = tags.historic %}",
-            "{% if tags.historic == 'memorial' and tags.memorial %}",
-            "  {% set value = tags.historic ~ ' memorial=' ~ tags.memorial %}",
-            "{% elseif tags.historic == 'memorial' and attribute(tags, 'memorial:type') %}",
-            "  {% set value = tags.historic ~ ' memorial=' ~ attribute(tags, 'memorial:type') %}",
+            "{% set memtype = 'yes' %}",
+            "{% if tags.memorial %}",
+            "  {% set memtype = tags.memorial %}",
+            "{% elseif attribute(tags, 'memorial:type') %}",
+            "  {% set memtype = attribute(tags, 'memorial:type') %}",
+            "{% elseif attribute(tags, 'monument') %}",
+            "  {% set memtype = attribute(tags, 'monument') %}",
+            "{% elseif attribute(tags, 'memorial_type') %}",
+            "  {% set memtype = attribute(tags, 'memorial_type') %}",
+            "{% endif %}",
+            "",
+            "{% set memgroup = memtype %}",
+            "{% for value, data in const %}",
+            "{% if memtype in data.alias %}",
+            "{% set memgroup = value %}",
+            "{% endif %}",
+            "{% endfor %}"
+        ],
+        "description": [
+            "{{ tagTrans('historic', tags.historic) }}",
+            "",
+            "{% if memtype != 'yes' %}",
+            "  ({{ tagTrans('memorial', memtype) }})",
             "{% endif %}"
         ],
-        "description": "{{ tagTransList('historic', value) }}",
+        "priority": [
+            "{% if tags.historic == 'monument' %}0[% else %}1{% endif %}"
+        ],
         "body": [
             "<ul>",
             "{% if tags.inscription %}",
@@ -73,7 +86,7 @@
             "{% endif %}",
             "</ul>"
         ],
-        "markerSign": "{{ const[value].sign|raw }}"
+        "markerSign": "{{ const[memgroup].sign|raw }}"
     },
     "info": [
         "<table>",
@@ -81,7 +94,7 @@
         "{% if data.zoom <= map.zoom %}",
         "  <tr>",
         "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
-        "    <td>{{ tagTrans('historic', value) }}</td>",
+        "    <td>{{ tagTrans('memorial', value) }}</td>",
         "  </tr>",
         "{% endif %}",
         "{% endfor %}",
@@ -94,17 +107,111 @@
         "</table>"
     ],
     "const": {
-        "memorial": {
-            "sign": "<span  style='position: relative; top: -2px;'><img src='maki:monument?size=11'></span>",
+        "plaque": {
+            "alias": [ "plate" ],
+            "sign": "<img data-src='img/plaque.svg'>",
             "zoom": 14
         },
-        "memorial memorial=plaque": {
+        "blue_plaque": {
+            "sign": "<img data-src='img/blue_plaque.svg'>",
+            "zoom": 14
+        },
+        "statue": {
+            "sign": "<i class=\"fas fa-female\"></i>",
+            "zoom": 14
+        },
+        "war_memorial": {
+            "alias": [ "war_monument" ],
+            "sign": "<img data-src='maki:horse-riding'>",
+            "zoom": 14
+        },
+        "stolperstein": {
             "sign": "",
             "zoom": 14
         },
-        "monument": {
-            "sign": "<img data-src='maki:monument?size=15'>",
-            "zoom": 11
+        "stone": {
+            "sign": "",
+            "zoom": 14
+        },
+        "bust": {
+            "alias": [ "person", "public_person" ],
+            "sign": "<i class=\"fas fa-user-alt\"></i>",
+            "zoom": 14
+        },
+        "stele": {
+            "sign": "",
+            "zoom": 14
+        },
+        "obelisk": {
+            "sign": "",
+            "zoom": 14
+        },
+        "sculpture": {
+            "sign": "",
+            "zoom": 14
+        },
+        "ghost_bike": {
+            "sign": "<i style=\"color: white;\" class=\"fas fa-bicycle\"></i>",
+            "zoom": 14
+        },
+        "vehicle": {
+            "alias": [ "tank" ],
+            "sign": "<i class=\"fas fa-car\"></i>",
+            "zoom": 14
+        },
+        "cross": {
+            "sign": "<i class=\"fas fa-cross\"></i>",
+            "zoom": 14
+        }
+    },
+    "filter": {
+        "type": {
+            "name": "{{ trans('filter:type') }}",
+            "show_default": "true",
+            "type": "select",
+            "values": "{% for k, v in const %}<option value='{{ k }}' query='nwr[~\"^(memorial|memorial:type|memorial_type|monument)$\"~\"^({{ k }}{% for alias in v.alias %}|{{ alias }}{% endfor %})$\"]'>{{ tagTrans('memorial', k) }}</option>{% endfor %}"
+        },
+        "size": {
+            "name": "{{ keyTrans('memorial') }} | {{ keyTrans('monument') }}",
+            "type": "radio",
+            "values": "<option value='*' query=''>{{ trans('any value') }}</option>\n<option value='memorial' query='nwr[historic=memorial]'>{{ keyTrans('memorial') }}</option>\n<option value='monument' query='nwr[historic=monument]'>{{ keyTrans('monument') }}</option>",
+            "default": "*"
+        },
+        "conflict": {
+            "key": "memorial:conflict",
+            "op": "has",
+            "name": "{{ keyTrans('memorial:conflict') }}",
+            "type": "select",
+            "values": [
+                "WW1",
+                "WW2"
+            ],
+            "valueName": "{{ tagTrans('memorial:conflict', value) }}"
+        },
+        "civilization": {
+            "key": "historic:civilization",
+            "op": "has",
+            "name": "{{ keyTrans('historic:civilization') }}",
+            "type": "select",
+            "values": [
+                "ancient_egyptian",
+                "ancient_greek",
+                "ancient_roman",
+                "byzantine",
+                "celtic",
+                "etruscan",
+                "imperial_chinese",
+                "korean",
+                "medieval",
+                "modern",
+                "neolithic",
+                "nuragic",
+                "ottoman",
+                "prehistoric",
+                "roman",
+                "western_roman"
+            ],
+            "valueName": "{{ tagTrans('historic:civilization', value) }}"
         }
     }
 }
