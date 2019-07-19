@@ -1,0 +1,15 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Climbing"
+    },
+    "query": {
+        "11": [
+            "(",
+            "nwr[sport~\"^(.*;|)climbing(|;.*)$\"];",
+            "nwr[highway=via_ferrata];",
+            "nwr[climbing~\"^(route|crag|boulder)$\"];",
+            ")"
+        ]
+    }
+}
