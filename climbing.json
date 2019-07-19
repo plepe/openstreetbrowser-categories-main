@@ -11,5 +11,36 @@
             "nwr[climbing~\"^(route|crag|boulder)$\"];",
             ")"
         ]
+    },
+    "feature": {
+        "description": [
+            "{% set dash = false %}",
+            "{% if tags.leisure == 'sports_centre' %}",
+            "  {{ tagTrans('leisure', 'sports_centre') }}",
+            " {% set dash=true %}",
+            "{% endif %}",
+            "",
+            "{% if tags.highway == 'via_ferrata' %}",
+            "  {% if dash %} - {% endif %}",
+            "  {{ tagTrans('highway', 'via_ferrata') }}",
+            "  {% set dash=true %}",
+            "{% endif %}",
+            "",
+            "{% if tags.natural %}",
+            "  {% if dash %} - {% endif %}",
+            "  {{ tagTransList('natural', tags.natural) }}",
+            "  {% set dash=true %}",
+            "{% endif %}",
+            "",
+            "{% if tags.climbing and tags.climbing != 'yes' %}",
+            "  {% if dash %} - {% endif %}",
+            "  {{ tagTransList('climbing', tags.climbing) }}",
+            "{% endif %}"
+        ],
+        "body": [
+            "{{ tags|json_encode }}",
+            "",
+            "{% if tags.via_ferrata_scale %}{{ keyTrans('via_ferrata_scale') }}: {{ tags.via_ferrata_scale }}{% endif %}<br/>"
+        ]
     }
 }
