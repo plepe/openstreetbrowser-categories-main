@@ -37,10 +37,6 @@
             "  {{ tagTransList('climbing', tags.climbing) }}",
             "{% endif %}"
         ],
-        "body": [
-            "{{ tags|json_encode }}",
-            "",
-            "{% if tags.via_ferrata_scale %}{{ keyTrans('via_ferrata_scale') }}: {{ tags.via_ferrata_scale }}{% endif %}<br/>"
-        ]
+        "body": "{% if tags.via_ferrata_scale %}<b>{{ keyTrans('via_ferrata_scale') }}: </b>{{ tags.via_ferrata_scale }}{% endif %}<br/>"
     }
 }
