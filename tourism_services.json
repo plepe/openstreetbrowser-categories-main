@@ -22,17 +22,14 @@
     "query": {
         "13": [
             "(",
-            "node[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|motel|wilderness_hut)$\"];",
-            "way[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|motel|wilderness_hut)$\"];",
-            "relation[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|motel|wilderness_hut)$\"];",
+            "nwr[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|motel|wilderness_hut)$\"];",
             "nwr[office~\"^(guide|tourism|tourist_accommodation|camping)$\"];",
+            "nwr[tourism=information][information~\"^(office)$\"];",
             ")"
         ],
         "16": [
             "(",
-            "node[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];",
-            "way[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];",
-            "relation[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];",
+            "nwr[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];",
             "nwr[office~\"^(guide|tourism|tourist_accommodation|camping)$\"];",
             ")"
         ]
@@ -52,6 +49,10 @@
             "  {{ keyTrans('office') }} ({{ tagTrans('office', tags.office) }})",
             "{% else %}",
             "  {{ tagTrans(key, value) }}",
+            "{% endif %}",
+            "",
+            "{% if tags.tourism == 'information' and tags.information %}",
+            "- {{ tagTransList('information', tags.information) }}",
             "{% endif %}"
         ],
         "markerSign": [
