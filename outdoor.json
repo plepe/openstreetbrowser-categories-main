@@ -10,6 +10,9 @@
     "subCategories": [
         {
             "id": "mtb-routes"
+        },
+        {
+            "id": "climbing"
         }
     ]
 }

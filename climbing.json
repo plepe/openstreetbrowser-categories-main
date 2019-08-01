@@ -4,31 +4,36 @@
         "en": "Climbing"
     },
     "query": {
-        "11": [
+        "12": [
             "(",
             "nwr[sport~\"^(.*;|)climbing(|;.*)$\"];",
             "nwr[highway=via_ferrata];",
             "nwr[climbing~\"^(route|crag|boulder)$\"];",
+            ")"
+        ],
+        "16": [
+            "(",
+            "nwr[sport~\"^(.*;|)climbing(|;.*)$\"];",
+            "nwr[highway=via_ferrata];",
+            "nwr[climbing];",
             ")"
         ]
     },
     "feature": {
         "description": [
             "{% set dash = false %}",
-            "{% if tags.leisure == 'sports_centre' %}",
-            "  {{ tagTrans('leisure', 'sports_centre') }}",
-            " {% set dash=true %}",
+            "{% if tags.natural %}",
+            "  {{ tagTransList('natural', tags.natural) }}",
+            "  {% set dash=true %}",
+            "{% elseif tags.leisure %}",
+            "  {% if dash %} - {% endif %}",
+            "  {{ tagTransList('leisure', tags.leisure) }}",
+            "  {% set dash=true %}",
             "{% endif %}",
             "",
             "{% if tags.highway == 'via_ferrata' %}",
             "  {% if dash %} - {% endif %}",
             "  {{ tagTrans('highway', 'via_ferrata') }}",
-            "  {% set dash=true %}",
-            "{% endif %}",
-            "",
-            "{% if tags.natural %}",
-            "  {% if dash %} - {% endif %}",
-            "  {{ tagTransList('natural', tags.natural) }}",
             "  {% set dash=true %}",
             "{% endif %}",
             "",
