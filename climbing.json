@@ -9,6 +9,7 @@
             "nwr[sport~\"^(.*;|)climbing(|;.*)$\"];",
             "nwr[highway=via_ferrata];",
             "nwr[climbing~\"^(route|crag|boulder)$\"];",
+            "nwr[~\"^climbing:\"~\"^(yes|[0-9]+)$\"];",
             ")"
         ],
         "16": [
@@ -16,6 +17,7 @@
             "nwr[sport~\"^(.*;|)climbing(|;.*)$\"];",
             "nwr[highway=via_ferrata];",
             "nwr[climbing];",
+            "nwr[~\"^climbing:\"~\"^(yes|[0-9]+)$\"];",
             ")"
         ]
     },
@@ -42,6 +44,33 @@
             "  {{ tagTransList('climbing', tags.climbing) }}",
             "{% endif %}"
         ],
-        "body": "{% if tags.via_ferrata_scale %}<b>{{ keyTrans('via_ferrata_scale') }}: </b>{{ tags.via_ferrata_scale }}{% endif %}<br/>"
+        "body": [
+            "<ul>",
+            "  {% if attribute(tags, 'ele') %}<li><b>{{ keyTrans('ele') }}: </b>{{ tags.ele }}m</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:length') %}<li><b>{{ keyTrans('climbing:length') }}: </b>{{ attribute(tags, 'climbing:length') }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:length:min') or attribute(tags, 'climbing:length:max') %}<li><b>{{ keyTrans('climbing:length') }}: </b>{{ attribute(tags, 'climbing:length:min') }} - {{ attribute(tags, 'climbing:length:max') }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:grade:uiaa') or attribute(tags, 'climbing:grade:uiaa:min') or attribute(tags, 'climbing:grade:uiaa:max ') %}<li><b>{{ keyTrans('climbing:grade:uiaa') }}: </b>{% if attribute(tags, 'climbing:grade:uiaa:min') or attribute(tags, 'climbing:grade:uiaa:max ') %}{{ attribute(tags, 'climbing:grade:uiaa:min') }} - {{ attribute(tags, 'climbing:grade:uiaa:max') }}{% else %}{{ attribute(tags, 'climbing:grade:uiaa') }}{% endif %}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:grade:UIAA') or attribute(tags, 'climbing:grade:UIAA:min') or attribute(tags, 'climbing:grade:UIAA:max ') %}<li><b>{{ keyTrans('climbing:grade:uiaa') }}: </b>{% if attribute(tags, 'climbing:grade:UIAA:min') or attribute(tags, 'climbing:grade:UIAA:max ') %}{{ attribute(tags, 'climbing:grade:UIAA:min') }} - {{ attribute(tags, 'climbing:grade:UIAA:max') }}{% else %}{{ attribute(tags, 'climbing:grade:UIAA') }}{% endif %}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:grade:french') or attribute(tags, 'climbing:grade:french:min') or attribute(tags, 'climbing:grade:french:max ') %}<li><b>{{ keyTrans('climbing:grade:french') }}: </b>{% if attribute(tags, 'climbing:grade:french:min') or attribute(tags, 'climbing:grade:french:max ') %}{{ attribute(tags, 'climbing:grade:french:min') }} - {{ attribute(tags, 'climbing:grade:french:max') }}{% else %}{{ attribute(tags, 'climbing:grade:french') }}{% endif %}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:grade:saxon') or attribute(tags, 'climbing:grade:saxon:min') or attribute(tags, 'climbing:grade:saxon:max ') %}<li><b>{{ keyTrans('climbing:grade:saxon') }}: </b>{% if attribute(tags, 'climbing:grade:saxon:min') or attribute(tags, 'climbing:grade:saxon:max ') %}{{ attribute(tags, 'climbing:grade:saxon:min') }} - {{ attribute(tags, 'climbing:grade:saxon:max') }}{% else %}{{ attribute(tags, 'climbing:grade:saxon') }}{% endif %}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:grade:polish') or attribute(tags, 'climbing:grade:polish:min') or attribute(tags, 'climbing:grade:polish:max ') %}<li><b>{{ keyTrans('climbing:grade:polish') }}: </b>{% if attribute(tags, 'climbing:grade:polish:min') or attribute(tags, 'climbing:grade:polish:max ') %}{{ attribute(tags, 'climbing:grade:polish:min') }} - {{ attribute(tags, 'climbing:grade:polish:max') }}{% else %}{{ attribute(tags, 'climbing:grade:polish') }}{% endif %}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:bolted') %}<li><b>{{ keyTrans('climbing:bolted') }}: </b>{{ attribute(tags, 'climbing:bolted') }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:orientation') %}<li><b>{{ keyTrans('climbing:orientation') }}: </b>{{ tagTransList('direction', attribute(tags, 'climbing:orientation')) }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:quality') %}<li><b>{{ keyTrans('climbing:quality') }}: </b>{{ attribute(tags, 'climbing:quality') }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:rock') %}<li><b>{{ keyTrans('climbing:rock') }}: </b>{{ tagTransList('material', attribute(tags, 'climbing:rock')) }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:routes') %}<li><b>{{ keyTrans('climbing:routes') }}: </b>{{ attribute(tags, 'climbing:routes') }}</li>{% endif %}",
+            "  {% if tags.via_ferrata_scale %}<li><b>{{ keyTrans('via_ferrata_scale') }}: </b>{{ tags.via_ferrata_scale }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:boulder') %}<li><b>{{ keyTrans('climbing:boulder') }}: </b>{{ attribute(tags, 'climbing:boulder') }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:sport') %}<li><b>{{ keyTrans('climbing:sport') }}: </b>{{ attribute(tags, 'climbing:sport') }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:speed') %}<li><b>{{ keyTrans('climbing:speed') }}: </b>{{ attribute(tags, 'climbing:speed') }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:toprope') %}<li><b>{{ keyTrans('climbing:toprope') }}: </b>{{ attribute(tags, 'climbing:toprope') }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:trad') %}<li><b>{{ keyTrans('climbing:trad') }}: </b>{{ attribute(tags, 'climbing:trad') }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:multipitch') %}<li><b>{{ keyTrans('climbing:multipitch') }}: </b>{{ attribute(tags, 'climbing:multipitch') }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:ice') %}<li><b>{{ keyTrans('climbing:ice') }}: </b>{{ attribute(tags, 'climbing:ice') }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:mixed') %}<li><b>{{ keyTrans('climbing:mixed') }}: </b>{{ attribute(tags, 'climbing:mixed') }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:deepwater') %}<li><b>{{ keyTrans('climbing:deepwater') }}: </b>{{ attribute(tags, 'climbing:deepwater') }}</li>{% endif %}",
+            "  {% if attribute(tags, 'climbing:summit_log') %}<li><b>{{ keyTrans('climbing:quality') }}: </b>{{ attribute(tags, 'climbing:quality') }}</li>{% endif %}",
+            "</ul>"
+        ]
     }
 }
