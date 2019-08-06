@@ -33,7 +33,7 @@
     "category:health": "Salud",
     "category:hiking_routes": "Rutas de senderismo",
     "category:historic": "Histórico",
-    "category:index": "Índice",
+    "category:index": "Índice de Categorías",
     "category:infrastructure": "Infraestructura",
     "category:internet": "Acceso a Internet",
     "category:law": "Ley",
@@ -77,7 +77,7 @@
     "category:tourism_attractions": "Turismo",
     "category:tourism_services": "Turismo",
     "category:transport": "Transporte",
-    "category:transport_alternative": "Transporte alternativo",
+    "category:transport_alternative": "Modos de transporte alternativo",
     "category:transport_car": "Tráfico individual",
     "category:transport_cycle": "Ciclismo",
     "category:transport_pt": "Transporte público",
@@ -88,7 +88,8 @@
     "category:wikipedia": "Wikipedia",
     "category:works": "Fábricas",
     "category:xmas": "Navidades",
-    "date format not understood": "Formato de fecha incomprensible",
+    "date format not understood": "Formato de fecha inválido",
     "outdated feature": "Característica obsoleta",
-    "xmas:outdated-warning": "¡La característica no se ha actualizado para la temporada actual! Por favor verifique y establezca la etiqueta 'xmas: lastcheck' a la fecha actual."
+    "xmas:outdated-warning": "¡La característica no se ha actualizado para la temporada actual! Por favor verifique y establezca la etiqueta 'xmas: lastcheck' a la fecha actual.",
+    "category:roads": "Carreteras"
 }
