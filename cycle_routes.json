@@ -9,10 +9,10 @@
         "pt-br": "Ciclorrotas"
     },
     "query": {
-        "6": "relation[type=route][route=bicycle][network~'^(icn)$']",
-        "9": "relation[type=route][route=bicycle][network~'^(icn|ncn)$']",
-        "12": "relation[type=route][route=bicycle][network~'^(icn|ncn|rcn)$']",
-        "15": "relation[type=route][route=bicycle]"
+        "6": "relation[type=route][route~\"(|.*;)bicycle(|;.*)\"][network~'^(icn)$']",
+        "9": "relation[type=route][route~\"(|.*;)bicycle(|;.*)\"][network~'^(icn|ncn)$']",
+        "12": "relation[type=route][route~\"(|.*;)bicycle(|;.*)\"][network~'^(icn|ncn|rcn)$']",
+        "15": "relation[type=route][route~\"(|.*;)bicycle(|;.*)\"]"
     },
     "members": true,
     "feature": {
