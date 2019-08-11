@@ -7,7 +7,7 @@
         "pt-br": "Rotas de mountain bike"
     },
     "query": {
-        "13": "relation[type=route][route=mtb]"
+        "13": "relation[type=route][route~\"(|.*;)mtb(|;.*)\"]"
     },
     "members": true,
     "feature": {

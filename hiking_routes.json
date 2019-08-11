@@ -9,10 +9,10 @@
         "pt-br": "Rotas de caminhada"
     },
     "query": {
-        "10": "relation[type=route][route=hiking][network~\"^(iwn)$\"]",
-        "11": "relation[type=route][route=hiking][network~\"^(iwn|nwn)$\"]",
-        "12": "relation[type=route][route=hiking][network~\"^(iwn|nwn|rwn)$\"]",
-        "14": "relation[type=route][route=hiking]"
+        "10": "relation[type=route][route~\"(|.*;)hiking(|;.*)\"][network~\"^(iwn)$\"]",
+        "11": "relation[type=route][route~\"(|.*;)hiking(|;.*)\"][network~\"^(iwn|nwn)$\"]",
+        "12": "relation[type=route][route~\"(|.*;)hiking(|;.*)\"][network~\"^(iwn|nwn|rwn)$\"]",
+        "14": "relation[type=route][route~\"(|.*;)hiking(|;.*)\"]"
     },
     "members": true,
     "feature": {
