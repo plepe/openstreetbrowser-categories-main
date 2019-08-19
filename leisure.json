@@ -28,9 +28,17 @@
     },
     "feature": {
         "description": [
-            "{{ tagTrans('leisure', tags.leisure) }}",
             "{% if tags.leisure == 'pitch' and tags.sport %}",
-            "- {{ tagTransList('sport', tags.sport) }}",
+            "  {% set pitchName = tagTrans('leisure', 'pitch sport=' ~ tags.sport) %}",
+            "{% endif %}",
+            "",
+            "{% if pitchName and pitchName != tags.sport %}",
+            "  {{ pitchName }} ",
+            "{% else %}",
+            "  {{ tagTrans('leisure', tags.leisure) }}",
+            "  {% if tags.leisure == 'pitch' and tags.sport %}",
+            "    - {{ tagTransList('sport', tags.sport) }}",
+            "  {% endif %}",
             "{% endif %}"
         ]
     }
