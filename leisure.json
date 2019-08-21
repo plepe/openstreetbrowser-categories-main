@@ -29,7 +29,7 @@
     "feature": {
         "description": [
             "{% if tags.leisure == 'pitch' and tags.sport %}",
-            "  {% set pitchName = tagTrans('leisure', 'pitch sport=' ~ tags.sport) %}",
+            "  {% set pitchName = tagTransList('leisure=pitch sport', tags.sport) %}",
             "{% endif %}",
             "",
             "{% if pitchName and pitchName != tags.sport %}",
