@@ -22,14 +22,14 @@
     "query": {
         "13": [
             "(",
-            "nwr[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|motel|wilderness_hut)$\"];",
+            "nwr[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|motel|wilderness_hut|trail_riding_station)$\"];",
             "nwr[office~\"^(guide|tourism|tourist_accommodation|camping)$\"];",
             "nwr[tourism=information][information~\"^(office)$\"];",
             ")"
         ],
         "16": [
             "(",
-            "nwr[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut)$\"];",
+            "nwr[tourism~\"^(alpine_hut|apartment|camp_site|caravan_site|chalet|guest_house|hostel|hotel|information|motel|wilderness_hut|trail_riding_station)$\"];",
             "nwr[office~\"^(guide|tourism|tourist_accommodation|camping)$\"];",
             ")"
         ]
@@ -120,6 +120,10 @@
         },
         "tourism=wilderness_hut": {
             "sign": "",
+            "zoom": 13
+        },
+        "tourism=trail_riding_station": {
+            "sign": "<img data-src='maki:horse-riding'>",
             "zoom": 13
         },
         "office=tourism": {
