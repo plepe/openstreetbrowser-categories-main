@@ -74,6 +74,7 @@
             "name": "{{ keyTrans('sport') }}",
             "type": "select",
             "show_default": "true",
+            "op": "has",
             "values": "{% set list = [] %}{% for t, v in const %}<option value=\"{{ t }}\">{% set list = list|merge([ t ]) %}{{ tagTrans('sport', t) }}</option>{% endfor %}<option value='other' query='nwr[sport][sport!~\"^({{ list|join('|') }})$\"]'>{{ trans('other') }}</option>"
         }
     }
