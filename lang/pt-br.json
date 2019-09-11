@@ -33,7 +33,7 @@
     "category:health": "Saúde e assistência",
     "category:hiking_routes": "Rotas de caminhada",
     "category:historic": "Histórico",
-    "category:index": "Índice",
+    "category:index": "Índice de Categorias",
     "category:infrastructure": "Infraestrutura",
     "category:internet": "Acesso à Internet",
     "category:law": "Direito",
@@ -78,7 +78,7 @@
     "category:tourism_attractions": "Turismo",
     "category:tourism_services": "Serviços turísticos",
     "category:transport": "Mobilidade",
-    "category:transport_alternative": "Transporte alternativo",
+    "category:transport_alternative": "Modos de transporte alternativo",
     "category:transport_car": "Tráfego individual",
     "category:transport_cycle": "Ciclismo",
     "category:transport_pt": "Transporte público",
@@ -89,7 +89,8 @@
     "category:wikipedia": "Wikipédia",
     "category:works": "Produção",
     "category:xmas": "Natal",
-    "date format not understood": "",
-    "outdated feature": "Objeto antigo",
-    "xmas:outdated-warning": "O objeto não foi atualizado para a temporada atual! Por favor, verifique e defina a tag 'xmas:lastcheck' para a data atual."
+    "date format not understood": "Valor inválido de data",
+    "outdated feature": "Mostrar antigos",
+    "xmas:outdated-warning": "O objeto não foi atualizado para a temporada atual! Por favor, verifique e defina a tag 'xmas:lastcheck' para a data atual.",
+    "category:climbing": "Escalada"
 }
