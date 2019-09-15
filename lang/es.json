@@ -89,7 +89,7 @@
     "category:works": "Fábricas",
     "category:xmas": "Navidades",
     "date format not understood": "Formato de fecha inválido",
-    "outdated feature": "Característica obsoleta",
+    "outdated feature": "Características obsoletas",
     "xmas:outdated-warning": "¡La característica no se ha actualizado para la temporada actual! Por favor verifique y establezca la etiqueta 'xmas: lastcheck' a la fecha actual.",
     "category:roads": "Carreteras"
 }
