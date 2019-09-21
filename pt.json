@@ -58,10 +58,10 @@
         ],
         "description": "{{ tagTrans('route', tags.route) }}",
         "body": [
-            "<h4>{{ repoTrans('category:pt:stops') }}</h4><ul>",
+            "<h4>{{ repoTrans('category:pt:stops') }}</h4><ul class='fa-ul'>",
             "{% for member in members %}",
-            "{% if member.tags.highway == 'bus_stop' or member.tags.amenity == 'bus_station' or member.tags.amenity == 'ferry_terminal' or member.tags.railway == 'tram_stop' or member.tags.railway == 'halt' or member.tags.railway == 'station' or member.tags.aerialway == 'station' or member.tags.public_transport == 'stop_position' or member.role|slice(-4) == 'stop' %}",
-            "<li data-object='{{ member.id }}' data-sublayer='member'><b>{% if member.tags %}{{ member.tags.name|default(trans('unknown')) }}{% else %}<i>{{ trans('loading') }}</i>{% endif %}</li>",
+            "{% if member.tags.highway == 'bus_stop' or member.tags.amenity == 'bus_station' or member.tags.amenity == 'ferry_terminal' or member.tags.railway == 'tram_stop' or member.tags.railway == 'halt' or member.tags.railway == 'station' or member.tags.aerialway == 'station' or member.tags.public_transport == 'stop_position' or member.role|slice(0, 4) == 'stop' %}",
+            "<li data-object='{{ member.id }}' data-sublayer='member'><i class='fa-li {% if member.role == 'stop_entry_only' %}fas fa-sign-in-alt{% elseif member.role == 'stop_exit_only' %}fas fa-sign-out-alt{% else %}fas fa-minus{% endif %}'></i><b>{% if member.tags %}{{ member.tags.name|default(trans('unknown')) }}{% else %}<i>{{ trans('loading') }}</i>{% endif %}</b></li>",
             "{% endif %}",
             "{% endfor %}",
             "</ul>"
