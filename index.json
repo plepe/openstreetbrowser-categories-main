@@ -1,5 +1,9 @@
 {
     "type": "index",
+    "name": {
+        "hu": "Tartalom",
+        "pt-br": "Índice"
+    },
     "subCategories": [
         {
             "id": "leisure_sport_shopping",
@@ -144,7 +148,8 @@
                         "fr": "Marche à pied",
                         "pt-br": "Pedestre",
                         "pt": "Pedestre",
-                        "hu": "Gyalogos közlekedés"
+                        "hu": "Gyalogos közlekedés",
+                        "ja": "歩行"
                     },
                     "subCategories": [
                         {
@@ -164,7 +169,8 @@
                         "fr": "Cyclisme",
                         "pt-br": "Ciclismo",
                         "pt": "Ciclismo",
-                        "hu": "Kerékpáros közlekedés"
+                        "hu": "Kerékpáros közlekedés",
+                        "ja": "自転車"
                     },
                     "subCategories": [
                         {
@@ -249,7 +255,8 @@
                 "fr": "Infrastructures",
                 "pt-br": "Infraestrutura",
                 "pt": "Infraestrutura",
-                "hu": "Infrastruktúra"
+                "hu": "Infrastruktúra",
+                "ja": "インフラ"
             },
             "subCategories": [
                 {
@@ -272,7 +279,8 @@
                         "de": "Energie",
                         "pt-br": "Energia",
                         "fr": "Énergie",
-                        "hu": "Energiaellátás"
+                        "hu": "Energiaellátás",
+                        "ja": "エネルギー"
                     },
                     "subCategories": [
                         {
@@ -354,7 +362,8 @@
                 "pt-br": "Especial",
                 "fr": "Catégories spéciales",
                 "pt": "Especial",
-                "hu": "Speciális"
+                "hu": "Speciális",
+                "ja": "特別"
             },
             "subCategories": [
                 {
@@ -368,9 +377,5 @@
                 }
             ]
         }
-    ],
-    "name": {
-        "hu": "Tartalom",
-        "pt-br": "Índice"
-    }
+    ]
 }
