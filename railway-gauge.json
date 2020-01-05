@@ -12,7 +12,7 @@
             "{% set gauges = tags.gauge|split(';') %}",
             "{% set width = max(3, 2.5 / map.metersPerPixel) %}"
         ],
-        "title": "{{ width }}{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
+        "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
         "description": "{{ tags.gauge|default(trans('unknown'))|enumerate }}",
         "body": [
             "{{ tagTrans('railway', tags.railway) }}<br/>",
@@ -24,11 +24,16 @@
         ],
         "markerSymbol": null,
         "listMarkerSymbol": "line",
-        "styles": "{% if gauges|length < 2 %}default{% else %}{% for i, v in gauges %}{% if i != 0 %},{% endif %}gauge{{ i }}{% endfor %}{% endif %}",
+        "styles": "{% if gauges|length < 2 %}default{% else %}{% for i, v in gauges %}{% if i != 0 %},{% endif %}gauge{{ i }}{% endfor %}{% endif %}{% if map.zoom >= 18 %},rail{% for i, v in gauges %},rail{{ i }}{% endfor %}{% endif %}",
         "style": {
             "width": "{{ width }}",
             "pane": "casing",
             "color": "{% if tags.gauge %}{% if not tags.gauge|matches('^\\d+$') %}#ff0000{% else %}{{ colorInterpolate([ '#00ff00', '#0000ff' ], tags.gauge / 2000) }}{% endif %}{% else %}#404040{% endif %}"
+        },
+        "style:rail": {
+            "width": "1",
+            "color": "#000000",
+            "offset": "{{ gauges[0] / -2000 }}m"
         },
         "style:gauge0": {
             "width": "{{ width }}",
@@ -36,6 +41,11 @@
             "lineCap": "butt",
             "color": "{% if not gauges[0]|matches('^[0-9]+$') %}#ff0000{% else %}{{ colorInterpolate([ '#00ff00', '#0000ff' ], gauges[0] / 2000) }}{% endif %}",
             "dashArray": "5,{{ (gauges|length - 1) * 5 }}"
+        },
+        "style:rail0": {
+            "width": "1",
+            "color": "#000000",
+            "offset": "{{ gauges[0] / 2000 }}m"
         },
         "style:gauge1": {
             "width": "{{ width }}",
@@ -45,6 +55,11 @@
             "dashArray": "5,{{ (gauges|length - 1) * 5 }}",
             "dashOffset": "5"
         },
+        "style:rail1": {
+            "width": "1",
+            "color": "#000000",
+            "offset": "{{ gauges[0] / -2000 + gauges[1] / 1000 }}m"
+        },
         "style:gauge2": {
             "width": "{{ width }}",
             "pane": "casing",
@@ -53,6 +68,11 @@
             "dashArray": "5,{{ (gauges|length - 1) * 5 }}",
             "dashOffset": "10"
         },
+        "style:rail2": {
+            "width": "1",
+            "color": "#000000",
+            "offset": "{{ gauges[0] / -2000 + gauges[2] / 1000 }}m"
+        },
         "style:gauge3": {
             "width": "{{ width }}",
             "pane": "casing",
@@ -60,6 +80,11 @@
             "color": "{% if not gauges[3]|matches('^\\d+$') %}#ff0000{% else %}{{ colorInterpolate([ '#00ff00', '#0000ff' ], gauges[3] / 2000) }}{% endif %}",
             "dashArray": "5,{{ (gauges|length - 1) * 5 }}",
             "dashOffset": "15"
+        },
+        "style:rail3": {
+            "width": "1",
+            "color": "#000000",
+            "offset": "{{ gauges[0] / -2000 + gauges[3] / 1000 }}m"
         }
     },
     "info": [
