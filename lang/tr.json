@@ -1,5 +1,6 @@
 {
     "category:agriculture": "Tarım",
     "category:buildings": "Binalar",
-    "category:buildings-start_date": "Bina yaşı"
+    "category:buildings-start_date": "Bina yaşı",
+    "category:car_maxspeed": "En yüksek hız"
 }
