@@ -155,19 +155,31 @@
   <span class='value'><a href="https://{{ wikipedia[1] }}.wikipedia.org/wiki/{{ wikipedia[2]|replace({ ' ': '_' }) }}">{{ wikipedia[2] }}</a></span>
 {% endif %}
 
-{% if tags.start_date %}
+{% if tags.year_of_construction or tags.start_date or tags.opening_date or tags.end_date %}
   <li class='hasSymbol'>
    <i class="fa fa-clock-o" aria-hidden="true"></i>
+
+{% if tags.year_of_construction %}
+   <span class='key'>{{ keyTrans('year_of_construction') }}:</span>
+   <span class='value'>{{ tags.year_of_construction|osmFormatDate }}</span>
+   <br/>
+{% endif %}
+
+{% if tags.start_date %}
    <span class='key'>{{ keyTrans('start_date') }}:</span>
    <span class='value'>{{ tags.start_date|osmFormatDate }}</span>
-  </li>
+   <br/>
 {% endif %}
 
 {% if tags.opening_date %}
-  <li class='hasSymbol'>
-   <i class="fa fa-clock-o" aria-hidden="true"></i>
    <span class='key'>{{ keyTrans('opening_date') }}:</span>
    <span class='value'>{{ tags.opening_date|osmFormatDate }}</span>
+{% endif %}
+
+{% if tags.end_date %}
+   <span class='key'>{{ keyTrans('end_date') }}:</span>
+   <span class='value'>{{ tags.end_date|osmFormatDate }}</span>
+{% endif %}
   </li>
 {% endif %}
 
