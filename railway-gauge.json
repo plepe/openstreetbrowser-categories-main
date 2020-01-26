@@ -9,8 +9,8 @@
     },
     "feature": {
         "pre": [
-            "{% set gauges = tags.gauge|split(';') %}",
-            "{% set width = max(3, 2.5 / map.metersPerPixel) %}"
+            "{% set gauges = tags.gauge|split(';')|sort|reverse %}",
+            "{% set width = max(3, 3 / map.metersPerPixel) %}"
         ],
         "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
         "description": "{{ tags.gauge|default(trans('unknown'))|enumerate }}",
@@ -24,7 +24,7 @@
         ],
         "markerSymbol": null,
         "listMarkerSymbol": "line",
-        "styles": "{% if gauges|length < 2 %}default{% else %}{% for i, v in gauges %}{% if i != 0 %},{% endif %}gauge{{ i }}{% endfor %}{% endif %}{% if map.zoom >= 18 %},rail{% for i, v in gauges %},rail{{ i }}{% endfor %}{% endif %}",
+        "styles": "{% if gauges|length < 2 %}default{% else %}{% for i, v in gauges %}{% if i != 0 %},{% endif %}gauge{{ i }}{% endfor %}{% endif %}{% if gauges|length > 0 and map.zoom >= 18 %},rail{% for i, v in gauges %},rail{{ i }}{% endfor %}{% endif %}",
         "style": {
             "width": "{{ width }}",
             "pane": "casing",
@@ -32,7 +32,7 @@
         },
         "style:rail": {
             "width": "1",
-            "color": "#000000",
+            "color": "#ffffff",
             "offset": "{{ gauges[0] / -2000 }}m"
         },
         "style:gauge0": {
@@ -44,7 +44,7 @@
         },
         "style:rail0": {
             "width": "1",
-            "color": "#000000",
+            "color": "#ffffff",
             "offset": "{{ gauges[0] / 2000 }}m"
         },
         "style:gauge1": {
@@ -57,7 +57,7 @@
         },
         "style:rail1": {
             "width": "1",
-            "color": "#000000",
+            "color": "#ffffff",
             "offset": "{{ gauges[0] / -2000 + gauges[1] / 1000 }}m"
         },
         "style:gauge2": {
@@ -70,7 +70,7 @@
         },
         "style:rail2": {
             "width": "1",
-            "color": "#000000",
+            "color": "#ffffff",
             "offset": "{{ gauges[0] / -2000 + gauges[2] / 1000 }}m"
         },
         "style:gauge3": {
@@ -83,7 +83,7 @@
         },
         "style:rail3": {
             "width": "1",
-            "color": "#000000",
+            "color": "#ffffff",
             "offset": "{{ gauges[0] / -2000 + gauges[3] / 1000 }}m"
         }
     },
