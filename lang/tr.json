@@ -2,5 +2,15 @@
     "category:agriculture": "Tarım",
     "category:buildings": "Binalar",
     "category:buildings-start_date": "Bina yaşı",
-    "category:car_maxspeed": "En yüksek hız"
+    "category:car_maxspeed": "En yüksek hız",
+    "category:alternative_routes": "Rotalar",
+    "category:buildings-entrances": "Girişler",
+    "category:buildings-figure-ground": "Figür-zemin diyagramı",
+    "category:buildings-height": "Bina yüksekliği",
+    "category:buildings-type": "Bina tipleri",
+    "category:car_amenities": "Tesisler",
+    "category:car_furniture": "Oto Döşeme",
+    "category:car_routes": "Araba rotaları",
+    "category:children": "Çocuk Malzemeleri",
+    "category:climbing": "Tırmanış"
 }
