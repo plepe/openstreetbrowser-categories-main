@@ -135,7 +135,7 @@
         "offsetColorSpeed": 10
     },
     "info": [
-        "<div style='display: inline-block'>",
+        "<div style='display: inline-block; width: 49%;'>",
         "<table>",
         "  <tr>",
         "    <td>{{ markerLine(evaluate({}))|raw }}</td>",
@@ -157,8 +157,7 @@
         "  </tr>",
         "</table>",
         "</div>",
-        "",
-        "<div style='display: inline-block'>",
+        "<div style='display: inline-block; width: 49%;'>",
         "<table>",
         "  <tr>",
         "    <td>{{ markerLine(evaluate({}))|raw }}</td>",
