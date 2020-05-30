@@ -32,6 +32,8 @@
             "    {% set maxspeedKmh = m[1] * 1.60934 %}",
             "    {% set maxspeed = m[1] %}",
             "    {% set unit = \"mph\" %}",
+            "  {% else %}",
+            "    {% set maxspeed = 'other' %}",
             "  {% endif %}",
             "{% endif %}",
             "",
@@ -48,6 +50,8 @@
             "    {% set maxspeedFKmh = m[1] * 1.60934 %}",
             "    {% set maxspeedF = m[1] %}",
             "    {% set unit = \"mph\" %}",
+            "  {% else %}",
+            "    {% set maxspeedF = 'other' %}",
             "  {% endif %}",
             "{% endif %}",
             "",
@@ -64,6 +68,8 @@
             "    {% set maxspeedBKmh = m[1] * 1.60934 %}",
             "    {% set maxspeedB = m[1] %}",
             "    {% set unit = \"mph\" %}",
+            "  {% else %}",
+            "    {% set maxspeedB = 'other' %}",
             "  {% endif %}",
             "{% endif %}",
             "",
@@ -134,8 +140,9 @@
             "#af00af"
         ],
         "colorOther": {
-            "none": "#0000ff",
-            "walk": "#00afff"
+            "none": "#ff00ff",
+            "walk": "#00afff",
+            "other": "#0000ff"
         },
         "highestColorSpeed": 150,
         "offsetColorSpeed": 10
@@ -153,6 +160,10 @@
         "  <tr>",
         "    <td>{{ markerLine(evaluate({ \"maxspeed\": \"none\" }))|raw }}</td>",
         "    <td>{{ tagTrans('maxspeed', 'none') }}</td>",
+        "  </tr>",
+        "  <tr>",
+        "    <td>{{ markerLine(evaluate({ \"maxspeed\": \"other\" }))|raw }}</td>",
+        "    <td>{{ trans('other') }}</td>",
         "  </tr>",
         "</table>",
         "<div style='display: inline-block; width: 49%;'>",
