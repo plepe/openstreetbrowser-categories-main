@@ -96,7 +96,7 @@
         "description": [
             "{% if maxspeedF or maxspeedB %}",
             "<span style='color: {{ colorB }}'>{{ maxspeedB == 'other' ? attribute(tags, 'maxspeed:backward') : const.colorOther[maxspeedB] ? tagTrans('maxspeed', maxspeedB) : maxspeedB|default(trans('unknown')) }}</span> / <span style='color: {{ colorF }}'>{{ maxspeedF == 'other' ? attribute(tags, 'maxspeed:forward') : const.colorOther[maxspeedF] ? tagTrans('maxspeed', maxspeedF) : maxspeedF|default(trans('unknown')) }}</span> {{ unit }}",
-            "{% elseif maxspeed == 'other' %}",
+            "{% elseif maxspeed %}",
             "<span style='color: {{ color }}'>{{ maxspeed == 'other' ? tags.maxspeed : const.colorOther[maxspeed] ? tagTrans('maxspeed', maxspeed) : maxspeed }} {{ unit }}</span>",
             "{% elseif tags.maxspeed %}",
             "{{ tags.maxspeed }}",
