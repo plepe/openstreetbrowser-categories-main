@@ -24,6 +24,7 @@
             "{% if not start_date and attribute(tags, 'building:buildyear') %}{% set start_date = attribute(tags, 'building:buildyear') %}{% endif %}",
             "{% if not start_date and attribute(tags, 'year_built') %}{% set start_date = attribute(tags, 'year_built') %}{% endif %}",
             "{% if not start_date and attribute(tags, 'building:year') %}{% set start_date = attribute(tags, 'building:year') %}{% endif %}",
+            "{% if not start_date and attribute(tags, 'year_of_construction') %}{% set start_date = attribute(tags, 'year_of_construction') %}{% endif %}",
             "",
             "{% if start_date %}",
             "  {# equalize tagging mistakes - need to add QA messages #}",
