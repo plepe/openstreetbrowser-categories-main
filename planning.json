@@ -1,0 +1,20 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Planning",
+    },
+    "query": {
+        "13": [
+            "(",
+            "nwr[landuse~\"^(brownfield|greenfield)$\"];",
+            ")"
+        ]
+    },
+    "feature": {
+        "pre": [
+            "{% set key = 'landuse' %}",
+            "{% set value = tags.landuse %}"
+        ],
+        "description": "{{ tagTrans(key, value) }} {{ key}} {{ value }}"
+    }
+}

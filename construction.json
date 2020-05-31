@@ -17,12 +17,8 @@
     "query": {
         "13": [
             "(",
-            "node[landuse~\"^(brownfield|greenfield|construction|)$\"];",
-            "way[landuse~\"^(brownfield|greenfield|construction|)$\"];",
-            "relation[landuse~\"^(brownfield|greenfield|construction|)$\"];",
-            "node[highway~\"^(construction)$\"];",
-            "way[highway~\"^(construction)$\"];",
-            "relation[highway~\"^(construction)$\"];",
+            "nwr[landuse~\"^(construction)$\"];",
+            "nwr[highway~\"^(construction)$\"];",
             ")"
         ]
     },
