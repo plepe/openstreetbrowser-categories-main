@@ -30,7 +30,10 @@
         "pre": [
             "{% if tags.highway == 'construction' %}",
             "{% set key = 'highway' %}",
-            "{% set value = tags.highway %}",
+            "{% set value = tags.construction %}",
+            "{% elseif tags.landuse == 'construction' and tags.construction %}",
+            "{% set key = 'landuse' %}",
+            "{% set value = tags.construction %}",
             "{% else %}",
             "{% set key = 'landuse' %}",
             "{% set value = tags.landuse %}",
