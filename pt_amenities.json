@@ -17,12 +17,8 @@
     "query": {
         "14": [
             "(",
-            "node[amenity~\"^(taxi|ticket_counter)$\"];",
-            "way[amenity~\"^(taxi|ticket_counter)$\"];",
-            "relation[amenity~\"^(taxi|ticket_counter)$\"];",
-            "node[railway~\"^(subway_entrance)$\"];",
-            "way[railway~\"^(subway_entrance)$\"];",
-            "relation[railway~\"^(subway_entrance)$\"];",
+            "nwr[amenity~\"^(taxi|ticket_counter)$\"];",
+            "nwr[railway~\"^(subway_entrance)$\"];",
             ")"
         ]
     },
