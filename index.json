@@ -276,7 +276,10 @@
                             "id": "construction"
                         },
                         {
-                            "id": "planning"
+                            "id": "proposals"
+                        },
+                        {
+                            "id": "developable_areas"
                         }
                     ]
                 },
