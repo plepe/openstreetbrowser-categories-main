@@ -1,0 +1,45 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Proposals"
+    },
+    "query": {
+        "13": [
+            "(",
+            "nwr[landuse~\"^(proposed)$\"];",
+            "nwr[highway~\"^(proposed)$\"];",
+            "nwr[railway~\"^(proposed)$\"];",
+            "nwr[building~\"^(proposed)$\"];",
+            "nwr[highway~\"^(proposed)$\"];",
+            "nwr[~\"^proposed:\"~\".\"];",
+            ")"
+        ]
+    },
+    "feature": {
+        "pre": [
+            "{% set key = null %}{% set value = null %}",
+            "{% if tags.highway == 'proposed' %}",
+            "{% set key = 'highway' %}",
+            "{% set value = tags.proposed|default('construction') %}",
+            "{% elseif tags.railway == 'proposed' %}",
+            "{% set key = 'railway' %}",
+            "{% set value = tags.proposed|default('construction') %}",
+            "{% elseif tags.building == 'proposed' %}",
+            "{% set key = 'building' %}",
+            "{% set value = tags.proposed|default('construction') %}",
+            "{% elseif tags.landuse == 'proposed' %}",
+            "{% set key = 'landuse' %}",
+            "{% set value = tags.proposed|default('construction') %}",
+            "{% else %}",
+            "{% for k, v in tags %}",
+            "{% set m = k|matches('^proposed:(.*)$') %}",
+            "{% if m %}",
+            "{% set key = m[1] %}",
+            "{% set value = v %}",
+            "{{ debug(key, value) }}",
+            "{% endif %}{% endfor %}",
+            "{% endif %}"
+        ],
+        "description": "{{ tagTrans(key, value) }}"
+    }
+}

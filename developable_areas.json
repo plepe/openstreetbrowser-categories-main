@@ -1,7 +1,7 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Planning",
+        "en": "Developable Areas"
     },
     "query": {
         "13": [
@@ -15,6 +15,6 @@
             "{% set key = 'landuse' %}",
             "{% set value = tags.landuse %}"
         ],
-        "description": "{{ tagTrans(key, value) }} {{ key}} {{ value }}"
+        "description": "{{ tagTrans(key, value) }}"
     }
 }
