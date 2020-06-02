@@ -243,6 +243,18 @@
                             "id": "car_routes"
                         }
                     ]
+                },
+                {
+                    "id": "transport_aero",
+                    "type": "index",
+                    "name": {
+                        "en": "Aeroways"
+                    },
+                    "subCategories": [
+                        {
+                            "id": "aerodromes"
+                        }
+                    ]
                 }
             ]
         },

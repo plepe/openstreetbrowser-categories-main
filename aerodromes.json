@@ -1,0 +1,68 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Aerodromes"
+    },
+    "query": {
+        "6": [
+            "(",
+            "nwr[aeroway=aerodrome]['aerodrome:type'~'(international)'];",
+            ")"
+        ],
+        "8": [
+            "(",
+            "nwr[aeroway=aerodrome]['aerodrome:type'~'(international|regional|public)'];",
+            ")"
+        ],
+        "10": [
+            "(",
+            "nwr[aeroway~\"(aerodrome|heliport)\"];",
+            ")"
+        ],
+        "12": [
+            "(",
+            "nwr[aeroway~\"(aerodrome|heliport|airstrip)\"];",
+            ")"
+        ]
+    },
+    "feature": {
+        "description": [
+            "{% if tags.aeroway == 'aerodrome' and attribute(tags, 'aerodrome:type') in ['international', 'regional', 'gliding', 'airfield', 'private', 'public'] %}",
+            "{{ tagTrans('aeroway', tags.aeroway ~ ' aerodrome:type=' ~ attribute(tags, 'aerodrome:type')) }}",
+            "{% elseif tags.aeroway == 'aerodrome' and (attribute(tags, 'aerodrome:type') in ['military'] or tags.military == 'airfield') %}",
+            "{{ tagTrans('aeroway', tags.aeroway ~ ' military=airfield') }}",
+            "{% else %}",
+            "{{ tagTrans('aeroway', tags.aeroway) }}",
+            "{% endif %}"
+        ],
+        "markerSign": "{{ const[tags.aeroway].sign|raw }}"
+    },
+    "info": [
+        "<table>",
+        "{% for value, data in const %}",
+        "{% if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "    <td>",
+        "      {{ tagTrans('aeroway', value) }}",
+        "    </td>",
+        "  </tr>",
+        "{% endif %}",
+        "{% endfor %}",
+        "</table>"
+    ],
+    "const": {
+        "aerodrome": {
+            "zoom": "6",
+            "sign": "<i class='fas fa-plane-departure'></i>"
+        },
+        "heliport": {
+            "zoom": "10",
+            "sign": "<i class='fas fa-helicopter'></i>"
+        },
+        "airstrip": {
+            "zoom": "12",
+            "sign": "<i class='fas fa-plane'></i>"
+        }
+    }
+}
