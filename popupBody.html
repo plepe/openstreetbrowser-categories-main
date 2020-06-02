@@ -152,7 +152,7 @@
 <li class='hasSymbol'>
   <i class="fa fa-wikipedia-w" aria-hidden="true"></i>
   <span class='key'>{{ keyTrans('wikipedia') }}:</span>
-  <span class='value'><a href="https://{{ wikipedia[1] }}.wikipedia.org/wiki/{{ wikipedia[2]|replace({ ' ': '_' }) }}">{{ wikipedia[2] }}</a></span>
+  <span class='value'><a target='_blank' href="https://{{ wikipedia[1] }}.wikipedia.org/wiki/{{ wikipedia[2]|replace({ ' ': '_' }) }}">{{ wikipedia[2] }}</a></span>
 {% endif %}
 
 {% if tags.year_of_construction or tags.start_date or tags.opening_date or tags.end_date %}
