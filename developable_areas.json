@@ -15,6 +15,25 @@
             "{% set key = 'landuse' %}",
             "{% set value = tags.landuse %}"
         ],
+        "style": {
+            "color": "{{ const[value] }}"
+        },
+        "markerSymbol": "{{ markerPointer({fillColor:const[value]})|raw }}",
+        "listMarkerSymbol": "{{ markerCircle({fillColor:const[value]})|raw }}",
         "description": "{{ tagTrans(key, value) }}"
+    },
+    "info": [
+        "<table>",
+        "{% for value, color in const %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({fillColor: color})|raw }}</td>",
+        "    <td>{{ tagTrans('landuse', value) }}</td>",
+        "  </tr>",
+        "{% endfor %}",
+        "</table>"
+    ],
+    "const": {
+        "brownfield": "#c3701f",
+        "greenfield": "#009800"
     }
 }
