@@ -1,0 +1,104 @@
+{
+    "type": "overpass",
+    "name": {
+        "en": "Aerialways"
+    },
+    "query": {
+        "10": "nwr[aerialway~'^(cable_car)$']",
+        "12": "nwr[aerialway~'^(cable_car|gondola)$']",
+        "14": "nwr[aerialway][aerialway!~'^(pylon)$']"
+    },
+    "feature": {
+        "description": [
+            "{{ tagTrans('aerialway', tags.aerialway) }}"
+        ],
+        "markerSign": "{{ const[tags.aerialway].sign|raw }}",
+        "body": [
+            "{% if tags.aerialway != 'station' %}",
+            "Stations:",
+            "<ul>",
+            "{% for member in members %}",
+            "{% if member.tags.aerialway == 'station' %}",
+            "<li data-object='{{ member.id }}'>{% if member.tags %}{{ member.tags.name|default(trans('unknown')) }}{% else %}<i>{{ trans('loading') }}</i>{% endif %}</li>",
+            "{% endif %}",
+            "{% endfor %}",
+            "</ul>",
+            "{% elseif memberOf|length %}",
+            "Station of:<ul>",
+            "{% for m in memberOf if m.tags.aerialway %}",
+            "<li>{{ localizedTag(m.tags, 'name') }}</li>",
+            "{% endfor %}",
+            "{% endif %}"
+        ],
+        "listExclude": "{{ tags.aerialway == 'station' }}",
+        "styles": "{{ tags.aerialway == 'station' ? 'left' : 'right' }}",
+        "markerSymbol": "{{ tags.aerialway != 'station' ? markerPointer({})|raw : '' }}",
+        "style:left": {
+            "color": "#0000ff",
+            "radius": "5",
+            "fillOpacity": "1"
+        },
+        "style:right": {
+            "color": "#0000ff",
+            "fillOpacity": "2"
+        }
+    },
+    "info": [
+        "<table>",
+        "{% for value, data in const if data.zoom <= map.zoom %}",
+        "  <tr>",
+        "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
+        "    <td>",
+        "      {{ tagTrans('aerialway', value) }}",
+        "    </td>",
+        "  </tr>",
+        "{% endfor %}",
+        "</table>"
+    ],
+    "const": {
+        "cable_car": {
+            "zoom": "10",
+            "sign": "🚠"
+        },
+        "gondola": {
+            "zoom": "12",
+            "sign": "<img data-src='temaki:gondola_lift'>"
+        },
+        "chair_lift": {
+            "zoom": "14",
+            "sign": "<img data-src='temaki:chairlift'>"
+        },
+        "drag_lift": {
+            "zoom": "14",
+            "sign": "<img data-src='temaki:drag_lift'>"
+        },
+        "t-bar": {
+            "zoom": "14",
+            "sign": "<img data-src='temaki:t_bar_lift'>"
+        },
+        "j-bar": {
+            "zoom": "14",
+            "sign": "<img data-src='temaki:j_bar_lift'>"
+        },
+        "platter": {
+            "zoom": "14",
+            "sign": "<img data-src='temaki:platter_lift'>"
+        },
+        "rope_tow": {
+            "zoom": "14",
+            "sign": ""
+        },
+        "magic_carpet": {
+            "zoom": "14",
+            "sign": ""
+        },
+        "zip_line": {
+            "zoom": "14",
+            "sign": ""
+        },
+        "goods": {
+            "zoom": "14",
+            "sign": "<img data-src='temaki:goods_lift'>"
+        }
+    }
+}

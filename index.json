@@ -255,6 +255,9 @@
                             "id": "aerodromes"
                         }
                     ]
+                },
+                {
+                    "id": "aerialways"
                 }
             ]
         },
