@@ -15,35 +15,16 @@
         "uk": "Amenities"
     },
     "query": {
-        "8": [
-            "(",
-            "nwr[aeroway=aerodrome]['aerodrome:type'~'(international)'];",
-            ")"
-        ],
-        "10": [
-            "(",
-            "nwr[aeroway=aerodrome]['aerodrome:type'~'(international|regional|public)'];",
-            ")"
-        ],
-        "12": [
-            "(",
-            "nwr[aeroway=aerodrome];",
-            ")"
-        ],
-        "16": [
+        "14": [
             "(",
             "nwr[amenity~\"^(taxi|ticket_counter)$\"];",
             "nwr[railway~\"^(subway_entrance)$\"];",
-            "nwr[aeroway=aerodrome];",
             ")"
         ]
     },
     "feature": {
         "pre": [
-            "{% if tags.aeroway == 'aerodrome' %}",
-            "  {% set key = 'aeroway' %}",
-            "  {% set value = tags.aeroway %}",
-            "{% elseif tags.railway == 'subway_entrance' %}",
+            "{% if tags.railway == 'subway_entrance' %}",
             "  {% set key = 'railway' %}",
             "  {% set value = tags.railway %}",
             "{% else %}",
@@ -51,13 +32,12 @@
             "  {% set value = tags.amenity %}",
             "{% endif %}"
         ],
-        "description": "{{ debug(key, value) }}{{ tagTrans(key, value) }}",
-        "markerSign": "{{ const[value]|raw }}"
+        "description": "{{ tagTrans(key, value) }}",
+        "markerSign": "{{ const[value] }}"
     },
     "const": {
         "taxi": "🚖",
         "ticket_counter": "🎫",
-        "subway_entrance": "🚉",
-        "aerodrome": "<i class='fas fa-plane-departure'></i>"
+        "subway_entrance": "🚉"
     }
 }
