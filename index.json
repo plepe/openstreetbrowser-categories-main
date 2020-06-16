@@ -266,7 +266,22 @@
                     "id": "agriculture"
                 },
                 {
-                    "id": "construction"
+                    "id": "developments",
+                    "type": "index",
+                    "name": {
+                        "en": "Planning and Construction"
+                    },
+                    "subCategories": [
+                        {
+                            "id": "construction"
+                        },
+                        {
+                            "id": "proposals"
+                        },
+                        {
+                            "id": "developable_areas"
+                        }
+                    ]
                 },
                 {
                     "id": "military"
