@@ -92,5 +92,8 @@
     "date format not understood": "Valor inválido de data",
     "outdated feature": "Mostrar antigos",
     "xmas:outdated-warning": "O objeto não foi atualizado para a temporada atual! Por favor, verifique e defina a tag 'xmas:lastcheck' para a data atual.",
-    "category:climbing": "Escalada"
+    "category:climbing": "Escalada",
+    "category:developable_areas": "Áreas urbanizáveis",
+    "category:developments": "Planejamento e construção",
+    "category:proposals": "Propostas"
 }
