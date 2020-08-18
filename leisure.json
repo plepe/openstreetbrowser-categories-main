@@ -41,5 +41,37 @@
             "  {% endif %}",
             "{% endif %}"
         ]
+    },
+    "filter": {
+        "access": {
+            "name": "{{ keyTrans('access') }}",
+            "type": "select",
+            "show_default": "true",
+            "placeholder": "{{ trans(\"tag:access!=private\") }}",
+            "valueName": "{{ tagTrans(\"access\", value) }}",
+            "values": {
+                "*": {
+                    "name": "{{ trans('any value') }}",
+                    "query": "nwr",
+                    "weight": -1
+                },
+                "yes": {},
+                "private": {},
+                "permissive": {},
+                "customers": {},
+                "discouraged": {},
+                "unknown": {
+                    "name": "{{ trans(\"unknown\") }}",
+                    "query": "(nwr[\"access\"=\"unknown\"];nwr[!access];)",
+                    "weight": 1
+                },
+                "?": {
+                    "name": "{{ trans(\"other\") }}",
+                    "query": "nwr[access][\"access\"!~\"^(public|private|permissive|customers|discouraged|unknown|yes)$\"]",
+                    "weight": 1
+                }
+            },
+            "emptyQuery": "nwr[\"access\"!=\"private\"]"
+        }
     }
 }
