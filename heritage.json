@@ -1,0 +1,9 @@
+{
+    "type": "overpass",
+    "query": {
+        "8": "nwr[heritage=1];",
+        "11": "nwr[heritage~'^(1|2)$'];"
+    },
+    "feature": {
+    }
+}
