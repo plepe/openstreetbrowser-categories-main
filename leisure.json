@@ -40,6 +40,95 @@
             "    - {{ tagTransList('sport', tags.sport) }}",
             "  {% endif %}",
             "{% endif %}"
-        ]
+        ],
+        "markerSign": "{{ const[tags.leisure]|raw }}"
+    },
+    "filter": {
+        "access": {
+            "name": "{{ keyTrans('access') }}",
+            "type": "select",
+            "show_default": "true",
+            "placeholder": "{{ trans(\"tag:access!=private\") }}",
+            "valueName": "{{ tagTrans(\"access\", value) }}",
+            "values": {
+                "*": {
+                    "name": "<{{ trans('any value') }}>",
+                    "query": "nwr",
+                    "weight": -1
+                },
+                "yes": {},
+                "private": {},
+                "permissive": {},
+                "customers": {},
+                "discouraged": {},
+                "unknown": {
+                    "name": "{{ trans(\"unknown\") }}",
+                    "query": "nwr[\"access\"=\"unknown\"]"
+                },
+                "!": {
+                    "name": "<{{ trans('empty value') }}>",
+                    "query": "nwr[!access]",
+                    "weight": 1
+                },
+                "?": {
+                    "name": "<{{ trans(\"other\") }}>",
+                    "query": "nwr[access][\"access\"!~\"^(public|private|permissive|customers|discouraged|unknown|yes)$\"]",
+                    "weight": 2
+                }
+            },
+            "emptyQuery": "nwr[\"access\"!=\"private\"]"
+        },
+        "leisure": {
+            "name": "{{ trans('filter:type') }}",
+            "type": "select",
+            "values": "{% set list = [] %}{% for k, v in const %}<option value=\"{{ k }}\">{% set list = list|merge([ k ]) %}{{ tagTrans('leisure', k) }}</option>{% endfor %}<option weight='1' value='other' query='nwr[leisure][leisure!~\"^(|.*;)({{ list|join('|') }})(|;.*)$\"]'>{{ trans('other') }}</option>",
+            "sort": "natsort",
+            "op": "has"
+        }
+    },
+    "const": {
+        "adult_gaming_centre": "<img data-src='maki:gaming'>",
+        "amusement_arcade": "<img data-src='maki:gaming'>",
+        "bandstand": "<img data-src='maki:landmark'>",
+        "beach_resort": "<img data-src='maki:beach'>",
+        "bird_hide": "<i class='fas fa-crow'></i>",
+        "bleachers": "<img data-src='temaki:bleachers'>",
+        "bowling_alley": "<img data-src='maki:bowling-alley'>",
+        "common": "",
+        "dance": "💃",
+        "disc_golf_course": "<img data-src='temaki:disc_golf_basket'>",
+        "dog_park": "<img data-src='maki:dog-park'>",
+        "escape_game": "<i class='fas fa-shoe-prints'></i>",
+        "firepit": "<img data-src='maki:fire-station'>",
+        "fishing": "<img data-src='temaki:fishing_pier'>",
+        "fitness_centre": "<img data-src='maki:fitness-center'>",
+        "fitness_station": "<img data-src='temaki:physiotherapist'>",
+        "garden": "<img data-src='maki:garden'>",
+        "golf_course": "<img data-src='maki:golf'>",
+        "hackerspace": "<img data-src='maki:hardware'>",
+        "horse_riding": "<img data-src='maki:horse-riding'>",
+        "ice_rink": "<img data-src='temaki:ice_skating'>",
+        "indoor_play": "<img data-src='temaki:play_structure'>",
+        "marina": "<img data-src='temaki:boat'>",
+        "miniature_golf": "<img data-src='temaki:golf_green'>",
+        "nature_reserve": "<img data-src='maki:natural'>",
+        "outdoor_seating": "<i class='fas fa-chair'></i>",
+        "park": "<img data-src='maki:park'>",
+        "picnic_table": "<img data-src='maki:picnic-site'>",
+        "pitch": "<img data-src='maki:pitch'>",
+        "playground": "<img data-src='maki:playground'>",
+        "sauna": "<i class='fas fa-hot-tub'></i>",
+        "slipway": "<img data-src='maki:slipway'>",
+        "sport": "<img data-src='maki:soccer'>",
+        "sports_centre": "<img data-src='temaki:tennis'>",
+        "sports_hall": "<img data-src='maki:fitness-center'>",
+        "stadium": "<img data-src='maki:stadium'>",
+        "summer_camp": "<i class='fas fa-sun'></i>",
+        "swimming_area": "<img data-src='maki:swimming'>",
+        "swimming_pool": "<img data-src='maki:swimming?size=11'>",
+        "track": "<img data-src='temaki:speedway_oval'>",
+        "trampoline_park": "",
+        "water_park": "<img data-src='temaki:diving'>",
+        "wildlife_hide": "<img data-src='temaki:zoo'>"
     }
 }
