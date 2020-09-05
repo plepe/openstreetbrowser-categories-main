@@ -52,7 +52,7 @@
             "valueName": "{{ tagTrans(\"access\", value) }}",
             "values": {
                 "*": {
-                    "name": "{{ trans('any value') }}",
+                    "name": "<{{ trans('any value') }}>",
                     "query": "nwr",
                     "weight": -1
                 },
@@ -63,13 +63,17 @@
                 "discouraged": {},
                 "unknown": {
                     "name": "{{ trans(\"unknown\") }}",
-                    "query": "(nwr[\"access\"=\"unknown\"];nwr[!access];)",
+                    "query": "nwr[\"access\"=\"unknown\"]"
+                },
+                "!": {
+                    "name": "<{{ trans('empty value') }}>",
+                    "query": "nwr[!access]",
                     "weight": 1
                 },
                 "?": {
-                    "name": "{{ trans(\"other\") }}",
+                    "name": "<{{ trans(\"other\") }}>",
                     "query": "nwr[access][\"access\"!~\"^(public|private|permissive|customers|discouraged|unknown|yes)$\"]",
-                    "weight": 1
+                    "weight": 2
                 }
             },
             "emptyQuery": "nwr[\"access\"!=\"private\"]"
