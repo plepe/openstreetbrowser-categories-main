@@ -1,9 +1,29 @@
 {
     "type": "overpass",
     "query": {
-        "8": "nwr[heritage=1];",
-        "11": "nwr[heritage~'^(1|2)$'];"
+        "8": "nwr[heritage~\"^(|.*;)1(|;.*)$\"];",
+        "11": "nwr[heritage~\"^(|.*;)(1|2)(|;.*)$\"];",
+        "13": "nwr[heritage];"
     },
     "feature": {
+        "description": [
+            "{% for op in attribute(tags, 'heritage:operator')|split(';') %}",
+            "{% if const[op].url and attribute(tags, const[op].key) %}<a target=\"_blank\" href=\"{{ const[op].url|replace({\"$1\": attribute(tags, const[op].key)}) }}\">{% endif -%}",
+            "{{- tagTrans('heritage:operator', op) -}}",
+            "{%- if attribute(tags, const[op].key) %}: {{ attribute(tags, const[op].key) }}{% endif %}",
+            "{% if const[op].url and attribute(tags, const[op].key) %}</a>{% endif -%}",
+            "<br/>",
+            "{% endfor %}"
+        ],
+        "priority": "{{ min(tags.heritage|split(\";\")) }}"
+    },
+    "const": {
+        "whc": {
+            "key": "ref:whc"
+        },
+        "bda": {
+            "key": "ref:at:bda",
+            "url": "https://tools.wmflabs.org/denkmalliste/index.php?action=EinzelID&ID=$1"
+        }
     }
 }
