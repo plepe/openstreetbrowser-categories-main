@@ -16,7 +16,8 @@
             "node[shop~'^(baby_goods|toys)$'];",
             "way[shop~'^(baby_goods|toys)$'];",
             "relation[shop~'^(baby_goods|toys)$'];",
-            "nwr[amenity=toilets][changing_table][changing_table!=no];",
+            "nwr[changing_table][changing_table!=no];",
+            "nwr[diaper][diaper!=no];",
             "node[kids_area];",
             "way[kids_area];",
             "relation[kids_area];",
@@ -35,8 +36,10 @@
             "{{ keyTrans('kids_area') }}",
             "{% elseif tags.shop=='baby_goods' or tags.shop=='toys' %}",
             "{{ keyTrans('shop') }}: {{ tagTrans('shop', tags.shop) }}",
-            "{% elseif tags.amenity=='toilets' and tags.changing_table and tags.changing_table!='no' %}",
-            "{{ tagTrans('amenity', 'toilets diaper=yes') }}",
+            "{% elseif tags.amenity=='toilets' and ((tags.changing_table and tags.changing_table != 'no') or (tags.diaper and tags.diaper != no')) %}",
+            "{{ tagTrans('amenity', 'toilets changing_table=yes') }}",
+            "{% elseif (tags.changing_table and tags.changing_table != 'no') or (tags.diaper and tags.diaper != no') %}",
+            "{{ keyTrans('changing_table') }}",
             "{% endif %}"
         ],
         "markerSign": [
@@ -77,7 +80,7 @@
         "  </tr>",
         "  <tr>",
         "    <td>{{ markerCircle({})|raw }}<div class='sign'>🚽🚼</div></td>",
-        "    <td>{{ tagTrans('amenity', 'toilets diaper=yes') }}</td>",
+        "    <td>{{ tagTrans('amenity', 'toilets changing_table=yes') }}</td>",
         "  </tr>",
         "</table>"
     ],
@@ -112,7 +115,7 @@
                     "query": "nwr[shop=toys]"
                 },
                 "toilets": {
-                    "name": "{{ tagTrans('amenity', 'toilets diaper=yes') }}",
+                    "name": "{{ tagTrans('amenity', 'toilets changing_table=yes') }}",
                     "query": "nwr[amenity=toilets][changing_table][changing_table!=no]"
                 }
             }
