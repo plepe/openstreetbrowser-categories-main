@@ -30,13 +30,16 @@
             "node[tourism~\"^(artwork|gallery|museum|theme_park)$\"];",
             "way[tourism~\"^(artwork|gallery|museum|theme_park)$\"];",
             "relation[tourism~\"^(artwork|gallery|museum|theme_park)$\"];",
+            "nwr[amenity=clock][display~\"^(sundial|unorthodox)$\"];",
+            "nwr[amenity=clock][\"display:sundial\"];",
+            "nwr[amenity=clock][\"display:unorthodox\"];",
             "nwr[shop~\"^(art)$\"];",
             ")"
         ]
     },
     "feature": {
         "pre": [
-            "{% if tags.amenity in [ 'arts_centre', 'cinema', 'community_centre', 'fountain', 'studio', 'theatre' ] %}",
+            "{% if tags.amenity in [ 'arts_centre', 'cinema', 'community_centre', 'fountain', 'studio', 'theatre', 'clock' ] %}",
             "{% set key = 'amenity' %}",
             "{% set value = tags.amenity %}",
             "{% elseif tags.tourism %}",
@@ -50,6 +53,9 @@
         "description": [
             "{% if key == 'shop' %}",
             "  {{ keyTrans(key) }} ({{ tagTrans(key, value) }})",
+            "{% elseif tags.amenity == 'clock' %}",
+            "  {% if tags.display == 'sundial' or attribute(tags, 'display:sundial') %}{{ tagTrans('amenity', 'clock display=sundial') }}{% endif %}",
+            "  {% if tags.display == 'unorthodox' or attribute(tags, 'display:unorthodox') %}{{ tagTrans('amenity', 'clock display=unorthodox') }}{% endif %}",
             "{% else %}",
             "  {{ tagTrans(key, value) }}",
             "{% endif %}",
@@ -102,6 +108,7 @@
     "const": {
         "amenity=arts_centre": "🎨",
         "amenity=cinema": "🎦",
+        "amenity=clock": "<i class=\"fas fa-clock\"></i>",
         "amenity=community_centre": "<i class=\"fas fa-users\" aria-hidden=\"true\"></i>",
         "amenity=fountain": "⛲",
         "amenity=studio": "<i class=\"fas fa-microphone\"></i>",
