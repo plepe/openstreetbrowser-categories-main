@@ -39,10 +39,7 @@
         ]
     },
     "feature": {
-        "title": [
-            "{{ localizedTag(tags, 'name') | default(trans('unnamed')) }}",
-            "{% if tags.natural == 'peak' and tags.ele %}({{ tags.ele }}m){% endif %}"
-        ],
+        "details": "{% if tags.natural == 'peak' and tags.ele %}{{ tags.ele }}m{% endif %}",
         "description": "{{ tagTrans('natural', tags.natural) }}",
         "style": {
             "color": "{{ const[tags.natural].color|default('#f2756a') }}"

@@ -93,7 +93,8 @@
             "{% set colorB = colorInterpolate(const.colorMap, (maxspeedBKmh - const.offsetColorSpeed) / const.highestColorSpeed) %}",
             "{% endif %}"
         ],
-        "description": [
+        "description": "{{ tagTransList('highway', tags.highway) }}",
+        "details": [
             "{% if maxspeedF or maxspeedB %}",
             "<span style='color: {{ colorB }}'>{{ maxspeedB == 'other' ? attribute(tags, 'maxspeed:backward') : const.colorOther[maxspeedB] ? tagTrans('maxspeed', maxspeedB) : maxspeedB|default(trans('unknown')) }}</span> / <span style='color: {{ colorF }}'>{{ maxspeedF == 'other' ? attribute(tags, 'maxspeed:forward') : const.colorOther[maxspeedF] ? tagTrans('maxspeed', maxspeedF) : maxspeedF|default(trans('unknown')) }}</span> {{ unit }}",
             "{% elseif maxspeed %}",

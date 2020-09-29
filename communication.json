@@ -46,7 +46,6 @@
             "  {% set value = tags.office %}",
             "{% endif %}"
         ],
-        "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) |default(tagTrans('amenity', tags.amenity)) }}",
         "description": [
             "{% if key == 'office' %}",
             "  {{ keyTrans('office') }} ({{ tagTrans('office', tags.office) }})",

@@ -56,7 +56,7 @@
             "{% set constIndex = (key ~ \"=\" ~ value) %}"
         ],
         "title": [
-            "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}",
+            "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) }}",
             "",
             "{% if tags.capacity %}({{ tags.capacity }}){% endif %}"
         ],

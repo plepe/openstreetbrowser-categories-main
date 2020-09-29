@@ -14,7 +14,7 @@
         "17": "(node[railway];way[railway];)"
     },
     "feature": {
-        "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
+        "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator')) }}",
         "description": [
             "{{ tagTrans('railway', tags.railway) -}}",
             "{%- if tags.usage %}",
