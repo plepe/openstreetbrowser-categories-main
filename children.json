@@ -36,9 +36,9 @@
             "{{ keyTrans('kids_area') }}",
             "{% elseif tags.shop=='baby_goods' or tags.shop=='toys' %}",
             "{{ keyTrans('shop') }}: {{ tagTrans('shop', tags.shop) }}",
-            "{% elseif tags.amenity=='toilets' and ((tags.changing_table and tags.changing_table != 'no') or (tags.diaper and tags.diaper != no')) %}",
+            "{% elseif tags.amenity == 'toilets' and ( (tags.changing_table and tags.changing_table != 'no') or (tags.diaper and tags.diaper != 'no') ) %}",
             "{{ tagTrans('amenity', 'toilets changing_table=yes') }}",
-            "{% elseif (tags.changing_table and tags.changing_table != 'no') or (tags.diaper and tags.diaper != no') %}",
+            "{% elseif (tags.changing_table and tags.changing_table != 'no') or (tags.diaper and tags.diaper != 'no') %}",
             "{{ keyTrans('changing_table') }}",
             "{% endif %}"
         ],
