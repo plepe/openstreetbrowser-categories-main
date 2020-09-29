@@ -13,7 +13,7 @@
     "feature": {
         "description": "{{ tagTrans('route', 'mtb') }}",
         "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': '#007fff' })|raw }}",
-        "title": "{% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}",
+        "title": "{% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% endif %}",
         "styles": "",
         "markerSymbol": ""
     },

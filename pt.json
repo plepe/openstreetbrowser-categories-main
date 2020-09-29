@@ -54,7 +54,7 @@
         "title": [
             "{% if tags.ref %}{{ tags.ref }} - {% endif %}",
             "",
-            "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}"
+            "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) }}"
         ],
         "description": "{{ tagTrans('route', tags.route) }}",
         "body": [
