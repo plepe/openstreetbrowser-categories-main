@@ -23,6 +23,7 @@
     },
     "feature": {
         "description": "{{ tagTrans('amenity', tags.amenity) }}",
+        "details": "{{ tagTransList('cuisine', tags.cuisine) }}",
         "body": [
             "<ul>",
             "  <li class='hasSymbol'>",
