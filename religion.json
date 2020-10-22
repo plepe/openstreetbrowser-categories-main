@@ -71,7 +71,7 @@
             "  {{ tagTrans(key, value) }}",
             "{% endif %}"
         ],
-        "details": "{{ tagTransList('religion', tags.religion) }}{% if tags.denomination %} - {{ tagTransList('denomination', tags.denomination) }}{% endif %}",
+        "listDetails": "{{ tagTransList('religion', tags.religion) }}{% if tags.denomination %} - {{ tagTransList('denomination', tags.denomination) }}{% endif %}",
         "body": [
             "{% if tags.building %}",
             "  {{ keyTrans('building') }}: {{ tagTrans('building', tags.building) }}<br/>",
