@@ -62,7 +62,8 @@
         },
         "markerSign": "<span style='color: white'>{{ const[value].sign|raw }}</span>",
         "markerSymbol": "{{ markerPointer({ fillColor: const[value].color|default('#f2756a') })|raw }}",
-        "listMarkerSymbol": "{{ markerCircle({ fillColor: const[value].color|default('#f2756a') })|raw }}"
+        "listMarkerSymbol": "{{ markerCircle({ fillColor: const[value].color|default('#f2756a') })|raw }}",
+        "priority": "{% if tags.name %}0{% else %}1{% endif %}"
     },
     "filter": {
         "type": {
