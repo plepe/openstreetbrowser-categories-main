@@ -21,6 +21,7 @@
             "{% set backward = false %}",
             "{% set cycleway = tags.cycleway|split(';') %}",
             "{% set road_type = const[tags.highway] ? tags.highway : 'shared_lane' %}",
+            "{% if tags.bicycle_road and tags.bicycle_road != 'no' %}{% set road_type = 'bicycle_road' %}{% endif %}",
             "{% set oneway = attribute(tags, 'oneway:bicycle')|default(tags.oneway) %}",
             "{% if tags.highway == 'path' and tags.bicycle == 'designated' %}{% set road_type = 'cycleway' %}{% endif %}",
             "{% if oneway in ['yes', '1'] %}{% set forward = road_type %}{% elseif oneway in ['-1'] %}{% set backward = road_type %}{% else %}{% set forward = road_type %}{% set backward = road_type %}{% endif %}",
@@ -101,39 +102,43 @@
     ],
     "const": {
         "cycleway": {
-            "width": "3",
-            "color": "#005f00"
+            "width": "2",
+            "color": "#0000ff"
         },
         "track": {
-            "width": "3",
-            "color": "#005f00",
+            "width": "4",
+            "color": "#0000ff",
             "info_hide": true
         },
         "lane": {
-            "width": "3",
-            "color": "#00af00"
+            "width": "2",
+            "color": "#7f0000"
         },
         "share_busway": {
-            "width": "3",
-            "color": "#5f0000",
+            "width": "2",
+            "color": "#7f007f",
             "trans_tag": "cycleway"
         },
         "footway": {
-            "width": "3",
-            "color": "#005faf"
+            "width": "2",
+            "color": "#00af00"
         },
         "path": {
-            "width": "3",
-            "color": "#005faf",
+            "width": "2",
+            "color": "#00af00",
             "info_hide": true
         },
         "pedestrian": {
             "width": "4",
-            "color": "#00afaf"
+            "color": "#5faf00"
         },
         "living_street": {
             "width": "4",
-            "color": "#005f5f"
+            "color": "#00afff"
+        },
+        "bicycle_road": {
+            "width": "4",
+            "color": "#003fff"
         },
         "shared_lane": {
             "width": "4",
