@@ -8,8 +8,7 @@
         ],
         "16": [
             "(",
-            "way[highway][highway!~'^(motorway.*|trunk.*|footway|service|steps|platform|corridor|path)$'][bicycle!=no];",
-            "way[highway~'^(cycleway|living_street)$'];",
+            "way[highway][highway~'^(primary(_link)?|secondary(_link)?|tertiary(_link)?|unclassified|residential|living_street|cycleway|track|road)$'][bicycle!=no];",
             "way[bicycle~'^(yes|designated)$'];",
             "way[cycleway];",
             ")"
@@ -26,7 +25,9 @@
             "{% if tags.highway == 'path' and tags.bicycle == 'designated' %}{% set road_type = 'cycleway' %}{% endif %}",
             "{% if oneway in ['yes', '1'] %}{% set forward = road_type %}{% elseif oneway in ['-1'] %}{% set backward = road_type %}{% else %}{% set forward = road_type %}{% set backward = road_type %}{% endif %}",
             "{% for c in cycleway %}",
-            "  {% if c in ['opposite', 'opposite_lane', 'opposite_track'] %}{% set backward = c|slice(9)|default(road_type) %}{% endif %}",
+            "  {% if c in ['opposite', 'opposite_lane'] %}{% set backward = c|slice(9)|default(road_type) %}{% endif %}",
+            "  {% if c in ['opposite_track'] %}{% set backward = 'cycleway' %}{% endif %}",
+            "  {% if c == 'track' %}{% set c = 'cycleway' %}{% endif %}",
             "  {% if const[c] %}{% if oneway in ['yes', '1', '-1'] %}{% set forward = c %}{% else %}{% set forward = c %}{% set backward = c %}{% endif %}{% endif %}",
             "{% endfor %}"
         ],
@@ -106,9 +107,8 @@
             "color": "#0000ff"
         },
         "track": {
-            "width": "4",
-            "color": "#0000ff",
-            "info_hide": true
+            "width": "2",
+            "color": "#7f7f00"
         },
         "lane": {
             "width": "2",
