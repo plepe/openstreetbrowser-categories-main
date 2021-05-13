@@ -8,7 +8,7 @@
         ],
         "16": [
             "(",
-            "way[highway][highway!~'^(motorway.*|trunk.*|footway|service|steps|platform|corridor)$'][bicycle!=no];",
+            "way[highway][highway!~'^(motorway.*|trunk.*|footway|service|steps|platform|corridor|path)$'][bicycle!=no];",
             "way[highway~'^(cycleway|living_street)$'];",
             "way[bicycle~'^(yes|designated)$'];",
             "way[cycleway];",
@@ -20,7 +20,7 @@
             "{% set forward = false %}",
             "{% set backward = false %}",
             "{% set cycleway = tags.cycleway|split(';') %}",
-            "{% set road_type = const[tags.highway] ? tags.highway : 'default' %}",
+            "{% set road_type = const[tags.highway] ? tags.highway : 'shared_lane' %}",
             "{% set oneway = attribute(tags, 'oneway:bicycle')|default(tags.oneway) %}",
             "{% if tags.highway == 'path' and tags.bicycle == 'designated' %}{% set road_type = 'cycleway' %}{% endif %}",
             "{% if oneway in ['yes', '1'] %}{% set forward = road_type %}{% elseif oneway in ['-1'] %}{% set backward = road_type %}{% else %}{% set forward = road_type %}{% set backward = road_type %}{% endif %}",
@@ -89,6 +89,16 @@
             "pattern2-path-fillOpacity": "1"
         }
     },
+    "info": [
+        "<table>",
+        "{% for key, value in const if not value.info_hide %}",
+        "  <tr>",
+        "    <td>{{ markerLine({'width': value.width, 'color': value.color})|raw }}</div></td>",
+        "    <td>{{ tagTrans(value.trans_tag|default('highway'), key) }}</td>",
+        "  </tr>",
+        "{% endfor %}",
+        "</table>"
+    ],
     "const": {
         "cycleway": {
             "width": "3",
@@ -96,7 +106,8 @@
         },
         "track": {
             "width": "3",
-            "color": "#005f00"
+            "color": "#005f00",
+            "info_hide": true
         },
         "lane": {
             "width": "3",
@@ -104,7 +115,8 @@
         },
         "share_busway": {
             "width": "3",
-            "color": "#5f0000"
+            "color": "#5f0000",
+            "trans_tag": "cycleway"
         },
         "footway": {
             "width": "3",
@@ -112,7 +124,8 @@
         },
         "path": {
             "width": "3",
-            "color": "#005faf"
+            "color": "#005faf",
+            "info_hide": true
         },
         "pedestrian": {
             "width": "4",
@@ -122,7 +135,7 @@
             "width": "4",
             "color": "#005f5f"
         },
-        "default": {
+        "shared_lane": {
             "width": "4",
             "color": "#000000"
         }
