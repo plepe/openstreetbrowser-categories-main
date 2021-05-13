@@ -80,14 +80,18 @@
         "markerSymbol": null,
         "listMarkerSymbol": "line",
         "styles": [
-            "{% if left or right %}",
+            "default,{% if left or right %}",
             "  {% if left and left_direction == 'both' %},left_both{% elseif left %},left{% endif %}",
             "  {% if right and right_direction == 'both' %},right_both{% elseif right %},right{% endif %}",
             "{% else %}",
-            "   {% if forward and backward and forward == backward %}default{% else %}{% if forward %},forward{% endif %}{% if backward %},backward{% endif %}{% endif %}",
+            "   {% if forward and backward and forward == backward %}main{% else %}{% if forward %},forward{% endif %}{% if backward %},backward{% endif %}{% endif %}",
             "{% endif %}"
             ],
         "style": {
+            "color": "#00000000",
+            "width": "6"
+        },
+        "style:main": {
             "color": "{{ const[forward].color }}",
             "fill": "{% if tags.area == 'yes' %}true{% else %}false{% endif %}",
             "width": "{% if tags.area == 'yes' %}0{% else %}{{ const[forward].width }}{% endif %}"
@@ -147,7 +151,7 @@
             "width": "0",
             "fill": "false",
             "pattern": "arrowHead",
-            "pattern-offset": "{{ left_direction == 'forward' ? 8 : 10 }}",
+            "pattern-offset": "{{ left_direction == 'forward' ? 38 : 10 }}",
             "pattern-repeat": "60",
             "pattern-polygon": "true",
             "pattern-pixelSize": "9",
@@ -157,7 +161,7 @@
             "pattern-path-fillOpacity": "1",
             "pattern-lineOffset": "{{ -1 - const[left].width / 2 }}",
             "pattern2": "dash",
-            "pattern2-offset": "{{ left_direction == 'forward' ? 50 : 25 }}",
+            "pattern2-offset": "{{ left_direction == 'forward' ? 20 : 25 }}",
             "pattern2-repeat": "60",
             "pattern2-pixelSize": "22",
             "pattern2-path-width": "{{ const[left].width }}",
@@ -170,7 +174,7 @@
             "width": "0",
             "fill": "false",
             "pattern": "arrowHead",
-            "pattern-offset": "{{ right_direction == 'forward' ? 8 : 10 }}",
+            "pattern-offset": "{{ right_direction == 'forward' ? 8 : 40 }}",
             "pattern-repeat": "60",
             "pattern-polygon": "true",
             "pattern-pixelSize": "9",
@@ -180,7 +184,7 @@
             "pattern-path-fillOpacity": "1",
             "pattern-lineOffset": "{{ 1 + const[right].width / 2 }}",
             "pattern2": "dash",
-            "pattern2-offset": "{{ right_direction == 'forward' ? 50 : 25 }}",
+            "pattern2-offset": "{{ right_direction == 'forward' ? 50 : 55 }}",
             "pattern2-repeat": "60",
             "pattern2-pixelSize": "22",
             "pattern2-path-width": "{{ const[right].width }}",
