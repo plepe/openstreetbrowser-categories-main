@@ -49,6 +49,8 @@
             "  {% elseif attribute(tags, 'cycleway:left:oneway') == '-1' %}",
             "    {% set left_direction = 'backward' %}",
             "  {% endif %}",
+            "{% elseif attribute(tags, 'cycleway:right') and (not oneway or oneway == 'no') %}",
+            "  {% set left = 'shared_lane' %}",
             "{% endif %}",
             "{% if attribute(tags, 'cycleway:right') %}",
             "  {% set right = attribute(tags, 'cycleway:right') %}",
@@ -66,6 +68,8 @@
             "  {% elseif attribute(tags, 'cycleway:right:oneway') == '-1' %}",
             "    {% set right_direction = 'backward' %}",
             "  {% endif %}",
+            "{% elseif attribute(tags, 'cycleway:left') and (not oneway or oneway == 'no') %}",
+            "  {% set right = 'shared_lane' %}",
             "{% endif %}"
         ],
         "body": [
