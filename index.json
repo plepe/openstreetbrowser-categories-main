@@ -177,6 +177,9 @@
                             "id": "cycle_amenities"
                         },
                         {
+                            "id": "cycle_infrastructure"
+                        },
+                        {
                             "id": "cycle_routes"
                         }
                     ]

@@ -1,0 +1,130 @@
+{
+    "type": "overpass",
+    "query": {
+        "14": [
+            "(",
+            "way[highway=cycleway];",
+            ")"
+        ],
+        "16": [
+            "(",
+            "way[highway][highway!~'^(motorway.*|trunk.*|footway|service|steps|platform|corridor)$'][bicycle!=no];",
+            "way[highway~'^(cycleway|living_street)$'];",
+            "way[bicycle~'^(yes|designated)$'];",
+            "way[cycleway];",
+            ")"
+        ]
+    },
+    "feature": {
+        "pre": [
+            "{% set forward = false %}",
+            "{% set backward = false %}",
+            "{% set cycleway = tags.cycleway|split(';') %}",
+            "{% set road_type = const[tags.highway] ? tags.highway : 'default' %}",
+            "{% set oneway = attribute(tags, 'oneway:bicycle')|default(tags.oneway) %}",
+            "{% if tags.highway == 'path' and tags.bicycle == 'designated' %}{% set road_type = 'cycleway' %}{% endif %}",
+            "{% if oneway in ['yes', '1'] %}{% set forward = road_type %}{% elseif oneway in ['-1'] %}{% set backward = road_type %}{% else %}{% set forward = road_type %}{% set backward = road_type %}{% endif %}",
+            "{% for c in cycleway %}",
+            "  {% if c in ['opposite', 'opposite_lane', 'opposite_track'] %}{% set backward = c|slice(9)|default(road_type) %}{% endif %}",
+            "  {% if const[c] %}{% if oneway in ['yes', '1', '-1'] %}{% set forward = c %}{% else %}{% set forward = c %}{% set backward = c %}{% endif %}{% endif %}",
+            "{% endfor %}"
+        ],
+        "body": [
+            "{{ keyTrans('highway') }}: {{ tagTrans('highway', tags.highway) }}<br>",
+            "{% if tags.cycleway %}{{ keyTrans('cycleway') }}: {% for c in cycleway %}{{ tagTrans('cycleway', c) }} {% endfor %}<br>{% endif %}",
+            "{% if tags.surface %}{{ keyTrans('surface') }}: {{ tagTrans('surface', tags.surface) }}<br>{% endif %}"
+        ],
+        "markerSymbol": null,
+        "listMarkerSymbol": "line",
+        "styles": "{% if forward and backward and forward == backward %}default{% else %}{% if forward %},forward{% endif %}{% if backward %},backward{% endif %}{% endif %}",
+        "style": {
+            "color": "{{ const[forward].color }}",
+            "fill": "{% if tags.area == 'yes' %}true{% else %}false{% endif %}",
+            "width": "{% if tags.area == 'yes' %}0{% else %}{{ const[forward].width }}{% endif %}"
+        },
+        "style:forward": {
+            "width": "0",
+            "fill": "false",
+            "pattern": "arrowHead",
+            "pattern-offset": "8",
+            "pattern-repeat": "60",
+            "pattern-polygon": "true",
+            "pattern-pixelSize": "9",
+            "pattern-angleCorrection": "0",
+            "pattern-path-width": "0",
+            "pattern-path-color": "{{ const[forward].color }}",
+            "pattern-path-fillOpacity": "1",
+            "pattern-lineOffset": "0",
+            "pattern2": "dash",
+            "pattern2-offset": "50",
+            "pattern2-repeat": "60",
+            "pattern2-pixelSize": "22",
+            "pattern2-path-width": "{{ const[forward].width }}",
+            "pattern2-path-color": "{{ const[forward].color }}",
+            "pattern2-lineOffset": "0",
+            "pattern2-path-lineCap": "butt",
+            "pattern2-path-fillOpacity": "1"
+        },
+        "style:backward": {
+            "width": "0",
+            "fill": "false",
+            "pattern": "arrowHead",
+            "pattern-offset": "10",
+            "pattern-repeat": "60",
+            "pattern-polygon": "true",
+            "pattern-pixelSize": "9",
+            "pattern-angleCorrection": "180",
+            "pattern-path-width": "0",
+            "pattern-path-color": "{{ const[backward].color }}",
+            "pattern-path-fillOpacity": "1",
+            "pattern-lineOffset": "0",
+            "pattern2": "dash",
+            "pattern2-offset": "25",
+            "pattern2-repeat": "60",
+            "pattern2-pixelSize": "22",
+            "pattern2-path-width": "{{ const[backward].width }}",
+            "pattern2-path-color": "{{ const[backward].color }}",
+            "pattern2-lineOffset": "0",
+            "pattern2-path-lineCap": "butt",
+            "pattern2-path-fillOpacity": "1"
+        }
+    },
+    "const": {
+        "cycleway": {
+            "width": "3",
+            "color": "#005f00"
+        },
+        "track": {
+            "width": "3",
+            "color": "#005f00"
+        },
+        "lane": {
+            "width": "3",
+            "color": "#00af00"
+        },
+        "share_busway": {
+            "width": "3",
+            "color": "#5f0000"
+        },
+        "footway": {
+            "width": "3",
+            "color": "#005faf"
+        },
+        "path": {
+            "width": "3",
+            "color": "#005faf"
+        },
+        "pedestrian": {
+            "width": "4",
+            "color": "#00afaf"
+        },
+        "living_street": {
+            "width": "4",
+            "color": "#005f5f"
+        },
+        "default": {
+            "width": "4",
+            "color": "#000000"
+        }
+    }
+}
