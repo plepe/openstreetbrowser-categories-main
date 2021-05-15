@@ -19,7 +19,7 @@
             "{% set forward = false %}",
             "{% set backward = false %}",
             "{% set cycleway = tags.cycleway|split(';') %}",
-            "{% set road_type = const[tags.highway] ? tags.highway : 'shared_lane' %}",
+            "{% set road_type = const[tags.highway] ? tags.highway : 'no' %}",
             "{% if tags.bicycle_road and tags.bicycle_road != 'no' %}{% set road_type = 'bicycle_road' %}{% endif %}",
             "{% set oneway = attribute(tags, 'oneway:bicycle')|default(tags.oneway) %}",
             "{% if tags.highway == 'path' and tags.bicycle == 'designated' %}{% set road_type = 'cycleway' %}{% endif %}",
@@ -41,8 +41,6 @@
             "    {% set left = 'cycleway' %}{% set left_direction = 'backward' %}",
             "  {% elseif left in ['track'] %}",
             "    {% set left = 'cycleway' %}",
-            "  {% elseif left in ['no'] %}",
-            "    {% set left = 'shared_lane' %}",
             "  {% endif %}",
             "  {% if attribute(tags, 'cycleway:left:oneway') == 'no' %}",
             "    {% set left_direction = 'both' %}",
@@ -50,7 +48,7 @@
             "    {% set left_direction = 'backward' %}",
             "  {% endif %}",
             "{% elseif attribute(tags, 'cycleway:right') and (not oneway or oneway == 'no') %}",
-            "  {% set left = 'shared_lane' %}",
+            "  {% set left = 'no' %}",
             "{% endif %}",
             "{% if attribute(tags, 'cycleway:right') %}",
             "  {% set right = attribute(tags, 'cycleway:right') %}",
@@ -60,8 +58,6 @@
             "    {% set right = 'cycleway' %}{% set right_direction = 'backward' %}",
             "  {% elseif right in ['track'] %}",
             "    {% set right = 'cycleway' %}",
-            "  {% elseif right in ['no'] %}",
-            "    {% set right = 'shared_lane' %}",
             "  {% endif %}",
             "  {% if attribute(tags, 'cycleway:right:oneway') == 'no' %}",
             "    {% set right_direction = 'both' %}",
@@ -69,7 +65,7 @@
             "    {% set right_direction = 'backward' %}",
             "  {% endif %}",
             "{% elseif attribute(tags, 'cycleway:left') and (not oneway or oneway == 'no') %}",
-            "  {% set right = 'shared_lane' %}",
+            "  {% set right = 'no' %}",
             "{% endif %}",
             "{% if tags.bicycle in ['no', 'use_sidepath'] %}",
             "  {% set forward = false %}{% set backward = false %}",
@@ -220,18 +216,26 @@
             "width": "2",
             "color": "#0000ff"
         },
-        "track": {
-            "width": "2",
-            "color": "#7f7f00"
-        },
         "lane": {
             "width": "2",
-            "color": "#7f0000"
+            "color": "#3f3faf"
         },
-        "share_busway": {
-            "width": "2",
-            "color": "#7f007f",
+        "no": {
+            "width": "4",
+            "color": "#000000",
             "trans_tag": "cycleway"
+        },
+        "bicycle_road": {
+            "width": "4",
+            "color": "#003fff"
+        },
+        "living_street": {
+            "width": "4",
+            "color": "#00afff"
+        },
+        "pedestrian": {
+            "width": "4",
+            "color": "#5faf00"
         },
         "footway": {
             "width": "2",
@@ -242,21 +246,18 @@
             "color": "#00af00",
             "info_hide": true
         },
-        "pedestrian": {
-            "width": "4",
-            "color": "#5faf00"
-        },
-        "living_street": {
-            "width": "4",
-            "color": "#00afff"
-        },
-        "bicycle_road": {
-            "width": "4",
-            "color": "#003fff"
-        },
         "shared_lane": {
             "width": "4",
-            "color": "#000000"
+            "color": "#7f0000"
+        },
+        "share_busway": {
+            "width": "2",
+            "color": "#7f007f",
+            "trans_tag": "cycleway"
+        },
+        "track": {
+            "width": "2",
+            "color": "#7f7f00"
         }
     }
 }
