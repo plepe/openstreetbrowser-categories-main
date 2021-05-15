@@ -8,7 +8,7 @@
         ],
         "16": [
             "(",
-            "way[highway][highway~'^(primary(_link)?|secondary(_link)?|tertiary(_link)?|unclassified|residential|living_street|cycleway|track|road)$'][bicycle!=no];",
+            "way[highway][highway~'^(primary(_link)?|secondary(_link)?|tertiary(_link)?|unclassified|residential|living_street|cycleway|track|road)$'][bicycle!~'^(no|use_sidepath)$'];",
             "way[bicycle~'^(yes|designated)$'];",
             "way[cycleway];",
             ")"
@@ -70,6 +70,14 @@
             "  {% endif %}",
             "{% elseif attribute(tags, 'cycleway:left') and (not oneway or oneway == 'no') %}",
             "  {% set right = 'shared_lane' %}",
+            "{% endif %}",
+            "{% if tags.bicycle in ['no', 'use_sidepath'] %}",
+            "  {% set forward = false %}{% set backward = false %}",
+            "  {% set left = false %}{% set right = false %}",
+            "{% elseif attribute(tags, 'bicycle:forward') in ['no', 'use_sidepath'] %}",
+            "  {% set forward = false %}",
+            "{% elseif attribute(tags, 'bicycle:backward') in ['no', 'use_sidepath'] %}",
+            "  {% set backward = false %}",
             "{% endif %}"
         ],
         "body": [
