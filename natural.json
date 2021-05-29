@@ -20,33 +20,47 @@
         "9": [
             "(",
             "node[natural~\"^(peak|volcano|valley)$\"];",
+            "nwr[place~\"^(island)$\"];",
             ")"
         ],
         "13": [
             "(",
             "nwr[natural~\"^(peak|volcano|wood|glacier|cape|peninsula|beach|coastline|reef|hill|valley|ridge|arete|saddle|sinkhole|cave_entrance|isthmus)$\"];",
+            "nwr[place~\"^(island|islet)$\"];",
             ")"
         ],
         "16": [
             "(",
             "nwr[natural][natural!~\"^(water|divide|bay|strait|spring|hot_spring|geyser|tree)$\"];",
+            "nwr[place~\"^(island|islet)$\"];",
             ")"
         ],
         "18": [
             "(",
             "nwr[natural][natural!~\"^(water|divide|bay|strait|spring|hot_spring|geyser)$\"];",
+            "nwr[place~\"^(island|islet)$\"];",
             ")"
         ]
     },
     "feature": {
+        "pre": [
+            "{% if tags.place in [ 'island', 'islet' ] %}",
+            "{% set key = 'place' %}",
+            "{% set value = tags.place %}",
+            "{% else %}",
+            "{% set key = 'natural' %}",
+            "{% set value = tags.natural %}",
+            "{% endif %}"
+        ],
         "details": "{% if tags.natural == 'peak' and tags.ele %}{{ tags.ele }}m{% endif %}",
-        "description": "{{ tagTrans('natural', tags.natural) }}",
+        "description": "{{ tagTrans(key, value) }}",
         "style": {
-            "color": "{{ const[tags.natural].color|default('#f2756a') }}"
+            "color": "{{ const[value].color|default('#f2756a') }}"
         },
-        "markerSign": "<span style='color: white'>{{ const[tags.natural].sign|raw }}</span>",
-        "markerSymbol": "{{ markerPointer({ fillColor: const[tags.natural].color|default('#f2756a') })|raw }}",
-        "listMarkerSymbol": "{{ markerCircle({ fillColor: const[tags.natural].color|default('#f2756a') })|raw }}"
+        "markerSign": "<span style='color: white'>{{ const[value].sign|raw }}</span>",
+        "markerSymbol": "{{ markerPointer({ fillColor: const[value].color|default('#f2756a') })|raw }}",
+        "listMarkerSymbol": "{{ markerCircle({ fillColor: const[value].color|default('#f2756a') })|raw }}",
+        "priority": "{% if tags.name %}0{% else %}1{% endif %}"
     },
     "filter": {
         "type": {
@@ -54,12 +68,26 @@
             "key": "natural",
             "type": "select",
             "show_default": "true",
-            "values": "{% set list = [] %}{% for k, v in const %}<option value=\"{{ k }}\">{% set list = list|merge([ k ]) %}{{ tagTrans('natural', k) }}</option>{% endfor %}<option weight='1' value='other' query='nwr[natural][natural!~\"^(|.*;)({{ list|join('|') }})(|;.*)$\"]'>{{ trans('other') }}</option>",
+            "values": "{% set list = [] %}{% for k, v in const %}<option value=\"{{ k }}\" {% if v.key %}query='nwr[\"{{ v.key }}\"=\"{{ k }}\"]'{% endif %}>{% set list = list|merge([ k ]) %}{{ tagTrans(v.key|default('natural'), k) }}</option>{% endfor %}<option weight='1' value='other' query='nwr[natural][natural!~\"^(|.*;)({{ list|join('|') }})(|;.*)$\"]'>{{ trans('other') }}</option>",
             "sort": "natsort",
             "op": "has"
         }
     },
     "const": {
+        "island": {
+            "zoom": 9,
+            "sign": "<img data-src='temaki:island_trees_building'>",
+            "color": "#cfb997",
+            "key": "place",
+            "group": "landform"
+        },
+        "islet": {
+            "zoom": 13,
+            "sign": "<img data-src='temaki:island_trees_building'>",
+            "color": "#cfb997",
+            "key": "place",
+            "group": "landform"
+        },
         "wood": {
             "zoom": 13,
             "sign": "<i class='fas fa-tree'></i>",
