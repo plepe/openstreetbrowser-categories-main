@@ -17,18 +17,14 @@
     "query": {
         "13": [
             "(",
-            "node[amenity~\"^(car_rental|car_sharing|fuel)$\"];",
-            "way[amenity~\"^(car_rental|car_sharing|fuel)$\"];",
-            "relation[amenity~\"^(car_rental|car_sharing|fuel)$\"];",
-            "node[amenity~\"^(charging_station)$\"][car!=\"no\"];",
-            "node[amenity~\"^(charging_station)$\"][motorcycle!=\"no\"];",
+            "nwr[amenity~\"^(car_rental|car_sharing|fuel)$\"];",
+            "nwr[amenity~\"^(charging_station)$\"][motorcar!=\"no\"][motorcycle!=\"no\"];",
             ")"
         ],
         "16": [
             "(",
-            "node[amenity~\"^(car_rental|car_sharing|car_wash|charging_station|fuel|motorcycle_parking|parking)$\"];",
-            "way[amenity~\"^(car_rental|car_sharing|car_wash|charging_station|fuel|motorcycle_parking|parking)$\"];",
-            "relation[amenity~\"^(car_rental|car_sharing|car_wash|charging_station|fuel|motorcycle_parking|parking)$\"];",
+            "nwr[amenity~\"^(car_rental|car_sharing|car_wash|fuel|motorcycle_parking|parking)$\"];",
+            "nwr[amenity~\"^(charging_station)$\"][motorcar!=\"no\"][motorcycle!=\"no\"];",
             ")"
         ]
     },
