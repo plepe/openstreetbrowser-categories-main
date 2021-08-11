@@ -222,7 +222,7 @@
         },
         "volcano": {
             "zoom": 9,
-            "sign": "",
+            "sign": "<i class='fas fa-mountain'></i>",
             "color": "#cf3a00",
             "group": "landform"
         },
