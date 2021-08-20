@@ -9,16 +9,22 @@
         "pt-br": "Rotas de caminhada"
     },
     "query": {
-        "10": "relation[type=route][route~\"(|.*;)hiking(|;.*)\"][network~\"^(iwn)$\"]",
-        "11": "relation[type=route][route~\"(|.*;)hiking(|;.*)\"][network~\"^(iwn|nwn)$\"]",
-        "12": "relation[type=route][route~\"(|.*;)hiking(|;.*)\"][network~\"^(iwn|nwn|rwn)$\"]",
-        "14": "relation[type=route][route~\"(|.*;)hiking(|;.*)\"]"
+        "10": "relation[type=route][route~\"^(|.*;)hiking(|;.*)$\"][network~\"^(|.*;)(iwn)(|;.*)$\"]",
+        "11": "relation[type=route][route~\"^(|.*;)hiking(|;.*)$\"][network~\"^(|.*;)(iwn|nwn)(|;.*)$\"]",
+        "12": "relation[type=route][route~\"^(|.*;)hiking(|;.*)$\"][network~\"^(|.*;)(iwn|nwn|rwn)(|;.*)$\"]",
+        "14": "relation[type=route][route~\"^(|.*;)hiking(|;.*)$\"]"
     },
     "members": true,
     "feature": {
-        "priority": "{{ const[tags.network].priority|default(4) }}",
-        "description": "{% if tags.network %}{{ tagTrans('network', tags.network) }}{% endif %}",
-        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': const[tags.network|default('')].color|default(const[''].color) })|raw }}",
+        "pre": [
+            "{% set network = tags.network %}",
+            "{% for n in tags.network|split(';') %}",
+            "{% if n|matches('wn$') %}{% set network = n %}{% endif %}",
+            "{% endfor %}"
+        ],
+        "priority": "{{ const[network].priority|default(4) }}",
+        "description": "{% if network %}{{ tagTrans('network', network) }}{% endif %}",
+        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': const[network|default('')].color|default(const[''].color) })|raw }}",
         "title": "{% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% endif %}",
         "styles": "",
         "markerSymbol": ""

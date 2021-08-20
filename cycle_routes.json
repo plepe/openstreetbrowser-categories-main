@@ -9,18 +9,24 @@
         "pt-br": "Ciclorrotas"
     },
     "query": {
-        "6": "relation[type=route][route~\"(|.*;)bicycle(|;.*)\"][network~'^(icn)$']",
-        "9": "relation[type=route][route~\"(|.*;)bicycle(|;.*)\"][network~'^(icn|ncn)$']",
-        "12": "relation[type=route][route~\"(|.*;)bicycle(|;.*)\"][network~'^(icn|ncn|rcn)$']",
-        "15": "relation[type=route][route~\"(|.*;)bicycle(|;.*)\"]"
+        "6": "relation[type=route][route~\"^(|.*;)bicycle(|;.*)$\"][network~'^(|.*;)(icn)(|;.*)$']",
+        "9": "relation[type=route][route~\"^(|.*;)bicycle(|;.*)$\"][network~'^(|.*;)(icn|ncn)(|;.*)$']",
+        "12": "relation[type=route][route~\"^(|.*;)bicycle(|;.*)$\"][network~'^(|.*;)(icn|ncn|rcn)(|;.*)$']",
+        "15": "relation[type=route][route~\"^(|.*;)bicycle(|;.*)$\"]"
     },
     "members": true,
     "feature": {
+        "pre": [
+            "{% set network = tags.network %}",
+            "{% for n in tags.network|split(';') %}",
+            "{% if n|matches('cn$') %}{% set network = n %}{% endif %}",
+            "{% endfor %}"
+        ],
         "title": "{% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% endif %}",
-        "description": "{{ tagTrans('network', tags.network) }}",
+        "description": "{{ tagTrans('network', network) }}",
         "markerSymbol": "",
-        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': const[tags.network].color|default(const[''].color) })|raw }}",
-        "priority": "{{ const[tags.network].priority|default(4) }}",
+        "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': const[network].color|default(const[''].color) })|raw }}",
+        "priority": "{{ const[network].priority|default(4) }}",
         "styles": "",
         "style:hover": {
             "width": "0"
