@@ -83,7 +83,7 @@
             "      <div class='description'>{{ tagTrans('network', masterNetwork) }}</div>",
             "      <div class='title'>{% if master.tags.ref and master.tags.name %}{{ master.tags.ref }} - {{ master.tags.name|default(master.tags.ref) }}{% elseif master.tags.ref %}{{ master.tags.ref }}{% elseif master.tags.name %}{{ master.tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}</div>",
             "    </div>",
-            "  </li>",
+            "  </a></li>",
             "{% endfor %}",
             "</ul>"
         ],
