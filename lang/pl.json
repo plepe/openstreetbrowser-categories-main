@@ -92,5 +92,8 @@
     "outdated feature": "Przestarzałe obiekty",
     "xmas:outdated-warning": "Funkcja nie została zaktualizowana w bieżącym sezonie! Sprawdź i ustaw znacznik „xmas:lastcheck” na bieżącą datę.",
     "category:climbing": "Wspinaczka",
-    "category:roads": "Drogi"
+    "category:roads": "Drogi",
+    "category:developable_areas": "Obszary do rozwoju",
+    "category:developments": "Planowanie i budowanie",
+    "category:proposals": "Propozycje"
 }
