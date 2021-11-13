@@ -7,23 +7,22 @@
     },
     "feature": {
         "description": [
-            "{% for op in attribute(tags, 'heritage:operator')|split(';') %}",
-            "{% if const[op].url and attribute(tags, const[op].key) %}<a target=\"_blank\" href=\"{{ const[op].url|replace({\"$1\": attribute(tags, const[op].key)}) }}\">{% endif -%}",
-            "{{- tagTrans('heritage:operator', op) -}}",
-            "{%- if attribute(tags, const[op].key) %}: {{ attribute(tags, const[op].key) }}{% endif %}",
-            "{% if const[op].url and attribute(tags, const[op].key) %}</a>{% endif -%}",
-            "<br/>",
-            "{% endfor %}"
+            "{% set found = false %}",
+            "{% for k in ['amenity', 'shop', 'telecom', 'waterway', 'craft', 'highway', 'railway', 'aerialway', 'emergency', 'geological', 'man_made', 'natural', 'office', 'power', 'aeroway', 'tourism', 'leisure', 'military', 'landuse', 'barrier', 'route'] if not found %}",
+            "  {% if attribute(tags, k) and attribute(tags, k) != 'yes' %}",
+            "    {{ tagTransList(k, attribute(tags, k)) }}",
+            "    {% set found = true %}",
+            "  {% endif %}",
+            "{% endfor %}",
+            "{% if found %}{# nothing #}",
+            "{% elseif tags.building and tags.building != 'yes' %}",
+            "{{ tagTransList('building', tags.building) }}",
+            "{% elseif tags.historic and tags.historic not in ['heritage', 'yes', 'building'] %}",
+            "{{ tagTransList('historic', tags.historic) }}",
+            "{% elseif tags.building == 'yes' or tags.historic == 'building' %}",
+            "{{ keyTrans('building') }}",
+            "{% endif %}"
         ],
         "priority": "{{ min(tags.heritage|split(\";\")) }}"
-    },
-    "const": {
-        "whc": {
-            "key": "ref:whc"
-        },
-        "bda": {
-            "key": "ref:at:bda",
-            "url": "https://tools.wmflabs.org/denkmalliste/index.php?action=EinzelID&ID=$1"
-        }
     }
 }
