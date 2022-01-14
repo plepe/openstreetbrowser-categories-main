@@ -54,7 +54,7 @@
         "title": [
             "{% if tags.ref %}{{ tags.ref }} - {% endif %}",
             "",
-            "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) | default(trans('unnamed')) }}"
+            "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) }}"
         ],
         "description": "{{ tagTrans('route', tags.route) }}",
         "body": [
@@ -128,9 +128,13 @@
             "{% for master in masters %}",
             "  {% if master.tags.public_transport != 'stop_area' %}",
             "  <li data-object=\"{{ master.id }}\">",
-            "    <span class='markerParent'><div class='marker'>{{ markerCircle({fillColor:const[master.tags.route].color})|raw }}</div><div class='icon'>{{ const[master.tags.route].sign|raw }}</div></span>",
-            "    <span class='title'>{% if master.tags.ref and master.tags.name %}{{ master.tags.ref }} - {{ master.tags.name|default(master.tags.ref) }}{% elseif master.tags.ref %}{{ master.tags.ref }}{% elseif master.tags.name %}{{ master.tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}</span>",
-            "    <span class='description'>{{ tagTrans('route', master.tags.route) }}</span>",
+            "    <a href='#pt/{{ master.id }}'>",
+            "      <div class='marker'><div class='symbol'>{{ markerCircle({fillColor:const[master.tags.route].color})|raw }}</div><div class='sign'>{{ const[master.tags.route].sign|raw }}</div></div>",
+            "      <div class='content'>",
+            "        <div class='description'>{{ tagTrans('route', master.tags.route) }}</div>",
+            "        <div class='title'>{% if master.tags.ref and master.tags.name %}{{ master.tags.ref }} - {{ master.tags.name|default(master.tags.ref) }}{% elseif master.tags.ref %}{{ master.tags.ref }}{% elseif master.tags.name %}{{ master.tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}</div>",
+            "      </div>",
+            "    </a>",
             "  </li>",
             "  {% endif %}",
             "{% endfor %}",
@@ -178,8 +182,16 @@
         "listStopsMarkerSign": null,
         "listStopsMarkerSymbol": "{{ markerCircle({ width: 5, color: color, fillOpacity: '1', radius: 3 })|raw }}",
         "listStopsExclude": "{{ not isStop or stopCount == 0 }}",
-        "listStopsTitle": "{% if tags %}{{ tags.name|default(stopName)|default(trans('unknown')) }}{% else %}<li>{{ trans('loading') }}</li>{% endif %}",
-        "listStopsDescription": "{{ refs|join(' · ') }}",
+        "listStopsTitle": [
+          "{% if tags %}{{ tags.name|default(stopName)|default(trans('unknown')) }}{% else %}<li>{{ trans('loading') }}</li>{% endif %}<br/>",
+          "<i>{{ refs|join(' · ') }}</i>"
+        ],
+        "description": [
+          "{% set stopTypes = [] %}",
+          "{% if tags.railway in ['tram_stop'] %}{% set stopTypes = stopTypes|merge([ tagTrans('railway', tags.railway) ]) %}{% endif %}",
+          "{% if tags.highway in ['bus_stop'] %}{% set stopTypes = stopTypes|merge([ tagTrans('highway', tags.highway) ]) %}{% endif %}",
+          "{% if stopTypes|length %}{{ enumerate(stopTypes) }}{% elseif isStop %}{{ tagTrans('public_transport', 'stop_position') }}{% else %}{{ keyTrans('route') }}{% endif %}"
+        ],
         "listRoutesExclude": "true",
         "style:stop": {
             "width": "4",
@@ -195,7 +207,7 @@
             "dashArray": "{% if not dirForward or not dirBackward %}27,8{% endif %}",
             "dashOffset": "{% if dirBackward %}28{% else %}0{% endif %}",
             "noClip": "{% if not dirForward or not dirBackward %}true{% else %}false{% endif %}",
-            "text": "{{ refs|join(' · ') }}             ",
+            "text1": "{{ refs|join(' · ') }}             ",
             "textRepeat": "1",
             "textOffset": "12",
             "pattern": "{% if dirForward and dirBackward %}{% else %}arrowHead{% endif %}",

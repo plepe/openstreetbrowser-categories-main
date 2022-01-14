@@ -44,14 +44,13 @@
             "  {% endif %}",
             "{% endif %}"
         ],
-        "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
-        "description": [
-            "{{ tagTrans('railway', tags.railway) }}",
-            "",
+        "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator')) }}",
+        "description": "{{ tagTrans('railway', tags.railway) }}",
+        "details": [
             "{% if tags.electrified == 'no' %}",
-            "  - {{ tagTrans('electrified', 'no') }}",
+            "{{ tagTrans('electrified', 'no') }}",
             "{% elseif tags.electrified %}",
-            "  - {{ tags.voltage|default(trans('unknown')) }}V, {{ tags.frequency|default(trans('unknown')) }}Hz",
+            "{{ tags.voltage|default(trans('unknown')) }}V, {{ tags.frequency|default(trans('unknown')) }}Hz",
             "{% endif %}"
         ],
         "body": [

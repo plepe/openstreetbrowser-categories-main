@@ -12,8 +12,9 @@
             "{% set gauges = tags.gauge|split(';')|sort|reverse %}",
             "{% set width = max(3, 3 / map.metersPerPixel) %}"
         ],
-        "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator'))|default(trans('unnamed')) }}",
-        "description": "{{ tags.gauge|default(trans('unknown'))|enumerate }}",
+        "title": "{% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}{{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator')) }}",
+        "description": "{{ tagTrans('railway', tags.railway) }}",
+        "details": "{{ tags.gauge|default(trans('unknown'))|enumerate }}",
         "body": [
             "{{ tagTrans('railway', tags.railway) }}<br/>",
             "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}",

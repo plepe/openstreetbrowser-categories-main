@@ -11,10 +11,10 @@
         "13": [
             "(",
             "nwr[leisure=swimming_area];",
-            "nwr[natural~\"^(water)\"][sport~\"^(|.*;)swimming(.*|)$\"];",
+            "nwr[natural~\"^(water)\"][sport~\"^(|.*;)swimming(;.*|)$\"];",
             "nwr[natural~\"^(beach)\"];",
             "nwr[leisure~\"^(water_park|beach_resort)$\"];",
-            "nwr[leisure=sports_centre][sport~\"^(|.*;)swimming(.*|)$\"];",
+            "nwr[leisure=sports_centre][sport~\"^(|.*;)swimming(;.*|)$\"];",
             "nwr[amenity=public_bath];",
             "nwr[tourism=spa_resort];",
             ")"
@@ -22,7 +22,7 @@
         "16": [
             "(",
             "nwr[leisure=swimming_area];",
-            "nwr[natural~\"^(water)\"][sport~\"^(|.*;)swimming(.*|)$\"];",
+            "nwr[natural~\"^(water)\"][sport~\"^(|.*;)swimming(;.*|)$\"];",
             "nwr[natural~\"^(beach)\"];",
             "nwr[leisure~\"^(water_park|beach_resort)$\"];",
             "nwr[leisure=sports_centre][sport~\"^(|.*;)swimming(;.*|)$\"];",

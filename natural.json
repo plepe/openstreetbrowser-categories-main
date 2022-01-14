@@ -52,10 +52,7 @@
             "{% set value = tags.natural %}",
             "{% endif %}"
         ],
-        "title": [
-            "{{ localizedTag(tags, 'name') | default(trans('unnamed')) }}",
-            "{% if tags.natural == 'peak' and tags.ele %}({{ tags.ele }}m){% endif %}"
-        ],
+        "details": "{% if tags.natural == 'peak' and tags.ele %}{{ tags.ele }}m{% endif %}",
         "description": "{{ tagTrans(key, value) }}",
         "style": {
             "color": "{{ const[value].color|default('#f2756a') }}"
@@ -225,7 +222,7 @@
         },
         "volcano": {
             "zoom": 9,
-            "sign": "",
+            "sign": "<i class='fas fa-mountain'></i>",
             "color": "#cf3a00",
             "group": "landform"
         },

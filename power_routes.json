@@ -13,7 +13,7 @@
     "feature": {
         "pre": "{% set color = '#' ~ tags.operator|default('')|md5|slice(0, 6) %}",
         "description": "{% if tags.operator %}{{ tags.operator }}{% endif %}",
-        "title": "{% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}",
+        "title": "{% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% endif %}",
         "listMarkerSymbol": "{{ markerLine({ 'width': 4, 'color': color })|raw }}",
         "markerSymbol": "",
         "styles": ""

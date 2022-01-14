@@ -21,6 +21,20 @@
 </li>
 {% endif %}
 
+{% set address = tagsPrefix(tags, 'contact:') %}
+{% if address %}
+<li class='hasSymbol'>
+  <i class="fa fa-map-marker" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('address') }}:</span>
+  <span class='value'>
+    {{ attribute(tags, 'contact:street') }}
+    {{ attribute(tags, 'contact:housenumber') }},
+    {{ attribute(tags, 'contact:postcode') }}
+    {{ attribute(tags, 'contact:city') }}
+  </span>
+</li>
+{% endif %}
+
 {% if attribute(tags, 'name:etymology') %}
 <li class='hasSymbol'>
   <i class="fa fa-book" aria-hidden="true"></i>

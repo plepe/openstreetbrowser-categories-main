@@ -22,23 +22,25 @@
     "query": {
         "13": [
             "(",
-            "node[amenity~'^(post_office|internet_cafe)$'];",
-            "way[amenity~'^(post_office|internet_cafe)$'];",
-            "relation[amenity~'^(post_office|internet_cafe)$'];",
+            "nwr[amenity~'^(post_office|internet_cafe)$'];",
             "nwr[office~\"^(telecommunication|it|newspaper|publisher|advertising_agency)$\"];",
             ");"
         ],
-        "16": [
-            "(node[amenity~'^(post_office|internet_cafe|post_box|telephone)$'];",
-            "way[amenity~'^(post_office|internet_cafe)$'];",
-            "relation[amenity~'^(post_office|internet_cafe)$'];",
+        "15": [
+            "(",
+            "nwr[amenity~'^(post_office|internet_cafe|post_box|parcel_locker|telephone)$'];",
             "nwr[office~\"^(telecommunication|it|newspaper|publisher|advertising_agency)$\"];",
+            "nwr[vending~\"^(|.*;)parcel_pickup(;.*|)$\"];",
+            "nwr[vending~\"^(|.*;)parcel_mail_in(;.*|)$\"];",
             ");"
         ]
     },
     "feature": {
         "pre": [
-            "{% if tags.amenity %}",
+            "{% if tags.vending %}",
+            "  {% set key = 'amenity' %}",
+            "  {% set value = 'parcel_locker' %}",
+            "{% elseif tags.amenity %}",
             "  {% set key = 'amenity' %}",
             "  {% set value = tags.amenity %}",
             "{% else %}",
@@ -46,12 +48,11 @@
             "  {% set value = tags.office %}",
             "{% endif %}"
         ],
-        "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) |default(tagTrans('amenity', tags.amenity)) }}",
         "description": [
             "{% if key == 'office' %}",
             "  {{ keyTrans('office') }} ({{ tagTrans('office', tags.office) }})",
             "{% else %}",
-            "  {{ tagTrans(key, value) }}",
+            "  {{ tagTransList(key, value) }}",
             "{% endif %}"
         ],
         "body": "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br/>{% endif %}",
@@ -65,7 +66,7 @@
     "info": [
         "<table>",
         "{% for kv, data in const %}",
-        "{% if data.zoom <= map.zoom %}",
+        "{% if data.zoom <= map.zoom and not data.info_hide %}",
         "  <tr>",
         "    <td>{{ markerCircle({})|raw }}<div class='sign'>{{ data.sign|raw }}</div></td>",
         "    <td>",
@@ -93,6 +94,20 @@
         "amenity=internet_cafe": {
             "sign": "<i class='fa fa-laptop' aria-hidden='true'></i>",
             "zoom": 13
+        },
+        "amenity=parcel_locker": {
+            "sign": "<i class='fas fa-box'></i>",
+            "zoom": 16
+        },
+        "vending=parcel_pickup": {
+            "sign": "<i class='fas fa-box'></i>",
+            "info_hide": true,
+            "zoom": 16
+        },
+        "vending=parcel_mail_in": {
+            "sign": "<i class='fas fa-box'></i>",
+            "info_hide": true,
+            "zoom": 16
         },
         "office=telecommunication": {
             "sign": "<i class='fas fa-mobile-alt'></i>",

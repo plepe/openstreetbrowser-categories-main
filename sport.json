@@ -20,8 +20,18 @@
         "14": "(node[sport];way[sport];relation[sport];)"
     },
     "feature": {
-        "title": "{{ localizedTag(tags, 'name') |default(localizedTag(tags, 'operator')) |default(tagTransList('sport', tags.sport)) }}",
-        "description": "{{ tagTransList('sport', tags.sport) }}",
+        "description": [
+            "{% if tags.leisure %}{{ tagTrans('leisure', tags.leisure) }}",
+            "{% elseif tags.amenity %}{{ tagTrans('amenity', tags.amenity) }}",
+            "{% elseif tags.shop %}{{ tags.shop == 'yes' ? keyTrans('shop') : tagTrans('shop', tags.shop) }}",
+            "{% elseif tags.landuse %}{{ tagTrans('landuse', tags.landuse) }}",
+            "{% elseif tags.building %}{{ tags.building == 'yes' ? keyTrans('building') : tagTrans('building', tags.building) }}",
+            "{% elseif tags.highway %}{{ tagTrans('highway', tags.highway) }}",
+            "{% else %}{{ keyTrans('sport') }}",
+            "{% endif %}"
+        ],
+        "listDetails": "{{ tagTransList('sport', tags.sport) }}",
+        "body": "{{ keyTrans('sport') }}: {{ tagTransList('sport', tags.sport) }}",
         "markerSign": [
             "{% set firstSport = tags.sport|split(';')[0] %}",
             "{{ const[firstSport] }}"

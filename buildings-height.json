@@ -34,6 +34,21 @@
             "{% endif %}"
         ],
         "description": [
+            "{% if tags.building == 'yes' and tags.military %}",
+            "{{ tagTrans('building', 'military') }}",
+            "{% elseif tags.building == 'yes' %}",
+            "{{ keyTrans('building') }}",
+            "{% else %}",
+            "{{ tagTransList('building', tags.building) }}",
+            "{% endif %}",
+            "{% if tags.building == 'construction' and tags.construction %}",
+            "({{ tagTransList('building', tags.construction) }})",
+            "{% endif %}",
+            "{% if tags.building in  [ 'yes', 'military' ] and tags.military %}",
+            "({{ tagTransList('military', tags.military) }})",
+            "{% endif %}"
+        ],
+        "details": [
             "{% if tags.height is defined %}",
             "  {% if tags.height|matches('(m|ft)$') %}{{ tags.height -}}",
             "  {% else %}{{ tags.height }}&nbsp;m",
