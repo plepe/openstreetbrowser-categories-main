@@ -16,6 +16,9 @@
     },
     "feature": {
         "pre": [
+            "{% set type = tags.building|split(';')[0] %}",
+            "{% if tags.military %}{% set type = 'military' %}{% endif %}",
+            "",
             "{% set start_date = tags.start_date %}",
             "{% if attribute(tags, 'building:start_date') %}{% set start_date = attribute(tags, 'building:start_date') %}{% endif %}",
             "{# Deprecated tags #}",
@@ -59,6 +62,21 @@
             "{% endif %}"
         ],
         "description": [
+            "{% if tags.building == 'yes' and tags.military %}",
+            "{{ tagTrans('building', 'military') }}",
+            "{% elseif tags.building == 'yes' %}",
+            "{{ keyTrans('building') }}",
+            "{% else %}",
+            "{{ tagTransList('building', tags.building) }}",
+            "{% endif %}",
+            "{% if tags.building == 'construction' and tags.construction %}",
+            "({{ tagTransList('building', tags.construction) }})",
+            "{% endif %}",
+            "{% if tags.building in  [ 'yes', 'military' ] and tags.military %}",
+            "({{ tagTransList('military', tags.military) }})",
+            "{% endif %}"
+        ],
+        "details": [
             "{% if start_date %}",
             "{{ start_date|osmFormatDate({ format: 'short' }) }}",
             "{% else %}",
