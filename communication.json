@@ -40,6 +40,7 @@
             "{% if tags.vending %}",
             "  {% set key = 'amenity' %}",
             "  {% set value = 'parcel_locker' %}",
+            "  {% set deprecated = ['vending=' ~ tags.vending, 'https://wiki.openstreetmap.org/wiki/Proposed_features/amenity%3Dparcel_locker'] %}",
             "{% elseif tags.amenity %}",
             "  {% set key = 'amenity' %}",
             "  {% set value = tags.amenity %}",
@@ -55,7 +56,10 @@
             "  {{ tagTransList(key, value) }}",
             "{% endif %}"
         ],
-        "body": "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br/>{% endif %}",
+        "body": [
+            "{% if deprecated %}<div class='warning'>{{ repoTrans('deprecated', deprecated[0], deprecated[1])|raw }}</div>{% endif %}",
+            "{% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br/>{% endif %}"
+        ],
         "markerSign": [
             "{% set data = const[key ~ '=' ~ value] %}",
             "{% if data %}",
