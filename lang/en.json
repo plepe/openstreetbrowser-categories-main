@@ -96,5 +96,6 @@
     "category:xmas": "Christmas",
     "date format not understood": "Invalid Date Format",
     "outdated feature": "Features outdated",
-    "xmas:outdated-warning": "Feature has not been updated for the current season! Please check and set the tag 'xmas:lastcheck' to the current date."
+    "xmas:outdated-warning": "Feature has not been updated for the current season! Please check and set the tag 'xmas:lastcheck' to the current date.",
+    "deprecated": "Tag %s is deprecated. See <a target='_blank' href=\"%s\">here</a> for details."
 }
