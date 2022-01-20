@@ -65,7 +65,9 @@
             "{% if data %}",
             "{{ data.sign|raw }}",
             "{% endif %}"
-        ]
+        ],
+        "markerSymbol": "{{ markerPointer({\"fillColor\": (deprecated ? 'red' : '#f2756a') })|raw }}",
+        "listMarkerSymbol": "{{ markerCircle({\"fillColor\": (deprecated ? 'red' : '#f2756a')})|raw }}"
     },
     "info": [
         "<table>",
