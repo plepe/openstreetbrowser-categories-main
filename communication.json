@@ -103,16 +103,7 @@
         },
         "amenity=parcel_locker": {
             "sign": "<i class='fas fa-box'></i>",
-            "zoom": 16
-        },
-        "vending=parcel_pickup": {
-            "sign": "<i class='fas fa-box'></i>",
-            "info_hide": true,
-            "zoom": 16
-        },
-        "vending=parcel_mail_in": {
-            "sign": "<i class='fas fa-box'></i>",
-            "info_hide": true,
+            "query": "(nwr[vending~\"^(|.*;)parcel_pickup(;.*|)$\"];nwr[vending~\"^(|.*;)parcel_mail_in(;.*|)$\"];nwr[amenity=parcel_locker];)",
             "zoom": 16
         },
         "office=telecommunication": {
@@ -157,7 +148,7 @@
             "name": "{{ trans('filter:type') }}",
             "show_default": "true",
             "type": "select",
-            "values": "{% for k, v in const %}<option value=\"{{ k }}\" query=\"nwr[{{ k }}]\" minzoom=\"{{ v.zoom }}\">{{ tagTrans(k) }}</option>{% endfor %}"
+            "values": "{% for k, v in const %}<option value=\"{{ k }}\" query=\"{% if v.query %}{{ v.query }}{% else %}nwr[{{ k }}]{% endif %}\" minzoom=\"{{ v.zoom }}\">{{ tagTrans(k) }}</option>{% endfor %}"
         }
     }
 }
