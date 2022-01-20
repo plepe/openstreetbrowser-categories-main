@@ -25,7 +25,7 @@
         "description": "{{ tagTransList(\"xmas:feature\", attribute(tags, \"xmas:feature\")) }}",
         "body": [
             "{% if not isCurrent %}",
-            "<div style='border: 1px solid red; padding: 2px; margin-bottom: 2px;'>{{ repoTrans('xmas:outdated-warning') }}</div>",
+            "<div class='warning'>{{ repoTrans('xmas:outdated-warning') }}</div>",
             "{% endif %}",
             "",
             "{% if attribute(tags, 'xmas:location') %}",
