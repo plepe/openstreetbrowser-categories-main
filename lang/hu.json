@@ -95,5 +95,7 @@
     "category:climbing": "Hegymászás",
     "category:developable_areas": "Fejlesztés alatti területek",
     "category:developments": "Tervek és építkezések",
-    "category:proposals": "Tervezett objektumok"
+    "category:proposals": "Tervezett objektumok",
+    "category:heritage": "Örökségvédelem",
+    "deprecated": "Ez a címke (%s) elavult. A további részleteket <a target='_blank' href=\"%s\">lásd itt</a>."
 }
