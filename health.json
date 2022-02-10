@@ -186,6 +186,7 @@
         },
         {
             "types": [
+                "healthcare=birthing_centre",
                 "healthcare=birthing_center"
             ],
             "sign": "<i class=\"fas fa-baby\"></i>"
