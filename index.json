@@ -391,6 +391,18 @@
                     "id": "xmas"
                 }
             ]
+        },
+        {
+            "id": "osm-qa",
+            "type": "index",
+            "subCategories": [
+                {
+                    "id": "fixme"
+                },
+                {
+                    "id": "culture-media"
+                }
+            ]
         }
     ]
 }
