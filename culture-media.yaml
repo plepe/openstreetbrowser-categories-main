@@ -10,6 +10,11 @@ feature:
     {% elseif tags.wikimedia_commons or tags.image %}
     {% set color = 'cyan' %}
     {% endif %}
+
+    {% if tags.wikidata %}
+    {% set wikidata = tags.wikidata|wikidataEntity %}
+    {% if wikidata.claims.P31[0].mainsnak.datavalue.value.id in ['Q5'] %}{% set color = 'magenta' %}{% endif %}
+    {% endif %}
   description: |
     {% if tags.historic and tags.historic != 'yes' %}
       {{ tagTransList('historic', tags.historic) }}
@@ -60,5 +65,11 @@ info: |
           {{ markerCircle({ fillColor: 'blue' })|raw }}
         </td>
         <td>has wikidata link</td>
+      </tr>
+      <tr>
+        <td>
+          {{ markerCircle({ fillColor: 'magenta' })|raw }}
+        </td>
+        <td>wikidata points to a human, should most likely be 'subject:wikidata'</td>
       </tr>
   </table>
