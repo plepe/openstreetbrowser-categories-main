@@ -95,5 +95,7 @@
     "category:climbing": "Escalada",
     "category:developable_areas": "Áreas urbanizáveis",
     "category:developments": "Planejamento e construção",
-    "category:proposals": "Planejados"
+    "category:proposals": "Planejados",
+    "category:heritage": "Patrimônio histórico",
+    "deprecated": "Etiqueta %s é obsoleta. Ver <a target='_blank' href=\"%s\">aqui</a> para detalhes."
 }
