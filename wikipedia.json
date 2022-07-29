@@ -54,7 +54,8 @@
             "  <li>{{ e|raw }}</li>",
             "{% endfor %}",
             "</ul>",
-            "{% endif %}"
+            "{% endif %}",
+            "<p>{{ tags.wikidata|default(tags.wikipedia)|wikipediaAbstract }}</p>"
         ]
     }
 }
