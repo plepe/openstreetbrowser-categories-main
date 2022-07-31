@@ -111,6 +111,7 @@
         },
         "amenity=bicycle_rental": {
             "sign": "R",
+            "filter_query": "(nwr[amenity=bicycle_rental];nwr[rental~\"^(.*;|)bicycle(|;.*)$\"];nwr['service:bicycle:rental']['service:bicycle:rental'!='no'];)",
             "priority": 1
         },
         "man_made=monitoring_station": {
@@ -135,7 +136,7 @@
             "name": "{{ trans('filter:type') }}",
             "show_default": "true",
             "type": "select",
-            "values": "{% for k, v in const %}<option value=\"{{ k }}\" query=\"nwr[{{ k }}]\">{{ tagTrans(k) }}</option>{% endfor %}"
+            "values": "{% for k, v in const %}<option value=\"{{ k }}\" query=\"{{ v.filter_query|default('nwr[' ~ k ~ ']') }}\">{{ tagTrans(k) }}</option>{% endfor %}"
         }
     }
 }
