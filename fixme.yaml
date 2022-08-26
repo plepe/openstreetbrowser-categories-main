@@ -1,6 +1,6 @@
 type: overpass
 query:
-  15: "nwr[fixme]"
+  14: nwr[~"^fixme(:.*|)$"~".",i]
 feature:
   description: |
     {% set found = false %}
