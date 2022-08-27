@@ -55,19 +55,13 @@ filter:
     show_default: true
     type: select
     values: |
-      <option value='name' query='(nwr[~"fixme:name"~".",i];nwr[~"fixme(:.*|)"~"name",i];)'>{{ keyTrans('name') }}</option>
-      <option value='position' query='nwr[fixme~"(position|location)",i]'>{{ tagTrans('fixme', 'position') }}</option>
-      <option value='addr' query='(nwr["fixme:addr"];nwr[fixme~"addr",i];)'>{{ tagTrans('fixme', 'addr') }}</option>
-      <option value='maxspeed' query='(nwr["fixme:maxspeed"];nwr[fixme~"maxspeed",i];)'>{{ tagTrans('fixme', 'maxspeed') }}</option>
-      <option value='imcomplete' query='nwr[fixme~"(continue|incomplete|unfinished)",i]'>{{ tagTrans('fixme', 'continue') }}</option>
-      <option value='resurvey' query='nwr[fixme~"resurvey",i]'>{{ tagTrans('fixme', 'resurvey') }}</option>
-      <option value='verify' query='nwr[fixme~"(verify|recheck)",i]'>{{ tagTrans('fixme', 'verify') }}</option>
-      <option value='import' query='nwr[fixme~"import",i]'>{{ tagTrans('fixme', 'import') }}</option>
+      {% for k, d in const %}
+      <option value='{{ k }}' query='{{ d.query|default('nwr[~"fixme(:.*|)"~"' ~ d.match ~ '"') }},i]'>{{ tagTrans('fixme', k) }}</option>
+      {% endfor %}
 const:
-  default:
-    color: '#f2756a'
   name:
     match: 'name'
+    query: '(nwr[~"fixme:name"~".",i];nwr[~"fixme(:.*|)"~"name",i];)'
     color: '#00b6a9'
   incomplete:
     match: '(continue|incomplete|unfinished)'
@@ -77,9 +71,11 @@ const:
     color: '#71ab43'
   addr:
     match: 'addr'
+    query: '(nwr["fixme:addr"];nwr[fixme~"addr",i];)'
     color: '#0070b6'
   maxspeed:
     match: 'maxspeed'
+    query: '(nwr["fixme:maxspeed"];nwr[fixme~"maxspeed",i];)'
     color: '#a36af2'
   resurvey:
     match: 're-?survey'
