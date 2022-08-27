@@ -58,6 +58,19 @@ filter:
       {% for k, d in const %}
       <option value='{{ k }}' query='{{ d.query|default('nwr[~"fixme(:.*|)"~"' ~ d.match ~ '"') }},i]'>{{ tagTrans('fixme', k) }}</option>
       {% endfor %}
+info: |
+  <table>
+    <tr>
+      <td>{{ markerCircle({ fillColor: '#f2756a' }) }}</td>
+      <td>{{ trans('other') }}</td>
+    </tr>
+    {% for k, d in const %}
+    <tr>
+      <td>{{ markerCircle({ fillColor: d.color }) }}</td>
+      <td>{{ tagTrans('fixme', k) }}</td>
+    </tr>
+    {% endfor %}
+  </table>
 const:
   name:
     match: 'name'
