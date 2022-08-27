@@ -21,7 +21,6 @@
             "nwr[highway~\"^(construction)$\"];",
             "nwr[railway~\"^(construction)$\"];",
             "nwr[building~\"^(construction)$\"];",
-            "nwr[highway~\"^(construction)$\"];",
             "nwr[~\"^construction:\"~\".\"];",
             ")"
         ]
