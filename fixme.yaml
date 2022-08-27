@@ -2,6 +2,20 @@ type: overpass
 query:
   14: nwr[~"^fixme(:.*|)$"~".",i]
 feature:
+  pre: |
+    {% set fixme = tags.fixme %}
+    {% set category = null %}
+
+    {% if not fixme %}
+      {% for k, v in tags %}
+        {% set m = k|matches('^fixme(:(.*))?$', 'i') %}
+        {% if m %}
+          {% set fixme = v %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+  details: |
+    {{ fixme }}
   description: |
     {% set found = false %}
     {% for k in ['amenity', 'shop', 'telecom', 'waterway', 'craft', 'highway', 'railway', 'aerialway', 'emergency', 'geological', 'man_made', 'natural', 'office', 'power', 'aeroway', 'tourism', 'leisure', 'military', 'landuse', 'barrier', 'route'] if not found %}
@@ -21,4 +35,4 @@ feature:
     {{ tagTrans('boundary', tags.boundary) }}
     {% endif %}
   body: |
-    {{ tags.fixme == 'yes' ? keyTrans('fixme') : tags.fixme }}
+    {{ fixme == 'yes' ? keyTrans('fixme') : fixme }}
