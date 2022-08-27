@@ -11,6 +11,15 @@ feature:
         {% set m = k|matches('^fixme(:(.*))?$', 'i') %}
         {% if m %}
           {% set fixme = v %}
+          {% set category = m[2] %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
+    {% if not category %}
+      {% for k, d in const if d.match %}
+        {% if fixme|matches(d.match, 'i') %}
+          {% set category = k %}
         {% endif %}
       {% endfor %}
     {% endif %}
@@ -36,3 +45,48 @@ feature:
     {% endif %}
   body: |
     {{ fixme == 'yes' ? keyTrans('fixme') : fixme }}
+  markerSymbol: |
+    {{ markerPointer({ fillColor: const[category].color|default('#f2756a') }) }}
+  listMarkerSymbol: |
+    {{ markerCircle({ fillColor: const[category].color|default('#f2756a') }) }}
+filter:
+  category:
+    name: Category
+    show_default: true
+    type: select
+    values: |
+      <option value='name' query='(nwr[~"fixme:name"~".",i];nwr[~"fixme(:.*|)"~"name",i];)'>{{ keyTrans('name') }}</option>
+      <option value='position' query='nwr[fixme~"(position|location)",i]'>{{ tagTrans('fixme', 'position') }}</option>
+      <option value='addr' query='(nwr["fixme:addr"];nwr[fixme~"addr",i];)'>{{ tagTrans('fixme', 'addr') }}</option>
+      <option value='maxspeed' query='(nwr["fixme:maxspeed"];nwr[fixme~"maxspeed",i];)'>{{ tagTrans('fixme', 'maxspeed') }}</option>
+      <option value='imcomplete' query='nwr[fixme~"(continue|incomplete|unfinished)",i]'>{{ tagTrans('fixme', 'continue') }}</option>
+      <option value='resurvey' query='nwr[fixme~"resurvey",i]'>{{ tagTrans('fixme', 'resurvey') }}</option>
+      <option value='verify' query='nwr[fixme~"(verify|recheck)",i]'>{{ tagTrans('fixme', 'verify') }}</option>
+      <option value='import' query='nwr[fixme~"import",i]'>{{ tagTrans('fixme', 'import') }}</option>
+const:
+  default:
+    color: '#f2756a'
+  name:
+    match: 'name'
+    color: '#00b6a9'
+  incomplete:
+    match: '(continue|incomplete|unfinished)'
+    color: '#bb972f'
+  position:
+    match: '(position|location)'
+    color: '#71ab43'
+  addr:
+    match: 'addr'
+    color: '#0070b6'
+  maxspeed:
+    match: 'maxspeed'
+    color: '#a36af2'
+  resurvey:
+    match: 're-?survey'
+    color: '#00b647'
+  verify:
+    match: '(verify|recheck)'
+    color: '#eeb600'
+  import:
+    match: 'import'
+    color: '#a6b600'
