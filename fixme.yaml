@@ -17,7 +17,7 @@ feature:
     {% endif %}
 
     {% if not category %}
-      {% for k, d in const if d.match %}
+      {% for k, d in const.fixme if d.match %}
         {% if fixme|matches(d.match, 'i') %}
           {% set category = k %}
         {% endif %}
@@ -46,17 +46,25 @@ feature:
   body: |
     {{ fixme == 'yes' ? keyTrans('fixme') : fixme }}
   markerSymbol: |
-    {{ markerPointer({ fillColor: const[category].color|default('#f2756a') }) }}
+    {{ markerPointer({ fillColor: const.fixme[category].color|default('#f2756a') }) }}
   listMarkerSymbol: |
-    {{ markerCircle({ fillColor: const[category].color|default('#f2756a') }) }}
+    {{ markerCircle({ fillColor: const.fixme[category].color|default('#f2756a') }) }}
 filter:
   category:
     name: Category
     show_default: true
     type: select
     values: |
-      {% for k, d in const %}
+      {% for k, d in const.fixme %}
       <option value='{{ k }}' query='{{ d.query|default('nwr[~"fixme(:.*|)"~"' ~ d.match ~ '"') }},i]'>{{ tagTrans('fixme', k) }}</option>
+      {% endfor %}
+  type:
+    name: Type
+    show_default: true
+    type: select
+    values: |
+      {% for k, d in const.types %}
+      <option value='{{ k }}' query='{{ d.query }}'>{{ d.title|matches('^repo/') ? repoTrans(d.title|slice(5)) : trans(d.title) }}</option>
       {% endfor %}
 info: |
   <table>
@@ -64,7 +72,7 @@ info: |
       <td>{{ markerCircle({ fillColor: '#f2756a' }) }}</td>
       <td>{{ trans('other') }}</td>
     </tr>
-    {% for k, d in const %}
+    {% for k, d in const.fixme %}
     <tr>
       <td>{{ markerCircle({ fillColor: d.color }) }}</td>
       <td>{{ tagTrans('fixme', k) }}</td>
@@ -72,30 +80,134 @@ info: |
     {% endfor %}
   </table>
 const:
-  name:
-    match: 'name'
-    query: '(nwr[~"fixme:name"~".",i];nwr[~"fixme(:.*|)"~"name",i];)'
-    color: '#00b6a9'
-  incomplete:
-    match: '(continue|incomplete|unfinished)'
-    color: '#bb972f'
-  position:
-    match: '(position|location)'
-    color: '#71ab43'
-  addr:
-    match: 'addr'
-    query: '(nwr["fixme:addr"];nwr[fixme~"addr",i];)'
-    color: '#0070b6'
-  maxspeed:
-    match: 'maxspeed'
-    query: '(nwr["fixme:maxspeed"];nwr[fixme~"maxspeed",i];)'
-    color: '#a36af2'
-  resurvey:
-    match: 're-?survey'
-    color: '#00b647'
-  verify:
-    match: '(verify|recheck)'
-    color: '#eeb600'
-  import:
-    match: 'import'
-    color: '#a6b600'
+  fixme:
+    name:
+      match: 'name'
+      query: '(nwr[~"fixme:name"~".",i];nwr[~"fixme(:.*|)"~"name",i];)'
+      color: '#00b6a9'
+    incomplete:
+      match: '(continue|incomplete|unfinished)'
+      color: '#bb972f'
+    position:
+      match: '(position|location)'
+      color: '#71ab43'
+    addr:
+      match: 'addr'
+      query: '(nwr["fixme:addr"];nwr[fixme~"addr",i];)'
+      color: '#0070b6'
+    maxspeed:
+      match: 'maxspeed'
+      query: '(nwr["fixme:maxspeed"];nwr[fixme~"maxspeed",i];)'
+      color: '#a36af2'
+    resurvey:
+      match: 're-?survey'
+      color: '#00b647'
+    verify:
+      match: '(verify|recheck)'
+      color: '#eeb600'
+    import:
+      match: 'import'
+      color: '#a6b600'
+  types:
+    shops:
+      title: 'tag:shop'
+      query: 'nwr[shop]'
+    craft:
+      title: 'tag:craft'
+      query: 'nwr[craft]'
+    tourism:
+      title: 'tag:tourism'
+      query: 'nwr[tourism]'
+    roads:
+      title: 'tag:highway'
+      query: 'nwr[highway]'
+    gastro:
+      title: 'repo/category:gastro'
+      query: 'nwr[amenity~"^(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant)$"]'
+    agriculture:
+      title: 'repo/category:agriculture'
+      query: 'nwr[landuse~"^(allotments|farm|farmland|farmyard|greenhouse_horticulture|orchard|vineyard)$"]'
+    buildings:
+      title: 'repo/category:buildings'
+      query: '(nwr[building];nwr[entrance];)'
+    transport_car:
+      title: 'repo/category:transport_car'
+      query: 'nwr[amenity~"^(car_rental|car_sharing|car_wash|fuel|motorcycle_parking|parking)$"];'
+    children:
+      title: 'repo/category:children'
+      query: '(nwr[leisure~"^(playground|summer_camp|indoor_play)$"];nwr[shop~"^(baby_goods|toys)$"];nwr[changing_table];nwr[diaper];nwr[kids_area];nwr[playground];)'
+    sport:
+      title: 'tag:sport'
+      query: '(nwr[sport];nwr[climbing];nwr[highway~"^(via_ferrata)$"];nwr[leisure~"^(sports_.*)$"];)'
+    industrial:
+      title: 'tag:landuse=industrial'
+      query: '(nwr[landuse~"^(quarry|industrial)$"];nwr[man_made~"^(mineshaft|pipeline|goods_conveyor)$"];)'
+    power:
+      title: 'repo/category:electric_power'
+      query: '(nwr[power];relation[type=route][route=power];)'
+    communication:
+      title: 'repo/category:communication'
+      query: '(nwr[amenity~"^(post_office|internet_cafe|post_box|parcel_locker|telephone)$"];nwr[office~"^(telecommunication|it|newspaper|publisher|advertising_agency)$"];nwr[vending~"parcel"];)'
+    construction:
+      title: 'repo/category:construction'
+      query: '(nwr[~"."~"^(construction)$"];nwr[~"^construction:"~"."];)'
+    culture:
+      title: 'repo/category:culture'
+      query: '(nwr[amenity~"^(arts_centre|cinema|community_centre|fountain|studio|theatre)$"];nwr[tourism~"^(artwork|gallery|museum|theme_park)$"];nwr[amenity~"^(clock)$"];nwr[shop~"^(art)$"];)'
+    bicycle:
+      title: 'repo/category:transport_cycle'
+      query: '(nwr[amenity~"^(bicycle_.*|compressed_air|charging_station)$"];nwr[shop~"^(bicycle)$"];nwr["monitoring:bicycle"];nwr[vending~"^bicycle_"];relation[type=route][route~"^(|.*;)bicycle(|;.*)$"];)'
+    education:
+      title: 'repo/category:education'
+      query: '(nwr[amenity~"^(college|university|library|school|kindergarten|language_school|childcare|public_bookcase)$"];nwr[office~"^(educational_institution|research)$"];)'
+    emergency:
+      title: 'repo/category:emergency'
+      query: '(nwr[amenity~"^(fire_station|hospital|police)$"];nwr[emergency];nwr[highway~"^(emergency_access_point)$"];)'
+    financial:
+      title: 'repo/category:financial'
+      query: '(nwr[amenity~"^(bank|bureau_de_change|atm)$"];nwr[office~"^(financial|accountant|insurance|tax|tax_advisor)$"];)'
+    health:
+      title: 'repo/category:health'
+      query: '(nwr[amenity~"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$"];nwr[healthcare];)'
+    heritage:
+      title: 'repo/category:heritage'
+      query: 'nwr[heritage]'
+    walking:
+      title: 'repo/category:transport_walk'
+      query: '(nwr[amenity~"^(bench|shelter)$"];relation[type=route][route~"^(|.*;)hiking(|;.*)$"];nwr[highway~"^(footway|path|pedestrian|elevator|steps|crossing)$"];)'
+    historic:
+      title: 'tag:historic'
+      query: 'nwr[historic]'
+    law:
+      title: 'repo/category:law'
+      query: 'nwr[amenity~"^(courthouse)$"];nwr[office~"^(lawyer|notary)$"];)'
+    leisure:
+      title: 'tag:leisure'
+      query: 'nwr[leisure]'
+    memorial:
+      title: 'repo/category:memorial'
+      query: 'nwr[historic~"^(memorial|monument|wayside_(cross|shrine|chapel))$"]'
+    military:
+      title: 'repo/category:military'
+      query: '(nwr[military];nwr[landuse=military];)'
+    natural:
+      title: 'repo/category:natural'
+      query: '(nwr[natural];nwr[place~"^(island|islet)$"];)'
+    office:
+      title: 'repo/category:office'
+      query: 'nwr[office]'
+    places:
+      title: 'tag:place'
+      query: 'node[place]'
+    public:
+      title: 'repo/category:public'
+      query: '(nwr[amenity~"^(embassy|public_building|townhall|clock|drinking_water|recycling|toilets)$"];node[drinking_water];nwr[office~"^(government|administration)$"];)'
+    railway:
+      title: 'tag:railway'
+      query: '(nwr[railway];relation[type=route][route=railway];)'
+    religion:
+      title: 'tag:religion'
+      query: '(nwr[amenity~"^(place_of_worship|grave_yard|crematorium)$"];nwr[landuse~"^(cemetery)$"];nwr[historic~"wayside_(cross|shrine|chapel)$"];nwr[office~\"^(parish|religion)$\"];)'
+    landuse:
+      title: 'tag:landuse'
+      query: 'nwr[landuse]'
