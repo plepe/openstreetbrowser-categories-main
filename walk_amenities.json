@@ -14,20 +14,17 @@
             "node[information];",
             "node[tourism~\"^(viewpoint)$\"];",
             "node[man_made~\"^(cairn)$\"];",
-            "node[amenity~\"^(shelter)$\"];",
-            "way[amenity~\"^(shelter)$\"];",
-            "relation[amenity~\"^(shelter)$\"];",
+            "nwr[amenity~\"^(shelter)$\"];",
             ")"
         ],
-        "17": [
+        "16": [
             "(",
             "node[highway~\"^(crossing|elevator)$\"];",
             "node[information];",
             "node[tourism~\"^(viewpoint)$\"];",
             "node[man_made~\"^(cairn)$\"];",
-            "node[amenity~\"^(shelter)$\"];",
-            "way[amenity~\"^(shelter)$\"];",
-            "relation[amenity~\"^(shelter)$\"];",
+            "nwr[amenity~\"^(bench|shelter)$\"];",
+            "node[leisure~\"^(picnic_table)$\"];",
             ")"
         ]
     },
@@ -39,6 +36,9 @@
             "{% elseif tags.amenity in [ 'bench', 'shelter' ] %}",
             "  {% set key = 'amenity' %}",
             "  {% set value = tags.amenity %}",
+            "{% elseif tags.leisure in [ 'picnic_table' ] %}",
+            "  {% set key = 'leisure' %}",
+            "  {% set value = tags.picnic_table%}",
             "{% elseif tags.man_made in [ 'cairn' ] %}",
             "  {% set key = 'man_made' %}",
             "  {% set value = tags.man_made %}",
@@ -81,6 +81,14 @@
         "office": {
             "priority": 1,
             "sign": "<i class='fa fa-info-circle' aria-hidden='true'></i>"
+        },
+        "bench": {
+            "priority": 3,
+            "sign": "<img data-src='temaki:bench'>"
+        },
+        "picnic_table": {
+            "priority": 3,
+            "sign": "<img data-src='maki:picnic-site'>"
         },
         "cairn": {
             "priority": 2,
