@@ -1,7 +1,12 @@
 type: "overpass"
 query: 
   15: |
-    (nwr[historic];nwr[tourism~'^(attraction|artwork)$'];nwr[heritage];)
+    (
+    nwr[historic];
+    nwr[tourism~'^(attraction|artwork)$'];
+    nwr[heritage];
+    nwr[amenity~'^(fountain|arts_centre)$'];
+    )
 feature: 
   pre: |
     {% set color = 'red' %}
@@ -38,6 +43,8 @@ feature:
       {% endif %}
     {% elseif tags.tourism %}
       {{ tagTransList('tourism', tags.tourism) }}
+    {% elseif tags.amenity %}
+      {{ tagTrans('amenity', tags.amenity) }}
     {% elseif tags.heritage %}
       {{ keyTrans('heritage') }}
     {% endif %}
@@ -59,6 +66,8 @@ filter:
       <option value='historic-wayside_shrine' query='nwr[historic=wayside_shrine]'>{{ tagTrans('historic', 'wayside_shrine') }}</option>
       <option value='historic-building' query='nwr[historic=building]'>{{ tagTrans('historic', 'building') }}</option>
       <option value='historic-other' query='nwr[historic][historic!~"^(memorial|monument|wayside_cross|wayside_shrine|building)$"]'>{{ keyTrans('historic') }} {{ trans('other') }}</option>
+      <option value='fountain' query='nwr[amenity=fountain]'>{{ tagTrans('amenity', 'fountain') }}</option>
+      <option value='arts_centre' query='nwr[amenity=arts_centre]'>{{ tagTrans('amenity', 'arts_centre') }}</option>
       <option value='heritage' query='nwr[heritage]'>{{ keyTrans('heritage') }}</option>
     op: "has"
 info: |
