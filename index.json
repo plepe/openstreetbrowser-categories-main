@@ -385,9 +385,6 @@
                     "id": "gastro-smoking"
                 },
                 {
-                    "id": "wikipedia"
-                },
-                {
                     "id": "xmas"
                 }
             ]
@@ -401,6 +398,9 @@
                 },
                 {
                     "id": "culture-media"
+                },
+                {
+                    "id": "wikipedia"
                 }
             ]
         }
