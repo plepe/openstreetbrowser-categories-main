@@ -26,6 +26,10 @@ feature:
   body: |
     {{ str }}
 
+  style:
+    color: |
+      {{ color }}
+
   description: |
     {% if tags.historic and tags.historic != 'yes' %}
       {{ tagTransList('historic', tags.historic) }}
