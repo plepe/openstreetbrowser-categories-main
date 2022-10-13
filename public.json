@@ -35,22 +35,22 @@
             "node[amenity~'^(embassy|public_building|townhall|clock|drinking_water|recycling|toilets)$'];",
             "way[amenity~'^(embassy|public_building|townhall|recycling|toilets)$'];",
             "relation[amenity~'^(embassy|public_building|townhall|recycling|toilets)$'];",
-            "node[drinking_water];",
+            "node[drinking_water][drinking_water!=no];",
             "nwr[office~\"^(government|administration)$\"];",
             ");"
         ]
     },
     "feature": {
         "pre": [
-            "{% if tags.drinking_water %}",
-            "{% set key = 'amenity' %}",
-            "{% set value = 'drinking_water' %}",
-            "{% elseif tags.amenity %}",
+            "{% if tags.amenity %}",
             "{% set key = 'amenity' %}",
             "{% set value = tags.amenity %}",
             "{% elseif tags.office %}",
             "{% set key = 'office' %}",
             "{% set value = tags.office %}",
+            "{% elseif tags.drinking_water and tags.drinking_water != 'no' %}",
+            "{% set key = 'amenity' %}",
+            "{% set value = 'drinking_water' %}",
             "{% endif %}"
         ],
         "description": [
