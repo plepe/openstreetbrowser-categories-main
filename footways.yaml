@@ -71,12 +71,64 @@ feature:
   description: |
     {% if tags.footway %}
     {{ tagTrans('footway', tags.footway) }}
-    {% else %}
+    {% elseif tags.highway %}
     {{ tagTrans('highway', tags.highway) }}
+    {% elseif tags.railway %}
+    {{ tagTrans('railway', tags.railway) }}
     {% endif %}
   markerSymbol: ""
   listMarkerSymbol: |
-    {% if tags.area == 'yes' %}polygon{% else %}line{% endif %}
+    {% if tags.area == 'yes' %}
+      polygon
+    {% elseif 'node' in sides %}
+      {{ markerCircle({ width: 0, radius: 5, fillOpacity: 1, fill: true, color: const.categories[category].color }) }}
+    {% else %}
+      {{ markerLine({
+           'styles': sides|join(','),
+           'style:main': {
+              width: foot and tags.segregated == 'yes' ? 2 : const.categories[category].width|default(3),
+              color: const.categories[category].color,
+              dashArray: tags.highway == 'steps' or (foot and tags.segregated != 'yes') ? '3,3' : '',
+              lineCap: tags.highway == 'steps' or (foot and tags.segregated != 'yes') ? 'butt' : 'round',
+              offset: foot and tags.segregated == 'yes' ? 1 : 0
+            },
+            'style:foot': {
+              fill: false,
+              width: foot and tags.segregated == 'yes' ? 2 : 3,
+              color: const.categories.footway.color,
+              dashArray: foot and tags.segregated != 'yes' ? '3,3' : '',
+              dashOffset: 3,
+              lineCap: foot and tags.segregated != 'yes' ? 'butt' : 'round',
+              offset: foot and tags.segregated == 'yes' ? -1 : 0
+            },
+            'style:left': {
+              width: 3,
+              offset: -6,
+              color: const.categories.sidewalk.color
+            },
+            'style:right': {
+              width: 3,
+              offset: 6,
+              color: const.categories.sidewalk.color
+            },
+            'style:leftr': {
+              width: sidewalk_left ? 5 : 0,
+              offset: -2.5,
+              opacity: 0.3,
+              dashArray: '1,10',
+              lineCap: butt,
+              color: sidewalk_left in ['no', 'none'] ? '#000000' : const.categories.sidewalk.color
+            },
+            'style:rightr': {
+              width: sidewalk_right ? 5 : 0,
+              offset: 2.5,
+              opacity: 0.3,
+              dashArray: '1,10',
+              lineCap: butt,
+              color: sidewalk_left in ['no', 'none'] ? '#000000' : const.categories.sidewalk.color
+            },
+      }) }}
+    {% endif %}
   style:
     opacity: 0
     fillOpacity: 0
