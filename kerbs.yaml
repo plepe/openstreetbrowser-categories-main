@@ -1,0 +1,111 @@
+query:
+  14: (way[kerb];way[barrier=kerb];node[kerb];node[barrier=kerb];)
+name:
+  en: Kerbs
+feature:
+  pre: |
+    {% set kerb = 'unknown' %}
+    {% if const.kerb[tags.kerb] %}
+    {% set kerb = tags.kerb %}
+    {% endif %}
+
+    {% set wheelchair = 'unknown' %}
+    {% if const.wheelchair[tags.wheelchair] %}
+    {% set wheelchair = tags.wheelchair %}
+    {% endif %}
+
+  description: |
+    {{ tagTrans('barrier', 'kerb') }}
+  body: |
+    <ul>
+    {% if tags.kerb %}
+    <li>{{ keyTrans('kerb') }}: {{ tagTrans('kerb', tags.kerb) }}</li>
+    {% endif %}
+    {% if tags.wheelchair %}
+    <li>{{ keyTrans('wheelchair') }}: {{ tagTrans('wheelchair', tags.wheelchair) }}</li>
+    {% endif %}
+    {% if tags.tactile_paving %}
+    <li>{{ keyTrans('tactile_paving') }}: {{ tagTrans('tactile_paving', tags.tactile_paving) }}</li>
+    {% endif %}
+    {% if tags.height %}
+    <li>{{ keyTrans('height') }}: {{ tags.height }}</li>
+    {% endif %}
+    </ul>
+  markerSymbol:
+  listMarkerSymbol: |
+    {% if type == 'way' %}
+    line
+    {% else %}
+    {{ markerCircle({ radius: 5, width: 2, fillOpacity: 1, fillColor: const.kerb[kerb], color: const.wheelchair[wheelchair] }) }}
+    {% endif %}
+  details: |
+    {{ tags.kerb }} 
+    {% if tags.height %}({{ tags.height }}){% endif %}
+  styles: |
+    {% if type == 'way' %}
+      default,marker
+    {% else %}
+      node
+    {% endif %}
+  style:
+    color: |
+      {{ const.kerb[kerb] }}
+    fill: |
+      {{ type == 'way' ? false : true }}
+    radius: 4
+    fillOpacity: 1
+    width: 2
+  style:marker:
+    color: |
+      {{ const.kerb[kerb] }}
+    offset: 2
+    width: 2
+    fill: false
+    dashArray: 2,9
+  style:node:
+    fillColor: |
+      {{ const.kerb[kerb] }}
+    fill: true
+    radius: 6
+    fillOpacity: 1
+    width: 2
+    color: |
+      {{ const.wheelchair[wheelchair] }}
+info: |
+  {{ tagTrans('barrier', 'kerb') }}:
+  <table>
+  {% for v, color in const.kerb %}
+    <tr>
+      <td>
+        {{ markerLine({ styles: 'default,marker', style: { width: 2, color: color }, 'style:marker': { width: 2, offset: 2, color: color, dashArray: '2,9'} } ) }}
+        {{ markerCircle({ radius: 4, width: 2, fillOpacity: 1, color: color }) }}
+      </td>
+      <td>{{ v == 'unknown' ? trans('unknown') : tagTrans('kerb', v) }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+  {{ keyTrans('wheelchair') }}:
+  <table>
+  {% for v, color in const.wheelchair %}
+    <tr>
+      <td>
+        {{ markerCircle({ radius: 6, width: 2, fillOpacity: 1, fillColor: '#000000', color: color }) }}
+      </td>
+      <td>{{ v == 'unknown' ? trans('unknown') : tagTrans('kerb', v) }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+const:
+  kerb:
+    flush: '#00af00'
+    lowered: '#007f7f'
+    no: '#000000'
+    raised: '#af0000'
+    rolled: '#af7f00'
+    unknown: '#7f7f7f'
+  wheelchair:
+    designated: '#00ff7f'
+    yes: '#00ff00'
+    no: '#ff0000'
+    limited: '#ffff00'
+    unknown: '#ffffff'
