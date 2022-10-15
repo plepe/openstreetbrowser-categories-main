@@ -97,5 +97,8 @@
     "category:developments": "Planejamento e construção",
     "category:proposals": "Planejados",
     "category:heritage": "Patrimônio histórico",
-    "deprecated": "Etiqueta %s é obsoleta. Ver <a target='_blank' href=\"%s\">aqui</a> para detalhes."
+    "deprecated": "Etiqueta %s é obsoleta. Ver <a target='_blank' href=\"%s\">aqui</a> para detalhes.",
+    "category:culture-media": "Cultura - Imagem e Wikidata",
+    "category:fixme": "Corrija-me",
+    "category:osm-qa": "Controle de Qualidade OSM"
 }
