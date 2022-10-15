@@ -72,7 +72,11 @@ feature:
     {% if tags.footway %}
     {{ tagTrans('footway', tags.footway) }}
     {% elseif tags.highway %}
-    {{ tagTrans('highway', tags.highway) }}
+      {% if tags.segregated %}
+        {{ tagTrans('highway', tags.highway ~ ' segregated=' ~ tags.segregated) }}
+      {% else %}
+        {{ tagTrans('highway', tags.highway) }}
+      {% endif %}
     {% elseif tags.railway %}
     {{ tagTrans('railway', tags.railway) }}
     {% endif %}
@@ -254,7 +258,7 @@ info: |
         dashOffset: 3
       }
     }) }}</td>
-    <td>highway=cycleway segregated=no</td>
+    <td>{{ tagTrans('highway', 'cycleway segregated=no') }}</td>
   </tr>
   <tr>
     <td>{{ markerLine({
@@ -270,7 +274,7 @@ info: |
         offset: 1
       }
     }) }}</td>
-    <td>highway=cycleway segregated=yes</td>
+    <td>{{ tagTrans('highway', 'cycleway segregated=yes') }}</td>
   </tr>
   {% for k, d in const.sidewalks %}
   <tr>
@@ -317,12 +321,12 @@ const:
       key: railway
       color: '#00ff00'
   sidewalks:
-    yes:
+    'yes':
       color: '#ff007f'
       styles: 'leftr,left'
-    separate:
+    'separate':
       color: '#ff007f'
       styles: 'leftr'
-    no:
+    'no':
       color: '#000000'
-      styles: 'leftr,left'
+      styles: 'leftr'
