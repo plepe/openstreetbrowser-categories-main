@@ -272,6 +272,27 @@ info: |
     }) }}</td>
     <td>highway=cycleway segregated=yes</td>
   </tr>
+  {% for k, d in const.sidewalks %}
+  <tr>
+    <td>{{ markerLine({
+      styles: d.styles,
+      'style:leftr': {
+        width: 7,
+        offset: -2.5,
+        opacity: 0.3,
+        dashArray: '1,10',
+        lineCap: butt,
+        color: d.color
+      },
+      'style:left': {
+        width: 3,
+        offset: -7,
+        color: d.color
+      }
+    }) }}</td>
+    <td>{{ tagTrans('sidewalk', k) }}</td>
+  </tr>
+  {% endfor %}
   </table>
 const:
   categories:
@@ -295,3 +316,13 @@ const:
     platform:
       key: railway
       color: '#00ff00'
+  sidewalks:
+    yes:
+      color: '#ff007f'
+      styles: 'leftr,left'
+    separate:
+      color: '#ff007f'
+      styles: 'leftr'
+    no:
+      color: '#000000'
+      styles: 'leftr,left'
