@@ -1,7 +1,7 @@
 query:
   15: |
     (
-    way[highway~"^(footway|pedestrian|steps|path)$"];
+    way[highway~"^(footway|pedestrian|steps|path|platform)$"];
     way[highway=cycleway][foot~"^(yes|designated)$"];
     way[footway];
     way[sidewalk~"^(yes|both|left|right|no|none)$"];
@@ -21,7 +21,7 @@ feature:
       {% set category = 'sidewalk' %}
     {% endif %}
 
-    {% if tags.highway in ['pedestrian', 'footway','steps','path','cycleway'] %}
+    {% if tags.highway in ['pedestrian', 'footway','steps','path','cycleway','platform'] %}
       {% set sides = sides|merge(['main']) %}
     {% endif %}
 
@@ -38,6 +38,12 @@ feature:
 
     {% if tags.footway == 'crossing' %}
       {% set category = 'crossing' %}
+    {% endif %}
+
+    {% if tags.sidewalk in ['no', 'none'] %}
+      {% set sidewalk_left = 'no' %}
+      {% set sidewalk_right = 'no' %}
+      {% set sides = sides|merge(['leftr', 'rightr']) %}
     {% endif %}
 
     {% if attribute(tags, 'sidewalk:both') %}
@@ -281,8 +287,8 @@ info: |
     <td>{{ markerLine({
       styles: d.styles,
       'style:leftr': {
-        width: 7,
-        offset: -2.5,
+        width: 9,
+        offset: -1,
         opacity: 0.3,
         dashArray: '1,10',
         lineCap: butt,
