@@ -5,7 +5,7 @@ query:
     nwr[historic];
     nwr[tourism~'^(attraction|artwork)$'];
     nwr[heritage];
-    nwr[amenity~'^(fountain|arts_centre)$'];
+    nwr[amenity~'^(fountain|arts_centre|place_of_worship|theatre)$'];
     )
 feature: 
   pre: |
