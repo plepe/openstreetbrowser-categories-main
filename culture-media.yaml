@@ -17,6 +17,11 @@ feature:
       {% set str = 'has wikidata tag' %}
       {% set wikidata = tags.wikidata|wikidataEntity %}
 
+      {% if wikidata.claims.P18|length == 0 %}
+        {% set color = '#007fff' %}
+        {% set str = 'has wikidata tag, but wikidata object does not have an image' %}
+      {% endif %}
+
       {% if wikidata.claims.P31[0].mainsnak.datavalue.value.id in ['Q5'] %}
         {% set color = 'magenta' %}
         {% set str = "wikidata points to a human, should most likely be 'subject:wikidata'" %}
@@ -99,6 +104,12 @@ info: |
           {{ markerCircle({ fillColor: 'cyan' })|raw }}
         </td>
         <td>image or wikimedia_commons tag but no wikidata</td>
+      </tr>
+      <tr>
+        <td>
+          {{ markerCircle({ fillColor: '#007fff' })|raw }}
+        </td>
+        <td>has wikidata tag, but wikidata object does not have an image</td>
       </tr>
       <tr>
         <td>
