@@ -22,6 +22,10 @@ feature:
         {% set str = "wikidata points to a human, should most likely be 'subject:wikidata'" %}
       {% endif %}
 
+    {% elseif tags.wikipedia %}
+      {% set color = '#af00ff' %}
+      {% set str = 'wikipedia tag found without corresponding wikidata tag' %}
+
     {% elseif tags.wikimedia_commons or tags.image %}
       {% set color = 'cyan' %}
       {% set str = tags.wikimedia_commons ? 'has wikimedia_commons tag' : 'has image tag' %}
@@ -83,6 +87,12 @@ info: |
           {{ markerCircle({ fillColor: 'magenta' })|raw }}
         </td>
         <td>wikidata tag points to a human, should most likely be 'subject:wikidata'</td>
+      </tr>
+      <tr>
+        <td>
+          {{ markerCircle({ fillColor: '#af00ff' })|raw }}
+        </td>
+        <td>wikipedia tag found without corresponding wikidata tag</td>
       </tr>
       <tr>
         <td>
