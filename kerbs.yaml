@@ -1,7 +1,5 @@
 query:
   14: (way[kerb];way[barrier=kerb];node[kerb];node[barrier=kerb];)
-name:
-  en: Kerbs
 feature:
   pre: |
     {% set kerb = 'unknown' %}
