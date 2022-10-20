@@ -78,8 +78,8 @@ feature:
     {% if tags.footway %}
     {{ tagTrans('footway', tags.footway) }}
     {% elseif tags.highway %}
-      {% if tags.segregated %}
-        {{ tagTrans('highway', tags.highway ~ ' segregated=' ~ tags.segregated) }}
+      {% if tags.highway in ['path', 'cycleway'] and tags.segregated %}
+        {{ tagTrans('highway', 'cycleway segregated=' ~ tags.segregated) }}
       {% else %}
         {{ tagTrans('highway', tags.highway) }}
       {% endif %}
