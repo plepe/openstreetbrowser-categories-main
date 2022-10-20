@@ -11,18 +11,10 @@ feature:
     {{ tagTrans('barrier', 'kerb') }}
   body: |
     <ul>
-    {% if tags.kerb %}
-    <li>{{ keyTrans('kerb') }}: {{ tagTrans('kerb', tags.kerb) }}</li>
-    {% endif %}
-    {% if tags.wheelchair %}
-    <li>{{ keyTrans('wheelchair') }}: {{ tagTrans('wheelchair', tags.wheelchair) }}</li>
-    {% endif %}
-    {% if tags.tactile_paving %}
-    <li>{{ keyTrans('tactile_paving') }}: {{ tagTrans('tactile_paving', tags.tactile_paving) }}</li>
-    {% endif %}
-    {% if tags.height %}
-    <li>{{ keyTrans('height') }}: {{ tags.height }}</li>
-    {% endif %}
+    <li>{{ keyTrans('kerb') }}: {{ tags.kerb ? tagTrans('kerb', tags.kerb) : trans('unknown') }}</li>
+    <li>{{ keyTrans('wheelchair') }}: {{ tags.wheelchair ? tagTrans('wheelchair', tags.wheelchair) : trans('unknown') }}</li>
+    <li>{{ keyTrans('tactile_paving') }}: {{ tags.tactile_paving ? tagTrans('tactile_paving', tags.tactile_paving) : trans('unknown') }}</li>
+    <li>{{ keyTrans('height') }}: {{ 'height' in tags ? tags.height : trans('unknown') }}</li>
     </ul>
   markerSymbol:
   listMarkerSymbol: |
@@ -32,7 +24,7 @@ feature:
     {{ markerCircle({ radius: 5, width: 2, fillOpacity: 1, fillColor: const.kerb[kerb], color: const.wheelchair[wheelchair] }) }}
     {% endif %}
   details: |
-    {{ tags.kerb }} 
+    {% if tags.kerb and tags.kerb != 'yes' %}{{ tagTrans('kerb', tags.kerb) }}{% endif %}
     {% if tags.height %}({{ tags.height }}){% endif %}
   styles: |
     {% if type == 'way' %}
@@ -54,7 +46,7 @@ feature:
     offset: 2
     width: 2
     fill: false
-    dashArray: 2,9
+    dashArray: '2,9'
   style:node:
     fillColor: |
       {{ const.kerb[kerb] }}
