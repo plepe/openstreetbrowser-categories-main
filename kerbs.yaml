@@ -7,11 +7,6 @@ feature:
     {% set kerb = tags.kerb %}
     {% endif %}
 
-    {% set wheelchair = 'unknown' %}
-    {% if const.wheelchair[tags.wheelchair] %}
-    {% set wheelchair = tags.wheelchair %}
-    {% endif %}
-
   description: |
     {{ tagTrans('barrier', 'kerb') }}
   body: |
@@ -66,8 +61,8 @@ feature:
     fill: true
     radius: 6
     fillOpacity: 1
-    width: 2
-    color: |
+    width: 1
+    color: black
       {{ const.wheelchair[wheelchair] }}
 info: |
   {{ tagTrans('barrier', 'kerb') }}:
@@ -76,18 +71,7 @@ info: |
     <tr>
       <td>
         {{ markerLine({ styles: 'default,marker', style: { width: 2, color: color }, 'style:marker': { width: 2, offset: 2, color: color, dashArray: '2,9'} } ) }}
-        {{ markerCircle({ radius: 4, width: 2, fillOpacity: 1, color: color }) }}
-      </td>
-      <td>{{ v == 'unknown' ? trans('unknown') : tagTrans('kerb', v) }}</td>
-    </tr>
-  {% endfor %}
-  </table>
-  {{ keyTrans('wheelchair') }}:
-  <table>
-  {% for v, color in const.wheelchair %}
-    <tr>
-      <td>
-        {{ markerCircle({ radius: 6, width: 2, fillOpacity: 1, fillColor: '#000000', color: color }) }}
+        {{ markerCircle({ radius: 4, width: 1, fillOpacity: 1, fillColor: color, color: 'black' }) }}
       </td>
       <td>{{ v == 'unknown' ? trans('unknown') : tagTrans('kerb', v) }}</td>
     </tr>
