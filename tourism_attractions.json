@@ -61,11 +61,10 @@
         "type": {
             "name": "{{ trans('filter:type') }}",
             "show_default": "true",
-            "query": "nwr[{{ value }}]",
+            "query": "nwr[tourism^{{ value }}]",
             "type": "select",
             "key": "tourism",
-            "values": "{% set list = [] %}{% for t, v in const %}<option value=\"{{ t }}\">{% set list = list|merge([ t ]) %}{{ tagTrans('tourism', t) }}</option>{% endfor %}",
-            "op": "has"
+            "values": "{% set list = [] %}{% for t, v in const %}<option value=\"{{ t }}\">{% set list = list|merge([ t ]) %}{{ tagTrans('tourism', t) }}</option>{% endfor %}"
         }
     }
 }
