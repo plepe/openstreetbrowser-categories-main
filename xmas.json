@@ -21,7 +21,7 @@
             "{% set isCurrent = meta.timestamp >= \"now\"|date_modify('-10 month')|date('Y') %}",
             "{% set bgColor = isCurrent ? '#f2756a' : 'red' %}"
         ],
-        "title": "{{ attribute(tags, \"xmas:name\")|default(trans(\"unnamed\")) }}",
+        "title": "{{ attribute(tags, \"xmas:name\")|default(tags.name) }}",
         "description": "{{ tagTransList(\"xmas:feature\", attribute(tags, \"xmas:feature\")) }}",
         "body": [
             "{% if not isCurrent %}",
