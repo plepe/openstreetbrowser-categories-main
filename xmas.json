@@ -73,10 +73,13 @@
         "listMarkerSymbol": "{{ markerCircle({\"fillColor\":bgColor})|raw }}"
     },
     "const": {
-        "market": "<img data-src='maki:commercial'>",
-        "tree": "<i class=\"fa fa-tree\" aria-hidden=\"true\"></i>",
+        "market": "<img data-src='maki:commercial?fill=#333333'>",
         "shop": "<i class=\"fa fa-shopping-basket\" aria-hidden=\"true\"></i>",
-        "event": "<img data-src='maki:amusement-park'>"
+        "tree": "<i class=\"fa fa-tree\" aria-hidden=\"true\"></i>",
+        "crib": "<i class=\"fas fa-bed\"></i>",
+        "event": "<img data-src='maki:amusement-park?fill=#333333'>",
+        "lighting": "<i class=\"far fa-star\"></i>",
+        "pyramid": "𓉴"
     },
     "info": [
         "<table>",
