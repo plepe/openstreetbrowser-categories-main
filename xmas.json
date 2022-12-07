@@ -81,6 +81,15 @@
         "lighting": "<i class=\"far fa-star\"></i>",
         "pyramid": "𓉴"
     },
+    "filter": {
+        "type": {
+            "name": "{{ trans('filter:type') }}",
+            "show_default": "true",
+            "query": "nwr[\"xmas:feature\"=\"{{ value }}\"]",
+            "type": "select",
+            "values": "{% for k, v in const %}<option value=\"{{ k }}\">{{ tagTrans('xmas:feature', k) }}</option>{% endfor %}<option value=\"other\" query=\"nwr['xmas:feature']{% for k, v in const %}['xmas:feature'!='{{ k }}']{% endfor %}\" weight=\"1\">{{ trans('other') }}</option>"
+        }
+    },
     "info": [
         "<table>",
         "{% for value, icon in const %}",
