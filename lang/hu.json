@@ -97,5 +97,8 @@
     "category:developments": "Tervek és építkezések",
     "category:proposals": "Tervezett objektumok",
     "category:heritage": "Örökségvédelem",
-    "deprecated": "Ez a címke (%s) elavult. A további részleteket <a target='_blank' href=\"%s\">lásd itt</a>."
+    "deprecated": "Ez a címke (%s) elavult. A további részleteket <a target='_blank' href=\"%s\">lásd itt</a>.",
+    "category:culture-media": "Kultúra – média/Wikidata",
+    "category:fixme": "Javíts ki! / Fix me",
+    "category:osm-qa": "OpenStreetMap minőségellenőrzés"
 }
