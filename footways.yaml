@@ -86,6 +86,83 @@ feature:
     {% elseif tags.railway %}
     {{ tagTrans('railway', tags.railway) }}
     {% endif %}
+  body: |
+    <ul>
+    {% if 'main' in sides %}
+      {% if tags.width %}<li>
+        <span class='key'>{{ keyTrans('width') }}:</span>
+        <span class='value'>{{ tags.width|formatUnit }}</span>
+      </li>{% endif %}
+      {% if tags.wheelchair %}<li>
+        <span class='key'>{{ keyTrans('wheelchair') }}:</span>
+        <span class='value'>{{ tagTrans('wheelchair', tags.wheelchair) }}</span>
+      </li>{% endif %}
+      {% if tags.surface %}<li>
+        <span class='key'>{{ keyTrans('surface') }}:</span>
+        <span class='value'>{{ tagTrans('surface', tags.surface) }}</span>
+      </li>{% endif %}
+      {% if tags.tactile_paving %}<li>
+        <span class='key'>{{ keyTrans('tactile_paving') }}:</span>
+        <span class='value'>{{ tagTrans('tactile_paving', tags.tactile_paving) }}</span>
+      </li>{% endif %}
+      {% if tags.smoothness %}<li>
+        <span class='key'>{{ keyTrans('smoothness') }}:</span>
+        <span class='value'>{{ tagTrans('smoothness', tags.smoothness) }}</span>
+      </li>{% endif %}
+    {% endif %}
+
+    {% if attribute(tags, 'sidewalk:left')|default(attribute(tags, 'sidewalk:both')) %}
+      <li>{{ keyTrans('sidewalk:left') }}:<ul>
+        <li>{{ tagTrans('sidewalk', attribute(tags, 'sidewalk:left')|default(attribute(tags, 'sidewalk:both'))) }}</li>
+        {% if attribute(tags, 'sidewalk:left:width')|default(attribute(tags, 'sidewalk:both:width')) %}<li>
+          <span class='key'>{{ keyTrans('width') }}:</span>
+          <span class='value'>{{ attribute(tags, 'sidewalk:left:width')|default(attribute(tags, 'sidewalk:both:width'))|formatUnit }}</span>
+        </li>{% endif %}
+        {% if attribute(tags, 'sidewalk:left:wheelchair')|default(attribute(tags, 'sidewalk:both:wheelchair')) %}<li>
+          <span class='key'>{{ keyTrans('wheelchair') }}:</span>
+          <span class='value'>{{ tagTrans('wheelchair', attribute(tags, 'sidewalk:left:wheelchair')|default(attribute(tags, 'sidewalk:both:wheelchair'))) }}</span>
+        </li>{% endif %}
+        {% if attribute(tags, 'sidewalk:left:surface')|default(attribute(tags, 'sidewalk:both:surface')) %}<li>
+          <span class='key'>{{ keyTrans('surface') }}:</span>
+          <span class='value'>{{ tagTrans('surface', attribute(tags, 'sidewalk:left:surface')|default(attribute(tags, 'sidewalk:both:surface'))) }}</span>
+        </li>{% endif %}
+        {% if attribute(tags, 'sidewalk:left:tactile_paving') %}<li>
+          <span class='key'>{{ keyTrans('tactile_paving') }}:</span>
+          <span class='value'>{{ tagTrans('tactile_paving', attribute(tags, 'sidewalk:left:tactile_paving')|default(attribute(tags, 'sidewalk:both:tactile_paving'))) }}</span>
+        </li>{% endif %}
+        {% if attribute(tags, 'sidewalk:left:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness')) %}<li>
+          <span class='key'>{{ keyTrans('smoothness') }}:</span>
+          <span class='value'>{{ tagTrans('smoothness', attribute(tags, 'sidewalk:left:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness'))) }}</span>
+        </li>{% endif %}
+      </ul></li>
+    {% endif %}
+
+    {% if attribute(tags, 'sidewalk:right')|default(attribute(tags, 'sidewalk:both')) %}
+      <li>{{ keyTrans('sidewalk:right') }}:<ul>
+        <li>{{ tagTrans('sidewalk', attribute(tags, 'sidewalk:right')|default(attribute(tags, 'sidewalk:both'))) }}</li>
+        {% if attribute(tags, 'sidewalk:right:width')|default(attribute(tags, 'sidewalk:both:width')) %}<li>
+          <span class='key'>{{ keyTrans('width') }}:</span>
+          <span class='value'>{{ attribute(tags, 'sidewalk:right:width')|default(attribute(tags, 'sidewalk:both:width'))|formatUnit }}</span>
+        </li>{% endif %}
+        {% if attribute(tags, 'sidewalk:right:wheelchair')|default(attribute(tags, 'sidewalk:both:wheelchair')) %}<li>
+          <span class='key'>{{ keyTrans('wheelchair') }}:</span>
+          <span class='value'>{{ tagTrans('wheelchair', attribute(tags, 'sidewalk:right:wheelchair')|default(attribute(tags, 'sidewalk:both:wheelchair'))) }}</span>
+        </li>{% endif %}
+        {% if attribute(tags, 'sidewalk:right:surface')|default(attribute(tags, 'sidewalk:both:surface')) %}<li>
+          <span class='key'>{{ keyTrans('surface') }}:</span>
+          <span class='value'>{{ tagTrans('surface', attribute(tags, 'sidewalk:right:surface')|default(attribute(tags, 'sidewalk:both:surface'))) }}</span>
+        </li>{% endif %}
+        {% if attribute(tags, 'sidewalk:right:tactile_paving') %}<li>
+          <span class='key'>{{ keyTrans('tactile_paving') }}:</span>
+          <span class='value'>{{ tagTrans('tactile_paving', attribute(tags, 'sidewalk:right:tactile_paving')|default(attribute(tags, 'sidewalk:both:tactile_paving'))) }}</span>
+        </li>{% endif %}
+        {% if attribute(tags, 'sidewalk:right:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness')) %}<li>
+          <span class='key'>{{ keyTrans('smoothness') }}:</span>
+          <span class='value'>{{ tagTrans('smoothness', attribute(tags, 'sidewalk:right:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness'))) }}</span>
+        </li>{% endif %}
+       </ul></li>
+    {% endif %}
+    </ul>
   markerSymbol: ""
   listMarkerSymbol: |
     {% if tags.area == 'yes' %}
