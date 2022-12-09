@@ -109,6 +109,10 @@ feature:
         <span class='key'>{{ keyTrans('smoothness') }}:</span>
         <span class='value'>{{ tagTrans('smoothness', tags.smoothness) }}</span>
       </li>{% endif %}
+      {% if tags.incline %}<li>
+        <span class='key'>{{ keyTrans('incline') }}:</span>
+        <span class='value'>{{ tags.incline|formatUnit('incline') }}</span>
+      </li>{% endif %}
     {% endif %}
 
     {% if attribute(tags, 'sidewalk:left')|default(attribute(tags, 'sidewalk:both')) %}
@@ -133,6 +137,10 @@ feature:
         {% if attribute(tags, 'sidewalk:left:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness')) %}<li>
           <span class='key'>{{ keyTrans('smoothness') }}:</span>
           <span class='value'>{{ tagTrans('smoothness', attribute(tags, 'sidewalk:left:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness'))) }}</span>
+        </li>{% endif %}
+        {% if attribute(tags, 'sidewalk:left:incline')|default(attribute(tags, 'sidewalk:both:incline')) %}<li>
+          <span class='key'>{{ keyTrans('incline') }}:</span>
+          <span class='value'>{{ attribute(tags, 'sidewalk:left:incline')|default(attribute(tags, 'sidewalk:both:incline'))|formatUnit('incline') }}</span>
         </li>{% endif %}
       </ul></li>
     {% endif %}
@@ -159,6 +167,10 @@ feature:
         {% if attribute(tags, 'sidewalk:right:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness')) %}<li>
           <span class='key'>{{ keyTrans('smoothness') }}:</span>
           <span class='value'>{{ tagTrans('smoothness', attribute(tags, 'sidewalk:right:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness'))) }}</span>
+        </li>{% endif %}
+        {% if attribute(tags, 'sidewalk:right:incline')|default(attribute(tags, 'sidewalk:both:incline')) %}<li>
+          <span class='key'>{{ keyTrans('incline') }}:</span>
+          <span class='value'>{{ attribute(tags, 'sidewalk:right:incline')|default(attribute(tags, 'sidewalk:both:incline'))|formatUnit('incline') }}</span>
         </li>{% endif %}
        </ul></li>
     {% endif %}
