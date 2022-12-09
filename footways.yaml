@@ -109,9 +109,10 @@ feature:
         <span class='key'>{{ keyTrans('smoothness') }}:</span>
         <span class='value'>{{ tagTrans('smoothness', tags.smoothness) }}</span>
       </li>{% endif %}
-      {% if tags.incline %}<li>
+      {% set v = tags.incline %}
+      {% if v %}<li>
         <span class='key'>{{ keyTrans('incline') }}:</span>
-        <span class='value'>{{ tags.incline|formatUnit('incline') }}</span>
+        <span class='value'>{{ v in ['up', 'down', 'yes'] ? tagTrans('incline', v) : v }}</span>
       </li>{% endif %}
     {% endif %}
 
@@ -138,9 +139,10 @@ feature:
           <span class='key'>{{ keyTrans('smoothness') }}:</span>
           <span class='value'>{{ tagTrans('smoothness', attribute(tags, 'sidewalk:left:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness'))) }}</span>
         </li>{% endif %}
-        {% if attribute(tags, 'sidewalk:left:incline')|default(attribute(tags, 'sidewalk:both:incline')) %}<li>
+        {% set v = attribute(tags, 'sidewalk:left:incline')|default(attribute(tags, 'sidewalk:both:incline'))|default(tags.incline) %}
+        {% if v %}<li>
           <span class='key'>{{ keyTrans('incline') }}:</span>
-          <span class='value'>{{ attribute(tags, 'sidewalk:left:incline')|default(attribute(tags, 'sidewalk:both:incline'))|formatUnit('incline') }}</span>
+          <span class='value'>{{ v in ['up', 'down', 'yes'] ? tagTrans('incline', v) : v }}</span>
         </li>{% endif %}
       </ul></li>
     {% endif %}
@@ -168,9 +170,10 @@ feature:
           <span class='key'>{{ keyTrans('smoothness') }}:</span>
           <span class='value'>{{ tagTrans('smoothness', attribute(tags, 'sidewalk:right:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness'))) }}</span>
         </li>{% endif %}
-        {% if attribute(tags, 'sidewalk:right:incline')|default(attribute(tags, 'sidewalk:both:incline')) %}<li>
+        {% set v = attribute(tags, 'sidewalk:right:incline')|default(attribute(tags, 'sidewalk:both:incline'))|default(tags.incline) %}
+        {% if i %}<li>
           <span class='key'>{{ keyTrans('incline') }}:</span>
-          <span class='value'>{{ attribute(tags, 'sidewalk:right:incline')|default(attribute(tags, 'sidewalk:both:incline'))|formatUnit('incline') }}</span>
+          <span class='value'>{{ v in ['up', 'down', 'yes'] ? tagTrans('incline', v) : v }}</span>
         </li>{% endif %}
        </ul></li>
     {% endif %}
