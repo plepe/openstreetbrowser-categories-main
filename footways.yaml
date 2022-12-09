@@ -88,7 +88,11 @@ feature:
     {% endif %}
   body: |
     <ul>
-    {% if 'main' in sides %}
+    {% if 'main' in sides or 'node' in sides %}
+      {% if tags.crossing %}<li>
+        <span class='key'>{{ keyTrans('crossing') }}:</span>
+        <span class='value'>{{ tagTrans('crossing', tags.crossing) }}</span>
+      </li>{% endif %}
       {% if tags.width %}<li>
         <span class='key'>{{ keyTrans('width') }}:</span>
         <span class='value'>{{ tags.width|formatUnit }}</span>
