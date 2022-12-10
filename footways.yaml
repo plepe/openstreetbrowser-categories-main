@@ -4,6 +4,8 @@ query:
     way[highway~"^(footway|pedestrian|steps|path|platform)$"];
     way[highway=cycleway][foot~"^(yes|designated)$"];
     way[footway];
+    way["area:highway"~"^(footway|pedestrian|steps|path|platform|sidewalk)$"];
+    relation["area:highway"~"^(footway|pedestrian|steps|path|platform|sidewalk)$"];
     way[sidewalk~"^(yes|both|left|right|no|none)$"];
     way["sidewalk:left"~"(yes|no|separate)$"];
     way["sidewalk:right"~"(yes|no|separate)$"];
@@ -23,6 +25,11 @@ feature:
 
     {% if tags.highway in ['pedestrian', 'footway','steps','path','cycleway','platform'] %}
       {% set sides = sides|merge(['main']) %}
+    {% endif %}
+
+    {% if attribute(tags, 'area:highway') in ['footway'] %}
+      {% set sides = sides|merge(['main']) %}
+      {% set category = attribute(tags, 'area:highway') %}
     {% endif %}
 
     {% if tags.railway in ['platform'] %}
@@ -85,6 +92,8 @@ feature:
       {% endif %}
     {% elseif tags.railway %}
     {{ tagTrans('railway', tags.railway) }}
+    {% elseif attribute(tags, 'area:highway') %}
+    {{ tagTrans('highway', attribute(tags, 'area:highway')) }}
     {% endif %}
   body: |
     <ul>
@@ -184,7 +193,7 @@ feature:
     </ul>
   markerSymbol: ""
   listMarkerSymbol: |
-    {% if tags.area == 'yes' %}
+    {% if tags.area == 'yes' or attribute(tags, 'area:highway') %}
       polygon
     {% elseif 'node' in sides %}
       {{ markerCircle({ width: 0, radius: 5, fillOpacity: 1, fill: true, color: const.categories[category].color }) }}
@@ -248,9 +257,11 @@ feature:
       {{ const.categories[category].color }}
   style:main:
     fill: |
-      {% if tags.area == 'yes' %}true{% else %}false{% endif %}
+      {% if tags.area == 'yes' or attribute(tags, 'area:highway') %}true{% else %}false{% endif %}
     width: |
-      {% if tags.area == 'yes' %}
+      {% if attribute(tags, 'area:highway') %}
+      0
+      {% elseif tags.area == 'yes' %}
       1
       {% elseif foot and tags.segregated == 'yes' %}
       2
@@ -335,6 +346,26 @@ info: |
     <td>{{ tagTrans(d.key|default('highway'), k) }}</td>
     </tr>
   {% endfor %}
+  <tr>
+    <td>{{ markerPolygon({
+      styles: 'default',
+      style: {
+        width: 1,
+        color: const.categories.footway.color,
+        fillColor: const.categories.footway.color
+      }
+    }) }}</td>
+    <td>{{ tagTrans('highway', 'footway') }} ({{ keyTrans('area') }})</td>
+  </tr>
+  <tr>
+    <td>
+      <svg anchorx="13" anchory="8" width="25" height="19">
+        <rect x="3" y="0" width="18" height="19" style="stroke-width: 0;fill: #ab00ff;fill-opacity: 0.2;"></rect>
+        <line x1="3" y1="10" x2="21" y2="10" style="stroke: #ab00ff;stroke-width: 3;stroke-dasharray: undefined;stroke-dasharray: undefined;fill: #ab00ff;fill-opacity: 0.2;"></line>
+      </svg>
+    </td>
+    <td>{{ tagTrans('highway', 'footway') }} ({{ keyTrans('area:highway') }})</td>
+  </tr>
   <tr>
     <td>{{ markerCircle({
       width: 0,
