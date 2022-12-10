@@ -21,7 +21,7 @@
             "{% set isCurrent = meta.timestamp >= \"now\"|date_modify('-10 month')|date('Y') %}",
             "{% set bgColor = isCurrent ? '#f2756a' : 'red' %}"
         ],
-        "title": "{{ attribute(tags, \"xmas:name\")|default(trans(\"unnamed\")) }}",
+        "title": "{{ attribute(tags, \"xmas:name\")|default(tags.name) }}",
         "description": "{{ tagTransList(\"xmas:feature\", attribute(tags, \"xmas:feature\")) }}",
         "body": [
             "{% if not isCurrent %}",
@@ -73,10 +73,22 @@
         "listMarkerSymbol": "{{ markerCircle({\"fillColor\":bgColor})|raw }}"
     },
     "const": {
-        "market": "<img data-src='maki:commercial'>",
-        "tree": "<i class=\"fa fa-tree\" aria-hidden=\"true\"></i>",
+        "market": "<img data-src='maki:commercial?fill=#333333'>",
         "shop": "<i class=\"fa fa-shopping-basket\" aria-hidden=\"true\"></i>",
-        "event": "<img data-src='maki:amusement-park'>"
+        "tree": "<i class=\"fa fa-tree\" aria-hidden=\"true\"></i>",
+        "crib": "<i class=\"fas fa-bed\"></i>",
+        "event": "<img data-src='maki:amusement-park?fill=#333333'>",
+        "lighting": "<i class=\"far fa-star\"></i>",
+        "pyramid": "𓉴"
+    },
+    "filter": {
+        "type": {
+            "name": "{{ trans('filter:type') }}",
+            "show_default": "true",
+            "query": "nwr[\"xmas:feature\"=\"{{ value }}\"]",
+            "type": "select",
+            "values": "{% for k, v in const %}<option value=\"{{ k }}\">{{ tagTrans('xmas:feature', k) }}</option>{% endfor %}<option value=\"other\" query=\"nwr['xmas:feature']{% for k, v in const %}['xmas:feature'!='{{ k }}']{% endfor %}\" weight=\"1\">{{ trans('other') }}</option>"
+        }
     },
     "info": [
         "<table>",
