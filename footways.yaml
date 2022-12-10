@@ -120,7 +120,7 @@ feature:
       </li>{% endif %}
     {% endif %}
 
-    {% if attribute(tags, 'sidewalk:left')|default(attribute(tags, 'sidewalk:both')) %}
+    {% if attribute(tags, 'sidewalk:left')|default(attribute(tags, 'sidewalk:both')) or tags.sidewalk in ['left', 'both'] %}
       <li>{{ keyTrans('sidewalk:left') }}:<ul>
         <li>{{ tagTrans('sidewalk', attribute(tags, 'sidewalk:left')|default(attribute(tags, 'sidewalk:both'))) }}</li>
         {% if attribute(tags, 'sidewalk:left:width')|default(attribute(tags, 'sidewalk:both:width')) %}<li>
@@ -151,7 +151,7 @@ feature:
       </ul></li>
     {% endif %}
 
-    {% if attribute(tags, 'sidewalk:right')|default(attribute(tags, 'sidewalk:both')) %}
+    {% if attribute(tags, 'sidewalk:right')|default(attribute(tags, 'sidewalk:both')) or tags.sidewalk in ['right', 'both'] %}
       <li>{{ keyTrans('sidewalk:right') }}:<ul>
         <li>{{ tagTrans('sidewalk', attribute(tags, 'sidewalk:right')|default(attribute(tags, 'sidewalk:both'))) }}</li>
         {% if attribute(tags, 'sidewalk:right:width')|default(attribute(tags, 'sidewalk:both:width')) %}<li>
