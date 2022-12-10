@@ -38,9 +38,12 @@ feature:
     {% endif %}
 
     {% set foot = false %}
-    {% if tags.highway not in ['pedestrian', 'footway', 'path'] and tags.foot in ['yes', 'designated'] %}
+    {% if tags.highway not in ['pedestrian', 'footway'] and tags.foot in ['yes', 'designated'] %}
       {% set foot = tags.foot %}
       {% set sides = sides|merge(['foot']) %}
+    {% endif %}
+    {% if tags.highway == 'path' and tags.bicycle in ['yes', 'designated'] %}
+      {% set category = 'cycleway' %}
     {% endif %}
 
     {% if tags.footway == 'crossing' %}
