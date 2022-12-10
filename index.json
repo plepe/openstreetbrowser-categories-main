@@ -157,6 +157,12 @@
                         },
                         {
                             "id": "hiking_routes"
+                        },
+                        {
+                            "id": "footways"
+                        },
+                        {
+                            "id": "kerbs"
                         }
                     ]
                 },
