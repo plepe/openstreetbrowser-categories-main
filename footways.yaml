@@ -301,12 +301,14 @@ feature:
     offset: |
       {% if foot and tags.segregated == 'yes' %}-1{% else %}0{% endif %}
   style:left:
+    fill: false
     width: 3
     offset: |
       {{ -5 / map.metersPerPixel }}
     color: |
       {{ const.categories.sidewalk.color }}
   style:right:
+    fill: false
     width: 3
     offset: |
       {{ 5 / map.metersPerPixel }}
@@ -314,6 +316,7 @@ feature:
       {{ const.categories.sidewalk.color }}
 
   style:leftr:
+    fill: false
     width: |
       {{ sidewalk_left ? 5 / map.metersPerPixel : 0 }}
     offset: |
@@ -325,6 +328,7 @@ feature:
       {{ sidewalk_left in ['no', 'none'] ? '#000000' : const.categories.sidewalk.color }}
 
   style:rightr:
+    fill: false
     width: |
       {{ sidewalk_right ? 5 / map.metersPerPixel : 0 }}
     offset: |
