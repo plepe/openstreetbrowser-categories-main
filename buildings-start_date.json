@@ -83,12 +83,13 @@
             "{{ trans('unknown') }}",
             "{% endif %}"
         ],
-        "popupDescription": [
-            "{% if start_date %}",
-            "{{ start_date|osmFormatDate }}",
-            "{% else %}",
-            "{{ trans('unknown') }}",
-            "{% endif %}"
+        "body": [
+            "<ul>",
+            "{% if attribute(tags, 'building:start_date') %}<li>",
+            "<span class='key'>{{ keyTrans('building:start_date') }}:</span>",
+            "<span class='value'>{{ attribute(tags, 'building:start_date')|osmFormatDate }}</span>",
+            "</li>{% endif %}",
+            "</ul>"
         ],
         "markerSymbol": null,
         "listMarkerSymbol": "{{ markerPolygon({ \"fillColor\": color, \"fillOpacity\": 0.8, \"width\": 1, \"color\": \"#000000\" })|raw }}",
