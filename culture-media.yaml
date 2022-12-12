@@ -54,6 +54,8 @@ feature:
       {{ tagTransList('tourism', tags.tourism) }}
     {% elseif tags.amenity %}
       {{ tagTrans('amenity', tags.amenity) }}
+    {% elseif tags.building %}
+      {{ tags.building == 'yes' ? keyTrans('building') : tagTrans('building', tags.building) }}
     {% elseif tags.heritage %}
       {{ keyTrans('heritage') }}
     {% endif %}
