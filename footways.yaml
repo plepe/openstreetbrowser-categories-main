@@ -6,7 +6,7 @@ query:
     way[footway];
     way["area:highway"~"^(footway|pedestrian|steps|path|platform|sidewalk)$"];
     relation["area:highway"~"^(footway|pedestrian|steps|path|platform|sidewalk)$"];
-    way[sidewalk~"^(yes|both|left|right|no|none)$"];
+    way[sidewalk~"^(yes|both|left|right|no|separate|none)$"];
     way["sidewalk:left"~"(yes|no|separate)$"];
     way["sidewalk:right"~"(yes|no|separate)$"];
     way["sidewalk:both"~"(yes|no|separate)$"];
@@ -53,6 +53,12 @@ feature:
     {% if tags.sidewalk in ['no', 'none'] %}
       {% set sidewalk_left = 'no' %}
       {% set sidewalk_right = 'no' %}
+      {% set sides = sides|merge(['leftr', 'rightr']) %}
+    {% endif %}
+
+    {% if tags.sidewalk == 'separate' %}
+      {% set sidewalk_left = 'separate' %}
+      {% set sidewalk_right = 'separate' %}
       {% set sides = sides|merge(['leftr', 'rightr']) %}
     {% endif %}
 
