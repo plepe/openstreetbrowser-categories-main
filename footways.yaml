@@ -444,6 +444,29 @@ info: |
   </tr>
   {% endfor %}
   </table>
+filter:
+  access:
+    name: '{{ keyTrans("access") }}'
+    type: select
+    placeholder: '{{ trans("any value") }}'
+    valueName: '{{ tagTrans("access", value) }}'
+    values:
+      'yes': {}
+      private: {}
+      permissive: {}
+      customers: {}
+      discouraged: {}
+      unknown:
+        name: '{{ trans("unknown") }}'
+        query: nwr["access"="unknown"]
+      '!':
+        name: <{{ trans('empty value') }}>
+        query: nwr[!access]
+        weight: 1
+      '?':
+        name: <{{ trans("other") }}>
+        query: nwr[access]["access"!~"^(public|private|permissive|customers|discouraged|unknown|yes)$"]
+        weight: 2
 const:
   categories:
     sidewalk:
