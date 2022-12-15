@@ -448,7 +448,7 @@ filter:
   access:
     name: '{{ keyTrans("access") }}'
     type: select
-    placeholder: '{{ trans("any value") }}'
+    placeholder: '<{{ trans("any value") }}>'
     valueName: '{{ tagTrans("access", value) }}'
     values:
       'yes': {}
@@ -456,17 +456,18 @@ filter:
       permissive: {}
       customers: {}
       discouraged: {}
-      unknown:
-        name: '{{ trans("unknown") }}'
-        query: nwr["access"="unknown"]
       '!':
         name: <{{ trans('empty value') }}>
         query: nwr[!access]
-        weight: 1
+        weight: -3
       '?':
         name: <{{ trans("other") }}>
         query: nwr[access]["access"!~"^(public|private|permissive|customers|discouraged|unknown|yes)$"]
-        weight: 2
+        weight: -2
+      unknown:
+        name: '<{{ trans("unknown") }}>'
+        query: nwr["access"="unknown"]
+        weight: -1
   surface:
     name: '{{ keyTrans("surface") }}'
     type: select
