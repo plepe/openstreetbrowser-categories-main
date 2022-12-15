@@ -533,6 +533,43 @@ filter:
       unknown:
         name: '<{{ trans("unknown") }}>'
         weight: -1
+  smoothness:
+    name: '{{ keyTrans("smoothness") }}'
+    type: select
+    placeholder: '<{{ trans("any value") }}>'
+    valueName: '{{ tagTrans("smoothness", value) }}'
+    query: '(nwr[smoothness="{{ value }}"];nwr[~"sidewalk:(left|right|both):smoothness"~"{{ value }}"];)'
+    values:
+      bad: {}
+      excellent: {}
+      good: {}
+      horrible: {}
+      impassable: {}
+      intermediate: {}
+      very_bad: {}
+      very_horrible: {}
+      '!':
+        name: <{{ trans('empty value') }}>
+        query: |
+          (
+          nwr[!"smoothness"];
+          nwr["sidewalk:left"="yes"][!"sidewalk:left:smoothness"];
+          nwr["sidewalk:right"="yes"][!"sidewalk:right:smoothness"];
+          nwr["sidewalk:both"="yes"][!"sidewalk:both:smoothness"][!"sidewalk:left:smoothness"];
+          nwr["sidewalk:both"="yes"][!"sidewalk:both:smoothness"][!"sidewalk:right:smoothness"];
+          nwr["sidewalk"="left"][!"sidewalk:left:smoothness"];
+          nwr["sidewalk"="right"][!"sidewalk:right:smoothness"];
+          nwr["sidewalk"="both"][!"sidewalk:both:smoothness"][!"sidewalk:left:smoothness"];
+          nwr["sidewalk"="both"][!"sidewalk:both:smoothness"][!"sidewalk:right:smoothness"];
+          )
+        weight: -3
+      '?':
+        name: <{{ trans("other") }}>
+        query: nwr[smoothness]["smoothness"!~"^(bad|excellent|good|horrible|impassable|intermediate|very_bad|very_horrible)$"]
+        weight: -2
+      unknown:
+        name: '<{{ trans("unknown") }}>'
+        weight: -1
 const:
   categories:
     sidewalk:
