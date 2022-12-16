@@ -100,5 +100,7 @@
     "deprecated": "Etiqueta %s é obsoleta. Ver <a target='_blank' href=\"%s\">aqui</a> para detalhes.",
     "category:culture-media": "Cultura - Imagem e Wikidata",
     "category:fixme": "Corrija-me",
-    "category:osm-qa": "Controle de Qualidade OSM"
+    "category:osm-qa": "Controle de Qualidade OSM",
+    "category:footways": "Calçadas",
+    "category:kerbs": "Meios-fios"
 }
