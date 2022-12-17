@@ -33,7 +33,7 @@ feature:
       {% set cycleway = true %}
       {% set sides = sides|merge(['cycleway']) %}
     {% endif %}
-    {% if tags.bicycle in ['yes', 'designated'] %}
+    {% if tags.highway in ['path'] and tags.bicycle in ['yes', 'designated'] %}
       {% set cycleway = true %}
       {% set sides = sides|merge(['cycleway']) %}
     {% endif %}
