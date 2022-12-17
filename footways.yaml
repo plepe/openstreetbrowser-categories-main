@@ -17,6 +17,7 @@ feature:
   pre: |
     {% set sides = ['default'] %}
     {% set sidewalk_left = null %}{% set sidewalk_right = null %}
+    {% set cycleway = false %}
     {% set category = tags.highway %}
 
     {% if attribute(tags, 'sidewalk:both') == 'yes' or tags.sidewalk in ['yes', 'both', 'left', 'both', 'right'] or tags.footway == 'sidewalk' %}
@@ -27,6 +28,16 @@ feature:
       {% set sides = sides|merge(['main']) %}
     {% endif %}
 
+    {% if tags.highway in ['cycleway'] %}
+      {% set category = 'footway' %}
+      {% set cycleway = true %}
+      {% set sides = sides|merge(['cycleway']) %}
+    {% endif %}
+    {% if tags.bicycle in ['yes', 'designated'] %}
+      {% set cycleway = true %}
+      {% set sides = sides|merge(['cycleway']) %}
+    {% endif %}
+
     {% if attribute(tags, 'area:highway') in ['footway'] %}
       {% set sides = sides|merge(['main']) %}
       {% set category = attribute(tags, 'area:highway') %}
@@ -35,15 +46,6 @@ feature:
     {% if tags.railway in ['platform'] %}
       {% set sides = sides|merge(['main']) %}
       {% set category = 'platform' %}
-    {% endif %}
-
-    {% set foot = false %}
-    {% if tags.highway not in ['pedestrian', 'footway'] and tags.foot in ['yes', 'designated'] %}
-      {% set foot = tags.foot %}
-      {% set sides = sides|merge(['foot']) %}
-    {% endif %}
-    {% if tags.highway == 'path' and tags.bicycle in ['yes', 'designated'] %}
-      {% set category = 'cycleway' %}
     {% endif %}
 
     {% if tags.footway == 'crossing' %}
@@ -210,20 +212,20 @@ feature:
       {{ markerLine({
            'styles': sides|join(','),
            'style:main': {
-              width: foot and tags.segregated == 'yes' ? 2 : const.categories[category].width|default(3),
+              width: cycleway and tags.segregated == 'yes' ? 2 : const.categories[category].width|default(3),
               color: const.categories[category].color,
-              dashArray: tags.highway == 'steps' or (foot and tags.segregated != 'yes') ? '3,3' : '',
-              lineCap: tags.highway == 'steps' or (foot and tags.segregated != 'yes') ? 'butt' : 'round',
-              offset: foot and tags.segregated == 'yes' ? 1 : 0
+              dashArray: tags.highway == 'steps' or (cycleway and tags.segregated != 'yes') ? '3,3' : '',
+              lineCap: tags.highway == 'steps' or (cycleway and tags.segregated != 'yes') ? 'butt' : 'round',
+              offset: cycleway and tags.segregated == 'yes' ? 1 : 0
             },
-            'style:foot': {
+            'style:cycleway': {
               fill: false,
-              width: foot and tags.segregated == 'yes' ? 2 : 3,
-              color: const.categories.footway.color,
-              dashArray: foot and tags.segregated != 'yes' ? '3,3' : '',
+              width: cycleway and tags.segregated == 'yes' ? 2 : 3,
+              color: const.categories.cycleway.color,
+              dashArray: cycleway and tags.segregated != 'yes' ? '3,3' : '',
               dashOffset: 3,
-              lineCap: foot and tags.segregated != 'yes' ? 'butt' : 'round',
-              offset: foot and tags.segregated == 'yes' ? -1 : 0
+              lineCap: cycleway and tags.segregated != 'yes' ? 'butt' : 'round',
+              offset: cycleway and tags.segregated == 'yes' ? -1 : 0
             },
             'style:left': {
               width: 3,
@@ -272,7 +274,7 @@ feature:
       0
       {% elseif tags.area == 'yes' %}
       1
-      {% elseif foot and tags.segregated == 'yes' %}
+      {% elseif cycleway and tags.segregated == 'yes' %}
       2
       {% else %}
       {{ const.categories[category].width|default(3) }}
@@ -280,32 +282,32 @@ feature:
     color: |
       {{ const.categories[category].color }}
     dashArray: |
-      {% if tags.highway == 'steps' or (foot and tags.segregated != 'yes') %}
+      {% if tags.highway == 'steps' or (cycleway and tags.segregated != 'yes') %}
       3,3
       {% endif %}
     lineCap: |
-      {% if tags.highway == 'steps' or (foot and tags.segregated != 'yes') %}butt{% else %}round{% endif %}
+      {% if tags.highway == 'steps' or (cycleway and tags.segregated != 'yes') %}butt{% else %}round{% endif %}
     offset: |
-      {% if foot and tags.segregated == 'yes' %}1{% else %}0{% endif %}
-  style:foot:
+      {% if cycleway and tags.segregated == 'yes' %}1{% else %}0{% endif %}
+  style:cycleway:
     fill: false
     width: |
-      {% if foot and tags.segregated == 'yes' %}
+      {% if cycleway and tags.segregated == 'yes' %}
       2
       {% else %}
       3
       {% endif %}
     color: |
-      {{ const.categories.footway.color }}
+      {{ const.categories.cycleway.color }}
     dashArray: |
-      {% if foot and tags.segregated != 'yes' %}
+      {% if cycleway and tags.segregated != 'yes' %}
       3,3
       {% endif %}
     dashOffset: 3
     lineCap: |
-      {% if foot and tags.segregated != 'yes' %}butt{% else %}round{% endif %}
+      {% if cycleway and tags.segregated != 'yes' %}butt{% else %}round{% endif %}
     offset: |
-      {% if foot and tags.segregated == 'yes' %}-1{% else %}0{% endif %}
+      {% if cycleway and tags.segregated == 'yes' %}-1{% else %}0{% endif %}
   style:left:
     fill: false
     width: 3
