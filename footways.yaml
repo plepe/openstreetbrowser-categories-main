@@ -277,7 +277,7 @@ feature:
       {% elseif tags.area == 'yes' %}
       1
       {% elseif cycleway and tags.segregated == 'yes' %}
-      2
+      3
       {% else %}
       {{ const.categories[category].width|default(3) }}
       {% endif %}
@@ -292,15 +292,10 @@ feature:
     lineCap: |
       {% if tags.highway == 'steps' or (cycleway and tags.segregated != 'yes') %}butt{% else %}round{% endif %}
     offset: |
-      {% if cycleway and tags.segregated == 'yes' %}1{% else %}0{% endif %}
+      {% if cycleway and tags.segregated == 'yes' %}1.5{% else %}0{% endif %}
   style:cycleway:
     fill: false
-    width: |
-      {% if cycleway and tags.segregated == 'yes' %}
-      2
-      {% else %}
-      3
-      {% endif %}
+    width: 3
     color: |
       {{ const.categories.cycleway.color }}
     dashArray: |
@@ -311,7 +306,7 @@ feature:
     lineCap: |
       {% if cycleway and tags.segregated != 'yes' %}butt{% else %}round{% endif %}
     offset: |
-      {% if cycleway and tags.segregated == 'yes' %}-1{% else %}0{% endif %}
+      {% if cycleway and tags.segregated == 'yes' %}-1.5{% else %}0{% endif %}
   style:left:
     fill: false
     width: 3
@@ -416,14 +411,14 @@ info: |
     <td>{{ markerLine({
       styles: 'default,foot',
       style: {
-        width: 2,
+        width: 3,
         color: const.categories.cycleway.color,
-        offset: -1
+        offset: -1.5
       },
       'style:foot': {
-        width: 2,
+        width: 3,
         color: const.categories.footway.color,
-        offset: 1
+        offset: 1.5
       }
     }) }}</td>
     <td>{{ tagTrans('highway', 'cycleway segregated=yes') }}</td>
