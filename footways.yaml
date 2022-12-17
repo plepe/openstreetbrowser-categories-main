@@ -214,7 +214,9 @@ feature:
            'style:main': {
               width: cycleway and tags.segregated == 'yes' ? 2 : const.categories[category].width|default(3),
               color: const.categories[category].color,
-              dashArray: tags.highway == 'steps' or (cycleway and tags.segregated != 'yes') ? '3,3' : '',
+              dashArray: tags.highway == 'steps' ? '3,3' :
+                cycleway and tags.segregated != 'yes' ? '8,8' :
+                '',
               lineCap: tags.highway == 'steps' or (cycleway and tags.segregated != 'yes') ? 'butt' : 'round',
               offset: cycleway and tags.segregated == 'yes' ? 1 : 0
             },
@@ -222,8 +224,8 @@ feature:
               fill: false,
               width: cycleway and tags.segregated == 'yes' ? 2 : 3,
               color: const.categories.cycleway.color,
-              dashArray: cycleway and tags.segregated != 'yes' ? '3,3' : '',
-              dashOffset: 3,
+              dashArray: cycleway and tags.segregated != 'yes' ? '8,8' : '',
+              dashOffset: 8,
               lineCap: cycleway and tags.segregated != 'yes' ? 'butt' : 'round',
               offset: cycleway and tags.segregated == 'yes' ? -1 : 0
             },
@@ -282,8 +284,10 @@ feature:
     color: |
       {{ const.categories[category].color }}
     dashArray: |
-      {% if tags.highway == 'steps' or (cycleway and tags.segregated != 'yes') %}
+      {% if tags.highway == 'steps' %}
       3,3
+      {% elseif cycleway and tags.segregated != 'yes' %}
+      8,8
       {% endif %}
     lineCap: |
       {% if tags.highway == 'steps' or (cycleway and tags.segregated != 'yes') %}butt{% else %}round{% endif %}
@@ -301,9 +305,9 @@ feature:
       {{ const.categories.cycleway.color }}
     dashArray: |
       {% if cycleway and tags.segregated != 'yes' %}
-      3,3
+      8,8
       {% endif %}
-    dashOffset: 3
+    dashOffset: 8
     lineCap: |
       {% if cycleway and tags.segregated != 'yes' %}butt{% else %}round{% endif %}
     offset: |
@@ -397,13 +401,13 @@ info: |
       style: {
         width: 4,
         color: const.categories.cycleway.color,
-        dashArray: '3,3'
+        dashArray: '8,8'
       },
       'style:foot': {
         width: 4,
         color: const.categories.footway.color,
-        dashArray: '3,3',
-        dashOffset: 3
+        dashArray: '8,8',
+        dashOffset: 8
       }
     }) }}</td>
     <td>{{ tagTrans('highway', 'cycleway segregated=no') }}</td>
