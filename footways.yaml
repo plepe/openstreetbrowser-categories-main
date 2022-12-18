@@ -151,17 +151,17 @@ feature:
           <span class='key'>{{ keyTrans('wheelchair') }}:</span>
           <span class='value'>{{ tagTrans('wheelchair', attribute(tags, 'sidewalk:left:wheelchair')|default(attribute(tags, 'sidewalk:both:wheelchair'))) }}</span>
         </li>{% endif %}
-        {% if attribute(tags, 'sidewalk:left:surface')|default(attribute(tags, 'sidewalk:both:surface')) %}<li>
+        {% if attribute(tags, 'sidewalk:left:surface')|default(attribute(tags, 'sidewalk:both:surface'))|default(attribute(tags, 'sidewalk:surface')) %}<li>
           <span class='key'>{{ keyTrans('surface') }}:</span>
-          <span class='value'>{{ tagTrans('surface', attribute(tags, 'sidewalk:left:surface')|default(attribute(tags, 'sidewalk:both:surface'))) }}</span>
+          <span class='value'>{{ tagTrans('surface', attribute(tags, 'sidewalk:left:surface')|default(attribute(tags, 'sidewalk:both:surface'))|default(attribute(tags, 'sidewalk:surface'))) }}</span>
         </li>{% endif %}
         {% if attribute(tags, 'sidewalk:left:tactile_paving') %}<li>
           <span class='key'>{{ keyTrans('tactile_paving') }}:</span>
           <span class='value'>{{ tagTrans('tactile_paving', attribute(tags, 'sidewalk:left:tactile_paving')|default(attribute(tags, 'sidewalk:both:tactile_paving'))) }}</span>
         </li>{% endif %}
-        {% if attribute(tags, 'sidewalk:left:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness')) %}<li>
+        {% if attribute(tags, 'sidewalk:left:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness'))|default(attribute(tags, 'sidewalk:smoothness')) %}<li>
           <span class='key'>{{ keyTrans('smoothness') }}:</span>
-          <span class='value'>{{ tagTrans('smoothness', attribute(tags, 'sidewalk:left:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness'))) }}</span>
+          <span class='value'>{{ tagTrans('smoothness', attribute(tags, 'sidewalk:left:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness'))|default(attribute(tags, 'sidewalk:smoothness'))) }}</span>
         </li>{% endif %}
         {% set v = attribute(tags, 'sidewalk:left:incline')|default(attribute(tags, 'sidewalk:both:incline'))|default(tags.incline) %}
         {% if v %}<li>
@@ -182,17 +182,17 @@ feature:
           <span class='key'>{{ keyTrans('wheelchair') }}:</span>
           <span class='value'>{{ tagTrans('wheelchair', attribute(tags, 'sidewalk:right:wheelchair')|default(attribute(tags, 'sidewalk:both:wheelchair'))) }}</span>
         </li>{% endif %}
-        {% if attribute(tags, 'sidewalk:right:surface')|default(attribute(tags, 'sidewalk:both:surface')) %}<li>
+        {% if attribute(tags, 'sidewalk:right:surface')|default(attribute(tags, 'sidewalk:both:surface'))|default(attribute(tags, 'sidewalk:surface')) %}<li>
           <span class='key'>{{ keyTrans('surface') }}:</span>
-          <span class='value'>{{ tagTrans('surface', attribute(tags, 'sidewalk:right:surface')|default(attribute(tags, 'sidewalk:both:surface'))) }}</span>
+          <span class='value'>{{ tagTrans('surface', attribute(tags, 'sidewalk:right:surface')|default(attribute(tags, 'sidewalk:both:surface'))|default(attribute(tags, 'sidewalk:surface'))) }}</span>
         </li>{% endif %}
         {% if attribute(tags, 'sidewalk:right:tactile_paving') %}<li>
           <span class='key'>{{ keyTrans('tactile_paving') }}:</span>
           <span class='value'>{{ tagTrans('tactile_paving', attribute(tags, 'sidewalk:right:tactile_paving')|default(attribute(tags, 'sidewalk:both:tactile_paving'))) }}</span>
         </li>{% endif %}
-        {% if attribute(tags, 'sidewalk:right:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness')) %}<li>
+        {% if attribute(tags, 'sidewalk:right:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness'))|default(attribute(tags, 'sidewalk:smoothness')) %}<li>
           <span class='key'>{{ keyTrans('smoothness') }}:</span>
-          <span class='value'>{{ tagTrans('smoothness', attribute(tags, 'sidewalk:right:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness'))) }}</span>
+          <span class='value'>{{ tagTrans('smoothness', attribute(tags, 'sidewalk:right:smoothness')|default(attribute(tags, 'sidewalk:both:smoothness'))|default(attribute(tags, 'sidewalk:smoothness'))) }}</span>
         </li>{% endif %}
         {% set v = attribute(tags, 'sidewalk:right:incline')|default(attribute(tags, 'sidewalk:both:incline'))|default(tags.incline) %}
         {% if i %}<li>
@@ -520,12 +520,12 @@ filter:
           nwr[!"surface"];
           nwr["sidewalk:left"="yes"][!"sidewalk:left:surface"];
           nwr["sidewalk:right"="yes"][!"sidewalk:right:surface"];
-          nwr["sidewalk:both"="yes"][!"sidewalk:both:surface"][!"sidewalk:left:surface"];
-          nwr["sidewalk:both"="yes"][!"sidewalk:both:surface"][!"sidewalk:right:surface"];
+          nwr["sidewalk:both"="yes"][!"sidewalk:both:surface"][!"sidewalk:surface"][!"sidewalk:left:surface"];
+          nwr["sidewalk:both"="yes"][!"sidewalk:both:surface"][!"sidewalk:surface"][!"sidewalk:right:surface"];
           nwr["sidewalk"="left"][!"sidewalk:left:surface"];
           nwr["sidewalk"="right"][!"sidewalk:right:surface"];
-          nwr["sidewalk"="both"][!"sidewalk:both:surface"][!"sidewalk:left:surface"];
-          nwr["sidewalk"="both"][!"sidewalk:both:surface"][!"sidewalk:right:surface"];
+          nwr["sidewalk"="both"][!"sidewalk:both:surface"][!"sidewalk:surface"][!"sidewalk:left:surface"];
+          nwr["sidewalk"="both"][!"sidewalk:both:surface"][!"sidewalk:surface"][!"sidewalk:right:surface"];
           )
         weight: -3
       '?':
@@ -557,12 +557,12 @@ filter:
           nwr[!"smoothness"];
           nwr["sidewalk:left"="yes"][!"sidewalk:left:smoothness"];
           nwr["sidewalk:right"="yes"][!"sidewalk:right:smoothness"];
-          nwr["sidewalk:both"="yes"][!"sidewalk:both:smoothness"][!"sidewalk:left:smoothness"];
-          nwr["sidewalk:both"="yes"][!"sidewalk:both:smoothness"][!"sidewalk:right:smoothness"];
+          nwr["sidewalk:both"="yes"][!"sidewalk:both:smoothness"][!"sidewalk:smoothness"][!"sidewalk:left:smoothness"];
+          nwr["sidewalk:both"="yes"][!"sidewalk:both:smoothness"][!"sidewalk:smoothness"][!"sidewalk:right:smoothness"];
           nwr["sidewalk"="left"][!"sidewalk:left:smoothness"];
           nwr["sidewalk"="right"][!"sidewalk:right:smoothness"];
-          nwr["sidewalk"="both"][!"sidewalk:both:smoothness"][!"sidewalk:left:smoothness"];
-          nwr["sidewalk"="both"][!"sidewalk:both:smoothness"][!"sidewalk:right:smoothness"];
+          nwr["sidewalk"="both"][!"sidewalk:both:smoothness"][!"sidewalk:smoothness"][!"sidewalk:left:smoothness"];
+          nwr["sidewalk"="both"][!"sidewalk:both:smoothness"][!"sidewalk:smoothness"][!"sidewalk:right:smoothness"];
           )
         weight: -3
       '?':
