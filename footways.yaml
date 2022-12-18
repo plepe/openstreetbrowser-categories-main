@@ -481,7 +481,7 @@ filter:
       {% set value = "(unpaved|compacted|fine_gravel|gravel|rock|pebblestone|ground|dirt|earth|grass|grass_paver|mud|sand|woodchips|snow|ice|salt)" %}
       {% endif %}
 
-      (nwr[surface~"^{{ value }}$"];nwr[~"sidewalk:(left|right|both):surface"~"^{{ value }}$"];)
+      (nwr[surface~"^{{ value }}$"];nwr[~"sidewalk(:left|:right|:both|):surface"~"^{{ value }}$"];)
     values:
       all_paved:
         name: "<{{ tagTrans('surface', 'paved') }}>"
