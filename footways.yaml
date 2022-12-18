@@ -474,8 +474,21 @@ filter:
     type: select
     placeholder: '<{{ trans("any value") }}>'
     valueName: '{{ tagTrans("surface", value) }}'
-    query: '(nwr[surface="{{ value }}"];nwr[~"sidewalk:(left|right|both):surface"~"{{ value }}"];)'
+    query: |
+      {% if value == 'all_paved' %}
+      {% set value = "(paved|asphalt|chipseal|concrete|concrete:lanes|concrete|plates|paving_stones|sett|unhewn_cobblestone|cobblestone|metal|wood|stepping_stones|rubber)" %}
+      {% elseif value == 'all_unpaved' %}
+      {% set value = "(unpaved|compacted|fine_gravel|gravel|rock|pebblestone|ground|dirt|earth|grass|grass_paver|mud|sand|woodchips|snow|ice|salt)" %}
+      {% endif %}
+
+      (nwr[surface~"^{{ value }}$"];nwr[~"sidewalk:(left|right|both):surface"~"^{{ value }}$"];)
     values:
+      all_paved:
+        name: "<{{ tagTrans('surface', 'paved') }}>"
+        weight: -1
+      all_unpaved:
+        name: "<{{ tagTrans('surface', 'unpaved') }}>"
+        weight: -1
       acrylic: {}
       artificial_turf: {}
       asphalt: {}
@@ -527,14 +540,14 @@ filter:
           nwr["sidewalk"="both"][!"sidewalk:both:surface"][!"sidewalk:surface"][!"sidewalk:left:surface"];
           nwr["sidewalk"="both"][!"sidewalk:both:surface"][!"sidewalk:surface"][!"sidewalk:right:surface"];
           )
-        weight: -3
+        weight: -4
       '?':
         name: <{{ trans("other") }}>
         query: nwr[surface]["surface"!~"^(acrylic|artificial_turf|asphalt|carpet|chipseal|clay|cobblestone|compacted|concrete|concrete:lanes|concrete:plates|dirt|earth|fine_gravel|grass|grass_paver|gravel|ground|ice|metal|metal_grid|mud|paved|paving_stones|pebblestone|rock|rubber|salt|sand|sett|snow|stepping_stones|tartan|unhewn_cobblestone|unpaved|wood|woodchips)$"]
-        weight: -2
+        weight: -3
       unknown:
         name: '<{{ trans("unknown") }}>'
-        weight: -1
+        weight: -2
   smoothness:
     name: '{{ keyTrans("smoothness") }}'
     type: select
