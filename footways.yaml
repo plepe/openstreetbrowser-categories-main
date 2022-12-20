@@ -481,7 +481,10 @@ filter:
       {% set value = "(unpaved|compacted|fine_gravel|gravel|rock|pebblestone|ground|dirt|earth|grass|grass_paver|mud|sand|woodchips|snow|ice|salt)" %}
       {% endif %}
 
-      (nwr[surface~"^{{ value }}$"];nwr[~"sidewalk(:left|:right|:both|):surface"~"^{{ value }}$"];)
+      (
+        nwr[!sidewalk][!"sidewalk:both"][!"sidewalk:right"][!"sidewalk:left"][surface~"^{{ value }}$"];
+        nwr[~"sidewalk(:left|:right|:both|):surface"~"^{{ value }}$"];
+      )
     values:
       all_paved:
         name: "<{{ tagTrans('surface', 'paved') }}>"
@@ -530,7 +533,7 @@ filter:
         name: <{{ trans('empty value') }}>
         query: |
           (
-          nwr[!"surface"];
+          nwr[!sidewalk][!"sidewalk:both"][!"sidewalk:right"][!"sidewalk:left"][!"surface"];
           nwr["sidewalk:left"="yes"][!"sidewalk:left:surface"];
           nwr["sidewalk:right"="yes"][!"sidewalk:right:surface"];
           nwr["sidewalk:both"="yes"][!"sidewalk:both:surface"][!"sidewalk:surface"][!"sidewalk:left:surface"];
