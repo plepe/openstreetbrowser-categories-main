@@ -37,6 +37,13 @@ feature:
 
     {% endif %}
 
+  exclude: |
+    {% if filter.category == 'wikidata_no_image' %}
+      {{ not wikidata or wikidata.claims.P18|length == 0 }}
+    {% elseif filter.category == 'wikidata_human' %}
+      {{ not wikidata or wikidata.claims.P31[0].mainsnak.datavalue.value.id in ['Q5'] }}
+    {% endif %}
+
   body: |
     {{ str }}
 
@@ -87,6 +94,17 @@ filter:
         <option value='{{ kv }}' query='nwr[{{ d.query|default(kv) }}]'>{% if d.trans %}{{ trans(d.trans) }}{% elseif not v %}{{ keyTrans(k) }}{% else %}{{ tagTrans(k, v) }}{% endif %}</option>
       {% endfor %}
     op: "has"
+  category:
+    name: "{{ trans('category') }}"
+    show_default: "true"
+    type: "select"
+    values: |
+      <option value='no' query='nwr[!image][!wikimedia_commons][!wikidata][!wikipedia]'>No image, wikimedia_commons or wikidata</option>
+      <option value='wikipedia_no_wikidata' query='nwr[!wikidata][wikipedia]'>wikipedia tag found without corresponding wikidata tag</option>
+      <option value='has_image' query='(nwr[!wikidata][image];nwr[!wikidata][wikimedia_commons];)'>image or wikimedia_commons tag but no wikidata</option>
+      <option value='wikidata_no_image' query='nwr[wikidata]'>has wikidata tag, but wikidata object does not have an image</option>
+      <option value='wikidata' query='nwr[wikidata]'>has wikidata tag</option>
+      <option value='wikidata_human' query='nwr[wikidata]'>wikidata tag points to a human, should most likely be 'subject:wikidata'</option>
 info: |
   <table>
       <tr>
