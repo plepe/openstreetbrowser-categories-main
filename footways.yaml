@@ -476,9 +476,9 @@ filter:
     valueName: '{{ tagTrans("surface", value) }}'
     query: |
       {% if value == 'all_paved' %}
-      {% set value = "(paved|asphalt|chipseal|concrete|concrete:lanes|concrete|plates|paving_stones|sett|unhewn_cobblestone|cobblestone|metal|wood|stepping_stones|rubber)" %}
+      {% set value = "(paved|asphalt|chipseal|concrete|concrete:lanes|concrete:plates|paving_stones|sett|unhewn_cobblestone|cobblestone|metal|wood|rubber)" %}
       {% elseif value == 'all_unpaved' %}
-      {% set value = "(unpaved|compacted|fine_gravel|gravel|rock|pebblestone|ground|dirt|earth|grass|grass_paver|mud|sand|woodchips|snow|ice|salt)" %}
+      {% set value = "(unpaved|compacted|fine_gravel|gravel|rock|pebblestone|ground|dirt|earth|grass|grass_paver|mud|sand|woodchips|snow|ice|salt|clay)" %}
       {% endif %}
 
       (
