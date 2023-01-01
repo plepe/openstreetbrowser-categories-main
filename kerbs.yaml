@@ -39,14 +39,19 @@ feature:
       {{ type == 'way' ? false : true }}
     radius: 4
     fillOpacity: 1
-    width: 2
+    width: |
+      {{ config.thickness|default(2) }}
   style:marker:
     color: |
       {{ const.kerb[kerb] }}
-    offset: 2
-    width: 2
+    offset: |
+      {{ config.thickness|default(2) }}
+    width: |
+      {{ config.thickness|default(2) }}
     fill: false
-    dashArray: '2,9'
+    dashArray: |
+      {{ config.thickness|default(2) }},{{ config.thickness|default(2) * 4 }}
+    lineCap: butt
   style:node:
     fillColor: |
       {{ const.kerb[kerb] }}
@@ -68,6 +73,17 @@ info: |
     </tr>
   {% endfor %}
   </table>
+config:
+  thickness:
+    name: "{{ trans('thickness') }}"
+    type: select
+    default: 2
+    placeholder: false
+    values:
+      1: "{{ trans('thickness:thin') }}"
+      2: "{{ trans('thickness:normal') }}"
+      3: "{{ trans('thickness:tick') }}"
+      5: "{{ trans('thickness:very_thick') }}"
 const:
   kerb:
     flush: '#00af00'
