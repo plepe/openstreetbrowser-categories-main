@@ -21,7 +21,7 @@ feature:
     {% if type == 'way' %}
     line
     {% else %}
-    {{ markerCircle({ radius: 5, width: 2, fillOpacity: 1, fillColor: const.kerb[kerb], color: 'black' }) }}
+    {{ markerCircle({ radius: 5, width: 2, fillOpacity: 1, fillColor: const.kerb[kerb][config.color_scheme|default('color1')], color: 'black' }) }}
     {% endif %}
   details: |
     {% if tags.kerb and tags.kerb != 'yes' %}{{ tagTrans('kerb', tags.kerb) }}{% endif %}
@@ -34,7 +34,7 @@ feature:
     {% endif %}
   style:
     color: |
-      {{ const.kerb[kerb] }}
+      {{ const.kerb[kerb][config.color_scheme|default('color1')] }}
     fill: |
       {{ type == 'way' ? false : true }}
     radius: 4
@@ -43,7 +43,7 @@ feature:
       {{ config.thickness|default(2) }}
   style:marker:
     color: |
-      {{ const.kerb[kerb] }}
+      {{ const.kerb[kerb][config.color_scheme|default('color1')] }}
     offset: |
       {{ config.thickness|default(2) }}
     width: |
@@ -54,7 +54,7 @@ feature:
     lineCap: butt
   style:node:
     fillColor: |
-      {{ const.kerb[kerb] }}
+      {{ const.kerb[kerb][config.color_scheme|default('color1')] }}
     fill: true
     radius: 6
     fillOpacity: 1
@@ -63,11 +63,11 @@ feature:
 info: |
   {{ tagTrans('barrier', 'kerb') }}:
   <table>
-  {% for v, color in const.kerb %}
+  {% for v, def in const.kerb %}
     <tr>
       <td>
-        {{ markerLine({ styles: 'default,marker', style: { width: 2, color: color }, 'style:marker': { width: 2, offset: 2, color: color, dashArray: '2,9'} } ) }}
-        {{ markerCircle({ radius: 4, width: 1, fillOpacity: 1, fillColor: color, color: 'black' }) }}
+        {{ markerLine({ styles: 'default,marker', style: { width: 2, color: def[config.color_scheme|default('color1')] }, 'style:marker': { width: 2, offset: 2, color: def[config.color_scheme|default('color1')], dashArray: '2,9'} } ) }}
+        {{ markerCircle({ radius: 4, width: 1, fillOpacity: 1, fillColor: def[config.color_scheme|default('color1')], color: 'black' }) }}
       </td>
       <td>{{ v == 'unknown' ? trans('unknown') : tagTrans('kerb', v) }}</td>
     </tr>
@@ -79,16 +79,38 @@ config:
     type: select
     default: 2
     placeholder: false
+    show_default: true
     values:
       1: "{{ trans('thickness:thin') }}"
       2: "{{ trans('thickness:normal') }}"
-      3: "{{ trans('thickness:tick') }}"
+      3: "{{ trans('thickness:thick') }}"
       5: "{{ trans('thickness:very_thick') }}"
+  color_scheme:
+    name: "{{ trans('color_scheme') }}"
+    type: select
+    default: color1
+    placeholder: false
+    show_default: true
+    values:
+      color1: "1"
+      color2: "2"
 const:
   kerb:
-    flush: '#00af00'
-    lowered: '#007f7f'
-    no: '#000000'
-    raised: '#af0000'
-    rolled: '#af7f00'
-    unknown: '#7f7f7f'
+    flush:
+      color1: '#00af00'
+      color2: '#ff007f'
+    lowered:
+      color1: '#007f7f'
+      color2: '#00ffff'
+    no:
+      color1: '#000000'
+      color2: '#ff0000'
+    raised:
+      color1: '#af0000'
+      color2: '#7f00ff'
+    rolled:
+      color1: '#af7f00'
+      color2: '#00af00'
+    unknown:
+      color1: '#7f7f7f'
+      color2: '#0000ff'
