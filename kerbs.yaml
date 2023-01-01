@@ -21,7 +21,7 @@ feature:
     {% if type == 'way' %}
     line
     {% else %}
-    {{ markerCircle({ radius: 5, width: 2, fillOpacity: 1, fillColor: const.kerb[kerb], color: const.wheelchair[wheelchair] }) }}
+    {{ markerCircle({ radius: 5, width: 2, fillOpacity: 1, fillColor: const.kerb[kerb], color: 'black' }) }}
     {% endif %}
   details: |
     {% if tags.kerb and tags.kerb != 'yes' %}{{ tagTrans('kerb', tags.kerb) }}{% endif %}
@@ -55,7 +55,6 @@ feature:
     fillOpacity: 1
     width: 1
     color: black
-      {{ const.wheelchair[wheelchair] }}
 info: |
   {{ tagTrans('barrier', 'kerb') }}:
   <table>
@@ -77,9 +76,3 @@ const:
     raised: '#af0000'
     rolled: '#af7f00'
     unknown: '#7f7f7f'
-  wheelchair:
-    designated: '#00ff7f'
-    yes: '#00ff00'
-    no: '#ff0000'
-    limited: '#ffff00'
-    unknown: '#ffffff'
