@@ -40,6 +40,8 @@ feature:
   exclude: |
     {% if filter.category == 'wikidata_no_image' %}
       {{ (not wikidata) or (wikidata.claims.P18|length != 0) }}
+    {% elseif filter.category == 'no_image_or_wikidata_no_image' %}
+      {{ (tags.wikidata and not wikidata) or (wikidata.claims.P18|length != 0) }}
     {% elseif filter.category == 'wikidata_human' %}
       {{ wikidata.claims.P31[0].mainsnak.datavalue.value.id not in ['Q5'] }}
     {% endif %}
@@ -104,6 +106,7 @@ filter:
       <option value='has_image' query='(nwr[!wikidata][image];nwr[!wikidata][wikimedia_commons];)'>image or wikimedia_commons tag but no wikidata</option>
       <option value='wikidata' query='nwr[wikidata]'>has wikidata tag</option>
       <option value='wikidata_no_image' query='nwr[wikidata]'>has wikidata tag, but wikidata object does not have an image</option>
+      <option value='no_image_or_wikidata_no_image' query='(nwr[!image][!wikimedia_commons][!wikidata][!wikipedia];nwr[wikidata];)'>no image/wikimedia_commons OR wikidata without image</option>
       <option value='wikidata_human' query='nwr[wikidata]'>wikidata tag points to a human, should most likely be 'subject:wikidata'</option>
 info: |
   <table>
