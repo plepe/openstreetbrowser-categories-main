@@ -9,33 +9,31 @@ query:
     )
 feature: 
   pre: |
-    {% set color = 'red' %}
-    {% set str = 'No image, wikimedia_commons or wikidata' %}
+    {% set cat = 'no' %}
+    {% set str = null %}
 
     {% if tags.wikidata %}
-      {% set color = 'blue' %}
-      {% set str = 'has wikidata tag' %}
+      {% set cat = 'wikidata' %}
       {% set wikidata = tags.wikidata|wikidataEntity %}
 
       {% if wikidata and wikidata.claims.P18|length == 0 %}
-        {% set color = '#007fff' %}
-        {% set str = 'has wikidata tag, but wikidata object does not have an image' %}
+        {% set cat = 'wikidata_no_image' %}
       {% endif %}
 
       {% if wikidata.claims.P31[0].mainsnak.datavalue.value.id in ['Q5'] %}
-        {% set color = 'magenta' %}
-        {% set str = "wikidata points to a human, should most likely be 'subject:wikidata'" %}
+        {% set cat = 'wikidata_human' %}
       {% endif %}
 
     {% elseif tags.wikipedia %}
-      {% set color = '#af00ff' %}
-      {% set str = 'wikipedia tag found without corresponding wikidata tag' %}
+      {% set cat = 'wikipedia_no_wikidata' %}
 
     {% elseif tags.wikimedia_commons or tags.image %}
-      {% set color = 'cyan' %}
+      {% set cat = 'has_image' %}
       {% set str = tags.wikimedia_commons ? 'has wikimedia_commons tag' : 'has image tag' %}
 
     {% endif %}
+
+    {% set def = const.categories[cat] %}
 
   exclude: |
     {% if filter.category == 'wikidata_no_image' %}
@@ -47,11 +45,11 @@ feature:
     {% endif %}
 
   body: |
-    {{ str }}
+    {{ str|default(def.text) }}
 
   style:
     color: |
-      {{ color }}
+      {{ def.color }}
 
   description: |
     {% if tags.historic and tags.historic != 'yes' %}
@@ -68,8 +66,8 @@ feature:
     {% elseif tags.heritage %}
       {{ keyTrans('heritage') }}
     {% endif %}
-  markerSymbol: "{{ markerPointer({ fillColor: color })|raw }}"
-  listMarkerSymbol: "{{ markerCircle({ fillColor: color })|raw }}"
+  markerSymbol: "{{ markerPointer({ fillColor: def.color })|raw }}"
+  listMarkerSymbol: "{{ markerCircle({ fillColor: def.color })|raw }}"
 
   markerSign: |
     {% set icon = '' %}
@@ -110,42 +108,14 @@ filter:
       <option value='wikidata_human' query='nwr[wikidata]'>wikidata tag points to a human, should most likely be 'subject:wikidata'</option>
 info: |
   <table>
+    {% for k, def in const.categories %}
       <tr>
         <td>
-          {{ markerCircle({ fillColor: 'red' })|raw }}
+          {{ markerCircle({ fillColor: def.color })|raw }}
         </td>
-        <td>No image, wikimedia_commons or wikidata</td>
+        <td>{{ def.text }}</td>
       </tr>
-      <tr>
-        <td>
-          {{ markerCircle({ fillColor: 'magenta' })|raw }}
-        </td>
-        <td>wikidata tag points to a human, should most likely be 'subject:wikidata'</td>
-      </tr>
-      <tr>
-        <td>
-          {{ markerCircle({ fillColor: '#af00ff' })|raw }}
-        </td>
-        <td>wikipedia tag found without corresponding wikidata tag</td>
-      </tr>
-      <tr>
-        <td>
-          {{ markerCircle({ fillColor: 'cyan' })|raw }}
-        </td>
-        <td>image or wikimedia_commons tag but no wikidata</td>
-      </tr>
-      <tr>
-        <td>
-          {{ markerCircle({ fillColor: '#007fff' })|raw }}
-        </td>
-        <td>has wikidata tag, but wikidata object does not have an image</td>
-      </tr>
-      <tr>
-        <td>
-          {{ markerCircle({ fillColor: 'blue' })|raw }}
-        </td>
-        <td>has wikidata tag</td>
-      </tr>
+    {% endfor %}
   </table>
 
   This category lists artwork, memorials, historic and heritage protected objects. These should have an <a target="_blank" href="https://wiki.openstreetmap.org/wiki/Key:image">image</a> or <a target="_blank" href="https://wiki.openstreetmap.org/wiki/Key:wikimedia_commons">wikimedia_commons</a> tag, or (even better) a <a target="_blank" href="https://wiki.openstreetmap.org/wiki/Key:wikidata">wikidata</a> tag pointing to the object's entry.<br>
@@ -178,3 +148,22 @@ const:
     other:
       query: 'nwr[historic][historic!~"^(memorial|monument|wayside_cross|wayside_shrine|building)$"]'
       trans: 'other'
+  categories:
+    'no':
+      color: red
+      text: No image, wikimedia_commons or wikidata
+    wikidata_human:
+      color: magenta
+      text: wikidata tag points to a human, should most likely be 'subject:wikidata'
+    wikipedia_no_wikidata:
+      color: '#af00ff'
+      text: wikipedia tag found without corresponding wikidata tag
+    has_image:
+      color: cyan
+      text: image or wikimedia_commons tag but no wikidata
+    wikidata_no_image:
+      color: '#007fff'
+      text: has wikidata tag, but wikidata object does not have an image
+    wikidata:
+      color: blue
+      text: has wikidata tag
