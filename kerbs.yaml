@@ -102,7 +102,7 @@ const:
     lowered:
       color1: '#007f7f'
       color2: '#00ffff'
-    no:
+    'no':
       color1: '#000000'
       color2: '#ff0000'
     raised:
