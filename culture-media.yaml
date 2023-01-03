@@ -152,12 +152,6 @@ const:
     'no':
       color: red
       text: No image, wikimedia_commons or wikidata
-    wikidata_human:
-      color: magenta
-      text: wikidata tag points to a human, should most likely be 'subject:wikidata'
-    wikipedia_no_wikidata:
-      color: '#af00ff'
-      text: wikipedia tag found without corresponding wikidata tag
     has_image:
       color: cyan
       text: image or wikimedia_commons tag but no wikidata
@@ -167,3 +161,9 @@ const:
     wikidata:
       color: blue
       text: has wikidata tag
+    wikidata_human:
+      color: magenta
+      text: wikidata tag points to a human, should most likely be 'subject:wikidata'
+    wikipedia_no_wikidata:
+      color: '#af00ff'
+      text: wikipedia tag found without corresponding wikidata tag
