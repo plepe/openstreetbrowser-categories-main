@@ -27,13 +27,19 @@ feature:
     Right: {{ rightType }} / {{ rightOrientation }}
   styles: |
     default
-    ,leftType
-    ,rightType
-    {% if leftType not in ['no', 'separate'] %}
-      ,leftOrientation
+    {% if leftType == 'separate' %}
+      ,leftSeparate
+    {% elseif leftType in ['no', 'unknown'] %}
+      ,leftType
+    {% else %}
+      ,leftType,leftOrientation
     {% endif %}
-    {% if rightType not in ['no', 'separate'] %}
-      ,rightOrientation
+    {% if rightType == 'separate' %}
+      ,rightSeparate
+    {% elseif rightType in ['no', 'unknown'] %}
+      ,rightType
+    {% else %}
+      ,rightType,rightOrientation
     {% endif %}
   style:
     color: '#7f7f7f'
@@ -55,6 +61,15 @@ feature:
       {{ const.orientation[leftOrientation].width }}
     dashArray: |
       {{ const.orientation[leftOrientation].dashArray }}
+  style:leftSeparate:
+    width: 0
+    pattern: arrowHead
+    pattern-angleCorrection: -90
+    pattern-pixelSize: 7
+    pattern-lineOffset: -10
+    pattern-polygon: false
+    pattern-repeat: 15
+    pattern-path-color: red
   style:rightType:
     color: blue
     offset: |
@@ -73,6 +88,15 @@ feature:
       {{ const.orientation[rightOrientation].width }}
     dashArray: |
       {{ const.orientation[rightOrientation].dashArray }}
+  style:rightSeparate:
+    width: 0
+    pattern: arrowHead
+    pattern-angleCorrection: 90
+    pattern-pixelSize: 7
+    pattern-lineOffset: 10
+    pattern-polygon: false
+    pattern-repeat: 15
+    pattern-path-color: blue
 info: |
   Parking Type:
   <table>
