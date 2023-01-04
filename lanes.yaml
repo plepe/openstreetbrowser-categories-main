@@ -1,0 +1,1044 @@
+query:
+  '17': |-
+    (
+    way[lanes];
+    way['lanes:forward'];
+    way['lanes:backward'];
+    way['parking:lane:left'];
+    way['parking:lane:right'];
+    way['parking:lane:both'];
+    )
+feature:
+  pre: |-
+    {% set oneway = tags.oneway in ['yes','1'] %}
+    {% set parking_left_type = attribute(tags, 'parking:lane:left')|default(attribute(tags, 'parking:lane:both')) %}
+    {% set parking_left = parking_left_type ? const.parking[parking_left_type]|default(const.parking.other) : const.parking.no %}
+    {% set parking_right_type = attribute(tags, 'parking:lane:right')|default(attribute(tags, 'parking:lane:both')) %}
+    {% set parking_right = parking_right_type ? const.parking[parking_right_type]|default(const.parking.other) : const.parking.no %}
+    {% set cyclelane_left = attribute(tags, 'cycleway:left') == 'lane' ? 2 : ('opposite_lane' in tags.cycleway|split(';') ? 2 : (('lane' in tags.cycleway|split(';')) and not oneway ? 2 : 0)) %}
+    {% set cyclelane_right = attribute(tags, 'cycleway:right') == 'lane' ? 2 : ('lane' in tags.cycleway|split(';') ? 2 : 0) %}
+    {% set cycletrack_left = attribute(tags, 'cycleway:left') == 'track' ? 2 : ('opposite_track' in tags.cycleway|split(';') ? 2 : (('track' in tags.cycleway|split(';')) and not oneway ? 2 : 0)) %}
+    {% set cycletrack_right = attribute(tags, 'cycleway:right') == 'track' ? 2 : ('track' in tags.cycleway|split(';') ? 2 : 0) %}
+    {% set sidewalk_left = tags.sidewalk in ['both', 'left'] ? 2 : 0 %}
+    {% set sidewalk_right = tags.sidewalk in ['both', 'right'] ? 2 : 0 %}
+    {% set lanes = tags.lanes|default(attribute(tags, 'lanes:forward')|default(0) + attribute(tags, 'lanes:backward')|default(0))|default(tags.oneway ? 1 : 2) %}
+    {% set lanes_width = lanes * 3 %}
+    {% set forward_lanes = attribute(tags, 'lanes:forward')|default(oneway ? lanes : lanes // 2) %}
+    {% set backward_lanes = attribute(tags, 'lanes:backward')|default(oneway ? 0 : lanes // 2) %}
+    {% if attribute(tags, 'turn:lanes:backward') %}
+      {% set turn_lanes_backward = attribute(tags, 'turn:lanes:backward')|split('|')|reverse %}
+    {% else %}
+      {% set turn_lanes_backward = ['through','through','through','through','through','through','through','through','through','through','through','through']|slice(0, backward_lanes) %}
+    {% endif %}
+    {% if attribute(tags, 'turn:lanes:forward') or attribute(tags, 'turn:lanes') %}
+      {% set turn_lanes_forward = attribute(tags, 'turn:lanes:forward')|default(attribute(tags, 'turn:lanes'))|split('|') %}
+    {% else %}
+      {% set turn_lanes_forward = ['through','through','through','through','through','through','through','through','through','through','through','through']|slice(0, forward_lanes) %}
+    {% endif %}
+    {% set turn_lanes = turn_lanes_backward|merge(turn_lanes_forward) %}
+  description: '{{ keyTrans(''lanes'') }}: {% if tags.lanes %}{{ tags.lanes }}{% else %}{{ lanes }}?{% endif %} {% if attribute(tags, ''lanes:forward'') or attribute(tags, ''lanes:backward'') %}(↑{{ forward_lanes }} ↓{{ backward_lanes }}){% endif %}'
+  body: |-
+    <ul>
+    <li>{{ keyTrans('lanes') }}: {% if tags.lanes %}{{ tags.lanes }}{% else %}{{ trans('unknown') }}{% endif %} {% if attribute(tags, 'lanes:forward') or attribute(tags, 'lanes:backward') %}(↑{{ forward_lanes }} ↓{{ backward_lanes }}){% endif %}</li>
+    {% if tags.sidewalk %}<li>{{ keyTrans('sidewalk') }}: {{ tagTrans('sidewalk', tags.sidewalk) }}</li>{% endif %}
+    {% if parking_left_type %}<li>{{ keyTrans('parking:lane') }} ({{ trans('left') }}): {{ tagTrans('parking:lane', parking_left_type) }}{% endif %}
+    {% if parking_right_type %}<li>{{ keyTrans('parking:lane') }} ({{ trans('right') }}): {{ tagTrans('parking:lane', parking_right_type) }}{% endif %}
+    </ul>
+  markerSymbol: null
+  listMarkerSymbol: line
+  styles: |-
+    {% if sidewalk_left %}sidewalk_left,{% endif %}
+    {% if cycletrack_left %}cycletrack_left,{% endif %}
+    {% if parking_left.width %}parking_left,
+      {% if parking_left.dashDistance %}parking_left_dash,
+        {% if parking_left_type == 'diagonal' %}parking_left_dash_diag,
+    {% endif %}{% endif %}{% endif %}
+    {% if cyclelane_left %}cyclelane_left,{% endif %}
+    {% if lanes == 1 %}lane1,sign1,{% else %}
+      {% for i in 1..lanes - 1 %}lane{{ i }},mark{{ i }},sign{{ i }},{% endfor %}
+      lane{{ lanes }},sign{{ lanes }}
+    {% endif %}
+    {% if cyclelane_right %},cyclelane_right{% endif %}
+    {% if parking_right.width %},parking_right
+      {% if parking_right.dashDistance %},parking_right_dash
+        {% if parking_right_type == 'diagonal' %},parking_right_dash_diag
+    {% endif %}{% endif %}{% endif %}
+    {% if cycletrack_right %},cycletrack_right{% endif %}
+    {% if sidewalk_right %},sidewalk_right{% endif %}
+  style:
+    width: '{{ width }}'
+    pane: casing
+    color: '{% if tags.gauge %}{% if not tags.gauge|matches(''^\d+$'') %}#ff0000{% else %}{{ colorInterpolate([ ''#00ff00'', ''#0000ff'' ], tags.gauge / 2000) }}{% endif %}{% else %}#404040{% endif %}'
+  style:sidewalk_left:
+    width: 2m
+    color: '#4f4fbf'
+    offset: '{{ lanes_width / -2 - cyclelane_left - parking_left.width - cycletrack_left - 1 }}m'
+    pane: casing
+  style:parking_left:
+    width: '{{ parking_left.width }}m'
+    color: '{{ parking_left.color }}'
+    offset: '{{ lanes_width / -2 - cyclelane_left - parking_left.width / 2 }}m'
+    pane: casing
+  style:parking_left_dash:
+    width: '{{ parking_left.width / (parking_left_type == ''diagonal'' ? 2 : 1) }}m'
+    color: '{{ parking_left.dashColor }}'
+    offset: '{{ lanes_width / -2 - cyclelane_left - parking_left.width / 2 - (parking_left_type == ''diagonal'' ? parking_left.width / 4 : 0) }}m'
+    lineCap: butt
+    dashArray: 1,{{ parking_left.dashDistance / map.metersPerPixel }}
+  style:parking_left_dash_diag:
+    width: '{{ parking_left.width / 2 }}m'
+    color: '{{ parking_left.dashColor }}'
+    offset: '{{ lanes_width / -2 - cyclelane_left - parking_left.width / 4 }}m'
+    lineCap: butt
+    dashArray: 1,{{ parking_left.dashDistance / map.metersPerPixel }}
+    dashOffset: '{{ 0.5 / map.metersPerPixel }}'
+  style:cyclelane_left:
+    width: 2m
+    color: '#af3f3f'
+    offset: '{{ lanes_width / -2 - 1 }}m'
+    pane: casing
+  style:cyclelane_right:
+    width: 2m
+    color: '#af3f3f'
+    offset: '{{ lanes_width / 2 + 1 }}m'
+    pane: casing
+  style:cycletrack_left:
+    width: 2m
+    color: '#bf5f3f'
+    offset: '{{ lanes_width / -2 - cyclelane_left - parking_left.width - 1 }}m'
+    pane: casing
+  style:cycletrack_right:
+    width: 2m
+    color: '#bf5f3f'
+    offset: '{{ lanes_width / 2 + cyclelane_right + parking_right.width + 1 }}m'
+    pane: casing
+  style:parking_right:
+    width: '{{ parking_left.width }}m'
+    color: '{{ parking_left.color }}'
+    offset: '{{ lanes_width / 2 + cyclelane_right + parking_right.width / 2 }}m'
+    pane: casing
+  style:parking_right_dash:
+    width: '{{ parking_right.width / (parking_right_type == ''diagonal'' ? 2 : 1) }}m'
+    color: '{{ parking_right.dashColor }}'
+    offset: '{{ lanes_width / 2 + cyclelane_right + parking_right.width / 2 + (parking_right_type == ''diagonal'' ? parking_right.width / 4 : 0) }}m'
+    lineCap: butt
+    dashArray: 1,{{ parking_right.dashDistance / map.metersPerPixel }}
+  style:parking_right_dash_diag:
+    width: '{{ parking_right.width / 2 }}m'
+    color: '{{ parking_right.dashColor }}'
+    offset: '{{ lanes_width / 2 + cyclelane_right + parking_right.width / 4 }}m'
+    lineCap: butt
+    dashArray: 1,{{ parking_right.dashDistance / map.metersPerPixel }}
+    dashOffset: '{{ 0.5 / map.metersPerPixel }}'
+  style:sidewalk_right:
+    width: 2m
+    color: '#4f4fbf'
+    offset: '{{ lanes_width / 2 + cyclelane_right + parking_right.width + cycletrack_right + 1 }}m'
+    pane: casing
+  style:lane1:
+    width: 3.1m
+    offset: '{{ lanes_width / -2 + 1.5 }}m'
+    color: grey
+    pane: casing
+  style:lane2:
+    width: 3.1m
+    offset: '{{ lanes_width / -2 + 4.5 }}m'
+    color: grey
+    pane: casing
+  style:lane3:
+    width: 3.1m
+    offset: '{{ lanes_width / -2 + 7.5 }}m'
+    color: grey
+    pane: casing
+  style:lane4:
+    width: 3.1m
+    offset: '{{ lanes_width / -2 + 10.5 }}m'
+    color: grey
+    pane: casing
+  style:lane5:
+    width: 3.1m
+    offset: '{{ lanes_width / -2 + 13.5 }}m'
+    color: grey
+    pane: casing
+  style:lane6:
+    width: 3.1m
+    offset: '{{ lanes_width / -2 + 16.5 }}m'
+    color: grey
+    pane: casing
+  style:lane7:
+    width: 3.1m
+    offset: '{{ lanes_width / -2 + 19.5 }}m'
+    color: grey
+    pane: casing
+  style:lane8:
+    width: 3.1m
+    offset: '{{ lanes_width / -2 + 22.5 }}m'
+    color: grey
+    pane: casing
+  style:lane9:
+    width: 3.1m
+    offset: '{{ lanes_width / -2 + 25.5 }}m'
+    color: grey
+    pane: casing
+  style:lane10:
+    width: 3.1m
+    offset: '{{ lanes_width / -2 + 28.5 }}m'
+    color: grey
+    pane: casing
+  style:lane11:
+    width: 3.1m
+    offset: '{{ lanes_width / -2 + 31.5 }}m'
+    color: grey
+    pane: casing
+  style:lane12:
+    width: 3.1m
+    offset: '{{ lanes_width / -2 + 34.5 }}m'
+    color: grey
+    pane: casing
+  style:mark1:
+    width: '1'
+    offset: '{{ lanes_width / -2 + 3 }}m'
+    dashArray: '{% if lanes - forward_lanes != 1 and backward_lanes != 1 %}2,8{% else %}5,5{% endif %}'
+    color: white
+  style:mark2:
+    width: '1'
+    offset: '{{ lanes_width / -2 + 6 }}m'
+    dashArray: '{% if lanes - forward_lanes != 2 and backward_lanes != 2 %}2,8{% else %}5,5{% endif %}'
+    color: white
+  style:mark3:
+    width: '1'
+    offset: '{{ lanes_width / -2 + 9 }}m'
+    dashArray: '{% if lanes - forward_lanes != 3 and backward_lanes != 3 %}2,8{% else %}5,5{% endif %}'
+    color: white
+  style:mark4:
+    width: '1'
+    offset: '{{ lanes_width / -2 + 12 }}m'
+    dashArray: '{% if lanes - forward_lanes != 4 and backward_lanes != 4 %}2,8{% else %}5,5{% endif %}'
+    color: white
+  style:mark5:
+    width: '1'
+    offset: '{{ lanes_width / -2 + 15 }}m'
+    dashArray: '{% if lanes - forward_lanes != 5 and backward_lanes != 5 %}2,8{% else %}5,5{% endif %}'
+    color: white
+  style:mark6:
+    width: '1'
+    offset: '{{ lanes_width / -2 + 18 }}m'
+    dashArray: '{% if lanes - forward_lanes != 6 and backward_lanes != 6 %}2,8{% else %}5,5{% endif %}'
+    color: white
+  style:mark7:
+    width: '1'
+    offset: '{{ lanes_width / -2 + 18 }}m'
+    dashArray: '{% if lanes - forward_lanes != 7 and backward_lanes != 7 %}2,8{% else %}5,5{% endif %}'
+    color: white
+  style:mark8:
+    width: '1'
+    offset: '{{ lanes_width / -2 + 18 }}m'
+    dashArray: '{% if lanes - forward_lanes != 8 and backward_lanes != 8 %}2,8{% else %}5,5{% endif %}'
+    color: white
+  style:mark9:
+    width: '1'
+    offset: '{{ lanes_width / -2 + 18 }}m'
+    dashArray: '{% if lanes - forward_lanes != 9 and backward_lanes != 9 %}2,8{% else %}5,5{% endif %}'
+    color: white
+  style:mark10:
+    width: '1'
+    offset: '{{ lanes_width / -2 + 18 }}m'
+    dashArray: '{% if lanes - forward_lanes != 10 and backward_lanes != 10 %}2,8{% else %}5,5{% endif %}'
+    color: white
+  style:mark11:
+    width: '1'
+    offset: '{{ lanes_width / -2 + 18 }}m'
+    dashArray: '{% if lanes - forward_lanes != 11 and backward_lanes != 11 %}2,8{% else %}5,5{% endif %}'
+    color: white
+  style:sign1:
+    _: '{% set lane_forward = backward_lanes < 1 %}{% set lane_turn = turn_lanes[1 - 1]|split('';'') %}'
+    width: '0'
+    pattern0: dash
+    pattern0-repeat: 30m
+    pattern0-pixelSize: 3m
+    pattern0-offset: 15.0m
+    pattern0-path-color: white
+    pattern0-path-width: 0.3m
+    pattern0-lineOffset: '{{ lanes_width / -2 + 1 * 3 - 1.5 }}m'
+    patternThrough: '{% if ''through'' in lane_turn or ''none'' in lane_turn or '''' in lane_turn %}arrowHead{% endif %}'
+    patternThrough-repeat: 30m
+    patternThrough-offset: '{{ lane_forward ? ''17m'' : ''12m'' }}'
+    patternThrough-polygon: 'true'
+    patternThrough-angleCorrection: '{{ lane_forward ? 0 : 180 }}'
+    patternThrough-pixelSize: 1.2m
+    patternThrough-path-color: white
+    patternThrough-path-width: '0'
+    patternThrough-path-fillOpacity: '1'
+    patternThrough-lineOffset: '{{ lanes_width / -2 + 1 * 3 - 1.5 }}m'
+    patternLeft: '{% if ''left'' in lane_turn %}arrowHead{% endif %}'
+    patternLeft-repeat: 30m
+    patternLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternLeft-polygon: 'true'
+    patternLeft-angleCorrection: '{{ lane_forward ? -90 : 90 }}'
+    patternLeft-pixelSize: 1.2m
+    patternLeft-path-color: white
+    patternLeft-path-width: '0'
+    patternLeft-path-fillOpacity: '1'
+    patternLeft-lineOffset: '{{ lanes_width / -2 + 1 * 3 - 1.5 + (lane_forward ? -1.25 : 1.25) }}m'
+    patternSlightLeft: '{% if ''slight_left'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightLeft-repeat: 30m
+    patternSlightLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightLeft-polygon: 'true'
+    patternSlightLeft-angleCorrection: '{{ lane_forward ? -45 : 45 }}'
+    patternSlightLeft-pixelSize: 1.2m
+    patternSlightLeft-path-color: white
+    patternSlightLeft-path-width: '0'
+    patternSlightLeft-path-fillOpacity: '1'
+    patternSlightLeft-lineOffset: '{{ lanes_width / -2 + 1 * 3 - 1.5 + (lane_forward ? -0.75 : 0.75) }}m'
+    patternRight: '{% if ''right'' in lane_turn %}arrowHead{% endif %}'
+    patternRight-repeat: 30m
+    patternRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn or ''slight_left'' in lane_turn or ''slight_right'' in lane_turn ? 2 : 0)) }}m'
+    patternRight-polygon: 'true'
+    patternRight-angleCorrection: '{{ lane_forward ? 90 : -90 }}'
+    patternRight-pixelSize: 1.2m
+    patternRight-path-color: white
+    patternRight-path-width: '0'
+    patternRight-path-fillOpacity: '1'
+    patternRight-lineOffset: '{{ lanes_width / -2 + 1 * 3 - 1.5 + (lane_forward ? 1.25 : -1.25) }}m'
+    patternSlightRight: '{% if ''slight_right'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightRight-repeat: 30m
+    patternSlightRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightRight-polygon: 'true'
+    patternSlightRight-angleCorrection: '{{ lane_forward ? 45 : -45 }}'
+    patternSlightRight-pixelSize: 1.2m
+    patternSlightRight-path-color: white
+    patternSlightRight-path-width: '0'
+    patternSlightRight-path-fillOpacity: '1'
+    patternSlightRight-lineOffset: '{{ lanes_width / -2 + 1 * 3 - 1.5 + (lane_forward ? 0.75 : -0.75) }}m'
+  style:sign2:
+    _: '{% set lane_forward = backward_lanes < 2 %}{% set lane_turn = turn_lanes[2 - 1]|split('';'') %}'
+    width: '0'
+    pattern0: dash
+    pattern0-repeat: 30m
+    pattern0-pixelSize: 3m
+    pattern0-offset: 15.0m
+    pattern0-path-color: white
+    pattern0-path-width: 0.3m
+    pattern0-lineOffset: '{{ lanes_width / -2 + 2 * 3 - 1.5 }}m'
+    patternThrough: '{% if ''through'' in lane_turn or ''none'' in lane_turn or '''' in lane_turn %}arrowHead{% endif %}'
+    patternThrough-repeat: 30m
+    patternThrough-offset: '{{ lane_forward ? ''17m'' : ''12m'' }}'
+    patternThrough-polygon: 'true'
+    patternThrough-angleCorrection: '{{ lane_forward ? 0 : 180 }}'
+    patternThrough-pixelSize: 1.2m
+    patternThrough-path-color: white
+    patternThrough-path-width: '0'
+    patternThrough-path-fillOpacity: '1'
+    patternThrough-lineOffset: '{{ lanes_width / -2 + 2 * 3 - 1.5 }}m'
+    patternLeft: '{% if ''left'' in lane_turn %}arrowHead{% endif %}'
+    patternLeft-repeat: 30m
+    patternLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternLeft-polygon: 'true'
+    patternLeft-angleCorrection: '{{ lane_forward ? -90 : 90 }}'
+    patternLeft-pixelSize: 1.2m
+    patternLeft-path-color: white
+    patternLeft-path-width: '0'
+    patternLeft-path-fillOpacity: '1'
+    patternLeft-lineOffset: '{{ lanes_width / -2 + 2 * 3 - 1.5 + (lane_forward ? -1.25 : 1.25) }}m'
+    patternSlightLeft: '{% if ''slight_left'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightLeft-repeat: 30m
+    patternSlightLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightLeft-polygon: 'true'
+    patternSlightLeft-angleCorrection: '{{ lane_forward ? -45 : 45 }}'
+    patternSlightLeft-pixelSize: 1.2m
+    patternSlightLeft-path-color: white
+    patternSlightLeft-path-width: '0'
+    patternSlightLeft-path-fillOpacity: '1'
+    patternSlightLeft-lineOffset: '{{ lanes_width / -2 + 2 * 3 - 1.5 + (lane_forward ? -0.75 : 0.75) }}m'
+    patternRight: '{% if ''right'' in lane_turn %}arrowHead{% endif %}'
+    patternRight-repeat: 30m
+    patternRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn or ''slight_left'' in lane_turn or ''slight_right'' in lane_turn ? 2 : 0)) }}m'
+    patternRight-polygon: 'true'
+    patternRight-angleCorrection: '{{ lane_forward ? 90 : -90 }}'
+    patternRight-pixelSize: 1.2m
+    patternRight-path-color: white
+    patternRight-path-width: '0'
+    patternRight-path-fillOpacity: '1'
+    patternRight-lineOffset: '{{ lanes_width / -2 + 2 * 3 - 1.5 + (lane_forward ? 1.25 : -1.25) }}m'
+    patternSlightRight: '{% if ''slight_right'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightRight-repeat: 30m
+    patternSlightRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightRight-polygon: 'true'
+    patternSlightRight-angleCorrection: '{{ lane_forward ? 45 : -45 }}'
+    patternSlightRight-pixelSize: 1.2m
+    patternSlightRight-path-color: white
+    patternSlightRight-path-width: '0'
+    patternSlightRight-path-fillOpacity: '1'
+    patternSlightRight-lineOffset: '{{ lanes_width / -2 + 2 * 3 - 1.5 + (lane_forward ? 0.75 : -0.75) }}m'
+  style:sign3:
+    _: '{% set lane_forward = backward_lanes < 3 %}{% set lane_turn = turn_lanes[3 - 1]|split('';'') %}'
+    width: '0'
+    pattern0: dash
+    pattern0-repeat: 30m
+    pattern0-pixelSize: 3m
+    pattern0-offset: 15.0m
+    pattern0-path-color: white
+    pattern0-path-width: 0.3m
+    pattern0-lineOffset: '{{ lanes_width / -2 + 3 * 3 - 1.5 }}m'
+    patternThrough: '{% if ''through'' in lane_turn or ''none'' in lane_turn or '''' in lane_turn %}arrowHead{% endif %}'
+    patternThrough-repeat: 30m
+    patternThrough-offset: '{{ lane_forward ? ''17m'' : ''12m'' }}'
+    patternThrough-polygon: 'true'
+    patternThrough-angleCorrection: '{{ lane_forward ? 0 : 180 }}'
+    patternThrough-pixelSize: 1.2m
+    patternThrough-path-color: white
+    patternThrough-path-width: '0'
+    patternThrough-path-fillOpacity: '1'
+    patternThrough-lineOffset: '{{ lanes_width / -2 + 3 * 3 - 1.5 }}m'
+    patternLeft: '{% if ''left'' in lane_turn %}arrowHead{% endif %}'
+    patternLeft-repeat: 30m
+    patternLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternLeft-polygon: 'true'
+    patternLeft-angleCorrection: '{{ lane_forward ? -90 : 90 }}'
+    patternLeft-pixelSize: 1.2m
+    patternLeft-path-color: white
+    patternLeft-path-width: '0'
+    patternLeft-path-fillOpacity: '1'
+    patternLeft-lineOffset: '{{ lanes_width / -2 + 3 * 3 - 1.5 + (lane_forward ? -1.25 : 1.25) }}m'
+    patternSlightLeft: '{% if ''slight_left'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightLeft-repeat: 30m
+    patternSlightLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightLeft-polygon: 'true'
+    patternSlightLeft-angleCorrection: '{{ lane_forward ? -45 : 45 }}'
+    patternSlightLeft-pixelSize: 1.2m
+    patternSlightLeft-path-color: white
+    patternSlightLeft-path-width: '0'
+    patternSlightLeft-path-fillOpacity: '1'
+    patternSlightLeft-lineOffset: '{{ lanes_width / -2 + 3 * 3 - 1.5 + (lane_forward ? -0.75 : 0.75) }}m'
+    patternRight: '{% if ''right'' in lane_turn %}arrowHead{% endif %}'
+    patternRight-repeat: 30m
+    patternRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn or ''slight_left'' in lane_turn or ''slight_right'' in lane_turn ? 2 : 0)) }}m'
+    patternRight-polygon: 'true'
+    patternRight-angleCorrection: '{{ lane_forward ? 90 : -90 }}'
+    patternRight-pixelSize: 1.2m
+    patternRight-path-color: white
+    patternRight-path-width: '0'
+    patternRight-path-fillOpacity: '1'
+    patternRight-lineOffset: '{{ lanes_width / -2 + 3 * 3 - 1.5 + (lane_forward ? 1.25 : -1.25) }}m'
+    patternSlightRight: '{% if ''slight_right'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightRight-repeat: 30m
+    patternSlightRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightRight-polygon: 'true'
+    patternSlightRight-angleCorrection: '{{ lane_forward ? 45 : -45 }}'
+    patternSlightRight-pixelSize: 1.2m
+    patternSlightRight-path-color: white
+    patternSlightRight-path-width: '0'
+    patternSlightRight-path-fillOpacity: '1'
+    patternSlightRight-lineOffset: '{{ lanes_width / -2 + 3 * 3 - 1.5 + (lane_forward ? 0.75 : -0.75) }}m'
+  style:sign4:
+    _: '{% set lane_forward = backward_lanes < 4 %}{% set lane_turn = turn_lanes[4 - 1]|split('';'') %}'
+    width: '0'
+    pattern0: dash
+    pattern0-repeat: 30m
+    pattern0-pixelSize: 3m
+    pattern0-offset: 15.0m
+    pattern0-path-color: white
+    pattern0-path-width: 0.3m
+    pattern0-lineOffset: '{{ lanes_width / -2 + 4 * 3 - 1.5 }}m'
+    patternThrough: '{% if ''through'' in lane_turn or ''none'' in lane_turn or '''' in lane_turn %}arrowHead{% endif %}'
+    patternThrough-repeat: 30m
+    patternThrough-offset: '{{ lane_forward ? ''17m'' : ''12m'' }}'
+    patternThrough-polygon: 'true'
+    patternThrough-angleCorrection: '{{ lane_forward ? 0 : 180 }}'
+    patternThrough-pixelSize: 1.2m
+    patternThrough-path-color: white
+    patternThrough-path-width: '0'
+    patternThrough-path-fillOpacity: '1'
+    patternThrough-lineOffset: '{{ lanes_width / -2 + 4 * 3 - 1.5 }}m'
+    patternLeft: '{% if ''left'' in lane_turn %}arrowHead{% endif %}'
+    patternLeft-repeat: 30m
+    patternLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternLeft-polygon: 'true'
+    patternLeft-angleCorrection: '{{ lane_forward ? -90 : 90 }}'
+    patternLeft-pixelSize: 1.2m
+    patternLeft-path-color: white
+    patternLeft-path-width: '0'
+    patternLeft-path-fillOpacity: '1'
+    patternLeft-lineOffset: '{{ lanes_width / -2 + 4 * 3 - 1.5 + (lane_forward ? -1.25 : 1.25) }}m'
+    patternSlightLeft: '{% if ''slight_left'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightLeft-repeat: 30m
+    patternSlightLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightLeft-polygon: 'true'
+    patternSlightLeft-angleCorrection: '{{ lane_forward ? -45 : 45 }}'
+    patternSlightLeft-pixelSize: 1.2m
+    patternSlightLeft-path-color: white
+    patternSlightLeft-path-width: '0'
+    patternSlightLeft-path-fillOpacity: '1'
+    patternSlightLeft-lineOffset: '{{ lanes_width / -2 + 4 * 3 - 1.5 + (lane_forward ? -0.75 : 0.75) }}m'
+    patternRight: '{% if ''right'' in lane_turn %}arrowHead{% endif %}'
+    patternRight-repeat: 30m
+    patternRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn or ''slight_left'' in lane_turn or ''slight_right'' in lane_turn ? 2 : 0)) }}m'
+    patternRight-polygon: 'true'
+    patternRight-angleCorrection: '{{ lane_forward ? 90 : -90 }}'
+    patternRight-pixelSize: 1.2m
+    patternRight-path-color: white
+    patternRight-path-width: '0'
+    patternRight-path-fillOpacity: '1'
+    patternRight-lineOffset: '{{ lanes_width / -2 + 4 * 3 - 1.5 + (lane_forward ? 1.25 : -1.25) }}m'
+    patternSlightRight: '{% if ''slight_right'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightRight-repeat: 30m
+    patternSlightRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightRight-polygon: 'true'
+    patternSlightRight-angleCorrection: '{{ lane_forward ? 45 : -45 }}'
+    patternSlightRight-pixelSize: 1.2m
+    patternSlightRight-path-color: white
+    patternSlightRight-path-width: '0'
+    patternSlightRight-path-fillOpacity: '1'
+    patternSlightRight-lineOffset: '{{ lanes_width / -2 + 4 * 3 - 1.5 + (lane_forward ? 0.75 : -0.75) }}m'
+  style:sign5:
+    _: '{% set lane_forward = backward_lanes < 5 %}{% set lane_turn = turn_lanes[5 - 1]|split('';'') %}'
+    width: '0'
+    pattern0: dash
+    pattern0-repeat: 30m
+    pattern0-pixelSize: 3m
+    pattern0-offset: 15.0m
+    pattern0-path-color: white
+    pattern0-path-width: 0.3m
+    pattern0-lineOffset: '{{ lanes_width / -2 + 5 * 3 - 1.5 }}m'
+    patternThrough: '{% if ''through'' in lane_turn or ''none'' in lane_turn or '''' in lane_turn %}arrowHead{% endif %}'
+    patternThrough-repeat: 30m
+    patternThrough-offset: '{{ lane_forward ? ''17m'' : ''12m'' }}'
+    patternThrough-polygon: 'true'
+    patternThrough-angleCorrection: '{{ lane_forward ? 0 : 180 }}'
+    patternThrough-pixelSize: 1.2m
+    patternThrough-path-color: white
+    patternThrough-path-width: '0'
+    patternThrough-path-fillOpacity: '1'
+    patternThrough-lineOffset: '{{ lanes_width / -2 + 5 * 3 - 1.5 }}m'
+    patternLeft: '{% if ''left'' in lane_turn %}arrowHead{% endif %}'
+    patternLeft-repeat: 30m
+    patternLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternLeft-polygon: 'true'
+    patternLeft-angleCorrection: '{{ lane_forward ? -90 : 90 }}'
+    patternLeft-pixelSize: 1.2m
+    patternLeft-path-color: white
+    patternLeft-path-width: '0'
+    patternLeft-path-fillOpacity: '1'
+    patternLeft-lineOffset: '{{ lanes_width / -2 + 5 * 3 - 1.5 + (lane_forward ? -1.25 : 1.25) }}m'
+    patternSlightLeft: '{% if ''slight_left'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightLeft-repeat: 30m
+    patternSlightLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightLeft-polygon: 'true'
+    patternSlightLeft-angleCorrection: '{{ lane_forward ? -45 : 45 }}'
+    patternSlightLeft-pixelSize: 1.2m
+    patternSlightLeft-path-color: white
+    patternSlightLeft-path-width: '0'
+    patternSlightLeft-path-fillOpacity: '1'
+    patternSlightLeft-lineOffset: '{{ lanes_width / -2 + 5 * 3 - 1.5 + (lane_forward ? -0.75 : 0.75) }}m'
+    patternRight: '{% if ''right'' in lane_turn %}arrowHead{% endif %}'
+    patternRight-repeat: 30m
+    patternRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn or ''slight_left'' in lane_turn or ''slight_right'' in lane_turn ? 2 : 0)) }}m'
+    patternRight-polygon: 'true'
+    patternRight-angleCorrection: '{{ lane_forward ? 90 : -90 }}'
+    patternRight-pixelSize: 1.2m
+    patternRight-path-color: white
+    patternRight-path-width: '0'
+    patternRight-path-fillOpacity: '1'
+    patternRight-lineOffset: '{{ lanes_width / -2 + 5 * 3 - 1.5 + (lane_forward ? 1.25 : -1.25) }}m'
+    patternSlightRight: '{% if ''slight_right'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightRight-repeat: 30m
+    patternSlightRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightRight-polygon: 'true'
+    patternSlightRight-angleCorrection: '{{ lane_forward ? 45 : -45 }}'
+    patternSlightRight-pixelSize: 1.2m
+    patternSlightRight-path-color: white
+    patternSlightRight-path-width: '0'
+    patternSlightRight-path-fillOpacity: '1'
+    patternSlightRight-lineOffset: '{{ lanes_width / -2 + 5 * 3 - 1.5 + (lane_forward ? 0.75 : -0.75) }}m'
+  style:sign6:
+    _: '{% set lane_forward = backward_lanes < 6 %}{% set lane_turn = turn_lanes[6 - 1]|split('';'') %}'
+    width: '0'
+    pattern0: dash
+    pattern0-repeat: 30m
+    pattern0-pixelSize: 3m
+    pattern0-offset: 15.0m
+    pattern0-path-color: white
+    pattern0-path-width: 0.3m
+    pattern0-lineOffset: '{{ lanes_width / -2 + 6 * 3 - 1.5 }}m'
+    patternThrough: '{% if ''through'' in lane_turn or ''none'' in lane_turn or '''' in lane_turn %}arrowHead{% endif %}'
+    patternThrough-repeat: 30m
+    patternThrough-offset: '{{ lane_forward ? ''17m'' : ''12m'' }}'
+    patternThrough-polygon: 'true'
+    patternThrough-angleCorrection: '{{ lane_forward ? 0 : 180 }}'
+    patternThrough-pixelSize: 1.2m
+    patternThrough-path-color: white
+    patternThrough-path-width: '0'
+    patternThrough-path-fillOpacity: '1'
+    patternThrough-lineOffset: '{{ lanes_width / -2 + 6 * 3 - 1.5 }}m'
+    patternLeft: '{% if ''left'' in lane_turn %}arrowHead{% endif %}'
+    patternLeft-repeat: 30m
+    patternLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternLeft-polygon: 'true'
+    patternLeft-angleCorrection: '{{ lane_forward ? -90 : 90 }}'
+    patternLeft-pixelSize: 1.2m
+    patternLeft-path-color: white
+    patternLeft-path-width: '0'
+    patternLeft-path-fillOpacity: '1'
+    patternLeft-lineOffset: '{{ lanes_width / -2 + 6 * 3 - 1.5 + (lane_forward ? -1.25 : 1.25) }}m'
+    patternSlightLeft: '{% if ''slight_left'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightLeft-repeat: 30m
+    patternSlightLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightLeft-polygon: 'true'
+    patternSlightLeft-angleCorrection: '{{ lane_forward ? -45 : 45 }}'
+    patternSlightLeft-pixelSize: 1.2m
+    patternSlightLeft-path-color: white
+    patternSlightLeft-path-width: '0'
+    patternSlightLeft-path-fillOpacity: '1'
+    patternSlightLeft-lineOffset: '{{ lanes_width / -2 + 6 * 3 - 1.5 + (lane_forward ? -0.75 : 0.75) }}m'
+    patternRight: '{% if ''right'' in lane_turn %}arrowHead{% endif %}'
+    patternRight-repeat: 30m
+    patternRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn or ''slight_left'' in lane_turn or ''slight_right'' in lane_turn ? 2 : 0)) }}m'
+    patternRight-polygon: 'true'
+    patternRight-angleCorrection: '{{ lane_forward ? 90 : -90 }}'
+    patternRight-pixelSize: 1.2m
+    patternRight-path-color: white
+    patternRight-path-width: '0'
+    patternRight-path-fillOpacity: '1'
+    patternRight-lineOffset: '{{ lanes_width / -2 + 6 * 3 - 1.5 + (lane_forward ? 1.25 : -1.25) }}m'
+    patternSlightRight: '{% if ''slight_right'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightRight-repeat: 30m
+    patternSlightRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightRight-polygon: 'true'
+    patternSlightRight-angleCorrection: '{{ lane_forward ? 45 : -45 }}'
+    patternSlightRight-pixelSize: 1.2m
+    patternSlightRight-path-color: white
+    patternSlightRight-path-width: '0'
+    patternSlightRight-path-fillOpacity: '1'
+    patternSlightRight-lineOffset: '{{ lanes_width / -2 + 6 * 3 - 1.5 + (lane_forward ? 0.75 : -0.75) }}m'
+  style:sign7:
+    _: '{% set lane_forward = backward_lanes < 7 %}{% set lane_turn = turn_lanes[7 - 1]|split('';'') %}'
+    width: '0'
+    pattern0: dash
+    pattern0-repeat: 30m
+    pattern0-pixelSize: 3m
+    pattern0-offset: 15.0m
+    pattern0-path-color: white
+    pattern0-path-width: 0.3m
+    pattern0-lineOffset: '{{ lanes_width / -2 + 7 * 3 - 1.5 }}m'
+    patternThrough: '{% if ''through'' in lane_turn or ''none'' in lane_turn or '''' in lane_turn %}arrowHead{% endif %}'
+    patternThrough-repeat: 30m
+    patternThrough-offset: '{{ lane_forward ? ''17m'' : ''12m'' }}'
+    patternThrough-polygon: 'true'
+    patternThrough-angleCorrection: '{{ lane_forward ? 0 : 180 }}'
+    patternThrough-pixelSize: 1.2m
+    patternThrough-path-color: white
+    patternThrough-path-width: '0'
+    patternThrough-path-fillOpacity: '1'
+    patternThrough-lineOffset: '{{ lanes_width / -2 + 7 * 3 - 1.5 }}m'
+    patternLeft: '{% if ''left'' in lane_turn %}arrowHead{% endif %}'
+    patternLeft-repeat: 30m
+    patternLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternLeft-polygon: 'true'
+    patternLeft-angleCorrection: '{{ lane_forward ? -90 : 90 }}'
+    patternLeft-pixelSize: 1.2m
+    patternLeft-path-color: white
+    patternLeft-path-width: '0'
+    patternLeft-path-fillOpacity: '1'
+    patternLeft-lineOffset: '{{ lanes_width / -2 + 7 * 3 - 1.5 + (lane_forward ? -1.25 : 1.25) }}m'
+    patternSlightLeft: '{% if ''slight_left'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightLeft-repeat: 30m
+    patternSlightLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightLeft-polygon: 'true'
+    patternSlightLeft-angleCorrection: '{{ lane_forward ? -45 : 45 }}'
+    patternSlightLeft-pixelSize: 1.2m
+    patternSlightLeft-path-color: white
+    patternSlightLeft-path-width: '0'
+    patternSlightLeft-path-fillOpacity: '1'
+    patternSlightLeft-lineOffset: '{{ lanes_width / -2 + 7 * 3 - 1.5 + (lane_forward ? -0.75 : 0.75) }}m'
+    patternRight: '{% if ''right'' in lane_turn %}arrowHead{% endif %}'
+    patternRight-repeat: 30m
+    patternRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn or ''slight_left'' in lane_turn or ''slight_right'' in lane_turn ? 2 : 0)) }}m'
+    patternRight-polygon: 'true'
+    patternRight-angleCorrection: '{{ lane_forward ? 90 : -90 }}'
+    patternRight-pixelSize: 1.2m
+    patternRight-path-color: white
+    patternRight-path-width: '0'
+    patternRight-path-fillOpacity: '1'
+    patternRight-lineOffset: '{{ lanes_width / -2 + 7 * 3 - 1.5 + (lane_forward ? 1.25 : -1.25) }}m'
+    patternSlightRight: '{% if ''slight_right'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightRight-repeat: 30m
+    patternSlightRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightRight-polygon: 'true'
+    patternSlightRight-angleCorrection: '{{ lane_forward ? 45 : -45 }}'
+    patternSlightRight-pixelSize: 1.2m
+    patternSlightRight-path-color: white
+    patternSlightRight-path-width: '0'
+    patternSlightRight-path-fillOpacity: '1'
+    patternSlightRight-lineOffset: '{{ lanes_width / -2 + 7 * 3 - 1.5 + (lane_forward ? 0.75 : -0.75) }}m'
+  style:sign8:
+    _: '{% set lane_forward = backward_lanes < 8 %}{% set lane_turn = turn_lanes[8 - 1]|split('';'') %}'
+    width: '0'
+    pattern0: dash
+    pattern0-repeat: 30m
+    pattern0-pixelSize: 3m
+    pattern0-offset: 15.0m
+    pattern0-path-color: white
+    pattern0-path-width: 0.3m
+    pattern0-lineOffset: '{{ lanes_width / -2 + 8 * 3 - 1.5 }}m'
+    patternThrough: '{% if ''through'' in lane_turn or ''none'' in lane_turn or '''' in lane_turn %}arrowHead{% endif %}'
+    patternThrough-repeat: 30m
+    patternThrough-offset: '{{ lane_forward ? ''17m'' : ''12m'' }}'
+    patternThrough-polygon: 'true'
+    patternThrough-angleCorrection: '{{ lane_forward ? 0 : 180 }}'
+    patternThrough-pixelSize: 1.2m
+    patternThrough-path-color: white
+    patternThrough-path-width: '0'
+    patternThrough-path-fillOpacity: '1'
+    patternThrough-lineOffset: '{{ lanes_width / -2 + 8 * 3 - 1.5 }}m'
+    patternLeft: '{% if ''left'' in lane_turn %}arrowHead{% endif %}'
+    patternLeft-repeat: 30m
+    patternLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternLeft-polygon: 'true'
+    patternLeft-angleCorrection: '{{ lane_forward ? -90 : 90 }}'
+    patternLeft-pixelSize: 1.2m
+    patternLeft-path-color: white
+    patternLeft-path-width: '0'
+    patternLeft-path-fillOpacity: '1'
+    patternLeft-lineOffset: '{{ lanes_width / -2 + 8 * 3 - 1.5 + (lane_forward ? -1.25 : 1.25) }}m'
+    patternSlightLeft: '{% if ''slight_left'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightLeft-repeat: 30m
+    patternSlightLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightLeft-polygon: 'true'
+    patternSlightLeft-angleCorrection: '{{ lane_forward ? -45 : 45 }}'
+    patternSlightLeft-pixelSize: 1.2m
+    patternSlightLeft-path-color: white
+    patternSlightLeft-path-width: '0'
+    patternSlightLeft-path-fillOpacity: '1'
+    patternSlightLeft-lineOffset: '{{ lanes_width / -2 + 8 * 3 - 1.5 + (lane_forward ? -0.75 : 0.75) }}m'
+    patternRight: '{% if ''right'' in lane_turn %}arrowHead{% endif %}'
+    patternRight-repeat: 30m
+    patternRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn or ''slight_left'' in lane_turn or ''slight_right'' in lane_turn ? 2 : 0)) }}m'
+    patternRight-polygon: 'true'
+    patternRight-angleCorrection: '{{ lane_forward ? 90 : -90 }}'
+    patternRight-pixelSize: 1.2m
+    patternRight-path-color: white
+    patternRight-path-width: '0'
+    patternRight-path-fillOpacity: '1'
+    patternRight-lineOffset: '{{ lanes_width / -2 + 8 * 3 - 1.5 + (lane_forward ? 1.25 : -1.25) }}m'
+    patternSlightRight: '{% if ''slight_right'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightRight-repeat: 30m
+    patternSlightRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightRight-polygon: 'true'
+    patternSlightRight-angleCorrection: '{{ lane_forward ? 45 : -45 }}'
+    patternSlightRight-pixelSize: 1.2m
+    patternSlightRight-path-color: white
+    patternSlightRight-path-width: '0'
+    patternSlightRight-path-fillOpacity: '1'
+    patternSlightRight-lineOffset: '{{ lanes_width / -2 + 8 * 3 - 1.5 + (lane_forward ? 0.75 : -0.75) }}m'
+  style:sign9:
+    _: '{% set lane_forward = backward_lanes < 9 %}{% set lane_turn = turn_lanes[9 - 1]|split('';'') %}'
+    width: '0'
+    pattern0: dash
+    pattern0-repeat: 30m
+    pattern0-pixelSize: 3m
+    pattern0-offset: 15.0m
+    pattern0-path-color: white
+    pattern0-path-width: 0.3m
+    pattern0-lineOffset: '{{ lanes_width / -2 + 9 * 3 - 1.5 }}m'
+    patternThrough: '{% if ''through'' in lane_turn or ''none'' in lane_turn or '''' in lane_turn %}arrowHead{% endif %}'
+    patternThrough-repeat: 30m
+    patternThrough-offset: '{{ lane_forward ? ''17m'' : ''12m'' }}'
+    patternThrough-polygon: 'true'
+    patternThrough-angleCorrection: '{{ lane_forward ? 0 : 180 }}'
+    patternThrough-pixelSize: 1.2m
+    patternThrough-path-color: white
+    patternThrough-path-width: '0'
+    patternThrough-path-fillOpacity: '1'
+    patternThrough-lineOffset: '{{ lanes_width / -2 + 9 * 3 - 1.5 }}m'
+    patternLeft: '{% if ''left'' in lane_turn %}arrowHead{% endif %}'
+    patternLeft-repeat: 30m
+    patternLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternLeft-polygon: 'true'
+    patternLeft-angleCorrection: '{{ lane_forward ? -90 : 90 }}'
+    patternLeft-pixelSize: 1.2m
+    patternLeft-path-color: white
+    patternLeft-path-width: '0'
+    patternLeft-path-fillOpacity: '1'
+    patternLeft-lineOffset: '{{ lanes_width / -2 + 9 * 3 - 1.5 + (lane_forward ? -1.25 : 1.25) }}m'
+    patternSlightLeft: '{% if ''slight_left'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightLeft-repeat: 30m
+    patternSlightLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightLeft-polygon: 'true'
+    patternSlightLeft-angleCorrection: '{{ lane_forward ? -45 : 45 }}'
+    patternSlightLeft-pixelSize: 1.2m
+    patternSlightLeft-path-color: white
+    patternSlightLeft-path-width: '0'
+    patternSlightLeft-path-fillOpacity: '1'
+    patternSlightLeft-lineOffset: '{{ lanes_width / -2 + 9 * 3 - 1.5 + (lane_forward ? -0.75 : 0.75) }}m'
+    patternRight: '{% if ''right'' in lane_turn %}arrowHead{% endif %}'
+    patternRight-repeat: 30m
+    patternRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn or ''slight_left'' in lane_turn or ''slight_right'' in lane_turn ? 2 : 0)) }}m'
+    patternRight-polygon: 'true'
+    patternRight-angleCorrection: '{{ lane_forward ? 90 : -90 }}'
+    patternRight-pixelSize: 1.2m
+    patternRight-path-color: white
+    patternRight-path-width: '0'
+    patternRight-path-fillOpacity: '1'
+    patternRight-lineOffset: '{{ lanes_width / -2 + 9 * 3 - 1.5 + (lane_forward ? 1.25 : -1.25) }}m'
+    patternSlightRight: '{% if ''slight_right'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightRight-repeat: 30m
+    patternSlightRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightRight-polygon: 'true'
+    patternSlightRight-angleCorrection: '{{ lane_forward ? 45 : -45 }}'
+    patternSlightRight-pixelSize: 1.2m
+    patternSlightRight-path-color: white
+    patternSlightRight-path-width: '0'
+    patternSlightRight-path-fillOpacity: '1'
+    patternSlightRight-lineOffset: '{{ lanes_width / -2 + 9 * 3 - 1.5 + (lane_forward ? 0.75 : -0.75) }}m'
+  style:sign10:
+    _: '{% set lane_forward = backward_lanes < 10 %}{% set lane_turn = turn_lanes[10 - 1]|split('';'') %}'
+    width: '0'
+    pattern0: dash
+    pattern0-repeat: 30m
+    pattern0-pixelSize: 3m
+    pattern0-offset: 15.0m
+    pattern0-path-color: white
+    pattern0-path-width: 0.3m
+    pattern0-lineOffset: '{{ lanes_width / -2 + 10 * 3 - 1.5 }}m'
+    patternThrough: '{% if ''through'' in lane_turn or ''none'' in lane_turn or '''' in lane_turn %}arrowHead{% endif %}'
+    patternThrough-repeat: 30m
+    patternThrough-offset: '{{ lane_forward ? ''17m'' : ''12m'' }}'
+    patternThrough-polygon: 'true'
+    patternThrough-angleCorrection: '{{ lane_forward ? 0 : 180 }}'
+    patternThrough-pixelSize: 1.2m
+    patternThrough-path-color: white
+    patternThrough-path-width: '0'
+    patternThrough-path-fillOpacity: '1'
+    patternThrough-lineOffset: '{{ lanes_width / -2 + 10 * 3 - 1.5 }}m'
+    patternLeft: '{% if ''left'' in lane_turn %}arrowHead{% endif %}'
+    patternLeft-repeat: 30m
+    patternLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternLeft-polygon: 'true'
+    patternLeft-angleCorrection: '{{ lane_forward ? -90 : 90 }}'
+    patternLeft-pixelSize: 1.2m
+    patternLeft-path-color: white
+    patternLeft-path-width: '0'
+    patternLeft-path-fillOpacity: '1'
+    patternLeft-lineOffset: '{{ lanes_width / -2 + 10 * 3 - 1.5 + (lane_forward ? -1.25 : 1.25) }}m'
+    patternSlightLeft: '{% if ''slight_left'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightLeft-repeat: 30m
+    patternSlightLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightLeft-polygon: 'true'
+    patternSlightLeft-angleCorrection: '{{ lane_forward ? -45 : 45 }}'
+    patternSlightLeft-pixelSize: 1.2m
+    patternSlightLeft-path-color: white
+    patternSlightLeft-path-width: '0'
+    patternSlightLeft-path-fillOpacity: '1'
+    patternSlightLeft-lineOffset: '{{ lanes_width / -2 + 10 * 3 - 1.5 + (lane_forward ? -0.75 : 0.75) }}m'
+    patternRight: '{% if ''right'' in lane_turn %}arrowHead{% endif %}'
+    patternRight-repeat: 30m
+    patternRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn or ''slight_left'' in lane_turn or ''slight_right'' in lane_turn ? 2 : 0)) }}m'
+    patternRight-polygon: 'true'
+    patternRight-angleCorrection: '{{ lane_forward ? 90 : -90 }}'
+    patternRight-pixelSize: 1.2m
+    patternRight-path-color: white
+    patternRight-path-width: '0'
+    patternRight-path-fillOpacity: '1'
+    patternRight-lineOffset: '{{ lanes_width / -2 + 10 * 3 - 1.5 + (lane_forward ? 1.25 : -1.25) }}m'
+    patternSlightRight: '{% if ''slight_right'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightRight-repeat: 30m
+    patternSlightRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightRight-polygon: 'true'
+    patternSlightRight-angleCorrection: '{{ lane_forward ? 45 : -45 }}'
+    patternSlightRight-pixelSize: 1.2m
+    patternSlightRight-path-color: white
+    patternSlightRight-path-width: '0'
+    patternSlightRight-path-fillOpacity: '1'
+    patternSlightRight-lineOffset: '{{ lanes_width / -2 + 10 * 3 - 1.5 + (lane_forward ? 0.75 : -0.75) }}m'
+  style:sign11:
+    _: '{% set lane_forward = backward_lanes < 11 %}{% set lane_turn = turn_lanes[11 - 1]|split('';'') %}'
+    width: '0'
+    pattern0: dash
+    pattern0-repeat: 30m
+    pattern0-pixelSize: 3m
+    pattern0-offset: 15.0m
+    pattern0-path-color: white
+    pattern0-path-width: 0.3m
+    pattern0-lineOffset: '{{ lanes_width / -2 + 11 * 3 - 1.5 }}m'
+    patternThrough: '{% if ''through'' in lane_turn or ''none'' in lane_turn or '''' in lane_turn %}arrowHead{% endif %}'
+    patternThrough-repeat: 30m
+    patternThrough-offset: '{{ lane_forward ? ''17m'' : ''12m'' }}'
+    patternThrough-polygon: 'true'
+    patternThrough-angleCorrection: '{{ lane_forward ? 0 : 180 }}'
+    patternThrough-pixelSize: 1.2m
+    patternThrough-path-color: white
+    patternThrough-path-width: '0'
+    patternThrough-path-fillOpacity: '1'
+    patternThrough-lineOffset: '{{ lanes_width / -2 + 11 * 3 - 1.5 }}m'
+    patternLeft: '{% if ''left'' in lane_turn %}arrowHead{% endif %}'
+    patternLeft-repeat: 30m
+    patternLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternLeft-polygon: 'true'
+    patternLeft-angleCorrection: '{{ lane_forward ? -90 : 90 }}'
+    patternLeft-pixelSize: 1.2m
+    patternLeft-path-color: white
+    patternLeft-path-width: '0'
+    patternLeft-path-fillOpacity: '1'
+    patternLeft-lineOffset: '{{ lanes_width / -2 + 11 * 3 - 1.5 + (lane_forward ? -1.25 : 1.25) }}m'
+    patternSlightLeft: '{% if ''slight_left'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightLeft-repeat: 30m
+    patternSlightLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightLeft-polygon: 'true'
+    patternSlightLeft-angleCorrection: '{{ lane_forward ? -45 : 45 }}'
+    patternSlightLeft-pixelSize: 1.2m
+    patternSlightLeft-path-color: white
+    patternSlightLeft-path-width: '0'
+    patternSlightLeft-path-fillOpacity: '1'
+    patternSlightLeft-lineOffset: '{{ lanes_width / -2 + 11 * 3 - 1.5 + (lane_forward ? -0.75 : 0.75) }}m'
+    patternRight: '{% if ''right'' in lane_turn %}arrowHead{% endif %}'
+    patternRight-repeat: 30m
+    patternRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn or ''slight_left'' in lane_turn or ''slight_right'' in lane_turn ? 2 : 0)) }}m'
+    patternRight-polygon: 'true'
+    patternRight-angleCorrection: '{{ lane_forward ? 90 : -90 }}'
+    patternRight-pixelSize: 1.2m
+    patternRight-path-color: white
+    patternRight-path-width: '0'
+    patternRight-path-fillOpacity: '1'
+    patternRight-lineOffset: '{{ lanes_width / -2 + 11 * 3 - 1.5 + (lane_forward ? 1.25 : -1.25) }}m'
+    patternSlightRight: '{% if ''slight_right'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightRight-repeat: 30m
+    patternSlightRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightRight-polygon: 'true'
+    patternSlightRight-angleCorrection: '{{ lane_forward ? 45 : -45 }}'
+    patternSlightRight-pixelSize: 1.2m
+    patternSlightRight-path-color: white
+    patternSlightRight-path-width: '0'
+    patternSlightRight-path-fillOpacity: '1'
+    patternSlightRight-lineOffset: '{{ lanes_width / -2 + 11 * 3 - 1.5 + (lane_forward ? 0.75 : -0.75) }}m'
+  style:sign12:
+    _: '{% set lane_forward = backward_lanes < 12 %}{% set lane_turn = turn_lanes[12 - 1]|split('';'') %}'
+    width: '0'
+    pattern0: dash
+    pattern0-repeat: 30m
+    pattern0-pixelSize: 3m
+    pattern0-offset: 15.0m
+    pattern0-path-color: white
+    pattern0-path-width: 0.3m
+    pattern0-lineOffset: '{{ lanes_width / -2 + 12 * 3 - 1.5 }}m'
+    patternThrough: '{% if ''through'' in lane_turn or ''none'' in lane_turn or '''' in lane_turn %}arrowHead{% endif %}'
+    patternThrough-repeat: 30m
+    patternThrough-offset: '{{ lane_forward ? ''17m'' : ''12m'' }}'
+    patternThrough-polygon: 'true'
+    patternThrough-angleCorrection: '{{ lane_forward ? 0 : 180 }}'
+    patternThrough-pixelSize: 1.2m
+    patternThrough-path-color: white
+    patternThrough-path-width: '0'
+    patternThrough-path-fillOpacity: '1'
+    patternThrough-lineOffset: '{{ lanes_width / -2 + 12 * 3 - 1.5 }}m'
+    patternLeft: '{% if ''left'' in lane_turn %}arrowHead{% endif %}'
+    patternLeft-repeat: 30m
+    patternLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternLeft-polygon: 'true'
+    patternLeft-angleCorrection: '{{ lane_forward ? -90 : 90 }}'
+    patternLeft-pixelSize: 1.2m
+    patternLeft-path-color: white
+    patternLeft-path-width: '0'
+    patternLeft-path-fillOpacity: '1'
+    patternLeft-lineOffset: '{{ lanes_width / -2 + 12 * 3 - 1.5 + (lane_forward ? -1.25 : 1.25) }}m'
+    patternSlightLeft: '{% if ''slight_left'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightLeft-repeat: 30m
+    patternSlightLeft-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightLeft-polygon: 'true'
+    patternSlightLeft-angleCorrection: '{{ lane_forward ? -45 : 45 }}'
+    patternSlightLeft-pixelSize: 1.2m
+    patternSlightLeft-path-color: white
+    patternSlightLeft-path-width: '0'
+    patternSlightLeft-path-fillOpacity: '1'
+    patternSlightLeft-lineOffset: '{{ lanes_width / -2 + 12 * 3 - 1.5 + (lane_forward ? -0.75 : 0.75) }}m'
+    patternRight: '{% if ''right'' in lane_turn %}arrowHead{% endif %}'
+    patternRight-repeat: 30m
+    patternRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn or ''slight_left'' in lane_turn or ''slight_right'' in lane_turn ? 2 : 0)) }}m'
+    patternRight-polygon: 'true'
+    patternRight-angleCorrection: '{{ lane_forward ? 90 : -90 }}'
+    patternRight-pixelSize: 1.2m
+    patternRight-path-color: white
+    patternRight-path-width: '0'
+    patternRight-path-fillOpacity: '1'
+    patternRight-lineOffset: '{{ lanes_width / -2 + 12 * 3 - 1.5 + (lane_forward ? 1.25 : -1.25) }}m'
+    patternSlightRight: '{% if ''slight_right'' in lane_turn %}arrowHead{% endif %}'
+    patternSlightRight-repeat: 30m
+    patternSlightRight-offset: '{{ 15 + (lane_forward ? 1 : -1) * (2 - (''through'' in lane_turn ? 2 : 0)) }}m'
+    patternSlightRight-polygon: 'true'
+    patternSlightRight-angleCorrection: '{{ lane_forward ? 45 : -45 }}'
+    patternSlightRight-pixelSize: 1.2m
+    patternSlightRight-path-color: white
+    patternSlightRight-path-width: '0'
+    patternSlightRight-path-fillOpacity: '1'
+    patternSlightRight-lineOffset: '{{ lanes_width / -2 + 12 * 3 - 1.5 + (lane_forward ? 0.75 : -0.75) }}m'
+info: |-
+  <table>
+    <tr>
+      <td>{{ markerLine({'styles':'left,right,mark', 'style:left': { 'width': 3, 'color': 'grey', 'offset': -1.5 },'style:right': { 'width': 3, 'color': 'grey', 'offset': 1.5 },'style:mark': { 'width': 1, 'color': 'white'} })|raw }}</td>
+      <td>{{ keyTrans('lanes') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine({'styles':'left,right,mark', 'style:left': { 'width': 3, 'color': 'grey', 'offset': -1.5 },'style:right': { 'width': 3, 'color': 'grey', 'offset': 1.5 },'style:mark': { 'width': 1, 'color': 'white', 'dashArray': '5,5'} })|raw }}</td>
+      <td>{{ keyTrans('lanes') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine({ 'width': 5, 'color': 'orange' })|raw }}</td>
+      <td>{{ keyTrans('parking:lane') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine({ 'styles':'lane,mark', 'style:lane': { 'width': 5, 'color': 'orange' }, 'style:mark': { 'width': 5, 'color': const.parking.parallel.dashColor, 'dashArray': '1,10' } })|raw }}</td>
+      <td>{{ keyTrans('parking:lane') }}: {{ tagTrans('parking:lane', 'parallel') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine({ 'styles':'lane,mark1,mark2', 'style:lane': { 'width': 5, 'color': 'orange' }, 'style:mark1': { 'width': 2.5, 'color': const.parking.diagonal.dashColor, 'dashArray': '1,7', 'offset': 1.25 }, 'style:mark2': { 'width': 2.5, 'color': const.parking.diagonal.dashColor, 'dashArray': '1,7', 'dashOffset': '2', 'offset': -1.25 } })|raw }}</td>
+      <td>{{ keyTrans('parking:lane') }}: {{ tagTrans('parking:lane', 'diagonal') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine({ 'styles':'lane,mark', 'style:lane': { 'width': 5, 'color': 'orange' }, 'style:mark': { 'width': 5, 'color': const.parking.perpendicular.dashColor, 'dashArray': '1,6' } })|raw }}</td>
+      <td>{{ keyTrans('parking:lane') }}: {{ tagTrans('parking:lane', 'perpendicular') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine({ 'width': 5, 'color': '#af3f3f' })|raw }}</td>
+      <td>{{ tagTrans('cycleway', 'lane') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine({ 'width': 5, 'color': '#bf5f3f' })|raw }}</td>
+      <td>{{ tagTrans('cycleway', 'track') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine({ 'width': 5, 'color': '#4f4fbf' })|raw }}</td>
+      <td>{{ keyTrans('sidewalk') }}</td>
+    </tr>
+  </table>
+const:
+  parking:
+    parallel:
+      width: '2'
+      color: orange
+      dashColor: blue
+      dashDistance: '4'
+    diagonal:
+      width: '2.5'
+      color: orange
+      dashColor: magenta
+      dashDistance: '3'
+      dashType: diagonal
+    perpendicular:
+      width: '3'
+      color: orange
+      dashColor: red
+      dashDistance: '2.5'
+    no_parking:
+      width: '0.5'
+      color: '#7f0000'
+    no_stopping:
+      width: '0.5'
+      color: '#7f0000'
+    fire_lane:
+      width: '2'
+      color: '#ff0000'
+    other:
+      width: '2'
+      color: '#ff0000'
+    'no':
+      width: '0'
+      color: '#000000'
