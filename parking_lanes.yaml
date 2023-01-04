@@ -7,6 +7,63 @@ feature:
     {% set rightType = attribute(tags, 'parking:right')|default(attribute(tags, 'parking:both'))|default('unknown') %}
     {% set leftOrientation = attribute(tags, 'parking:left:orientation')|default(attribute(tags, 'parking:both:orientation'))|default('unknown') %}
     {% set rightOrientation = attribute(tags, 'parking:right:orientation')|default(attribute(tags, 'parking:both:orientation'))|default('unknown') %}
+
+    {% set leftCondition = 'undefined' %}
+    {% if attribute(tags, 'parking:left:fee')|default(attribute(tags, 'parking:both:fee')) == 'no' %}
+      {% set leftRestriction = 'free' %}
+    {% endif %}
+    {% if attribute(tags, 'parking:left:maxstay')|default(attribute(tags, 'parking:both:maxstay')) not in [undefined, 'no'] %}
+      {% set leftRestriction = 'free_time_limit' %}
+    {% endif %}
+    {% if attribute(tags, 'parking:left:fee')|default(attribute(tags, 'parking:both:fee')) not in [undefined, 'no'] or attribute(tags, 'parking:left:fee:conditional')|default(attribute(tags, 'parking:both:fee:conditional')) matches '/yes/'  %}
+      {% set leftRestriction = 'paid' %}
+    {% endif %}
+    {% if attribute(tags, 'parking:left:access')|default(attribute(tags, 'parking:both:access')) == 'customers' or attribute(tags, 'parking:left:access:conditional')|default(attribute(tags, 'parking:both:access:conditional')) matches '/customers/'  %}
+      {% set leftRestriction = 'customers' %}
+    {% endif %}
+    {% if attribute(tags, 'parking:left:access')|default(attribute(tags, 'parking:both:access')) == 'no' or attribute(tags, 'parking:left:access:conditional')|default(attribute(tags, 'parking:both:access:conditional')) matches '/no/'  %}
+      {% set leftRestriction = 'non_public' %}
+    {% endif %}
+    {% if attribute(tags, 'parking:left:disabled')|default(attribute(tags, 'parking:both:disabled')) not in [undefined, 'no'] or attribute(tags, 'parking:left:disabled:conditional')|default(attribute(tags, 'parking:both:disabled:conditional')) %}
+      {% set leftRestriction = 'disabled' %}
+    {% endif %}
+    {% if attribute(tags, 'parking:left')|default(attribute(tags, 'parking:both')) == 'no' and attribute(tags, 'parking:left:reason')|default(attribute(tags, 'parking:both:reason')) %}
+      {% set leftRestriction = 'reason' %}
+    {% endif %}
+    {% for r in ['charging_only', 'loading_only', 'no_parking', 'no_standing', 'no_stopping'] %}
+      {% if attribute(tags, 'parking:left:restriction')|default(attribute(tags, 'parking:both:restriction')) == r or attribute(tags, 'parking:left:restriction:conditional')|default(attribute(tags, 'parking:both:restriction:conditional')) matches ('/' ~ r ~ '/') %}
+        {% set leftRestriction = r %}
+      {% endif %}
+    {% endfor %}
+
+    {% set rightCondition = 'undefined' %}
+    {% if attribute(tags, 'parking:right:fee')|default(attribute(tags, 'parking:both:fee')) == 'no' %}
+      {% set rightRestriction = 'free' %}
+    {% endif %}
+    {% if attribute(tags, 'parking:right:maxstay')|default(attribute(tags, 'parking:both:maxstay')) not in [undefined, 'no'] %}
+      {% set rightRestriction = 'free_time_limit' %}
+    {% endif %}
+    {% if attribute(tags, 'parking:right:fee')|default(attribute(tags, 'parking:both:fee')) not in [undefined, 'no'] or attribute(tags, 'parking:right:fee:conditional')|default(attribute(tags, 'parking:both:fee:conditional')) matches '/yes/'  %}
+      {% set rightRestriction = 'paid' %}
+    {% endif %}
+    {% if attribute(tags, 'parking:right:access')|default(attribute(tags, 'parking:both:access')) == 'customers' or attribute(tags, 'parking:right:access:conditional')|default(attribute(tags, 'parking:both:access:conditional')) matches '/customers/'  %}
+      {% set rightRestriction = 'customers' %}
+    {% endif %}
+    {% if attribute(tags, 'parking:right:access')|default(attribute(tags, 'parking:both:access')) == 'no' or attribute(tags, 'parking:right:access:conditional')|default(attribute(tags, 'parking:both:access:conditional')) matches '/no/'  %}
+      {% set rightRestriction = 'non_public' %}
+    {% endif %}
+    {% if attribute(tags, 'parking:right:disabled')|default(attribute(tags, 'parking:both:disabled')) not in [undefined, 'no'] or attribute(tags, 'parking:right:disabled:conditional')|default(attribute(tags, 'parking:both:disabled:conditional')) %}
+      {% set rightRestriction = 'disabled' %}
+    {% endif %}
+    {% if attribute(tags, 'parking:right')|default(attribute(tags, 'parking:both')) == 'no' and attribute(tags, 'parking:right:reason')|default(attribute(tags, 'parking:both:reason')) %}
+      {% set rightRestriction = 'reason' %}
+    {% endif %}
+    {% for r in ['charging_only', 'loading_only', 'no_parking', 'no_standing', 'no_stopping'] %}
+      {% if attribute(tags, 'parking:right:restriction')|default(attribute(tags, 'parking:both:restriction')) == r or attribute(tags, 'parking:right:restriction:conditional')|default(attribute(tags, 'parking:both:restriction:conditional')) matches ('/' ~ r ~ '/') %}
+        {% set rightRestriction = r %}
+      {% endif %}
+    {% endfor %}
+
   body: |
     Left: <ul>
       <li>Type: {{ leftType }}</li>
@@ -44,7 +101,8 @@ feature:
   style:
     color: '#7f7f7f'
   style:leftType:
-    color: red
+    color: |
+      {{ const.restriction[leftRestriction].color }}
     offset: |
       {{ 0 - ((const.orientation[leftOrientation].width) * const.type[leftType].kerbPosition + (const.type[leftType].width / 2) + 4) }}
     lineCap: butt
@@ -53,7 +111,8 @@ feature:
     dashArray: |
       {{ const.type[leftType].dashArray }}
   style:leftOrientation:
-    color: red
+    color: |
+      {{ const.restriction[leftRestriction].color }}
     offset: |
       {{ 0 - ((const.type[leftType].width) * (1 - const.type[leftType].kerbPosition) + const.orientation[leftOrientation].width / 2 + 4) }}
     lineCap: butt
@@ -69,9 +128,11 @@ feature:
     pattern-lineOffset: -10
     pattern-polygon: false
     pattern-repeat: 15
-    pattern-path-color: red
+    pattern-path-color: |
+      {{ const.restriction[leftRestriction].color }}
   style:rightType:
-    color: blue
+    color: |
+      {{ const.restriction[rightRestriction].color }}
     offset: |
       {{ (const.orientation[rightOrientation].width) * const.type[rightType].kerbPosition + (const.type[rightType].width / 2) + 4 }}
     lineCap: butt
@@ -80,7 +141,8 @@ feature:
     dashArray: |
       {{ const.type[rightType].dashArray }}
   style:rightOrientation:
-    color: blue
+    color: |
+      {{ const.restriction[rightRestriction].color }}
     offset: |
       {{ (const.type[rightType].width) * (1 - const.type[rightType].kerbPosition) + const.orientation[rightOrientation].width / 2 + 4 }}
     lineCap: butt
@@ -96,7 +158,8 @@ feature:
     pattern-lineOffset: 10
     pattern-polygon: false
     pattern-repeat: 15
-    pattern-path-color: blue
+    pattern-path-color: |
+      {{ const.restriction[rightRestriction].color }}
 info: |
   Parking Type:
   <table>
@@ -112,6 +175,15 @@ info: |
   {% for k, def in const.orientation %}
     <tr>
       <td>{{ markerLine(evaluate({ 'parking:both': 'lane', 'parking:both:orientation': k })) }}</td>
+      <td>{{ k }}</td>
+    </tr>
+  {% endfor %}
+  </table>
+  Parking Conditions/Restrictions:
+  <table>
+  {% for k, def in const.restriction %}
+    <tr>
+      <td>{{ markerLine({ color: def.color, width: 5 }) }}</td>
       <td>{{ k }}</td>
     </tr>
   {% endfor %}
@@ -163,3 +235,30 @@ const:
     unknown:
       width: 8
       dashArray: '1,1'
+  restriction:
+    undefined:
+      color: '#0000ff'
+    free:
+      color: chartreuse
+    free_time_limit:
+      color: dodgerblue
+    paid:
+      color: hotpink
+    customers:
+      color: darkorange
+    non_public:
+      color: red
+    disabled:
+      color: turquoise
+    reason:
+      color: plum
+    charging_only:
+      color: limegreen
+    loading_only:
+      color: lightcyan
+    no_parking:
+      color: orange
+    no_standing:
+      color: salmon
+    no_stopping:
+      color: red
