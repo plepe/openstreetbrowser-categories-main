@@ -1,0 +1,96 @@
+query:
+  10: |
+    (way["parking:left"];way["parking:right"];way["parking:both"];)
+feature:
+  pre: |
+    {% set leftType = attribute(tags, 'parking:left')|default(attribute(tags, 'parking:both'))|default('unknown') %}
+    {% set rightType = attribute(tags, 'parking:right')|default(attribute(tags, 'parking:both'))|default('unknown') %}
+    {% set leftOrientation = attribute(tags, 'parking:left:orientation')|default(attribute(tags, 'parking:both:orientation'))|default('unknown') %}
+    {% set rightOrientation = attribute(tags, 'parking:right:orientation')|default(attribute(tags, 'parking:both:orientation'))|default('unknown') %}
+  body: |
+    lt ={{ leftType }}=<br>
+    lo ={{ leftOrientation }}=
+      {{ const.orientation[leftOrientation].dashArray }}
+
+    <br>
+    rt ={{ rightType }}=<br>
+    ro ={{ rightOrientation }}=<br>
+    default,leftType,rightType{% if leftType not in ['no', 'separate'] %},leftOrientation{% endif %}{% if rightType not in ['no', 'separate'] %},rightOrientation{% endif %}
+  markerSymbol: ''
+  description: |
+    Left: {{ leftType }}, Right: {{ rightType }}
+  styles: |
+    default
+    ,leftType
+    ,rightType
+    {% if leftType not in ['no', 'separate'] %}
+      ,leftOrientation
+    {% endif %}
+    {% if rightType not in ['no', 'separate'] %}
+      ,rightOrientation
+    {% endif %}
+  style:
+    color: '#7f7f7f'
+  style:leftType:
+    color: red
+    offset: |
+      {{ 0 - (const.orientation[leftOrientation].width + const.type[leftType].width / 2 + 6) }}
+    lineCap: butt
+    width: |
+      {{ const.type[leftType].width }}
+    dashArray: |
+      {{ const.type[leftType].dashArray }}
+  style:leftOrientation:
+    color: red
+    offset: |
+      {{ 0 - (const.orientation[leftOrientation].width / 2 + 4) }}
+    lineCap: butt
+    width: |
+      {{ const.orientation[leftOrientation].width }}
+    dashArray: |
+      {{ const.orientation[leftOrientation].dashArray }}
+  style:rightType:
+    color: blue
+    offset: |
+      {{ const.orientation[rightOrientation].width + const.type[rightType].width / 2 + 6 }}
+    lineCap: butt
+    width: |
+      {{ const.type[rightType].width }}
+    dashArray: |
+      {{ const.type[rightType].dashArray }}
+  style:rightOrientation:
+    color: blue
+    offset: |
+      {{ const.orientation[rightOrientation].width / 2 + 4 }}
+    lineCap: butt
+    width: |
+      {{ const.orientation[rightOrientation].width }}
+    dashArray: |
+      {{ const.orientation[rightOrientation].dashArray }}
+const:
+  type:
+    'no':
+      width: 6
+      dashArray: '6,10'
+    unknown:
+      width: 3
+      dashArray: '1,1'
+    lane:
+      width: 2
+      dashArray: ''
+    separate:
+      width: 0
+      dashArray: ''
+  orientation:
+    unknown:
+      width: 6
+      dashArray: '10,3'
+    parallel:
+      width: 3
+      dashArray: '10,3'
+    diagonal:
+      width: 6
+      dashArray: '5,5'
+    perpendicular:
+      width: 10
+      dashArray: '3,3'

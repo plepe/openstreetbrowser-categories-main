@@ -247,6 +247,9 @@
                         },
                         {
                             "id": "car_routes"
+                        },
+                        {
+                            "id": "parking_lanes"
                         }
                     ]
                 }
