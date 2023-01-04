@@ -34,7 +34,7 @@ feature:
   style:leftType:
     color: red
     offset: |
-      {{ 0 - (const.orientation[leftOrientation].width + const.type[leftType].width / 2 + 6) }}
+      {{ 0 - ((const.orientation[leftOrientation].width) * const.type[leftType].kerbPosition + (const.type[leftType].width / 2) + 4) }}
     lineCap: butt
     width: |
       {{ const.type[leftType].width }}
@@ -43,7 +43,7 @@ feature:
   style:leftOrientation:
     color: red
     offset: |
-      {{ 0 - (const.orientation[leftOrientation].width / 2 + 4) }}
+      {{ 0 - ((const.type[leftType].width) * (1 - const.type[leftType].kerbPosition) + const.orientation[leftOrientation].width / 2 + 4) }}
     lineCap: butt
     width: |
       {{ const.orientation[leftOrientation].width }}
@@ -52,7 +52,7 @@ feature:
   style:rightType:
     color: blue
     offset: |
-      {{ const.orientation[rightOrientation].width + const.type[rightType].width / 2 + 6 }}
+      {{ (const.orientation[rightOrientation].width) * const.type[rightType].kerbPosition + (const.type[rightType].width / 2) + 4 }}
     lineCap: butt
     width: |
       {{ const.type[rightType].width }}
@@ -61,7 +61,7 @@ feature:
   style:rightOrientation:
     color: blue
     offset: |
-      {{ const.orientation[rightOrientation].width / 2 + 4 }}
+      {{ (const.type[rightType].width) * (1 - const.type[rightType].kerbPosition) + const.orientation[rightOrientation].width / 2 + 4 }}
     lineCap: butt
     width: |
       {{ const.orientation[rightOrientation].width }}
@@ -72,25 +72,45 @@ const:
     'no':
       width: 6
       dashArray: '6,10'
+      kerbPosition: 0
     unknown:
       width: 3
       dashArray: '1,1'
+      kerbPosition: 0
     lane:
       width: 2
       dashArray: ''
+      kerbPosition: 1
+    street_side:
+      width: 2
+      dashArray: '10,5'
+      kerbPosition: 1
+    half_on_kerb:
+      width: 2
+      dashArray: ''
+      kerbPosition: 0.5
+    on_kerb:
+      width: 2
+      dashArray: ''
+      kerbPosition: 0
+    shoulder:
+      width: 3
+      dashArray: '10,3'
+      kerbPosition: 0
     separate:
       width: 0
       dashArray: ''
+      kerbPosition: 0
   orientation:
     unknown:
-      width: 6
+      width: 8
       dashArray: '10,3'
     parallel:
-      width: 3
+      width: 5
       dashArray: '10,3'
     diagonal:
-      width: 6
+      width: 8
       dashArray: '5,5'
     perpendicular:
-      width: 10
+      width: 12
       dashArray: '3,3'
