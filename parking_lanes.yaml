@@ -8,17 +8,22 @@ feature:
     {% set leftOrientation = attribute(tags, 'parking:left:orientation')|default(attribute(tags, 'parking:both:orientation'))|default('unknown') %}
     {% set rightOrientation = attribute(tags, 'parking:right:orientation')|default(attribute(tags, 'parking:both:orientation'))|default('unknown') %}
   body: |
-    lt ={{ leftType }}=<br>
-    lo ={{ leftOrientation }}=
-      {{ const.orientation[leftOrientation].dashArray }}
-
-    <br>
-    rt ={{ rightType }}=<br>
-    ro ={{ rightOrientation }}=<br>
-    default,leftType,rightType{% if leftType not in ['no', 'separate'] %},leftOrientation{% endif %}{% if rightType not in ['no', 'separate'] %},rightOrientation{% endif %}
+    Left: <ul>
+      <li>Type: {{ leftType }}</li>
+      {% if leftType not in ['no', 'separate'] %}
+      <li>Orientation: {{ leftOrientation }}</li>
+      {% endif %}
+    </ul>
+    Right: <ul>
+      <li>Type: {{ rightType }}</li>
+      {% if rightType not in ['no', 'separate'] %}
+      <li>Orientation: {{ rightOrientation }}</li>
+      {% endif %}
+    </ul>
   markerSymbol: ''
-  description: |
-    Left: {{ leftType }}, Right: {{ rightType }}
+  details: |
+    Left: {{ leftType }} / {{ leftOrientation }}<br>
+    Right: {{ rightType }} / {{ rightOrientation }}
   styles: |
     default
     ,leftType
