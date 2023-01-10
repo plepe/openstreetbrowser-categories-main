@@ -15,7 +15,6 @@ feature:
 
     {% set constIndex = (key ~ "=" ~ value) %}
     {% set item = const[constIndex] %}
-
   title: |
     {{ item['sign'] }} {{ localizedTag(tags, 'name') | default(localizedTag(tags, 'key')) | default(localizedTag(tags, 'ref')) }}
   description: |
@@ -40,16 +39,17 @@ feature:
       </dd>
 
     </dl>
-
   markerSign: '⚠️'
-
+  markerSymbol: |
+      {{ markerPointer({ fillColor: '#FFFFFF' }) }}
+  listMarkerSymbol: |
+    {{ markerCircle({ fillColor: '#FFFFFF' }) }}
   priority: |-
     {% if const[constIndex] is defined %}
       {{ const[constIndex]['priority'] }}
     {% else %}
       10
     {% endif %}
-
 const:
   waterway=dam:
     sign: '🦫'
