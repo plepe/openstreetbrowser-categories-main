@@ -1,0 +1,75 @@
+type: overpass
+name:
+  en: Paddling Hazards
+query:
+  '13': |-
+    (
+      nwr[waterway~"^(dam|weir|waterfall|rapids|lock|lock_gate|sluice_gate)$"];
+    )
+feature:
+  pre: |-
+    {% if tags.waterway %}
+      {% set key = 'waterway' %}
+      {% set value = tags.waterway %}
+    {% endif %}
+
+    {% set constIndex = (key ~ "=" ~ value) %}
+    {% set item = const[constIndex] %}
+
+  title: |
+    {{ item['sign'] }} {{ localizedTag(tags, 'name') | default(localizedTag(tags, 'key')) | default(localizedTag(tags, 'ref')) }}
+  description: |
+    {{ tagTrans(key, value) }}
+  body: |-
+    <dl>
+      <dt>{{ keyTrans('Description') }}</dt>
+      <dd>{{ localizedTag(tags, 'description') }}</dd>
+      
+      {% if attribute(tags, 'operator') %}
+        <dt>{{ keyTrans('Operator') }}</dt>
+        <dd>{{ attribute(tags, 'operator') ? tagTrans('operator', attribute(tags, 'operator')) : '' }}</dd>
+      {% endif %}
+
+      <dt>{{ trans('Photos') }}</dt>
+      <dd>
+        <ul>
+          {% if attribute(tags, 'mapillary') %}
+            <li><a href="https://www.mapillary.com/app/?focus=photo&pKey={{ attribute(tags, 'mapillary') }}" rel="noreferrer" target="_blank">Mapillary</a></li>
+          {% endif %}
+        </ul>
+      </dd>
+
+    </dl>
+
+  markerSign: '⚠️'
+
+  priority: |-
+    {% if const[constIndex] is defined %}
+      {{ const[constIndex]['priority'] }}
+    {% else %}
+      10
+    {% endif %}
+
+const:
+  waterway=dam:
+    sign: '🦫'
+    priority: 0
+  waterway=weir:
+    sign: '🦫'
+    priority: 0
+  waterway=waterfall:
+    sign: '🌊'
+    priority: 0
+  waterway=rapids:
+    sign: '🌊'
+    priority: 0
+  waterway=lock:
+    sign: '🚪'
+    priority: 1
+  waterway=lock_gate:
+    sign: '🚪'
+    priority: 1
+  waterway=sluice_gate:
+    sign: '🦫'
+    priority: 0
+
