@@ -100,5 +100,7 @@
     "deprecated": "Ez a címke (%s) elavult. A további részleteket <a target='_blank' href=\"%s\">lásd itt</a>.",
     "category:culture-media": "Kultúra – média/Wikidata",
     "category:fixme": "Javíts ki! / Fix me",
-    "category:osm-qa": "OpenStreetMap minőségellenőrzés"
+    "category:osm-qa": "OpenStreetMap minőségellenőrzés",
+    "category:footways": "Gyalogutak",
+    "category:kerbs": "Járdaszegélyek"
 }
