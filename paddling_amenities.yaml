@@ -1,6 +1,4 @@
 type: overpass
-name:
-  en: Paddling Amenities
 query:
   '14': |-
     (

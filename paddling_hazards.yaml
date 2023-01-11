@@ -1,6 +1,4 @@
 type: overpass
-name:
-  en: Paddling Hazards
 query:
   '12': |-
     (
