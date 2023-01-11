@@ -1,0 +1,102 @@
+type: overpass
+name:
+  en: Paddling Routes
+query:
+  '2': relation[type=route][route~"^(|.*;)canoe(|;.*)$"][network~'^(|.*;)(ipn)(|;.*)$']
+  '4': relation[type=route][route~"^(|.*;)canoe(|;.*)$"][network~'^(|.*;)(ipn|npn)(|;.*)$']
+  '6': relation[type=route][route~"^(|.*;)canoe(|;.*)$"][network~'^(|.*;)(ipn|npn|rpn)(|;.*)$']
+  '8': relation[type=route][route~"^(|.*;)canoe(|;.*)$"][network~'^(|.*;)(ipn|npn|rpn|lpn)(|;.*)$']
+  '10': (relation[type=route][route~"^(|.*;)canoe(|;.*)$"]
+members: true
+feature:
+  pre: |-
+    {% set network = tags.network %}
+    {% for n in tags.network|split(';') %}
+    {% if n|matches('pn$') %}{% set network = n %}{% endif %}
+    {% endfor %}
+  priority: '{{ const[network].priority|default(4) }}'
+  description: '{% if network %}{{ tagTrans(''network'', network) }}{% endif %}'
+  listMarkerSymbol: '{{ markerLine({ ''width'': 4, ''color'': const[network|default('''')].color|default(const[''''].color) })|raw }}'
+  title: '{% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% endif %}'
+  styles: ''
+  markerSymbol: ''
+memberFeature:
+  pre: |-
+    {% set priority = 4 %}
+    {% set network = '' %}
+    {% set refs = [] %}
+
+    {% for master in masters %}
+      {% set masterNetwork = '' %}
+      {% for n in master.tags.network|split(';') %}
+        {% if n|matches('pn$') %}{% set masterNetwork = n %}{% endif %}
+      {% endfor %}
+      {% set _p = const[masterNetwork].priority|default(4) %}
+      {% if _p < priority %}
+        {% set priority = _p %}
+        {% set network = masterNetwork %}
+      {% endif %}
+      {% if master.tags.ref %}
+        {% set refs = refs|merge([ master.tags.ref ]) %}
+      {% endif %}
+    {% endfor %}
+  body: |-
+    <h4>Routes</h4>
+    <ul class='overpass-layer-list'>
+    {% for master in masters %}
+      {% set masterNetwork = '' %}
+      {% for n in master.tags.network|split(';') %}
+        {% if n|matches('pn$') %}{% set masterNetwork = n %}{% endif %}
+      {% endfor %}
+      <li data-object="{{ master.id }}"><a>
+        <div class='marker'>
+          <div class='symbol'>{{ markerLine({ width: 4, color: const[masterNetwork].color|default(const[''].color) })|raw }}</div>
+        </div>
+        <div class='content'>
+          <div class='description'>{{ tagTrans('network', masterNetwork) }}</div>
+          <div class='title'>{% if master.tags.ref and master.tags.name %}{{ master.tags.ref }} - {{ master.tags.name|default(master.tags.ref) }}{% elseif master.tags.ref %}{{ master.tags.ref }}{% elseif master.tags.name %}{{ master.tags.name }}{% endif %}</div>
+        </div>
+      </a></li>
+    {% endfor %}
+    </ul>
+  listExclude: '1'
+  style:
+    color: '{{ const[network].color }}'
+    width: 4
+    opacity: 1
+    text: '{{ refs|join('' · '') }}             '
+    textRepeat: '1'
+    textOffset: '12'
+    textFontWeight: bold
+const:
+  ipn:
+    color: '#ff0000'
+    priority: 0
+    zoom: 10
+  npn:
+    color: '#ff00ba'
+    priority: 1
+    zoom: 11
+  rpn:
+    color: '#ba00ff'
+    priority: 2
+    zoom: 12
+  lpn:
+    color: '#0000ff'
+    priority: 3
+    zoom: 14
+  '':
+    color: '#007fff'
+    priority: 4
+    zoom: 14
+info: |-
+  <table>
+  {% for value, data in const %}
+  {% if data.zoom <= map.zoom %}
+    <tr>
+      <td>{{ markerLine({ 'width': 4, color: data.color })|raw }}</td>
+      <td>{% if value %}{{ tagTrans('network', value) }}{% else %}{{ trans('unknown') }}{% endif %}</td>
+    </tr>
+  {% endif %}
+  {% endfor %}
+  </table>

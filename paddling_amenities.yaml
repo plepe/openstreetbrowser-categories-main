@@ -1,0 +1,106 @@
+type: overpass
+name:
+  en: Paddling Amenities
+query:
+  '14': |-
+    (
+      node["canoe"="put_in"];
+      node["leisure"="slipway"];
+      way["canoe"="portage"];
+      nwr[shop~"^(boat)$"]["boat:type"~"^(.*;|)canoe|kayak|standup_paddleboard|dinghy|pedalboat(|;.*)$"];
+      nwr[rental~"^(boat)$"]["boat:type"~"^(.*;|)canoe|kayak|standup_paddleboard|dinghy|pedalboat(|;.*)$"];
+      nwr["canoe_rental"="yes"];
+      nwr["kayak_rental"="yes"];
+      nwr["standup_paddleboard_rental"="yes"];
+      nwr["dinghy_rental"="yes"];
+      nwr["pedalboat_rental"="yes"];
+    )
+feature:
+  pre: |-
+    {% if tags.canoe == 'portage' and ( not attribute(tags, 'surface') or attribute(tags, 'surface') == 'water' ) %}
+      {% set key = 'waterway' %}
+      {% set value = 'portage' %}
+    {% elseif tags.canoe %}
+      {% set key = 'canoe' %}
+      {% set value = tags.canoe %}
+    {% elseif tags.leisure %}
+      {% set key = 'leisure' %}
+      {% set value = tags.leisure %}
+    {% elseif tags.shop %}
+      {% set key = 'shop' %}
+      {% set value = 'shop' %}
+    {% elseif tags.rental or tags.canoe_rental or tags.kayak_rental or tags.standup_paddleboard_rental or tags.dingy_rental or tags.pedalboat_rental %}
+      {% set key = 'shop' %}
+      {% set value = 'rental' %}
+    {% endif %}
+
+    {% set constIndex = (key ~ "=" ~ value) %}
+    {% set item = const[constIndex] %}
+  title: |
+    {{ localizedTag(tags, 'name') }}
+    {% if attribute(tags, 'ref') %}
+      ( {{ localizedTag(tags, 'ref') }} )
+    {% endif %}
+  description: |
+    {{ tagTrans(key, value) }}
+  body: |-
+    {% if constIndex in ['canoe=put_in', 'leisure=slipway','canoe=portage'] %}
+      <dl>
+        <dt>{{ keyTrans('Description') }}</dt>
+        <dd>{{ localizedTag(tags, 'description') }}</dd>
+
+        <dt>{{ keyTrans('Surface') }}</dt>
+        <dd>{{ attribute(tags, 'surface') ? tagTrans('surface', attribute(tags, 'surface')) : '' }}</dd>
+
+        <dt>{{ keyTrans('Operator') }}</dt>
+        <dd>{{ attribute(tags, 'operator') ? tagTrans('operator', attribute(tags, 'operator')) : '' }}</dd>
+
+        <dt>{{ keyTrans('Access') }}</dt>
+        <dd>{{ attribute(tags, 'access') ? tagTrans('access', attribute(tags, 'access')) : '' }}</dd>
+
+        <dt>{{ keyTrans('Fee') }}</dt>
+        <dd>{{ attribute(tags, 'fee') ? tagTrans('fee', attribute(tags, 'fee')) : '' }}</dd>
+
+        <dt>{{ keyTrans('Wheelchair') }}</dt>
+        <dd>{{ attribute(tags, 'wheelchair') ? tagTrans('wheelchair', attribute(tags, 'wheelchair')) : '' }}</dd>
+
+        <dt>{{ trans('Photos') }}</dt>
+        <dd>
+          <ul>
+            {% if attribute(tags, 'mapillary') %}
+              <li><a href="https://www.mapillary.com/app/?focus=photo&pKey={{ attribute(tags, 'mapillary') }}" rel="noreferrer" target="_blank">Mapillary</a></li>
+            {% endif %}
+          </ul>
+        </dd>
+      </dl>
+    {% endif %}   
+  markerSign: '{{ item[''sign''] | raw }}'
+  markerSymbol: |
+    {% if item['sign'] %}{{ markerPointer({ fillColor: '#FFFFFF' }) }}{% endif %}
+  listMarkerSymbol: |
+    {% if item['sign'] %}{{ markerCircle({ fillColor: '#FFFFFF' }) }}{% endif %}
+  priority: |-
+    {% if item is defined %}
+      {{ item['priority'] }}
+    {% else %}
+      10
+    {% endif %}
+const:
+  canoe=portage:
+    sign: <i class="fas fa-walking"></i>
+    priority: 2
+  canoe=put_in:
+    sign: <i class="fas fa-expand-alt"></i>
+    priority: 0
+  leisure=slipway:
+    sign: <i class="fas fa-ship"></i>
+    priority: 1
+  shop=shop:
+    sign: <i class="fas fa-store-alt"></i>
+    priority: 3
+  shop=rental:
+    sign: <i class="fas fa-store"></i>
+    priority: 3
+  waterway=portage:
+    sign:
+    priority: 2
