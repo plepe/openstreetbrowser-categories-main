@@ -16,7 +16,7 @@ feature:
     {% set constIndex = (key ~ "=" ~ value) %}
     {% set item = const[constIndex] %}
   title: |
-    {{ item['sign'] }} {{ localizedTag(tags, 'name') | default(localizedTag(tags, 'key')) | default(localizedTag(tags, 'ref')) }}
+    {{ item['sign'] | raw }} {{ localizedTag(tags, 'name') | default(localizedTag(tags, 'key')) | default(localizedTag(tags, 'ref')) }}
   description: |
     {{ tagTrans(key, value) }}
   body: |-
@@ -39,11 +39,11 @@ feature:
       </dd>
 
     </dl>
-  markerSign: '⚠️'
+  markerSign: <i class="fas fa-exclamation-triangle"></i>
   markerSymbol: |
-      {{ markerPointer({ fillColor: '#FFFFFF' }) }}
+      {{ markerPointer({ fillColor: '#ff6700' }) }}
   listMarkerSymbol: |
-    {{ markerCircle({ fillColor: '#FFFFFF' }) }}
+    {{ markerCircle({ fillColor: '#ff6700' }) }}
   priority: |-
     {% if const[constIndex] is defined %}
       {{ const[constIndex]['priority'] }}
@@ -52,24 +52,24 @@ feature:
     {% endif %}
 const:
   waterway=dam:
-    sign: '🦫'
+    sign: <i class="fas fa-sort-amount-down-alt"></i>
     priority: 0
   waterway=weir:
-    sign: '🦫'
+    sign: <i class="fas fa-sort-amount-up-alt"></i>
     priority: 0
   waterway=waterfall:
-    sign: '🌊'
+    sign: <i class="far fa-chart-bar"></i>
     priority: 0
   waterway=rapids:
-    sign: '🌊'
+    sign: <i class="fas fa-water"></i>
     priority: 0
   waterway=lock:
-    sign: '🚪'
+    sign: <i class="fas fa-lock"></i>
     priority: 1
   waterway=lock_gate:
-    sign: '🚪'
+    sign: <i class="fas fa-torii-gate"></i>
     priority: 1
   waterway=sluice_gate:
-    sign: '🦫'
+    sign: <i class="fas fa-grip-lines"></i>
     priority: 0
 
