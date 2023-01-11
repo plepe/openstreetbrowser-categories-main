@@ -2,7 +2,7 @@ type: overpass
 name:
   en: Paddling Hazards
 query:
-  '13': |-
+  '12': |-
     (
       nwr[waterway~"^(dam|weir|waterfall|rapids|lock|lock_gate|sluice_gate)$"];
     )

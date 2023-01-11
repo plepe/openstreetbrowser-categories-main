@@ -2,11 +2,11 @@ type: overpass
 name:
   en: Paddling Routes
 query:
-  '4': relation[type=route][route~"^(|.*;)canoe(|;.*)$"][network~'^(|.*;)(ipn)(|;.*)$']
-  '6': relation[type=route][route~"^(|.*;)canoe(|;.*)$"][network~'^(|.*;)(ipn|npn)(|;.*)$']
-  '8': relation[type=route][route~"^(|.*;)canoe(|;.*)$"][network~'^(|.*;)(ipn|npn|rpn)(|;.*)$']
-  '10': relation[type=route][route~"^(|.*;)canoe(|;.*)$"][network~'^(|.*;)(ipn|npn|rpn|lpn)(|;.*)$']
-  '13': (relation[type=route][route~"^(|.*;)canoe(|;.*)$"]
+  '2': relation[type=route][route~"^(|.*;)canoe(|;.*)$"][network~'^(|.*;)(ipn)(|;.*)$']
+  '4': relation[type=route][route~"^(|.*;)canoe(|;.*)$"][network~'^(|.*;)(ipn|npn)(|;.*)$']
+  '6': relation[type=route][route~"^(|.*;)canoe(|;.*)$"][network~'^(|.*;)(ipn|npn|rpn)(|;.*)$']
+  '8': relation[type=route][route~"^(|.*;)canoe(|;.*)$"][network~'^(|.*;)(ipn|npn|rpn|lpn)(|;.*)$']
+  '10': (relation[type=route][route~"^(|.*;)canoe(|;.*)$"]
 members: true
 feature:
   pre: |-
