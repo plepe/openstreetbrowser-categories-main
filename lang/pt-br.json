@@ -79,7 +79,7 @@
     "category:tourism_services": "Serviços turísticos",
     "category:transport": "Mobilidade",
     "category:transport_alternative": "Modos de transporte alternativo",
-    "category:transport_car": "Tráfego individual",
+    "category:transport_car": "Transporte individual",
     "category:transport_cycle": "Ciclismo",
     "category:transport_pt": "Transporte público",
     "category:transport_walk": "Pedestre",
@@ -101,6 +101,10 @@
     "category:culture-media": "Cultura - Imagem e Wikidata",
     "category:fixme": "Corrija-me",
     "category:osm-qa": "Controle de Qualidade OSM",
-    "category:footways": "Calçadas",
-    "category:kerbs": "Meios-fios"
+    "category:footways": "Vias pedonais",
+    "category:kerbs": "Meios-fios",
+    "category:paddling": "Navegação a remo",
+    "category:paddling_amenities": "Equipamentos",
+    "category:paddling_hazards": "Riscos",
+    "category:paddling_routes": "Rotas de navegação a remo"
 }
