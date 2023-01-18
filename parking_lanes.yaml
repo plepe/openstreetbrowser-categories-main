@@ -1,12 +1,22 @@
 query:
   10: |
-    (way["parking:left"];way["parking:right"];way["parking:both"];)
+    (
+      way["parking:left"];way["parking:right"];way["parking:both"];
+      way["parking:lane:left"];way["parking:lane:right"];way["parking:lane:both"];
+    )
 feature:
   pre: |
-    {% set leftType = attribute(tags, 'parking:left')|default(attribute(tags, 'parking:both'))|default('unknown') %}
-    {% set rightType = attribute(tags, 'parking:right')|default(attribute(tags, 'parking:both'))|default('unknown') %}
-    {% set leftOrientation = attribute(tags, 'parking:left:orientation')|default(attribute(tags, 'parking:both:orientation'))|default('unknown') %}
-    {% set rightOrientation = attribute(tags, 'parking:right:orientation')|default(attribute(tags, 'parking:both:orientation'))|default('unknown') %}
+    {% set deprecated = attribute(tags, 'parking:lane:left') or attribute(tags, 'parking:lane:right') or attribute(tags, 'parking:lane:both') %}
+    {% set leftOrientation = attribute(tags, 'parking:left:orientation')|default(attribute(tags, 'parking:lane:left'))|default(attribute(tags, 'parking:both:orientation'))|default(attribute(tags, 'parking:lane:both'))|default('unknown') %}
+    {% set rightOrientation = attribute(tags, 'parking:right:orientation')|default(attribute(tags, 'parking:lane:right'))|default(attribute(tags, 'parking:both:orientation'))|default(attribute(tags, 'parking:lane:both'))|default('unknown') %}
+    {% set leftType = attribute(tags, 'parking:left')|default(attribute(tags, 'parking:lane:left:' ~ leftOrientation))|default(attribute(tags, 'parking:both'))|default(attribute(tags, 'parking:lane:both:' ~ leftOrientation))|default('unknown') %}
+    {% set rightType = attribute(tags, 'parking:right')|default(attribute(tags, 'parking:lane:right:' ~ rightOrientation))|default(attribute(tags, 'parking:both'))|default(attribute(tags, 'parking:lane:both:' ~ rightOrientation))|default('unknown') %}
+    {% if (attribute(tags, 'parking:lane:left:' ~ leftOrientation) or attribute(tags, 'parking:lane:both:' ~ leftOrientation)) and leftType == 'on_street' %}
+      {% set leftType = 'lane' %}
+    {% endif %}
+    {% if (attribute(tags, 'parking:lane:right:' ~ rightOrientation) or attribute(tags, 'parking:lane:both:' ~ rightOrientation)) and rightType == 'on_street' %}
+      {% set rightType = 'lane' %}
+    {% endif %}
 
     {% set leftCondition = 'undefined' %}
     {% if attribute(tags, 'parking:left:fee')|default(attribute(tags, 'parking:both:fee')) == 'no' %}
@@ -77,6 +87,7 @@ feature:
       <li>Orientation: {{ rightOrientation }}</li>
       {% endif %}
     </ul>
+    {% if deprecated %}<div class='warning'>{{ repoTrans('deprecated', 'parking:lane:left/right/both', 'https://wiki.openstreetmap.org/wiki/Key:parking:lane')|raw }}</div>{% endif %}
   markerSymbol: ''
   listMarkerSymbol: line
   details: |
@@ -86,20 +97,21 @@ feature:
     default
     {% if leftType == 'separate' %}
       ,leftSeparate
-    {% elseif leftType in ['no', 'unknown'] %}
+    {% elseif leftType in ['no', 'unknown'] and leftOrientation == 'unknown' %}
       ,leftType
     {% else %}
       ,leftType,leftOrientation
     {% endif %}
     {% if rightType == 'separate' %}
       ,rightSeparate
-    {% elseif rightType in ['no', 'unknown'] %}
+    {% elseif rightType in ['no', 'unknown'] and rightOrientation == 'unknown' %}
       ,rightType
     {% else %}
       ,rightType,rightOrientation
     {% endif %}
   style:
-    color: '#7f7f7f'
+    color: |
+      {{ deprecated ? '#ff0000' : '#7f7f7f' }}
   style:leftType:
     color: |
       {{ const.restriction[leftRestriction].color }}
@@ -161,11 +173,22 @@ feature:
     pattern-path-color: |
       {{ const.restriction[rightRestriction].color }}
 info: |
+  Tagging scheme:
+  <table>
+    <tr>
+      <td>{{ markerLine({ color: '#7f7f7f', width: 2 }) }}</td>
+      <td><a target='_blank' href="https://wiki.openstreetmap.org/wiki/Street_parking">Street parking</a></td>
+    </tr>
+    <tr>
+      <td>{{ markerLine({ color: '#ff0000', width: 2 }) }}</td>
+      <td><a target='_blank' href="https://wiki.openstreetmap.org/wiki/Key:parking:lane">Deprecated tagging</a></td>
+    </tr>
+  </table>
   Parking Type:
   <table>
   {% for k, def in const.type %}
     <tr>
-      <td>{{ markerLine(evaluate({ 'parking:both': k, 'parking:both:orientation': 'parallel' })) }}</td>
+      <td>{{ markerLine(evaluate({ 'parking:both': k, 'parking:both:orientation': (k in ['no', 'unknown'] ? '' : 'parallel') })) }}</td>
       <td>{{ k }}</td>
     </tr>
   {% endfor %}
@@ -174,7 +197,7 @@ info: |
   <table>
   {% for k, def in const.orientation %}
     <tr>
-      <td>{{ markerLine(evaluate({ 'parking:both': 'lane', 'parking:both:orientation': k })) }}</td>
+      <td>{{ markerLine(evaluate({ 'parking:both': k, 'parking:both:orientation': (k in ['no', 'unknown'] ? '' : 'parallel') })) }}</td>
       <td>{{ k }}</td>
     </tr>
   {% endfor %}
