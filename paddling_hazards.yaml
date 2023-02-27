@@ -16,7 +16,7 @@ feature:
       {% set value = '' %}
     {% elseif attribute(tags, 'seamark:bridge:clearance_height') %}
       {% set key = 'seamark:bridge:clearance_height' %}
-      {% set value = Math.trunc(attribute(tags, 'seamark:bridge:clearance_height')) %}
+      {% set value = attribute(tags, 'seamark:bridge:clearance_height') | round %}
       {% if value > 4 %}
         {% set value = 4 %}
       {% endif %}
