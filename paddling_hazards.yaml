@@ -3,12 +3,23 @@ query:
   '12': |-
     (
       nwr[waterway~"^(dam|weir|waterfall|rapids|lock|lock_gate|sluice_gate)$"];
+      nwr["seamark:restricted_area:restriction"~"no_entry|restricted_entry"];
+      node["seamark:bridge:clearance_height"];
     )
 feature:
   pre: |-
     {% if tags.waterway %}
       {% set key = 'waterway' %}
       {% set value = tags.waterway %}
+    {% elseif attribute(tags, 'seamark:restricted_area:restriction') %}
+      {% set key = 'seamark:restricted_area:restriction' %}
+      {% set value = '' %}
+    {% elseif attribute(tags, 'seamark:bridge:clearance_height') %}
+      {% set key = 'seamark:bridge:clearance_height' %}
+      {% set value = Math.trunc(attribute(tags, 'seamark:bridge:clearance_height')) %}
+      {% if value > 4 %}
+        {% set value = 4 %}
+      {% endif %}
     {% endif %}
 
     {% set constIndex = (key ~ "=" ~ value) %}
@@ -16,7 +27,13 @@ feature:
   title: |
     {{ item['sign'] | raw }} {{ localizedTag(tags, 'name') | default(localizedTag(tags, 'key')) | default(localizedTag(tags, 'ref')) }}
   description: |
-    {{ tagTrans(key, value) }}
+    {% if key == 'seamark:restricted_area:restriction' %}
+      {{ attribute(tags, 'seamark:restricted_area:restriction') }}
+    {% elseif key == 'seamark:bridge:clearance_height' %}
+      {{ attribute(tags, 'seamark:bridge:clearance_height') }} Meters
+    {% else %}
+      {{ tagTrans(key, value) }}
+    {% endif %}
   body: |-
     <dl>
       <dt>{{ keyTrans('Description') }}</dt>
@@ -70,4 +87,21 @@ const:
   waterway=sluice_gate:
     sign: <i class="fas fa-grip-lines"></i>
     priority: 0
-
+  seamark:restricted_area:restriction=:
+    sign: <i class='fa fa-times-rectangle-o'></i>
+    priority: 1
+  seamark:bridge:clearance_height=0:
+    sign: <i class='fa fa-thermometer-0'></i>
+    priority: 0
+  seamark:bridge:clearance_height=1:
+    sign: <i class='fa fa-thermometer-1'></i>
+    priority: 0
+  seamark:bridge:clearance_height=2:
+    sign: <i class='fa fa-thermometer-2'></i>
+    priority: 0
+  seamark:bridge:clearance_height=3:
+    sign: <i class='fa fa-thermometer-3'></i>
+    priority: 0
+  seamark:bridge:clearance_height=4:
+    sign: <i class='fa fa-thermometer-4'></i>
+    priority: 0
