@@ -43,35 +43,53 @@ feature:
     {{ tagTrans(key, value) }}
   body: |-
     {% if constIndex in ['canoe=put_in', 'leisure=slipway','canoe=portage'] %}
-      <dl>
-        <dt>{{ keyTrans('Description') }}</dt>
-        <dd>{{ localizedTag(tags, 'description') }}</dd>
+      <ul>
+        {% if attribute(tags, 'surface') %}
+        <li class='hasSymbol'>
+          <i class='fa fa-window-minimize'></i>
+          {{ keyTrans('Surface') }}:
+          <span class='value'>{{ attribute(tags, 'surface') ? tagTrans('surface', attribute(tags, 'surface')) : '' }}</span>
+        </li>
+        {% endif %}
 
-        <dt>{{ keyTrans('Surface') }}</dt>
-        <dd>{{ attribute(tags, 'surface') ? tagTrans('surface', attribute(tags, 'surface')) : '' }}</dd>
 
-        <dt>{{ keyTrans('Operator') }}</dt>
-        <dd>{{ attribute(tags, 'operator') ? tagTrans('operator', attribute(tags, 'operator')) : '' }}</dd>
+        {% if attribute(tags, 'operator') %}
+        <li class='hasSymbol'>
+          <i class='fa fa-drivers-license-o'></i>
+          {{ keyTrans('Operator') }}:
+          <span class='value'>{{ attribute(tags, 'operator') ? tagTrans('operator', attribute(tags, 'operator')) : '' }}</span>
+        </li>
+        {% endif %}
 
-        <dt>{{ keyTrans('Access') }}</dt>
-        <dd>{{ attribute(tags, 'access') ? tagTrans('access', attribute(tags, 'access')) : '' }}</dd>
+        {% if attribute(tags, 'access') %}
+        <li class='hasSymbol'>
+          <i class='fa fa-unlock'></i>
+          {{ keyTrans('Access') }}:
+          <span class='value'>{{ attribute(tags, 'access') ? tagTrans('access', attribute(tags, 'access')) : '' }}</span>
+        </li>
+        {% endif %}
 
-        <dt>{{ keyTrans('Fee') }}</dt>
-        <dd>{{ attribute(tags, 'fee') ? tagTrans('fee', attribute(tags, 'fee')) : '' }}</dd>
+        {% if attribute(tags, 'fee') %}
+        <li class='hasSymbol'>
+          <i class='fa fa-money'></i>
+          {{ keyTrans('Fee') }}:
+          <span class='value'>{{ attribute(tags, 'fee') ? tagTrans('fee', attribute(tags, 'fee')) : '' }}</span>
+        </li>
+        {% endif %}
 
-        <dt>{{ keyTrans('Wheelchair') }}</dt>
-        <dd>{{ attribute(tags, 'wheelchair') ? tagTrans('wheelchair', attribute(tags, 'wheelchair')) : '' }}</dd>
+        {% if attribute(tags, 'mapillary') %}
+        <li class='hasSymbol'>
+          <i class='fa fa-camera'></i>
+          {{ trans('Photos') }}:
+          <span class='value'>
+            <a href="https://www.mapillary.com/app/?focus=photo&pKey={{ attribute(tags, 'mapillary') }}" rel="noreferrer" target="_blank">Mapillary</a>
+          </span>
+        </li>
+        {% endif %}
 
-        <dt>{{ trans('Photos') }}</dt>
-        <dd>
-          <ul>
-            {% if attribute(tags, 'mapillary') %}
-              <li><a href="https://www.mapillary.com/app/?focus=photo&pKey={{ attribute(tags, 'mapillary') }}" rel="noreferrer" target="_blank">Mapillary</a></li>
-            {% endif %}
-          </ul>
-        </dd>
-      </dl>
-    {% endif %}   
+      </ul>
+    {% endif %}
+    <!-- Description and Wheelchair rendered from detailsBody.html. -->
   markerSign: '{{ item[''sign''] | raw }}'
   markerSymbol: |
     {% if item['sign'] %}{{ markerPointer({ fillColor: '#FFFFFF' }) }}{% endif %}
