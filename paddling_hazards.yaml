@@ -35,25 +35,43 @@ feature:
       {{ tagTrans(key, value) }}
     {% endif %}
   body: |-
-    <dl>
-      <dt>{{ keyTrans('Description') }}</dt>
-      <dd>{{ localizedTag(tags, 'description') }}</dd>
-      
+    <ul>
+
       {% if attribute(tags, 'operator') %}
-        <dt>{{ keyTrans('Operator') }}</dt>
-        <dd>{{ attribute(tags, 'operator') ? tagTrans('operator', attribute(tags, 'operator')) : '' }}</dd>
+      <li class='hasSymbol'>
+        <i class='fa fa-drivers-license-o'></i>
+        {{ keyTrans('Operator') }}:
+        <span class='value'>{{ attribute(tags, 'operator') ? tagTrans('operator', attribute(tags, 'operator')) : '' }}</span>
+      </li>
       {% endif %}
 
-      <dt>{{ trans('Photos') }}</dt>
-      <dd>
-        <ul>
-          {% if attribute(tags, 'mapillary') %}
-            <li><a href="https://www.mapillary.com/app/?focus=photo&pKey={{ attribute(tags, 'mapillary') }}" rel="noreferrer" target="_blank">Mapillary</a></li>
-          {% endif %}
-        </ul>
-      </dd>
+      {% if attribute(tags, 'height') %}
+      <li class='hasSymbol'>
+        <i class='fa-solid fa-ruler-vertical'></i>
+        {{ keyTrans('Height') }}:
+        <span class='value'>{{ attribute(tags, 'height') ? tagTrans('height', attribute(tags, 'height')) : '' }}</span>
+      </li>
+      {% endif %}
 
-    </dl>
+      {% if attribute(tags, 'width') %}
+      <li class='hasSymbol'>
+        <i class='fas fa-ruler-horizontal'></i>
+        {{ keyTrans('Width') }}:
+        <span class='value'>{{ attribute(tags, 'width') ? tagTrans('width', attribute(tags, 'width')) : '' }}</span>
+      </li>
+      {% endif %}
+
+      {% if attribute(tags, 'mapillary') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-camera'></i>
+        {{ trans('Photos') }}:
+        <span class='value'>
+          <a href="https://www.mapillary.com/app/?focus=photo&pKey={{ attribute(tags, 'mapillary') }}" rel="noreferrer" target="_blank">Mapillary</a>
+        </span>
+      </li>
+      {% endif %}
+
+    </ul>
   markerSign: <i class="fas fa-exclamation-triangle"></i>
   markerSymbol: |
       {{ markerPointer({ fillColor: '#ff6700' }) }}
