@@ -95,5 +95,16 @@
     "category:roads": "Drogi",
     "category:developable_areas": "Obszary do rozwoju",
     "category:developments": "Planowanie i budowanie",
-    "category:proposals": "Propozycje"
+    "category:proposals": "Propozycje",
+    "category:culture-media": "Kultura - Media/Wikidane",
+    "category:fixme": "Popraw mnie",
+    "category:footways": "Chodniki",
+    "category:heritage": "Ochrona dziedzictwa",
+    "category:kerbs": "Krawężniki",
+    "category:osm-qa": "Kontrola jakości OpenStreetMap",
+    "category:paddling": "Wiosłowanie",
+    "category:paddling_amenities": "Udogodnienia związane z wiosłowaniem",
+    "category:paddling_hazards": "Zagrożenia związane z wiosłowaniem",
+    "category:paddling_routes": "Trasy wioślarskie",
+    "deprecated": "Znacznik %s jest przestarzały. Więcej szczegółów znajdziesz <a target='_blank' href=\"%s\">tutaj</a>."
 }
