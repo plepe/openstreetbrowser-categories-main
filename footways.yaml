@@ -6,6 +6,7 @@ query:
     way[footway];
     way["area:highway"~"^(footway|pedestrian|steps|path|platform|sidewalk)$"];
     relation["area:highway"~"^(footway|pedestrian|steps|path|platform|sidewalk)$"];
+    relation[type=multipolygon]["highway"~"^(footway|pedestrian|steps|path|platform|sidewalk)$"];
     way[sidewalk~"^(yes|both|left|right|no|separate|none)$"];
     way["sidewalk:left"~"(yes|no|separate)$"];
     way["sidewalk:right"~"(yes|no|separate)$"];
@@ -204,7 +205,7 @@ feature:
     </ul>
   markerSymbol: ""
   listMarkerSymbol: |
-    {% if tags.area == 'yes' or attribute(tags, 'area:highway') %}
+    {% if tags.area == 'yes' or tags.type == 'multipolygon' or attribute(tags, 'area:highway') %}
       polygon
     {% elseif 'node' in sides %}
       {{ markerCircle({ width: 0, radius: 5, fillOpacity: 1, fill: true, color: const.categories[category].color }) }}
@@ -270,11 +271,11 @@ feature:
       {{ const.categories[category].color }}
   style:main:
     fill: |
-      {% if tags.area == 'yes' or attribute(tags, 'area:highway') %}true{% else %}false{% endif %}
+      {% if tags.area == 'yes' or tags.type == 'multipolygon' or attribute(tags, 'area:highway') %}true{% else %}false{% endif %}
     width: |
       {% if attribute(tags, 'area:highway') %}
       0
-      {% elseif tags.area == 'yes' %}
+      {% elseif tags.area == 'yes' or tags.type == 'multipolygon' %}
       1
       {% elseif cycleway and tags.segregated == 'yes' %}
       3
