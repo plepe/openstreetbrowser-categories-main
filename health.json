@@ -32,7 +32,6 @@
         "14": [
             "(",
             "node[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];",
-            "node[emergency=defibrillator];",
             "way[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];",
             "relation[amenity~\"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$\"];",
             "node[healthcare];",
@@ -43,10 +42,7 @@
     },
     "feature": {
         "pre": [
-            "{% if tags.emergency in [ 'defibrillator' ] %}",
-            "  {% set key = 'emergency' %}",
-            "  {% set value = tags.emergency %}",
-            "{% elseif tags.healthcare %}",
+            "{% if tags.healthcare %}",
             "  {% set key = 'healthcare' %}",
             "  {% set value = tags.healthcare|split(';')[0] %}",
             "{% else %}",
@@ -111,12 +107,6 @@
                 "healthcare=pharmacy"
             ],
             "sign": "<img data-src='maki:pharmacy'>"
-        },
-        {
-            "types": [
-                "emergency=defibrillator"
-            ],
-            "sign": "<img data-src='maki:defibrillator'>"
         },
         {
             "types": [

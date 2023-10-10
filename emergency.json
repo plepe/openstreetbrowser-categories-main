@@ -33,7 +33,7 @@
             "node[amenity~\"^(fire_station|hospital|police)$\"];",
             "way[amenity~\"^(fire_station|hospital|police)$\"];",
             "relation[amenity~\"^(fire_station|hospital|police)$\"];",
-            "node[emergency~\"^(phone)$\"];",
+            "node[emergency~\"^(phone|defibrillator)$\"];",
             "node[highway=emergency_access_point];",
             ")"
         ]
@@ -91,6 +91,11 @@
             "zoom": "13",
             "sign": "📞"
         },
+        "emergency=defibrillator": {
+            "zoom": "13",
+            "sign": "<img data-src='maki:defibrillator?fill=white'>",
+            "background": "#009262"
+        },
         "highway=emergency_access_point": {
             "zoom": "13",
             "sign": "<img data-src='maki:hospital?fill=white'>",
@@ -118,6 +123,10 @@
                 "emergency_phone": {
                     "name": "{{ tagTrans('emergency', 'phone') }}",
                     "query": "node[emergency=phone]"
+                },
+                "defibrillator": {
+                    "name": "{{ tagTrans('emergency', 'defibrillator') }}",
+                    "query": "node[emergency=defibrillator]"
                 },
                 "emergency_access_point": {
                     "name": "{{ tagTrans('highway', 'emergency_access_point') }}",
