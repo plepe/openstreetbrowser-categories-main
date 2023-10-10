@@ -23,17 +23,15 @@
     "query": {
         "11": [
             "(",
-            "node[amenity~\"^(fire_station|hospital)$\"];",
-            "way[amenity~\"^(fire_station|hospital)$\"];",
-            "relation[amenity~\"^(fire_station|hospital)$\"];",
+            "nwr[amenity~\"^(fire_station|hospital)$\"];",
+            "nwr[emergency~\"^(lifeguard)$\"];",
             ")"
         ],
         "13": [
             "(",
-            "node[amenity~\"^(fire_station|hospital|police)$\"];",
-            "way[amenity~\"^(fire_station|hospital|police)$\"];",
-            "relation[amenity~\"^(fire_station|hospital|police)$\"];",
-            "node[emergency~\"^(phone|defibrillator)$\"];",
+            "nwr[amenity~\"^(fire_station|hospital|police)$\"];",
+            "nwr[emergency~\"^(lifeguard)$\"];",
+            "node[emergency~\"^(phone|defibrillator|access_point)$\"];",
             "node[highway=emergency_access_point];",
             ")"
         ]
@@ -87,6 +85,10 @@
             "zoom": "13",
             "sign": "👮"
         },
+        "emergency=lifeguard": {
+            "zoom": "11",
+            "sign": "<i class='far fa-life-ring'></i>"
+        },
         "emergency=phone": {
             "zoom": "13",
             "sign": "📞"
@@ -120,6 +122,10 @@
                     "name": "{{ tagTrans('amenity', 'police') }}",
                     "query": "nwr[amenity=police]"
                 },
+                "lifeguard": {
+                    "name": "{{ tagTrans('emergency', 'lifeguard') }}",
+                    "query": "nwr[emergency=lifeguard]"
+                },
                 "emergency_phone": {
                     "name": "{{ tagTrans('emergency', 'phone') }}",
                     "query": "node[emergency=phone]"
@@ -130,7 +136,7 @@
                 },
                 "emergency_access_point": {
                     "name": "{{ tagTrans('highway', 'emergency_access_point') }}",
-                    "query": "node[highway=emergency_access_point]"
+                    "query": "(node[highway=emergency_access_point];node[emergency=access_point];)"
                 }
             }
         }
