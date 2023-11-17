@@ -1,6 +1,6 @@
 type: overpass
 query:
-  15: nwr[amenity~'^(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant)$'];
+  15: nwr[amenity~'^(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant|canteen)$'];
 feature:
   description: |
     {{ tagTrans('amenity', tags.amenity) }}
@@ -43,6 +43,7 @@ filter:
       - ice_cream
       - pub
       - restaurant
+      - canteen
     valueName: |
       {{ tagTrans('amenity', value) }}
     op: '='
