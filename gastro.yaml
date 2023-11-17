@@ -1,6 +1,6 @@
 type: overpass
 query:
-  16: (node[amenity~'^(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant)$'];way[amenity~'^(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant)$'];relation[amenity~'^(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant)$'];);
+  15: nwr[amenity~'^(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant)$'];
 feature:
   description: |
     {{ tagTrans('amenity', tags.amenity) }}
