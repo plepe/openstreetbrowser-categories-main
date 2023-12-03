@@ -2,7 +2,7 @@ type: overpass
 query:
   '14': |-
     (
-      node["canoe"~"^put_in|egress|put_in;egress$"];
+      node["canoe"~"^(put_in|egress|put_in;egress)$"];
       node["leisure"="slipway"];
       way["canoe"="portage"];
       nwr[shop~"^(boat)$"]["boat:type"~"^(.*;|)canoe|kayak|standup_paddleboard|dinghy|pedalboat(|;.*)$"];
