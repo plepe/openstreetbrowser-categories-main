@@ -2,7 +2,7 @@ type: overpass
 query:
   '14': |-
     (
-      node["canoe"="put_in"];
+      node["canoe"~"^put_in|egress|put_in;egress$"];
       node["leisure"="slipway"];
       way["canoe"="portage"];
       nwr[shop~"^(boat)$"]["boat:type"~"^(.*;|)canoe|kayak|standup_paddleboard|dinghy|pedalboat(|;.*)$"];
@@ -42,7 +42,7 @@ feature:
   description: |
     {{ tagTrans(key, value) }}
   body: |-
-    {% if constIndex in ['canoe=put_in', 'leisure=slipway','canoe=portage'] %}
+    {% if constIndex in ['canoe=put_in', 'canoe=egress', 'canoe=put_in;egress', 'leisure=slipway','canoe=portage'] %}
       <ul>
         {% if attribute(tags, 'surface') %}
         <li class='hasSymbol'>
@@ -103,10 +103,16 @@ feature:
     {% endif %}
 const:
   canoe=portage:
-    sign: <i class="fas fa-walking"></i>
+    sign:
     priority: 2
   canoe=put_in:
-    sign: <i class="fas fa-expand-alt"></i>
+    sign: <i class="fas fa-long-arrow-alt-down"></i>
+    priority: 0
+  canoe=egress:
+    sign: <i class="fas fa-long-arrow-alt-up"></i>
+    priority: 0
+  canoe=put_in;egress:
+    sign: <i class="fas fa-arrows-alt-v"></i>
     priority: 0
   leisure=slipway:
     sign: <i class="fas fa-ship"></i>
@@ -120,3 +126,4 @@ const:
   waterway=portage:
     sign:
     priority: 2
+  
