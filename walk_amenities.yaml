@@ -1,0 +1,80 @@
+query:
+  '13': |-
+    (
+    node[highway~"^(elevator)$"];
+    node[information];
+    node[tourism~"^(viewpoint)$"];
+    node[man_made~"^(cairn)$"];
+    nwr[amenity~"^(shelter)$"];
+    )
+  '16': |-
+    (
+    node[highway~"^(crossing|elevator)$"];
+    node[information];
+    node[tourism~"^(viewpoint)$"];
+    node[man_made~"^(cairn)$"];
+    nwr[amenity~"^(bench|shelter)$"];
+    node[leisure~"^(picnic_table)$"];
+    )
+feature:
+  pre: |-
+    {% if tags.information %}
+      {% set key = 'information' %}
+      {% set value = tags.information %}
+    {% elseif tags.amenity in [ 'bench', 'shelter' ] %}
+      {% set key = 'amenity' %}
+      {% set value = tags.amenity %}
+    {% elseif tags.leisure in [ 'picnic_table' ] %}
+      {% set key = 'leisure' %}
+      {% set value = tags.picnic_table%}
+    {% elseif tags.man_made in [ 'cairn' ] %}
+      {% set key = 'man_made' %}
+      {% set value = tags.man_made %}
+    {% elseif tags.tourism in [ 'viewpoint'] %}
+      {% set key = 'tourism' %}
+      {% set value = tags.tourism %}
+    {% else %}
+      {% set key = 'highway' %}
+      {% set value = tags.highway %}
+    {% endif %}
+
+    {% set type_data = const[value] %}
+  title: |-
+    {{ localizedTag(tags, "name") |default(localizedTag(tags, "operator")) | default(localizedTag(tags, "ref")) | default(tagTrans(key, value)) }}
+  description: |-
+    {{ tagTrans(key, value) }}
+  markerSign: |-
+    {{ type_data.sign|raw }}
+  priority: |-
+    {{ type_data.priority }}
+const:
+  crossing:
+    priority: 10
+    sign: <i class='fa fa-bars' aria-hidden='true'></i>
+  elevator:
+    priority: 2
+    sign: <i class='fa fa-caret-square-o-up' aria-hidden='true'></i>
+  guidepost:
+    priority: 2
+    sign: <i class='fa fa-map-signs' aria-hidden='true'></i>
+  map:
+    priority: 2
+    sign: <i class='fa fa-map' aria-hidden='true'></i>
+  board:
+    priority: 2
+    sign: ''
+  office:
+    priority: 1
+    sign: <i class='fa fa-info-circle' aria-hidden='true'></i>
+  bench:
+    priority: 3
+    sign: <img data-src='temaki:bench'>
+  picnic_table:
+    priority: 3
+    sign: <img data-src='maki:picnic-site'>
+  cairn:
+    priority: 2
+    sign: ''
+  shelter:
+    priority: 1
+    sign: ⌃
