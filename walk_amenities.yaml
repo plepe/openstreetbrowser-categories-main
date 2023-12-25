@@ -39,8 +39,6 @@ feature:
     {% endif %}
 
     {% set type_data = const[value] %}
-  title: |-
-    {{ localizedTag(tags, "name") |default(localizedTag(tags, "operator")) | default(localizedTag(tags, "ref")) | default(tagTrans(key, value)) }}
   description: |-
     {{ tagTrans(key, value) }}
   markerSign: |-
