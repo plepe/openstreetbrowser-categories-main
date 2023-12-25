@@ -26,7 +26,7 @@ feature:
       {% set value = tags.amenity %}
     {% elseif tags.leisure in [ 'picnic_table' ] %}
       {% set key = 'leisure' %}
-      {% set value = tags.picnic_table%}
+      {% set value = tags.leisure %}
     {% elseif tags.man_made in [ 'cairn' ] %}
       {% set key = 'man_made' %}
       {% set value = tags.man_made %}
