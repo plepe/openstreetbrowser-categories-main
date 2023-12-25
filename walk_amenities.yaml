@@ -60,7 +60,7 @@ const:
     sign: <i class='fa fa-map' aria-hidden='true'></i>
   board:
     priority: 2
-    sign: ''
+    sign: <img data-src='temaki:info_board'>
   office:
     priority: 1
     sign: <i class='fa fa-info-circle' aria-hidden='true'></i>
@@ -72,7 +72,7 @@ const:
     sign: <img data-src='maki:picnic-site'>
   cairn:
     priority: 2
-    sign: ''
+    sign: <img data-src='temaki:cairn'>
   shelter:
     priority: 1
-    sign: ⌃
+    sign: <img data-src='maki:shelter'>
