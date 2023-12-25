@@ -38,7 +38,7 @@ feature:
       {% set value = tags.highway %}
     {% endif %}
 
-    {% set type_data = const[value] %}
+    {% set type_data = const[key ~ '=' ~ value] %}
   description: |-
     {{ tagTrans(key, value) }}
   markerSign: |-
@@ -46,33 +46,33 @@ feature:
   priority: |-
     {{ type_data.priority }}
 const:
-  crossing:
+  highway=crossing:
     priority: 10
     sign: <i class='fa fa-bars' aria-hidden='true'></i>
-  elevator:
+  highway=elevator:
     priority: 2
     sign: <i class='fa fa-caret-square-o-up' aria-hidden='true'></i>
-  guidepost:
+  information=guidepost:
     priority: 2
     sign: <i class='fa fa-map-signs' aria-hidden='true'></i>
-  map:
+  information=map:
     priority: 2
     sign: <i class='fa fa-map' aria-hidden='true'></i>
-  board:
+  information=board:
     priority: 2
     sign: <img data-src='temaki:info_board'>
-  office:
+  information=office:
     priority: 1
     sign: <i class='fa fa-info-circle' aria-hidden='true'></i>
-  bench:
+  amenity=bench:
     priority: 3
     sign: <img data-src='temaki:bench'>
-  picnic_table:
+  leisure=picnic_table:
     priority: 3
     sign: <img data-src='maki:picnic-site'>
-  cairn:
+  man_made=cairn:
     priority: 2
     sign: <img data-src='temaki:cairn'>
-  shelter:
+  amenity=shelter:
     priority: 1
     sign: <img data-src='maki:shelter'>
