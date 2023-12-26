@@ -50,6 +50,22 @@ feature:
   markerSymbol: null
   listMarkerSymbol: |-
     {{ markerPolygon({"fillColor": color, "fillOpacity": 0.8, "width": 1, "color": "#000000" })|raw }}
+  markerSign: |-
+    {% if map.zoom >= 18 %}
+    <span style="color: white; font-size: 80%; line-height: 80%;">
+    {%- if attribute(tags, 'building:levels') is defined -%}
+    {{ attribute(tags, 'building:levels') }}
+    <br>
+    {% endif %}
+
+    {% if tags.height is defined %}
+      {% if tags.height|matches('(m|ft)$') %}({{ tags.height -}})
+      {% else %}({{ tags.height }}m)
+      {%- endif -%}
+    {% endif -%}
+    </span>
+    {% else %} {% endif %}
+  listMarkerSign: ' '
   priority: |-
     {{ (approxHeight|default(0)) * -1 }}
   style:
