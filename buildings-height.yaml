@@ -1,0 +1,113 @@
+query:
+  16: |-
+    (
+      way[building];
+      relation[building];
+    )
+feature:
+  pre: |-
+    {% if tags.height is defined %}
+    {% set approxHeight = tags.height %}
+    {% set m = tags.height|matches('(.*)\s*(m|ft)$') %}
+    {% if m and m[2] == 'm' %}{% set approxHeight = m[1] %}{% endif %}
+    {% if m and m[2] == 'ft' %}{% set approxHeight = m[1] / 3.2808 %}{% endif %}
+    {% elseif attribute(tags, 'building:levels') is defined %}
+    {% set approxHeight = attribute(tags, 'building:levels') * 3.5 %}
+    {% endif %}
+
+    {% if approxHeight <= 50 %}
+    {% set color = colorInterpolate(['green', 'red'], approxHeight / 50) %}
+    {% elseif approxHeight %}
+    {% set color = colorInterpolate(['red', 'yellow'], (approxHeight - 50) / 250) %} 
+    {% else %}
+    {% set color = '#7f7f7f' %}
+    {% endif %}
+  description: |-
+    {% if tags.building == 'yes' and tags.military %}
+    {{ tagTrans('building', 'military') }}
+    {% elseif tags.building == 'yes' %}
+    {{ keyTrans('building') }}
+    {% else %}
+    {{ tagTransList('building', tags.building) }}
+    {% endif %}
+    {% if tags.building == 'construction' and tags.construction %}
+    ({{ tagTransList('building', tags.construction) }})
+    {% endif %}
+    {% if tags.building in  [ 'yes', 'military' ] and tags.military %}
+    ({{ tagTransList('military', tags.military) }})
+    {% endif %}
+  details: |-
+    {% if tags.height is defined %}
+      {% if tags.height|matches('(m|ft)$') %}{{ tags.height -}}
+      {% else %}{{ tags.height }}&nbsp;m
+      {%- endif -%}
+    {% endif -%}
+
+    {%- if attribute(tags, 'building:levels') is defined -%}
+    {%- if tags.height is defined %}, {% endif %}
+    {{ attribute(tags, 'building:levels') }} {{ keyTrans('building:levels') }}
+    {% endif %}
+  markerSymbol: null
+  listMarkerSymbol: |-
+    {{ markerPolygon({"fillColor": color, "fillOpacity": 0.8, "width": 1, "color": "#000000" })|raw }}
+  priority: |-
+    {{ (approxHeight|default(0)) * -1 }}
+  style:
+    width: 1
+    color: '#000000'
+    fillColor: |-
+      {{ color }}
+    fillOpacity: 1
+info: |-
+  <div style='display: inline-block'>
+  {{ tagTrans('height') }}
+  <table>
+    <tr>
+      <td>{{ markerPolygon(evaluate({ "building": "yes" }))|raw }}</td>
+      <td colspan>{{ trans('unknown') }}</td>
+    </tr>
+  {% for i in range(0, 50, 10) %}
+    <tr>
+      <td>{{ markerPolygon(evaluate({ "building": "yes", "height": i }))|raw }}</td>
+      <td>{{ i }}m</td>
+    </tr>
+  {% endfor %}
+  {% for i in range(100, 250, 50) %}
+    <tr>
+      <td>{{ markerPolygon(evaluate({ "building": "yes", "height": i }))|raw }}</td>
+      <td>{{ i }}m</td>
+    </tr>
+  {% endfor %}
+    <tr>
+      <td>{{ markerPolygon(evaluate({ "building": "yes", "height": "300" }))|raw }}</td>
+      <td>≥300m</td>
+    </tr>
+  </table>
+  </div>
+
+  <div style='display: inline-block'>
+  {{ tagTrans('building:levels') }}
+  <table>
+    <tr>
+      <td>{{ markerPolygon(evaluate({ "building": "yes" }))|raw }}</td>
+      <td colspan>{{ trans('unknown') }}</td>
+    </tr>
+  {% for i in range(0, 12, 3) %}
+    <tr>
+      <td>{{ markerPolygon(evaluate({ "building": "yes", "building:levels": i }))|raw }}</td>
+      <td>{{ i }}</td>
+    </tr>
+  {% endfor %}
+  {% for i in range(15, 84, 15) %}
+    <tr>
+      <td>{{ markerPolygon(evaluate({ "building": "yes", "building:levels": i }))|raw }}</td>
+      <td>{{ i }}</td>
+    </tr>
+  {% endfor %}
+    <tr>
+      <td>{{ markerPolygon(evaluate({ "building": "yes", "building:levels": "85" }))|raw }}</td>
+      <td>≥85</td>
+    </tr>
+  </table>
+
+  </div>
