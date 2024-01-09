@@ -18,6 +18,17 @@ feature:
       {% set rightType = 'lane' %}
     {% endif %}
 
+    {% if attribute(tags, 'parking:lane:left')|default(attribute(tags, 'parking:lane:both')) in ['no_parking', 'no_stopping'] %}
+      {% set leftType = 'unknown' %}
+      {% set leftOrientation = 'unknown' %}
+      {% set leftRestriction = attribute(tags, 'parking:lane:left')|default(attribute(tags, 'parking:lane:both')) %}
+    {% endif %}
+    {% if attribute(tags, 'parking:lane:right')|default(attribute(tags, 'parking:lane:both')) in ['no_parking', 'no_stopping'] %}
+      {% set rightType = 'unknown' %}
+      {% set rightOrientation = 'unknown' %}
+      {% set rightRestriction = attribute(tags, 'parking:lane:right')|default(attribute(tags, 'parking:lane:both')) %}
+    {% endif %}
+
     {% set leftCondition = 'undefined' %}
     {% if attribute(tags, 'parking:left:fee')|default(attribute(tags, 'parking:both:fee')) == 'no' %}
       {% set leftRestriction = 'free' %}
