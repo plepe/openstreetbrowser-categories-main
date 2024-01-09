@@ -86,21 +86,21 @@ feature:
     {% endfor %}
 
   body: |
-    Left: <ul>
-      <li>Type: {{ leftType }}</li>
+    {{ trans('left') }}: <ul>
+      <li>{{ keyTrans('parking:side') }}: {{ tagTrans('parking:side', leftType) }}</li>
       {% if leftType not in ['no', 'separate'] %}
-      <li>Orientation: {{ leftOrientation }}</li>
+      <li>{{ keyTrans('parking:side:orientation') }}: {{ tagTrans('parking:side:orientation', leftOrientation) }}</li>
       {% if leftRestriction %}
-      <li>Restriction: {{ leftRestriction }}</li>
+      <li>{{ keyTrans('parking:side:restriction') }}: {{ tagTrans('parking:side:restriction', leftRestriction) }}</li>
       {% endif %}
       {% endif %}
     </ul>
-    Right: <ul>
-      <li>Type: {{ rightType }}</li>
+    {{ trans('right') }}: <ul>
+      <li>{{ keyTrans('parking:side') }}: {{ tagTrans('parking:side', rightType) }}</li>
       {% if rightType not in ['no', 'separate'] %}
-      <li>Orientation: {{ rightOrientation }}</li>
+      <li>{{ keyTrans('parking:side:orientation') }}: {{ tagTrans('parking:side:orientation', rightOrientation) }}</li>
       {% if rightRestriction %}
-      <li>Restriction: {{ rightRestriction }}</li>
+      <li>{{ keyTrans('parking:side:restriction') }}: {{ tagTrans('parking:side:restriction', rightRestriction) }}</li>
       {% endif %}
       {% endif %}
     </ul>
@@ -201,30 +201,30 @@ info: |
       <td><a target='_blank' href="https://wiki.openstreetmap.org/wiki/Key:parking:lane">Deprecated tagging</a></td>
     </tr>
   </table>
-  Parking Type:
+  {{ keyTrans('parking:side') }}:
   <table>
   {% for k, def in const.type %}
     <tr>
       <td>{{ markerLine(evaluate({ 'parking:both': k, 'parking:both:orientation': (k in ['no', 'unknown'] ? '' : 'parallel') })) }}</td>
-      <td>{{ k }}</td>
+      <td title="{{ k }}">{{ tagTrans('parking:side', k) }}</td>
     </tr>
   {% endfor %}
   </table>
-  Parking Orientation:
+  {{ keyTrans('parking:side:orientation') }}:
   <table>
   {% for k, def in const.orientation %}
     <tr>
       <td>{{ markerLine(evaluate({ 'parking:both': k, 'parking:both:orientation': (k in ['no', 'unknown'] ? '' : 'parallel') })) }}</td>
-      <td>{{ k }}</td>
+      <td title="{{ k }}">{{ tagTrans('parking:side:orientation', k) }}</td>
     </tr>
   {% endfor %}
   </table>
-  Parking Conditions/Restrictions:
+  {{ keyTrans('parking:side:restriction') }}:
   <table>
   {% for k, def in const.restriction %}
     <tr>
       <td>{{ markerLine({ color: def.color, width: 5 }) }}</td>
-      <td>{{ k }}</td>
+      <td title="{{ k }}">{{ tagTrans('parking:side:restriction', k) }}</td>
     </tr>
   {% endfor %}
   </table>
