@@ -90,12 +90,18 @@ feature:
       <li>Type: {{ leftType }}</li>
       {% if leftType not in ['no', 'separate'] %}
       <li>Orientation: {{ leftOrientation }}</li>
+      {% if leftRestriction %}
+      <li>Restriction: {{ leftRestriction }}</li>
+      {% endif %}
       {% endif %}
     </ul>
     Right: <ul>
       <li>Type: {{ rightType }}</li>
       {% if rightType not in ['no', 'separate'] %}
       <li>Orientation: {{ rightOrientation }}</li>
+      {% if rightRestriction %}
+      <li>Restriction: {{ rightRestriction }}</li>
+      {% endif %}
       {% endif %}
     </ul>
     {% if deprecated %}<div class='warning'>{{ repoTrans('deprecated', 'parking:lane:left/right/both', 'https://wiki.openstreetmap.org/wiki/Key:parking:lane')|raw }}</div>{% endif %}
