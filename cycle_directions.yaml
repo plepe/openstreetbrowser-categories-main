@@ -1,0 +1,72 @@
+name:
+  de: Radwegrichtungen
+  en: Cycleway Directions
+query:
+  14: |-
+    (
+    way[highway=cycleway];
+    way[cycleway];
+    way["cycleway:left"];
+    way["cycleway:right"];
+    way[highway][oneway];
+    way['oneway:bicycle'];
+    )
+feature:
+  pre: |-
+    {% set oneway = 0 %}
+    {% if tags.oneway in [ 'yes', '1' ] %}{% set oneway = 1 %}
+    {% elseif tags.oneway in [ '-1' ] %}{% set oneway = -1 %}
+    {% endif %}
+
+    {% set driving_side = 'right' %}
+  markerSymbol: null
+  listMarkerSymbol: line
+  styles: '{% if oneway != 0 %}default,{% endif %}left,right'
+  style:
+    width: 0
+    pattern: arrowHead
+    pattern-offset: 17
+    pattern-repeat: 25
+    pattern-polygon: true
+    pattern-pixelSize: |-
+      {% if tags.highway == "cycleway" %}7{% else %}9{% endif %}
+    pattern-path-color: |-
+      {% if tags.highway == "cycleway" %}#007f00{% else %}#000000{% endif %}
+    pattern-path-width: 1
+    pattern-path-fillOpacity: 1
+    pattern-angleCorrection: |-
+      {% if oneway == -1 %}180{% else %}0{% endif %}
+  style:highlight: null
+  style:left:
+    width: 0
+    pattern: |-
+      {% if tags.cycleway in [ "opposite", "opposite_lane", "opposite_track" ] or attribute(tags, "cycleway:left") in [ "opposite", "opposite_lane", "opposite_track" ] or attribute(tags, "cycleway:right") in [ "opposite", "opposite_lane", "opposite_track" ] or attribute(tags, "oneway:bicycle") == "no" %}arrowHead{% endif %}
+    pattern-offset: 0
+    pattern-repeat: 25
+    pattern-polygon: true
+    pattern-pixelSize: 7
+    pattern-path-width: 1
+    pattern-path-color: |-
+      {% if tags.oneway in [ 'yes', '1' ] and (tags.cycleway in [ 'opposite_track' ] or attribute(tags, 'cycleway:left') in [ 'opposite_track' ] or attribute(tags, 'cycleway:right') in [ 'opposite_track' ]) %}
+      #00af00
+      {% elseif tags.oneway in [ 'yes', '1' ] and (tags.cycleway in [ 'opposite_lane', 'opposite' ] or attribute(tags, 'cycleway:left') in [ 'opposite', 'opposite_lane' ] or attribute(tags, 'cycleway:right') in [ 'opposite', 'opposite_lane' ] or attribute(tags, 'oneway:bicycle') == 'no') %}
+      #00ff00
+      {% endif %}
+    pattern-path-fillOpacity: 1
+    pattern-angleCorrection: |-
+      {% if oneway == -1 %}0{% else %}180{% endif %}
+info: |-
+  <table>
+    <tr>
+      <td>{{ markerLine(evaluate({ "oneway": "yes", "highway": "cycleway" }))|raw }}</td>
+      <td>{{ tagTrans('highway', 'cycleway') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine(evaluate({ "oneway": "yes", "cycleway": "track" }))|raw }}</td>
+      <td>{{ tagTrans('cycleway', 'track') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine(evaluate({ "oneway": "yes", "cycleway": "lane" }))|raw }}</td>
+      <td>{{ tagTrans('cycleway', 'lane') }}</td>
+    </tr>
+  </table>

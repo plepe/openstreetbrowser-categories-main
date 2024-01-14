@@ -183,6 +183,9 @@
                             "id": "cycle_amenities"
                         },
                         {
+                            "id": "cycle_directions"
+                        },
+                        {
                             "id": "cycle_routes"
                         }
                     ]
