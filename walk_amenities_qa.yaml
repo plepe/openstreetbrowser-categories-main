@@ -98,7 +98,7 @@ filter:
 const:
   highway=crossing:
     priority: 10
-    sign: <i class='fa fa-bars' aria-hidden='true'></i>
+    sign: <img data-src='temaki:pedestrian_crosswalk'>
     require:
     - crossing
     optional:
@@ -107,7 +107,7 @@ const:
     - lit
   highway=elevator:
     priority: 2
-    sign: <i class='fa fa-caret-square-o-up' aria-hidden='true'></i>
+    sign: <img data-src='maki:elevator'>
     require:
     - level
     - wheelchair
