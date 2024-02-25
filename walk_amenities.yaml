@@ -6,6 +6,7 @@ query:
     node[tourism~"^(viewpoint)$"];
     node[man_made~"^(cairn)$"];
     nwr[amenity~"^(shelter)$"];
+    way[highway~'^(footway|steps)$'][conveying];
     )
   '16': |-
     (
@@ -15,6 +16,7 @@ query:
     node[man_made~"^(cairn)$"];
     nwr[amenity~"^(bench|shelter)$"];
     node[leisure~"^(picnic_table)$"];
+    way[highway~'^(footway|steps)$'][conveying];
     )
 feature:
   pre: |-
@@ -33,6 +35,9 @@ feature:
     {% elseif tags.tourism in [ 'viewpoint'] %}
       {% set key = 'tourism' %}
       {% set value = tags.tourism %}
+    {% elseif tags.conveying and tags.highway %}
+      {% set key = 'highway' %}
+      {% set value = tags.highway ~ ' conveying' %}
     {% else %}
       {% set key = 'highway' %}
       {% set value = tags.highway %}
@@ -53,15 +58,15 @@ filter:
     show_default: true
     values: |-
       {% for kv, d in const %}
-      <option value='{{ kv }}' query='nwr[{{ kv }}]'>{{ tagTrans(kv|split('=')[0], kv|split('=')[1]) }}</option>
+      <option value='{{ kv }}' query='{{ d.query|default("nwr[" ~ kv ~"]") }}'>{{ tagTrans(kv|split('=')[0], kv|split('=')[1]) }}</option>
       {% endfor %}
 const:
   highway=crossing:
     priority: 10
-    sign: <i class='fa fa-bars' aria-hidden='true'></i>
+    sign: <img data-src='temaki:pedestrian_crosswalk'>
   highway=elevator:
     priority: 2
-    sign: <i class='fa fa-caret-square-o-up' aria-hidden='true'></i>
+    sign: <img data-src='maki:elevator'>
   information=guidepost:
     priority: 2
     sign: <i class='fa fa-map-signs' aria-hidden='true'></i>
@@ -86,3 +91,11 @@ const:
   amenity=shelter:
     priority: 1
     sign: <img data-src='maki:shelter'>
+  highway=steps conveying:
+    sign: /
+    query: way[highway=steps][conveying]
+    priority: 2
+  highway=footway conveying:
+    sign: /
+    query: way[highway=footway][conveying]
+    priority: 2
