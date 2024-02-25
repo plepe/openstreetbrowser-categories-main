@@ -14,7 +14,7 @@ query:
     node[information];
     node[tourism~"^(viewpoint)$"];
     node[man_made~"^(cairn)$"];
-    nwr[amenity~"^(bench|shelter)$"];
+    nwr[amenity~"^(bench|shelter|waste_basket|drinking_water)$"];
     node[leisure~"^(picnic_table)$"];
     way[highway~'^(footway|steps)$'][conveying];
     )
@@ -23,7 +23,7 @@ feature:
     {% if tags.information %}
       {% set key = 'information' %}
       {% set value = tags.information %}
-    {% elseif tags.amenity in [ 'bench', 'shelter' ] %}
+    {% elseif tags.amenity in [ 'bench', 'shelter', 'waste_basket', 'drinking_water' ] %}
       {% set key = 'amenity' %}
       {% set value = tags.amenity %}
     {% elseif tags.leisure in [ 'picnic_table' ] %}
@@ -205,6 +205,24 @@ const:
     - picnic_table
     - access
     - lockable
+  amenity=waste_basket:
+    priority: 2
+    sign: 🗑
+    require:
+    - waste
+    optional:
+    - drive_through
+  amenity=drinking_water:
+    priority: 3
+    sign: <img data-src='maki:drinking-water'>
+    require:
+    optional:
+    - man_made
+    - fountain
+    - dog
+    - pump
+    - fee
+    - bottle
   highway=steps conveying:
     sign: /
     query: nwr[highway=steps][conveying]
