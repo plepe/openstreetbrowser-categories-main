@@ -106,5 +106,7 @@
     "category:paddling_routes": "Rutes de Rem",
     "category:proposals": "Propostes",
     "category:roads": "Carreteres",
-    "deprecated": "L'etiqueta %s està obsoleta. Consulteu <a target='_blank' href=\"%s\">aquí</a> per obtenir més informació."
+    "deprecated": "L'etiqueta %s està obsoleta. Consulteu <a target='_blank' href=\"%s\">aquí</a> per obtenir més informació.",
+    "category:cycle_directions": "Indicacions",
+    "category:walk_amenities_qa": "Serveis per a peatons"
 }
