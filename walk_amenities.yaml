@@ -99,9 +99,9 @@ const:
     sign: <img data-src='maki:drinking-water'>
   highway=steps conveying:
     sign: /
-    query: way[highway=steps][conveying]
+    query: nwr[highway=steps][conveying]
     priority: 2
   highway=footway conveying:
     sign: /
-    query: way[highway=footway][conveying]
+    query: nwr[highway=footway][conveying]
     priority: 2
