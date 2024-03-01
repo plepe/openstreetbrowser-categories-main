@@ -46,6 +46,16 @@ feature:
     {% set type_data = const[key ~ '=' ~ value] %}
   description: |-
     {{ tagTrans(key, value) }}
+  body: |-
+    <ul>
+      {% if tags.waste %}
+      <li class='hasSymbol'>
+        <i class="fa-solid fa-trash-can"></i>
+        <span class='key'>{{ keyTrans('waste') }}:</span>
+        <span class='value'>{{ tagTransList('waste', tags.waste) }}</span>
+      </li>
+      {% endif %}
+    </ul>
   markerSign: |-
     {{ type_data.sign|raw }}
   priority: |-
