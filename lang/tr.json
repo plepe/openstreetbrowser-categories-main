@@ -88,5 +88,17 @@
     "category:water": "Su kütleleri",
     "category:wikipedia": "Wikipedia",
     "category:xmas": "Noel",
-    "date format not understood": "Geçersiz Tarih Formatı"
+    "date format not understood": "Geçersiz Tarih Formatı",
+    "category:fixme": "Beni Geliştirin",
+    "category:heritage": "Mirasın Korunması",
+    "category:memorial": "Anıt ve Abideler",
+    "category:railway-gauge": "Demiryolu hat açıklığı",
+    "category:railway-infrastructure": "Demiryolu altyapısı",
+    "category:railway-maxspeed": "Demiryolu Maksimum Hızı",
+    "category:renewables": "Yenilenebilir kaynaklar",
+    "category:resources": "Kaynak Çıkarma",
+    "category:walk_amenities": "Olanaklar",
+    "category:walk_amenities_qa": "Yürüyüş Olanakları",
+    "category:waste": "Atık ve Geri Dönüşüm",
+    "category:works": "Endüstri Bölgeleri"
 }
