@@ -15,10 +15,10 @@ name:
   ro: Energie
   ru: Энергетика
 query:
-  11: (node[power~'^(plant)$'];way[power~'^(plant|line)$'];relation[power~'^(plant)$'];)
-  13: (node[power~'^(plant|generator|substation)$'];way[power~'^(plant|line|generator|substation)$'];relation[power~'^(plant|generator|substation)$'];)
-  15: (node[power~'^(plant|generator|substation|transformer|tower)$'];way[power~'^(plant|line|generator|substation|transformer|minor_line)$'];relation[power~'^(plant|generator|substation|transformer)$'];)
-  16: (node[power];way[power];relation[power];)
+  11: nwr[power~'^(plant|line|cable)$']
+  13: nwr[power~'^(plant|generator|substation|line|cable)$']
+  15: nwr[power~'^(plant|generator|substation|transformer|tower|cable)$']
+  16: nwr[power]
 feature:
   description: |-
     {{ tagTrans("power", tags.power) }}{% set x="generator:source" %}{% if tags[x] %}, {{ tagTransList("generator:source", tags[x]) }}{% endif %}
