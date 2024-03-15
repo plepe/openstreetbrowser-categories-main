@@ -1,0 +1,33 @@
+type: overpass
+name:
+  ast: Enerxía
+  cs: Elektřina
+  de: Elektrischer Strom
+  en: Electric Power
+  et: Elekter
+  fr: Production/transport électrique
+  hu: Áramellátás
+  it: Energia
+  ja: 電力
+  nl: Stroomvoorziening
+  pt: Eletricidade
+  pt-br: Energia elétrica
+  ro: Energie
+  ru: Энергетика
+query:
+  11: (node[power~'^(plant)$'];way[power~'^(plant|line)$'];relation[power~'^(plant)$'];)
+  13: (node[power~'^(plant|generator|substation)$'];way[power~'^(plant|line|generator|substation)$'];relation[power~'^(plant|generator|substation)$'];)
+  15: (node[power~'^(plant|generator|substation|transformer|tower)$'];way[power~'^(plant|line|generator|substation|transformer|minor_line)$'];relation[power~'^(plant|generator|substation|transformer)$'];)
+  16: (node[power];way[power];relation[power];)
+feature:
+  description: |-
+    {{ tagTrans("power", tags.power) }}{% set x="generator:source" %}{% if tags[x] %}, {{ tagTransList("generator:source", tags[x]) }}{% endif %}
+  popupDescription: |-
+    {{ tagTrans("power", tags.power) }}
+  body: |-
+    {% set x='generator:source' %}{% if tags[x] %}<br/>{{ keyTrans('generator:source') }}: {{ tagTransList('generator:source', tags[x]) }}{% endif %}
+    {% set x='generator:method' %}{% if tags[x] %}<br/>{{ keyTrans('generator:method') }}: {{ tagTransList('generator:method', tags[x]) }}{% endif %}
+    {% set x='generator:type' %}{% if tags[x] %}<br/>{{ tagTransList('generator:type') }}: {{ tagTrans('generator:type', tags[x]) }}{% endif %}
+  markerSymbol: null
+  priority: |-
+    {% if tags.power == "plant" %}0{% elseif tags.power == "generator" or tags.power == "line" %}1{% elseif tags.power == "substation" %}2{% else %}3{% endif %}
