@@ -9,7 +9,7 @@
     "category:buildings-height": "Bina yüksekliği",
     "category:buildings-type": "Bina tipleri",
     "category:car_amenities": "Tesisler",
-    "category:car_furniture": "Oto Döşeme",
+    "category:car_furniture": "Sokak Mobilyaları",
     "category:car_routes": "Araba rotaları",
     "category:children": "Çocuk Malzemeleri",
     "category:climbing": "Tırmanış",
@@ -32,7 +32,7 @@
     "category:financial": "Finansal",
     "category:gastro": "Gastronomi",
     "category:health": "Sağlık",
-    "category:hiking_routes": "Yürüyüş rotaları",
+    "category:hiking_routes": "Yürüyüş Rotaları",
     "category:historic": "Tarihi",
     "category:index": "Kategori İndeksi",
     "category:infrastructure": "Altyapı",
@@ -90,7 +90,7 @@
     "category:xmas": "Noel",
     "date format not understood": "Geçersiz Tarih Formatı",
     "category:fixme": "Beni Geliştirin",
-    "category:heritage": "Mirasın Korunması",
+    "category:heritage": "Kültürel Miras",
     "category:memorial": "Anıt ve Abideler",
     "category:railway-gauge": "Demiryolu hat açıklığı",
     "category:railway-infrastructure": "Demiryolu altyapısı",
@@ -100,5 +100,6 @@
     "category:walk_amenities": "Olanaklar",
     "category:walk_amenities_qa": "Yürüyüş Olanakları",
     "category:waste": "Atık ve Geri Dönüşüm",
-    "category:works": "Endüstri Bölgeleri"
+    "category:works": "Endüstri Bölgeleri",
+    "category:pt_amenities": "Tesisler"
 }
