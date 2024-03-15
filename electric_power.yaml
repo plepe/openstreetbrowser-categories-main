@@ -31,3 +31,16 @@ feature:
   markerSymbol: null
   priority: |-
     {% if tags.power == "plant" %}0{% elseif tags.power == "generator" or tags.power == "line" %}1{% elseif tags.power == "substation" %}2{% else %}3{% endif %}
+  style:
+    width: |-
+      {% if tags.power == 'minor_line' %}1
+      {% elseif tags.voltage > 300000 %}4
+      {% elseif tags.voltage > 150000 %}3
+      {% else %}2
+      {% endif %}
+    color: |-
+      {% if tags.power in ['minor_line', 'line', 'tower', 'pole'] %}black
+      {% else %}red
+      {% endif %}
+    radius: |-
+      {% if tags.power in ['tower','pole'] %}5{% else %}10{% endif %}
