@@ -15,10 +15,11 @@ name:
   ro: Energie
   ru: Энергетика
 query:
-  11: nwr[power~'^(plant|line|cable)$']
-  13: nwr[power~'^(plant|generator|substation|line|cable)$']
-  15: nwr[power~'^(plant|generator|substation|transformer|tower|cable)$']
-  16: nwr[power]
+  10: nwr[power~'^(plant|line|cable)$']
+  12: nwr[power~'^(plant|generator|substation|transformer|line|cable)$']
+  13: nwr[power~'^(plant|generator|substation|transformer|line|cable|tower)$']
+  14: nwr[power][power!~'^(pole)$']
+  15: nwr[power]
 feature:
   description: |-
     {{ tagTrans("power", tags.power) }}{% set x="generator:source" %}{% if tags[x] %}, {{ tagTransList("generator:source", tags[x]) }}{% endif %}
@@ -39,8 +40,15 @@ feature:
       {% else %}2
       {% endif %}
     color: |-
-      {% if tags.power in ['minor_line', 'line', 'tower', 'pole'] %}black
+      {% if tags.power in ['minor_line', 'line', 'cable', 'tower', 'pole'] %}black
       {% else %}red
       {% endif %}
+    dashArray: |-
+      {% if tags.power in ['cable'] %}5,4
+      {% endif %}
+    lineCap: |-
+      {% if tags.power in ['cable'] %}butt
+      {% else %}round
+      {% endif %}
     radius: |-
-      {% if tags.power in ['tower','pole'] %}5{% else %}10{% endif %}
+      {% if tags.power in ['tower'] %}5{% elseif tags.power in ['pole'] %}{% else %}10{% endif %}
