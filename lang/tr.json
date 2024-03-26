@@ -101,5 +101,12 @@
     "category:walk_amenities_qa": "Yürüyüş Olanakları",
     "category:waste": "Atık ve Geri Dönüşüm",
     "category:works": "Endüstri Bölgeleri",
-    "category:pt_amenities": "Tesisler"
+    "category:pt_amenities": "Tesisler",
+    "category:paddling": "Kürek",
+    "category:paddling_amenities": "Kürek Tesisleri",
+    "category:paddling_hazards": "Kürek Tehlikeleri",
+    "category:paddling_routes": "Kürek Rotaları",
+    "outdated feature": "Güncelliğini yitirmiş özellikler",
+    "xmas:outdated-warning": "Özellik mevcut sezon için güncellenmedi! Lütfen 'xmas:lastcheck' etiketini kontrol edip geçerli tarihe ayarlayın.",
+    "deprecated": "%s etiketi kullanımdan kaldırıldı. Ayrıntılar için<a target='_blank' href=\"%s\">buraya</a> bakınız."
 }
