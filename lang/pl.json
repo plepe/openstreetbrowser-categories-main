@@ -106,5 +106,7 @@
     "category:paddling_amenities": "Udogodnienia związane z wiosłowaniem",
     "category:paddling_hazards": "Zagrożenia związane z wiosłowaniem",
     "category:paddling_routes": "Trasy wioślarskie",
-    "deprecated": "Znacznik %s jest przestarzały. Więcej szczegółów znajdziesz <a target='_blank' href=\"%s\">tutaj</a>."
+    "deprecated": "Znacznik %s jest przestarzały. Więcej szczegółów znajdziesz <a target='_blank' href=\"%s\">tutaj</a>.",
+    "category:cycle_directions": "Kierunki",
+    "category:walk_amenities_qa": "Użyteczne w ruchu pieszym"
 }
