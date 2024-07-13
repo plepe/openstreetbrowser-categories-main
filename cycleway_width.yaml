@@ -19,6 +19,30 @@ feature:
       {{ colorInterpolate(const.colorScheme, (width - minWidth) / (optWidth - minWidth)) }}
       {% else %}black
       {% endif %}
+    lineCap: |
+      {{ tags.oneway in ['yes', 1, -1] ? 'butt' : 'round' }}
+    dashArray: |
+      {{ tags.oneway in ['yes', 1, -1] ? '27,8' : '' }}
+    dashOffset: |
+      {{ tags.oneway in [-1] ? 28 : 0 }}
+    noClip: |
+      {{ tags.oneway in ['yes', 1, -1] }}
+    pattern: |
+      {% if tags.oneway in ['yes', 1, -1] %}arrowHead{% endif %}
+    pattern-offset: |
+      {{ tags.oneway in [-1] ? 4 : 30.5 }}
+    pattern-repeat: 35
+    pattern-polygon: true
+    pattern-pixelSize: 9
+    pattern-angleCorrection: |
+      {{ tags.oneway in [-1] ? 180 : 0 }}
+    pattern-path-width: 0
+    pattern-path-color: |
+      {% if width %}
+      {{ colorInterpolate(const.colorScheme, (width - minWidth) / (optWidth - minWidth)) }}
+      {% else %}black
+      {% endif %}
+    pattern-path-fillOpacity: 1
   markerSymbol: false
   listMarkerSymbol: line
   description: |
