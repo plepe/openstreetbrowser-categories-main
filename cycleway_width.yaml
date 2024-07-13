@@ -5,13 +5,13 @@ query: |
   )
 feature:
   style:
-    width: 4
-    color: |
+    pre: |
       {% set width = attribute(tags, 'cycleway:width') %}
       {% if width matches "/'$/" %}
         {% set width = (width|slice(0, -1)) * 0.3048 %}
       {% endif %}
-
+    width: 4
+    color: |
       {% set minWidth = tags.oneway in ['yes', 1, -1] ? const.minWidthOneway : const.minWidthBoth %}
       {% set optWidth = tags.oneway in ['yes', 1, -1] ? const.optWidthOneway : const.optWidthBoth %}
 
@@ -59,6 +59,7 @@ feature:
     <li>
       {{ keyTrans('cycleway:width') }}:
       {% if not attribute(tags, 'cycleway:width') %}
+        {{ trans('unknown') }}
       {% elseif attribute(tags, 'cycleway:width') matches "/(m|')$/" %}
         {{ attribute(tags, 'cycleway:width') }}
       {% else %}
