@@ -7,10 +7,15 @@ feature:
   style:
     width: 4
     color: |
-      {% set optWidth = tags.oneway in ['yes', 1, -1] ? 3 : 5 %}
-      {% if attribute(tags, 'cycleway:width') %}
       {% set width = attribute(tags, 'cycleway:width') %}
-      {{ colorInterpolate(['#ff0000', '#0000ff'], width / optWidth) }}
+      {% if width matches "/'$/" %}
+        {% set width = (width|slice(0, -1)) * 0.3048 %}
+      {% endif %}
+
+      {% set optWidth = tags.oneway in ['yes', 1, -1] ? 3 : 5 %}
+
+      {% if width %}
+      {{ colorInterpolate(['#ff0000', '#7f7f7ff'], width / optWidth) }}
       {% else %}black
       {% endif %}
   markerSymbol: false
@@ -18,8 +23,20 @@ feature:
   description: |
     {{ tagTrans('highway', tags.highway) }}
   details: |
-    {{ attribute(tags, 'cycleway:width') }}
+    {% if not attribute(tags, 'cycleway:width') %}
+    {% elseif attribute(tags, 'cycleway:width') matches "/'$/" %}
+      {{ attribute(tags, 'cycleway:width') }}
+    {% else %}
+      {{ attribute(tags, 'cycleway:width') }}m
+    {% endif %}
   body: |
     <ul>
-    <li>{{ keyTrans('cycleway:width') }}: {{ attribute(tags, 'cycleway:width') }}</li>
+    <li>
+      {{ keyTrans('cycleway:width') }}:
+      {% if not attribute(tags, 'cycleway:width') %}
+      {% elseif attribute(tags, 'cycleway:width') matches "/(m|')$/" %}
+        {{ attribute(tags, 'cycleway:width') }}
+      {% else %}
+        {{ attribute(tags, 'cycleway:width') }}m
+      {% endif %}
     </ul>
