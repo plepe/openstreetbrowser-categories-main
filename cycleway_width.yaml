@@ -12,10 +12,11 @@ feature:
         {% set width = (width|slice(0, -1)) * 0.3048 %}
       {% endif %}
 
-      {% set optWidth = tags.oneway in ['yes', 1, -1] ? 3 : 5 %}
+      {% set minWidth = tags.oneway in ['yes', 1, -1] ? const.minWidthOneway : const.minWidthBoth %}
+      {% set optWidth = tags.oneway in ['yes', 1, -1] ? const.optWidthOneway : const.optWidthBoth %}
 
       {% if width %}
-      {{ colorInterpolate(['#ff0000', '#7f7f7ff'], width / optWidth) }}
+      {{ colorInterpolate(const.colorScheme, (width - minWidth) / (optWidth - minWidth)) }}
       {% else %}black
       {% endif %}
   markerSymbol: false
@@ -40,3 +41,32 @@ feature:
         {{ attribute(tags, 'cycleway:width') }}m
       {% endif %}
     </ul>
+info: |
+  <table>
+    <tr>
+      <th>Symbol</th>
+      <th>{{ keyTrans('oneway') }}={{ tagTrans('oneway', 'yes') }}</th>
+      <th>{{ keyTrans('oneway') }}={{ tagTrans('oneway', 'no') }}</th>
+    </tr>
+    {% for v in range(0, 1, 0.25) %}
+    <tr>
+      <td>
+        {{ markerLine({ width: 4, color: colorInterpolate(const.colorScheme, v) }) }}
+      </td>
+      <td>
+        {% if v == 0 %}<={% elseif v == 1 %}>={% endif %}
+        {{ (const.minWidthOneway + (v * (const.optWidthOneway - const.minWidthOneway)))|number_format(2) }}m
+      </td>
+      <td>
+        {% if v == 0 %}<={% elseif v == 1 %}>={% endif %}
+        {{ (const.minWidthBoth + (v * (const.optWidthBoth - const.minWidthBoth)))|number_format(2) }}m
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
+const:
+  minWidthBoth: 1.5
+  optWidthBoth: 5
+  minWidthOneway: 0.75
+  optWidthOneway: 3
+  colorScheme: ['#ff0000', '#7f7fff', '#0000ff']
