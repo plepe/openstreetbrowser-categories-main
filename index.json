@@ -190,6 +190,9 @@
                         },
                         {
                             "id": "cycleway_types"
+                        },
+                        {
+                            "id": "cycleway_width"
                         }
                     ]
                 },

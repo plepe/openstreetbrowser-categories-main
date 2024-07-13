@@ -1,0 +1,25 @@
+query: |
+  (
+  way[highway=cycleway];
+  way["cycleway:width"];
+  )
+feature:
+  style:
+    width: 4
+    color: |
+      {% set optWidth = tags.oneway in ['yes', 1, -1] ? 3 : 5 %}
+      {% if attribute(tags, 'cycleway:width') %}
+      {% set width = attribute(tags, 'cycleway:width') %}
+      {{ colorInterpolate(['#ff0000', '#0000ff'], width / optWidth) }}
+      {% else %}black
+      {% endif %}
+  markerSymbol: false
+  listMarkerSymbol: line
+  description: |
+    {{ tagTrans('highway', tags.highway) }}
+  details: |
+    {{ attribute(tags, 'cycleway:width') }}
+  body: |
+    <ul>
+    <li>{{ keyTrans('cycleway:width') }}: {{ attribute(tags, 'cycleway:width') }}</li>
+    </ul>
