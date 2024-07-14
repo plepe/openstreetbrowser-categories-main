@@ -185,20 +185,26 @@ feature:
     {% endif %}
 
     {% if leftCycle %}
-    <li>
-      {{ keyTrans('cycleway:left:width') }}:
-      {% if not leftWidth %}
-        {{ trans('unknown') }}
-      {% elseif attribute(tags, 'cycleway:left:width')|default(attribute(tags, 'cycleway:both:width')) matches "/(m|')$/" %}
-        {{ attribute(tags, 'cycleway:left:width')|default(attribute(tags, 'cycleway:both:width')) }}
-      {% else %}
-        {{ leftWidth }}m
-      {% endif %}
-    </li>
+    <li>{{ keyTrans('cycleway:left') }}:<ul>
+      <li>{{ keyTrans('cycleway') }}: {{ tagTrans('cycleway', attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both'))) }}</li>
+      <li>
+        {{ keyTrans('cycleway:width') }}:
+        {% if not leftWidth %}
+          {{ trans('unknown') }}
+        {% elseif attribute(tags, 'cycleway:left:width')|default(attribute(tags, 'cycleway:both:width')) matches "/(m|')$/" %}
+          {{ attribute(tags, 'cycleway:left:width')|default(attribute(tags, 'cycleway:both:width')) }}
+        {% else %}
+          {{ leftWidth }}m
+        {% endif %}
+      </li>
+    </ul></li>
     {% endif %}
+
     {% if rightCycle %}
-    <li>
-      {{ keyTrans('cycleway:right:width') }}:
+    <li>{{ keyTrans('cycleway:right') }}:<ul>
+      <li>{{ keyTrans('cycleway') }}: {{ tagTrans('cycleway', attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both'))) }}</li>
+      <li>
+      {{ keyTrans('cycleway:width') }}:
       {% if not rightWidth %}
         {{ trans('unknown') }}
       {% elseif attribute(tags, 'cycleway:right:width')|default(attribute(tags, 'cycleway:both:width')) matches "/(m|')$/" %}
@@ -206,7 +212,8 @@ feature:
       {% else %}
         {{ rightWidth }}m
       {% endif %}
-    </li>
+      </li>
+    </ul></li>
     {% endif %}
     </ul>
 info: |
