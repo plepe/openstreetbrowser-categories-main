@@ -56,7 +56,7 @@ feature:
 
       {% if width %}
       {{ colorInterpolate(const.colorScheme, (width - minWidth) / (optWidth - minWidth)) }}
-      {% else %}black
+      {% else %}{{ const.unknownColor }}
       {% endif %}
     lineCap: |
       {{ tags.oneway in ['yes', 1, -1] ? 'butt' : 'round' }}
@@ -81,7 +81,7 @@ feature:
     pattern-path-color: |
       {% if width %}
       {{ colorInterpolate(const.colorScheme, (width - minWidth) / (optWidth - minWidth)) }}
-      {% else %}black
+      {% else %}{{ const.unknownColor }}
       {% endif %}
     pattern-path-fillOpacity: 1
   style:left:
@@ -94,7 +94,7 @@ feature:
 
       {% if leftWidth %}
       {{ colorInterpolate(const.colorScheme, (leftWidth - minWidth) / (optWidth - minWidth)) }}
-      {% else %}black
+      {% else %}{{ const.unknownColor }}
       {% endif %}
     lineCap: |
       {{ leftOneway ? 'butt' : 'round' }}
@@ -118,7 +118,7 @@ feature:
     pattern-path-color: |
       {% if leftWidth %}
       {{ colorInterpolate(const.colorScheme, (leftWidth - minWidth) / (optWidth - minWidth)) }}
-      {% else %}black
+      {% else %}{{ const.unknownColor }}
       {% endif %}
     pattern-path-fillOpacity: 1
   style:right:
@@ -131,7 +131,7 @@ feature:
 
       {% if rightWidth %}
       {{ colorInterpolate(const.colorScheme, (rightWidth - minWidth) / (optWidth - minWidth)) }}
-      {% else %}black
+      {% else %}{{ const.unknownColor }}
       {% endif %}
     lineCap: |
       {{ rightOneway ? 'butt' : 'round' }}
@@ -155,7 +155,7 @@ feature:
     pattern-path-color: |
       {% if rightWidth %}
       {{ colorInterpolate(const.colorScheme, (rightWidth - minWidth) / (optWidth - minWidth)) }}
-      {% else %}black
+      {% else %}{{ const.unknownColor }}
       {% endif %}
     pattern-path-fillOpacity: 1
   markerSymbol: false
@@ -223,6 +223,17 @@ info: |
       <th>{{ keyTrans('oneway') }}={{ tagTrans('oneway', 'yes') }}</th>
       <th>{{ keyTrans('oneway') }}={{ tagTrans('oneway', 'no') }}</th>
     </tr>
+    <tr>
+      <td>
+        {{ markerLine({ width: 4, color: const.unknownColor }) }}
+      </td>
+      <td>
+        {{ trans('unknown') }}
+      </td>
+      <td>
+        {{ trans('unknown') }}
+      </td>
+    </tr>
     {% for v in range(0, 1, 0.25) %}
     <tr>
       <td>
@@ -245,3 +256,4 @@ const:
   minWidthOneway: 0.75
   optWidthOneway: 3
   colorScheme: ['#ff0000', '#ff00ff', '#0000ff']
+  unknownColor: black
