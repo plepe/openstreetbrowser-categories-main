@@ -1,8 +1,19 @@
 query:
   (
   way[highway=cycleway];
+  way[cyclestreet=yes];
+  way[bicycle_road=yes];
   )
 feature:
+  pre: |
+    {% set type = tags.highway %}
+
+    {% if tags.cyclestreet == 'yes' %}
+      {% set type = 'cyclestreet' %}
+    {% elseif tags.bicycle_road in ['yes', 'designated'] %}
+      {% set type = 'bicycle_road' %}
+    {% endif %}
+
   styles: |
     {% if tags.segregated %}
     footway,
@@ -10,10 +21,10 @@ feature:
     default
   style:
     width: |
-      {% if tags.segregated %}
-      {{ tags.segregated == 'yes' ? 2 : 4 %}
+      {% if tags.segregated == 'yes' %}
+      {{ const.types[type].width / 2 }}
       {% else %}
-      4
+      {{ const.types[type].width }}
       {% endif %}
 
     dashArray: |
@@ -29,11 +40,11 @@ feature:
       {% endif %}
 
     color: |
-      {{ const.types.cycleway.color }}
+      {{ const.types[type].color }}
 
     offset: |
       {% if tags.segregated == 'yes' %}
-      1.5 
+      {{ const.types[type].width / 2 - 1 }}
       {% endif %}
 
   style:footway:
@@ -41,10 +52,10 @@ feature:
       {{ const.types.footway.color }}
 
     width: |
-      {% if tags.segregated %}
-      {{ tags.segregated == 'yes' ? 2 : 4 %}
+      {% if tags.segregated == 'yes' %}
+      {{ const.types.footway.width / 2 }}
       {% else %}
-      4
+      {{ const.types.footway.width }}
       {% endif %}
 
     dashArray: |
@@ -63,11 +74,15 @@ feature:
 
     offset: |
       {% if tags.segregated == 'yes' %}
-      -1.5
+      {{ (const.types.footway.width / 2 - 1) * -1 }}
       {% endif %}
 
   description: |
-    {% if tags.segregated %}
+    {% if tags.cyclestreet == 'yes' %}
+    {{ keyTrans('cyclestreet') }}
+    {% elseif tags.bicycle_road in ['yes', 'designated'] %}
+    {{ keyTrans('bicycle_road') }}
+    {% elseif tags.segregated %}
     {{ tagTrans('highway', 'cycleway segregated=' ~ tags.segregated) }}
     {% elseif tags.highway %}
     {{ tagTrans('highway', tags.highway) }}
@@ -78,6 +93,14 @@ feature:
 const:
   types:
     cycleway:
-      color: '#007f00'
+      color: '#009f00'
+      width: 4
     footway:
-      color: '#ff7f00'
+      color: '#ff9f00'
+      width: 4
+    cyclestreet:
+      color: '#006f3f'
+      width: 8
+    bicycle_road:
+      color: '#006f4f'
+      width: 8
