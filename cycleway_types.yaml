@@ -1,0 +1,83 @@
+query:
+  (
+  way[highway=cycleway];
+  )
+feature:
+  styles: |
+    {% if tags.segregated %}
+    footway,
+    {% endif %}
+    default
+  style:
+    width: |
+      {% if tags.segregated %}
+      {{ tags.segregated == 'yes' ? 2 : 4 %}
+      {% else %}
+      4
+      {% endif %}
+
+    dashArray: |
+      {% if tags.segregated == 'no' %}
+      5,5
+      {% endif %}
+
+    lineCap: |
+      {% if tags.segregated == 'no' %}
+      butt
+      {% else %}
+      round
+      {% endif %}
+
+    color: |
+      {{ const.types.cycleway.color }}
+
+    offset: |
+      {% if tags.segregated == 'yes' %}
+      1.5 
+      {% endif %}
+
+  style:footway:
+    color: |
+      {{ const.types.footway.color }}
+
+    width: |
+      {% if tags.segregated %}
+      {{ tags.segregated == 'yes' ? 2 : 4 %}
+      {% else %}
+      4
+      {% endif %}
+
+    dashArray: |
+      {% if tags.segregated == 'no' %}
+      5,5
+      {% endif %}
+
+    dashOffset: 5
+
+    lineCap: |
+      {% if tags.segregated == 'no' %}
+      butt
+      {% else %}
+      round
+      {% endif %}
+
+    offset: |
+      {% if tags.segregated == 'yes' %}
+      -1.5
+      {% endif %}
+
+  description: |
+    {% if tags.segregated %}
+    {{ tagTrans('highway', 'cycleway segregated=' ~ tags.segregated) }}
+    {% elseif tags.highway %}
+    {{ tagTrans('highway', tags.highway) }}
+    {% endif %}
+
+  markerSymbol: ''
+
+const:
+  types:
+    cycleway:
+      color: '#007f00'
+    footway:
+      color: '#ff7f00'
