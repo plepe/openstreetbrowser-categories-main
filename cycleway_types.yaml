@@ -14,6 +14,13 @@ feature:
       {% set type = 'bicycle_road' %}
     {% endif %}
 
+    {% set oneway = attribute(tags, 'oneway:bicycle')|default(tags.oneway) %}
+    {% if oneway == 'yes' %}
+      {% set oneway = 1 %}
+    {% elseif oneway == 'no' %}
+      {% set oneway = 0 %}
+    {% endif %}
+
   styles: |
     {% if tags.segregated %}
     footway,
@@ -28,12 +35,25 @@ feature:
       {% endif %}
 
     dashArray: |
-      {% if tags.segregated == 'no' %}
+      {% if oneway and tags.segregated == 'no' %}
+      5,5,5,20
+      {% elseif oneway %}
+      25,10
+      {% elseif tags.segregated == 'no' %}
       5,5
       {% endif %}
 
+    dashOffset: |
+      {% if oneway and tags.segregated == 'no' %}
+      5
+      {% elseif oneway %}
+      10
+      {% elseif tags.segregated == 'no' %}
+      0
+      {% endif %}
+
     lineCap: |
-      {% if tags.segregated == 'no' %}
+      {% if tags.segregated == 'no' or oneway %}
       butt
       {% else %}
       round
@@ -47,6 +67,34 @@ feature:
       {{ const.types[type].width / 2 - 1 }}
       {% endif %}
 
+    pattern: |
+      {% if oneway -%}
+      arrowHead
+      {%- endif %}
+
+    pattern-repeat: |
+      35
+
+    pattern-offset: |
+      {{ oneway == -1 ? 17 : 22 }}
+
+    noClip: |
+      {{ oneway != 0 }}
+
+    pattern-polygon: true
+
+    pattern-pixelSize: 9
+
+    pattern-angleCorrection: |
+      {{ oneway == -1 ? 180 : 0 }}
+
+    pattern-path-color: |
+      {{ const.types[type].color }}
+
+    pattern-path-width: 0
+
+    pattern-path-fillOpacity: 1
+
   style:footway:
     color: |
       {{ const.types.footway.color }}
@@ -59,14 +107,26 @@ feature:
       {% endif %}
 
     dashArray: |
-      {% if tags.segregated == 'no' %}
+      {% if oneway and tags.segregated == 'no' %}
+      5,5,5,5,5,10
+      {% elseif oneway %}
+      25,10
+      {% elseif tags.segregated == 'no' %}
       5,5
       {% endif %}
 
-    dashOffset: 5
+    dashOffset: |
+      {% if oneway %}
+      10
+      {% elseif tags.segregated == 'no' %}
+      5
+      {% endif %}
+
+    noClip: |
+      {{ oneway != 0 }}
 
     lineCap: |
-      {% if tags.segregated == 'no' %}
+      {% if tags.segregated == 'no' or oneway %}
       butt
       {% else %}
       round
