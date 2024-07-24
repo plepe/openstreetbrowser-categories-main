@@ -297,6 +297,23 @@ feature:
 
   markerSymbol: ''
 
+info: |
+  <table>
+    <tr>
+      <th>Symbol</th>
+      <th></th>
+    </tr>
+    {% for k, v in const.types %}
+    <tr>
+      <td>
+        {{ markerLine({ width: 4, color: v.color }) }}
+      </td>
+      <td>
+        {{ k }}
+      </td>
+    </tr>
+    {% endfor %}
+  </table>
 const:
   types:
     cycleway:
