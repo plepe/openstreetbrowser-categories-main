@@ -36,6 +36,18 @@ feature:
       {% set leftOneway = 0 %}
     {% endif %}
 
+    {% set rightCycle = attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both')) %}
+    {% if rightCycle in ['no', 'separate'] %}
+      {% set rightCycle = '' %}
+    {% endif %}
+
+    {% set rightOneway = attribute(tags, 'cycleway:right:oneway')|default(attribute(tags, 'cycleway:both:oneway')) %}
+    {% if not rightOneway or rightOneway in ['yes'] %}
+      {% set rightOneway = map.driving_side == 'left' ? -1 : 1 %}
+    {% elseif rightOneway in ['no'] %}
+      {% set rightOneway = 0 %}
+    {% endif %}
+
   styles: |
     {% if tags.segregated %}
     footway,
@@ -43,6 +55,9 @@ feature:
     default
     {% if leftCycle %}
     ,left
+    {% endif %}
+    {% if rightCycle %}
+    ,right
     {% endif %}
   style:
     width: |
@@ -188,6 +203,39 @@ feature:
 
     pattern-path-fillOpacity: 1
 
+  style:right:
+    offset: 5
+
+    color: |
+      {{ const.types[rightCycle].color|default('#ff0000') }}
+
+    width: 3
+
+    lineCap: |
+      {{ rightOneway ? 'butt' : 'round' }}
+    dashArray: |
+      {{ rightOneway ? '27,8' : '' }}
+    dashOffset: |
+      {{ rightOneway == -1 ? 28 : 0 }}
+    noClip: true
+#      {{ rightOneway }}
+    pattern: |
+      {% if rightOneway %}arrowHead{% endif %}
+    pattern-offset: |
+      {{ rightOneway == -1 ? 4 : 30.5 }}
+    pattern-lineOffset: 5
+    pattern-repeat: 35
+    pattern-polygon: true
+    pattern-pixelSize: 9
+    pattern-angleCorrection: |
+      {{ rightOneway == -1 ? 180 : 0 }}
+    pattern-path-width: 0
+
+    pattern-path-color: |
+      {{ const.types[rightCycle].color|default('#ff0000') }}
+
+    pattern-path-fillOpacity: 1
+
   description: |
     {% if tags.cyclestreet == 'yes' %}
     {{ keyTrans('cyclestreet') }}
@@ -230,6 +278,21 @@ feature:
     </ul></li>
     {% endif %}
 
+    {% if rightCycle %}
+    <li>{{ keyTrans('cycleway:right') }}:<ul>
+      <li>{{ keyTrans('cycleway') }}: {{ tagTrans('cycleway', attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both'))) }}</li>
+      <li>
+      {{ keyTrans('cycleway:width') }}:
+      {% if not rightWidth %}
+        {{ trans('unknown') }}
+      {% elseif attribute(tags, 'cycleway:right:width')|default(attribute(tags, 'cycleway:both:width')) matches "/(m|')$/" %}
+        {{ attribute(tags, 'cycleway:right:width')|default(attribute(tags, 'cycleway:both:width')) }}
+      {% else %}
+        {{ rightWidth }}m
+      {% endif %}
+      </li>
+    </ul></li>
+    {% endif %}
     </ul>
 
   markerSymbol: ''
@@ -254,6 +317,9 @@ const:
       color: '#003faf'
     share_busway:
       color: '#ff7f00'
+    opposite:
+      color: '#ff0000'
+      warning: 'Deprecated tag! Use oneway:bicycle=no or cycleway=lane, cycleway:oneway=-1 instead.'
     opposite_lane:
       color: '#ff0000'
       warning: 'Deprecated tag! Use oneway:bicycle=no or cycleway=lane, cycleway:oneway=-1 instead.'
