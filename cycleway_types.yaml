@@ -3,6 +3,9 @@ query:
   way[highway=cycleway];
   way[cyclestreet=yes];
   way[bicycle_road=yes];
+  way["cycleway:left"]["cycleway:left"!~"(no|separate)"];
+  way["cycleway:right"]["cycleway:right"!~"(no|separate)"];
+  way["cycleway:both"]["cycleway:both"!~"(no|separate)"];
   )
 feature:
   pre: |
@@ -21,11 +24,26 @@ feature:
       {% set oneway = 0 %}
     {% endif %}
 
+    {% set leftCycle = attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both')) %}
+    {% if leftCycle in ['no', 'separate'] %}
+      {% set leftCycle = '' %}
+    {% endif %}
+
+    {% set leftOneway = attribute(tags, 'cycleway:left:oneway')|default(attribute(tags, 'cycleway:both:oneway')) %}
+    {% if not leftOneway or leftOneway in ['yes'] %}
+      {% set leftOneway = map.driving_side == 'left' ? 1 : -1 %}
+    {% elseif leftOneway in ['no'] %}
+      {% set leftOneway = 0 %}
+    {% endif %}
+
   styles: |
     {% if tags.segregated %}
     footway,
     {% endif %}
     default
+    {% if leftCycle %}
+    ,left
+    {% endif %}
   style:
     width: |
       {% if tags.segregated == 'yes' %}
@@ -137,6 +155,39 @@ feature:
       {{ (const.types.footway.width / 2 - 1) * -1 }}
       {% endif %}
 
+  style:left:
+    offset: -5
+
+    color: |
+      {{ const.types[leftCycle].color|default('#ff0000') }}
+
+    width: 3
+
+    lineCap: |
+      {{ leftOneway ? 'butt' : 'round' }}
+    dashArray: |
+      {{ leftOneway ? '27,8' : '' }}
+    dashOffset: |
+      {{ leftOneway == -1 ? 28 : 0 }}
+    noClip: true
+#      {{ leftOneway }}
+    pattern: |
+      {% if leftOneway %}arrowHead{% endif %}
+    pattern-offset: |
+      {{ leftOneway == -1 ? 4 : 30.5 }}
+    pattern-lineOffset: -5
+    pattern-repeat: 35
+    pattern-polygon: true
+    pattern-pixelSize: 9
+    pattern-angleCorrection: |
+      {{ leftOneway == -1 ? 180 : 0 }}
+    pattern-path-width: 0
+
+    pattern-path-color: |
+      {{ const.types[leftCycle].color|default('#ff0000') }}
+
+    pattern-path-fillOpacity: 1
+
   description: |
     {% if tags.cyclestreet == 'yes' %}
     {{ keyTrans('cyclestreet') }}
@@ -147,6 +198,39 @@ feature:
     {% elseif tags.highway %}
     {{ tagTrans('highway', tags.highway) }}
     {% endif %}
+
+  body: |
+    <ul>
+    {% if tags.highway in ['cycleway'] or attribute(tags, 'cycleway:width') %}
+    <li>
+      {{ keyTrans('cycleway:width') }}:
+      {% if not attribute(tags, 'cycleway:width') %}
+        {{ trans('unknown') }}
+      {% elseif attribute(tags, 'cycleway:width') matches "/(m|')$/" %}
+        {{ attribute(tags, 'cycleway:width') }}
+      {% else %}
+        {{ attribute(tags, 'cycleway:width') }}m
+      {% endif %}
+    </li>
+    {% endif %}
+
+    {% if leftCycle %}
+    <li>{{ keyTrans('cycleway:left') }}:<ul>
+      <li>{{ keyTrans('cycleway') }}: {{ tagTrans('cycleway', attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both'))) }}</li>
+      <li>
+        {{ keyTrans('cycleway:width') }}:
+        {% if not leftWidth %}
+          {{ trans('unknown') }}
+        {% elseif attribute(tags, 'cycleway:left:width')|default(attribute(tags, 'cycleway:both:width')) matches "/(m|')$/" %}
+          {{ attribute(tags, 'cycleway:left:width')|default(attribute(tags, 'cycleway:both:width')) }}
+        {% else %}
+          {{ leftWidth }}m
+        {% endif %}
+      </li>
+    </ul></li>
+    {% endif %}
+
+    </ul>
 
   markerSymbol: ''
 
@@ -164,3 +248,15 @@ const:
     bicycle_road:
       color: '#006f4f'
       width: 8
+    lane:
+      color: '#00df3f'
+    shared_lane:
+      color: '#003faf'
+    share_busway:
+      color: '#ff7f00'
+    opposite_lane:
+      color: '#ff0000'
+      warning: 'Deprecated tag! Use oneway:bicycle=no or cycleway=lane, cycleway:oneway=-1 instead.'
+    track:
+      color: '#ff0000'
+      warning: 'Deprecated tag! Consider tagging as separate way with highway=cycleway.'
