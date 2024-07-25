@@ -263,7 +263,15 @@ feature:
     {% endif %}
 
     {% if leftCycle %}
-    <li>{{ keyTrans('cycleway:left') }}:<ul>
+    <li>{{ keyTrans('cycleway:left') }}:
+
+    {% if const.types[leftCycle].warning %}
+      <div class='warning'>{{ const.types[leftCycle].warning }}</div>
+    {% elseif not const.types[leftCycle] %}
+      <div class='warning'>Invalid tag cycleway:left={{ attribute(tags, 'cycleway:left') }}.</div>
+    {% endif %}
+
+    <ul>
       <li>{{ keyTrans('cycleway') }}: {{ tagTrans('cycleway', attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both'))) }}</li>
       <li>
         {{ keyTrans('cycleway:width') }}:
@@ -279,7 +287,16 @@ feature:
     {% endif %}
 
     {% if rightCycle %}
-    <li>{{ keyTrans('cycleway:right') }}:<ul>
+    <li>{{ keyTrans('cycleway:right') }}:
+
+    {% if const.types[rightCycle].warning %}
+    <div class='warning'>{{ const.types[rightCycle].warning }}</div>
+    {% elseif not const.types[rightCycle] %}
+      <div class='warning'>Invalid tag cycleway:right={{ attribute(tags, 'cycleway:right') }}.</div>
+    <div class='warning'>Unknown</div>
+    {% endif %}
+
+    <ul>
       <li>{{ keyTrans('cycleway') }}: {{ tagTrans('cycleway', attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both'))) }}</li>
       <li>
       {{ keyTrans('cycleway:width') }}:
@@ -330,16 +347,24 @@ const:
       width: 8
     lane:
       color: '#00df3f'
+    track:
+      color: '#009f00'
+    shared:
+      color: '#ff0000'
+      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway=lane, cycleway:oneway=-1 instead.'
     shared_lane:
       color: '#003faf'
     share_busway:
       color: '#ff7f00'
     opposite:
       color: '#ff0000'
-      warning: 'Deprecated tag! Use oneway:bicycle=no or cycleway=lane, cycleway:oneway=-1 instead.'
+      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway=lane, cycleway:oneway=-1 instead.'
     opposite_lane:
       color: '#ff0000'
-      warning: 'Deprecated tag! Use oneway:bicycle=no or cycleway=lane, cycleway:oneway=-1 instead.'
-    track:
+      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway=lane, cycleway:oneway=-1 instead.'
+    opposite_share_busway:
       color: '#ff0000'
-      warning: 'Deprecated tag! Consider tagging as separate way with highway=cycleway.'
+      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway=share_busway, cycleway:oneway=-1 instead.'
+    opposite_track:
+      color: '#ff0000'
+      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway=track, cycleway:oneway=-1 instead.'
