@@ -266,7 +266,7 @@ feature:
     <li>{{ keyTrans('cycleway:left') }}:
 
     {% if const.types[leftCycle].warning %}
-      <div class='warning'>{{ const.types[leftCycle].warning }}</div>
+      <div class='warning'>{{ const.types[leftCycle].warning|replace({'%driving_side%': map.driving_side, '%other_driving_side%': map.driving_side == 'right' ? 'left': 'right', '%current%': 'left'}) }}</div>
     {% elseif not const.types[leftCycle] %}
       <div class='warning'>Invalid tag cycleway:left={{ attribute(tags, 'cycleway:left') }}.</div>
     {% endif %}
@@ -290,7 +290,7 @@ feature:
     <li>{{ keyTrans('cycleway:right') }}:
 
     {% if const.types[rightCycle].warning %}
-    <div class='warning'>{{ const.types[rightCycle].warning }}</div>
+    <div class='warning'>{{ const.types[rightCycle].warning|replace({'%driving_side%': map.driving_side, '%other_driving_side%': map.driving_side == 'right' ? 'left': 'right', '%current%': 'right'}) }}</div>
     {% elseif not const.types[rightCycle] %}
       <div class='warning'>Invalid tag cycleway:right={{ attribute(tags, 'cycleway:right') }}.</div>
     <div class='warning'>Unknown</div>
@@ -358,13 +358,13 @@ const:
       color: '#ff7f00'
     opposite:
       color: '#ff0000'
-      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway=lane, cycleway:oneway=-1 instead.'
+      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway:%other_driving_side%=lane, cycleway:%other_driving_side%:oneway=-1 instead.'
     opposite_lane:
       color: '#ff0000'
-      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway=lane, cycleway:oneway=-1 instead.'
+      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway:%other_driving_side%=lane, cycleway:%other_driving_side%:oneway=-1 instead.'
     opposite_share_busway:
       color: '#ff0000'
-      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway=share_busway, cycleway:oneway=-1 instead.'
+      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway:%other_driving_side%=share_busway, cycleway:%other_driving_side%:oneway=-1 instead.'
     opposite_track:
       color: '#ff0000'
-      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway=track, cycleway:oneway=-1 instead.'
+      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway:%other_driving_side%=track, cycleway:%other_driving_side%:oneway=-1 instead.'
