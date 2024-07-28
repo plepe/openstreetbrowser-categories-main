@@ -3,6 +3,7 @@ query:
   way[highway=cycleway];
   way[cyclestreet=yes];
   way[bicycle_road=yes];
+  way["cycleway"]["cycleway"!~"(no|separate)"];
   way["cycleway:left"]["cycleway:left"!~"(no|separate)"];
   way["cycleway:right"]["cycleway:right"!~"(no|separate)"];
   way["cycleway:both"]["cycleway:both"!~"(no|separate)"];
@@ -24,7 +25,30 @@ feature:
       {% set oneway = 0 %}
     {% endif %}
 
-    {% set leftCycle = attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both')) %}
+    {% set leftCycle = '' %}{% set rightCycle = '' %}
+
+    {% if tags.cycleway %}
+      {% if (tags.oneway in ['yes', 1] and map.driving_side == 'right') or (tags.oneway in [-1] and map.driving_side == 'left') %}
+        {{ tags.cycleway|debug }}
+        {% if tags.cycleway matches '/^opposite/' %}
+          {% set leftCycle = tags.cycleway %}
+        {% else %}
+          {% set rightCycle = tags.cycleway %}
+        {% endif %}
+      {% elseif (tags.oneway in ['yes', 1] and map.driving_side == 'left') or (tags.oneway in [-1] and map.driving_side == 'right') %}
+        {% if tags.cycleway matches '/^opposite/' %}
+          {% set rightCycle = tags.cycleway %}
+        {% else %}
+          {% set leftCycle = tags.cycleway %}
+        {% endif %}
+      {% else %}
+        {% set leftCycle = tags.cycleway %}
+        {% set rightCycle = tags.cycleway %}
+      {% endif %}
+    {% endif %}
+
+    {% set leftCycle1 = attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both')) %}
+    {% if leftCycle1 %}{% set leftCycle = leftCycle1 %}{% endif %}
     {% if leftCycle in ['no', 'separate'] %}
       {% set leftCycle = '' %}
     {% endif %}
@@ -36,7 +60,8 @@ feature:
       {% set leftOneway = 0 %}
     {% endif %}
 
-    {% set rightCycle = attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both')) %}
+    {% set rightCycle1 = attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both')) %}
+    {% if rightCycle1 %}{% set rightCycle = rightCycle1 %}{% endif %}
     {% if rightCycle in ['no', 'separate'] %}
       {% set rightCycle = '' %}
     {% endif %}
@@ -249,6 +274,15 @@ feature:
 
   body: |
     <ul>
+    {% if tags.cycleway %}
+    <li>
+      {{ keyTrans('cycleway') }}:
+      <div class='warning'>Recommendation: Indicate side of way by using 'cycleway:left' and/or 'cycleway:right'.</div>
+      <ul>
+        <li>{{ keyTrans('cycleway') }}: {{ tagTrans('cycleway', tags.cycleway) }}</li>
+      </ul>
+    </li>
+    {% endif %}
     {% if tags.highway in ['cycleway'] or attribute(tags, 'cycleway:width') %}
     <li>
       {{ keyTrans('cycleway:width') }}:
@@ -262,7 +296,7 @@ feature:
     </li>
     {% endif %}
 
-    {% if leftCycle %}
+    {% if attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both')) %}
     <li>{{ keyTrans('cycleway:left') }}:
 
     {% if const.types[leftCycle].warning %}
@@ -286,7 +320,7 @@ feature:
     </ul></li>
     {% endif %}
 
-    {% if rightCycle %}
+    {% if attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both')) %}
     <li>{{ keyTrans('cycleway:right') }}:
 
     {% if const.types[rightCycle].warning %}
