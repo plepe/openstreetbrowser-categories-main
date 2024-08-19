@@ -6,6 +6,7 @@ query:
     nwr[tourism~'^(attraction|artwork)$'];
     nwr[heritage];
     nwr[amenity~'^(fountain|arts_centre|place_of_worship|theatre)$'];
+    nwr[man_made~'^(windmill|watermill|bridge|cairn|cross|geoglyph|hongsalmun|iljumun|lighthouse|obelisk|observatory|offshore_platform|paifang|stupa|torii)$'];
     )
 feature: 
   pre: |
