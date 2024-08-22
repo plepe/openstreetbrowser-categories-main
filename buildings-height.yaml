@@ -1,3 +1,24 @@
+name:
+  ca: Alçada de l'edifici
+  cs: Výška budovy
+  de: Gebäudehöhen
+  en: Building height
+  es: Altura del edificio
+  fr: Hauteur
+  gl: Altitude do edificio
+  hu: Épületek magassága
+  it: Altezza dell'edificio
+  ja: 建物の高さ
+  nb: Bygningshøyde
+  nl: Bouwhoogte
+  oc: Autor de la bastissa
+  pl: Wysokości budynków
+  pt-br: Altura
+  pt: Altura dos edifícios
+  ro: Înălțimea clădirii
+  ru: Высота здания
+  sr: Висина зграде
+  tr: Bina yüksekliği
 query:
   16: |-
     (

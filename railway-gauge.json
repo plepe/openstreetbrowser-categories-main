@@ -1,7 +1,23 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Railway gauge"
+        "ca": "Ample de via fèrria",
+        "cs": "Rozchod železnice",
+        "de": "Eisenbahn-Spurweite",
+        "en": "Railway gauge",
+        "es": "Ancho de vía",
+        "fr": "Écartement des rails",
+        "gl": "Anchura de vía",
+        "hu": "Vasúti nyomtáv",
+        "it": "Scartamento Ferroviario",
+        "ja": "軌間",
+        "nb": "Sporvidde",
+        "oc": "Ample dei vias",
+        "pl": "Rozstaw szyn",
+        "pt": "Bitola",
+        "pt-br": "Bitola",
+        "ru": "Железнодорожная колея",
+        "tr": "Demiryolu hat açıklığı"
     },
     "query": {
         "11": "way[railway=rail][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'][usage~'^(main|branch)$'];",

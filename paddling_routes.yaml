@@ -1,3 +1,11 @@
+name:
+  ca: Rutes de Rem
+  en: Paddling Routes
+  fr: Itinéraires en pagayage
+  it: Rotte per la navigazione a remo
+  pl: Trasy wioślarskie
+  pt-br: Rotas de navegação a remo
+  tr: Kürek Rotaları
 type: overpass
 query:
   '2': relation[type=route][route~"^(|.*;)canoe(|;.*)$"][network~'^(|.*;)(ipn)(|;.*)$']

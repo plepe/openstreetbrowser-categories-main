@@ -1,11 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Petroli i gas natural",
+        "cs": "Ropa a zemní plyn",
         "de": "Erdöl und Erdgas",
         "en": "Petroleum and natural gas",
+        "es": "Petróleo y gas natural",
         "fr": "Pétrole et gaz naturel",
+        "gl": "Petróleo e gas natural",
         "hu": "Kőolaj, földgáz",
-        "pt-br": "Petróleo e gás"
+        "it": "Petrolio e gas naturale",
+        "ja": "石油と天然ガス",
+        "nb": "Bensin og naturlig gass",
+        "nl": "Petroleum en aardgas",
+        "oc": "Petròli e gas naturau",
+        "pl": "Ropa naftowa i gaz ziemny",
+        "pt": "Petróleo e gás natural",
+        "pt-br": "Petróleo e gás",
+        "ru": "Нефть и природный газ",
+        "sr": "Нафта и природни гас",
+        "tr": "Petrol ve doğal gaz"
     },
     "query": {
         "11": [

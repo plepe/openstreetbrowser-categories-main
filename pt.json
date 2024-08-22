@@ -1,11 +1,26 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Mapa de transport públic",
+        "cs": "Mapa veřejné dopravy",
         "de": "ÖV Karte",
         "en": "Public transport map",
+        "es": "Mapa de transporte público",
         "fr": "Carte des transports publics",
+        "gl": "Mapa de transporte público",
         "hu": "Tömegközlekedési térkép",
-        "pt-br": "Mapa de transporte público"
+        "it": "Mappa del trasporto pubblico",
+        "ja": "公共交通地図",
+        "nb": "Offentlig-transport kart",
+        "nl": "Openbaar vervoer kaart",
+        "oc": "Transpòrts publics",
+        "pl": "Mapa transportu publicznego",
+        "pt": "Mapa de transporte público",
+        "pt-br": "Mapa de transporte público",
+        "ro": "Hartă transport public",
+        "ru": "Карта общественного транспорта",
+        "sr": "Мапа јавног превоза",
+        "tr": "Toplu taşıma haritası"
     },
     "query": {
         "12": "relation[type=route][route~\"^(subway|monorail|ferry|train)$\"];",
@@ -21,31 +36,52 @@
             "prefix": "listStops",
             "name": {
                 "ast": "Paraes y estaciones",
+                "ca": "Parades i Estacions",
                 "cs": "Zastávky & Stanice",
                 "de": "Haltestellen",
                 "el": "Στάσεις & Σταθμοί",
                 "en": "Stops & Stations",
                 "es": "Paradas y estaciones",
-                "fr": "Arrêts/Stops, Stations",
+                "fr": "Arrêts et stations",
+                "gl": "Paraxes e estacións",
                 "hu": "Megállók és állomások",
-                "it": "Stazioni e fermate",
+                "it": "Fermate e stazioni",
                 "ja": "停留所と駅",
+                "nb": "Stopp og stasjoner",
                 "nl": "Haltes en Stations",
-                "pl": "Przystanki i Stacje",
+                "oc": "Arrèsts e Estations",
+                "pl": "Przystanki i stacje",
+                "pt": "Paragens e estações",
                 "pt-br": "Paradas e estações",
                 "ru": "Остановки и станции",
+                "sr": "Стајалишта и станице",
+                "tr": "Duraklar ve İstasyonlar",
                 "uk": "Зупинки та станції"
             }
         },
         "routes": {
             "prefix": "listRoutes",
             "name": {
+                "ca": "Rutes",
+                "cs": "Trasy",
                 "de": "Routen",
                 "en": "Routes",
+                "es": "Rutas",
                 "fr": "Lignes",
+                "gl": "Rotas",
                 "hu": "Útvonalak",
+                "it": "Percorsi",
+                "ja": "ルート",
+                "nb": "Ruter",
+                "nl": "Routes",
+                "oc": "Linhas",
+                "pl": "Trasy",
                 "pt": "Rotas",
-                "pt-br": "Rotas"
+                "pt-br": "Linhas",
+                "ro": "Rute",
+                "ru": "Маршруты",
+                "sr": "Трасе",
+                "tr": "Rotalar"
             }
         }
     },
@@ -183,14 +219,14 @@
         "listStopsMarkerSymbol": "{{ markerCircle({ width: 5, color: color, fillOpacity: '1', radius: 3 })|raw }}",
         "listStopsExclude": "{{ not isStop or stopCount == 0 }}",
         "listStopsTitle": [
-          "{% if tags %}{{ tags.name|default(stopName)|default(trans('unknown')) }}{% else %}<li>{{ trans('loading') }}</li>{% endif %}<br/>",
-          "<i>{{ refs|join(' · ') }}</i>"
+            "{% if tags %}{{ tags.name|default(stopName)|default(trans('unknown')) }}{% else %}<li>{{ trans('loading') }}</li>{% endif %}<br/>",
+            "<i>{{ refs|join(' · ') }}</i>"
         ],
         "description": [
-          "{% set stopTypes = [] %}",
-          "{% if tags.railway in ['tram_stop'] %}{% set stopTypes = stopTypes|merge([ tagTrans('railway', tags.railway) ]) %}{% endif %}",
-          "{% if tags.highway in ['bus_stop'] %}{% set stopTypes = stopTypes|merge([ tagTrans('highway', tags.highway) ]) %}{% endif %}",
-          "{% if stopTypes|length %}{{ enumerate(stopTypes) }}{% elseif isStop %}{{ tagTrans('public_transport', 'stop_position') }}{% else %}{{ keyTrans('route') }}{% endif %}"
+            "{% set stopTypes = [] %}",
+            "{% if tags.railway in ['tram_stop'] %}{% set stopTypes = stopTypes|merge([ tagTrans('railway', tags.railway) ]) %}{% endif %}",
+            "{% if tags.highway in ['bus_stop'] %}{% set stopTypes = stopTypes|merge([ tagTrans('highway', tags.highway) ]) %}{% endif %}",
+            "{% if stopTypes|length %}{{ enumerate(stopTypes) }}{% elseif isStop %}{{ tagTrans('public_transport', 'stop_position') }}{% else %}{{ keyTrans('route') }}{% endif %}"
         ],
         "listRoutesExclude": "true",
         "style:stop": {

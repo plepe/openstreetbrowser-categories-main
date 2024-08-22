@@ -1,11 +1,26 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Carbó",
+        "cs": "Uhlí",
         "de": "Kohle",
         "en": "Coal",
+        "es": "Carbón",
         "fr": "Charbon",
+        "gl": "Carbón",
         "hu": "Kőszén",
-        "pt-br": "Carvão"
+        "it": "Carbone",
+        "ja": "石炭",
+        "nb": "Kull",
+        "nl": "Kolen",
+        "oc": "Carbon",
+        "pl": "Węgiel",
+        "pt": "Carvão",
+        "pt-br": "Carvão",
+        "ro": "Cărbune",
+        "ru": "Уголь",
+        "sr": "Угаљ",
+        "tr": "Kömür"
     },
     "query": {
         "11": [

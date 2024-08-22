@@ -1,12 +1,24 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Velocitat màxima de la via fèrria",
+        "cs": "Maximální rychlost železnice",
         "de": "Eisenbahn Höchstgeschwindigkeiten",
         "en": "Railway Maxspeed",
+        "es": "Velocidad máxima del ferrocarril",
         "fr": "Limites de vitesse",
+        "gl": "Velocidade máxima do ferrocarril",
         "hu": "Sebességkorlátozás",
+        "it": "Velocità ferroviaria massima",
+        "ja": "鉄道の最高速度",
+        "nb": "Jernbane-fartsgrense",
+        "nl": "Spoorweg snelheidslimiet",
+        "oc": "Limits de velocitat",
+        "pl": "Prędkość maksymalna kolei",
         "pt": "Velocidade máxima",
-        "pt-br": "Velocidade máxima"
+        "pt-br": "Velocidade máxima",
+        "ru": "Максимальная скорость",
+        "tr": "Demiryolu Maksimum Hızı"
     },
     "query": {
         "11": "way[railway=rail][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'][usage~'^(main|branch)$'];",

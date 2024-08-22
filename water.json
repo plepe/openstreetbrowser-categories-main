@@ -1,12 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Cossos d'aigua",
+        "cs": "Vodní plochy",
         "de": "Gewässer",
         "en": "Waterbodies",
+        "es": "Cuerpos de agua",
         "fr": "Hydrographie",
+        "gl": "Hidrografía",
         "hu": "Vizek",
+        "it": "Masse d'acqua",
+        "ja": "水系",
+        "nb": "Vannflater",
+        "nl": "Oppervlaktewater",
+        "oc": "Aigas e rius",
+        "pl": "Wodne",
         "pt": "Massas de água",
-        "pt-br": "Hidrografia"
+        "pt-br": "Hidrografia",
+        "ru": "Водоемы",
+        "sr": "Водене површине",
+        "tr": "Su kütleleri"
     },
     "query": {
         "10": [

@@ -1,3 +1,13 @@
+name:
+  ca: Corregeix-me
+  en: Fix Me
+  fr: Améliorez-moi
+  hu: Javíts ki! / Fix me
+  it: Correggimi
+  pl: Popraw mnie
+  pt-br: Corrija-me
+  pt: Corrige-me
+  tr: Beni Geliştirin
 type: overpass
 query:
   14: nwr[~"^fixme(:.*|)$"~".",i]

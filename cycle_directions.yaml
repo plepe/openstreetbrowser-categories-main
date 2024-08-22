@@ -1,6 +1,10 @@
 name:
   de: Radwegrichtungen
-  en: Cycleway Directions
+  en: Directions
+  ca: Indicacions
+  it: indicazioni
+  pl: Kierunki
+  tr: Yol Tarifi
 query:
   14: |-
     (

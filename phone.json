@@ -1,16 +1,26 @@
 {
     "name": {
         "ast": "Teléfonos",
+        "ca": "Telèfon",
         "cs": "Telefony",
         "de": "Telekommunikation",
         "en": "Phone",
+        "es": "Teléfono",
         "et": "Telefon",
         "fr": "Téléphone",
+        "gl": "Teléfono",
         "hu": "Telefon",
+        "it": "Telefono",
         "ja": "電話",
+        "nb": "Telefon",
         "nl": "Telefonie",
+        "oc": "Telefòne",
+        "pl": "Telefon",
         "pt": "Telefone",
         "pt-br": "Telefone",
-        "ro": "Telefon"
+        "ro": "Telefon",
+        "ru": "Телефон",
+        "sr": "Телефон",
+        "tr": "Telefon"
     }
 }

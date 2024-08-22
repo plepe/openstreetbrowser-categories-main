@@ -1,10 +1,26 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Rutes en cotxe",
+        "cs": "Automobilové cesty",
+        "de": "Autorouten",
         "en": "Car routes",
+        "es": "Rutas de coche",
         "fr": "Itinéraires auto",
+        "gl": "Rotas automobilísticas",
         "hu": "Főútvonalak",
-        "pt-br": "Rotas rodoviárias"
+        "it": "Tratte automobilistiche",
+        "ja": "車のルート",
+        "nb": "Bilruter",
+        "nl": "Autoroutes",
+        "oc": "Itineraris auto",
+        "pl": "Trasy samochodowe",
+        "pt": "Rotas rodoviárias",
+        "pt-br": "Rotas rodoviárias",
+        "ro": "Rute auto",
+        "ru": "Автомобильные маршруты",
+        "sr": "Трасе за возила",
+        "tr": "Araba Rotaları"
     },
     "query": {
         "10": "relation[type=route][route=road]"

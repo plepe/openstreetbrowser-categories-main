@@ -1,3 +1,11 @@
+name:
+  ca: Remar
+  en: Paddling
+  fr: Pagayage
+  it: Navigazione a remo
+  pl: Wiosłowanie
+  pt-br: Navegação a remo
+  tr: Kürek
 type: index
 subCategories:
   - id: paddling_amenities

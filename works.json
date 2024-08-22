@@ -2,17 +2,25 @@
     "type": "overpass",
     "name": {
         "ast": "Fábriques",
+        "ca": "Treballs",
         "cs": "Továrny",
         "de": "Fabriken",
         "en": "Works",
+        "es": "Fábricas",
         "fr": "Zones industrielles",
+        "gl": "Producións",
         "hu": "Üzemek",
         "it": "Fabbriche",
         "ja": "工場",
+        "nb": "Industrielt",
         "nl": "Fabrieken",
+        "oc": "Airaus industriaus",
+        "pl": "Przemysł",
         "pt": "Fábricas",
         "pt-br": "Produção",
-        "ru": "Промышленность"
+        "ru": "Промышленность",
+        "sr": "Радови",
+        "tr": "Endüstri Bölgeleri"
     },
     "query": {
         "12": "(node[landuse~'^(industrial)$'];way[landuse~'^(industrial)$'];relation[landuse~'^(industrial)$'];)"

@@ -2,20 +2,28 @@
     "type": "overpass",
     "name": {
         "ast": "Agricultura",
+        "ca": "Agricultura",
         "cs": "Zemědělství",
         "de": "Landwirtschaft",
         "el": "Γεωργία",
         "en": "Agriculture",
+        "es": "Agricultura",
         "et": "Põllumajandus",
         "fr": "Agriculture",
+        "gl": "Agricultura",
         "hu": "Mezőgazdaság",
         "it": "Agricoltura",
         "ja": "農業",
+        "nb": "Jordbruk",
         "nl": "Landbouw",
+        "oc": "Agricultura",
+        "pl": "Rolnictwo",
         "pt": "Agricultura",
         "pt-br": "Agricultura",
         "ro": "Agricultura",
-        "ru": "Сельское хозяйство"
+        "ru": "Сельское хозяйство",
+        "sr": "Пољопривреда",
+        "tr": "Tarım"
     },
     "query": {
         "13": [

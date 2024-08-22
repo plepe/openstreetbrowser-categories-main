@@ -2,21 +2,28 @@
     "type": "overpass",
     "name": {
         "ast": "Compres",
+        "ca": "Compres",
         "cs": "Obchody",
         "de": "Einkauf",
         "el": "Αγορές",
         "en": "Shopping",
+        "es": "Compras",
         "et": "Ostmine",
         "fr": "Magasins/Boutiques",
+        "gl": "Compras",
         "hu": "Vásárlás",
         "it": "Acquisti",
         "ja": "ショッピング",
+        "nb": "Shopping",
         "nl": "Winkelen",
+        "oc": "Botigas",
         "pl": "Zakupy",
         "pt": "Compras",
         "pt-br": "Compras",
         "ro": "Cumpărături",
         "ru": "Покупки",
+        "sr": "Куповина",
+        "tr": "Alışveriş",
         "uk": "Торгівля"
     },
     "query": {
@@ -113,7 +120,7 @@
                 "sign": "&#128090;"
             },
             "fabric": {
-                "sign": "&#128090;"
+                "sign": ""
             },
             "fashion": {
                 "sign": "&#128090;"
@@ -312,9 +319,6 @@
             },
             "paint": {
                 "sign": "fas:paint-roller"
-            },
-            "fabric": {
-                "sign": ""
             },
             "trade": {
                 "sign": "fas:tools"

@@ -93,5 +93,19 @@
     "date format not understood": "Datumsformat nicht erkannt",
     "outdated feature": "Informationen nicht aktuell",
     "xmas:outdated-warning": "Objekt wurde nicht für die aktuelle Saison aktualisiert. Bitte prüfen und das Tag 'xmas:lastcheck' auf das aktuelle Datum setzen.",
-    "category:roads": "Straßen"
+    "category:roads": "Straßen",
+    "category:cycle_directions": "Radwegrichtungen",
+    "category:culture-media": "",
+    "category:developable_areas": "",
+    "category:developments": "",
+    "category:fixme": "",
+    "category:footways": "",
+    "category:kerbs": "",
+    "category:osm-qa": "",
+    "category:paddling": "",
+    "category:paddling_amenities": "",
+    "category:paddling_hazards": "",
+    "category:paddling_routes": "",
+    "category:proposals": "",
+    "category:walk_amenities_qa": ""
 }

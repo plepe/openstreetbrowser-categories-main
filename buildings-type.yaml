@@ -1,3 +1,24 @@
+name:
+  ca: Tipologies d'edificació
+  cs: typy budov
+  de: Gebäudearten
+  en: Building types
+  es: Tipos de edificio
+  fr: Type
+  gl: Tipos de edificios
+  hu: Épületek típusa
+  it: Tipi di edificio
+  ja: 建物の種類
+  nb: Bygningstyper
+  nl: Gebouwtypes
+  oc: Tipe de bastissa
+  pl: Rodzaje budynków
+  pt-br: Tipologias
+  pt: Tipos dos edifícios
+  ro: Tipuri de clădiri
+  ru: Типы зданий
+  sr: Врста зграде
+  tr: Bina tipleri
 query:
   16: nwr[building][building!=no];
 feature:

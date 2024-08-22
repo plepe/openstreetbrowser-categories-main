@@ -106,5 +106,7 @@
     "category:paddling": "Navegação a remo",
     "category:paddling_amenities": "Equipamentos",
     "category:paddling_hazards": "Riscos",
-    "category:paddling_routes": "Rotas de navegação a remo"
+    "category:paddling_routes": "Rotas de navegação a remo",
+    "category:cycle_directions": "",
+    "category:walk_amenities_qa": ""
 }

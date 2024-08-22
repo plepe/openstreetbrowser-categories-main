@@ -1,3 +1,13 @@
+name:
+  ca: Voreres
+  en: Kerbs
+  fr: Bordures
+  hu: Járdaszegélyek
+  it: Cordoli
+  pl: Krawężniki
+  pt-br: Meios-fios
+  pt: Lancis
+  tr: Bordürler
 query:
   14: (way[kerb];way[barrier=kerb];node[kerb];node[barrier=kerb];)
 feature:

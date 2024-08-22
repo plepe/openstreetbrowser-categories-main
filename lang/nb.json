@@ -92,5 +92,20 @@
     "category:xmas": "Jul",
     "date format not understood": "Ugyldig datoformat",
     "outdated feature": "Objekter er utdaterte",
-    "xmas:outdated-warning": "Objektene har ikke blitt oppdatert for den gjeldende sesongen! Vennligst sjekk og angi egenskapen 'xmas:lastcheck' til nåværende dato."
+    "xmas:outdated-warning": "Objektene har ikke blitt oppdatert for den gjeldende sesongen! Vennligst sjekk og angi egenskapen 'xmas:lastcheck' til nåværende dato.",
+    "category:culture-media": "",
+    "category:cycle_directions": "",
+    "category:developable_areas": "",
+    "category:developments": "",
+    "category:fixme": "",
+    "category:footways": "",
+    "category:heritage": "",
+    "category:kerbs": "",
+    "category:osm-qa": "",
+    "category:paddling": "",
+    "category:paddling_amenities": "",
+    "category:paddling_hazards": "",
+    "category:paddling_routes": "",
+    "category:proposals": "",
+    "category:walk_amenities_qa": ""
 }

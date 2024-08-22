@@ -1,3 +1,13 @@
+name:
+  ca: Camins peatonals
+  en: Footways
+  fr: Cheminements piétonniers
+  hu: Gyalogutak
+  it: Percorsi pedonali
+  pl: Chodniki
+  pt-br: Vias pedonais
+  pt: Vias pedonais
+  tr: Yaya Yolları
 query:
   15: |
     (

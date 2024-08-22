@@ -108,7 +108,9 @@
     ],
     "const": {
         "plaque": {
-            "alias": [ "plate" ],
+            "alias": [
+                "plate"
+            ],
             "sign": "<img data-src='img/plaque.svg'>",
             "zoom": 14
         },
@@ -121,7 +123,9 @@
             "zoom": 14
         },
         "war_memorial": {
-            "alias": [ "war_monument" ],
+            "alias": [
+                "war_monument"
+            ],
             "sign": "<img data-src='maki:horse-riding'>",
             "zoom": 14
         },
@@ -134,7 +138,10 @@
             "zoom": 14
         },
         "bust": {
-            "alias": [ "person", "public_person" ],
+            "alias": [
+                "person",
+                "public_person"
+            ],
             "sign": "<i class=\"fas fa-user-alt\"></i>",
             "zoom": 14
         },
@@ -155,7 +162,9 @@
             "zoom": 14
         },
         "vehicle": {
-            "alias": [ "tank" ],
+            "alias": [
+                "tank"
+            ],
             "sign": "<i class=\"fas fa-car\"></i>",
             "zoom": 14
         },
@@ -213,5 +222,26 @@
             ],
             "valueName": "{{ tagTrans('historic:civilization', value) }}"
         }
+    },
+    "name": {
+        "ca": "Memorials i Monuments",
+        "cs": "Památníky a pomníky",
+        "de": "Denkmäler und Monumente",
+        "en": "Memorials & Monuments",
+        "es": "Monumentos y lugares conmemorativos",
+        "fr": "Mémoriaux et monuments commémoratifs",
+        "gl": "Memoriais e monumentos",
+        "hu": "Emlékművek",
+        "it": "Memoriali e monumenti",
+        "ja": "記念碑&記念建造物",
+        "nb": "Minnesmerker og monumenter",
+        "nl": "Gedenktekens",
+        "oc": "Monuments e Memoriaus",
+        "pl": "Miejsca pamięci i pomniki",
+        "pt": "Memoriais e monumentos",
+        "pt-br": "Memoriais e monumentos",
+        "ru": "Памятники и монументы",
+        "sr": "Споменици",
+        "tr": "Anıt ve Abideler"
     }
 }

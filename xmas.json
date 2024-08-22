@@ -1,11 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Nadal",
+        "cs": "Vánoce",
         "de": "Weihnachten",
         "en": "Christmas",
+        "es": "Navidades",
         "fr": "Noël",
+        "gl": "Nadal",
         "hu": "Karácsony",
-        "pt-br": "Natal"
+        "it": "Natale",
+        "ja": "クリスマス",
+        "nb": "Jul",
+        "nl": "Kerstmis",
+        "oc": "Calendas",
+        "pl": "Święta",
+        "pt-br": "Natal",
+        "ro": "Crăciun",
+        "ru": "Рождество",
+        "sr": "Божић",
+        "tr": "Noel"
     },
     "query": {
         "13": [

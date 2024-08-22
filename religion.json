@@ -2,20 +2,28 @@
     "type": "overpass",
     "name": {
         "ast": "Relixón",
-        "cs": "Religion",
+        "ca": "Religió",
+        "cs": "Náboženství",
         "de": "Religion",
         "el": "Θρησκεία",
         "en": "Religion",
+        "es": "Religión",
         "et": "Religioon",
         "fr": "Religion",
+        "gl": "Relixión",
         "hu": "Vallás",
         "it": "Religione",
         "ja": "宗教",
+        "nb": "Religion",
         "nl": "Religie",
+        "oc": "Religion",
+        "pl": "Religia",
         "pt": "Religião",
         "pt-br": "Religião",
         "ro": "Religie",
         "ru": "Религия",
+        "sr": "Религија",
+        "tr": "Din",
         "uk": "Релігія"
     },
     "query": {
@@ -120,42 +128,42 @@
             "query": "nwr[{{ value }}]",
             "type": "select",
             "values": {
-              "place_of_worship": {
-                "name": "{{ tagTrans('amenity', 'place_of_worship') }}",
-                "query": "nwr[amenity=place_of_worship]"
-              },
-              "grave_yard": {
-                "name": "{{ tagTrans('amenity', 'grave_yard') }}",
-                "query": "nwr[amenity=grave_yard]"
-              },
-              "crematorium": {
-                "name": "{{ tagTrans('amenity', 'crematorium') }}",
-                "query": "nwr[amenity=crematorium]"
-              },
-              "cemetery": {
-                "name": "{{ tagTrans('landuse', 'cemetery') }}",
-                "query": "nwr[landuse=cemetery]"
-              },
-              "wayside_cross": {
-                "name": "{{ tagTrans('historic', 'wayside_cross') }}",
-                "query": "nwr[historic=wayside_cross]"
-              },
-              "wayside_shrine": {
-                "name": "{{ tagTrans('historic', 'wayside_shrine') }}",
-                "query": "nwr[historic=wayside_shrine]"
-              },
-              "wayside_chapel": {
-                "name": "{{ tagTrans('historic', 'wayside_chapel') }}",
-                "query": "nwr[historic=wayside_chapel]"
-              },
-              "parish": {
-                "name": "{{ tagTrans('office', 'parish') }}",
-                "query": "nwr[office=parish]"
-              },
-              "office": {
-                "name": "{{ tagTrans('office', 'religion') }}",
-                "query": "nwr[office=religion]"
-              }
+                "place_of_worship": {
+                    "name": "{{ tagTrans('amenity', 'place_of_worship') }}",
+                    "query": "nwr[amenity=place_of_worship]"
+                },
+                "grave_yard": {
+                    "name": "{{ tagTrans('amenity', 'grave_yard') }}",
+                    "query": "nwr[amenity=grave_yard]"
+                },
+                "crematorium": {
+                    "name": "{{ tagTrans('amenity', 'crematorium') }}",
+                    "query": "nwr[amenity=crematorium]"
+                },
+                "cemetery": {
+                    "name": "{{ tagTrans('landuse', 'cemetery') }}",
+                    "query": "nwr[landuse=cemetery]"
+                },
+                "wayside_cross": {
+                    "name": "{{ tagTrans('historic', 'wayside_cross') }}",
+                    "query": "nwr[historic=wayside_cross]"
+                },
+                "wayside_shrine": {
+                    "name": "{{ tagTrans('historic', 'wayside_shrine') }}",
+                    "query": "nwr[historic=wayside_shrine]"
+                },
+                "wayside_chapel": {
+                    "name": "{{ tagTrans('historic', 'wayside_chapel') }}",
+                    "query": "nwr[historic=wayside_chapel]"
+                },
+                "parish": {
+                    "name": "{{ tagTrans('office', 'parish') }}",
+                    "query": "nwr[office=parish]"
+                },
+                "office": {
+                    "name": "{{ tagTrans('office', 'religion') }}",
+                    "query": "nwr[office=religion]"
+                }
             }
         },
         "religion": {

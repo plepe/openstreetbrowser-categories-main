@@ -1,7 +1,17 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Developable Areas"
+        "ca": "Àrees en Desenvolupament",
+        "en": "Developable Areas",
+        "fr": "Zones aménageables",
+        "hu": "Fejlesztés alatti területek",
+        "it": "Aree sviluppabili",
+        "ja": "開発可能エリア",
+        "oc": "Airaus ameinatjats",
+        "pl": "Obszary do rozwoju",
+        "pt": "Áreas urbanizáveis",
+        "pt-br": "Áreas urbanizáveis",
+        "tr": "Gelişim Sahaları"
     },
     "query": {
         "13": [

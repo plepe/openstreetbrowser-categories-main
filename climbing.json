@@ -1,8 +1,22 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Escalada",
+        "cs": "Lezení",
+        "de": "Klettern",
         "en": "Climbing",
-        "de": "Klettern"
+        "fr": "Escalade",
+        "gl": "Escalada",
+        "hu": "Hegymászás",
+        "it": "Arrampicata",
+        "ja": "登山",
+        "nb": "Klatring",
+        "oc": "Escalada",
+        "pl": "Wspinaczka",
+        "pt": "Escalada",
+        "pt-br": "Escalada",
+        "sr": "Пењање",
+        "tr": "Tırmanış"
     },
     "query": {
         "12": [

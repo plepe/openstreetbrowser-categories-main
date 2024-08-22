@@ -1,12 +1,24 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Electrificació de la via fèrria",
+        "cs": "Elektrifikovaná železnice",
         "de": "Eisenbahn Elektrifizierung",
         "en": "Railway electrification",
+        "es": "Electrificación ferroviaria",
         "fr": "Puissance électrique ferroviaire",
+        "gl": "Ferrocarril electrificado",
         "hu": "Vasút villamosítottsága",
+        "it": "Elettrificazione ferroviaria",
+        "ja": "鉄道の電力",
+        "nb": "Jernbane-strømtilførsel",
+        "nl": "Spoorwegelektrificatie",
+        "oc": "Electrificacion ferroviària",
+        "pl": "Elektryfikacja kolei",
         "pt": "Eletrificação ferroviária",
-        "pt-br": "Eletrificação ferroviária"
+        "pt-br": "Eletrificação ferroviária",
+        "ru": "Электрификация железных дорог",
+        "tr": "Demiryolu elektrifikasyonu"
     },
     "query": {
         "11": "way[railway=rail][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'][usage~'^(main|branch)$'];",
@@ -132,9 +144,20 @@
         "</table>"
     ],
     "const": {
-        "range": [ 0, 1000, 25000 ],
-        "infoSteps": [ 200, 2000 ],
-        "scheme": [ "#00ff00", "#003fff", "#af0000" ],
+        "range": [
+            0,
+            1000,
+            25000
+        ],
+        "infoSteps": [
+            200,
+            2000
+        ],
+        "scheme": [
+            "#00ff00",
+            "#003fff",
+            "#af0000"
+        ],
         "colorNone": "orange",
         "colorUnknown": "#404040",
         "colorIllegal": "#ff0000"

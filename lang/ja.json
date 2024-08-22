@@ -98,5 +98,17 @@
     "xmas:outdated-warning": "今のシーズンは地物が更新されていません! チェックして現在の日付に'xmas:lastcheck' タグをセットしてください。",
     "category:developable_areas": "開発可能エリア",
     "category:developments": "計画と建設",
-    "category:proposals": "提案"
+    "category:proposals": "提案",
+    "category:culture-media": "",
+    "category:cycle_directions": "",
+    "category:fixme": "",
+    "category:footways": "",
+    "category:heritage": "",
+    "category:kerbs": "",
+    "category:osm-qa": "",
+    "category:paddling": "",
+    "category:paddling_amenities": "",
+    "category:paddling_hazards": "",
+    "category:paddling_routes": "",
+    "category:walk_amenities_qa": ""
 }

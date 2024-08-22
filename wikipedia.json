@@ -1,12 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Viquipèdia",
+        "cs": "Wikipedie",
         "de": "Wikipedia",
         "en": "Wikipedia",
+        "es": "Wikipedia",
         "fr": "Wikipédia",
+        "gl": "Wikipedia",
         "hu": "Wikipédia",
+        "it": "Wikipedia",
+        "ja": "ウィキペディア",
+        "nb": "Wikipedia",
+        "nl": "Wikipedia",
+        "oc": "Wikipèdia",
+        "pl": "Wikipedia",
         "pt": "Wikipédia",
-        "pt-br": "Wikipédia"
+        "pt-br": "Wikipédia",
+        "ru": "Википедия",
+        "sr": "Википедија",
+        "tr": "Wikipedia"
     },
     "query": {
         "14": [

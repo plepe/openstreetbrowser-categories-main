@@ -2,19 +2,27 @@
     "type": "overpass",
     "name": {
         "ast": "Militar",
+        "ca": "Militar",
         "cs": "Vojenské",
         "de": "Militär",
         "el": "Στρατιωτικό",
         "en": "Military",
+        "es": "Militar",
         "fr": "Équipements et zones militaires",
+        "gl": "Militar",
         "hu": "Katonai objektumok",
         "it": "Militare",
         "ja": "軍事",
+        "nb": "Militære",
         "nl": "Militair",
+        "oc": "Luòcs militaris",
+        "pl": "Wojskowe",
         "pt": "Militar",
         "pt-br": "Militar",
         "ro": "Militar",
-        "ru": "Вооружённые силы"
+        "ru": "Вооружённые силы",
+        "sr": "Војска",
+        "tr": "Askeri"
     },
     "query": {
         "11": [

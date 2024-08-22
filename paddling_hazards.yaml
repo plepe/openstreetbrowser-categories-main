@@ -1,3 +1,11 @@
+name:
+  ca: Riscos de Rem
+  en: Paddling Hazards
+  fr: Risques en pagayage
+  it: Pericoli per la navigazione a remo
+  pl: Zagrożenia związane z wiosłowaniem
+  pt-br: Riscos
+  tr: Kürek Tehlikeleri
 type: overpass
 query:
   '12': |-

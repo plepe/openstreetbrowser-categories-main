@@ -1,10 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Rutes Ciclistes de Muntanya",
+        "cs": "Stezky pro horská kola",
+        "de": "Mointainbikerouten",
         "en": "Mountain bike routes",
+        "es": "Rutas de ciclismo de montaña",
         "fr": "Itinéraires de VTT",
+        "gl": "Rotas de bicicleta de montaña",
         "hu": "Hegyikerékpáros útvonalak",
-        "pt-br": "Rotas de mountain bike"
+        "it": "Percorsi per mountain bike",
+        "ja": "マウンテンバイクのルート",
+        "nb": "Terrengsykkelruter",
+        "nl": "ATB routes",
+        "oc": "Itineraris de VTT",
+        "pl": "Trasy dla rowerów górskich",
+        "pt": "Rotas de bicicleta de montanha",
+        "pt-br": "Rotas de mountain bike",
+        "ru": "Маршруты для горных велосипедов",
+        "sr": "Трасе за планинске бицикле",
+        "tr": "Dağ bisikleti rotaları"
     },
     "query": {
         "13": "relation[type=route][route~\"(|.*;)mtb(|;.*)\"]"

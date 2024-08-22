@@ -1,16 +1,26 @@
 {
     "name": {
         "ast": "Infraestructures",
+        "ca": "Serveis",
         "cs": "Občanská vybavenost",
         "de": "Einrichtungen",
         "en": "Amenities",
+        "es": "Instalaciones",
         "fr": "Équipement",
+        "gl": "Instalacións",
         "hu": "Létesítmények",
         "it": "Infrastrutture",
         "ja": "生活環境",
+        "nb": "Fasiliteter",
         "nl": "Voorzieningen",
+        "oc": "Equipament",
+        "pl": "Pożyteczne miejsca",
+        "pt": "Equipamentos",
         "pt-br": "Equipamentos",
+        "ro": "Facilități",
         "ru": "Полезные места",
+        "sr": "Додаци",
+        "tr": "Tesisler",
         "uk": "Amenities"
     }
 }

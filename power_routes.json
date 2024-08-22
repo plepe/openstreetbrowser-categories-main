@@ -1,10 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Rutes d'energia",
+        "cs": "Stožáry vysokého napětí",
+        "de": "Hochspannungsverbindungen",
         "en": "Power routes",
+        "es": "Rutas de energía",
         "fr": "Réseaux électriques",
+        "gl": "Liñas eléctricas",
         "hu": "Távvezetékek",
-        "pt-br": "Rotas energéticas"
+        "it": "Linee energetiche",
+        "ja": "電線のルート",
+        "nb": "Strømruter",
+        "nl": "Elektriciteitsleidingen",
+        "oc": "Linhas electricas",
+        "pl": "Przebieg kabli energetycznych",
+        "pt": "Rotas energéticas",
+        "pt-br": "Rotas de energia",
+        "ru": "Маршруты энергетики",
+        "sr": "Далеководи",
+        "tr": "Elektrik şebekeleri"
     },
     "query": {
         "10": "relation[type=route][route=power]"

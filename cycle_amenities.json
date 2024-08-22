@@ -1,11 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Serveis",
+        "cs": "veřejná zařízení",
         "de": "Einrichtungen",
         "en": "Amenities",
+        "es": "Instalaciones",
         "fr": "Équipements vélo",
+        "gl": "Instalacións",
         "hu": "Kerékpáros létesítmények",
-        "pt-br": "Equipamentos"
+        "it": "Infrastrutture",
+        "ja": "アメニティ",
+        "nb": "Fasiliteter",
+        "nl": "Voorzieningen",
+        "oc": "Equipaments per lei cicistas",
+        "pl": "Użyteczne w jeździe rowerem",
+        "pt": "Equipamentos",
+        "pt-br": "Equipamentos",
+        "ro": "Facilități",
+        "sr": "Додаци",
+        "tr": "Tesisler"
     },
     "query": {
         "13": [

@@ -1,12 +1,26 @@
 {
     "type": "index",
     "name": {
+        "ca": "Edificis",
+        "cs": "Budovy",
         "de": "Gebäude",
         "en": "Buildings",
+        "es": "Edificios",
         "fr": "Bâtiments",
+        "gl": "Edificios",
         "hu": "Épületek",
+        "it": "Edifici",
+        "ja": "建物",
+        "nb": "Bygninger",
+        "nl": "Gebouwen",
+        "oc": "Bastissas",
+        "pl": "Budynki",
         "pt": "Edifícios",
-        "pt-br": "Edificações"
+        "pt-br": "Edificações",
+        "ro": "Clădiri",
+        "ru": "Здания",
+        "sr": "Зграде",
+        "tr": "Binalar"
     },
     "subCategories": [
         {

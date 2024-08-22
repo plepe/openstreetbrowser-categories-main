@@ -1,3 +1,24 @@
+name:
+  ca: Antiguitat de l'edifici
+  cs: Stáří budovy
+  de: Gebäudealter
+  en: Building age
+  es: Edad del edificio
+  fr: Date de construction
+  gl: Idade do edificio
+  hu: Épületek kora
+  it: Età dell'edificio
+  ja: 築年数
+  nb: Bygningsalder
+  nl: Ouderdom van het gebouw
+  oc: Data de bastison
+  pl: Wiek budynków
+  pt-br: Idade
+  pt: Idade dos edifícios
+  ro: Vârsta clădirii
+  ru: Возраст здания
+  sr: Старост зграде
+  tr: Bina yaşı
 query:
   16: |-
     (

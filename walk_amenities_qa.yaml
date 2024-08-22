@@ -1,3 +1,9 @@
+name:
+  ca: Serveis per a peatons
+  en: Walking Amenities
+  it: Servizi per i pedoni
+  pl: Użyteczne w ruchu pieszym
+  tr: Yürüyüş Olanakları
 query:
   '13': |-
     (

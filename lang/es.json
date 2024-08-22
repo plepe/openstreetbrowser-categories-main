@@ -91,5 +91,21 @@
     "date format not understood": "Formato de fecha inválido",
     "outdated feature": "Características obsoletas",
     "xmas:outdated-warning": "¡La característica no se ha actualizado para la temporada actual! Por favor verifique y establezca la etiqueta 'xmas: lastcheck' a la fecha actual.",
-    "category:roads": "Carreteras"
+    "category:roads": "Carreteras",
+    "category:climbing": "",
+    "category:culture-media": "",
+    "category:cycle_directions": "",
+    "category:developable_areas": "",
+    "category:developments": "",
+    "category:fixme": "",
+    "category:footways": "",
+    "category:heritage": "",
+    "category:kerbs": "",
+    "category:osm-qa": "",
+    "category:paddling": "",
+    "category:paddling_amenities": "",
+    "category:paddling_hazards": "",
+    "category:paddling_routes": "",
+    "category:proposals": "",
+    "category:walk_amenities_qa": ""
 }

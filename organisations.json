@@ -1,9 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Organitzacions",
+        "cs": "Organizace",
+        "de": "Organisationen",
         "en": "Organisations",
+        "es": "Organizaciones",
         "fr": "Organisations",
-        "pt-br": "Organizações"
+        "gl": "Organizacións",
+        "hu": "Szervezetek",
+        "it": "Organizzazioni",
+        "ja": "組織",
+        "nb": "Organisasjoner",
+        "nl": "Organisaties",
+        "oc": "Organizacions",
+        "pl": "Organizacje",
+        "pt": "Organizações",
+        "pt-br": "Organizações",
+        "ru": "Организации",
+        "sr": "Организације",
+        "tr": "Kuruluşlar"
     },
     "query": {
         "13": [

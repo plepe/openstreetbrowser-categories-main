@@ -1,12 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Infraestructura fèrria",
+        "cs": "Železniční infrastruktura",
         "de": "Eisenbahn Infrastruktur",
         "en": "Railway infrastructure",
+        "es": "Infraestructura ferroviaria",
         "fr": "Infrastructure ferroviaire",
+        "gl": "Infraestrutura do ferrocarril",
         "hu": "Vasúti infrastruktúra",
+        "it": "Infrastruttura ferroviaria",
+        "ja": "鉄道インフラ",
+        "nb": "Jernbane-infrastruktur",
+        "nl": "Spoorweginfrastructuur",
+        "oc": "Infrastructura ferroviària",
+        "pl": "Infrastruktura kolejowa",
         "pt": "Infraestrutura ferroviária",
-        "pt-br": "Infraestrutura ferroviária"
+        "pt-br": "Infraestrutura ferroviária",
+        "ru": "Железнодорожная инфраструктура",
+        "sr": "Железничка инфраструктура",
+        "tr": "Demiryolu altyapısı"
     },
     "query": {
         "11": "(way[railway=rail][usage~'^(main|branch)$'];node[railway~'^(station)$'];)",

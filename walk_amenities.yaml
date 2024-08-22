@@ -1,3 +1,22 @@
+name:
+  ca: Serveis
+  cs: Veřejná zařízení
+  de: Einrichtungen
+  en: Amenities
+  es: Instalaciones
+  fr: Équipements piétons
+  gl: Instalacións
+  hu: Gyalogos létesítmények
+  it: Servizi
+  ja: アメニティ
+  nb: Fasiliteter
+  nl: Voorzieningen
+  oc: Equipaments pedoniers
+  pl: Pożyteczne w transporcie pieszym
+  pt-br: Equipamentos
+  pt: Equipamentos
+  sr: Додаци
+  tr: Olanaklar
 query:
   '13': |-
     (

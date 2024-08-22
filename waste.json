@@ -2,17 +2,25 @@
     "type": "overpass",
     "name": {
         "ast": "Basures",
+        "ca": "Deixalles",
         "cs": "Nakládání s odpady",
         "de": "Entsorgung",
         "en": "Disposal",
-        "fr": "Déchets/Recyclage",
+        "es": "Basura",
+        "fr": "Déchets et recyclage",
+        "gl": "Lixo",
         "hu": "Hulladék",
         "it": "Smaltimento",
         "ja": "処理場",
+        "nb": "Avfall",
         "nl": "Afvalverwijdering",
+        "oc": "Bordilhas e reciclatge",
+        "pl": "Przetwarzanie odpadów",
         "pt": "Lixo",
-        "pt-br": "Lixo",
-        "ru": "Переработка отходов"
+        "pt-br": "Resíduos",
+        "ru": "Переработка отходов",
+        "sr": "Отпад",
+        "tr": "Atık ve Geri Dönüşüm"
     },
     "query": {
         "13": [

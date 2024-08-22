@@ -1,3 +1,21 @@
+name:
+  ca: Mapa a peu de carrer
+  cs: Schematický diagram
+  de: Schwarzplan
+  en: Figure-ground diagram
+  es: Diagrama figura-fondo
+  fr: Empreintes
+  gl: Cheos e baleiros
+  hu: Fekete épületalaprajzok
+  it: Schema di Impronta
+  ja: フィギュア-グランド図式
+  nb: Figur-bakke diagram
+  nl: Plattegrond
+  oc: Marca au sòu
+  pl: Plan zagospodarowania przestrzennego
+  pt-br: Cheios e vazios
+  pt: Cheios e vazios
+  tr: Figür-zemin diyagramı
 query:
   16: |-
     (

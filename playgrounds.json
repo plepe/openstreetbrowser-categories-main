@@ -1,15 +1,27 @@
 {
     "name": {
         "ast": "Xuegos infantiles",
+        "ca": "Parc infantil",
         "cs": "Hřiště",
-        "de": "Spielplätze",
+        "de": "Spielplatz",
         "en": "Playground",
+        "es": "Parque infantil",
         "et": "Mänguväljak",
         "fr": "Jeux pour enfants",
+        "gl": "Parques infantís",
         "hu": "Játszóterek",
+        "it": "Parco giochi",
+        "ja": "遊び場",
+        "nb": "Lekeplass",
+        "nl": "Speeltuin",
+        "oc": "Jòcs per leis enfants",
+        "pl": "Plac zabaw",
         "pt": "Parques infantis",
         "pt-br": "Parquinhos",
-        "ro": "Loc de joaca",
+        "ro": "Loc de joacă",
+        "ru": "Детская площадка",
+        "sr": "Игралиште",
+        "tr": "Oyun Alanı",
         "uk": "Дитячий майданчик"
     }
 }

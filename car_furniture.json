@@ -1,18 +1,25 @@
 {
     "name": {
         "ast": "Acondicionamientu urbanu",
+        "ca": "Mobiliari Urbà",
         "cs": "Pouliční přislušenství",
         "de": "Straßenausstattung",
         "en": "Street Furniture",
+        "es": "Mobiliario Urbano",
         "fr": "Fournitures automobiles",
+        "gl": "Mobiliario urbano",
         "hu": "Jelzőtáblák",
         "it": "Dotazioni stradali",
         "ja": "街路設置公共物",
+        "nb": "Gatemøbler",
         "nl": "Straatmeubilair",
+        "oc": "Fornituras automobilas",
         "pl": "Elementy drogowe",
         "pt": "Mobiliário urbano",
         "pt-br": "Mobiliário urbano",
+        "ro": "Mobilier Stradal",
         "ru": "Элементы дороги",
+        "tr": "Sokak Mobilyaları",
         "uk": "Street Furniture"
     }
 }

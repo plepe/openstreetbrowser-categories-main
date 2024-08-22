@@ -1,8 +1,23 @@
 {
     "type": "index",
     "name": {
-        "hu": "Tartalom",
-        "pt-br": "Índice"
+        "ca": "Índex de Categories",
+        "cs": "Rejstřík kategorií",
+        "en": "Index of Categories",
+        "es": "Índice de Categorías",
+        "fr": "Index des Catégories",
+        "gl": "Índice de categorías",
+        "hu": "Kategóriák jegyzéke",
+        "it": "Indice delle Categorie",
+        "ja": "目次(カテゴリ)",
+        "nb": "Indeks av kategorier",
+        "oc": "Indici dei categorias",
+        "pl": "Spis kategorii",
+        "pt": "Índice de categorias",
+        "pt-br": "Índice de Categorias",
+        "ru": "Индекс категорий",
+        "sr": "Садржај категорија",
+        "tr": "Kategori İndeksi"
     },
     "subCategories": [
         {
@@ -22,12 +37,17 @@
                 "it": "Tempo libero, sport e shopping",
                 "ja": "レジャー",
                 "nl": "Vrije tijd, Sport en Winkelen",
-                "pl": "Wypoczynek, Sport i Zakupy",
+                "pl": "Wypoczynek, sport i zakupy",
                 "ro": "Timp liber, Sport si Cumparaturi",
-                "ru": "Досуг",
+                "ru": "Досуг, спорт и магазины",
                 "uk": "Дозвілля",
                 "pt-br": "Lazer, esportes e compras",
-                "pt": "Lazer, desporto e compras"
+                "pt": "Lazer, desporto e compras",
+                "gl": "Lecer, deporte e compras",
+                "nb": "Fritid, sport og shopping",
+                "oc": "Vida quotidiana, lesers e espòrts",
+                "sr": "Разонода, спорт и куповина",
+                "tr": "Eğlence, Spor ve Alışveriş"
             },
             "subCategories": [
                 {
@@ -78,7 +98,12 @@
                 "ru": "Услуги",
                 "uk": "Послуги",
                 "pt-br": "Prestação de serviços",
-                "pt": "Serviços"
+                "pt": "Serviços",
+                "gl": "Servizos",
+                "nb": "Tjenester",
+                "oc": "Servicis",
+                "sr": "Услуге",
+                "tr": "Hizmetler"
             },
             "subCategories": [
                 {
@@ -136,7 +161,14 @@
                 "ru": "Транспорт",
                 "uk": "Транспорт",
                 "pt-br": "Mobilidade",
-                "pt": "Transportes"
+                "pt": "Transportes",
+                "ca": "Transport",
+                "es": "Transporte",
+                "gl": "Mobilidade",
+                "nb": "Transport",
+                "oc": "Transpòrts",
+                "sr": "Превоз",
+                "tr": "Ulaşım"
             },
             "subCategories": [
                 {
@@ -149,7 +181,19 @@
                         "pt-br": "Pedestre",
                         "pt": "Pedestre",
                         "hu": "Gyalogos közlekedés",
-                        "ja": "歩行"
+                        "ja": "ウォーキング",
+                        "ca": "Caminar",
+                        "cs": "Turistika",
+                        "es": "Viandantes",
+                        "gl": "Peonil",
+                        "it": "Pedonale",
+                        "nb": "Gåing",
+                        "nl": "Wandelen",
+                        "oc": "Caminada",
+                        "pl": "Pieszy",
+                        "ru": "Пешеходный",
+                        "sr": "Ходање",
+                        "tr": "Yürüme"
                     },
                     "subCategories": [
                         {
@@ -176,7 +220,19 @@
                         "pt-br": "Ciclismo",
                         "pt": "Ciclismo",
                         "hu": "Kerékpáros közlekedés",
-                        "ja": "自転車"
+                        "ja": "サイクリング",
+                        "ca": "Ciclisme",
+                        "cs": "Cyklistika",
+                        "es": "Ciclismo",
+                        "gl": "Ciclismo",
+                        "it": "Ciclistico",
+                        "nb": "Sykling",
+                        "nl": "Fietsen",
+                        "oc": "Ciclisme",
+                        "pl": "Rowerowy",
+                        "ru": "Велосипедный",
+                        "sr": "Бициклизам",
+                        "tr": "Bisiklet"
                     },
                     "subCategories": [
                         {
@@ -205,12 +261,19 @@
                         "it": "Trasporti pubblici",
                         "ja": "公共輸送",
                         "nl": "Openbaar vervoer",
-                        "pl": "Transport Publiczny",
+                        "pl": "Transport publiczny",
                         "ro": "Transport public",
                         "ru": "Общественный транспорт",
                         "uk": "Громадський транспорт",
                         "pt-br": "Transporte público",
-                        "pt": "Transportes públicos"
+                        "pt": "Transportes públicos",
+                        "ca": "Transport Públic",
+                        "es": "Transporte público",
+                        "gl": "Transporte público",
+                        "nb": "Offentlig transport",
+                        "oc": "Transpòrts publics",
+                        "sr": "Јавни превоз",
+                        "tr": "Toplu Taşıma"
                     },
                     "subCategories": [
                         {
@@ -230,16 +293,23 @@
                         "de": "Motorisierter Individualverkehr",
                         "en": "Individual Traffic",
                         "fr": "Transport automobile",
-                        "it": "Trasporti individuali",
+                        "it": "Trasporto individuale",
                         "ja": "個人輸送機関",
                         "nl": "Gemotoriseerd individueel verkeer",
-                        "pl": "Transport Indywidualny",
+                        "pl": "Transport indywidualny",
                         "ro": "Trafic individual",
                         "ru": "Частный транспорт",
                         "uk": "Приватний транспорт",
-                        "pt-br": "Tráfego individual",
+                        "pt-br": "Transporte individual",
                         "pt": "Transporte individual",
-                        "hu": "Autós közlekedés"
+                        "hu": "Autós közlekedés",
+                        "ca": "Trànsit Individual",
+                        "es": "Tráfico individual",
+                        "gl": "Tráfico individual",
+                        "nb": "Individuell trafikk",
+                        "oc": "Transpòrt automobil",
+                        "sr": "Индивидуални саобраћај",
+                        "tr": "Bireysel Trafik"
                     },
                     "subCategories": [
                         {
@@ -265,7 +335,20 @@
                 "pt-br": "Infraestrutura",
                 "pt": "Infraestrutura",
                 "hu": "Infrastruktúra",
-                "ja": "インフラ"
+                "ja": "インフラ",
+                "ca": "Infraestructura",
+                "cs": "Infrastruktura",
+                "es": "Infraestructura",
+                "gl": "Infraestrutura",
+                "it": "Infrastrutture",
+                "nb": "Infrastruktur",
+                "nl": "Infrastructuur",
+                "oc": "Infrastructuras",
+                "pl": "Infrastruktura",
+                "ro": "Infrastructură",
+                "ru": "Инфраструктура",
+                "sr": "Инфраструктура",
+                "tr": "Altyapı"
             },
             "subCategories": [
                 {
@@ -278,7 +361,18 @@
                     "id": "developments",
                     "type": "index",
                     "name": {
-                        "en": "Planning and Construction"
+                        "en": "Planning and Construction",
+                        "ca": "Planificació i Construcció",
+                        "fr": "Planification et construction",
+                        "hu": "Tervek és építkezések",
+                        "it": "Pianificazione e costruzione",
+                        "ja": "計画と建設",
+                        "oc": "Planificacion e construccion",
+                        "pl": "Planowanie i budowanie",
+                        "pt-br": "Planejamento e construção",
+                        "pt": "Planeamento e construção",
+                        "sr": "Планирање и изградња",
+                        "tr": "Planlama ve İnşaat"
                     },
                     "subCategories": [
                         {
@@ -304,7 +398,21 @@
                         "pt-br": "Energia",
                         "fr": "Énergie",
                         "hu": "Energiaellátás",
-                        "ja": "エネルギー"
+                        "ja": "エネルギー",
+                        "ca": "Energia",
+                        "cs": "Energie",
+                        "es": "Energía",
+                        "gl": "Enerxía",
+                        "it": "Energia",
+                        "nb": "Energi",
+                        "nl": "Energie",
+                        "oc": "Energia",
+                        "pl": "Energetyka",
+                        "pt": "Energia",
+                        "ro": "Energie",
+                        "ru": "Энергетика",
+                        "sr": "Енергија",
+                        "tr": "Enerji"
                     },
                     "subCategories": [
                         {
@@ -335,12 +443,20 @@
                         "et": "Raudtee",
                         "fr": "Chemins de fer",
                         "hu": "Vasút",
-                        "it": "Ferrovie",
+                        "it": "Ferrovia",
                         "ja": "鉄道",
                         "nl": "Spoorwegen",
                         "ru": "Железные дороги",
                         "pt-br": "Ferrovia",
-                        "pt": "Linhas ferroviárias"
+                        "pt": "Linhas ferroviárias",
+                        "ca": "Via fèrria",
+                        "es": "Ferrocarril",
+                        "gl": "Ferrocarril",
+                        "nb": "Jernbane",
+                        "oc": "Camins de fer",
+                        "pl": "Kolej",
+                        "sr": "Пруга",
+                        "tr": "Demiryolu"
                     },
                     "subCategories": [
                         {
@@ -387,7 +503,19 @@
                 "fr": "Catégories spéciales",
                 "pt": "Especial",
                 "hu": "Speciális",
-                "ja": "特別"
+                "ja": "特別",
+                "ca": "Especial",
+                "cs": "Speciální",
+                "es": "Especial",
+                "gl": "Especial",
+                "it": "Speciali",
+                "nb": "Spesielt",
+                "nl": "Speciaal",
+                "oc": "Categorias particularas",
+                "pl": "Specjalne",
+                "ru": "Специальное",
+                "sr": "Посебно",
+                "tr": "Özel"
             },
             "subCategories": [
                 {
@@ -414,7 +542,18 @@
                 {
                     "id": "walk_amenities_qa"
                 }
-            ]
+            ],
+            "name": {
+                "ca": "Control de Qualitat d'OpenStreetMap",
+                "en": "OpenStreetMap Quality Control",
+                "fr": "Contrôle qualité OpenStreetMap",
+                "hu": "OpenStreetMap minőségellenőrzés",
+                "it": "Controllo della qualità di OpenStreetMap",
+                "pl": "Kontrola jakości OpenStreetMap",
+                "pt-br": "Controle de Qualidade OSM",
+                "pt": "Controlo de Qualidade do OpenStreetMap",
+                "tr": "OpenStreetMap Kalite Kontrol"
+            }
         }
     ]
 }

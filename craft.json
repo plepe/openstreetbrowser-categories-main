@@ -1,12 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Artesania",
+        "cs": "Řemeslo",
         "de": "Handwerk",
         "en": "Craft",
+        "es": "Artesano",
         "fr": "Artisanat",
+        "gl": "Artesán",
         "hu": "Műhelyek",
+        "it": "Artigianato",
+        "ja": "職人",
+        "nb": "Håndverk",
+        "nl": "Handwerk",
+        "oc": "Artisanat",
+        "pl": "Rzemiosło",
         "pt": "Artesanato",
-        "pt-br": "Ofícios"
+        "pt-br": "Ofícios",
+        "ru": "Мастерские",
+        "sr": "Занат",
+        "tr": "El Sanatları"
     },
     "query": {
         "15": "(node[craft];way[craft];relation[craft];);"

@@ -90,5 +90,22 @@
     "category:xmas": "Рождество",
     "date format not understood": "Неверный формат даты",
     "outdated feature": "Устаревшие объекты",
-    "xmas:outdated-warning": "Объект не был обновлен в текущем сезоне! Пожалуйста, проверьте и установите текущую дату в теге 'xmas: lastcheck'."
+    "xmas:outdated-warning": "Объект не был обновлен в текущем сезоне! Пожалуйста, проверьте и установите текущую дату в теге 'xmas: lastcheck'.",
+    "category:climbing": "",
+    "category:culture-media": "",
+    "category:cycle_directions": "",
+    "category:developable_areas": "",
+    "category:developments": "",
+    "category:fixme": "",
+    "category:footways": "",
+    "category:heritage": "",
+    "category:kerbs": "",
+    "category:osm-qa": "",
+    "category:paddling": "",
+    "category:paddling_amenities": "",
+    "category:paddling_hazards": "",
+    "category:paddling_routes": "",
+    "category:proposals": "",
+    "category:roads": "",
+    "category:walk_amenities_qa": ""
 }

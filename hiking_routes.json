@@ -1,12 +1,26 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Rutes Excursionistes",
+        "cs": "Turistické trasy",
         "de": "Wanderrouten",
         "en": "Hiking routes",
+        "es": "Rutas de senderismo",
         "fr": "Itinéraires pédestres",
+        "gl": "Rotas sendeiristas",
         "hu": "Turistautak",
+        "it": "Percorsi escursionistici",
+        "ja": "ハイキングルート",
+        "nb": "Gåruter",
+        "nl": "Wandelroutes",
+        "oc": "Itineraris per escorregudas",
+        "pl": "Trasy turystyczne",
         "pt": "Rotas de caminhada",
-        "pt-br": "Rotas de caminhada"
+        "pt-br": "Rotas de caminhada",
+        "ro": "Trasee de drumeție",
+        "ru": "Туристические маршруты",
+        "sr": "Трасе за планинарење",
+        "tr": "Yürüyüş Rotaları"
     },
     "query": {
         "10": "relation[type=route][route~\"^(|.*;)hiking(|;.*)$\"][network~\"^(|.*;)(iwn)(|;.*)$\"]",

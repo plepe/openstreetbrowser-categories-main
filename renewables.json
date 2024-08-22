@@ -1,11 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Renovables",
+        "cs": "Obnovitelné zdroje",
         "de": "Erneuerbare Energien",
         "en": "Renewables",
+        "es": "Renovables",
         "fr": "Énergies renouvelables",
+        "gl": "Renovábeis",
         "hu": "Megújuló energia",
-        "pt-br": "Renováveis"
+        "it": "Energie rinnovabili",
+        "ja": "再生可能エネルギー",
+        "nb": "Fornybare",
+        "nl": "Hernieuwbare energie",
+        "oc": "Energias renovelablas",
+        "pl": "Odnawialne",
+        "pt": "Renováveis",
+        "pt-br": "Renováveis",
+        "ru": "Возобновляемая",
+        "sr": "Обновљива енергија",
+        "tr": "Yenilenebilir kaynaklar"
     },
     "query": {
         "11": [

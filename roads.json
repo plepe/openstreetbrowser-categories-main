@@ -107,5 +107,24 @@
             "path": 18,
             "steps": 18
         }
+    },
+    "name": {
+        "ca": "Carreteres",
+        "cs": "Silnice",
+        "de": "Straßen",
+        "en": "Roads",
+        "es": "Carreteras",
+        "fr": "Routes",
+        "gl": "Estradas",
+        "hu": "Utak",
+        "it": "Strade",
+        "ja": "道路",
+        "nb": "Veier",
+        "oc": "Rotas",
+        "pl": "Drogi",
+        "pt": "Vias",
+        "pt-br": "Vias",
+        "sr": "Путеви",
+        "tr": "Yollar"
     }
 }

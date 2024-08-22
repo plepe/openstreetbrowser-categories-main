@@ -2,16 +2,24 @@
     "type": "overpass",
     "name": {
         "ast": "Estraición de recursos",
+        "ca": "Extracció de Recursos",
         "cs": "Těžba surovin",
         "de": "Ressourcengewinnung",
         "en": "Resource Extraction",
+        "es": "Extracción de recursos",
         "fr": "Extraction des ressources",
+        "gl": "Estracción de recursos",
         "hu": "Bányászat",
-        "it": "Areee estrattive",
+        "it": "Aree estrattive",
+        "ja": "資源採集",
+        "nb": "Ressursutvinning",
         "nl": "Grondstoffenwinning",
+        "oc": "Airau d'extraccion de ressorsas",
+        "pl": "Wydobycie zasobów naturalnych",
         "pt": "Extração de recursos",
         "pt-br": "Extração de recursos",
-        "ru": "Добыча ресурсов"
+        "ru": "Добыча ресурсов",
+        "tr": "Yeraltı Kaynağı Çıkarma"
     },
     "query": {
         "11": [

@@ -90,5 +90,22 @@
     "category:xmas": "",
     "date format not understood": "",
     "outdated feature": "",
-    "xmas:outdated-warning": ""
+    "xmas:outdated-warning": "",
+    "category:climbing": "",
+    "category:culture-media": "",
+    "category:cycle_directions": "",
+    "category:developable_areas": "",
+    "category:developments": "",
+    "category:fixme": "",
+    "category:footways": "",
+    "category:heritage": "",
+    "category:kerbs": "",
+    "category:osm-qa": "",
+    "category:paddling": "",
+    "category:paddling_amenities": "",
+    "category:paddling_hazards": "",
+    "category:paddling_routes": "",
+    "category:proposals": "",
+    "category:roads": "",
+    "category:walk_amenities_qa": ""
 }

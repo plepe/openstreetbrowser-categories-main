@@ -1,11 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Oficines",
+        "cs": "Úřady",
         "de": "Ämter, Dienst- und Geschäftsstellen",
         "en": "Offices",
+        "es": "Oficinas",
         "fr": "Bureaux",
+        "gl": "Oficinas",
         "hu": "Irodák, hivatalok",
-        "pt-br": "Escritórios e agências"
+        "it": "Uffici",
+        "ja": "オフィス",
+        "nb": "Kontorer",
+        "nl": "Kantoren",
+        "oc": "Oficis/ Burèus",
+        "pl": "Biura",
+        "pt": "Escritórios",
+        "pt-br": "Escritórios e agências",
+        "ru": "Офисы",
+        "sr": "Канцеларије",
+        "tr": "Ofisler"
     },
     "query": {
         "14": "nwr[office]"

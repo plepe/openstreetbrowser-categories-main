@@ -2,17 +2,26 @@
     "type": "overpass",
     "name": {
         "ast": "Sitios d'obres",
+        "ca": "Llocs en Construcció",
         "cs": "Staveniště",
         "de": "Baustellen",
         "en": "Construction Sites",
-        "fr": "Constructions",
+        "es": "Sitios de construcción",
+        "fr": "Chantiers de construction",
+        "gl": "Terreos baixo construción",
         "hu": "Építési terület",
         "it": "Cantieri",
         "ja": "工事中",
+        "nb": "Konstruksjonsområde",
         "nl": "Bouwterrein",
+        "oc": "Talhiers de construccion",
+        "pl": "Tereny budowy",
         "pt": "Locais de construção",
         "pt-br": "Terrenos vazios e obras",
-        "ru": "Места строительства"
+        "ro": "Șantiere",
+        "ru": "Места строительства",
+        "sr": "Градилишта",
+        "tr": "İnşaat Sahaları"
     },
     "query": {
         "13": [

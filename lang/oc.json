@@ -95,5 +95,17 @@
     "category:climbing": "Escalada",
     "category:developable_areas": "Airaus ameinatjats",
     "category:developments": "Planificacion e construccion",
-    "category:proposals": "Propositions"
+    "category:proposals": "Propositions",
+    "category:culture-media": "",
+    "category:cycle_directions": "",
+    "category:fixme": "",
+    "category:footways": "",
+    "category:heritage": "",
+    "category:kerbs": "",
+    "category:osm-qa": "",
+    "category:paddling": "",
+    "category:paddling_amenities": "",
+    "category:paddling_hazards": "",
+    "category:paddling_routes": "",
+    "category:walk_amenities_qa": ""
 }

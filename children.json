@@ -1,11 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Serveis per a infants",
+        "cs": "Vybavení pro děti",
         "de": "Einrichtungen für Kinder",
         "en": "Children amenities",
+        "es": "Instalaciones para niños",
         "fr": "Équipements pour enfants",
+        "gl": "Instalacións infantís",
         "hu": "Gyermekek",
-        "pt-br": "Equipamentos infantis"
+        "it": "Luoghi per bambini",
+        "ja": "子ども用施設",
+        "nb": "Barnefasiliteter",
+        "nl": "Voorzieningen voor kinderen",
+        "oc": "Luòcs per leis enfants",
+        "pl": "Użyteczne dzieciom",
+        "pt": "Equipamentos infantis",
+        "pt-br": "Equipamentos infantis",
+        "ro": "Facilități copii",
+        "sr": "Додаци за децу",
+        "tr": "Çocuk Malzemeleri"
     },
     "query": {
         "15": [

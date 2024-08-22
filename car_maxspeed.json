@@ -1,12 +1,26 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Velocitat màxima",
+        "cs": "Maximální rychlost",
         "de": "Höchstgeschwindigkeiten",
         "en": "Maxspeed",
+        "es": "Velocidad máxima",
         "fr": "Limites de vitesse",
+        "gl": "Velocidade máxima",
         "hu": "Sebességkorlátozás",
+        "it": "Velocità massima",
+        "ja": "最高速度",
+        "nb": "Fartsgrense",
+        "nl": "Snelheidslimiet",
+        "oc": "Limits de velocitat",
+        "pl": "Prędkość maksymalna",
         "pt": "Velocidade máxima",
-        "pt-br": "Velocidade máxima"
+        "pt-br": "Veloc. máxima",
+        "ro": "Viteza maximă",
+        "ru": "Максимальная скорость",
+        "sr": "Максимална брзина",
+        "tr": "En yüksek hız"
     },
     "query": {
         "11": "way[highway~\"^(motorway|trunk)$\"];",

@@ -1,9 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Llei",
+        "cs": "Právo",
+        "de": "Juristische Institutionen",
         "en": "Law",
+        "es": "Ley",
         "fr": "Services législatifs",
-        "pt-br": "Direito"
+        "gl": "Leis",
+        "hu": "Jog",
+        "it": "Legge",
+        "ja": "法律",
+        "nb": "Lov",
+        "nl": "Juridische diensten",
+        "oc": "Lèi",
+        "pl": "Prawo",
+        "pt": "Direito",
+        "pt-br": "Direito",
+        "ru": "Юристы",
+        "sr": "Закон",
+        "tr": "Hukuk"
     },
     "query": {
         "14": [

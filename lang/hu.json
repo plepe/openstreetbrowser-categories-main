@@ -102,5 +102,11 @@
     "category:fixme": "Javíts ki! / Fix me",
     "category:osm-qa": "OpenStreetMap minőségellenőrzés",
     "category:footways": "Gyalogutak",
-    "category:kerbs": "Járdaszegélyek"
+    "category:kerbs": "Járdaszegélyek",
+    "category:cycle_directions": "",
+    "category:paddling": "",
+    "category:paddling_amenities": "",
+    "category:paddling_hazards": "",
+    "category:paddling_routes": "",
+    "category:walk_amenities_qa": ""
 }

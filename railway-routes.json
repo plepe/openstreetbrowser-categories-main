@@ -1,10 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Rutes Fèrries",
+        "cs": "Železniční trasy",
+        "de": "Eisenbahnrouten",
         "en": "Railway Routes",
+        "es": "Rutas de ferrocarril",
         "fr": "Lignes ferroviaires",
+        "gl": "Liñas de ferrocarril",
         "hu": "Vasútvonalak",
-        "pt-br": "Rotas ferroviárias"
+        "it": "Percorsi ferroviari",
+        "ja": "鉄道ルート",
+        "nb": "Jernbaneruter",
+        "nl": "Spoorwegroutes",
+        "oc": "Linhas ferroviàrias",
+        "pl": "Trasy kolejowe",
+        "pt": "Rotas ferroviárias",
+        "pt-br": "Rotas ferroviárias",
+        "ru": "Железнодорожные маршруты",
+        "sr": "Трасе железнице",
+        "tr": "Demiryolu Güzergahları"
     },
     "query": {
         "12": "relation[type=route][route=railway]"

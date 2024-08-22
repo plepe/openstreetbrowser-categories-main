@@ -1,11 +1,25 @@
 {
     "type": "index",
     "name": {
+        "ca": "Activitats a l'aire lliure",
+        "cs": "Venkovní aktivity",
         "de": "Freiluftaktivitäten",
         "en": "Outdoor activities",
+        "es": "Actividades al aire libre",
         "fr": "Activités de plein air",
+        "gl": "Actividades ó ar libre",
         "hu": "Szabadtéri tevékenységek",
-        "pt-br": "Atividades ao ar livre"
+        "it": "Attività all'aperto",
+        "ja": "アウトドア活動",
+        "nb": "Utendørsaktiviteter",
+        "nl": "Buitenactiviteiten",
+        "oc": "Activitats de plen aire",
+        "pl": "Aktywność na powietrzu",
+        "pt": "Atividades ao ar livre",
+        "pt-br": "Atividades ao ar livre",
+        "ru": "Мероприятия на природе",
+        "sr": "Активности на отвореном",
+        "tr": "Açık hava etkinlikleri"
     },
     "subCategories": [
         {

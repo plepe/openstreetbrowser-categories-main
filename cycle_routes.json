@@ -1,12 +1,26 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Rutes Ciclistes",
+        "cs": "Cyklotrasy",
         "de": "Radrouten",
         "en": "Cycle Routes",
+        "es": "Rutas ciclistas",
         "fr": "Itinéraires vélo",
+        "gl": "Rotas ciclistas",
         "hu": "Kerékpáros útvonalak",
+        "it": "Percorsi ciclabili",
+        "ja": "自転車ルート",
+        "nb": "Sykkelruter",
+        "nl": "Fietsroutes",
+        "oc": "Itineraris ciclistas",
+        "pl": "Trasy rowerowe",
         "pt": "Ciclovias",
-        "pt-br": "Ciclorrotas"
+        "pt-br": "Ciclorrotas",
+        "ro": "Trasee ciclism",
+        "ru": "Веломаршруты",
+        "sr": "Трасе за бицикле",
+        "tr": "Bisiklet Rotaları"
     },
     "query": {
         "6": "relation[type=route][route~\"^(|.*;)bicycle(|;.*)$\"][network~'^(|.*;)(icn)(|;.*)$']",

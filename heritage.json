@@ -24,5 +24,17 @@
             "{% endif %}"
         ],
         "priority": "{{ min(tags.heritage|split(\";\")) }}"
+    },
+    "name": {
+        "ca": "Protecció del Patrimoni",
+        "de": "Denkmalschutz",
+        "en": "Heritage Protection",
+        "fr": "Protection patrimoniale",
+        "hu": "Örökségvédelem",
+        "it": "Protezione del patrimonio",
+        "pl": "Ochrona dziedzictwa",
+        "pt": "Património cultural",
+        "pt-br": "Patrimônio histórico",
+        "tr": "Kültürel Miras"
     }
 }

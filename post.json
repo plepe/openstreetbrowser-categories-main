@@ -1,13 +1,24 @@
 {
     "name": {
         "ast": "Corréu",
+        "ca": "Correus",
         "cs": "Poštovní služby",
         "de": "Post",
         "en": "Post",
+        "es": "Correos",
+        "fr": "Poste",
+        "gl": "Correos",
         "hu": "Posta",
+        "it": "Posta",
         "ja": "郵便",
+        "nb": "Post",
         "nl": "Post",
+        "oc": "Pòsta",
+        "pl": "Poczta",
         "pt": "Correios",
-        "pt-br": "Correios"
+        "pt-br": "Correios",
+        "ru": "Почта",
+        "sr": "Пошта",
+        "tr": "Posta"
     }
 }

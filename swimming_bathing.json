@@ -1,11 +1,25 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Natació i bany",
+        "cs": "Koupání",
         "de": "Schwimmen und Baden",
         "en": "Swimming and bathing",
+        "es": "Natación y baño",
         "fr": "Natation, baignade et bains",
+        "gl": "Natación e baño",
         "hu": "Fürdőzés, úszás",
-        "pt-br": "Natação e banho"
+        "it": "Nuoto e balneazione",
+        "ja": "水泳と入浴",
+        "nb": "Svømming og bading",
+        "nl": "Zwemmen en baden",
+        "oc": "Natacion, banhada e banhèra",
+        "pl": "Pływanie i kąpiele",
+        "pt": "Natação e banho",
+        "pt-br": "Natação e banho",
+        "ru": "Бассейны и сауны",
+        "sr": "Пливање и купање",
+        "tr": "Yüzme ve banyo yapma"
     },
     "query": {
         "13": [

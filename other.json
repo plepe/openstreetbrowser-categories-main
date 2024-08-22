@@ -1,19 +1,27 @@
 {
     "name": {
         "ast": "Otres",
+        "ca": "Altres",
         "cs": "Jiné",
         "de": "Andere",
         "en": "Other",
+        "es": "Otro",
         "et": "Ülejäänud",
         "fr": "Autres",
+        "gl": "Outros",
         "hu": "Egyéb",
-        "it": "Altri",
+        "it": "Altro",
         "ja": "その他",
+        "nb": "Andre",
         "nl": "Andere",
+        "oc": "Autrei",
+        "pl": "Inne",
         "pt": "Outros",
         "pt-br": "Outros",
         "ro": "Altele",
         "ru": "Прочее",
+        "sr": "Остало",
+        "tr": "Diğer",
         "uk": "Інше"
     }
 }

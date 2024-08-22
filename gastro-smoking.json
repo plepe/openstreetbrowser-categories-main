@@ -1,12 +1,24 @@
 {
     "type": "overpass",
     "name": {
+        "ca": "Gastronomia Lliure de Fum",
+        "cs": "Nekuřácké restaurace",
         "de": "Rauchfreie Gastronomie",
         "en": "Smokefree Gastronomy",
+        "es": "Gastronomía libre de humo",
         "fr": "Restauration sans tabac",
+        "gl": "Restauración sen fume",
         "hu": "Nem dohányzó vendéglátóhelyek",
+        "it": "Gastronomia non fumatori",
+        "ja": "禁煙の飲食店",
+        "nb": "Røykefritt Gastronomi",
+        "nl": "Rookvrije gastronomie",
+        "oc": "Restauration sensa tabat",
+        "pl": "Gastronomia wolna od papierosów",
         "pt": "Restauração livre de tabaco",
-        "pt-br": "Gastronomia sem fumo"
+        "pt-br": "Gastronomia sem fumo",
+        "ru": "Общественное питание без курения",
+        "tr": "Dumansız Gastronomi"
     },
     "query": {
         "16": "(node[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];way[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];relation[amenity~'^(bar|biergarten|cafe|fast_food|ice_cream|pub|restaurant)$'];);"

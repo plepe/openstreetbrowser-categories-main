@@ -1,3 +1,27 @@
+name:
+  ast: Gastronomía
+  ca: Gastronomia
+  cs: Stravování
+  de: Gastronomie
+  el: Γαστρονομία
+  en: Gastronomy
+  es: Gastronomía
+  fr: Restauration
+  gl: Restauración
+  hu: Vendéglátás
+  it: Gastronomia
+  ja: 食べ物
+  nb: Gastronomi
+  nl: Gastronomie
+  oc: Restauracion/ Gastronomia
+  pl: Gastronomia
+  pt-br: Gastronomia
+  pt: Restauração
+  ro: Gastronomie
+  ru: Общепит
+  sr: Гастрономија
+  tr: Gastronomi
+  uk: Гастрономія
 type: overpass
 query:
   15: nwr[amenity~'^(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant|canteen)$'];

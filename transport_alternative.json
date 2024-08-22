@@ -1,17 +1,27 @@
 {
     "name": {
         "ast": "Alternativu (Ciclismu, senderismu, ...)",
-        "cs": "Alternativní (Cyklistika, Pěší turistika, ...)",
+        "ca": "Modes Alternatius de Transport",
+        "cs": "Alternativní doprava (Cyklistika, Pěší turistika, ...)",
         "el": "Εναλλακτικά (ποδηλασία, ορειβασία,...)",
+        "en": "Alternative Transportation modes",
+        "es": "Modos de transporte alternativo",
         "et": "Alternatiivne (jalgrattasõit, matkamine, ...)",
-        "fr": "Alternatif (cyclisme, randonnée, ...)",
-        "hu": "Alternatív (Kerékpár, Túra)",
-        "it": "Alternativi (bicicletta, camminate, ...)",
+        "fr": "Modes de transport alternatifs",
+        "gl": "Modos de transporte alternativo",
+        "hu": "Alternatív közlekedési módok",
+        "it": "Mezzi di trasporto alternativi",
         "ja": "その他交通 (サイクリング、ハイキング、...)",
+        "nb": "Alternative transportmetoder",
         "nl": "Alternatief (Fiets, Wandel, ...)",
-        "pt-br": "Transporte alternativo",
+        "oc": "Transpòrt alternatiu (ciclisme, caminada, ...)",
+        "pl": "Alternatywne metody transportu",
+        "pt": "Modais de transporte alternativo",
+        "pt-br": "Modos de transporte alternativo",
         "ro": "Alternativ(Bicicleta,Drumetii)",
-        "ru": "Альтернативное передвижение (Велоспорт, Пешие прогулки, ...)",
+        "ru": "Альтернативное передвижение",
+        "sr": "Други начини превоза",
+        "tr": "Alternatif Ulaşım modları",
         "uk": "Інші (Велосипедні, піші, ...)"
     }
 }

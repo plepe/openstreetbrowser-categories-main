@@ -1,3 +1,11 @@
+name:
+  ca: Instal·lacions de Rem
+  en: Paddling Amenities
+  fr: Équipements de pagayage
+  it: Equipaggiamento per la navigazione a remo
+  pl: Udogodnienia związane z wiosłowaniem
+  pt-br: Equipamentos
+  tr: Kürek Tesisleri
 type: overpass
 query:
   '14': |-

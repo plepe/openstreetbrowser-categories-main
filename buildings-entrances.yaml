@@ -1,3 +1,24 @@
+name:
+  ca: Entrades
+  cs: Vstupy
+  de: Eingänge
+  en: Entrances
+  es: Entradas
+  fr: Entrées
+  gl: Entradas
+  hu: Bejáratok
+  it: Ingressi
+  ja: エントランス
+  nb: Innganger
+  nl: Toegangen
+  oc: Intradas
+  pl: Wejścia
+  pt-br: Entradas
+  pt: Entradas
+  ro: Intrări
+  ru: Входы
+  sr: Улази
+  tr: Girişler
 query:
   16: |-
     (

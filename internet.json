@@ -7,11 +7,19 @@
         "en": "Internet access",
         "es": "Acceso a Internet",
         "fr": "Internet",
+        "gl": "Acceso á internet",
         "hu": "Internetcsatlakozás",
+        "it": "Accesso a internet",
         "ja": "インターネット接続",
+        "nb": "Internettilgang",
         "nl": "Internettoegang",
+        "oc": "Accès a Internet",
+        "pl": "Dostęp do Internetu",
         "pt": "Acesso à Internet",
         "pt-br": "Acesso à Internet",
-        "ro": "Acces internet"
+        "ro": "Acces internet",
+        "ru": "Доступ в интернет",
+        "sr": "Приступ интернету",
+        "tr": "İnternet erişimi"
     }
 }

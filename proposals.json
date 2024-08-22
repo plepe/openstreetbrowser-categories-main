@@ -1,7 +1,17 @@
 {
     "type": "overpass",
     "name": {
-        "en": "Proposals"
+        "ca": "Propostes",
+        "en": "Proposals",
+        "fr": "Propositions",
+        "hu": "Tervezett objektumok",
+        "it": "Proposte",
+        "ja": "提案",
+        "oc": "Propositions",
+        "pl": "Propozycje",
+        "pt": "Propostas",
+        "pt-br": "Planejados",
+        "tr": "Teklifler"
     },
     "query": {
         "13": [

@@ -106,5 +106,7 @@
     "category:paddling_hazards": "Risques en pagayage",
     "category:paddling_routes": "Itinéraires en pagayage",
     "category:proposals": "Propositions",
-    "deprecated": "Le tag %s est déprécié. Voir <a target='_blank' href=\"%s\">ici</a> pour plus de détails."
+    "deprecated": "Le tag %s est déprécié. Voir <a target='_blank' href=\"%s\">ici</a> pour plus de détails.",
+    "category:cycle_directions": "",
+    "category:walk_amenities_qa": ""
 }

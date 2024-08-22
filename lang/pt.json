@@ -101,5 +101,11 @@
     "category:footways": "Vias pedonais",
     "category:heritage": "Património cultural",
     "category:kerbs": "Lancis",
-    "category:osm-qa": "Controlo de Qualidade do OpenStreetMap"
+    "category:osm-qa": "Controlo de Qualidade do OpenStreetMap",
+    "category:cycle_directions": "",
+    "category:paddling": "",
+    "category:paddling_amenities": "",
+    "category:paddling_hazards": "",
+    "category:paddling_routes": "",
+    "category:walk_amenities_qa": ""
 }

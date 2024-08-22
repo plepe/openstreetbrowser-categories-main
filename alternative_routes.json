@@ -1,17 +1,26 @@
 {
     "name": {
         "ast": "Rutes",
+        "ca": "Rutes",
         "cs": "Trasy cest",
         "de": "(ausgeschilderte) Routen",
         "en": "Routes",
-        "fr": "Routes",
-        "hu": "Útvonalak",
+        "es": "Rutas",
+        "fr": "Itinéraires",
+        "gl": "Rotas",
+        "hu": "(Jelzett) útvonalak",
         "it": "Itinerari segnalati",
         "ja": "ルート",
+        "nb": "Ruter",
         "nl": "Alternatieve routes",
+        "oc": "Varianta d'itinerari",
+        "pl": "Trasy",
         "pt": "Rotas",
         "pt-br": "Rotas",
+        "ro": "Rute",
         "ru": "Маршруты",
+        "sr": "Трасе",
+        "tr": "Rotalar",
         "uk": "Маршрути"
     }
 }
