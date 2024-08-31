@@ -96,7 +96,7 @@
     "category:culture-media": "Culture - Média/Wikidata",
     "category:developable_areas": "Zones aménageables",
     "category:developments": "Planification et construction",
-    "category:fixme": "Améliorez-moi",
+    "category:fixme": "Corrigez-moi",
     "category:footways": "Cheminements piétonniers",
     "category:heritage": "Protection patrimoniale",
     "category:kerbs": "Bordures",
@@ -107,6 +107,6 @@
     "category:paddling_routes": "Itinéraires en pagayage",
     "category:proposals": "Propositions",
     "deprecated": "Le tag %s est déprécié. Voir <a target='_blank' href=\"%s\">ici</a> pour plus de détails.",
-    "category:cycle_directions": "",
-    "category:walk_amenities_qa": ""
+    "category:cycle_directions": "Directions",
+    "category:walk_amenities_qa": "Aménagements de marche"
 }
