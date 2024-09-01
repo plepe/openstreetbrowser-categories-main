@@ -76,6 +76,8 @@ feature:
       {{ tags.building == 'yes' ? keyTrans('building') : tagTrans('building', tags.building) }}
     {% elseif tags.heritage %}
       {{ keyTrans('heritage') }}
+    {% elseif tags.man_made %}
+      {{ tagTrans('man_made', tags.man_made) }}
     {% endif %}
   markerSymbol: "{{ markerPointer({ fillColor: def.color })|raw }}"
   listMarkerSymbol: "{{ markerCircle({ fillColor: def.color })|raw }}"
@@ -156,6 +158,7 @@ const:
     amenity=theatre:
       icon: '<i class="fas fa-theater-masks"></i>'
     heritage:
+    man_made:
     other:
       query: 'nwr[historic][historic!~"^(memorial|monument|wayside_cross|wayside_shrine|building)$"]'
       trans: 'other'
