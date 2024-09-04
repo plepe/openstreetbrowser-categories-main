@@ -1,3 +1,4 @@
+type: "overpass"
 name:
   ca: Cultura - Mitjans/Wikidata
   en: Culture - Media/Wikidata
@@ -8,7 +9,6 @@ name:
   pt-br: Cultura - Imagem e Wikidata
   pt: Cultura - Media/Wikidata
   tr: Kültür - Medya/Wikidata
-type: "overpass"
 query: 
   15: |
     (

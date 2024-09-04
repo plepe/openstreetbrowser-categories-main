@@ -1,0 +1,89 @@
+type: overpass
+name:
+  ca: Artesania
+  cs: Řemeslo
+  de: Handwerk
+  en: Craft
+  es: Artesano
+  fr: Artisanat
+  gl: Artesán
+  hu: Műhelyek
+  it: Artigianato
+  ja: 職人
+  nb: Håndverk
+  nl: Handwerk
+  oc: Artisanat
+  pl: Rzemiosło
+  pt: Artesanato
+  pt-br: Ofícios
+  ru: Мастерские
+  sr: Занат
+  tr: El Sanatları
+query:
+  15: (node[craft];way[craft];relation[craft];);
+feature:
+  description: '{{ tagTransList("craft", tags.craft) }}'
+  markerSign: '{% set craft0 = tags.craft|split(";")[0] %}{% if const.crafts[craft0] %}{% set v = const.crafts[craft0] %}{% else %}{% set v = const.default %}{% endif %}{% if v|slice(0, 3) == "fa-" %}<i class="fa {{ v }}"></i>{% else %}{{ v|raw }}{% endif %}'
+const:
+  default: ''
+  crafts:
+    bakery: fa-birthday-cake
+    beekeeper: 🐝
+    blacksmith: 🔨
+    boatbuilder: ⛵
+    bookbinder: 📕
+    brewery: fa-beer
+    builder: 🚧
+    carpenter: fa-hammer
+    carpet_layer: ''
+    caterer: fa-birthday-cake
+    chimney_sweeper: ''
+    clockmaker: ⌚
+    confectionery: ''
+    distillery: 🍷
+    dressmaker: '&#128090;'
+    electrician: 🔌
+    floorer: ''
+    gardener: ⚘
+    glaziery: ''
+    handicraft: fa-hammer
+    hvac: ''
+    insulation: ''
+    jeweller: 💍
+    key_cutter: 🔑
+    locksmith: 🔑
+    metal_construction: ''
+    optician: 👓
+    painter: 🖌
+    parquet_layer: ''
+    photographer: 📷
+    photographic_laboratory: 📷
+    piano_tuner: ''
+    plasterer: ''
+    plumber: fa-wrench
+    pottery: ''
+    rigger: ''
+    roofer: ''
+    saddler: 🐎
+    sailmaker: ⛵
+    sawmill: ''
+    scaffolder: ''
+    sculptor: ''
+    shoemaker: 👞
+    stand_builder: ''
+    stonemason: ''
+    sun_protection: fa-sun
+    tailor: '&#128090;'
+    tiler: ''
+    tinsmith: ''
+    turner: ''
+    upholsterer: ''
+    watchmaker: ⌚
+    window_construction: ''
+    winery: 🍷
+filter:
+  craft:
+    name: '{{ trans("filter:type") }}'
+    type: select
+    show_default: 'true'
+    values: '{% set list = [] %}{% for t, v in const.crafts %}<option value="{{ t }}">{% set list = list|merge([ t ]) %}{{ tagTrans("craft", t) }}</option>{% endfor %}<option value="other" query="nwr[craft][craft!~"^({{ list|join("|") }})$"]">{{ trans("other") }}</option>'

@@ -18,7 +18,7 @@ name:
   sr: Додаци
   tr: Olanaklar
 query:
-  '13': |-
+  13: |-
     (
     node[highway~"^(elevator)$"];
     node[information];
@@ -27,7 +27,7 @@ query:
     nwr[amenity~"^(shelter)$"];
     way[highway~'^(footway|steps)$'][conveying];
     )
-  '16': |-
+  16: |-
     (
     node[highway~"^(crossing|elevator)$"];
     node[information];

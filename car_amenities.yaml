@@ -1,0 +1,53 @@
+type: overpass
+name:
+  ast: Infraestructures
+  ca: Serveis
+  cs: Občasnká vybavenost
+  de: Einrichtungen
+  en: Amenities
+  es: Instalaciones
+  fr: Équipements auto
+  gl: Instalacións
+  hu: Létesítmények
+  it: Infrastrutture
+  ja: 生活環境
+  nb: Fasiliteter
+  nl: Voorzieningen
+  oc: Equipaments auto
+  pl: Użyteczne w transporcie drogowym
+  pt: Equipamentos
+  pt-br: Equipamentos
+  ro: Dotări
+  ru: Обслуживание транспорта
+  sr: Додаци
+  tr: Tesisler
+  uk: Amenities
+query:
+  13: |-
+    (
+    nwr[amenity~"^(car_rental|car_sharing|fuel)$"];
+    nwr[amenity~"^(charging_station)$"][motorcar][motorcar!="no"];
+    nwr[amenity~"^(charging_station)$"][motorcycle][motorcycle!="no"];
+    )
+  16: |-
+    (
+    nwr[amenity~"^(car_rental|car_sharing|car_wash|fuel|motorcycle_parking|parking)$"];
+    nwr[amenity~"^(charging_station)$"][motorcar][motorcar!="no"];
+    nwr[amenity~"^(charging_station)$"][motorcycle][motorcycle!="no"];
+    )
+feature:
+  pre: |-
+    {% set key = 'amenity' %}
+    {% set value = tags.amenity %}
+  description: |-
+    {{ tagTrans(key, value) }}
+  markerSign: |-
+    {{ const[value] }}
+const:
+  car_rental: R
+  car_sharing: S
+  car_wash: 🚿
+  charging_station: 🔌
+  fuel: ⛽
+  parking: 🅿
+  motorcycle_parking: 🅿

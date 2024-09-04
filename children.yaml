@@ -1,0 +1,114 @@
+type: overpass
+name:
+  ca: Serveis per a infants
+  cs: Vybavení pro děti
+  de: Einrichtungen für Kinder
+  en: Children amenities
+  es: Instalaciones para niños
+  fr: Équipements pour enfants
+  gl: Instalacións infantís
+  hu: Gyermekek
+  it: Luoghi per bambini
+  ja: 子ども用施設
+  nb: Barnefasiliteter
+  nl: Voorzieningen voor kinderen
+  oc: Luòcs per leis enfants
+  pl: Użyteczne dzieciom
+  pt: Equipamentos infantis
+  pt-br: Equipamentos infantis
+  ro: Facilități copii
+  sr: Додаци за децу
+  tr: Çocuk Malzemeleri
+query:
+  15: |-
+    (
+    nwr[leisure~'^(playground|summer_camp|indoor_play)$'];
+    nwr[shop~'^(baby_goods|toys)$'];
+    nwr[changing_table][changing_table!=no];
+    nwr[diaper][diaper!=no];
+    nwr[kids_area];
+    );
+feature:
+  description: |-
+    {% if tags.leisure=='playground' %}
+    {{ tagTrans('leisure', 'playground') }}
+    {% elseif tags.leisure=='summer_camp'%}
+    {{ tagTrans('leisure', 'summer_camp') }}
+    {% elseif tags.leisure=='indoor_play' %}
+    {{ tagTrans('leisure', 'indoor_play') }}
+    {% elseif tags.kids_area %}
+    {{ keyTrans('kids_area') }}
+    {% elseif tags.shop=='baby_goods' or tags.shop=='toys' %}
+    {{ keyTrans('shop') }}: {{ tagTrans('shop', tags.shop) }}
+    {% elseif tags.amenity == 'toilets' and ( (tags.changing_table and tags.changing_table != 'no') or (tags.diaper and tags.diaper != 'no') ) %}
+    {{ tagTrans('amenity', 'toilets changing_table=yes') }}
+    {% elseif (tags.changing_table and tags.changing_table != 'no') or (tags.diaper and tags.diaper != 'no') %}
+    {{ keyTrans('changing_table') }}
+    {% endif %}
+  markerSign: |-
+    {% if tags.leisure=='playground' %}
+    ⛹
+    {% elseif tags.leisure=='summer_camp'%}
+    🏕
+    {% elseif tags.leisure=='indoor_play' or tags.kids_area %}
+    🏠
+    {% elseif tags.shop=='baby_goods' or tags.shop=='toys' %}
+    <i class="fa fa-shopping-cart"></i>
+    {% elseif tags.amenity=='toilets' and tags.changing_table and tags.changing_table!='no' %}
+    🚽🚼
+    {% endif %}
+info: |-
+  <table>
+    <tr>
+      <td>{{ markerCircle({})|raw }}<div class='sign'>⛹</div></td>
+      <td>{{ tagTrans('leisure', 'playground') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerCircle({})|raw }}<div class='sign'>🏠</div></td>
+      <td>{{ tagTrans('leisure', 'indoor_play') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerCircle({})|raw }}<div class='sign'>🏕</div></td>
+      <td>{{ tagTrans('leisure', 'summer_camp') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerCircle({})|raw }}<div class='sign'>🏠</div></td>
+      <td>{{ keyTrans('kids_area') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerCircle({})|raw }}<div class='sign'><i class="fa fa-shopping-cart"></i></div></td>
+      <td>{{ keyTrans('shop') }}: {{ tagTransList('shop', 'baby_goods;toys') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerCircle({})|raw }}<div class='sign'>🚽🚼</div></td>
+      <td>{{ tagTrans('amenity', 'toilets changing_table=yes') }}</td>
+    </tr>
+  </table>
+filter:
+  type:
+    name: |-
+      {{ trans('filter:type') }}
+    type: select
+    show_default: true
+    values:
+      playground:
+        name: '{{ tagTrans("leisure", "playground") }}'
+        query: nwr[leisure=playground]
+      indoor_play:
+        name: '{{ tagTrans("leisure", "indoor_play") }}'
+        query: nwr[leisure=indoor_play]
+      summer_camp:
+        name: '{{ tagTrans("leisure", "summer_camp") }}'
+        query: nwr[leisure=summer_camp]
+      kids_area:
+        name: '{{ keyTrans("kids_area") }}'
+        query: nwr[kids_area]
+      shop_baby_goods:
+        name: '{{ tagTrans("shop", "baby_goods") }}'
+        query: nwr[shop=baby_goods]
+      shop_toys:
+        name: '{{ tagTrans("shop", "toys") }}'
+        query: nwr[shop=toys]
+      toilets:
+        name: '{{ tagTrans("amenity", "toilets changing_table=yes") }}'
+        query: nwr[amenity=toilets][changing_table][changing_table!=no]

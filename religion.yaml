@@ -1,0 +1,153 @@
+type: overpass
+name:
+  ast: Relixón
+  ca: Religió
+  cs: Náboženství
+  de: Religion
+  el: Θρησκεία
+  en: Religion
+  es: Religión
+  et: Religioon
+  fr: Religion
+  gl: Relixión
+  hu: Vallás
+  it: Religione
+  ja: 宗教
+  nb: Religion
+  nl: Religie
+  oc: Religion
+  pl: Religia
+  pt: Religião
+  pt-br: Religião
+  ro: Religie
+  ru: Религия
+  sr: Религија
+  tr: Din
+  uk: Релігія
+query:
+  13: |-
+    (
+    node[amenity~"^(place_of_worship|grave_yard|crematorium)$"];
+    way[amenity~"^(place_of_worship|grave_yard|crematorium)$"];
+    relation[amenity~"^(place_of_worship|grave_yard|crematorium)$"];
+    way[landuse~"^(cemetery)$"];
+    relation[landuse~"^(cemetery)$"];
+    )
+  14: |-
+    (
+    node[amenity~"^(place_of_worship|grave_yard|crematorium)$"];
+    way[amenity~"^(place_of_worship|grave_yard|crematorium)$"];
+    relation[amenity~"^(place_of_worship|grave_yard|crematorium)$"];
+    way[landuse~"^(cemetery)$"];
+    relation[landuse~"^(cemetery)$"];
+    node[historic~"^wayside_(cross|shrine|chapel)$"];
+    way[historic~"^wayside_(cross|shrine|chapel)$"];
+    relation[historic~"^wayside_(cross|shrine|chapel)$"];
+    nwr[office~"^(parish|religion)$"];
+    )
+feature:
+  pre: |-
+    {% if tags.landuse == 'cemetery' %}
+    {% set key = 'landuse' %}
+    {% set value = tags.landuse %}
+    {% elseif tags.historic in [ 'wayside_cross', 'wayside_shrine', 'wayside_chapel' ] %}
+    {% set key = 'historic' %}
+    {% set value = tags.historic %}
+    {% elseif tags.office %}
+    {% set key = 'office' %}
+    {% set value = tags.office %}
+    {% else %}
+    {% set key = 'amenity' %}
+    {% set value = tags.amenity %}
+    {% endif %}
+  description: |-
+    {% if tags.building and tags.religion %}
+      {% if isTranslated('tag:building=' ~ tags.building ~ ' religion=' ~ tags.religion) %}
+        {{ trans('tag:building=' ~ tags.building ~ ' religion=' ~ tags.religion) }}
+      {% elseif tags.building != 'yes' %}
+        {{ trans('tag:building=' ~ tags.building) }}
+      {% else %}
+        {{ tagTrans(key, value) }}
+      {% endif %}
+    {% else %}
+      {{ tagTrans(key, value) }}
+    {% endif %}
+  listDetails: '{{ tagTransList("religion", tags.religion) }}{% if tags.denomination %} - {{ tagTransList("denomination", tags.denomination) }}{% endif %}'
+  body: |-
+    {% if tags.building %}
+      {{ keyTrans('building') }}: {{ tagTrans('building', tags.building) }}<br/>
+    {% endif %}
+    {% if tags.religion %}
+      {{ keyTrans('religion') }}: {{ tagTransList('religion', tags.religion) }}<br/>
+    {% endif %}
+    {% if tags.denomination %}
+      {{ keyTrans('denomination') }}: {{ tagTransList('denomination', tags.denomination) }}<br/>
+    {% endif %}
+  markerSign: '{{ const.religion[tags.religion] }}'
+const:
+  religion:
+    christian: ✝
+    muslim: ☪
+    buddhist: ☸
+    shinto: ''
+    hindu: ॐ
+    jewish: ✡
+    taoist: ''
+    sikh: ''
+    none: ''
+    multifaith: ''
+    unitarian_universialist: ''
+    spiritualist: ''
+    jain: ''
+    voodoo: ''
+    confucian: ''
+    bahai: ''
+    caodaism: ''
+    tenrikyo: ''
+    vietnamese_folk: ''
+    pagan: ☆
+    scientologist: ''
+    zoroastrian: ''
+    pentecostal: ''
+    shamanic: ''
+filter:
+  type:
+    name: '{{ trans("filter:type") }}'
+    show_default: 'true'
+    query: nwr[{{ value }}]
+    type: select
+    values:
+      place_of_worship:
+        name: '{{ tagTrans("amenity", "place_of_worship") }}'
+        query: nwr[amenity=place_of_worship]
+      grave_yard:
+        name: '{{ tagTrans("amenity", "grave_yard") }}'
+        query: nwr[amenity=grave_yard]
+      crematorium:
+        name: '{{ tagTrans("amenity", "crematorium") }}'
+        query: nwr[amenity=crematorium]
+      cemetery:
+        name: '{{ tagTrans("landuse", "cemetery") }}'
+        query: nwr[landuse=cemetery]
+      wayside_cross:
+        name: '{{ tagTrans("historic", "wayside_cross") }}'
+        query: nwr[historic=wayside_cross]
+      wayside_shrine:
+        name: '{{ tagTrans("historic", "wayside_shrine") }}'
+        query: nwr[historic=wayside_shrine]
+      wayside_chapel:
+        name: '{{ tagTrans("historic", "wayside_chapel") }}'
+        query: nwr[historic=wayside_chapel]
+      parish:
+        name: '{{ tagTrans("office", "parish") }}'
+        query: nwr[office=parish]
+      office:
+        name: '{{ tagTrans("office", "religion") }}'
+        query: nwr[office=religion]
+  religion:
+    name: '{{ keyTrans("religion") }}'
+    show_default: 'true'
+    type: select
+    valueName: '{{ tagTrans("religion", value) }}'
+    values: '{% set list = [] %}{% for t, v in const.religion %}<option value="{{ t }}">{% set list = list|merge([ t ]) %}{{ tagTrans("religion", t) }}</option>{% endfor %}<option value="other" query="nwr[religion][religion!~"^({{ list|join("|") }})$"]">{{ trans("other") }}</option>'
+    op: has

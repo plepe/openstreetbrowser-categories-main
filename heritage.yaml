@@ -1,0 +1,34 @@
+type: overpass
+name:
+  ca: Protecció del Patrimoni
+  de: Denkmalschutz
+  en: Heritage Protection
+  fr: Protection patrimoniale
+  hu: Örökségvédelem
+  it: Protezione del patrimonio
+  pl: Ochrona dziedzictwa
+  pt: Património cultural
+  pt-br: Patrimônio histórico
+  tr: Kültürel Miras
+query:
+  8: nwr[heritage~"^(|.*;)1(|;.*)$"];
+  11: nwr[heritage~"^(|.*;)(1|2)(|;.*)$"];
+  13: nwr[heritage];
+feature:
+  description: |-
+    {% set found = false %}
+    {% for k in ['amenity', 'shop', 'telecom', 'waterway', 'craft', 'highway', 'railway', 'aerialway', 'emergency', 'geological', 'man_made', 'natural', 'office', 'power', 'aeroway', 'tourism', 'leisure', 'military', 'landuse', 'barrier', 'route'] if not found %}
+      {% if attribute(tags, k) and attribute(tags, k) != 'yes' %}
+        {{ tagTransList(k, attribute(tags, k)) }}
+        {% set found = true %}
+      {% endif %}
+    {% endfor %}
+    {% if found %}{# nothing #}
+    {% elseif tags.building and tags.building != 'yes' %}
+    {{ tagTransList('building', tags.building) }}
+    {% elseif tags.historic and tags.historic not in ['heritage', 'yes', 'building'] %}
+    {{ tagTransList('historic', tags.historic) }}
+    {% elseif tags.building == 'yes' or tags.historic == 'building' %}
+    {{ keyTrans('building') }}
+    {% endif %}
+  priority: '{{ min(tags.heritage|split(";")) }}'
