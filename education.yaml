@@ -27,31 +27,41 @@ name:
 query:
   11: |-
     (
-    node[amenity~'^(college|university|library)$'];
-    way[amenity~'^(college|university|library)$'];
-    relation[amenity~'^(college|university|library)$'];
+    nwr[amenity~'^(.*;|)(college|university|library)(;.*|)$'];
     )
   14: |-
     (
-    nwr[amenity~'^(college|university|library|school|kindergarten|language_school|childcare)$'];
-    nwr[office~"^(educational_institution|research)$"];
+    nwr[amenity~'^(.*;|)(college|university|library|school|kindergarten|language_school|childcare)(;.*|)$'];
+    nwr[office~"^(.*;|)(educational_institution|research)(;.*|)$"];
     )
   16: |-
     (
-    nwr[amenity~'^(college|university|library|school|kindergarten|language_school|public_bookcase|childcare)$'];
-    nwr[office~"^(educational_institution|research)$"];
+    nwr[amenity~'^(.*;|)(college|university|library|school|kindergarten|language_school|public_bookcase|childcare)(;.*|)$'];
+    nwr[office~"^(.*;|)(educational_institution|research)(;.*|)$"];
     )
 feature:
   pre: |-
-    {% if tags.office == 'educational_institution' or tags.office == 'research' %}
+    {% set key = null %}
+    {% set value = null %}
+
+    {% if tags.office and 'educational_institution' in tags.office|split(';') %}
       {% set key = 'office' %}
-      {% set value = tags.office %}
+      {% set value = 'educational_institution' %}
+    {% elseif tags.office and 'research' in tags.office|split(';') %}
+      {% set key = 'office' %}
+      {% set value = 'research' %}
     {% else %}
-      {% set key = 'amenity' %}
-      {% set value = tags.amenity %}
+      {% for k, d in const %}
+        {% set kv = k|split('=') %}
+        {% if kv[0] == 'amenity' and kv[1] in tags.amenity|split(';') %}
+          {% set key = 'amenity' %}
+          {% set value = kv[1] %}
+        {% endif %}
+      {% endfor %}
     {% endif %}
-  description: '{{ tagTrans(key, value) }}'
-  body: '{% if tags.operator %}{{ keyTrans("operator") }}: {{ tags.operator }}<br/>{% endif %}'
+  description: '{{ tagTransList(key, attribute(tags, key)) }}'
+  body: |
+    {% if tags.operator %}{{ keyTrans("operator") }}: {{ tags.operator }}<br/>{% endif %}
   markerSign: |-
     {% set data = const[key ~ '=' ~ value] %}
     {% if data %}
@@ -121,4 +131,9 @@ filter:
     name: '{{ trans("filter:type") }}'
     show_default: 'true'
     type: select
-    values: '{% for k, v in const %}<option value="{{ k }}" query="nwr[{{ k }}]" minzoom="{{ v.zoom }}">{{ tagTrans(k) }}</option>{% endfor %}'
+    values: |
+      {% for k, v in const %}
+        <option value="{{ k }}" query="nwr[{{ k|replace({ '=', '^' }) }}]" minzoom="{{ v.zoom }}">
+        {{ tagTrans(k) }}
+        </option>
+      {% endfor %}

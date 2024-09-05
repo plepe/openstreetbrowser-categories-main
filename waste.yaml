@@ -23,63 +23,46 @@ name:
 query:
   13: |-
     (
-    node[landuse=landfill];
-    node[man_made~"^(wastewater_plant|incinerator)$"];
-    node[amenity=recycling][recycling_type=centre];
-    way[landuse=landfill];
-    way[man_made~"^(wastewater_plant|incinerator)$"];
-    way[amenity=recycling][recycling_type=centre];
-    relation[landuse=landfill];
-    relation[man_made~"^(wastewater_plant|incinerator)$"];
-    relation[amenity=recycling][recycling_type=centre];
+    nwr[landuse=landfill];
+    nwr[man_made~"^(wastewater_plant|incinerator)$"];
+    nwr[amenity=recycling][recycling_type=centre];
     nwr[amenity=waste_transfer_station];
     nwr[power=generator]["generator:source"~"^(.*;|)waste(;.*|)$"];
     )
   15: |-
     (
-    node[landuse=landfill];
-    node[man_made~"^(wastewater_plant|incinerator)$"];
-    node[amenity~"^(recycling|waste_disposal|waste_transfer_station)$"];
-    way[landuse=landfill];
-    way[man_made~"^(wastewater_plant|incinerator)$"];
-    way[amenity~"^(recycling|waste_disposal|waste_transfer_station)$"];
-    relation[landuse=landfill];
-    relation[man_made~"^(wastewater_plant|incinerator)$"];
-    relation[amenity~"^(recycling|waste_disposal|waste_transfer_station)$"];
+    nwr[landuse=landfill];
+    nwr[man_made~"^(wastewater_plant|incinerator)$"];
+    nwr[amenity~"^(recycling|waste_disposal|waste_transfer_station)$"];
     nwr[power=generator]["generator:source"~"^(.*;|)waste(;.*|)$"];
     )
   18: |-
     (
-    node[landuse=landfill];
-    node[man_made~"^(wastewater_plant|incinerator)$"];
-    node[amenity~"^(recycling|waste_basket|waste_disposal|waste_transfer_station)$"];
-    way[landuse=landfill];
-    way[man_made~"^(wastewater_plant|incinerator)$"];
-    way[amenity~"^(recycling|waste_basket|waste_disposal|waste_transfer_station)$"];
-    relation[landuse=landfill];
-    relation[man_made~"^(wastewater_plant|incinerator)$"];
-    relation[amenity~"^(recycling|waste_basket|waste_disposal|waste_transfer_station)$"];
+    nwr[landuse=landfill];
+    nwr[man_made~"^(wastewater_plant|incinerator)$"];
+    nwr[amenity~"^(recycling|waste_basket|waste_disposal|waste_transfer_station)$"];
     nwr[power=generator]["generator:source"~"^(.*;|)waste(;.*|)$"];
     )
 feature:
   pre: |-
+    {% set key = null %}
+    {% set value = null %}
     {% set add = '' %}
-    {% if tags.landuse == 'landfill' %}
-      {% set key = 'landuse' %}
-      {% set value = tags.landuse %}
-    {% elseif tags.man_made in [ 'incinerator', 'wastewater_plant' ] %}
-      {% set key = 'man_made' %}
-      {% set value = tags.man_made %}
-    {% elseif tags.amenity in [ 'recycling', 'waste_basket', 'waste_disposal', 'waste_transfer_station' ] %}
-      {% set key = 'amenity' %}
-      {% set value = tags.amenity %}
-    {% elseif tags.power == 'generator' %}
-      {% set key = 'power' %}
-      {% set value = tags.power %}
+
+    {% for k, d in const %}
+      {% set kv = k|split('=') %}
+      {% if attribute(tags, kv[0]) and kv[1] in attribute(tags, kv[0])|split(';') %}
+        {% set key = kv[0] %}
+        {% set value = kv[1] %}
+      {% endif %}
+    {% endfor %}
+
+    {% if key == 'power' and value == 'generator' %}
       {% set add = '(' ~ tagTransList('generator:source', attribute(tags, 'generator:source')) ~ ')' %}
     {% endif %}
+
     {% set kv = key ~ '=' ~ value %}
-  description: '{{ tagTrans(key, value) }} {{ add }}'
+  description: '{{ tagTransList(key, attribute(tags, key)) }} {{ add }}'
   body: |-
     {% if tags.recycling_type %}
     {{ keyTrans('recycling_type') }}: {{ tagTrans('recycling_type', tags.recycling_type) }}
@@ -105,6 +88,17 @@ info: |-
       <td>{{ trans('other') }}</td>
     </tr>
   </table>
+filter:
+  type:
+    name: '{{ trans("filter:type") }}'
+    show_default: 'true'
+    type: select
+    values: |-
+      {% for k, v in const %}
+      <option value="{{ k }}" query="nwr[{{ k|replace({ '=': '^' }) }}]" minzoom="{{ v.zoom }}">
+      {{ tagTrans(k) }}
+      </option>
+      {% endfor %}
 const:
   amenity=recycling:
     minZoom: 13

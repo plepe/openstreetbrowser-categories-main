@@ -22,23 +22,23 @@ name:
 query:
   14: |-
     (
-    node[amenity~"^(courthouse)$"];
-    way[amenity~"^(courthouse)$"];
-    relation[amenity~"^(courthouse)$"];
-    node[office~"^(lawyer|notary)$"];
-    way[office~"^(lawyer|notary)$"];
-    relation[office~"^(lawyer|notary)$"];
+    nwr[amenity^courthouse];
+    nwr[office^lawyer];
+    nwr[office^notary];
     )
 feature:
   pre: |-
-    {% if tags.amenity %}
-      {% set key = 'amenity' %}
-      {% set value = tags.amenity %}
-    {% else %}
-      {% set key = 'office' %}
-      {% set value = tags.office %}
-    {% endif %}
-  description: '{{ tagTrans(key, value) }}'
+    {% set key = null %}
+    {% set value = null %}
+
+    {% for k, d in const %}
+      {% set kv = k|split('=') %}
+      {% if attribute(tags, kv[0]) and kv[1] in attribute(tags, kv[0])|split(';') %}
+        {% set key = kv[0] %}
+        {% set value = kv[1] %}
+      {% endif %}
+    {% endfor %}
+  description: '{{ tagTransList(key, attribute(tags, key)) }}'
   markerSign: '{{ const[key ~ "=" ~ value].sign|raw }}'
 info: |-
   <table>
@@ -68,4 +68,9 @@ filter:
     name: '{{ trans("filter:type") }}'
     show_default: 'true'
     type: select
-    values: '{% for k, v in const %}<option value="{{ k }}" query="nwr[{{ k }}]" minzoom="{{ v.zoom }}">{{ tagTrans(k) }}</option>{% endfor %}'
+    values: |-
+      {% for k, v in const %}
+      <option value="{{ k }}" query="nwr[{{ k|replace({ '=': '^' }) }}]" minzoom="{{ v.zoom }}">
+      {{ tagTrans(k) }}
+      </option>
+      {% endfor %}

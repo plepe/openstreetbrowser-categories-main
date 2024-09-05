@@ -22,31 +22,31 @@ name:
 query:
   13: |-
     (
-    nwr[amenity~"^(bicycle_rental)$"];
-    node[amenity~"^(charging_station)$"][bicycle][bicycle!="no"];
-    nwr[shop~"^(bicycle)$"];
+    nwr[amenity~"^(.*;|)(bicycle_rental)(;.*|)$"];
+    node[amenity~"^(.*;|)(charging_station)(;.*|)$"][bicycle][bicycle!="no"];
+    nwr[shop~"^(.*;|)(bicycle)(;.*|)$"];
     nwr[rental~"^(.*;|)bicycle(|;.*)$"];
     )
   16: |-
     (
-    nwr[amenity~"^(bicycle_.*|compressed_air)$"];
-    node[amenity~"^(charging_station)$"][bicycle][bicycle!="no"];
-    nwr[shop~"^(bicycle)$"];
+    nwr[amenity~"^(.*;|)(bicycle_.*|compressed_air)(;.*|)$"];
+    node[amenity~"^(.*;|)(charging_station)(;.*|)$"][bicycle][bicycle!="no"];
+    nwr[shop~"^(.*;|)(bicycle)(;.*|)$"];
     nwr["monitoring:bicycle"];
-    nwr[vending~"^(bicycle_tube)$"];
+    nwr[vending~"^(.*;|)(bicycle_tube)(;.*|)$"];
     nwr[rental~"^(.*;|)bicycle(|;.*)$"];
     )
 feature:
   pre: |-
-    {% if tags.shop in [ 'bicycle' ] %}
+    {% if tags.shop and 'bicycle' in tags.shop|split(';') %}
       {% set key = 'shop' %}
       {% set value = tags.shop %}
     {% elseif attribute(tags, "monitoring:bicycle") %}
       {% set key = 'man_made' %}
       {% set value = 'monitoring_station' %}
-    {% elseif tags.vending in [ 'bicycle_tube' ] %}
+    {% elseif tags.vending and 'bicycle_tube' in tags.vending|split(';') %}
       {% set key = 'vending' %}
-      {% set value = tags.vending %}
+      {% set value = 'bicycle_tube' %}
     {% elseif 'bicycle' in tags.rental|split(';') %}
       {% set key = 'amenity' %}
       {% set value = 'bicycle_rental' %}
@@ -64,7 +64,7 @@ feature:
     {% if tags.amenity == 'vending_machine' %}
     {{ tagTransList('amenity=vending_machine vending', value) }}
     {% else %}
-    {{ tagTrans(key, value) }}
+    {{ tagTransList(key, value) }}
     {% endif %}
   body: |-
     {% if tags.capacity %}

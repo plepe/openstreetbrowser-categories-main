@@ -25,31 +25,31 @@ name:
   uk: Фінанси
 query:
   14: |-
-    (
-    node[amenity~"^(bank)$"];
-    way[amenity~"^(bank)$"];
-    relation[amenity~"^(bank)$"];
-    )
+    nwr[amenity~"^(.*;|)(bank)(;.*|)$"];
   15: |-
     (
-    node[amenity~"^(bank|bureau_de_change|atm)$"];
-    way[amenity~"^(bank|bureau_de_change|atm)$"];
-    relation[amenity~"^(bank|bureau_de_change|atm)$"];
-    node[office~"^(financial|accountant|insurance|tax|tax_advisor)$"];
-    way[office~"^(financial|accountant|insurance|tax|tax_advisor)$"];
-    relation[office~"^(financial|accountant|insurance|tax|tax_advisor)$"];
+    nwr[amenity~"^(.*;|)(bank|bureau_de_change|atm)(;.*|)$"];
+    nwr[office~"^(.*;|)(financial|accountant|insurance|tax|tax_advisor)(;.*|)$"];
     )
 feature:
   pre: |-
-    {% if tags.amenity %}
-      {% set key = 'amenity' %}
-      {% set value = tags.amenity %}
-    {% else %}
-      {% set key = 'office' %}
-      {% set value = tags.office %}
-    {% endif %}
-  description: '{{ tagTrans(key, value) }}'
-  markerSign: '{{ const[key ~ "=" ~ value].sign|raw }}'
+    {% set key = null %}
+    {% set value = null %}
+
+    {% for k, d in const %}
+      {% set kv = k|split('=') %}
+      {% if attribute(tags, kv[0]) and kv[1] in attribute(tags, kv[0])|split(';') %}
+        {% set key = kv[0] %}
+        {% set value = kv[1] %}
+      {% endif %}
+    {% endfor %}
+
+    {% set kv = key ~ "=" ~ value %}
+    {% set data = const[kv] %}
+  description: |-
+    {{ tagTransList(key, attribute(tags, key)) }}
+  markerSign: |-
+    {{ const[kv].sign|raw }}
 info: |-
   <table>
   {% for kv, data in const %}
@@ -96,4 +96,9 @@ filter:
     name: '{{ trans("filter:type") }}'
     show_default: 'true'
     type: select
-    values: '{% for k, v in const %}<option value="{{ k }}" query="nwr[{{ k }}]" minzoom="{{ v.zoom }}">{{ tagTrans(k) }}</option>{% endfor %}'
+    values: |-
+      {% for k, v in const %}
+      <option value="{{ k }}" query="nwr[{{ k|replace({ '=': '^' }) }}]" minzoom="{{ v.zoom }}">
+      {{ tagTrans(k) }}
+      </option>
+      {% endfor %}

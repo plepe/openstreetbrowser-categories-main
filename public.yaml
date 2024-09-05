@@ -27,39 +27,41 @@ name:
 query:
   12: |-
     (
-    node[amenity~'^(embassy|public_building|townhall)$'];
-    way[amenity~'^(embassy|public_building|townhall)$'];
-    relation[amenity~'^(embassy|public_building|townhall)$'];
-    node[amenity=recycling][recyling_type=centre];
-    way[amenity=recycling][recyling_type=centre];
-    relation[amenity=recycling][recyling_type=centre];
-    nwr[office~"^(government|administration)$"];
+    nwr[amenity~'^(.*;|)(embassy|public_building|townhall)(;.*|)$'];
+    nwr[amenity=recycling][recyling_type=centre];
+    nwr[office~"^(.*;|)(government|administration)(;.*|)$"];
     );
   16: |-
     (
-    node[amenity~'^(embassy|public_building|townhall|clock|drinking_water|recycling|toilets)$'];
-    way[amenity~'^(embassy|public_building|townhall|recycling|toilets)$'];
-    relation[amenity~'^(embassy|public_building|townhall|recycling|toilets)$'];
+    nwr[amenity~'^(.*;|)(embassy|public_building|townhall|clock|drinking_water|recycling|toilets)(;.*|)$'];
     node[drinking_water][drinking_water!=no];
-    nwr[office~"^(government|administration)$"];
+    nwr[office~"^(.*;|)(government|administration)(;.*|)$"];
     );
 feature:
   pre: |-
-    {% if tags.amenity %}
-    {% set key = 'amenity' %}
-    {% set value = tags.amenity %}
-    {% elseif tags.office %}
-    {% set key = 'office' %}
-    {% set value = tags.office %}
-    {% elseif tags.drinking_water and tags.drinking_water != 'no' %}
-    {% set key = 'amenity' %}
-    {% set value = 'drinking_water' %}
+    {% set key = null %}
+    {% set value = null %}
+
+    {% if tags.drinking_water and tags.drinking_water != 'no' %}
+      {% set key = 'amenity' %}
+      {% set value = 'drinking_water' %}
     {% endif %}
+
+    {% for k, d in const %}
+      {% set kv = k|split('=') %}
+      {% if attribute(tags, kv[0]) and kv[1] in attribute(tags, kv[0])|split(';') %}
+        {% set key = kv[0] %}
+        {% set value = kv[1] %}
+      {% endif %}
+    {% endfor %}
+
   description: |-
     {% if key == 'office' %}
-      {{ keyTrans('office') }} ({{ tagTrans('office', tags.office) }})
-    {% else %}
+      {{ keyTrans('office') }} ({{ tagTransList('office', tags.office) }})
+    {% elseif value == 'drinking_water' %}
       {{ tagTrans(key, value) }}
+    {% else %}
+      {{ tagTransList(key, attribute(tags, key)) }}
     {% endif %}
   body: '{% if tags.operator %}{{ keyTrans("operator") }}: {{ tags.operator }}<br/>{% endif %}'
   markerSign: |-
@@ -91,4 +93,13 @@ filter:
     name: '{{ trans("filter:type") }}'
     show_default: 'true'
     type: select
-    values: '{% for k, v in const %}<option value="{{ k }}" query="nwr[{{ k }}]" minzoom="{{ v.zoom }}">{{ tagTrans(k) }}</option>{% endfor %}'
+    values: |-
+      {% for k, v in const %}
+        {% if k == 'amenity=drinking_water' %}
+        <option value="{{ k }}" query="(nwr[dringing_water];nwr[amenity^drinking_water];)">
+        {% else %}
+        <option value="{{ k }}" query="nwr[{{ k|replace({ '=': '^' }) }}]">
+        {% endif %}
+      {{ tagTrans(k) }}
+      </option>
+      {% endfor %}

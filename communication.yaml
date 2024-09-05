@@ -27,13 +27,13 @@ name:
 query:
   13: |-
     (
-    nwr[amenity~'^(post_office|internet_cafe)$'];
-    nwr[office~"^(telecommunication|it|newspaper|publisher|advertising_agency)$"];
+    nwr[amenity~'^(.*;|)(post_office|internet_cafe)(;.*|)$'];
+    nwr[office~"^(.*;|)(telecommunication|it|newspaper|publisher|advertising_agency)(;.*|)$"];
     );
   15: |-
     (
-    nwr[amenity~'^(post_office|internet_cafe|post_box|parcel_locker|telephone)$'];
-    nwr[office~"^(telecommunication|it|newspaper|publisher|advertising_agency)$"];
+    nwr[amenity~'^(.*;|)(post_office|internet_cafe|post_box|parcel_locker|telephone)(;.*|)$'];
+    nwr[office~"^(.*;|)(telecommunication|it|newspaper|publisher|advertising_agency)(;.*|)$"];
     nwr[vending~"^(|.*;)parcel_pickup(;.*|)$"];
     nwr[vending~"^(|.*;)parcel_mail_in(;.*|)$"];
     );
@@ -52,7 +52,7 @@ feature:
     {% endif %}
   description: |-
     {% if key == 'office' %}
-      {{ keyTrans('office') }} ({{ tagTrans('office', tags.office) }})
+      {{ keyTrans('office') }} ({{ tagTransList('office', tags.office) }})
     {% else %}
       {{ tagTransList(key, value) }}
     {% endif %}

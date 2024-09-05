@@ -27,16 +27,12 @@ name:
 query:
   13: |-
     (
-    node[amenity~"^(arts_centre|cinema|community_centre|fountain|studio|theatre)$"];
-    way[amenity~"^(arts_centre|cinema|community_centre|fountain|studio|theatre)$"];
-    relation[amenity~"^(arts_centre|cinema|community_centre|fountain|studio|theatre)$"];
-    node[tourism~"^(artwork|gallery|museum|theme_park)$"];
-    way[tourism~"^(artwork|gallery|museum|theme_park)$"];
-    relation[tourism~"^(artwork|gallery|museum|theme_park)$"];
-    nwr[amenity=clock][display~"^(sundial|unorthodox)$"];
-    nwr[amenity=clock]["display:sundial"];
-    nwr[amenity=clock]["display:unorthodox"];
-    nwr[shop~"^(art)$"];
+    nwr[amenity~"^(.*;|)(arts_centre|cinema|community_centre|fountain|studio|theatre)(;.*|)$"];
+    nwr[tourism~"^(.*;|)(artwork|gallery|museum|theme_park)(;.*|)$"];
+    nwr[amenity~"^(.*;|)clock(;.*|)$"][display~"^(sundial|unorthodox)$"];
+    nwr[amenity~"^(.*;|)clock(;.*|)$"]["display:sundial"];
+    nwr[amenity~"^(.*;|)clock(;.*|)$"]["display:unorthodox"];
+    nwr[shop~"^(.*;|)(art)$"];
     )
 feature:
   pre: |-
@@ -53,21 +49,21 @@ feature:
   description: |-
     {% if key == 'shop' %}
       {{ keyTrans(key) }} ({{ tagTrans(key, value) }})
-    {% elseif tags.amenity == 'clock' %}
+    {% elseif tags.amenity matches "/^(.*;|)clock(;.*|)$/" %}
       {% if tags.display == 'sundial' or attribute(tags, 'display:sundial') %}{{ tagTrans('amenity', 'clock display=sundial') }}{% endif %}
       {% if tags.display == 'unorthodox' or attribute(tags, 'display:unorthodox') %}{{ tagTrans('amenity', 'clock display=unorthodox') }}{% endif %}
     {% else %}
-      {{ tagTrans(key, value) }}
+      {{ tagTransList(key, value) }}
     {% endif %}
 
-    {% if tags.tourism == 'museum' and tags.museum %}
-    ({{ tagTrans('museum', tags.museum) }})
+    {% if tags.tourism matches "/^(.*;|)museum(;.*|)$/" and tags.museum %}
+    ({{ tagTransList('museum', tags.museum) }})
     {% endif %}
-    {% if tags.amenity == 'theatre' and attribute(tags, 'theatre:genre') %}
-    ({{ tagTrans('theatre:genre', attribute(tags, 'theatre:genre')) }})
+    {% if tags.amenity matches "/^(.*;|)theatre(;.*|)$/" and attribute(tags, 'theatre:genre') %}
+    ({{ tagTransList('theatre:genre', attribute(tags, 'theatre:genre')) }})
     {% endif %}
-    {% if tags.amenity == 'community_centre' and tags.community_centre %}
-    ({{ tagTrans('community_centre', tags.community_centre) }})
+    {% if tags.amenity matches "/^(.*;|)community_centre(;.*|)$/" and tags.community_centre %}
+    ({{ tagTransList('community_centre', tags.community_centre) }})
     {% endif %}
   body: |-
     <ul>
@@ -128,7 +124,8 @@ filter:
   type:
     name: '{{ trans("filter:type") }}'
     show_default: 'true'
-    query: nwr[{{ value }}]
+    query: |-
+      nwr[{{ value|replace({ '=': '^' }) }}]
     type: select
     values: '{% for k, v in const %}<option value="{{ k }}">{{ trans("tag:" ~ k) }}</option>{% endfor %}<option value="other" query="nwr[amenity=fountain]">{{ trans("other") }}</option>'
     valueName: '{{ trans("tag:" ~ value) }}'

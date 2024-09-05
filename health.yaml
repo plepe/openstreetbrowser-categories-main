@@ -26,21 +26,13 @@ name:
 query:
   11: |-
     (
-    node[amenity~"^(hospital)$"];
-    way[amenity~"^(hospital)$"];
-    relation[amenity~"^(hospital)$"];
-    node[healthcare~"^(hospital|clinic)$"];
-    way[healthcare~"^(hospital|clinic)$"];
-    relation[healthcare~"^(hospital|clinic)$"];
+    nwr[amenity~"^(.*;|)(hospital)(;.*|)$"];
+    nwr[healthcare~"^(.*;|)(hospital|clinic)(;.*|)$"];
     )
   14: |-
     (
-    node[amenity~"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$"];
-    way[amenity~"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$"];
-    relation[amenity~"^(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)$"];
-    node[healthcare];
-    way[healthcare];
-    relation[healthcare];
+    nwr[amenity~"^(.*;|)(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)(;.*|)$"];
+    nwr[healthcare];
     )
 feature:
   pre: |-
@@ -51,6 +43,7 @@ feature:
       {% set key = 'amenity' %}
       {% set value = tags.amenity %}
     {% endif %}
+
     {% set kv = key ~ '=' ~ value %}
     {% set found = { sign: '' } %}
     {% for data in const %}
@@ -160,4 +153,9 @@ filter:
     name: '{{ trans("filter:type") }}'
     show_default: 'true'
     type: select
-    values: '{% for data in const %}<option value="{{ data.types[0] }}" query="({% for t in data.types %}nwr[{{ t }}];{% endfor %})" minzoom="{{ data.zoom }}">{{ tagTrans(data.types[0]) }}</option>{% endfor %}'
+    values: |-
+      {% for data in const %}
+      <option value="{{ data.types[0] }}" query="({% for t in data.types %}nwr[{{ t|replace({ '=': '^' }) }}];{% endfor %})">
+      {{ tagTrans(data.types[0]) }}
+      </option>
+      {% endfor %}

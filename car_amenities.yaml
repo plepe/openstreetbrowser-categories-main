@@ -25,22 +25,22 @@ name:
 query:
   13: |-
     (
-    nwr[amenity~"^(car_rental|car_sharing|fuel)$"];
-    nwr[amenity~"^(charging_station)$"][motorcar][motorcar!="no"];
-    nwr[amenity~"^(charging_station)$"][motorcycle][motorcycle!="no"];
+    nwr[amenity~"^(.*;|)(car_rental|car_sharing|fuel)(;.*|)$"];
+    nwr[amenity~"^(.*;|)(charging_station)(;.*|)$"][motorcar][motorcar!="no"];
+    nwr[amenity~"^(.*;|)(charging_station)(;.*|)$"][motorcycle][motorcycle!="no"];
     )
   16: |-
     (
-    nwr[amenity~"^(car_rental|car_sharing|car_wash|fuel|motorcycle_parking|parking)$"];
-    nwr[amenity~"^(charging_station)$"][motorcar][motorcar!="no"];
-    nwr[amenity~"^(charging_station)$"][motorcycle][motorcycle!="no"];
+    nwr[amenity~"^(.*;|)(car_rental|car_sharing|car_wash|fuel|motorcycle_parking|parking)(;.*|)$"];
+    nwr[amenity~"^(.*;|)(charging_station)(;.*|)$"][motorcar][motorcar!="no"];
+    nwr[amenity~"^(.*;|)(charging_station)(;.*|)$"][motorcycle][motorcycle!="no"];
     )
 feature:
   pre: |-
     {% set key = 'amenity' %}
     {% set value = tags.amenity %}
   description: |-
-    {{ tagTrans(key, value) }}
+    {{ tagTransList(key, value) }}
   markerSign: |-
     {{ const[value] }}
 const:

@@ -13,10 +13,10 @@ query:
   15: |
     (
     nwr[historic];
-    nwr[tourism~'^(attraction|artwork)$'];
+    nwr[tourism~'^(.*;|)(attraction|artwork)(;.*|)$'];
     nwr[heritage];
-    nwr[amenity~'^(fountain|arts_centre|place_of_worship|theatre)$'];
-    nwr[man_made~'^(windmill|watermill|bridge|cairn|cross|geoglyph|hongsalmun|iljumun|lighthouse|obelisk|observatory|offshore_platform|paifang|stupa|torii)$'];
+    nwr[amenity~'^(.*;|)(fountain|arts_centre|place_of_worship|theatre)(;.*|)$'];
+    nwr[man_made~'^(.*;|)(windmill|watermill|bridge|cairn|cross|geoglyph|hongsalmun|iljumun|lighthouse|obelisk|observatory|offshore_platform|paifang|stupa|torii)(;.*|)$'];
     )
 feature: 
   pre: |
@@ -71,13 +71,13 @@ feature:
     {% elseif tags.tourism %}
       {{ tagTransList('tourism', tags.tourism) }}
     {% elseif tags.amenity %}
-      {{ tagTrans('amenity', tags.amenity) }}
+      {{ tagTransList('amenity', tags.amenity) }}
     {% elseif tags.building %}
       {{ tags.building == 'yes' ? keyTrans('building') : tagTrans('building', tags.building) }}
     {% elseif tags.heritage %}
       {{ keyTrans('heritage') }}
     {% elseif tags.man_made %}
-      {{ tagTrans('man_made', tags.man_made) }}
+      {{ tagTransList('man_made', tags.man_made) }}
     {% endif %}
   markerSymbol: "{{ markerPointer({ fillColor: def.color })|raw }}"
   listMarkerSymbol: "{{ markerCircle({ fillColor: def.color })|raw }}"

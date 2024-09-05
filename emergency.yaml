@@ -27,32 +27,34 @@ name:
 query:
   11: |-
     (
-    nwr[amenity~"^(fire_station|hospital)$"];
-    nwr[emergency~"^(lifeguard)$"];
+    nwr[amenity~"^(.*;|)(fire_station|hospital)(;.*|)$"];
+    nwr[emergency~"^(.*;|)(lifeguard)(;.*|)$"];
     )
   13: |-
     (
-    nwr[amenity~"^(fire_station|hospital|police)$"];
-    nwr[emergency~"^(lifeguard)$"];
-    node[emergency~"^(phone|defibrillator|access_point)$"];
-    node[highway=emergency_access_point];
+    nwr[amenity~"^(.*;|)(fire_station|hospital|police)(;.*|)$"];
+    nwr[emergency~"^(.*;|)(lifeguard)(;.*|)$"];
+    node[emergency~"^(.*;|)(phone|defibrillator|access_point)(;.*|)$"];
+    node[highway^emergency_access_point];
     )
 feature:
   pre: |-
-    {% if tags.amenity in [ 'fire_station', 'hospital', 'police' ] %}
-    {% set key = 'amenity' %}
-    {% set value = tags.amenity %}
-    {% elseif tags.emergency %}
-    {% set key = 'emergency' %}
-    {% set value = tags.emergency %}
-    {% elseif tags.highway == 'emergency_access_point' %}
-    {% set key = 'highway' %}
-    {% set value = tags.highway %}
-    {% endif %}
+    {% set key = null %}
+    {% set value = null %}
+
+    {% for k, d in const %}
+      {% set kv = k|split('=') %}
+      {% if attribute(tags, kv[0]) and kv[1] in attribute(tags, kv[0])|split(';') %}
+        {% set key = kv[0] %}
+        {% set value = kv[1] %}
+      {% endif %}
+    {% endfor %}
+
     {% set kv = key ~ "=" ~ value %}
-  description: '{{ tagTrans(key, value) }}'
-  markerSign: |-
     {% set data = const[kv] %}
+  description: |-
+    {{ tagTransList(key, attribute(tags, key)) }}
+  markerSign: |-
     {% if data %}
     {{ data.sign|raw }}
     {% endif %}
@@ -101,22 +103,22 @@ filter:
     values:
       fire_station:
         name: '{{ tagTrans("amenity", "fire_station") }}'
-        query: nwr[amenity=fire_station]
+        query: nwr[amenity^fire_station]
       hospital:
         name: '{{ tagTrans("amenity", "hospital") }}'
-        query: nwr[amenity=hospital]
+        query: nwr[amenity^hospital]
       police:
         name: '{{ tagTrans("amenity", "police") }}'
-        query: nwr[amenity=police]
+        query: nwr[amenity^police]
       lifeguard:
         name: '{{ tagTrans("emergency", "lifeguard") }}'
-        query: nwr[emergency=lifeguard]
+        query: nwr[emergency^lifeguard]
       emergency_phone:
         name: '{{ tagTrans("emergency", "phone") }}'
-        query: node[emergency=phone]
+        query: node[emergency^phone]
       defibrillator:
         name: '{{ tagTrans("emergency", "defibrillator") }}'
-        query: node[emergency=defibrillator]
+        query: node[emergency^defibrillator]
       emergency_access_point:
         name: '{{ tagTrans("highway", "emergency_access_point") }}'
-        query: (node[highway=emergency_access_point];node[emergency=access_point];)
+        query: (node[highway^emergency_access_point];node[emergency^access_point];)

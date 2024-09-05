@@ -20,7 +20,7 @@ name:
   sr: Занат
   tr: El Sanatları
 query:
-  15: (node[craft];way[craft];relation[craft];);
+  15: nwr[craft]
 feature:
   description: '{{ tagTransList("craft", tags.craft) }}'
   markerSign: '{% set craft0 = tags.craft|split(";")[0] %}{% if const.crafts[craft0] %}{% set v = const.crafts[craft0] %}{% else %}{% set v = const.default %}{% endif %}{% if v|slice(0, 3) == "fa-" %}<i class="fa {{ v }}"></i>{% else %}{{ v|raw }}{% endif %}'
@@ -86,4 +86,5 @@ filter:
     name: '{{ trans("filter:type") }}'
     type: select
     show_default: 'true'
+    op: has
     values: '{% set list = [] %}{% for t, v in const.crafts %}<option value="{{ t }}">{% set list = list|merge([ t ]) %}{{ tagTrans("craft", t) }}</option>{% endfor %}<option value="other" query="nwr[craft][craft!~"^({{ list|join("|") }})$"]">{{ trans("other") }}</option>'

@@ -24,10 +24,10 @@ name:
   uk: Гастрономія
 type: overpass
 query:
-  15: nwr[amenity~'^(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant|canteen)$'];
+  15: nwr[amenity~'^(.*; *|)(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant|canteen)(| *;.*)$'];
 feature:
   description: |
-    {{ tagTrans('amenity', tags.amenity) }}
+    {{ tagTransList('amenity', tags.amenity) }}
   details: |
     {{ tagTransList('cuisine', tags.cuisine) }}
   body: |
@@ -70,7 +70,7 @@ filter:
       - canteen
     valueName: |
       {{ tagTrans('amenity', value) }}
-    op: '='
+    op: 'has'
   cuisine_food:
     name: |
       {{ keyTrans('cuisine/food') }}
