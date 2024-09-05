@@ -48,7 +48,10 @@
   <i class="fa fa-globe" aria-hidden="true"></i>
   <span class='key'>{{ keyTrans('website') }}:</span>
   <span class='value'>
-    <a target='_blank' href='{{ tags.website|websiteUrl }}'>{{ tags.website }}</a>
+    {% for i, v in tags.website|split(';') -%}
+    {%- if i > 0 %}, {% endif %}
+    <a target='_blank' href='{{ v|websiteUrl }}'>{{ v }}</a>
+    {%- endfor %}
   </span>
 </li>
 {% endif %}
@@ -58,7 +61,10 @@
   <i class="fa fa-globe" aria-hidden="true"></i>
   <span class='key'>{{ keyTrans('website') }}:</span>
   <span class='value'>
-    <a target='_blank' href='{{ attribute(tags, 'contact:website')|websiteUrl }}'>{{ attribute(tags, 'contact:website') }}</a>
+    {% for i, v in attribute(tags, 'contact:website')|split(';') -%}
+    {%- if i > 0 %}, {% endif %}
+    <a target='_blank' href='{{ v|websiteUrl }}'>{{ v }}</a>
+    {%- endfor %}
   </span>
 </li>
 {% endif %}
@@ -68,7 +74,10 @@
   <i class="fa fa-phone" aria-hidden="true"></i>
   <span class='key'>{{ keyTrans('phone') }}:</span>
   <span class='value'>
-    <a target='_blank' href='tel:{{ tags.phone }}'>{{ tags.phone }}</a>
+    {% for i, v in tags.phone|split(';') -%}
+    {%- if i > 0 %}, {% endif %}
+    <a target='_blank' href='tel:{{ v }}'>{{ v }}</a>
+    {%- endfor %}
   </span>
 </li>
 {% endif %}
@@ -78,7 +87,10 @@
   <i class="fa fa-phone" aria-hidden="true"></i>
   <span class='key'>{{ keyTrans('phone') }}:</span>
   <span class='value'>
-    <a target='_blank' href='tel:{{ attribute(tags, 'contact:phone') }}'>{{ attribute(tags, 'contact:phone') }}</a>
+    {% for i, v in attribute(tags, 'contact:phone')|split(';') -%}
+    {%- if i > 0 %}, {% endif %}
+    <a target='_blank' href='tel:{{ v }}'>{{ v }}</a>
+    {%- endfor %}
   </span>
 </li>
 {% endif %}
@@ -90,15 +102,21 @@
   <span class='value'>
 
   {% if attribute(tags, 'contact:email') %}
-    <a target='_blank' href='mailto:{{ attribute(tags, 'contact:email') }}'>
+    {% for i, v in attribute(tags, 'contact:email')|split(';') -%}
+    {%- if i > 0 %}, {% endif %}
+    <a target='_blank' href='mailto:{{ v }}'>
       <i class="fa fa-envelope" aria-hidden="true"></i>
     </a>
+    {%- endfor %}
   {% endif %}
 
   {% if attribute(tags, 'email') %}
-    <a target='_blank' href='mailto:{{ attribute(tags, 'email') }}'>
+    {% for i, v in tags.email|split(';') -%}
+    {%- if i > 0 %}, {% endif %}
+    <a target='_blank' href='mailto:{{ v }}'>
       <i class="fa fa-envelope" aria-hidden="true"></i>
     </a>
+    {%- endfor %}
   {% endif %}
 
   </span>
