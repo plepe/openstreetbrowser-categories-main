@@ -1,104 +1,67 @@
-name:
-  ca: Camins peatonals
-  en: Footways
-  fr: Cheminements piétonniers
-  hu: Gyalogutak
-  it: Percorsi pedonali
-  pl: Chodniki
-  pt-br: Vias pedonais
-  pt: Vias pedonais
-  tr: Yaya Yolları
 query:
   15: |
     (
-    way[highway~"^(footway|pedestrian|steps|path|platform)$"];
-    way[highway=cycleway][foot~"^(yes|designated)$"];
-    way[footway];
-    way["area:highway"~"^(footway|pedestrian|steps|path|platform|sidewalk)$"];
-    relation["area:highway"~"^(footway|pedestrian|steps|path|platform|sidewalk)$"];
-    relation[type=multipolygon]["highway"~"^(footway|pedestrian|steps|path|platform|sidewalk)$"];
+    way[footway=sidewalk];
+    way["area:highway"=sidewalk];
+    relation["area:highway"=sidewalk];
+    relation[type=multipolygon][highway=sidewalk];
     way[sidewalk~"^(yes|both|left|right|no|separate|none)$"];
     way["sidewalk:left"~"(yes|no|separate)$"];
     way["sidewalk:right"~"(yes|no|separate)$"];
     way["sidewalk:both"~"(yes|no|separate)$"];
-    nwr["railway"="platform"];
-    node[highway=crossing];
     )
 feature:
   pre: |
     {% set sides = ['default'] %}
     {% set sidewalk_left = null %}{% set sidewalk_right = null %}
-    {% set cycleway = false %}
     {% set category = tags.highway %}
 
     {% if attribute(tags, 'sidewalk:both') == 'yes' or tags.sidewalk in ['yes', 'both', 'left', 'both', 'right'] or tags.footway == 'sidewalk' %}
       {% set category = 'sidewalk' %}
     {% endif %}
 
-    {% if tags.highway in ['pedestrian', 'footway','steps','path','cycleway','platform'] %}
+    {% if tags.footway == 'sidewalk' %}
       {% set sides = sides|merge(['main']) %}
-    {% endif %}
-
-    {% if tags.highway in ['cycleway'] %}
-      {% set category = 'footway' %}
-      {% set cycleway = true %}
-      {% set sides = sides|merge(['cycleway']) %}
-    {% endif %}
-    {% if tags.highway in ['path'] and tags.bicycle in ['yes', 'designated'] %}
-      {% set cycleway = true %}
-      {% set sides = sides|merge(['cycleway']) %}
-    {% endif %}
-
-    {% if attribute(tags, 'area:highway') in ['footway'] %}
-      {% set sides = sides|merge(['main']) %}
-      {% set category = attribute(tags, 'area:highway') %}
-    {% endif %}
-
-    {% if tags.railway in ['platform'] %}
-      {% set sides = sides|merge(['main']) %}
-      {% set category = 'platform' %}
-    {% endif %}
-
-    {% if tags.footway == 'crossing' %}
-      {% set category = 'crossing' %}
     {% endif %}
 
     {% if tags.sidewalk in ['no', 'none'] %}
       {% set sidewalk_left = 'no' %}
       {% set sidewalk_right = 'no' %}
+      {% set sides = sides|merge(['leftr', 'rightr']) %}
     {% endif %}
 
     {% if tags.sidewalk == 'separate' %}
       {% set sidewalk_left = 'separate' %}
       {% set sidewalk_right = 'separate' %}
+      {% set sides = sides|merge(['leftr', 'rightr']) %}
     {% endif %}
 
     {% if attribute(tags, 'sidewalk:both') %}
       {% set sidewalk_left = attribute(tags, 'sidewalk:both') %}
       {% set sidewalk_right = attribute(tags, 'sidewalk:both') %}
+      {% set sides = sides|merge(['leftr', 'rightr']) %}
     {% endif %}
 
     {% if attribute(tags, 'sidewalk:left') %}
       {% set sidewalk_left = attribute(tags, 'sidewalk:left') %}
+      {% set sides = sides|merge(['leftr']) %}
     {% endif %}
 
     {% if attribute(tags, 'sidewalk:left') == 'yes' or attribute(tags, 'sidewalk:both') == 'yes' or tags.sidewalk in ['left', 'both'] %}
       {% set sidewalk_left = 'yes' %}
-      {% set sides = sides|merge(['left']) %}
+      {% set sides = sides|merge(['leftr', 'left']) %}
     {% endif %}
 
     {% if attribute(tags, 'sidewalk:right') %}
       {% set sidewalk_right = attribute(tags, 'sidewalk:right') %}
+      {% set sides = sides|merge(['rightr']) %}
     {% endif %}
 
     {% if attribute(tags, 'sidewalk:right') == 'yes' or attribute(tags, 'sidewalk:both') == 'yes' or tags.sidewalk in ['right', 'both'] %}
       {% set sidewalk_right = 'yes' %}
-      {% set sides = sides|merge(['right']) %}
+      {% set sides = sides|merge(['rightr', 'right']) %}
     {% endif %}
 
-    {% if type == 'node' %}
-      {% set sides = ['node'] %}
-    {% endif %}
   description: |
     {% if tags.footway %}
     {{ tagTrans('footway', tags.footway) }}
@@ -115,38 +78,6 @@ feature:
     {% endif %}
   body: |
     <ul>
-    {% if 'main' in sides or 'node' in sides %}
-      {% if tags.crossing %}<li>
-        <span class='key'>{{ keyTrans('crossing') }}:</span>
-        <span class='value'>{{ tagTrans('crossing', tags.crossing) }}</span>
-      </li>{% endif %}
-      {% if tags.width %}<li>
-        <span class='key'>{{ keyTrans('width') }}:</span>
-        <span class='value'>{{ tags.width|formatUnit }}</span>
-      </li>{% endif %}
-      {% if tags.wheelchair %}<li>
-        <span class='key'>{{ keyTrans('wheelchair') }}:</span>
-        <span class='value'>{{ tagTrans('wheelchair', tags.wheelchair) }}</span>
-      </li>{% endif %}
-      {% if tags.surface %}<li>
-        <span class='key'>{{ keyTrans('surface') }}:</span>
-        <span class='value'>{{ tagTrans('surface', tags.surface) }}</span>
-      </li>{% endif %}
-      {% if tags.tactile_paving %}<li>
-        <span class='key'>{{ keyTrans('tactile_paving') }}:</span>
-        <span class='value'>{{ tagTrans('tactile_paving', tags.tactile_paving) }}</span>
-      </li>{% endif %}
-      {% if tags.smoothness %}<li>
-        <span class='key'>{{ keyTrans('smoothness') }}:</span>
-        <span class='value'>{{ tagTrans('smoothness', tags.smoothness) }}</span>
-      </li>{% endif %}
-      {% set v = tags.incline %}
-      {% if v %}<li>
-        <span class='key'>{{ keyTrans('incline') }}:</span>
-        <span class='value'>{{ v in ['up', 'down', 'yes'] ? tagTrans('incline', v) : v }}</span>
-      </li>{% endif %}
-    {% endif %}
-
     {% if attribute(tags, 'sidewalk:left')|default(attribute(tags, 'sidewalk:both')) or tags.sidewalk in ['left', 'both'] %}
       <li>{{ keyTrans('sidewalk:left') }}:<ul>
         <li>{{ tagTrans('sidewalk', attribute(tags, 'sidewalk:left')|default(attribute(tags, 'sidewalk:both'))) }}</li>
@@ -213,8 +144,6 @@ feature:
   listMarkerSymbol: |
     {% if tags.area == 'yes' or tags.type == 'multipolygon' or attribute(tags, 'area:highway') %}
       polygon
-    {% elseif 'node' in sides %}
-      {{ markerCircle({ width: 0, radius: 5, fillOpacity: 1, fill: true, color: const.categories[category].color }) }}
     {% else %}
       {{ markerLine({
            'styles': sides|join(','),
@@ -227,24 +156,31 @@ feature:
               lineCap: tags.highway == 'steps' or (cycleway and tags.segregated != 'yes') ? 'butt' : 'round',
               offset: cycleway and tags.segregated == 'yes' ? 1 : 0
             },
-            'style:cycleway': {
-              fill: false,
-              width: cycleway and tags.segregated == 'yes' ? 2 : 3,
-              color: const.categories.cycleway.color,
-              dashArray: cycleway and tags.segregated != 'yes' ? '8,8' : '',
-              dashOffset: 8,
-              lineCap: cycleway and tags.segregated != 'yes' ? 'butt' : 'round',
-              offset: cycleway and tags.segregated == 'yes' ? -1 : 0
-            },
             'style:left': {
               width: 3,
               offset: -6,
-              color: const.categories.sidewalk.color
+              color: const.sidewalks[sidewalk_left].color
             },
             'style:right': {
               width: 3,
               offset: 6,
-              color: const.categories.sidewalk.color
+              color: const.sidewalks[sidewalk_right].color
+            },
+            'style:leftr': {
+              width: sidewalk_left ? 5 : 0,
+              offset: -2.5,
+              opacity: 0.3,
+              dashArray: '1,10',
+              lineCap: butt,
+              color: const.sidewalks[sidewalk_left].color
+            },
+            'style:rightr': {
+              width: sidewalk_right ? 5 : 0,
+              offset: 2.5,
+              opacity: 0.3,
+              dashArray: '1,10',
+              lineCap: butt,
+              color: const.sidewalks[sidewalk_right].color
             },
       }) }}
     {% endif %}
@@ -252,13 +188,6 @@ feature:
     opacity: 0
     fillOpacity: 0
     width: 5
-  style:node:
-    width: 0
-    radius: 5
-    fillOpacity: 1
-    fill: true
-    color: |
-      {{ const.categories[category].color }}
   style:main:
     fill: |
       {% if tags.area == 'yes' or tags.type == 'multipolygon' or attribute(tags, 'area:highway') %}true{% else %}false{% endif %}
@@ -267,8 +196,6 @@ feature:
       0
       {% elseif tags.area == 'yes' or tags.type == 'multipolygon' %}
       1
-      {% elseif cycleway and tags.segregated == 'yes' %}
-      3
       {% else %}
       {{ const.categories[category].width|default(3) }}
       {% endif %}
@@ -282,37 +209,47 @@ feature:
       {% endif %}
     lineCap: |
       {% if tags.highway == 'steps' or (cycleway and tags.segregated != 'yes') %}butt{% else %}round{% endif %}
-    offset: |
-      {% if cycleway and tags.segregated == 'yes' %}1.5{% else %}0{% endif %}
-  style:cycleway:
-    fill: false
-    width: 3
-    color: |
-      {{ const.categories.cycleway.color }}
-    dashArray: |
-      {% if cycleway and tags.segregated != 'yes' %}
-      8,8
-      {% endif %}
-    dashOffset: 8
-    lineCap: |
-      {% if cycleway and tags.segregated != 'yes' %}butt{% else %}round{% endif %}
-    offset: |
-      {% if cycleway and tags.segregated == 'yes' %}-1.5{% else %}0{% endif %}
+
   style:left:
     fill: false
     width: 3
     offset: |
       {{ -5 / map.metersPerPixel }}
     color: |
-      {{ const.categories.sidewalk.color }}
+      {{ const.sidewalks[sidewalk_left].color }}
+
   style:right:
     fill: false
     width: 3
     offset: |
       {{ 5 / map.metersPerPixel }}
     color: |
-      {{ const.categories.sidewalk.color }}
+      {{ const.sidewalks[sidewalk_right].color }}
 
+  style:leftr:
+    fill: false
+    width: |
+      {{ sidewalk_left ? 5 / map.metersPerPixel : 0 }}
+    offset: |
+      {{ -2.5 / map.metersPerPixel }}
+    opacity: 0.5
+    dashArray: '1,10'
+    lineCap: butt
+    color: |
+      {{ const.sidewalks[sidewalk_left].color }}
+
+  style:rightr:
+    fill: false
+    width: |
+      {{ sidewalk_right ? 5 / map.metersPerPixel : 0 }}
+    offset: |
+      {{ 2.5 / map.metersPerPixel }}
+    opacity: 0.5
+    dashArray: '1,10'
+    lineCap: butt
+    color: |
+      {{ const.sidewalks[sidewalk_right].color }}
+    
   styles: |
     {{ sides|join(',') }}
 info: |
@@ -327,69 +264,27 @@ info: |
     <td>{{ tagTrans(d.key|default('highway'), k) }}</td>
     </tr>
   {% endfor %}
-  <tr>
-    <td>{{ markerPolygon({
-      styles: 'default',
-      style: {
-        width: 1,
-        color: const.categories.footway.color,
-        fillColor: const.categories.footway.color
-      }
-    }) }}</td>
-    <td>{{ tagTrans('highway', 'footway') }} ({{ keyTrans('area') }})</td>
-  </tr>
-  <tr>
-    <td>
-      <svg anchorx="13" anchory="8" width="25" height="19">
-        <rect x="3" y="0" width="18" height="19" style="stroke-width: 0;fill: #ab00ff;fill-opacity: 0.2;"></rect>
-        <line x1="3" y1="10" x2="21" y2="10" style="stroke: #ab00ff;stroke-width: 3;stroke-dasharray: undefined;stroke-dasharray: undefined;fill: #ab00ff;fill-opacity: 0.2;"></line>
-      </svg>
-    </td>
-    <td>{{ tagTrans('highway', 'footway') }} ({{ keyTrans('area:highway') }})</td>
-  </tr>
-  <tr>
-    <td>{{ markerCircle({
-      width: 0,
-      radius: 5,
-      fillOpacity: 1,
-      fill: true,
-      color: const.categories.crossing.color
-    }) }}</td>
-    <td>{{ tagTrans('highway', 'crossing') }}</td>
-  </tr>
+  {% for k, d in const.sidewalks %}
   <tr>
     <td>{{ markerLine({
-      styles: 'default,foot',
-      style: {
-        width: 4,
-        color: const.categories.cycleway.color,
-        dashArray: '8,8'
+      styles: d.styles,
+      'style:leftr': {
+        width: 9,
+        offset: -1,
+        opacity: 0.3,
+        dashArray: '1,10',
+        lineCap: butt,
+        color: d.color
       },
-      'style:foot': {
-        width: 4,
-        color: const.categories.footway.color,
-        dashArray: '8,8',
-        dashOffset: 8
+      'style:left': {
+        width: 3,
+        offset: -7,
+        color: d.color
       }
     }) }}</td>
-    <td>{{ tagTrans('highway', 'cycleway segregated=no') }}</td>
+    <td>{{ tagTrans('sidewalk', k) }}</td>
   </tr>
-  <tr>
-    <td>{{ markerLine({
-      styles: 'default,foot',
-      style: {
-        width: 3,
-        color: const.categories.cycleway.color,
-        offset: -1.5
-      },
-      'style:foot': {
-        width: 3,
-        color: const.categories.footway.color,
-        offset: 1.5
-      }
-    }) }}</td>
-    <td>{{ tagTrans('highway', 'cycleway segregated=yes') }}</td>
-  </tr>
+  {% endfor %}
   </table>
 filter:
   access:
@@ -539,30 +434,13 @@ const:
     sidewalk:
       color: '#ff007f'
       key: footway
-    pedestrian:
-      color: '#ff00c8'
-      width: 5
-    footway:
-      color: '#ab00ff'
-    path:
-      color: '#ee922d'
-    steps:
-      color: '#ab00ff'
-      dashArray: '3,3'
-    crossing:
-      color: '#964e00'
-    cycleway:
-      color: '#002aff'
-    platform:
-      key: railway
-      color: '#00ff00'
   sidewalks:
-    'yes':
-      color: '#ff007f'
-      styles: 'leftr,left'
     'separate':
       color: '#ff007f'
       styles: 'leftr'
+    'yes':
+      color: '#af0000'
+      styles: 'leftr,left'
     'no':
       color: '#000000'
       styles: 'leftr'

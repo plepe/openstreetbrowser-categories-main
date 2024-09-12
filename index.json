@@ -206,6 +206,9 @@
                             "id": "footways"
                         },
                         {
+                            "id": "street-sidewalks"
+                        },
+                        {
                             "id": "kerbs"
                         }
                     ]
