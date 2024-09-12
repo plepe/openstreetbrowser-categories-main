@@ -77,6 +77,7 @@ feature:
 
     {% if attribute(tags, 'sidewalk:both') %}
       {% set sidewalk_left = attribute(tags, 'sidewalk:both') %}
+      {% set sidewalk_right = attribute(tags, 'sidewalk:both') %}
       {% set sides = sides|merge(['leftr', 'rightr']) %}
     {% endif %}
 
@@ -264,7 +265,7 @@ feature:
               opacity: 0.3,
               dashArray: '1,10',
               lineCap: butt,
-              color: sidewalk_left in ['no', 'none'] ? '#000000' : const.categories.sidewalk.color
+              color: sidewalk_right in ['no', 'none'] ? '#000000' : const.categories.sidewalk.color
             },
       }) }}
     {% endif %}
