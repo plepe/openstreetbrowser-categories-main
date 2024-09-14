@@ -1,0 +1,23 @@
+name:
+  en: Etymology
+query: |
+  (
+  nwr["name:etymology"];
+  nwr["name:etymology:wikidata"];
+  )
+feature:
+  description: |
+    {% set value = null %}
+    {% for tag in ['highway', 'railway', 'amenity', 'leisure', 'shop', 'man_made', 'landuse', 'natural', 'waterway', 'place', 'route', 'aeroway', 'aerialway', 'craft', 'office', 'military', 'building', 'barrier','geological','historic', 'power', 'tourism', 'boundary'] %}
+      {% if not value and tags[tag] %}
+        {% set value = attribute(tags, tag) %}
+        {% if value in ['yes'] %}
+          {{ keyTrans(tag) }}
+        {% else %}
+          {{ tagTransList(tag, value) }}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+  details: |
+    {{ attribute(tags, "name:etymology")|enumerate }}
