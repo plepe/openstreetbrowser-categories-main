@@ -20,4 +20,32 @@ feature:
     {% endfor %}
 
   details: |
-    {{ attribute(tags, "name:etymology")|enumerate }}
+    {% if not attribute(tags, "name:etymology") and attribute(tags, 'name:etymology:wikidata') %}
+      {% for i, wd in attribute(tags, 'name:etymology:wikidata')|split(';') %}
+        {%- if i != 0 %},{% endif %}
+        {% if wd %}
+          {% set wikidata = wd|wikidataEntity %}
+          {{ wikidata ? (wikidata.labels[user.data_lang]|default(wikidata.labels[user.ui_lang])|default(wikidata.labels.en)).value : wd }}
+        {% endif %}
+      {% endfor %}
+    {% else %}
+      {{ attribute(tags, "name:etymology")|enumerate }}
+    {% endif %}
+
+  body: |
+    <ul>
+    {% if not attribute(tags, "name:etymology") and attribute(tags, 'name:etymology:wikidata') %}
+    <li class='hasSymbol'>
+      <i class="fa fa-book" aria-hidden="true"></i>
+      <span class='key'>{{ keyTrans('name:etymology') }}:</span>
+      <span class='value'>
+      {% for i, wd in attribute(tags, 'name:etymology:wikidata')|split(';') %}
+        {%- if i != 0 %},{% endif %}
+        {% if wd %}
+          {% set wikidata = wd|wikidataEntity %}
+          {{ wikidata ? (wikidata.labels[user.data_lang]|default(wikidata.labels[user.ui_lang])|default(wikidata.labels.en)).value : wd }}
+        {% endif %}
+      {% endfor %}
+      </span>
+    </li>
+    {% endif %}
