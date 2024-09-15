@@ -34,18 +34,24 @@ feature:
 
   body: |
     <ul>
-    {% if not attribute(tags, "name:etymology") and attribute(tags, 'name:etymology:wikidata') %}
+    {% if attribute(tags, "name:etymology") or attribute(tags, 'name:etymology:wikidata') %}
     <li class='hasSymbol'>
       <i class="fa fa-book" aria-hidden="true"></i>
       <span class='key'>{{ keyTrans('name:etymology') }}:</span>
       <span class='value'>
-      {% for i, wd in attribute(tags, 'name:etymology:wikidata')|split(';') %}
-        {%- if i != 0 %},{% endif %}
-        {% if wd %}
-          {% set wikidata = wd|wikidataEntity %}
-          {{ wikidata ? (wikidata.labels[user.data_lang]|default(wikidata.labels[user.ui_lang])|default(wikidata.labels.en)).value : wd }}
-        {% endif %}
-      {% endfor %}
+      {% set etymWikidata = attribute(tags, 'name:etymology:wikidata') %}
+      {% if etymWikidata %}
+        {% set etymWikidata = etymWikidata|split(';') %}
+        {% set etymName = attribute(tags, 'name:etymology')|split(';') %}
+
+        {% set result = [] %}
+        {% for i in 0..max(etymName|length - 1, etymWikidata|length - 1) %}
+          {% set result = result|merge([ etymWikidata[i] ? '<a target="_blank" href="https://wikidata.org/wiki/' ~ etymWikidata[i]|url_encode ~ '">' ~ (etymName[i]|default(etymWikidata[i]))|e ~ '</a>' : etymName[i]|e ]) %}
+        {% endfor %}
+        {{ result|enumerate|raw }}
+      {% else %}
+        {{ attribute(tags, "name:etymology")|enumerate }}
+      {% endif %}
       </span>
     </li>
     {% endif %}
