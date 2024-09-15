@@ -49,3 +49,13 @@ feature:
       </span>
     </li>
     {% endif %}
+
+    {% if attribute(tags, 'name:start_date') %}
+    <li class='hasSymbol'>
+      <i class="fa fa-book" aria-hidden="true"></i>
+      <span class='key'>{{ keyTrans('name:start_date') }}:</span>
+      <span class='value'>{{ attribute(tags, 'name:start_date')|osmFormatDate({ format: 'short' }) }}</span>
+    </li>
+    {% endif %}
+
+    </ul>
