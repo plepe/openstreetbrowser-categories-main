@@ -39,23 +39,19 @@ feature:
       <i class="fa fa-book" aria-hidden="true"></i>
       <span class='key'>{{ keyTrans('name:etymology') }}:</span>
       <span class='value'>
-      {% set etymWikidata = attribute(tags, 'name:etymology:wikidata') %}
-      {% if etymWikidata %}
-        {% set etymWikidata = etymWikidata|split(';') %}
-        {% set etymName = attribute(tags, 'name:etymology')|split(';') %}
+      {% set etymWikidata = attribute(tags, 'name:etymology:wikidata')|split(';') %}
+      {% set etymName = attribute(tags, 'name:etymology')|split(';') %}
 
-        {% set result = [] %}
-        {% for i in 0..max(etymName|length - 1, etymWikidata|length - 1) %}
-          {% set wikidata = etymWikidata[i]|wikidataEntity %}
-          {% set label = wikidata ? (wikidata.labels[user.data_lang]|default(wikidata.labels[user.ui_lang])|default(wikidata.labels.en)).value : wd %}
-          {% set desc = wikidata ? (wikidata.descriptions[user.data_lang]|default(wikidata.descriptions[user.ui_lang])|default(wikidata.descriptions.en)).value : wd %}
+      {% set result = [] %}
+      {% for i in 0..max(etymName|length - 1, etymWikidata|length - 1) %}
+        {% set wikidata = etymWikidata[i]|wikidataEntity %}
+        {% set label = wikidata ? (wikidata.labels[user.data_lang]|default(wikidata.labels[user.ui_lang])|default(wikidata.labels.en)).value : etymName[i]|default(etymWikidata[i]) %}
+        {% set desc = wikidata ? (wikidata.descriptions[user.data_lang]|default(wikidata.descriptions[user.ui_lang])|default(wikidata.descriptions.en)).value : null %}
 
-          {% set result = result|merge([ etymWikidata[i] ? '<a target="_blank" href="https://wikidata.org/wiki/' ~ etymWikidata[i]|url_encode ~ '">' ~ (etymName[i]|default(label))|e ~ '</a>' ~ (desc ? ' (' ~ desc ~ ')' : '') : etymName[i]|e ]) %}
-        {% endfor %}
-        {{ result|enumerate|raw }}
-      {% else %}
-        {{ attribute(tags, "name:etymology")|enumerate }}
-      {% endif %}
+        {% set result = result|merge([ etymWikidata[i] ? '<a target="_blank" href="https://wikidata.org/wiki/' ~ etymWikidata[i]|url_encode ~ '">' ~ (etymName[i]|default(label))|e ~ '</a>' ~ (desc ? ' (' ~ desc ~ ')' : '') : etymName[i]|e ]) %}
+      {% endfor %}
+
+      {{ result|enumerate|raw }}
       </span>
     </li>
     {% endif %}
