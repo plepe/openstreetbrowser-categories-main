@@ -17,6 +17,7 @@ query:
     nwr[heritage];
     nwr[amenity~'^(.*;|)(fountain|arts_centre|place_of_worship|theatre)(;.*|)$'];
     nwr[man_made~'^(.*;|)(windmill|watermill|bridge|cairn|cross|geoglyph|hongsalmun|iljumun|lighthouse|obelisk|observatory|offshore_platform|paifang|stupa|torii)(;.*|)$'];
+    nwr[natural=tree][denotation~'^(natural_monument|landmark)$'];
     )
 feature: 
   pre: |
@@ -78,6 +79,8 @@ feature:
       {{ keyTrans('heritage') }}
     {% elseif tags.man_made %}
       {{ tagTransList('man_made', tags.man_made) }}
+    {% elseif tags.natural %}
+      {{ tagTrans('natural', tags.natural) }} ({{ tagTrans('denotation', tags.denotation) }})
     {% endif %}
   markerSymbol: "{{ markerPointer({ fillColor: def.color })|raw }}"
   listMarkerSymbol: "{{ markerCircle({ fillColor: def.color })|raw }}"
@@ -157,6 +160,8 @@ const:
       icon: '<i class="fas fa-place-of-worship"></i>'
     amenity=theatre:
       icon: '<i class="fas fa-theater-masks"></i>'
+    natural=tree:
+      icon: '<i class="fas fa-tree"></i>'
     heritage:
     man_made:
     other:
