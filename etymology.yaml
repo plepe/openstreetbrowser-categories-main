@@ -49,7 +49,12 @@ feature:
         {% set label = wikidata ? (wikidata.labels[user.data_lang]|default(wikidata.labels[user.ui_lang])|default(wikidata.labels.en)).value : etymName[i]|default(etymWikidata[i]) %}
         {% set desc = wikidata ? (wikidata.descriptions[user.data_lang]|default(wikidata.descriptions[user.ui_lang])|default(wikidata.descriptions.en)).value|default(etymDesc) : etymDesc %}
 
-        {% set result = result|merge([ etymWikidata[i] ? '<a target="_blank" href="https://wikidata.org/wiki/' ~ etymWikidata[i]|url_encode ~ '">' ~ (etymName[i]|default(label))|e ~ '</a>' ~ (desc ? ' (' ~ desc|e ~ ')' : '') : etymName[i]|e ~ (desc ? ' (' ~ desc|e ~ ')' : '') ]) %}
+        {% set url = attribute(tags, 'name:etymology:website')
+          |default(attribute(tags, 'name:etymology:url'))
+          |default(etymWikidata[i] ? 'https://wikidata.org/wiki/' ~ etymWikidata[i]|url_encode : null)
+        %}
+
+        {% set result = result|merge([ url ? '<a target="_blank" href="' ~ url ~ '">' ~ (etymName[i]|default(label))|e ~ '</a>' ~ (desc ? ' (' ~ desc|e ~ ')' : '') : etymName[i]|e ~ (desc ? ' (' ~ desc|e ~ ')' : '') ]) %}
       {% endfor %}
       {{ result|enumerate|raw }}
       </span>
