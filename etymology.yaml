@@ -51,6 +51,8 @@ feature:
 
         {% set url = attribute(tags, 'name:etymology:website')
           |default(attribute(tags, 'name:etymology:url'))
+          |default(wikidata.sitelinks[user.data_lang ~ 'wiki'].url)
+          |default(wikidata.sitelinks[user.ui_lang ~ 'wiki'].url)
           |default(etymWikidata[i] ? 'https://wikidata.org/wiki/' ~ etymWikidata[i]|url_encode : null)
         %}
 
