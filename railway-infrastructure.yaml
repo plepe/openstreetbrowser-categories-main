@@ -24,7 +24,11 @@ query:
   14: (way[railway];node[railway~'^(station|halt|tram_stop)$'];)
   17: (node[railway];way[railway];)
 feature:
-  title: '{% if tags.ref %}{{ localizedTag(tags, ''ref'') }} - {% endif %}{{ localizedTag(tags, ''name'')|default(localizedTag(tags, ''operator'')) }}'
+  title: |-
+    {% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}
+    {{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator')) }}
+
+    {% if attribute(tags, 'tunnel:name') %}- {{ localizedTag(tags, 'tunnel:name') }}{% endif %}
   description: |-
     {{ tagTrans('railway', tags.railway) -}}
     {%- if tags.usage %}
@@ -96,7 +100,12 @@ feature:
       {% endif %}
     color: |-
       {% set color = tags.railway == 'rail' or tags.railway == 'narrow_gauge' or tags.railway == 'disused' ? const.color['rail/' ~ tags.usage]|default(const.color.rail) : const.color[tags.railway]|default(const.color.default) %}
-      {{ color }}
+
+      {% if tags.tunnel and tags.tunnel != 'no' %}
+        {{ colorInterpolate([ color, '#ffffff' ], 0.3) }}
+      {% else %}
+        {{ color }}
+      {% endif %}
     opacity: '1'
     dashArray: '{% if tags.railway == ''rail'' %}{% elseif tags.railway == ''disused'' %}1,5{% elseif tags.railway == ''abandoned'' %}1,7{% endif %}'
     fill: |-
