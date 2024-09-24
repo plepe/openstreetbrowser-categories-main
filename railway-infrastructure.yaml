@@ -94,7 +94,9 @@ feature:
         2
         {% endif %}
       {% endif %}
-    color: '{% if tags.railway == ''rail'' or tags.railway == ''narrow_gauge'' or tags.railway == ''disused'' %}{% if tags.usage == ''main'' %}#ff8100{% elseif tags.usage == ''branch'' %}#daca00{% else %}#000000{% endif %}{% elseif tags.railway == ''subway'' %}#0000ff{% elseif tags.railway == ''tram'' %}#ff00ff{% elseif tags.railway == ''light_rail'' %}#00BD14{% elseif tags.railway == ''platform'' %}#3f3f3f{% else %}#000000{% endif %}'
+    color: |-
+      {% set color = tags.railway == 'rail' or tags.railway == 'narrow_gauge' or tags.railway == 'disused' ? const.color['rail/' ~ tags.usage]|default(const.color.rail) : const.color[tags.railway]|default(const.color.default) %}
+      {{ color }}
     opacity: '1'
     dashArray: '{% if tags.railway == ''rail'' %}{% elseif tags.railway == ''disused'' %}1,5{% elseif tags.railway == ''abandoned'' %}1,7{% endif %}'
     fill: |-
@@ -150,3 +152,13 @@ info: |-
     </tr>
   {% endif %}
   </table>
+const:
+  color:
+    rail: '#000000'
+    rail/main: '#ff8100'
+    rail/branch: '#daca00'
+    subway: '#0000ff'
+    tram: '#ff00ff'
+    light_rail: '#00BD14'
+    platform: '#3f3f3f'
+    default: '#000000'
