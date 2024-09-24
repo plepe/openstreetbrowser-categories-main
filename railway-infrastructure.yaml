@@ -29,6 +29,7 @@ feature:
     {{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator')) }}
 
     {% if attribute(tags, 'tunnel:name') %}- {{ localizedTag(tags, 'tunnel:name') }}{% endif %}
+    {% if attribute(tags, 'bridge:name') %}- {{ localizedTag(tags, 'bridge:name') }}{% endif %}
   description: |-
     {{ tagTrans('railway', tags.railway) -}}
     {%- if tags.usage %}
@@ -79,6 +80,7 @@ feature:
     {% else %}5
     {% endif %}
   styles: |-
+    {% if tags.bridge and tags.bridge != 'no' %}casing_bridge,{% endif %}
     {% if const.color[tags.railway] %}casing,casing_layer,{% endif %}
     {% if tags.railway == 'narrow_gauge' %}default,narrow
     {% else %}default
@@ -167,6 +169,26 @@ feature:
           {% endif %}
         {% else %}
         3
+        {% endif %}
+      {% endif %}
+    lineCap: butt
+
+  style:casing_bridge:
+    color: '#000000'
+    zIndex: |-
+      {{ tags.layer|default(0) + 9.98 }}
+    width: |-
+      {% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}
+      4
+      {% else %}
+        {% if tags.railway == 'rail' %}
+          {% if tags.usage == 'main' or tags.usage == 'branch' %}
+          7
+          {% else %}
+          6
+          {% endif %}
+        {% else %}
+        5
         {% endif %}
       {% endif %}
     lineCap: butt
