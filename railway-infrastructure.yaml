@@ -79,7 +79,7 @@ feature:
     {% else %}5
     {% endif %}
   styles: |-
-    {% if const.color[tags.railway] %}casing,{% endif %}
+    {% if const.color[tags.railway] %}casing,casing_layer,{% endif %}
     {% if tags.railway == 'narrow_gauge' %}default,narrow
     {% else %}default
     {% endif %}
@@ -102,6 +102,8 @@ feature:
         2
         {% endif %}
       {% endif %}
+    zIndex: |-
+      {{ tags.layer|default(0) + 10 }}
     color: |-
       {% set color = tags.railway == 'rail' or tags.railway == 'narrow_gauge' or tags.railway == 'disused' ? const.color['rail/' ~ tags.usage]|default(const.color.rail) : const.color[tags.railway]|default(const.color.default) %}
 
@@ -148,6 +150,26 @@ feature:
         3
         {% endif %}
       {% endif %}
+
+  style:casing_layer:
+    color: '#ffffff'
+    zIndex: |-
+      {{ tags.layer|default(0) + 9.99 }}
+    width: |-
+      {% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}
+      2
+      {% else %}
+        {% if tags.railway == 'rail' %}
+          {% if tags.usage == 'main' or tags.usage == 'branch' %}
+          5
+          {% else %}
+          4
+          {% endif %}
+        {% else %}
+        3
+        {% endif %}
+      {% endif %}
+    lineCap: butt
 
   style:narrow:
     width: '{% if tags.service == ''yard'' or tags.service == ''siding'' or tags.service == ''spur'' or tags.service == ''crossover'' %}5{% else %}{% if tags.railway == ''rail'' %}{% if tags.usage == ''main'' or tags.usage == ''branch'' %}7{% else %}6{% endif %}{% elseif tags.railway == ''platform'' %}5{% else %}6{% endif %}{% endif %}'
