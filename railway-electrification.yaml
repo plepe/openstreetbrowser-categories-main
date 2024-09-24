@@ -1,0 +1,149 @@
+type: overpass
+name:
+  ca: Electrificació de la via fèrria
+  cs: Elektrifikovaná železnice
+  de: Eisenbahn Elektrifizierung
+  en: Railway electrification
+  es: Electrificación ferroviaria
+  fr: Puissance électrique ferroviaire
+  gl: Ferrocarril electrificado
+  hu: Vasút villamosítottsága
+  it: Elettrificazione ferroviaria
+  ja: 鉄道の電力
+  nb: Jernbane-strømtilførsel
+  nl: Spoorwegelektrificatie
+  oc: Electrificacion ferroviària
+  pl: Elektryfikacja kolei
+  pt: Eletrificação ferroviária
+  pt-br: Eletrificação ferroviária
+  ru: Электрификация железных дорог
+  tr: Demiryolu elektrifikasyonu
+query:
+  11: way[railway=rail][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'][usage~'^(main|branch)$'];
+  14: way[railway~'^(disused|construction|funicular|light_rail|miniature|monorail|narrow_gauge|preserved|rail|subway|tram)$'];
+feature:
+  pre: |-
+    {% if tags.electrified and tags.electrified != 'no' %}
+      {% if not tags.voltage is defined %}
+        {% set color = const.colorUnknown %}
+      {% elseif not tags.voltage|matches('^[0-9]+$') %}
+        {% set color = const.colorIllegal %}
+      {% elseif tags.voltage < const.range[1] %}
+        {% set color = colorInterpolate(const.scheme|slice(0, 2), tags.voltage / const.range[1]) %}
+      {% else %}
+        {% set color = colorInterpolate(const.scheme|slice(1, 2), (tags.voltage - const.range[1]) / (const.range[2] - const.range[1])) %}
+      {% endif %}
+    {% elseif tags.electrified and tags.electrified == 'no' %}
+      {% set color = const.colorNone %}
+    {% else %}
+      {% set color = const.colorUnknown %}
+    {% endif %}
+
+    {% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}
+        {% set width=2 %}
+      {% else %}
+        {% if tags.railway == 'rail' %}
+          {% if tags.usage == 'main' or tags.usage == 'branch' %}
+            {% set width=4 %}
+          {% else %}
+            {% set width=3 %}
+          {% endif %}
+        {% else %}
+          {% set width=2 %}
+      {% endif %}
+    {% endif %}
+  title: '{% if tags.ref %}{{ localizedTag(tags, ''ref'') }} - {% endif %}{{ localizedTag(tags, ''name'')|default(localizedTag(tags, ''operator'')) }}'
+  description: '{{ tagTrans(''railway'', tags.railway) }}'
+  details: |-
+    {% if tags.electrified == 'no' %}
+    {{ tagTrans('electrified', 'no') }}
+    {% elseif tags.electrified %}
+    {{ tags.voltage|default(trans('unknown')) }}V, {{ tags.frequency|default(trans('unknown')) }}Hz
+    {% endif %}
+  body: |-
+    {{ tagTrans('railway', tags.railway) }}<br/>
+    {% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}
+    {% if tags.usage %}{{ keyTrans('usage') }}: {{ tagTrans('usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}
+    {% if tags.service %}{{ keyTrans('service') }}: {{ tagTrans('service', tags.service ) }}<br/>{% endif %}
+    {{ keyTrans('gauge') }}: {{ tags.gauge|default(trans('unknown')) }}<br/>
+    {% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}
+  markerSymbol: null
+  listMarkerSymbol: line
+  styles: casing,default
+  priority: '{% if tags.railway == ''station'' %}0{% elseif tags.railway in [ ''halt'', ''tram_stop'' ] %}1{% else %}5{% endif %}'
+  style:
+    width: '{{ width }}'
+    lineCap: butt
+    color: '{{ color }}'
+    opacity: '1'
+    fill: null
+    dashArray: |-
+      {% if not tags.electrified is defined  %}
+      {% elseif not tags.frequency is defined or tags.frequency == 0 %}
+      {% else %}
+      5,2
+      {% endif %}
+  style:casing:
+    width: '{{ width }}'
+    color: white
+    opacity: '1'
+    lineCap: butt
+    fill: null
+info: |-
+  <table>
+    <tr>
+      <td>{{ markerLine({ 'width': 3, 'color': const.colorNone })|raw }}</td>
+      <td>{{ trans('not electrified') }}</td>
+    </tr>
+  {% for i in range(0, const.range[1], const.infoSteps[0]) %}
+    {% set color = colorInterpolate(const.scheme|slice(0, 2), i / const.range[1]) %}
+    <tr>
+      <td>{{ markerLine({ 'width': 3, 'color': color })|raw }}</td>
+      <td>{{ i }}V</td>
+    </tr>
+  {% endfor %}
+
+  {% for i in range(const.range[1] + const.infoSteps[1], const.range[2], const.infoSteps[1]) %}
+    {% set color = colorInterpolate(const.scheme|slice(1, 2), (i - const.range[1]) / (const.range[2] - const.range[1])) %}
+    <tr>
+      <td>{{ markerLine({ 'width': 3, 'color': color })|raw }}</td>
+      <td>{{ i }}V</td>
+    </tr>
+  {% endfor %}
+
+  {% set color = const.scheme[1] %}
+    <tr>
+      <td>{{ markerLine({ 'width': 3, 'color': color })|raw }}</td>
+      <td>{{ trans('tag:frequency=0') }}</td>
+    </tr>
+
+    <tr>
+      <td>{{ markerLine({ 'styles': [ 'casing', 'default' ], 'style:casing': { 'width': 3, 'color': 'white' }, 'style': { 'width': '3', 'dashArray': '5,2', 'lineCap': 'butt', 'color': color } })|raw }}</td>
+      <td>{{ trans('tag:frequency>0') }}</td>
+    </tr>
+
+    <tr>
+      <td>{{ markerLine({ 'width': 3, 'color': const.colorUnknown })|raw }}</td>
+      <td>{{ trans('unknown') }}</td>
+    </tr>
+
+    <tr>
+      <td>{{ markerLine({ 'width': 3, 'color': const.colorIllegal })|raw }}</td>
+      <td>{{ trans('illegal value') }}</td>
+    </tr>
+  </table>
+const:
+  range:
+    - 0
+    - 1000
+    - 25000
+  infoSteps:
+    - 200
+    - 2000
+  scheme:
+    - '#00ff00'
+    - '#003fff'
+    - '#af0000'
+  colorNone: orange
+  colorUnknown: '#404040'
+  colorIllegal: '#ff0000'

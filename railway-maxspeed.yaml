@@ -1,0 +1,164 @@
+type: overpass
+name:
+  ca: Velocitat màxima de la via fèrria
+  cs: Maximální rychlost železnice
+  de: Eisenbahn Höchstgeschwindigkeiten
+  en: Railway Maxspeed
+  es: Velocidad máxima del ferrocarril
+  fr: Limites de vitesse
+  gl: Velocidade máxima do ferrocarril
+  hu: Sebességkorlátozás
+  it: Velocità ferroviaria massima
+  ja: 鉄道の最高速度
+  nb: Jernbane-fartsgrense
+  nl: Spoorweg snelheidslimiet
+  oc: Limits de velocitat
+  pl: Prędkość maksymalna kolei
+  pt: Velocidade máxima
+  pt-br: Velocidade máxima
+  ru: Максимальная скорость
+  tr: Demiryolu Maksimum Hızı
+query:
+  11: way[railway=rail][railway!~'^(platform|abandoned|disused|station|proposed|subway_entrance)$'][usage~'^(main|branch)$'];
+  14: way[railway~'^(disused|construction|funicular|light_rail|miniature|monorail|narrow_gauge|preserved|rail|subway|tram)$'];
+feature:
+  pre: |-
+    {% set maxspeedKmh = null %}
+    {% set maxspeed = null %}
+    {% set unit = null %}
+
+    {% if tags.maxspeed is defined %}
+      {% if tags.maxspeed|matches("^[0-9]+$") %}
+        {% set maxspeedKmh = tags.maxspeed %}
+        {% set maxspeed = tags.maxspeed %}
+        {% set unit = "km/h" %}
+      {% elseif tags.maxspeed|matches( "(^[0-9]+) mph$") %}
+        {% set m = tags.maxspeed|matches("(^[0-9]+) mph$") %}
+        {% set maxspeedKmh = m[1] * 1.60934 %}
+        {% set maxspeed = m[1] %}
+        {% set unit = "mph" %}
+      {% endif %}
+    {% endif %}
+
+    {% if attribute(tags, 'maxspeed:forward') is defined %}
+      {% if attribute(tags, 'maxspeed:forward')|matches("^[0-9]+$") %}
+        {% set maxspeedFKmh = attribute(tags, 'maxspeed:forward') %}
+        {% set maxspeedF = attribute(tags, 'maxspeed:forward') %}
+        {% set unit = "km/h" %}
+      {% elseif attribute(tags, 'maxspeed:forward')|matches("^[0-9]+ mph$") %}
+        {% set m = attribute(tags, 'maxspeed:forward')|matches("(^[0-9]+) mph$") %}
+        {% set maxspeedFKmh = m[1] * 1.60934 %}
+        {% set maxspeedF = m[1] %}
+        {% set unit = "mph" %}
+      {% endif %}
+    {% endif %}
+
+    {% if attribute(tags, 'maxspeed:backward') is defined %}
+      {% if attribute(tags, 'maxspeed:backward')|matches("^[0-9]+$") %}
+        {% set maxspeedBKmh = attribute(tags, 'maxspeed:backward') %}
+        {% set maxspeedB = attribute(tags, 'maxspeed:backward') %}
+        {% set unit = "km/h" %}
+      {% elseif attribute(tags, 'maxspeed:backward')|matches("^[0-9]+ mph$") %}
+        {% set m = attribute(tags, 'maxspeed:backward')|matches("(^[0-9]+) mph$") %}
+        {% set maxspeedBKmh = m[1] * 1.60934 %}
+        {% set maxspeedB = m[1] %}
+        {% set unit = "mph" %}
+      {% endif %}
+    {% endif %}
+
+    {% if not maxspeedKmh %}
+    {% set color = "#404040" %}
+    {% else %}
+    {% set color = colorInterpolate(const.colorMap, (maxspeedKmh - const.offsetColorSpeed) / const.highestColorSpeed) %}
+    {% endif %}
+
+    {% if maxspeedFKmh %}
+    {% set colorF = colorInterpolate(const.colorMap, (maxspeedFKmh - const.offsetColorSpeed) / const.highestColorSpeed) %}
+    {% endif %}
+
+    {% if maxspeedBKmh %}
+    {% set colorB = colorInterpolate(const.colorMap, (maxspeedBKmh - const.offsetColorSpeed) / const.highestColorSpeed) %}
+    {% endif %}
+  description: |-
+    {% if maxspeedF or maxspeedB %}
+    <span style='color: {{ colorB }}'>{{ maxspeedB|default(trans('unknown')) }}</span> / <span style='color: {{ colorF }}'>{{ maxspeedF|default(trans('unknown')) }}</span> {{ unit }}
+    {% elseif maxspeed %}
+    <span style='color: {{ color }}'>{{ maxspeed }} {{ unit }}</span>
+    {% elseif tags.maxspeed %}
+    {{ tags.maxspeed }}
+    {% else %}
+    {{ trans('unknown') }}
+    {% endif %}
+  markerSymbol: null
+  listMarkerSymbol: line
+  styles: '{% if maxspeedB or maxspeedF %}left,right,default{% else %}default{% endif %}'
+  style:
+    width: '{% if maxspeedB or maxspeedF %}0{% else %}4{% endif %}'
+    color: '{{ color }}'
+    text: |-
+      {% if maxspeedB or maxspeedF %}
+        {% if maxspeedB %}🡸 {{ maxspeedB }} {% endif %}|{% if maxspeedF %} {{ maxspeedF }} 🡺{% endif %}       
+      {% else %}
+        {{ maxspeed }}         
+      {% endif %}
+    textRepeat: '1'
+    textOffset: '4'
+    textFontWeight: bold
+  style:left:
+    width: '2'
+    color: '{{ colorB|default(''#404040'') }}'
+    offset: '-1'
+  style:right:
+    width: '2'
+    color: '{{ colorF|default(''#404040'') }}'
+    offset: '1'
+const:
+  colorMap:
+    - '#00af00'
+    - '#ff7f00'
+    - '#ff0000'
+    - '#af00af'
+  highestColorSpeed: 300
+  offsetColorSpeed: 20
+info: |-
+  <div style='display: inline-block'>
+  <table>
+    <tr>
+      <td>{{ markerLine(evaluate({}))|raw }}</td>
+      <td colspan>{{ trans('unknown') }}</td>
+    </tr>
+  {% for i in range(25, 280, 25) %}
+    <tr>
+      <td>{{ markerLine(evaluate({ "maxspeed": i }))|raw }}</td>
+      <td>{{ i }}km/h</td>
+    </tr>
+  {% endfor %}
+    <tr>
+      <td>{{ markerLine(evaluate({ "maxspeed": 300 }))|raw }}</td>
+      <td>≥300km/h</td>
+    </tr>
+  </table>
+  </div>
+
+  <div style='display: inline-block'>
+  <table>
+    <tr>
+      <td>{{ markerLine(evaluate({}))|raw }}</td>
+      <td colspan>{{ trans('unknown') }}</td>
+    </tr>
+  {% for i in range(15, 150, 15) %}
+    <tr>
+      <td>{{ markerLine(evaluate({ "maxspeed": (i * 1.60934)|round }))|raw }}</td>
+      <td>{{ i }}mph</td>
+    </tr>
+  {% endfor %}
+    <tr>
+      <td>{{ markerLine(evaluate({ "maxspeed": (175 * 1.60934)|round }))|raw }}</td>
+      <td>175mph</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine(evaluate({ "maxspeed": (200 * 1.60934)|round }))|raw }}</td>
+      <td>≥200mph</td>
+    </tr>
+  </table>
+  </div>

@@ -1,0 +1,152 @@
+type: overpass
+name:
+  ca: Infraestructura fèrria
+  cs: Železniční infrastruktura
+  de: Eisenbahn Infrastruktur
+  en: Railway infrastructure
+  es: Infraestructura ferroviaria
+  fr: Infrastructure ferroviaire
+  gl: Infraestrutura do ferrocarril
+  hu: Vasúti infrastruktúra
+  it: Infrastruttura ferroviaria
+  ja: 鉄道インフラ
+  nb: Jernbane-infrastruktur
+  nl: Spoorweginfrastructuur
+  oc: Infrastructura ferroviària
+  pl: Infrastruktura kolejowa
+  pt: Infraestrutura ferroviária
+  pt-br: Infraestrutura ferroviária
+  ru: Железнодорожная инфраструктура
+  sr: Железничка инфраструктура
+  tr: Demiryolu altyapısı
+query:
+  11: (way[railway=rail][usage~'^(main|branch)$'];node[railway~'^(station)$'];)
+  14: (way[railway];node[railway~'^(station|halt|tram_stop)$'];)
+  17: (node[railway];way[railway];)
+feature:
+  title: '{% if tags.ref %}{{ localizedTag(tags, ''ref'') }} - {% endif %}{{ localizedTag(tags, ''name'')|default(localizedTag(tags, ''operator'')) }}'
+  description: |-
+    {{ tagTrans('railway', tags.railway) -}}
+    {%- if tags.usage %}
+    , {{ tagTrans('railway=rail usage', tags.usage) }}
+    {% endif -%}
+    {%- if tags.service %}
+    , {{ tagTrans('railway=rail service', tags.service) }}
+    {% endif -%}
+  body: |-
+    {% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}
+    {% if tags.usage %}{{ keyTrans('railway=rail usage') }}: {{ tagTrans('railway=rail usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}
+    {% if tags.service %}{{ keyTrans('railway=rail service') }}: {{ tagTrans('railway=rail service', tags.service ) }}<br/>{% endif %}
+    {{ keyTrans('gauge') }}: {{ tags.gauge|default(trans('unknown')) }}<br/>
+    {% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}
+  markerSign: '{% if tags.railway in [ ''halt'', ''tram_stop'', ''station'', ''stop'', ''subway_entrance'' ] %}X{% endif %}'
+  markerSymbol: |-
+    {% if tags.railway == 'signal' %}
+    <svg anchorX='5' anchorY='8' width='9' height='15'>
+      <rect x='0.5' y='0.5' width='8' height='14' style='fill: #000000; fill-opacity: 1;' />
+      <circle cx='4.5' cy='4.5' r='2.5' style='stroke-width: 1; stroke: #000000; fill: #7f7f7f;'/>
+      <circle cx='4.5' cy='10.5' r='2.5' style='stroke-width: 1; stroke: #000000; fill: #ff0000;'/>
+    </svg>
+    {% elseif tags.railway == 'switch' %}
+    <svg anchorX='5' anchorY='8' width='9' height='15'>
+      <rect x='0.5' y='0.5' width='8' height='14' style='fill: #ffffff; fill-opacity: 1;' />
+      <line x1='2' x2='2' y1='2' y2='13' style='stroke-width: 2; stroke: #000000; stroke-linecap: round;'/>
+      <line x1='2' x2='7' y1='10' y2='2' style='stroke-width: 2; stroke: #000000; stroke-linecap: round;'/>
+    </svg>
+    {% elseif tags.railway == 'railway_crossing' %}
+    <svg anchorX='5' anchorY='8' width='9' height='15'>
+      <rect x='0.5' y='0.5' width='8' height='14' style='fill: #ffffff; fill-opacity: 1;' />
+      <line x1='2' x2='7' y1='2' y2='13' style='stroke-width: 2; stroke: #000000; stroke-linecap: round;'/>
+      <line x1='7' x2='2' y1='2' y2='13' style='stroke-width: 2; stroke: #000000; stroke-linecap: round;'/>
+    </svg>
+    {% elseif tags.railway not in [ 'rail', 'tram', 'subway', 'narrow_gauge', 'abandoned', 'disused' ] %}
+    {{ markerPointer({})|raw }}
+    {% endif %}
+  listMarkerSymbol: |-
+    {% if tags.railway in [ 'station', 'halt', 'tram_stop', 'stop', 'subway_entrance', 'signal', 'switch', 'railway_crossing' ] %}
+    {% else %}
+    line
+    {% endif %}
+  priority: |-
+    {% if tags.railway == 'station' %}0
+    {% elseif tags.railway in [ 'halt' ] %}1
+    {% elseif tags.railway in [ 'tram_stop', 'stop' ] %}2
+    {% elseif tags.railway in [ 'subway_entrance' ] %}3
+    {% else %}5
+    {% endif %}
+  styles: '{% if tags.railway == ''narrow_gauge'' %}default,casing{% else %}default{% endif %}'
+  style:
+    width: |-
+      {% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}
+      1
+      {% else %}
+        {% if tags.railway == 'rail' %}
+          {% if tags.usage == 'main' or tags.usage == 'branch' %}
+          3
+          {% else %}
+          2
+          {% endif %}
+        {% elseif tags.railway == 'platform' %}
+        1
+        {% elseif tags.railway in [ 'signal', 'switch', 'railway_crossing' ] %}
+        0
+        {% else %}
+        2
+        {% endif %}
+      {% endif %}
+    color: '{% if tags.railway == ''rail'' or tags.railway == ''narrow_gauge'' or tags.railway == ''disused'' %}{% if tags.usage == ''main'' %}#ff8100{% elseif tags.usage == ''branch'' %}#daca00{% else %}#000000{% endif %}{% elseif tags.railway == ''subway'' %}#0000ff{% elseif tags.railway == ''tram'' %}#ff00ff{% elseif tags.railway == ''light_rail'' %}#00BD14{% elseif tags.railway == ''platform'' %}#3f3f3f{% else %}#000000{% endif %}'
+    opacity: '1'
+    dashArray: '{% if tags.railway == ''rail'' %}{% elseif tags.railway == ''disused'' %}1,5{% elseif tags.railway == ''abandoned'' %}1,7{% endif %}'
+    fill: |-
+      {% if tags.railway == 'platform' %}
+      1
+      {% elseif type == 'node' %}
+      1
+      {% else %}
+      {% endif %}
+    fillColor: |-
+      {% if tags.railway == 'platform' %}
+      #3f3f3f
+      {% elseif type == 'node' %}
+      #ffffff
+      {% endif %}
+    fillOpacity: |-
+      {% if tags.railway == 'platform' %}
+      0.2
+      {% elseif type == 'node' %}
+      0
+      {% endif %}
+  style:casing:
+    width: '{% if tags.service == ''yard'' or tags.service == ''siding'' or tags.service == ''spur'' or tags.service == ''crossover'' %}5{% else %}{% if tags.railway == ''rail'' %}{% if tags.usage == ''main'' or tags.usage == ''branch'' %}7{% else %}6{% endif %}{% elseif tags.railway == ''platform'' %}5{% else %}6{% endif %}{% endif %}'
+    color: '{% if tags.railway == ''rail'' or tags.railway == ''narrow_gauge'' or tags.railway == ''disused'' %}{% if tags.usage == ''main'' %}#ff8100{% elseif tags.usage == ''branch'' %}#daca00{% else %}#000000{% endif %}{% elseif tags.railway == ''subway'' %}#0000ff{% elseif tags.railway == ''tram'' %}#ff00ff{% elseif tags.railway == ''light_rail'' %}#00BD14{% elseif tags.railway == ''platform'' %}#3f3f3f{% else %}#000000{% endif %}'
+    lineCap: butt
+    dashArray: '2,4'
+info: |-
+  <table>
+    <tr>
+      <td>{{ markerLine(evaluate({ "railway": "rail", "usage": "main" }))|raw }}</td>
+      <td>{{ tagTrans('railway', 'rail') }}, {{ keyTrans('usage') }}: {{ tagTrans('usage', 'main') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine(evaluate({ "railway": "rail" }))|raw }}</td>
+      <td>{{ tagTrans('railway', 'rail') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine(evaluate({ "railway": "narrow_gauge" }))|raw }}</td>
+      <td>{{ tagTrans('railway', 'narrow_gauge') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine(evaluate({ "railway": "light_rail" }))|raw }}</td>
+      <td>{{ tagTrans('railway', 'light_rail') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine(evaluate({ "railway": "subway" }))|raw }}</td>
+      <td>{{ tagTrans('railway', 'subway') }}</td>
+    </tr>
+  {% if map.zoom >= 14 %}
+    <tr>
+      <td>{{ markerLine(evaluate({ "railway": "tram" }))|raw }}</td>
+      <td>{{ tagTrans('railway', 'tram') }}</td>
+    </tr>
+  {% endif %}
+  </table>
