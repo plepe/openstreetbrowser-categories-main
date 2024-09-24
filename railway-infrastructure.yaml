@@ -78,7 +78,10 @@ feature:
     {% elseif tags.railway in [ 'subway_entrance' ] %}3
     {% else %}5
     {% endif %}
-  styles: '{% if tags.railway == ''narrow_gauge'' %}default,casing{% else %}default{% endif %}'
+  styles: |-
+    {% if tags.railway == 'narrow_gauge' %}default,narrow
+    {% else %}default
+    {% endif %}
   style:
     width: |-
       {% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}
@@ -127,7 +130,7 @@ feature:
       {% elseif type == 'node' %}
       0
       {% endif %}
-  style:casing:
+  style:narrow:
     width: '{% if tags.service == ''yard'' or tags.service == ''siding'' or tags.service == ''spur'' or tags.service == ''crossover'' %}5{% else %}{% if tags.railway == ''rail'' %}{% if tags.usage == ''main'' or tags.usage == ''branch'' %}7{% else %}6{% endif %}{% elseif tags.railway == ''platform'' %}5{% else %}6{% endif %}{% endif %}'
     color: '{% if tags.railway == ''rail'' or tags.railway == ''narrow_gauge'' or tags.railway == ''disused'' %}{% if tags.usage == ''main'' %}#ff8100{% elseif tags.usage == ''branch'' %}#daca00{% else %}#000000{% endif %}{% elseif tags.railway == ''subway'' %}#0000ff{% elseif tags.railway == ''tram'' %}#ff00ff{% elseif tags.railway == ''light_rail'' %}#00BD14{% elseif tags.railway == ''platform'' %}#3f3f3f{% else %}#000000{% endif %}'
     lineCap: butt
