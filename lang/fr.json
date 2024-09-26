@@ -95,8 +95,6 @@
     "category:electric_power": "Production/transport électrique",
     "category:emergency": "Services d'urgence",
     "category:financial": "Finance",
-    "category:fixme": "Améliorez-moi",
-    "category:developments": "Planification et construction",
     "category:fixme": "Corrigez-moi",
     "category:footways": "Cheminements piétonniers",
     "category:gastro-smoking": "Restauration sans tabac",
@@ -104,14 +102,8 @@
     "category:health": "Santé",
     "category:heritage": "Protection patrimoniale",
     "category:hiking_routes": "Itinéraires pédestres",
-    "category:kerbs": "Bordures",
-    "category:osm-qa": "Contrôle qualité OpenStreetMap",
-    "category:paddling": "Pagayage",
-    "category:paddling_amenities": "Équipements de pagayage",
-    "category:paddling_hazards": "Risques en pagayage",
-    "category:paddling_routes": "Itinéraires en pagayage",
-    "category:proposals": "Propositions",
     "deprecated": "Le tag %s est déprécié. Voir <a target='_blank' href=\"%s\">ici</a> pour plus de détails.",
     "category:cycle_directions": "Directions",
-    "category:walk_amenities_qa": "Aménagements de marche"
+    "category:walk_amenities_qa": "Aménagements de marche",
+    "category:etymology": "Étymologie"
 }
