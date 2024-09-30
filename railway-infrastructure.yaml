@@ -24,12 +24,27 @@ query:
   14: (way[railway];node[railway~'^(station|halt|tram_stop)$'];)
   17: (node[railway];way[railway];)
 feature:
+  pre: |-
+    {% set width = 2 %}
+    {% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}
+      {% set width = 1 %}
+    {% elseif tags.railway in ['rail', 'narrow_gauge', 'abandoned', 'disused'] %}
+      {% if tags.usage in ['main', 'branch'] %}
+        {% set width = 3 %}
+      {% else %}
+        {% set width = 2 %}
+      {% endif %}
+    {% elseif tags.railway in ['signal', 'switch', 'railway_crossing'] %}
+      {% set width = 0 %}
+    {% endif %}
   title: |-
     {% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}
     {{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator')) }}
 
     {% if attribute(tags, 'tunnel:name') %}- {{ localizedTag(tags, 'tunnel:name') }}{% endif %}
     {% if attribute(tags, 'bridge:name') %}- {{ localizedTag(tags, 'bridge:name') }}{% endif %}
+  details: |-
+    {{ width }}
   description: |-
     {{ tagTrans('railway', tags.railway) -}}
     {%- if tags.usage %}
@@ -93,23 +108,7 @@ feature:
     {% endif %}
   style:
     width: |-
-      {% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}
-      1
-      {% else %}
-        {% if tags.railway == 'rail' %}
-          {% if tags.usage == 'main' or tags.usage == 'branch' %}
-          3
-          {% else %}
-          2
-          {% endif %}
-        {% elseif tags.railway == 'platform' %}
-        1
-        {% elseif tags.railway in [ 'signal', 'switch', 'railway_crossing' ] %}
-        0
-        {% else %}
-        2
-        {% endif %}
-      {% endif %}
+      {{ width }}
     zIndex: |-
       {{ tags.layer|default(0) + 10 }}
     color: |-
@@ -149,38 +148,14 @@ feature:
     color: '#ffffff'
     pane: casing
     width: |-
-      {% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}
-      2
-      {% else %}
-        {% if tags.railway == 'rail' %}
-          {% if tags.usage == 'main' or tags.usage == 'branch' %}
-          5
-          {% else %}
-          4
-          {% endif %}
-        {% else %}
-        3
-        {% endif %}
-      {% endif %}
+      {{ width + 2 }}
 
   style:casing_layer:
     color: '#ffffff'
     zIndex: |-
       {{ tags.layer|default(0) + 9.99 }}
     width: |-
-      {% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}
-      2
-      {% else %}
-        {% if tags.railway == 'rail' %}
-          {% if tags.usage == 'main' or tags.usage == 'branch' %}
-          5
-          {% else %}
-          4
-          {% endif %}
-        {% else %}
-        3
-        {% endif %}
-      {% endif %}
+      {{ width + 2 }}
     lineCap: butt
 
   style:casing_bridge:
@@ -188,33 +163,12 @@ feature:
     zIndex: |-
       {{ tags.layer|default(0) + 9.98 }}
     width: |-
-      {% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}
-      4
-      {% else %}
-        {% if tags.railway == 'rail' %}
-          {% if tags.usage == 'main' or tags.usage == 'branch' %}
-          7
-          {% else %}
-          6
-          {% endif %}
-        {% else %}
-        5
-        {% endif %}
-      {% endif %}
+      {{ width + 4 }}
     lineCap: butt
 
   style:narrow:
     width: |-
-      {% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}5
-      {% else %}
-        {% if tags.railway == 'rail' %}
-          {% if tags.usage == 'main' or tags.usage == 'branch' %}7
-          {% else %}6
-          {% endif %}
-        {% elseif tags.railway == 'platform' %}5
-        {% else %}6
-        {% endif %}
-      {% endif %}
+      {{ width + 2 }}
     color: |-
       {% if tags.railway == 'rail' or tags.railway == 'narrow_gauge' or tags.railway == 'disused' %}
         {% if tags.usage == 'main' %}#ff8100
