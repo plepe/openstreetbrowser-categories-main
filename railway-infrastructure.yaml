@@ -28,7 +28,7 @@ feature:
     {% set width = 2 %}
     {% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}
       {% set width = 1 %}
-    {% elseif tags.railway in ['rail', 'narrow_gauge', 'abandoned', 'disused'] %}
+    {% elseif tags.railway in ['rail', 'narrow_gauge', 'abandoned', 'disused', 'razed'] %}
       {% if tags.usage in ['main', 'branch'] %}
         {% set width = 3 %}
       {% else %}
@@ -85,7 +85,7 @@ feature:
       <line x1='2' x2='7' y1='2' y2='13' style='stroke-width: 2; stroke: #000000; stroke-linecap: round;'/>
       <line x1='7' x2='2' y1='2' y2='13' style='stroke-width: 2; stroke: #000000; stroke-linecap: round;'/>
     </svg>
-    {% elseif tags.railway not in [ 'rail', 'tram', 'subway', 'narrow_gauge', 'abandoned', 'disused' ] %}
+    {% elseif tags.railway not in [ 'rail', 'tram', 'subway', 'narrow_gauge', 'abandoned', 'disused', 'razed' ] %}
     {{ markerPointer({})|raw }}
     {% endif %}
   listMarkerSymbol: |-
@@ -103,6 +103,7 @@ feature:
   styles: |-
     {% if tags.bridge and tags.bridge != 'no' %}casing_bridge,{% endif %}
     {% if const.color[tags.railway] %}casing,casing_layer,{% endif %}
+    {% if tags.railway in ['abandoned', 'disused', 'razed'] %}disused,{% endif %}
     {% if tags.railway == 'narrow_gauge' %}default,narrow
     {% else %}default
     {% endif %}
@@ -121,9 +122,9 @@ feature:
       {% endif %}
     opacity: 1
     dashArray: |-
-      {% if tags.railway == 'rail' %}
-      {% elseif tags.railway == 'disused' %}1,5
+      {% if tags.railway == 'disused' %}1,5
       {% elseif tags.railway == 'abandoned' %}1,7
+      {% elseif tags.railway == 'razed' %}1,9
       {% endif %}
     fill: |-
       {% if tags.railway == 'platform' %}
@@ -144,6 +145,16 @@ feature:
       {% elseif type == 'node' %}
       0
       {% endif %}
+
+  style:disused:
+    width: |-
+      {{ width }}
+    zIndex: |-
+      {{ tags.layer|default(0) + 9.995 }}
+    color: white
+    opacity: 1
+    fill: false
+
   style:casing:
     color: '#ffffff'
     pane: casing
