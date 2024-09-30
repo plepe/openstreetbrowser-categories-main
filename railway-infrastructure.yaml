@@ -43,8 +43,14 @@ feature:
     {% if tags.usage %}{{ keyTrans('railway=rail usage') }}: {{ tagTrans('railway=rail usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}
     {% if tags.service %}{{ keyTrans('railway=rail service') }}: {{ tagTrans('railway=rail service', tags.service ) }}<br/>{% endif %}
     {{ keyTrans('gauge') }}: {{ tags.gauge|default(trans('unknown')) }}<br/>
-    {% if tags.electrified == 'no' %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}{% elseif tags.electrified %}{{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}<br/>{% endif %}
-  markerSign: '{% if tags.railway in [ ''halt'', ''tram_stop'', ''station'', ''stop'', ''subway_entrance'' ] %}X{% endif %}'
+    {% if tags.electrified == 'no' %}
+      {{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}
+    {% elseif tags.electrified %}
+      {{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}
+    {% endif %}<br/>
+  markerSign: |-
+    {% if tags.railway in [ 'halt', 'tram_stop', 'station', 'stop', 'subway_entrance' ] %}X
+    {% endif %}
   markerSymbol: |-
     {% if tags.railway == 'signal' %}
     <svg anchorX='5' anchorY='8' width='9' height='15'>
@@ -114,8 +120,12 @@ feature:
       {% else %}
         {{ color }}
       {% endif %}
-    opacity: '1'
-    dashArray: '{% if tags.railway == ''rail'' %}{% elseif tags.railway == ''disused'' %}1,5{% elseif tags.railway == ''abandoned'' %}1,7{% endif %}'
+    opacity: 1
+    dashArray: |-
+      {% if tags.railway == 'rail' %}
+      {% elseif tags.railway == 'disused' %}1,5
+      {% elseif tags.railway == 'abandoned' %}1,7
+      {% endif %}
     fill: |-
       {% if tags.railway == 'platform' %}
       1
@@ -194,8 +204,29 @@ feature:
     lineCap: butt
 
   style:narrow:
-    width: '{% if tags.service == ''yard'' or tags.service == ''siding'' or tags.service == ''spur'' or tags.service == ''crossover'' %}5{% else %}{% if tags.railway == ''rail'' %}{% if tags.usage == ''main'' or tags.usage == ''branch'' %}7{% else %}6{% endif %}{% elseif tags.railway == ''platform'' %}5{% else %}6{% endif %}{% endif %}'
-    color: '{% if tags.railway == ''rail'' or tags.railway == ''narrow_gauge'' or tags.railway == ''disused'' %}{% if tags.usage == ''main'' %}#ff8100{% elseif tags.usage == ''branch'' %}#daca00{% else %}#000000{% endif %}{% elseif tags.railway == ''subway'' %}#0000ff{% elseif tags.railway == ''tram'' %}#ff00ff{% elseif tags.railway == ''light_rail'' %}#00BD14{% elseif tags.railway == ''platform'' %}#3f3f3f{% else %}#000000{% endif %}'
+    width: |-
+      {% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}5
+      {% else %}
+        {% if tags.railway == 'rail' %}
+          {% if tags.usage == 'main' or tags.usage == 'branch' %}7
+          {% else %}6
+          {% endif %}
+        {% elseif tags.railway == 'platform' %}5
+        {% else %}6
+        {% endif %}
+      {% endif %}
+    color: |-
+      {% if tags.railway == 'rail' or tags.railway == 'narrow_gauge' or tags.railway == 'disused' %}
+        {% if tags.usage == 'main' %}#ff8100
+        {% elseif tags.usage == 'branch' %}#daca00
+        {% else %}#000000
+        {% endif %}
+      {% elseif tags.railway == 'subway' %}#0000ff
+      {% elseif tags.railway == 'tram' %}#ff00ff
+      {% elseif tags.railway == 'light_rail' %}#00BD14
+      {% elseif tags.railway == 'platform' %}#3f3f3f
+      {% else %}#000000
+      {% endif %}
     lineCap: butt
     dashArray: '2,4'
 info: |-
