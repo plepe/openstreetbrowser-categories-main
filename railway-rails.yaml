@@ -14,10 +14,10 @@ feature:
     {% set lifecyle = 'active' %}
     {% if tags.railway in ['abandoned', 'construction', 'proposed', 'disused', 'razed'] %}
       {% set lifecyle = tags.railway %}
-      {% set type = attribute(tags, tags.railway)|default(attribute(tags, tags.railway ~ ':railway')) %}
+      {% set type = attribute(tags, tags.railway)|default(attribute(tags, tags.railway ~ ':railway'))|default('unknown') %}
     {% endif %}
 
-    {% set color = const.types[type ~ '/' ~ tags.usage].color|default(const.types[type].color)|default(const.types.default.color) %}
+    {% set color = const.types[type ~ '/' ~ tags.usage].color|default(const.types[type].color)|default(const.types.unknown.color) %}
 
     {% if tags.tunnel and tags.tunnel != 'no' %}
       {% set color = colorInterpolate([ color, '#ffffff' ], 0.3) %}
@@ -140,7 +140,13 @@ info: |-
       {% else %}
       <tr>
         <td>{{ markerLine(evaluate({ "railway": k }))|raw }}</td>
-        <td>{{ tagTrans('railway', k) }}</td>
+        <td>
+        {% if v.title %}
+          {{ trans(v.title) }}
+        {% else %}
+          {{ tagTrans('railway', k) }}
+        {% endif %}
+        </td>
       </tr>
       {% endif %}
     {% endif %}
@@ -179,14 +185,14 @@ const:
     tram:
       color: '#ff00ff'
     light_rail:
-      color: '#ff007f'
+      color: '#7f007f'
     funicular:
       color: '#00BD14'
     monorail:
       color: '#007f00'
-    default:
+    unknown:
       color: '#ff0000'
-      hideInfo: true
+      title: 'unknown'
   lifecyle:
     active:
       dashArray: ''
