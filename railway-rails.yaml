@@ -1,7 +1,7 @@
 type: overpass
 query:
   11: way[railway~"^(rail|narrow_gauge|subway|light_rail)$"][usage~'^(main|branch)$'];
-  13: way[railway~"^(rail|narrow_gauge|subway|light_rail|tram|abandoned|disused|razed)$"];
+  15: way[railway~"^(rail|narrow_gauge|funicular|monorail|narrow_gauge|subway|light_rail|tram|construction|proposed|abandoned|disused|razed)$"];
 feature:
   pre: |-
     {% set type = tags.railway %}
@@ -11,7 +11,7 @@ feature:
       {% set type = attribute(tags, tags.railway)|default(attribute(tags, tags.railway ~ ':railway')) %}
     {% endif %}
 
-    {% set color = const.color[type ~ '/' ~ tags.usage]|default(const.color[type]) %}
+    {% set color = const.color[type ~ '/' ~ tags.usage]|default(const.color[type])|default(const.color.default) %}
 
     {% if tags.tunnel and tags.tunnel != 'no' %}
       {% set color = colorInterpolate([ color, '#ffffff' ], 0.3) %}
@@ -155,8 +155,10 @@ const:
     rail: '#000000'
     rail/main: '#ff8100'
     rail/branch: '#daca00'
+    narrow_gauge: '#000000'
     subway: '#0000ff'
     tram: '#ff00ff'
-    light_rail: '#00BD14'
-    platform: '#3f3f3f'
+    light_rail: '#ff007f'
+    funicular: '#00BD14'
+    monorail: '#007f00'
     default: '#000000'
