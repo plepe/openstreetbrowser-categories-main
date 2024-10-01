@@ -11,7 +11,7 @@ feature:
       {% set type = attribute(tags, tags.railway)|default(attribute(tags, tags.railway ~ ':railway')) %}
     {% endif %}
 
-    {% set color = const.color[type ~ '/' ~ tags.usage]|default(const.color[type])|default(const.color.default) %}
+    {% set color = const.types[type ~ '/' ~ tags.usage].color|default(const.types[type].color)|default(const.types.default.color) %}
 
     {% if tags.tunnel and tags.tunnel != 'no' %}
       {% set color = colorInterpolate([ color, '#ffffff' ], 0.3) %}
@@ -61,7 +61,7 @@ feature:
   listMarkerSymbol: line
   styles: |-
     {% if tags.bridge and tags.bridge != 'no' %}casing_bridge,{% endif %}
-    {% if const.color[tags.railway] %}casing,casing_layer,{% endif %}
+    {% if const.types[tags.railway] %}casing,casing_layer,{% endif %}
     {% if tags.railway in ['abandoned', 'disused', 'razed'] %}disused,{% endif %}
     {% if tags.railway == 'narrow_gauge' %}default,narrow
     {% else %}default
@@ -151,14 +151,25 @@ info: |-
   {% endif %}
   </table>
 const:
-  color:
-    rail: '#000000'
-    rail/main: '#ff8100'
-    rail/branch: '#daca00'
-    narrow_gauge: '#000000'
-    subway: '#0000ff'
-    tram: '#ff00ff'
-    light_rail: '#ff007f'
-    funicular: '#00BD14'
-    monorail: '#007f00'
-    default: '#000000'
+  types:
+    rail:
+      color: '#000000'
+    rail/main:
+      color: '#ff8100'
+    rail/branch:
+      color: '#daca00'
+    narrow_gauge:
+      color: '#000000'
+    subway:
+      color: '#0000ff'
+    tram:
+      color: '#ff00ff'
+    light_rail:
+      color: '#ff007f'
+    funicular:
+      color: '#00BD14'
+    monorail:
+      color: '#007f00'
+    default:
+      color: '#ff0000'
+      hide: true
