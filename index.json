@@ -460,6 +460,9 @@
                     },
                     "subCategories": [
                         {
+                            "id": "railway-rails"
+                        },
+                        {
                             "id": "railway-infrastructure"
                         },
                         {

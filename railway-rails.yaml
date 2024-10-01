@@ -1,0 +1,160 @@
+type: overpass
+query:
+  11: way[railway~"^(rail|narrow_gauge|subway|light_rail)$"][usage~'^(main|branch)$'];
+  13: way[railway~"^(rail|narrow_gauge|subway|light_rail|tram|abandoned|disused|razed)$"];
+feature:
+  pre: |-
+    {% set width = 2 %}
+    {% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}
+      {% set width = 1 %}
+    {% elseif tags.railway in ['rail', 'narrow_gauge', 'abandoned', 'disused', 'razed'] %}
+      {% if tags.usage in ['main', 'branch'] %}
+        {% set width = 3 %}
+      {% else %}
+        {% set width = 2 %}
+      {% endif %}
+    {% endif %}
+  title: |-
+    {% if tags.ref %}{{ localizedTag(tags, 'ref') }} - {% endif %}
+    {{ localizedTag(tags, 'name')|default(localizedTag(tags, 'operator')) }}
+
+    {% if attribute(tags, 'tunnel:name') %}- {{ localizedTag(tags, 'tunnel:name') }}{% endif %}
+    {% if attribute(tags, 'bridge:name') %}- {{ localizedTag(tags, 'bridge:name') }}{% endif %}
+  description: |-
+    {{ tagTrans('railway', tags.railway) -}}
+    {%- if tags.usage %}
+    , {{ tagTrans('railway=rail usage', tags.usage) }}
+    {% endif -%}
+    {%- if tags.service %}
+    , {{ tagTrans('railway=rail service', tags.service) }}
+    {% endif -%}
+  body: |-
+    {% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}
+    {% if tags.usage %}{{ keyTrans('railway=rail usage') }}: {{ tagTrans('railway=rail usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}
+    {% if tags.service %}{{ keyTrans('railway=rail service') }}: {{ tagTrans('railway=rail service', tags.service ) }}<br/>{% endif %}
+    {{ keyTrans('gauge') }}: {{ tags.gauge|default(trans('unknown')) }}<br/>
+    {% if tags.electrified == 'no' %}
+      {{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}
+    {% elseif tags.electrified %}
+      {{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}
+    {% endif %}<br/>
+  markerSign: |-
+    {% if tags.railway in [ 'halt', 'tram_stop', 'station', 'stop', 'subway_entrance' ] %}X
+    {% endif %}
+  markerSymbol: false
+  listMarkerSymbol: line
+  styles: |-
+    {% if tags.bridge and tags.bridge != 'no' %}casing_bridge,{% endif %}
+    {% if const.color[tags.railway] %}casing,casing_layer,{% endif %}
+    {% if tags.railway in ['abandoned', 'disused', 'razed'] %}disused,{% endif %}
+    {% if tags.railway == 'narrow_gauge' %}default,narrow
+    {% else %}default
+    {% endif %}
+  style:
+    width: |-
+      {{ width }}
+    zIndex: |-
+      {{ tags.layer|default(0) + 10 }}
+    color: |-
+      {% set color = tags.railway == 'rail' or tags.railway == 'narrow_gauge' or tags.railway == 'disused' ? const.color['rail/' ~ tags.usage]|default(const.color.rail) : const.color[tags.railway]|default(const.color.default) %}
+
+      {% if tags.tunnel and tags.tunnel != 'no' %}
+        {{ colorInterpolate([ color, '#ffffff' ], 0.3) }}
+      {% else %}
+        {{ color }}
+      {% endif %}
+    opacity: 1
+    dashArray: |-
+      {% if tags.railway == 'disused' %}1,5
+      {% elseif tags.railway == 'abandoned' %}1,7
+      {% elseif tags.railway == 'razed' %}1,9
+      {% endif %}
+    fill: false
+
+  style:disused:
+    width: |-
+      {{ width }}
+    zIndex: |-
+      {{ tags.layer|default(0) + 9.995 }}
+    color: white
+    opacity: 1
+    fill: false
+
+  style:casing:
+    color: '#ffffff'
+    pane: casing
+    width: |-
+      {{ width + 2 }}
+
+  style:casing_layer:
+    color: '#ffffff'
+    zIndex: |-
+      {{ tags.layer|default(0) + 9.99 }}
+    width: |-
+      {{ width + 2 }}
+    lineCap: butt
+
+  style:casing_bridge:
+    color: '#000000'
+    zIndex: |-
+      {{ tags.layer|default(0) + 9.98 }}
+    width: |-
+      {{ width + 4 }}
+    lineCap: butt
+
+  style:narrow:
+    width: |-
+      {{ width + 2 }}
+    color: |-
+      {% if tags.railway == 'rail' or tags.railway == 'narrow_gauge' or tags.railway == 'disused' %}
+        {% if tags.usage == 'main' %}#ff8100
+        {% elseif tags.usage == 'branch' %}#daca00
+        {% else %}#000000
+        {% endif %}
+      {% elseif tags.railway == 'subway' %}#0000ff
+      {% elseif tags.railway == 'tram' %}#ff00ff
+      {% elseif tags.railway == 'light_rail' %}#00BD14
+      {% elseif tags.railway == 'platform' %}#3f3f3f
+      {% else %}#000000
+      {% endif %}
+    lineCap: butt
+    dashArray: '2,4'
+info: |-
+  <table>
+    <tr>
+      <td>{{ markerLine(evaluate({ "railway": "rail", "usage": "main" }))|raw }}</td>
+      <td>{{ tagTrans('railway', 'rail') }}, {{ keyTrans('usage') }}: {{ tagTrans('usage', 'main') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine(evaluate({ "railway": "rail" }))|raw }}</td>
+      <td>{{ tagTrans('railway', 'rail') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine(evaluate({ "railway": "narrow_gauge" }))|raw }}</td>
+      <td>{{ tagTrans('railway', 'narrow_gauge') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine(evaluate({ "railway": "light_rail" }))|raw }}</td>
+      <td>{{ tagTrans('railway', 'light_rail') }}</td>
+    </tr>
+    <tr>
+      <td>{{ markerLine(evaluate({ "railway": "subway" }))|raw }}</td>
+      <td>{{ tagTrans('railway', 'subway') }}</td>
+    </tr>
+  {% if map.zoom >= 14 %}
+    <tr>
+      <td>{{ markerLine(evaluate({ "railway": "tram" }))|raw }}</td>
+      <td>{{ tagTrans('railway', 'tram') }}</td>
+    </tr>
+  {% endif %}
+  </table>
+const:
+  color:
+    rail: '#000000'
+    rail/main: '#ff8100'
+    rail/branch: '#daca00'
+    subway: '#0000ff'
+    tram: '#ff00ff'
+    light_rail: '#00BD14'
+    platform: '#3f3f3f'
+    default: '#000000'
