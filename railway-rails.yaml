@@ -61,8 +61,8 @@ feature:
   listMarkerSymbol: line
   styles: |-
     {% if tags.bridge and tags.bridge != 'no' %}casing_bridge,{% endif %}
-    {% if const.types[tags.railway] %}casing,casing_layer,{% endif %}
-    {% if tags.railway in ['abandoned', 'disused', 'razed'] %}disused,{% endif %}
+    casing,casing_layer,
+    {% if lifecyle != 'active' %}background,{% endif %}
     {% if tags.railway == 'narrow_gauge' %}default,narrow
     {% else %}default
     {% endif %}
@@ -75,14 +75,13 @@ feature:
       {{ color }}
 
     opacity: 1
+    lineCap: |-
+      {{ lifecyle == 'active' ? 'round' : 'butt' }}
     dashArray: |-
-      {% if tags.railway == 'disused' %}1,5
-      {% elseif tags.railway == 'abandoned' %}1,7
-      {% elseif tags.railway == 'razed' %}1,9
-      {% endif %}
+      {{ const.lifecyle[lifecyle].dashArray }}
     fill: false
 
-  style:disused:
+  style:background:
     width: |-
       {{ width }}
     zIndex: |-
@@ -139,6 +138,24 @@ info: |-
       {% endif %}
     {% endif %}
   {% endfor %}
+
+      <tr>
+        <td>{{ markerLine(evaluate({ 'railway': 'rail', 'tunnel': 'yes'}))|raw }}</td>
+        <td>{{ keyTrans('tunnel') }}</td>
+      </tr>
+      <tr>
+        <td>{{ markerLine(evaluate({ 'railway': 'rail', 'bridge': 'yes'}))|raw }}</td>
+        <td>{{ keyTrans('bridge') }}</td>
+      </tr>
+
+  {% for k, v in const.lifecyle %}
+    {% if not v.hideInfo %}
+      <tr>
+        <td>{{ markerLine(evaluate({ 'railway': k, (k): 'rail'}))|raw }}</td>
+        <td>{{ tagTrans('railway', k) }}</td>
+      </tr>
+    {% endif %}
+  {% endfor %}
   </table>
 const:
   types:
@@ -163,3 +180,17 @@ const:
     default:
       color: '#ff0000'
       hideInfo: true
+  lifecyle:
+    active:
+      dashArray: ''
+      hideInfo: true
+    proposed:
+      dashArray: '5,5'
+    construction:
+      dashArray: '5,2'
+    disused:
+      dashArray: '2,5'
+    abandoned:
+      dashArray: '1,5'
+    razed:
+      dashArray: '1,9'
