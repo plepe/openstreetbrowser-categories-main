@@ -11,6 +11,12 @@ feature:
       {% set type = attribute(tags, tags.railway)|default(attribute(tags, tags.railway ~ ':railway')) %}
     {% endif %}
 
+    {% set color = const.color[type ~ '/' ~ tags.usage]|default(const.color[type]) %}
+
+    {% if tags.tunnel and tags.tunnel != 'no' %}
+      {% set color = colorInterpolate([ color, '#ffffff' ], 0.3) %}
+    {% endif %}
+
     {% set width = 2 %}
     {% if tags.service == 'yard' or tags.service == 'siding' or tags.service == 'spur' or tags.service == 'crossover' %}
       {% set width = 1 %}
@@ -66,13 +72,8 @@ feature:
     zIndex: |-
       {{ tags.layer|default(0) + 10 }}
     color: |-
-      {% set color = const.color[type ~ '/' ~ tags.usage]|default(const.color[type]) %}
+      {{ color }}
 
-      {% if tags.tunnel and tags.tunnel != 'no' %}
-        {{ colorInterpolate([ color, '#ffffff' ], 0.3) }}
-      {% else %}
-        {{ color }}
-      {% endif %}
     opacity: 1
     dashArray: |-
       {% if tags.railway == 'disused' %}1,5
@@ -116,19 +117,10 @@ feature:
     width: |-
       {{ width + 2 }}
     color: |-
-      {% if tags.railway == 'rail' or tags.railway == 'narrow_gauge' or tags.railway == 'disused' %}
-        {% if tags.usage == 'main' %}#ff8100
-        {% elseif tags.usage == 'branch' %}#daca00
-        {% else %}#000000
-        {% endif %}
-      {% elseif tags.railway == 'subway' %}#0000ff
-      {% elseif tags.railway == 'tram' %}#ff00ff
-      {% elseif tags.railway == 'light_rail' %}#00BD14
-      {% elseif tags.railway == 'platform' %}#3f3f3f
-      {% else %}#000000
-      {% endif %}
+      {{ color }}
     lineCap: butt
     dashArray: '2,4'
+
 info: |-
   <table>
     <tr>
