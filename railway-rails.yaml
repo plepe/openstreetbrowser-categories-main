@@ -67,7 +67,7 @@ feature:
   listMarkerSymbol: line
   styles: |-
     {% if tags.bridge and tags.bridge != 'no' %}casing_bridge,{% endif %}
-    casing,casing_layer,
+    casing_back,casing_layer,
     {% if lifecyle != 'active' %}background,{% endif %}
     {% if tags.railway == 'narrow_gauge' %}default,narrow
     {% else %}default
@@ -76,10 +76,9 @@ feature:
     width: |-
       {{ width }}
     zIndex: |-
-      {{ tags.layer|default(0) + 10 }}
+      {{ tags.layer|default(0) }}
     color: |-
       {{ color }}
-
     opacity: 1
     lineCap: |-
       {{ lifecyle == 'active' ? 'round' : 'butt' }}
@@ -91,12 +90,12 @@ feature:
     width: |-
       {{ width }}
     zIndex: |-
-      {{ tags.layer|default(0) + 9.995 }}
+      {{ tags.layer|default(0) - 0.1 }}
     color: white
     opacity: 1
     fill: false
 
-  style:casing:
+  style:casing_back:
     color: '#ffffff'
     pane: casing
     width: |-
@@ -105,7 +104,7 @@ feature:
   style:casing_layer:
     color: '#ffffff'
     zIndex: |-
-      {{ tags.layer|default(0) + 9.99 }}
+      {{ tags.layer|default(0) - 0.2 }}
     width: |-
       {{ width + 2 }}
     lineCap: butt
@@ -113,7 +112,7 @@ feature:
   style:casing_bridge:
     color: '#000000'
     zIndex: |-
-      {{ tags.layer|default(0) + 9.98 }}
+      {{ tags.layer|default(0) - 0.3 }}
     width: |-
       {{ width + 4 }}
     lineCap: butt
@@ -121,6 +120,8 @@ feature:
   style:narrow:
     width: |-
       {{ width + 2 }}
+    zIndex: |-
+      {{ tags.layer|default(0) }}
     color: |-
       {{ color }}
     lineCap: butt
