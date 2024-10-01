@@ -1,6 +1,12 @@
 type: overpass
 query:
-  11: way[railway~"^(rail|narrow_gauge|subway|light_rail)$"][usage~'^(main|branch)$'];
+  11: |-
+    (
+    way[railway~"^(rail|narrow_gauge|subway|light_rail|monorail)$"][usage~'^(main|branch)$'];
+    way[railway~"^(construction|proposed|abandoned|disused|razed)$"][~"^(construction|proposed|abandoned|disused|razed)$"~"^(rail|narrow_gauge|subway|light_rail|monorail)$"][usage~'^(main|branch)$'];
+    way[railway~"^(construction|proposed|abandoned|disused|razed)$"][~"^railway:(construction|proposed|abandoned|disused|razed)$"~"^(rail|narrow_gauge|subway|light_rail|monorail)$"][usage~'^(main|branch)$'];
+    )
+  13: way[railway~"^(rail|narrow_gauge|funicular|monorail|narrow_gauge|subway|light_rail|tram|construction|proposed|abandoned|disused|razed)$"][!service];
   15: way[railway~"^(rail|narrow_gauge|funicular|monorail|narrow_gauge|subway|light_rail|tram|construction|proposed|abandoned|disused|razed)$"];
 feature:
   pre: |-
