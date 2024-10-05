@@ -11,9 +11,9 @@ query:
 feature:
   pre: |-
     {% set type = tags.railway %}
-    {% set lifecyle = 'active' %}
+    {% set lifecycle = 'active' %}
     {% if tags.railway in ['abandoned', 'construction', 'proposed', 'disused', 'razed'] %}
-      {% set lifecyle = tags.railway %}
+      {% set lifecycle = tags.railway %}
       {% set type = attribute(tags, tags.railway)|default(attribute(tags, tags.railway ~ ':railway'))|default('unknown') %}
     {% endif %}
 
@@ -41,8 +41,8 @@ feature:
     {% if attribute(tags, 'bridge:name') %}- {{ localizedTag(tags, 'bridge:name') }}{% endif %}
   description: |-
     {{ tagTrans('railway', type) }}
-    {% if lifecyle != 'active' %}
-     ({{ tagTrans('railway', lifecyle) }})
+    {% if lifecycle != 'active' %}
+     ({{ tagTrans('railway', lifecycle) }})
     {%- endif -%}
     {%- if tags.usage %}
     , {{ tagTrans('railway=rail usage', tags.usage) }}
@@ -68,7 +68,7 @@ feature:
   styles: |-
     {% if tags.bridge and tags.bridge != 'no' %}casing_bridge,{% endif %}
     casing_back,casing_layer,
-    {% if lifecyle != 'active' %}background,{% endif %}
+    {% if lifecycle != 'active' %}background,{% endif %}
     {% if tags.railway == 'narrow_gauge' %}default,narrow
     {% else %}default
     {% endif %}
@@ -81,9 +81,9 @@ feature:
       {{ color }}
     opacity: 1
     lineCap: |-
-      {{ lifecyle == 'active' ? 'round' : 'butt' }}
+      {{ lifecycle == 'active' ? 'round' : 'butt' }}
     dashArray: |-
-      {{ const.lifecyle[lifecyle].dashArray }}
+      {{ const.lifecycle[lifecycle].dashArray }}
     fill: false
 
   style:background:
@@ -161,7 +161,7 @@ info: |-
         <td>{{ keyTrans('bridge') }}</td>
       </tr>
 
-  {% for k, v in const.lifecyle %}
+  {% for k, v in const.lifecycle %}
     {% if not v.hideInfo %}
       <tr>
         <td>{{ markerLine(evaluate({ 'railway': k, (k): 'rail'}))|raw }}</td>
@@ -185,15 +185,15 @@ filter:
         <option value="{{ k }}" query="(way[railway={{ k }}];way[~'^(railway:|)(construction|proposed|abandoned|disused|razed)$'~'^({{ k }})$'];)">{{ tagTrans('railway', k) }}</option>
         {% endif %}
       {% endfor %}
-  lifecyle:
+  lifecycle:
     name: |-
-      {{ repoTrans('lifecyle') }}
+      {{ repoTrans('lifecycle') }}
     show_default: true
     type: select
     sort: false
     values: |-
-      <option value="active" query="way[railway!~'^(construction|proposed|abandoned|disused|razed)$']">{{ repoTrans('lifecyle:active') }}</option>
-      {% for k, v in const.lifecyle %}
+      <option value="active" query="way[railway!~'^(construction|proposed|abandoned|disused|razed)$']">{{ repoTrans('lifecycle:active') }}</option>
+      {% for k, v in const.lifecycle %}
         {% if k != 'active' %}
         <option value="{{ k }}" query="way[railway={{ k }}]">{{ tagTrans('railway', k) }}</option>
         {% endif %}
@@ -221,7 +221,7 @@ const:
     unknown:
       color: '#ff0000'
       title: 'unknown'
-  lifecyle:
+  lifecycle:
     active:
       dashArray: ''
       hideInfo: true
