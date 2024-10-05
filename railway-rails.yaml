@@ -170,6 +170,34 @@ info: |-
     {% endif %}
   {% endfor %}
   </table>
+filter:
+  type:
+    name: |-
+      {{ trans('filter:type') }}
+    show_default: true
+    type: select
+    values: |-
+      {% for k, v in const.types %}
+        {% set railway_usage = k|split('/') %}
+        {% if railway_usage|length == 2 %}
+        <option value="{{ k }}" query="(way[railway={{ railway_usage[0] }}][usage={{ railway_usage[1] }}];way[~'^(railway:|)(construction|proposed|abandoned|disused|razed)$'~'^({{ railway_usage[0] }})$'][usage={{ railway_usage[1] }}];)">{{ tagTrans('railway', railway_usage[0]) }}: {{ keyTrans('railway=' ~ railway_usage[0] ~ ' usage') }}: {{ tagTrans('railway=' ~ railway_usage[0] ~ ' usage', railway_usage[1]) }}</option>
+        {% else %}
+        <option value="{{ k }}" query="(way[railway={{ k }}];way[~'^(railway:|)(construction|proposed|abandoned|disused|razed)$'~'^({{ k }})$'];)">{{ tagTrans('railway', k) }}</option>
+        {% endif %}
+      {% endfor %}
+  lifecyle:
+    name: |-
+      {{ repoTrans('lifecyle') }}
+    show_default: true
+    type: select
+    sort: false
+    values: |-
+      <option value="active" query="way[railway!~'^(construction|proposed|abandoned|disused|razed)$']">{{ repoTrans('lifecyle:active') }}</option>
+      {% for k, v in const.lifecyle %}
+        {% if k != 'active' %}
+        <option value="{{ k }}" query="way[railway={{ k }}]">{{ tagTrans('railway', k) }}</option>
+        {% endif %}
+      {% endfor %}
 const:
   types:
     rail/main:

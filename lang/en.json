@@ -104,5 +104,7 @@
     "category:health": "Health",
     "category:heritage": "Heritage Protection",
     "category:hiking_routes": "Hiking routes",
-    "category:etymology": "Etymology"
+    "category:etymology": "Etymology",
+    "lifecycle": "Lifecycle",
+    "lifecycle:active": "active"
 }
