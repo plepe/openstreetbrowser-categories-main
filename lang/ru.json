@@ -103,5 +103,9 @@
     "category:proposals": "",
     "category:roads": "",
     "category:walk_amenities": "",
-    "category:walk_amenities_qa": ""
+    "category:walk_amenities_qa": "",
+    "Objects with diet information": "Объекты с информацией о питании",
+    "date format not understood": "Неверный формат даты",
+    "outdated feature": "Устаревшие объекты",
+    "xmas:outdated-warning": "Объект не был обновлен в текущем сезоне! Пожалуйста, проверьте и установите текущую дату в теге 'xmas: lastcheck'."
 }

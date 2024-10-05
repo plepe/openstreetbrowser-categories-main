@@ -103,5 +103,9 @@
     "category:paddling_hazards": "",
     "category:paddling_routes": "",
     "category:proposals": "",
-    "category:walk_amenities_qa": ""
+    "category:walk_amenities_qa": "",
+    "Objects with diet information": "Objekter med diettinformasjon",
+    "date format not understood": "Ugyldig datoformat",
+    "outdated feature": "Objekter er utdaterte",
+    "xmas:outdated-warning": "Objektene har ikke blitt oppdatert for den gjeldende sesongen! Vennligst sjekk og angi egenskapen 'xmas:lastcheck' til nåværende dato."
 }

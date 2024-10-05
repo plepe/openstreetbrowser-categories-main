@@ -105,5 +105,9 @@
     "deprecated": "Le tag %s est déprécié. Voir <a target='_blank' href=\"%s\">ici</a> pour plus de détails.",
     "category:cycle_directions": "Directions",
     "category:walk_amenities_qa": "Aménagements de marche",
-    "category:etymology": "Étymologie"
+    "category:etymology": "Étymologie",
+    "Objects with diet information": "Objets avec information de régime alimentaire",
+    "date format not understood": "Format de date invalide",
+    "outdated feature": "Éléments obsolètes",
+    "xmas:outdated-warning": "Cet élément n'a pas été mis à jour pour cette saison ! Veuillez vérifier son existence et régler la valeur de \"xmas:lastcheck\" à la date actuelle."
 }

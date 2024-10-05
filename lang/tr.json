@@ -103,5 +103,10 @@
     "category:paddling_amenities": "Kürek Tesisleri",
     "category:paddling_hazards": "Kürek Tehlikeleri",
     "category:paddling_routes": "Kürek Rotaları",
-    "category:phone": "Telefon"
+    "category:phone": "Telefon",
+    "Objects with diet information": "Diyet bilgisi içeren Nesneler",
+    "date format not understood": "Geçersiz Tarih Formatı",
+    "outdated feature": "Güncelliğini yitirmiş özellikler",
+    "xmas:outdated-warning": "Özellik mevcut sezon için güncellenmedi! Lütfen 'xmas:lastcheck' etiketini kontrol edip geçerli tarihe ayarlayın.",
+    "deprecated": "%s etiketi kullanımdan kaldırıldı. Ayrıntılar için<a target='_blank' href=\"%s\">buraya</a> bakınız."
 }

@@ -103,5 +103,10 @@
     "category:gastro": "Gastronomia",
     "category:health": "Zdrowie",
     "category:heritage": "Ochrona dziedzictwa",
-    "category:hiking_routes": "Trasy turystyczne"
+    "category:hiking_routes": "Trasy turystyczne",
+    "Objects with diet information": "Obiekty z informacją o diecie",
+    "date format not understood": "Nieprawidłowy format dat",
+    "outdated feature": "Przestarzałe obiekty",
+    "xmas:outdated-warning": "Funkcja nie została zaktualizowana w bieżącym sezonie! Sprawdź i ustaw znacznik „xmas:lastcheck” na bieżącą datę.",
+    "deprecated": "Znacznik %s jest przestarzały. Więcej szczegółów znajdziesz <a target='_blank' href=\"%s\">tutaj</a>."
 }

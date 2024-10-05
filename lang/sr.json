@@ -103,5 +103,7 @@
     "category:railway-gauge": "",
     "category:railway-maxspeed": "",
     "category:resources": "",
-    "category:walk_amenities_qa": ""
+    "category:walk_amenities_qa": "",
+    "date format not understood": "Неисправан облик датума",
+    "outdated feature": "Застареле функционалности"
 }

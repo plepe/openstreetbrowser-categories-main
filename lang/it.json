@@ -103,5 +103,10 @@
     "category:gastro": "Gastronomia",
     "category:health": "Salute",
     "category:heritage": "Protezione del patrimonio",
-    "category:hiking_routes": "Percorsi escursionistici"
+    "category:hiking_routes": "Percorsi escursionistici",
+    "Objects with diet information": "Elementi con informazioni alimentari",
+    "date format not understood": "Formato Data non riconosciuto",
+    "outdated feature": "Caratteristica obsoleta",
+    "xmas:outdated-warning": "Caratteristica non aggiornata alla stagione corrente! Controlla e modifica il tag 'xmas:lastcheck' alla data corrente.",
+    "deprecated": "Il tag %s è deprecato. Vedi <a target='_blank' href=\"%s\">qui</a> per i dettagli."
 }

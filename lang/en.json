@@ -104,5 +104,10 @@
     "category:health": "Health",
     "category:heritage": "Heritage Protection",
     "category:hiking_routes": "Hiking routes",
-    "category:etymology": "Etymology"
+    "category:etymology": "Etymology",
+    "Objects with diet information": "Objects with diet information",
+    "date format not understood": "Invalid Date Format",
+    "outdated feature": "Features outdated",
+    "xmas:outdated-warning": "Feature has not been updated for the current season! Please check and set the tag 'xmas:lastcheck' to the current date.",
+    "deprecated": "Tag %s is deprecated. See <a target='_blank' href=\"%s\">here</a> for details."
 }

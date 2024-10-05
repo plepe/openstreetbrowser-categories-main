@@ -103,5 +103,10 @@
     "category:gastro": "Gastronomia",
     "category:health": "Sanitat",
     "category:heritage": "Protecció del Patrimoni",
-    "category:hiking_routes": "Rutes Excursionistes"
+    "category:hiking_routes": "Rutes Excursionistes",
+    "Objects with diet information": "Objectes amb informació alimentaria",
+    "date format not understood": "Format de Data No Vàlida",
+    "outdated feature": "Característiques obsoletes",
+    "xmas:outdated-warning": "La característica no s'ha actualitzat per a la temporada actual! Comproveu i configureu l'etiqueta 'xmas:lastcheck' a la data actual.",
+    "deprecated": "L'etiqueta %s està obsoleta. Consulteu <a target='_blank' href=\"%s\">aquí</a> per obtenir més informació."
 }

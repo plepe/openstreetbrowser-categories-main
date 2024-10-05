@@ -103,5 +103,9 @@
     "category:paddling_hazards": "",
     "category:paddling_routes": "",
     "category:proposals": "",
-    "category:walk_amenities_qa": ""
+    "category:walk_amenities_qa": "",
+    "Objects with diet information": "Objetos con información dietética",
+    "date format not understood": "Formato de fecha inválido",
+    "outdated feature": "Características obsoletas",
+    "xmas:outdated-warning": "¡La característica no se ha actualizado para la temporada actual! Por favor verifique y establezca la etiqueta 'xmas: lastcheck' a la fecha actual."
 }

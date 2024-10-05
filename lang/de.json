@@ -103,5 +103,9 @@
     "category:paddling_routes": "",
     "category:proposals": "",
     "category:transport_alternative": "",
-    "category:walk_amenities_qa": ""
+    "category:walk_amenities_qa": "",
+    "Objects with diet information": "Objekte mit Ernährungsinformationen",
+    "date format not understood": "Datumsformat nicht erkannt",
+    "outdated feature": "Informationen nicht aktuell",
+    "xmas:outdated-warning": "Objekt wurde nicht für die aktuelle Saison aktualisiert. Bitte prüfen und das Tag 'xmas:lastcheck' auf das aktuelle Datum setzen."
 }

@@ -103,5 +103,9 @@
     "category:paddling_amenities": "",
     "category:paddling_hazards": "",
     "category:paddling_routes": "",
-    "category:walk_amenities_qa": ""
+    "category:walk_amenities_qa": "",
+    "Objects with diet information": "Elements amb information de regime alimentari",
+    "date format not understood": "Format de data non reconoissut",
+    "outdated feature": "Caracteristicas obsoletas",
+    "xmas:outdated-warning": "Aquest element es pas estat actualizat per la session ! Siatz pregats de verificar e mai reglar la valor de \"xmas:lastcheck\" a la data actuala."
 }
