@@ -60,6 +60,9 @@ feature:
     {% elseif tags.electrified %}
       {{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}
     {% endif %}<br/>
+    {% if tags.rack %}
+      {{ keyTrans('rack') }}: {{ tagTrans('rack', tags.rack) }}<br/>
+    {% endif %}
   markerSign: |-
     {% if tags.railway in [ 'halt', 'tram_stop', 'station', 'stop', 'subway_entrance' ] %}X
     {% endif %}
@@ -69,7 +72,7 @@ feature:
     {% if tags.bridge and tags.bridge != 'no' %}casing_bridge,{% endif %}
     casing_back,casing_layer,
     {% if lifecycle != 'active' %}background,{% endif %}
-    {% if tags.railway == 'narrow_gauge' %}default,narrow
+    {% if tags.rack and tags.rack != 'no' %}default,rack
     {% else %}default
     {% endif %}
   style:
@@ -117,7 +120,7 @@ feature:
       {{ width + 4 }}
     lineCap: butt
 
-  style:narrow:
+  style:rack:
     width: |-
       {{ width + 2 }}
     zIndex: |-
@@ -165,6 +168,10 @@ info: |-
       <tr>
         <td>{{ markerLine(evaluate({ 'railway': 'rail', 'bridge': 'yes'}))|raw }}</td>
         <td>{{ keyTrans('bridge') }}</td>
+      </tr>
+      <tr>
+        <td>{{ markerLine(evaluate({ 'railway': 'rail', 'rack': 'yes'}))|raw }}</td>
+        <td>{{ keyTrans('rack') }}</td>
       </tr>
 
     <tr>
@@ -222,7 +229,7 @@ const:
     rail:
       color: '#000000'
     narrow_gauge:
-      color: '#000000'
+      color: '#3f3fff'
     subway:
       color: '#0000ff'
     tram:
