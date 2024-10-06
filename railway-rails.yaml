@@ -129,6 +129,9 @@ feature:
 
 info: |-
   <table>
+    <tr>
+      <th colspan="2">{{ trans('filter:type') }}</th>
+    </tr>
   {% for k, v in const.types %}
     {% if not v.hideInfo %}
     {% set railway_usage = k|split('/') %}
@@ -152,6 +155,9 @@ info: |-
     {% endif %}
   {% endfor %}
 
+    <tr>
+      <th colspan="2">{{ repoTrans('infrastructure') }}</th>
+    </tr>
       <tr>
         <td>{{ markerLine(evaluate({ 'railway': 'rail', 'tunnel': 'yes'}))|raw }}</td>
         <td>{{ keyTrans('tunnel') }}</td>
@@ -161,13 +167,22 @@ info: |-
         <td>{{ keyTrans('bridge') }}</td>
       </tr>
 
+    <tr>
+      <th colspan="2">{{ repoTrans('lifecycle') }}</th>
+    </tr>
   {% for k, v in const.lifecycle %}
-    {% if not v.hideInfo %}
-      <tr>
-        <td>{{ markerLine(evaluate({ 'railway': k, (k): 'rail'}))|raw }}</td>
-        <td>{{ tagTrans('railway', k) }}</td>
-      </tr>
-    {% endif %}
+    <tr>
+      <td>{{ markerLine(evaluate({ 'railway': k, (k): 'rail'}))|raw }}</td>
+      <td>
+        {% if v.title %}
+          {% set x = v.title|split('/') %}
+          {% if x[0] == 'repoTrans' %}
+            {{ repoTrans(x[1]) }}
+          {% endif %}
+        {% else %}
+          {{ tagTrans('railway', k) }}</td>
+        {% endif %}
+    </tr>
   {% endfor %}
   </table>
 filter:
@@ -224,7 +239,7 @@ const:
   lifecycle:
     active:
       dashArray: ''
-      hideInfo: true
+      title: 'repoTrans/lifecycle:active'
     proposed:
       dashArray: '5,5'
     construction:

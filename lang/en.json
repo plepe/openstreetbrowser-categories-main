@@ -106,5 +106,6 @@
     "category:hiking_routes": "Hiking routes",
     "category:etymology": "Etymology",
     "lifecycle": "Lifecycle",
-    "lifecycle:active": "active"
+    "lifecycle:active": "active",
+    "infrastructure": "Infrastructure"
 }
