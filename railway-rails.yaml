@@ -7,7 +7,7 @@ query:
     way[railway~"^(construction|proposed|abandoned|disused|razed)$"][~"^railway:(construction|proposed|abandoned|disused|razed)$"~"^(rail|narrow_gauge|subway|light_rail|monorail)$"][usage~'^(main|branch)$'];
     )
   13: way[railway~"^(rail|narrow_gauge|funicular|monorail|narrow_gauge|subway|light_rail|tram|construction|proposed|abandoned|disused|razed)$"][!service];
-  15: way[railway~"^(rail|narrow_gauge|funicular|monorail|narrow_gauge|subway|light_rail|tram|construction|proposed|abandoned|disused|razed)$"];
+  15: way[railway~"^(rail|narrow_gauge|funicular|monorail|narrow_gauge|subway|light_rail|tram|miniature|construction|proposed|abandoned|disused|razed)$"];
 feature:
   pre: |-
     {% set type = tags.railway %}
@@ -136,7 +136,7 @@ info: |-
       <th colspan="2">{{ trans('filter:type') }}</th>
     </tr>
   {% for k, v in const.types %}
-    {% if not v.hideInfo %}
+    {% if not v.hideInfo and (v.minZoom != null ? map.zoom >= v.minZoom : true) %}
     {% set railway_usage = k|split('/') %}
       {% if railway_usage|length == 2 %}
       <tr>
@@ -223,22 +223,34 @@ filter:
 const:
   types:
     rail/main:
+      minZoom: 11
       color: '#ff8100'
     rail/branch:
+      minZoom: 11
       color: '#daca00'
     rail:
+      minZoom: 13
       color: '#000000'
     narrow_gauge:
+      minZoom: 13
       color: '#3f3fff'
+    miniature:
+      minZoom: 15
+      color: '#00afff'
     subway:
+      minZoom: 13
       color: '#0000ff'
     tram:
+      minZoom: 13
       color: '#ff00ff'
     light_rail:
+      minZoom: 13
       color: '#7f007f'
     funicular:
+      minZoom: 13
       color: '#00BD14'
     monorail:
+      minZoom: 13
       color: '#007f00'
     unknown:
       color: '#ff0000'
