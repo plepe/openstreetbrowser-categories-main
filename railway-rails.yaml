@@ -6,11 +6,18 @@ query:
     way[railway~"^(construction|proposed|abandoned|disused|razed)$"][~"^(construction|proposed|abandoned|disused|razed)$"~"^(rail|narrow_gauge|subway|light_rail|monorail)$"][usage~'^(main|branch)$'];
     way[railway~"^(construction|proposed|abandoned|disused|razed)$"][~"^railway:(construction|proposed|abandoned|disused|razed)$"~"^(rail|narrow_gauge|subway|light_rail|monorail)$"][usage~'^(main|branch)$'];
     )
-  13: way[railway~"^(rail|narrow_gauge|funicular|monorail|narrow_gauge|subway|light_rail|tram|construction|proposed|abandoned|disused|razed)$"][!service];
-  15: way[railway~"^(rail|narrow_gauge|funicular|monorail|narrow_gauge|subway|light_rail|tram|miniature|construction|proposed|abandoned|disused|razed)$"];
+  13: way[railway~"^(rail|narrow_gauge|funicular|monorail|narrow_gauge|subway|light_rail|tram|construction|proposed|abandoned|disused|razed|preserved)$"][!service];
+  15: way[railway~"^(rail|narrow_gauge|funicular|monorail|narrow_gauge|subway|light_rail|tram|miniature|construction|proposed|abandoned|disused|razed|preserved)$"];
 feature:
   pre: |-
     {% set type = tags.railway %}
+    {% set deprecated = null %}
+
+    {% if type == 'preserved' %}
+      {% set deprecated = ['railway=preserved', 'https://wiki.openstreetmap.org/wiki/Key:railway:preserved'] %}
+      {% set type = 'unknown' %}
+    {% endif %}
+
     {% set lifecycle = 'active' %}
     {% if tags.railway in ['abandoned', 'construction', 'proposed', 'disused', 'razed'] %}
       {% set lifecycle = tags.railway %}
@@ -51,6 +58,8 @@ feature:
     , {{ tagTrans('railway=rail service', tags.service) }}
     {% endif -%}
   body: |-
+    {% if deprecated %}<div class='warning'>{{ repoTrans('deprecated', deprecated[0], deprecated[1])|raw }}</div>{% endif %}
+
     {% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}
     {% if tags.usage %}{{ keyTrans('railway=rail usage') }}: {{ tagTrans('railway=rail usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}
     {% if tags.service %}{{ keyTrans('railway=rail service') }}: {{ tagTrans('railway=rail service', tags.service ) }}<br/>{% endif %}
