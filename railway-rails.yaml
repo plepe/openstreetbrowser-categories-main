@@ -60,24 +60,66 @@ feature:
   body: |-
     {% if deprecated %}<div class='warning'>{{ repoTrans('deprecated', deprecated[0], deprecated[1])|raw }}</div>{% endif %}
 
-    {% if tags.operator %}{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}<br>{% endif %}
-    {% if attribute(tags, 'railway:preserved') %}
-      {{ keyTrans('railway:preserved') }}: {{ tagTransList('railway:preserved', attribute(tags, 'railway:preserved')) }}<br/>
-    {% elseif tags.railway == 'preserved' %}
-      {{ keyTrans('railway:preserved') }}: {{ tagTransList('railway:preserved', 'yes') }}<br/>
+    <ul>
+    {% if tags.operator %}
+      <li>
+        <span class='key'>{{ keyTrans('operator') }}:</span>
+        <span class='value'>{{ localizedTag(tags, 'operator') }}</span>
+      </li>
     {% endif %}
 
-    {% if tags.usage %}{{ keyTrans('railway=rail usage') }}: {{ tagTrans('railway=rail usage', tags.usage)|default(trans('unknown')) }}<br/>{% endif %}
-    {% if tags.service %}{{ keyTrans('railway=rail service') }}: {{ tagTrans('railway=rail service', tags.service ) }}<br/>{% endif %}
-    {{ keyTrans('gauge') }}: {{ tags.gauge|default(trans('unknown')) }}<br/>
-    {% if tags.electrified == 'no' %}
-      {{ keyTrans('electrified') }}: {{ tagTrans('electrified', 'no') }}
-    {% elseif tags.electrified %}
-      {{ keyTrans('electrified') }}: {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}
-    {% endif %}<br/>
-    {% if tags.rack %}
-      {{ keyTrans('rack') }}: {{ tagTrans('rack', tags.rack) }}<br/>
+    {% if attribute(tags, 'railway:preserved') %}
+      <li>
+        <span class='key'>{{ keyTrans('railway:preserved') }}:</span>
+        <span class='value'>{{ tagTransList('railway:preserved', attribute(tags, 'railway:preserved')) }}</span>
+      </li>
+    {% elseif tags.railway == 'preserved' %}
+      <li>
+        <span class='key'>{{ keyTrans('railway:preserved') }}:</span>
+        <span class='value'>{{ tagTransList('railway:preserved', 'yes') }}</span>
+      </li>
     {% endif %}
+
+    {% if tags.usage %}
+      <li>
+        <span class='key'>{{ keyTrans('railway=rail usage') }}:</span>
+        <span class='value'>{{ tagTrans('railway=rail usage', tags.usage)|default(trans('unknown')) }}</span>
+      </li>
+    {% endif %}
+
+    {% if tags.service %}
+      <li>
+        <span class='key'>{{ keyTrans('railway=rail service') }}:</span>
+        <span class='value'>{{ tagTrans('railway=rail service', tags.service ) }}</span>
+      </li>
+    {% endif %}
+
+    <li>
+      <span class='key'>{{ keyTrans('gauge') }}:</span>
+      <span class='value'>{{ tags.gauge|default(trans('unknown')) }}</span>
+    </li>
+
+    <li>
+      <span class='key'>{{ keyTrans('electrified') }}:</span>
+      <span class='value'>
+        {% if tags.electrified == 'no' %}
+          {{ tagTrans('electrified', 'no') }}
+        {% elseif tags.electrified %}
+          {{ tagTrans('electrified', tags.electrified) }}, {{ keyTrans('voltage') }}: {{ tags.voltage|default(trans('unknown')) }}, {{ keyTrans('frequency') }}: {{ tags.frequency|default(trans('unknown')) }}
+        {% else %}
+          {{ trans('unknown') }}
+        {% endif %}
+      </span>
+    </li>
+
+    {% if tags.rack %}
+    <li>
+      <span class='key'>{{ keyTrans('rack') }}:</span>
+      <span class='value'>{{ tagTrans('rack', tags.rack) }}</span>
+    </li>
+    {% endif %}
+
+    </ul>
   markerSign: |-
     {% if tags.railway in [ 'halt', 'tram_stop', 'station', 'stop', 'subway_entrance' ] %}X
     {% endif %}
