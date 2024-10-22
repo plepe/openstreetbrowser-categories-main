@@ -216,7 +216,7 @@ filter:
     values: |
       <option weight='-1' value='*' query='nwr[~"^diet:"~"."]'>{{ repoTrans('Objects with diet information') }}</option>
       {% for key, def in const.diet %}
-        <option value='{{ key }}' query='nwr["{{ key }}"]'>{{ keyTrans(key) }}</option>
+        <option value='{{ key }}' query='nwr["{{ key }}"]["{{ key }}"!=no]'>{{ keyTrans(key) }}</option>
       {% endfor %}
 const:
   diet:
