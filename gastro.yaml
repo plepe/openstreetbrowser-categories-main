@@ -213,23 +213,22 @@ filter:
     name: |
       {{ keyTrans('diet') }}
     type: select
-    values:
-      '*':
-        name: |
-          {{ repoTrans('Objects with diet information') }}
-        query: nwr[~"^diet:"~"."]
-      diet:vegan: {}
-      diet:vegetarian: {}
-      diet:pescetarian: {}
-      diet:lacto_vegetarian: {}
-      diet:ovo_vegetarian: {}
-      diet:fruitarian: {}
-      diet:raw: {}
-      diet:gluten_free: {}
-      diet:dairy_free: {}
-      diet:lactose_free: {}
-      diet:halal: {}
-      diet:kosher: {}
-    valueName: |
-      {{ keyTrans(value) }}
-    op: has_key_value
+    values: |
+      <option weight='-1' value='*' query='nwr[~"^diet:"~"."]'>{{ repoTrans('Objects with diet information') }}</option>
+      {% for key, def in const.diet %}
+        <option value='{{ key }}' query='nwr["{{ key }}"]'>{{ keyTrans(key) }}</option>
+      {% endfor %}
+const:
+  diet:
+    diet:vegan: {}
+    diet:vegetarian: {}
+    diet:pescetarian: {}
+    diet:lacto_vegetarian: {}
+    diet:ovo_vegetarian: {}
+    diet:fruitarian: {}
+    diet:raw: {}
+    diet:gluten_free: {}
+    diet:dairy_free: {}
+    diet:lactose_free: {}
+    diet:halal: {}
+    diet:kosher: {}
