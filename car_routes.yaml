@@ -1,0 +1,77 @@
+type: overpass
+name:
+  ca: Rutes en cotxe
+  cs: Automobilové cesty
+  de: Autorouten
+  en: Car routes
+  es: Rutas de coche
+  fr: Itinéraires auto
+  gl: Rotas automobilísticas
+  hu: Főútvonalak
+  it: Tratte automobilistiche
+  ja: 車のルート
+  nb: Bilruter
+  nl: Autoroutes
+  oc: Itineraris auto
+  pl: Trasy samochodowe
+  pt: Rotas rodoviárias
+  pt-br: Rotas rodoviárias
+  ro: Rute auto
+  ru: Автомобильные маршруты
+  sr: Трасе за возила
+  tr: Araba Rotaları
+query:
+  10: relation[type=route][route=road]
+members: true
+feature:
+  pre: |-
+    {% set color = '#' ~ tags.network|default('')|md5|slice(0, 6) %}
+  description: |-
+    {% if tags.network %}{{ tagTrans('network', tags.network) }}{% endif %}
+  title: |-
+    {% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% endif %}
+  listMarkerSymbol: |-
+    {{ markerLine({ 'width': 4, 'color': color })|raw }}
+  markerSymbol: ''
+  styles: ''
+memberFeature:
+  pre: |-
+    {% set refs = [] %}
+    {% set color = '#d41d8c' %}
+    {% if tags.ref %}
+      {% for ref in tags.ref|split(';') %}
+        {% set refs = refs|merge([ ref|trim ]) %}
+      {% endfor %}
+    {% endif %}
+
+    {% for master in masters %}
+      {% if master.tags.network %}
+        {% set color = '#' ~ master.tags.network|md5|slice(0, 6) %}
+      {% endif %}
+      {% if master.tags.ref %}
+        {% set refs = refs|merge([ master.tags.ref ]) %}
+      {% endif %}
+    {% endfor %}
+
+    {% set refs = refs|unique|natsort({ insensitive: true }) %}
+  body: |-
+    <h4>Routes</h4>
+    <ul>
+    {% for master in masters %}
+      {% set _color = '#' ~ master.tags.operator|default('')|md5|slice(0, 6) %}
+      <li data-object="{{ master.id }}" style='list-style: none;'>
+        <span class='markerParent'><div class='marker'>{{ markerLine({ width: 4, color: _color })|raw }}</div></span>
+        <span class='title'>{% if master.tags.ref and master.tags.name %}{{ master.tags.ref }} - {{ master.tags.name|default(master.tags.ref) }}{% elseif master.tags.ref %}{{ master.tags.ref }}{% elseif master.tags.name %}{{ master.tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}</span>
+        <span class='description'>{{ tagTrans('network', master.tags.network) }}</span>
+      </li>
+    {% endfor %}
+    </ul>
+  listExclude: 1
+  style:
+    color: '{{ color }}'
+    width: 4
+    opacity: 1
+    text: '{{ refs|join(" · ") }}             '
+    textRepeat: 1
+    textOffset: 12
+    textFontWeight: bold
