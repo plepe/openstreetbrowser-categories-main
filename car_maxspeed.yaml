@@ -24,7 +24,16 @@ query:
   11: way[highway~"^(motorway|trunk)$"];
   13: way[highway~"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|tertiary)$"];
   15: way[highway~"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|residential|unclassified)$"];
-  17: way[highway~"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|residential|unclassified|service|living_street|pedestrian|track|road)$"];
+  16: |-
+    (
+    way[highway~"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|residential|unclassified)$"];
+    node[traffic_sign~"^(|.*;)maxspeed(;.*|)$"];
+    )
+  17: |-
+    (
+    way[highway~"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|residential|unclassified|service|living_street|pedestrian|track|road)$"];
+    node[traffic_sign~"^(|.*;)maxspeed(;.*|)$"];
+    )
 feature:
   pre: |-
     {% set maxspeedKmh = null %}
@@ -104,7 +113,11 @@ feature:
     {% set colorB = colorInterpolate(const.colorMap, (maxspeedBKmh - const.offsetColorSpeed) / const.highestColorSpeed) %}
     {% endif %}
   description: |-
+    {% if tags.highway %}
     {{ tagTransList('highway', tags.highway) }}
+    {% else %}
+    {{ keyTrans('traffic_sign') }}: {{ tagTransList('traffic_sign', tags.traffic_sign) }}
+    {% endif %}
   details: |-
     {% if maxspeedF or maxspeedB %}
     <span style='color: {{ colorB }}'>{{ maxspeedB == 'other' ? attribute(tags, 'maxspeed:backward') : const.colorOther[maxspeedB] ? tagTrans('maxspeed', maxspeedB) : maxspeedB|default(trans('unknown')) }}</span> / <span style='color: {{ colorF }}'>{{ maxspeedF == 'other' ? attribute(tags, 'maxspeed:forward') : const.colorOther[maxspeedF] ? tagTrans('maxspeed', maxspeedF) : maxspeedF|default(trans('unknown')) }}</span> {{ unit }}
@@ -115,10 +128,38 @@ feature:
     {% else %}
     {{ trans('unknown') }}
     {% endif %}
-  markerSymbol: ''
-  listMarkerSymbol: line
+  markerSymbol: |-
+    {% if not tags.highway %}
+    {{ markerCircle({ color: 'red', width: 2, fill: true, fillColor: '#ffffff', fillOpacity: 1, radius: 9 }) }}
+    {% endif %}
+  listMarkerSymbol: |-
+    {% if tags.highway %}
+    line
+    {% else %}
+    {{ markerCircle({ color: 'red', width: 2, fill: true, fillColor: '#ffffff', fillOpacity: 1, radius: 9 }) }}
+    {% endif %}
+  markerSign: |
+    {% if not tags.highway %}
+    <span style='font-size: 8pt;
+
+    {% if tags.direction %}
+      transform: rotate({{ tags.direction|parseDirection|default(0) + 180 }}deg);
+    {% endif %}
+
+    '>{{ tags.maxspeed|default('?') }}</span>
+    {% endif %}
+  listMarkerSign: |
+    {% if not tags.highway %}
+    <span style='font-size: 8pt;'>{{ tags.maxspeed|default('?') }}</span>
+    {% endif %}
   styles: |-
-    {% if maxspeedB or maxspeedF %}left,right,default{% else %}default{% endif %}
+    {% if not tags.highway %}
+    traffic_sign
+    {% elseif maxspeedB or maxspeedF %}
+    left,right,default
+    {% else %}
+    default
+    {% endif %}
   style:
     width: '{% if maxspeedB or maxspeedF %}0{% else %}4{% endif %}'
     color: '{{ color }}'
@@ -141,6 +182,10 @@ feature:
     color: |
       {{ colorF|default('#404040') }}
     offset: '1'
+  style:traffic_sign:
+    width: 0
+    radius: 0
+
 const:
   colorMap:
     - '#00af00'
@@ -204,3 +249,13 @@ info: |-
     </tr>
   </table>
   </div>
+
+filter:
+  type:
+    name: |
+      {{ trans('filter:type') }}
+    type: select
+    show_default: true
+    values: |-
+      <option value='road' query='way[highway]'>{{ keyTrans('highway') }}</option>
+      <option value='traffic_sign' query='node[traffic_sign]'>{{ keyTrans('traffic_sign') }}</option>
