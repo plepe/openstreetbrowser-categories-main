@@ -142,7 +142,7 @@ feature:
     {% if not tags.highway %}
     <span style='font-size: 8pt;
 
-    {% if tags.direction %}
+    {% if tags.direction != null %}
       transform: rotate({{ tags.direction|parseDirection|default(0) + 180 }}deg);
     {% endif %}
 
