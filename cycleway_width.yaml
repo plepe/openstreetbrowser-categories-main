@@ -1,6 +1,7 @@
 query: |
   (
   way[highway=cycleway];
+  way[highway=path][bicycle][bicycle!=no];
   way["cycleway:width"];
   way["cycleway:left"]["cycleway:left"!~"(no|separate)"];
   way["cycleway:right"]["cycleway:right"!~"(no|separate)"];
@@ -9,6 +10,12 @@ query: |
 feature:
   pre: |
     {% set driving_side = 'right' %}
+
+    {% set type = tags.highway %}
+
+    {% if tags.highway == 'path' and tags.bicycle and tags.bicycle != 'no' %}
+      {% set type = 'cycleway' %}
+    {% endif %}
 
     {% set width = attribute(tags, 'cycleway:width') %}
     {% if width matches "/'$/" %}
@@ -49,7 +56,7 @@ feature:
   style:
     width: 4
     opacity: |
-      {{ tags.highway == 'cycleway' or attribute(tags, 'cycleway:width') ? 1 : 0 }}
+      {{ type == 'cycleway' or attribute(tags, 'cycleway:width') ? 1 : 0 }}
     color: |
       {% set minWidth = tags.oneway in ['yes', 1, -1] ? const.minWidthOneway : const.minWidthBoth %}
       {% set optWidth = tags.oneway in ['yes', 1, -1] ? const.optWidthOneway : const.optWidthBoth %}
@@ -67,7 +74,7 @@ feature:
     noClip: |
       {{ tags.oneway in ['yes', 1, -1] }}
     pattern: |
-      {% if tags.highway == 'cycleway' or attribute(tags, 'cycleway:width') %}
+      {% if type == 'cycleway' or attribute(tags, 'cycleway:width') %}
       {% if tags.oneway in ['yes', 1, -1] %}arrowHead{% endif %}
       {% endif %}
     pattern-offset: |
@@ -161,7 +168,7 @@ feature:
   markerSymbol: false
   listMarkerSymbol: line
   description: |
-    {{ tagTrans('highway', tags.highway) }}
+    {{ tagTrans('highway', type) }}
   details: |
     {% if not attribute(tags, 'cycleway:width') %}
     {% elseif attribute(tags, 'cycleway:width') matches "/'$/" %}
@@ -171,7 +178,7 @@ feature:
     {% endif %}
   body: |
     <ul>
-    {% if tags.highway in ['cycleway'] or attribute(tags, 'cycleway:width') %}
+    {% if type in ['cycleway'] or attribute(tags, 'cycleway:width') %}
     <li>
       {{ keyTrans('cycleway:width') }}:
       {% if not attribute(tags, 'cycleway:width') %}

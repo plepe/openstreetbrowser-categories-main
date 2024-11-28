@@ -3,6 +3,7 @@ query:
   way[highway=cycleway];
   way[cyclestreet=yes];
   way[bicycle_road=yes];
+  way[highway=path][bicycle][bicycle!=no];
   way["cycleway"]["cycleway"!~"(no|separate)"];
   way["cycleway:left"]["cycleway:left"!~"(no|separate)"];
   way["cycleway:right"]["cycleway:right"!~"(no|separate)"];
@@ -11,6 +12,10 @@ query:
 feature:
   pre: |
     {% set type = tags.highway %}
+
+    {% if tags.highway == 'path' and tags.bicycle and tags.bicycle != 'no' %}
+      {% set type = 'cycleway' %}
+    {% endif %}
 
     {% if tags.cyclestreet == 'yes' %}
       {% set type = 'cyclestreet' %}
