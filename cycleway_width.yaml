@@ -17,7 +17,7 @@ feature:
       {% set type = 'cycleway' %}
     {% endif %}
 
-    {% set width = attribute(tags, 'cycleway:width') %}
+    {% set width = attribute(tags, 'cycleway:width')|default(tags.width) %}
     {% if width matches "/'$/" %}
       {% set width = (width|slice(0, -1)) * 0.3048 %}
     {% endif %}
