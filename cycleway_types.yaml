@@ -167,6 +167,9 @@ feature:
 
     pattern-path-fillOpacity: 1
 
+    zIndex: |-
+      {{ tags.layer|default(0) }}
+
   style:footway:
     color: |
       {{ const.types.footway.color }}
@@ -209,6 +212,9 @@ feature:
       {{ (const.types.footway.width / 2 - 1) * -1 }}
       {% endif %}
 
+    zIndex: |-
+      {{ tags.layer|default(0) }}
+
   style:left:
     offset: -5
 
@@ -241,6 +247,9 @@ feature:
       {{ const.types[leftCycle].color|default('#ff0000') }}
 
     pattern-path-fillOpacity: 1
+
+    zIndex: |-
+      {{ tags.layer|default(0) }}
 
   style:right:
     offset: 5
@@ -275,20 +284,25 @@ feature:
 
     pattern-path-fillOpacity: 1
 
+    zIndex: |-
+      {{ tags.layer|default(0) }}
+
   style:crossing:
     width: |
       {{ const.types[type].width + 4 }}
     color: black
     lineCap: butt
     dashArray: "4,4"
-    zIndex: -0.1
+    zIndex: |-
+      {{ tags.layer|default(0) - 0.1 }}
 
   style:bridge:
     width: |
       {{ const.types[type].width|default(5) + 4 }}
     color: black
     lineCap: butt
-    zIndex: -0.2
+    zIndex: |-
+      {{ tags.layer|default(0) - 0.2 }}
 
   description: |
     {% if tags.cyclestreet == 'yes' %}
