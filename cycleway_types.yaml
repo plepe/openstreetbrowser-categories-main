@@ -343,7 +343,7 @@ feature:
     </li>
     {% endif %}
 
-    {% if attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both')) %}
+    {% if leftCycle %}
     <li>{{ keyTrans('cycleway:left') }}:
 
     {% if const.types[leftCycle].warning %}
@@ -365,9 +365,11 @@ feature:
         {% endif %}
       </li>
     </ul></li>
+    {% elseif attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both')) %}
+    <li>{{ keyTrans('cycleway:left') }}: {{ tagTrans('cycleway', attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both'))) }}</li>
     {% endif %}
 
-    {% if attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both')) %}
+    {% if rightCycle %}
     <li>{{ keyTrans('cycleway:right') }}:
 
     {% if const.types[rightCycle].warning %}
@@ -390,7 +392,10 @@ feature:
       {% endif %}
       </li>
     </ul></li>
+    {% elseif attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both')) %}
+    <li>{{ keyTrans('cycleway:right') }}: {{ tagTrans('cycleway', attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both'))) }}</li>
     {% endif %}
+
     </ul>
 
   markerSymbol: ''
