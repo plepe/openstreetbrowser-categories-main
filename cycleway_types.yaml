@@ -33,7 +33,8 @@ feature:
     {% set leftCycle = '' %}{% set rightCycle = '' %}
 
     {% if tags.cycleway %}
-      {% if (tags.oneway in ['yes', 1] and map.driving_side == 'right') or (tags.oneway in [-1] and map.driving_side == 'left') %}
+      {% if tags.cycleway in ['crossing'] %}
+      {% elseif (tags.oneway in ['yes', 1] and map.driving_side == 'right') or (tags.oneway in [-1] and map.driving_side == 'left') %}
         {{ tags.cycleway|debug }}
         {% if tags.cycleway matches '/^opposite/' %}
           {% set leftCycle = tags.cycleway %}
@@ -79,6 +80,14 @@ feature:
     {% endif %}
 
   styles: |
+    {% if tags.bridge and tags.bridge != 'no' %}
+    bridge,
+    {% endif %}
+
+    {% if tags.cycleway in ['crossing'] or tags.path in ['crossing'] %}
+    crossing,
+    {% endif %}
+
     {% if tags.segregated %}
     footway,
     {% endif %}
@@ -266,6 +275,21 @@ feature:
 
     pattern-path-fillOpacity: 1
 
+  style:crossing:
+    width: |
+      {{ const.types[type].width + 4 }}
+    color: black
+    lineCap: butt
+    dashArray: "4,4"
+    zIndex: -0.1
+
+  style:bridge:
+    width: |
+      {{ const.types[type].width|default(5) + 4 }}
+    color: black
+    lineCap: butt
+    zIndex: -0.2
+
   description: |
     {% if tags.cyclestreet == 'yes' %}
     {{ keyTrans('cyclestreet') }}
@@ -279,7 +303,11 @@ feature:
 
   body: |
     <ul>
-    {% if tags.cycleway %}
+    {% if tags.cycleway in ['crossing'] %}
+    <li>
+      {{ keyTrans('cycleway') }}: {{ tagTrans('cycleway', tags.cycleway) }}
+    </li>
+    {% elseif tags.cycleway and not tags.cycleway in ['crossing'] %}
     <li>
       {{ keyTrans('cycleway') }}:
       <div class='warning'>Recommendation: Indicate side of way by using 'cycleway:left' and/or 'cycleway:right'.</div>
