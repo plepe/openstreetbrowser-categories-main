@@ -55,7 +55,7 @@ feature:
 
     {% set leftCycle1 = attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both')) %}
     {% if leftCycle1 %}{% set leftCycle = leftCycle1 %}{% endif %}
-    {% if leftCycle in ['no', 'separate'] %}
+    {% if const.hiddenTypes[leftCycle] %}
       {% set leftCycle = '' %}
     {% endif %}
 
@@ -68,7 +68,7 @@ feature:
 
     {% set rightCycle1 = attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both')) %}
     {% if rightCycle1 %}{% set rightCycle = rightCycle1 %}{% endif %}
-    {% if rightCycle in ['no', 'separate'] %}
+    {% if const.hiddenTypes[rightCycle] %}
       {% set rightCycle = '' %}
     {% endif %}
 
@@ -455,3 +455,6 @@ const:
     opposite_track:
       color: '#ff0000'
       warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway:%other_driving_side%=track, cycleway:%other_driving_side%:oneway=-1 instead.'
+  hiddenTypes:
+    'no': true
+    separate: true
