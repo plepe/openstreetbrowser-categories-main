@@ -443,7 +443,7 @@ info: |
     {% if not v.hideInfo %}
     <tr>
       <td>
-        {{ markerLine({ width: 4, color: v.color }) }}
+        {{ markerLine({ width: v.width|default(4), color: v.color }) }}
       </td>
       <td>
         {{ k }}
