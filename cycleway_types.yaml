@@ -4,6 +4,7 @@ query:
   way[cyclestreet=yes];
   way[bicycle_road=yes];
   way[highway=path][bicycle][bicycle!=no];
+  way[highway=living_street];
   way["cycleway"]["cycleway"!~"(no|separate)"];
   way["cycleway:left"]["cycleway:left"!~"(no|separate)"];
   way["cycleway:right"]["cycleway:right"!~"(no|separate)"];
@@ -21,6 +22,8 @@ feature:
       {% set type = 'cyclestreet' %}
     {% elseif tags.bicycle_road in ['yes', 'designated'] %}
       {% set type = 'bicycle_road' %}
+    {% elseif tags.highway and const.types['highway=' ~ tags.highway] %}
+      {% set type = 'highway=' ~ tags.highway %}
     {% endif %}
 
     {% set mainOneway = tags.oneway %}
@@ -341,6 +344,8 @@ feature:
     {{ keyTrans('cyclestreet') }}
     {% elseif tags.bicycle_road in ['yes', 'designated'] %}
     {{ keyTrans('bicycle_road') }}
+    {% elseif tags.highway and const.types['highway=' ~ tags.highway] %}
+    {{ tagTrans('highway', tags.highway) }}
     {% elseif tags.segregated %}
     {{ tagTrans('highway', 'cycleway segregated=' ~ tags.segregated) }}
     {% elseif tags.highway %}
@@ -479,12 +484,6 @@ info: |
   </table>
 const:
   types:
-    cycleway:
-      color: '#009f00'
-      width: 4
-    footway:
-      color: '#ff9f00'
-      width: 4
     cyclestreet:
       color: '#006f3f'
       width: 8
@@ -493,6 +492,15 @@ const:
       color: '#006f4f'
       width: 8
       label: bicycle_road
+    highway=living_street:
+      color: '#ff9f00'
+      width: 8
+    cycleway:
+      color: '#009f00'
+      width: 4
+    footway:
+      color: '#ff9f00'
+      width: 4
     lane:
       color: '#00df3f'
     track:
