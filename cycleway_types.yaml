@@ -476,6 +476,12 @@ const:
       lineCap: butt
       dashArray: '4,4'
       color: black
+    traffic_island:
+      extraWidth: 2
+      lineCap: butt
+      color: 'black'
   hiddenTypes:
     'no': true
     separate: true
+    sidepath: true
+    link: true
