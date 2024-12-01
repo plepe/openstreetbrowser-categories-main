@@ -243,6 +243,9 @@
                         },
                         {
                             "id": "cycle_routes"
+                        },
+                        {
+                            "id": "cycleway_types"
                         }
                     ]
                 },

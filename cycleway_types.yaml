@@ -1,0 +1,553 @@
+query:
+  (
+  way[highway=cycleway];
+  way[cyclestreet=yes];
+  way[bicycle_road=yes];
+  way[highway=path][bicycle][bicycle!=no];
+  way[highway=living_street];
+  way["cycleway"]["cycleway"!~"(no|separate)"];
+  way["cycleway:left"]["cycleway:left"!~"(no|separate)"];
+  way["cycleway:right"]["cycleway:right"!~"(no|separate)"];
+  way["cycleway:both"]["cycleway:both"!~"(no|separate)"];
+  )
+feature:
+  pre: |
+    {% set type = tags.highway %}
+
+    {% if tags.highway == 'path' and tags.bicycle and tags.bicycle != 'no' %}
+      {% set type = 'cycleway' %}
+    {% endif %}
+
+    {% if tags.cyclestreet == 'yes' %}
+      {% set type = 'cyclestreet' %}
+    {% elseif tags.bicycle_road in ['yes', 'designated'] %}
+      {% set type = 'bicycle_road' %}
+    {% elseif tags.highway and const.types['highway=' ~ tags.highway] %}
+      {% set type = 'highway=' ~ tags.highway %}
+    {% endif %}
+
+    {% set mainOneway = tags.oneway %}
+    {% if mainOneway == 'yes' %}
+      {% set mainOneway = 1 %}
+    {% elseif mainOneway == 'no' %}
+      {% set mainOneway = 0 %}
+    {% endif %}
+
+    {% set oneway = attribute(tags, 'oneway:bicycle')|default(tags.oneway) %}
+    {% if oneway == 'yes' %}
+      {% set oneway = 1 %}
+    {% elseif oneway == 'no' %}
+      {% set oneway = 0 %}
+    {% endif %}
+
+    {% set leftCycle = '' %}{% set rightCycle = '' %}
+
+    {% if tags.cycleway %}
+      {% if const.otherInfrastructure[tags.cycleway] %}
+        {# skip #}
+      {% elseif (tags.oneway in ['yes', 1] and map.driving_side == 'right') or (tags.oneway in [-1] and map.driving_side == 'left') %}
+        {{ tags.cycleway|debug }}
+        {% if tags.cycleway matches '/^opposite/' %}
+          {% set leftCycle = tags.cycleway %}
+        {% else %}
+          {% set rightCycle = tags.cycleway %}
+        {% endif %}
+      {% elseif (tags.oneway in ['yes', 1] and map.driving_side == 'left') or (tags.oneway in [-1] and map.driving_side == 'right') %}
+        {% if tags.cycleway matches '/^opposite/' %}
+          {% set rightCycle = tags.cycleway %}
+        {% else %}
+          {% set leftCycle = tags.cycleway %}
+        {% endif %}
+      {% else %}
+        {% set leftCycle = tags.cycleway %}
+        {% set rightCycle = tags.cycleway %}
+      {% endif %}
+    {% endif %}
+
+    {% set leftCycle1 = attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both')) %}
+    {% if leftCycle1 %}{% set leftCycle = leftCycle1 %}{% endif %}
+    {% if const.hiddenTypes[leftCycle] %}
+      {% set leftCycle = '' %}
+    {% endif %}
+
+    {% set leftOneway = attribute(tags, 'cycleway:left:oneway')|default(attribute(tags, 'cycleway:both:oneway')) %}
+    {% if not leftOneway or leftOneway in ['yes'] %}
+      {% set leftOneway = map.driving_side == 'left' ? 1 : -1 %}
+    {% elseif leftOneway in ['no'] %}
+      {% set leftOneway = 0 %}
+    {% endif %}
+
+    {% set rightCycle1 = attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both')) %}
+    {% if rightCycle1 %}{% set rightCycle = rightCycle1 %}{% endif %}
+    {% if const.hiddenTypes[rightCycle] %}
+      {% set rightCycle = '' %}
+    {% endif %}
+
+    {% set rightOneway = attribute(tags, 'cycleway:right:oneway')|default(attribute(tags, 'cycleway:both:oneway')) %}
+    {% if not rightOneway or rightOneway in ['yes'] %}
+      {% set rightOneway = map.driving_side == 'left' ? -1 : 1 %}
+    {% elseif rightOneway in ['no'] %}
+      {% set rightOneway = 0 %}
+    {% endif %}
+
+    {% if mainOneway and ((not rightCycle and mainOneway == rightOneway) or (not leftCycle and mainOneway == leftOneway)) %}
+      {% set oneway = mainOneway %}
+    {% elseif mainOneway == oneway and ((rightCycle and mainOneway == rightOneway) or (leftCycle and mainOneway == leftOneway)) %}
+      {% set oneway = 0 %}
+    {% endif %}
+
+    {% if oneway and attribute(tags, 'oneway:bicycle') == 'no' and not rightCycle and not leftCycle %}
+      {% set oneway = 0 %}
+    {% endif %}
+
+  styles: |
+    {% if tags.bridge and tags.bridge != 'no' %}
+    bridge_outer,bridge_inner,
+    {% endif %}
+
+    {% if const.otherInfrastructure[tags.cycleway|default(tags.path)] %}
+    other,
+    {% endif %}
+
+    {% if tags.segregated %}
+    footway,
+    {% endif %}
+    default
+    {% if leftCycle %}
+    ,left
+    {% endif %}
+    {% if rightCycle %}
+    ,right
+    {% endif %}
+  style:
+    width: |
+      {% if tags.segregated == 'yes' %}
+      {{ const.types[type].width / 2 }}
+      {% else %}
+      {{ const.types[type].width }}
+      {% endif %}
+
+    dashArray: |
+      {% if oneway and tags.segregated == 'no' %}
+      5,5,5,20
+      {% elseif oneway %}
+      25,10
+      {% elseif tags.segregated == 'no' %}
+      5,5
+      {% endif %}
+
+    dashOffset: |
+      {% if oneway and tags.segregated == 'no' %}
+      5
+      {% elseif oneway %}
+      10
+      {% elseif tags.segregated == 'no' %}
+      0
+      {% endif %}
+
+    lineCap: |
+      {% if tags.segregated == 'no' or oneway %}
+      butt
+      {% else %}
+      round
+      {% endif %}
+
+    color: |
+      {{ const.types[type].color }}
+
+    offset: |
+      {% if tags.segregated == 'yes' %}
+      {{ const.types[type].width / 2 - 1 }}
+      {% else %}
+      0
+      {% endif %}
+
+    pattern: |
+      {% if oneway -%}
+      arrowHead
+      {%- endif %}
+
+    pattern-repeat: |
+      35
+
+    pattern-offset: |
+      {{ oneway == -1 ? 17 : 22 }}
+
+    noClip: |
+      {{ oneway != 0 }}
+
+    pattern-polygon: true
+
+    pattern-pixelSize: 9
+
+    pattern-angleCorrection: |
+      {{ oneway == -1 ? 180 : 0 }}
+
+    pattern-path-color: |
+      {{ const.types[type].color }}
+
+    pattern-path-width: 0
+
+    pattern-path-fillOpacity: 1
+
+    zIndex: |-
+      {{ tags.layer|default(0) }}
+
+  style:footway:
+    color: |
+      {{ const.types.footway.color }}
+
+    width: |
+      {% if tags.segregated == 'yes' %}
+      {{ const.types.footway.width / 2 }}
+      {% else %}
+      {{ const.types.footway.width }}
+      {% endif %}
+
+    dashArray: |
+      {% if oneway and tags.segregated == 'no' %}
+      5,5,5,5,5,10
+      {% elseif oneway %}
+      25,10
+      {% elseif tags.segregated == 'no' %}
+      5,5
+      {% endif %}
+
+    dashOffset: |
+      {% if oneway %}
+      10
+      {% elseif tags.segregated == 'no' %}
+      5
+      {% endif %}
+
+    noClip: |
+      {{ oneway != 0 }}
+
+    lineCap: |
+      {% if tags.segregated == 'no' or oneway %}
+      butt
+      {% else %}
+      round
+      {% endif %}
+
+    offset: |
+      {% if tags.segregated == 'yes' %}
+      {{ (const.types.footway.width / 2 - 1) * -1 }}
+      {% endif %}
+
+    zIndex: |-
+      {{ tags.layer|default(0) }}
+
+  style:left:
+    offset: -5
+
+    color: |
+      {{ const.types[leftCycle].color|default('#ff0000') }}
+
+    width: 3
+
+    lineCap: |
+      {{ leftOneway ? 'butt' : 'round' }}
+    dashArray: |
+      {{ leftOneway ? '27,8' : '' }}
+    dashOffset: |
+      {{ leftOneway == -1 ? 28 : 0 }}
+    noClip: true
+#      {{ leftOneway }}
+    pattern: |
+      {% if leftOneway %}arrowHead{% endif %}
+    pattern-offset: |
+      {{ leftOneway == -1 ? 4 : 30.5 }}
+    pattern-lineOffset: -5
+    pattern-repeat: 35
+    pattern-polygon: true
+    pattern-pixelSize: 9
+    pattern-angleCorrection: |
+      {{ leftOneway == -1 ? 180 : 0 }}
+    pattern-path-width: 0
+
+    pattern-path-color: |
+      {{ const.types[leftCycle].color|default('#ff0000') }}
+
+    pattern-path-fillOpacity: 1
+
+    zIndex: |-
+      {{ tags.layer|default(0) }}
+
+  style:right:
+    offset: 5
+
+    color: |
+      {{ const.types[rightCycle].color|default('#ff0000') }}
+
+    width: 3
+
+    lineCap: |
+      {{ rightOneway ? 'butt' : 'round' }}
+    dashArray: |
+      {{ rightOneway ? '27,8' : '' }}
+    dashOffset: |
+      {{ rightOneway == -1 ? 28 : 0 }}
+    noClip: true
+#      {{ rightOneway }}
+    pattern: |
+      {% if rightOneway %}arrowHead{% endif %}
+    pattern-offset: |
+      {{ rightOneway == -1 ? 4 : 30.5 }}
+    pattern-lineOffset: 5
+    pattern-repeat: 35
+    pattern-polygon: true
+    pattern-pixelSize: 9
+    pattern-angleCorrection: |
+      {{ rightOneway == -1 ? 180 : 0 }}
+    pattern-path-width: 0
+
+    pattern-path-color: |
+      {{ const.types[rightCycle].color|default('#ff0000') }}
+
+    pattern-path-fillOpacity: 1
+
+    zIndex: |-
+      {{ tags.layer|default(0) }}
+
+  style:other:
+    width: |
+      {{ const.types[type].width + const.otherInfrastructure[tags.cycleway].extraWidth }}
+    color: |
+      {{ const.otherInfrastructure[tags.cycleway].color }}
+    lineCap: |
+      {{ const.otherInfrastructure[tags.cycleway].lineCap|default('round') }}
+    dashArray: |
+      {{ const.otherInfrastructure[tags.cycleway].dashArray|default('') }}
+    offset: 0
+    zIndex: |-
+      {{ tags.layer|default(0) - 0.1 }}
+
+  style:bridge_outer:
+    width: |
+      {{ const.types[type].width|default(5) + 8 }}
+    color: black
+    lineCap: butt
+    zIndex: |-
+      {{ tags.layer|default(0) - 0.21 }}
+
+  style:bridge_inner:
+    width: |
+      {{ const.types[type].width|default(5) + 4 }}
+    color: white
+    lineCap: butt
+    zIndex: |-
+      {{ tags.layer|default(0) - 0.2 }}
+
+  description: |
+    {% if tags.cyclestreet == 'yes' %}
+    {{ keyTrans('cyclestreet') }}
+    {% elseif tags.bicycle_road in ['yes', 'designated'] %}
+    {{ keyTrans('bicycle_road') }}
+    {% elseif tags.highway and const.types['highway=' ~ tags.highway] %}
+    {{ tagTrans('highway', tags.highway) }}
+    {% elseif tags.segregated %}
+    {{ tagTrans('highway', 'cycleway segregated=' ~ tags.segregated) }}
+    {% elseif tags.highway %}
+    {{ tagTrans('highway', tags.highway) }}
+    {% endif %}
+
+  body: |
+    <ul>
+    {% if const.otherInfrastructure[tags.cycleway] %}
+    <li>
+      {{ keyTrans('cycleway') }}: {{ tagTrans('cycleway', tags.cycleway) }}
+    </li>
+    {% elseif tags.cycleway and tags.cycleway != 'yes' %}
+    <li>
+      {{ keyTrans('cycleway') }}:
+      <div class='warning'>Recommendation: Indicate side of way by using 'cycleway:left' and/or 'cycleway:right'.</div>
+      {% if const.types[tags.cycleway].warning %}
+        <div class='warning'>{{ const.types[tags.cycleway].warning|replace({'%driving_side%': map.driving_side, '%other_driving_side%': map.driving_side == 'right' ? 'left': 'right', '%current%': 'both'}) }}</div>
+      {% endif %}
+
+      <ul>
+        <li>{{ keyTrans('cycleway') }}: {{ tagTrans('cycleway', tags.cycleway) }}</li>
+      </ul>
+    </li>
+    {% endif %}
+    {% if tags.highway in ['cycleway'] or attribute(tags, 'cycleway:width') %}
+    <li>
+      {{ keyTrans('cycleway:width') }}:
+      {% if not attribute(tags, 'cycleway:width') %}
+        {{ trans('unknown') }}
+      {% elseif attribute(tags, 'cycleway:width') matches "/(m|')$/" %}
+        {{ attribute(tags, 'cycleway:width') }}
+      {% else %}
+        {{ attribute(tags, 'cycleway:width') }}m
+      {% endif %}
+    </li>
+    {% endif %}
+
+    {% if leftCycle and attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both')) %}
+    <li>{{ keyTrans('cycleway:left') }}:
+
+    {% if const.types[leftCycle].warning %}
+      <div class='warning'>{{ const.types[leftCycle].warning|replace({'%driving_side%': map.driving_side, '%other_driving_side%': map.driving_side == 'right' ? 'left': 'right', '%current%': 'left'}) }}</div>
+    {% elseif not const.types[leftCycle] %}
+      <div class='warning'>Invalid tag cycleway:left={{ attribute(tags, 'cycleway:left') }}.</div>
+    {% endif %}
+
+    <ul>
+      <li>{{ keyTrans('cycleway') }}: {{ tagTrans('cycleway', attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both'))) }}</li>
+      <li>
+        {{ keyTrans('cycleway:width') }}:
+        {% if not leftWidth %}
+          {{ trans('unknown') }}
+        {% elseif attribute(tags, 'cycleway:left:width')|default(attribute(tags, 'cycleway:both:width')) matches "/(m|')$/" %}
+          {{ attribute(tags, 'cycleway:left:width')|default(attribute(tags, 'cycleway:both:width')) }}
+        {% else %}
+          {{ leftWidth }}m
+        {% endif %}
+      </li>
+    </ul></li>
+    {% elseif attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both')) %}
+    <li>{{ keyTrans('cycleway:left') }}: {{ tagTrans('cycleway', attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both'))) }}</li>
+    {% endif %}
+
+    {% if rightCycle and attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both')) %}
+    <li>{{ keyTrans('cycleway:right') }}:
+
+    {% if const.types[rightCycle].warning %}
+    <div class='warning'>{{ const.types[rightCycle].warning|replace({'%driving_side%': map.driving_side, '%other_driving_side%': map.driving_side == 'right' ? 'left': 'right', '%current%': 'right'}) }}</div>
+    {% elseif not const.types[rightCycle] %}
+      <div class='warning'>Invalid tag cycleway:right={{ attribute(tags, 'cycleway:right') }}.</div>
+    <div class='warning'>Unknown</div>
+    {% endif %}
+
+    <ul>
+      <li>{{ keyTrans('cycleway') }}: {{ tagTrans('cycleway', attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both'))) }}</li>
+      <li>
+      {{ keyTrans('cycleway:width') }}:
+      {% if not rightWidth %}
+        {{ trans('unknown') }}
+      {% elseif attribute(tags, 'cycleway:right:width')|default(attribute(tags, 'cycleway:both:width')) matches "/(m|')$/" %}
+        {{ attribute(tags, 'cycleway:right:width')|default(attribute(tags, 'cycleway:both:width')) }}
+      {% else %}
+        {{ rightWidth }}m
+      {% endif %}
+      </li>
+    </ul></li>
+    {% elseif attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both')) %}
+    <li>{{ keyTrans('cycleway:right') }}: {{ tagTrans('cycleway', attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both'))) }}</li>
+    {% endif %}
+
+    </ul>
+
+  markerSymbol: ''
+  listMarkerSymbol: line
+
+info: |
+  <table>
+    <tr>
+      <th>Symbol</th>
+      <th></th>
+    </tr>
+    {% for k, v in const.types %}
+    {% if not v.hideInfo %}
+    <tr>
+      <td>
+        {{ markerLine({ width: v.width|default(4), color: v.color }) }}
+      </td>
+      <td>
+        {% set label = v.label|default(k|split('=') > 1 ? k : ('cycleway=' ~ k)) %}
+        {% if label|split('=') > 1 %}
+          {{ tagTrans(label|split('=')[0], label|split('=')[1]) }}
+        {% else %}
+          {{ keyTrans(label) }}
+        {% endif %}
+      </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+
+    {% for k, v in const.otherInfrastructure %}
+    <tr>
+      <td>
+        {{ markerLine(evaluate({ highway: 'cycleway', cycleway: k })) }}
+      </td>
+      <td>
+        {{ tagTrans('cycleway', k) }}
+      </td>
+    </tr>
+    {% endfor %}
+
+    <tr>
+      <td>
+        {{ markerLine({ width: 4, color: '#ff0000' }) }}
+      </td>
+      <td>
+        Deprecated or invalid tag!
+      </td>
+    </tr>
+  </table>
+const:
+  types:
+    cyclestreet:
+      color: '#006f3f'
+      width: 8
+      label: cyclestreet
+    bicycle_road:
+      color: '#006f4f'
+      width: 8
+      label: bicycle_road
+    highway=living_street:
+      color: '#ff9f00'
+      width: 8
+    cycleway:
+      color: '#009f00'
+      width: 4
+    footway:
+      color: '#ff9f00'
+      width: 4
+    lane:
+      color: '#00df3f'
+    track:
+      color: '#009f00'
+    shared:
+      color: '#ff0000'
+      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway=lane, cycleway:oneway=-1 instead.'
+      hideInfo: true
+    shared_lane:
+      color: '#003faf'
+    share_busway:
+      color: '#007faf'
+    shoulder:
+      color: '#7f00ff'
+    opposite:
+      color: '#ff0000'
+      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway:%other_driving_side%=lane, cycleway:%other_driving_side%:oneway=-1 instead.'
+      hideInfo: true
+    opposite_lane:
+      color: '#ff0000'
+      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway:%other_driving_side%=lane, cycleway:%other_driving_side%:oneway=-1 instead.'
+      hideInfo: true
+    opposite_share_busway:
+      color: '#ff0000'
+      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway:%other_driving_side%=share_busway, cycleway:%other_driving_side%:oneway=-1 instead.'
+      hideInfo: true
+    opposite_track:
+      color: '#ff0000'
+      warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway:%other_driving_side%=track, cycleway:%other_driving_side%:oneway=-1 instead.'
+      hideInfo: true
+  otherInfrastructure:
+    crossing:
+      extraWidth: 4
+      lineCap: butt
+      dashArray: '4,4'
+      color: black
+    traffic_island:
+      extraWidth: 2
+      lineCap: butt
+      color: 'black'
+  hiddenTypes:
+    'no': true
+    'yes': true
+    separate: true
+    sidepath: true
+    link: true
