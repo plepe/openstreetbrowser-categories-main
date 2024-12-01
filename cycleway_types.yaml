@@ -362,6 +362,10 @@ feature:
     <li>
       {{ keyTrans('cycleway') }}:
       <div class='warning'>Recommendation: Indicate side of way by using 'cycleway:left' and/or 'cycleway:right'.</div>
+      {% if const.types[tags.cycleway].warning %}
+        <div class='warning'>{{ const.types[tags.cycleway].warning|replace({'%driving_side%': map.driving_side, '%other_driving_side%': map.driving_side == 'right' ? 'left': 'right', '%current%': 'both'}) }}</div>
+      {% endif %}
+
       <ul>
         <li>{{ keyTrans('cycleway') }}: {{ tagTrans('cycleway', tags.cycleway) }}</li>
       </ul>
