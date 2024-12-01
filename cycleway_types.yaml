@@ -423,6 +423,7 @@ info: |
       <th></th>
     </tr>
     {% for k, v in const.types %}
+    {% if not v.hideInfo %}
     <tr>
       <td>
         {{ markerLine({ width: 4, color: v.color }) }}
@@ -431,7 +432,28 @@ info: |
         {{ k }}
       </td>
     </tr>
+    {% endif %}
     {% endfor %}
+
+    {% for k, v in const.otherInfrastructure %}
+    <tr>
+      <td>
+        {{ markerLine(evaluate({ highway: 'cycleway', cycleway: k })) }}
+      </td>
+      <td>
+        {{ k }}
+      </td>
+    </tr>
+    {% endfor %}
+
+    <tr>
+      <td>
+        {{ markerLine({ width: 4, color: '#ff0000' }) }}
+      </td>
+      <td>
+        Deprecated or invalid tag!
+      </td>
+    </tr>
   </table>
 const:
   types:
@@ -454,6 +476,7 @@ const:
     shared:
       color: '#ff0000'
       warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway=lane, cycleway:oneway=-1 instead.'
+      hideInfo: true
     shared_lane:
       color: '#003faf'
     share_busway:
@@ -461,15 +484,19 @@ const:
     opposite:
       color: '#ff0000'
       warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway:%other_driving_side%=lane, cycleway:%other_driving_side%:oneway=-1 instead.'
+      hideInfo: true
     opposite_lane:
       color: '#ff0000'
       warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway:%other_driving_side%=lane, cycleway:%other_driving_side%:oneway=-1 instead.'
+      hideInfo: true
     opposite_share_busway:
       color: '#ff0000'
       warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway:%other_driving_side%=share_busway, cycleway:%other_driving_side%:oneway=-1 instead.'
+      hideInfo: true
     opposite_track:
       color: '#ff0000'
       warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway:%other_driving_side%=track, cycleway:%other_driving_side%:oneway=-1 instead.'
+      hideInfo: true
   otherInfrastructure:
     crossing:
       extraWidth: 4
