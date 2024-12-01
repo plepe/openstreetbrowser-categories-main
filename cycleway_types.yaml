@@ -23,6 +23,13 @@ feature:
       {% set type = 'bicycle_road' %}
     {% endif %}
 
+    {% set mainOneway = tags.oneway %}
+    {% if mainOneway == 'yes' %}
+      {% set mainOneway = 1 %}
+    {% elseif mainOneway == 'no' %}
+      {% set mainOneway = 0 %}
+    {% endif %}
+
     {% set oneway = attribute(tags, 'oneway:bicycle')|default(tags.oneway) %}
     {% if oneway == 'yes' %}
       {% set oneway = 1 %}
@@ -78,6 +85,12 @@ feature:
       {% set rightOneway = map.driving_side == 'left' ? -1 : 1 %}
     {% elseif rightOneway in ['no'] %}
       {% set rightOneway = 0 %}
+    {% endif %}
+
+    {% if mainOneway and ((not rightCycle and mainOneway == rightOneway) or (not leftCycle and mainOneway == leftOneway)) %}
+      {% set oneway = mainOneway %}
+    {% elseif mainOneway == oneway and ((rightCycle and mainOneway == rightOneway) or (leftCycle and mainOneway == leftOneway)) %}
+      {% set oneway = 0 %}
     {% endif %}
 
   styles: |
