@@ -82,7 +82,7 @@ feature:
 
   styles: |
     {% if tags.bridge and tags.bridge != 'no' %}
-    bridge,
+    bridge_outer,bridge_inner,
     {% endif %}
 
     {% if const.otherInfrastructure[tags.cycleway|default(tags.path)] %}
@@ -303,10 +303,18 @@ feature:
     zIndex: |-
       {{ tags.layer|default(0) - 0.1 }}
 
-  style:bridge:
+  style:bridge_outer:
+    width: |
+      {{ const.types[type].width|default(5) + 8 }}
+    color: black
+    lineCap: butt
+    zIndex: |-
+      {{ tags.layer|default(0) - 0.21 }}
+
+  style:bridge_inner:
     width: |
       {{ const.types[type].width|default(5) + 4 }}
-    color: black
+    color: white
     lineCap: butt
     zIndex: |-
       {{ tags.layer|default(0) - 0.2 }}
