@@ -493,7 +493,7 @@ const:
     shared_lane:
       color: '#003faf'
     share_busway:
-      color: '#ff7f00'
+      color: '#007faf'
     shoulder:
       color: '#7f00ff'
     opposite:
