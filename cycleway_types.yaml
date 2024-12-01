@@ -446,7 +446,12 @@ info: |
         {{ markerLine({ width: v.width|default(4), color: v.color }) }}
       </td>
       <td>
-        {{ k }}
+        {% set label = v.label|default(k|split('=') > 1 ? k : ('cycleway=' ~ k)) %}
+        {% if label|split('=') > 1 %}
+          {{ tagTrans(label|split('=')[0], label|split('=')[1]) }}
+        {% else %}
+          {{ keyTrans(label) }}
+        {% endif %}
       </td>
     </tr>
     {% endif %}
@@ -458,7 +463,7 @@ info: |
         {{ markerLine(evaluate({ highway: 'cycleway', cycleway: k })) }}
       </td>
       <td>
-        {{ k }}
+        {{ tagTrans('cycleway', k) }}
       </td>
     </tr>
     {% endfor %}
@@ -483,9 +488,11 @@ const:
     cyclestreet:
       color: '#006f3f'
       width: 8
+      label: cyclestreet
     bicycle_road:
       color: '#006f4f'
       width: 8
+      label: bicycle_road
     lane:
       color: '#00df3f'
     track:
