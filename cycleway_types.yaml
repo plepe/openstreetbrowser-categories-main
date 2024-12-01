@@ -138,6 +138,8 @@ feature:
     offset: |
       {% if tags.segregated == 'yes' %}
       {{ const.types[type].width / 2 - 1 }}
+      {% else %}
+      0
       {% endif %}
 
     pattern: |
@@ -297,6 +299,7 @@ feature:
       {{ const.otherInfrastructure[tags.cycleway].lineCap|default('round') }}
     dashArray: |
       {{ const.otherInfrastructure[tags.cycleway].dashArray|default('') }}
+    offset: 0
     zIndex: |-
       {{ tags.layer|default(0) - 0.1 }}
 
