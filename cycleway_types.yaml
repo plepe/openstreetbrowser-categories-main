@@ -481,6 +481,8 @@ const:
       color: '#003faf'
     share_busway:
       color: '#ff7f00'
+    shoulder:
+      color: '#7f00ff'
     opposite:
       color: '#ff0000'
       warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway:%other_driving_side%=lane, cycleway:%other_driving_side%:oneway=-1 instead.'
