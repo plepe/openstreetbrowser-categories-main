@@ -93,6 +93,10 @@ feature:
       {% set oneway = 0 %}
     {% endif %}
 
+    {% if oneway and attribute(tags, 'oneway:bicycle') == 'no' and not rightCycle and not leftCycle %}
+      {% set oneway = 0 %}
+    {% endif %}
+
   styles: |
     {% if tags.bridge and tags.bridge != 'no' %}
     bridge_outer,bridge_inner,
