@@ -336,7 +336,7 @@ feature:
     <li>
       {{ keyTrans('cycleway') }}: {{ tagTrans('cycleway', tags.cycleway) }}
     </li>
-    {% elseif tags.cycleway %}
+    {% elseif tags.cycleway and tags.cycleway != 'yes' %}
     <li>
       {{ keyTrans('cycleway') }}:
       <div class='warning'>Recommendation: Indicate side of way by using 'cycleway:left' and/or 'cycleway:right'.</div>
@@ -358,7 +358,7 @@ feature:
     </li>
     {% endif %}
 
-    {% if leftCycle %}
+    {% if leftCycle and attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both')) %}
     <li>{{ keyTrans('cycleway:left') }}:
 
     {% if const.types[leftCycle].warning %}
@@ -384,7 +384,7 @@ feature:
     <li>{{ keyTrans('cycleway:left') }}: {{ tagTrans('cycleway', attribute(tags, 'cycleway:left')|default(attribute(tags, 'cycleway:both'))) }}</li>
     {% endif %}
 
-    {% if rightCycle %}
+    {% if rightCycle and attribute(tags, 'cycleway:right')|default(attribute(tags, 'cycleway:both')) %}
     <li>{{ keyTrans('cycleway:right') }}:
 
     {% if const.types[rightCycle].warning %}
@@ -509,6 +509,7 @@ const:
       color: 'black'
   hiddenTypes:
     'no': true
+    'yes': true
     separate: true
     sidepath: true
     link: true
