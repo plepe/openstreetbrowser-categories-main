@@ -502,9 +502,11 @@ const:
     cycleway:
       color: '#009f00'
       width: 4
+      label: highway=cycleway
     footway:
       color: '#ff9f00'
       width: 4
+      label: highway=footway
     lane:
       color: '#00df3f'
     track:
