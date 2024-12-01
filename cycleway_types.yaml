@@ -33,7 +33,8 @@ feature:
     {% set leftCycle = '' %}{% set rightCycle = '' %}
 
     {% if tags.cycleway %}
-      {% if tags.cycleway in ['crossing'] %}
+      {% if const.otherInfrastructure[tags.cycleway] %}
+        {# skip #}
       {% elseif (tags.oneway in ['yes', 1] and map.driving_side == 'right') or (tags.oneway in [-1] and map.driving_side == 'left') %}
         {{ tags.cycleway|debug }}
         {% if tags.cycleway matches '/^opposite/' %}
@@ -84,8 +85,8 @@ feature:
     bridge,
     {% endif %}
 
-    {% if tags.cycleway in ['crossing'] or tags.path in ['crossing'] %}
-    crossing,
+    {% if const.otherInfrastructure[tags.cycleway|default(tags.path)] %}
+    other,
     {% endif %}
 
     {% if tags.segregated %}
@@ -287,12 +288,15 @@ feature:
     zIndex: |-
       {{ tags.layer|default(0) }}
 
-  style:crossing:
+  style:other:
     width: |
-      {{ const.types[type].width + 4 }}
-    color: black
-    lineCap: butt
-    dashArray: "4,4"
+      {{ const.types[type].width + const.otherInfrastructure[tags.cycleway].extraWidth }}
+    color: |
+      {{ const.otherInfrastructure[tags.cycleway].color }}
+    lineCap: |
+      {{ const.otherInfrastructure[tags.cycleway].lineCap|default('round') }}
+    dashArray: |
+      {{ const.otherInfrastructure[tags.cycleway].dashArray|default('') }}
     zIndex: |-
       {{ tags.layer|default(0) - 0.1 }}
 
@@ -317,11 +321,11 @@ feature:
 
   body: |
     <ul>
-    {% if tags.cycleway in ['crossing'] %}
+    {% if const.otherInfrastructure[tags.cycleway] %}
     <li>
       {{ keyTrans('cycleway') }}: {{ tagTrans('cycleway', tags.cycleway) }}
     </li>
-    {% elseif tags.cycleway and not tags.cycleway in ['crossing'] %}
+    {% elseif tags.cycleway %}
     <li>
       {{ keyTrans('cycleway') }}:
       <div class='warning'>Recommendation: Indicate side of way by using 'cycleway:left' and/or 'cycleway:right'.</div>
@@ -455,6 +459,12 @@ const:
     opposite_track:
       color: '#ff0000'
       warning: 'Deprecated tag! Use oneway:bicycle=no and cycleway:%other_driving_side%=track, cycleway:%other_driving_side%:oneway=-1 instead.'
+  otherInfrastructure:
+    crossing:
+      extraWidth: 4
+      lineCap: butt
+      dashArray: '4,4'
+      color: black
   hiddenTypes:
     'no': true
     separate: true
