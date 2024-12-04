@@ -31,7 +31,7 @@ query:
     )
   14: |-
     (
-    nwr[amenity~"^(.*;|)(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary)(;.*|)$"];
+    nwr[amenity~"^(.*;|)(baby_hatch|clinic|dentist|doctors|hospital|nursing_home|pharmacy|social_facility|veterinary|scale)(;.*|)$"];
     nwr[healthcare];
     )
 feature:
@@ -91,6 +91,9 @@ const:
   - types:
       - amenity=baby_hatch
     sign: 🚼
+  - types:
+      - amenity=scale
+    sign: <i class='fa-solid fa-weight-scale'></i>
   - types:
       - healthcare=blood_bank
     sign: <img data-src='maki:blood-bank'>
