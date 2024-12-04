@@ -5,6 +5,7 @@ query:
   way[bicycle_road=yes];
   way[highway=path][bicycle][bicycle!=no];
   way[highway=living_street];
+  way[highway=pedestrian][bicycle][bicycle!=no];
   way["cycleway"]["cycleway"!~"(no|separate)"];
   way["cycleway:left"]["cycleway:left"!~"(no|separate)"];
   way["cycleway:right"]["cycleway:right"!~"(no|separate)"];
@@ -496,6 +497,9 @@ const:
       color: '#006f4f'
       width: 8
       label: bicycle_road
+    highway=pedestrian:
+      color: '#ffff00'
+      width: 8
     highway=living_street:
       color: '#ff9f00'
       width: 8
