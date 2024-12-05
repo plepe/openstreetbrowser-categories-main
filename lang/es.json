@@ -109,5 +109,7 @@
     "outdated feature": "Características obsoletas",
     "xmas:outdated-warning": "¡La característica no se ha actualizado para la temporada actual! Por favor verifique y establezca la etiqueta 'xmas: lastcheck' a la fecha actual.",
     "deprecated": "La etiqueta %s está obsoleta. Para más detalles, echa un vistazo <a target='_blank' href=\"%s\">aquí</a>.",
-    "category:etymology": "Etimología"
+    "category:etymology": "Etimología",
+    "category:cycleway_types": "Tipos de carril bici",
+    "category:cycleway_width": "Anchura de carril bici"
 }
