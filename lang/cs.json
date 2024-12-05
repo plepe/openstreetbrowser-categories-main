@@ -109,5 +109,7 @@
     "outdated feature": "Zastaralá vlastnost",
     "xmas:outdated-warning": "Funkce nebyla aktualizována pro aktuální sezónu! Zkontrolujte a nastavte značku 'xmas:lastcheck' na aktuální datum.",
     "category:etymology": "Etymologie",
-    "deprecated": "Značka %s je zastaralá. Podrobnosti naleznete <a target='_blank' href=\"%s\">zde</a>."
+    "deprecated": "Značka %s je zastaralá. Podrobnosti naleznete <a target='_blank' href=\"%s\">zde</a>.",
+    "category:cycleway_types": "Typy cyklostezek",
+    "category:cycleway_width": "Šířka cyklostezky"
 }
