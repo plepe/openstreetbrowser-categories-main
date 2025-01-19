@@ -41,8 +41,8 @@
     "category:pt": "Mappa del trasporto pubblico",
     "category:pt:stops": "Fermate e stazioni",
     "category:pt:routes": "Percorsi",
-    "category:pt_amenities": "Servizi",
-    "category:public": "Servizi pubblici",
+    "category:pt_amenities": "Strutture",
+    "category:public": "Servizi al pubblico",
     "category:railway-electrification": "Elettrificazione ferroviaria",
     "category:railway-gauge": "Scartamento Ferroviario",
     "category:railway-infrastructure": "Infrastruttura ferroviaria",
@@ -108,5 +108,6 @@
     "date format not understood": "Formato Data non riconosciuto",
     "outdated feature": "Caratteristica obsoleta",
     "xmas:outdated-warning": "Caratteristica non aggiornata alla stagione corrente! Controlla e modifica il tag 'xmas:lastcheck' alla data corrente.",
-    "deprecated": "Il tag %s è deprecato. Vedi <a target='_blank' href=\"%s\">qui</a> per i dettagli."
+    "deprecated": "Il tag %s è deprecato. Vedi <a target='_blank' href=\"%s\">qui</a> per i dettagli.",
+    "category:etymology": "Etimologia"
 }
