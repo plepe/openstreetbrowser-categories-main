@@ -24,7 +24,7 @@ feature:
     <li>{{ keyTrans('kerb') }}: {{ tags.kerb ? tagTrans('kerb', tags.kerb) : trans('unknown') }}</li>
     <li>{{ keyTrans('wheelchair') }}: {{ tags.wheelchair ? tagTrans('wheelchair', tags.wheelchair) : trans('unknown') }}</li>
     <li>{{ keyTrans('tactile_paving') }}: {{ tags.tactile_paving ? tagTrans('tactile_paving', tags.tactile_paving) : trans('unknown') }}</li>
-    <li>{{ keyTrans('height') }}: {{ tags.height ? tags.height|formatUnit('distance') : trans('unknown') }}</li>
+    <li>{{ keyTrans('height') }}: {{ attribute(tags, 'kerb:height')|default(tags.height) ? attribute(tags, 'kerb:height')|default(tags.height)|formatUnit('distance') : trans('unknown') }}</li>
     </ul>
   markerSymbol:
   listMarkerSymbol: |
