@@ -1,0 +1,239 @@
+type: overpass
+name:
+  ca: Cossos d'aigua
+  cs: Vodní plochy
+  de: Gewässer
+  en: Waterbodies
+  es: Cuerpos de agua
+  fr: Hydrographie
+  gl: Hidrografía
+  hu: Vizek
+  it: Masse d'acqua
+  ja: 水系
+  nb: Vannflater
+  nl: Oppervlaktewater
+  oc: Aigas e rius
+  pl: Wodne
+  pt: Massas de água
+  pt-br: Hidrografia
+  ru: Водоемы
+  sr: Водене површине
+  tr: Su kütleleri
+query:
+  10: |-
+    (
+    way[waterway~"^(river|canal)$"];
+    nwr[natural~"^(divide|bay|strait)$"];
+    way[natural=water][water~"^(lake|lagoon|reservoir|canal)$"];
+    relation[natural=water][type=multipolygon][water~"^(lake|lagoon|reservoir|canal)$"];
+    )
+  13: |-
+    (
+    nwr[natural~"^(water|divide|bay|strait|spring|hot_spring|geyser)$"];
+    relation[type=multipolygon][natural=water];
+    relation[type=multipolygon][waterway=riverbank];
+    nwr[waterway];
+    )
+feature:
+  pre: |-
+    {% if tags.waterway %}
+      {% set key = 'waterway' %}
+      {% set value = tags.waterway %}
+    {% elseif tags.water %}
+      {% set key = 'water' %}
+      {% set value = tags.water %}
+    {% elseif tags.natural %}
+      {% set key = 'natural' %}
+      {% set value = tags.natural %}
+    {% endif %}
+    {% set kv = key ~ '=' ~ value %}
+    {% set data = const[kv]|default(const['natural=water']) %}
+  description: |-
+    {{ tagTrans(key, value) }}
+  body: |-
+    <ul>
+    {% if tags.intermittent %}
+      <li class='hasSymbol'>
+       <i class="far fa-circle"></i>
+       <span class='key'>{{ keyTrans('intermittent') }}:</span>
+       <span class='value'>{{ tagTrans('intermittent', tags.intermittent) }}</span>
+    {% endif %}
+    </ul>
+  markerSign: |-
+    {{ const[kv].sign|raw }}
+  markerSymbol: |-
+    {% if data.symbol == 'pointer' %}
+    {{ markerPointer({ fillColor: '#3388ff' })|raw }}
+    {% endif %}
+  listMarkerSymbol: |-
+    {% if data.symbol == 'pointer' %}
+    {{ markerCircle({ fillColor: '#3388ff' })|raw }}
+    {% elseif data.symbol == 'polygon' %}
+    polygon
+    {% else %}
+    line
+    {% endif %}
+  priority: '{{ data.priority }}'
+  style:
+    width: '{{ data.style.width }}'
+    color: '{{ data.style.color }}'
+    text: |-
+      {% if data.text %}
+      {{ tags.name }}   ➔   
+      {% endif %}
+    textRepeat: '1'
+    dashArray: |-
+      {% if tags.intermittent == "yes" %}5,5{% endif %}
+    lineCap: |-
+      {% if tags.intermittent == "yes" %}butt{% else %}round{% endif %}
+const:
+  natural=water:
+    zoom: 10
+    symbol: polygon
+    style:
+      width: 3
+      color: '#3388ff'
+    priority: 2
+  water=lake:
+    zoom: 10
+    symbol: polygon
+    style:
+      width: 3
+      color: '#3388ff'
+    hideInfo: true
+    priority: 0
+  water=lagoon:
+    zoom: 10
+    symbol: polygon
+    style:
+      width: 3
+      color: '#3388ff'
+    hideInfo: true
+    priority: 0
+  water=reservoir:
+    zoom: 10
+    symbol: polygon
+    style:
+      width: 3
+      color: '#3388ff'
+    hideInfo: true
+    priority: 0
+  waterway=river:
+    zoom: 10
+    symbol: line
+    style:
+      width: 4
+      color: '#3388ff'
+    text: true
+    priority: 1
+  waterway=canal:
+    alias:
+      - water=canal
+    zoom: 10
+    symbol: line
+    style:
+      width: 4
+      color: '#3388ff'
+    text: true
+    priority: 1
+  waterway=stream:
+    zoom: 13
+    symbol: line
+    style:
+      width: 2
+      color: '#3388ff'
+    text: true
+    priority: 3
+  waterway=drain:
+    zoom: 13
+    symbol: line
+    style:
+      width: 2
+      color: '#3388ff'
+    text: true
+    priority: 3
+  waterway=ditch:
+    zoom: 13
+    symbol: line
+    style:
+      width: 1
+      color: '#3388ff'
+    text: true
+    priority: 5
+  natural=spring:
+    sign: <i class='fas fa-water'></i>
+    zoom: 13
+    symbol: pointer
+  natural=hot_spring:
+    sign: '<i style="color: orange;" class="fas fa-water"></i>'
+    zoom: 13
+    symbol: pointer
+  natural=geyser:
+    sign: '<i style="color: red;" class="fas fa-water"></i>'
+    zoom: 13
+    symbol: pointer
+  waterway=waterfall:
+    sign: <img data-src='maki:waterfall'>
+    zoom: 13
+    symbol: pointer
+  waterway=dam:
+    zoom: 13
+    symbol: line
+    style:
+      width: 3
+      color: '#000000'
+    priority: 3
+  waterway=weir:
+    zoom: 13
+    symbol: line
+    style:
+      width: 3
+      color: '#000000'
+    priority: 3
+  natural=divide:
+    zoom: 10
+    symbol: line
+    style:
+      width: 3
+      color: '#ff0000'
+    text: true
+    priority: 0
+filter:
+  type:
+    name: |-
+      {{ trans("filter:type") }}
+    key: natural
+    type: select
+    show_default: 'true'
+    values: |-
+      {% for k, data in const %}<option value="{{ k }}" query="(nwr[{{ k }}];{% for a in data.alias %}nwr[{{ a }}];{% endfor %})">{{ tagTrans(k) }}</option>{% endfor %}
+    sort: natsort
+  intermittent:
+    name: |-
+      {{ keyTrans("intermittent") }}
+    key: intermittent
+    type: radio
+    values: <option value='yes' query="nwr[intermittent][intermittent!=no]">{{ tagTrans('intermittent', 'yes') }}</option><option value='no' query="(nwr[!intermittent];nwr[intermittent=no];)">{{ tagTrans('intermittent', 'no') }}</option>
+info: |-
+  <table>
+    {% for k, data in const %}
+      {% if not data.hideInfo and data.zoom <= map.zoom %}
+      <tr>
+        <td>
+        {% if data.symbol == 'pointer' %}
+          {{ markerCircle({ fillColor: '#3388ff' })|raw }}<div class='sign'>{{ data.sign|raw }}</div>
+        {% elseif data.symbol == 'polygon' %}
+          {{ markerPolygon(data.style)|raw }}
+        {% elseif data.symbol == 'line' %}
+          {{ markerLine(data.style)|raw }}
+        {% endif %}
+        </td>
+        <td>{{ tagTrans(k) }}</td>
+      </tr>
+      {% endif %}
+    {% endfor %}
+    <tr>
+      <td>{{ markerLine({ width: 3, color: '#3388ff', dashArray: '5,5', lineCap: 'butt' })|raw }}</td>
+      <td>{{ keyTrans('intermittent') }}</td>
+    </tr>
+  </table>

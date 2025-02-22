@@ -1,0 +1,54 @@
+type: overpass
+name:
+  ast: Llugares
+  ca: Llocs
+  cs: Sídla
+  de: Orte
+  el: Μέρη
+  en: Places
+  es: Lugares
+  et: Kohad
+  fr: Lieux
+  gl: Lugares
+  hu: Helyek
+  it: Luoghi
+  ja: 場所
+  nb: Steder
+  nl: Plaatsen
+  oc: Luòcs
+  pl: Miejsca
+  pt: Lugares
+  pt-br: Lugares
+  ro: Locuri
+  ru: Места
+  sr: Места
+  tr: Yerler
+  uk: Місцевість
+query:
+  0: node[place~'^(continent)$']
+  4: node[place~'^(continent|country)$']
+  6: node[place~'^(country|city)$']
+  8: node[place~'^(country|city|state)$']
+  11: node[place~'^(city|state|region|town|village)$']
+  13: node[place~'^(city|state|region|town|village|suburb|hamlet|quarter)$']
+  15: node[place~'^(city|region|town|village|suburb|hamlet|quarter)$']
+  16: (node[place~'^(region|town|village|suburb|hamlet|quarter|islet|isolated_dwelling|neighbourhood|farm)$'];way[place~'^(isolated_dwelling|neighbourhood|farm)$'];relation[place~'^(isolated_dwelling|neighbourhood|farm)$'];);
+feature:
+  title: |-
+    {% set loc_name = localizedTag(tags, "name") %}{{ loc_name }}{% if loc_name != tags.name %} ({{ tags.name }}){% endif %}
+  description: |-
+    {{ tagTrans("place", tags.place) }}
+  body: |-
+    {% if tags.population %}{{ keyTrans("population") }}: {{ tags.population }}{% endif %}
+  priority: |-
+    {% set priorities = { "continent": 0, "country": 1, "state": 2, "region": 3, "city": 4, "town": 5, "village": 6, "suburb": 7, "hamlet": 8, "quarter": 9, neighbourhood: 10, "isolated_dwelling": 11, "farm": 12 } %}{{ priorities[tags.place] }}
+filter:
+  name:
+    key:
+      - name
+      - name:*
+    name: |-
+      {{ keyTrans("name") }}
+    type: text
+    change_on: keyup
+    op: strsearch

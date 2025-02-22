@@ -1,0 +1,276 @@
+type: overpass
+name:
+  ast: Formaciones naturales
+  ca: Formacions Naturals
+  cs: Přírodní úkazy
+  de: Naturformationen
+  el: Φυσικοί Σχηματισμοί
+  en: Natural Formations
+  es: Formaciones naturales
+  fr: Éléments naturels
+  gl: Formacións naturais
+  hu: Természeti képződmények
+  it: Formazioni naturali
+  ja: 自然地層
+  nb: Naturlige formasjoner
+  nl: Natuurlijke Formaties
+  oc: Elements naturaus
+  pl: Obiekty przyrodnicze
+  pt: Formações naturais
+  pt-br: Elementos naturais
+  ru: Природные образования
+  sr: Природне појаве
+  tr: Doğal Oluşumlar
+  uk: Природне середовище
+query:
+  9: |-
+    (
+    node[natural~"^(peak|volcano|valley)$"];
+    nwr[place~"^(island)$"];
+    )
+  13: |-
+    (
+    nwr[natural~"^(peak|volcano|wood|glacier|cape|peninsula|beach|coastline|reef|hill|valley|ridge|arete|saddle|sinkhole|cave_entrance|isthmus)$"];
+    nwr[place~"^(island|islet)$"];
+    )
+  16: |-
+    (
+    nwr[natural][natural!~"^(water|divide|bay|strait|spring|hot_spring|geyser|tree)$"];
+    nwr[place~"^(island|islet)$"];
+    )
+  18: |-
+    (
+    nwr[natural][natural!~"^(water|divide|bay|strait|spring|hot_spring|geyser)$"];
+    nwr[place~"^(island|islet)$"];
+    )
+feature:
+  pre: |-
+    {% if tags.place in [ 'island', 'islet' ] %}
+    {% set key = 'place' %}
+    {% set value = tags.place %}
+    {% else %}
+    {% set key = 'natural' %}
+    {% set value = tags.natural %}
+    {% endif %}
+  details: |-
+    {% if tags.natural == "peak" and tags.ele %}{{ tags.ele }}m{% endif %}
+  description: |-
+    {{ tagTrans(key, value) }}
+  style:
+    color: |-
+      {{ const[value].color|default("#f2756a") }}
+  markerSign: |-
+    <span style="color: white">{{ const[value].sign|raw }}</span>
+  markerSymbol: |-
+    {{ markerPointer({ fillColor: const[value].color|default("#f2756a") })|raw }}
+  listMarkerSymbol: |-
+    {{ markerCircle({ fillColor: const[value].color|default("#f2756a") })|raw }}
+  priority: |-
+    {% if tags.name %}0{% else %}1{% endif %}
+filter:
+  type:
+    name: |-
+      {{ trans("filter:type") }}
+    key: natural
+    type: select
+    show_default: true
+    values: |-
+      {% set list = [] %}{% for k, v in const %}<option value="{{ k }}" {% if v.key %}query='nwr["{{ v.key }}"="{{ k }}"]'{% endif %}>{% set list = list|merge([ k ]) %}{{ tagTrans(v.key|default('natural'), k) }}</option>{% endfor %}<option weight='1' value='other' query='nwr[natural][natural!~"^(|.*;)({{ list|join('|') }})(|;.*)$"]'>{{ trans('other') }}</option>
+    sort: natsort
+    op: has
+const:
+  island:
+    zoom: 9
+    sign: <img data-src='temaki:island_trees_building'>
+    color: '#cfb997'
+    key: place
+    group: landform
+  islet:
+    zoom: 13
+    sign: <img data-src='temaki:island_trees_building'>
+    color: '#cfb997'
+    key: place
+    group: landform
+  wood:
+    zoom: 13
+    sign: <i class='fas fa-tree'></i>
+    color: darkgreen
+    group: vegetation
+  tree_row:
+    zoom: 16
+    sign: <i class='fas fa-tree'></i>
+    color: darkgreen
+    group: vegetation
+  tree:
+    zoom: 18
+    sign: <i class='fas fa-tree'></i>
+    color: darkgreen
+    group: vegetation
+  scrub:
+    zoom: 16
+    sign: ''
+    color: green
+    group: vegetation
+  heath:
+    zoom: 16
+    sign: ''
+    color: green
+    group: vegetation
+  moor:
+    zoom: 13
+    sign: ''
+    color: '#8aba50'
+    group: vegetation
+  grassland:
+    zoom: 16
+    sign: ''
+    color: '#00dd24'
+    group: vegetation
+  fell:
+    zoom: 16
+    sign: ''
+    color: '#49ba91'
+    group: vegetation
+  bare_rock:
+    zoom: 16
+    sign: ''
+    color: '#6f6f6f'
+    group: vegetation
+  scree:
+    zoom: 16
+    sign: ''
+    color: '#6f6f6f'
+    group: vegetation
+  shingle:
+    zoom: 16
+    sign: ''
+    color: '#6f6f6f'
+    group: vegetation
+  sand:
+    zoom: 16
+    sign: ''
+    color: '#f9d199'
+    group: vegetation
+  mud:
+    zoom: 16
+    sign: <img data-src='maki:wetland?fill=white'>
+    color: '#988b00'
+    group: vegetation
+  wetland:
+    zoom: 16
+    sign: <img data-src='maki:wetland?fill=white'>
+    color: '#00baff'
+    group: water
+  glacier:
+    zoom: 13
+    sign: '<i style="color: black;" class="fas fa-icicles"></i>'
+    color: white
+    group: water
+  cape:
+    zoom: 13
+    sign: ''
+    color: '#1d7500'
+    group: water
+  peninsula:
+    zoom: 13
+    sign: ''
+    color: '#1d7500'
+    group: water
+  beach:
+    zoom: 13
+    sign: <i class='fas fa-umbrella-beach'></i>
+    color: '#ff7f50'
+    group: water
+  coastline:
+    zoom: 13
+    sign: ''
+    color: blue
+    group: water
+  reef:
+    zoom: 13
+    sign: ''
+    color: '#005fbd'
+    group: water
+  peak:
+    zoom: 9
+    sign: <i class='fas fa-mountain'></i>
+    color: '#4f4f4f'
+    group: landform
+  hill:
+    zoom: 13
+    sign: ''
+    color: '#4f4f4f'
+    group: landform
+  volcano:
+    zoom: 9
+    sign: <i class='fas fa-mountain'></i>
+    color: '#cf3a00'
+    group: landform
+  valley:
+    zoom: 9
+    sign: ''
+    color: '#1d7500'
+    group: landform
+  river_terrace:
+    zoom: 16
+    sign: ''
+    color: '#a0a500'
+    group: landform
+  ridge:
+    zoom: 13
+    sign: ''
+    color: '#4f4f4f'
+    group: landform
+  arete:
+    zoom: 13
+    sign: ''
+    color: '#4f4f4f'
+    group: landform
+  cliff:
+    zoom: 16
+    sign: ''
+    color: '#4f4f4f'
+    group: landform
+  saddle:
+    zoom: 13
+    sign: ''
+    color: '#4f4f4f'
+    group: landform
+  rock:
+    zoom: 16
+    sign: ''
+    color: '#4f4f4f'
+    group: landform
+  stone:
+    zoom: 16
+    sign: ''
+    color: '#4f4f4f'
+    group: landform
+  sinkhole:
+    zoom: 13
+    sign: ''
+    color: '#a0a500'
+    group: landform
+  cave_entrance:
+    zoom: 13
+    sign: ''
+    color: '#000000'
+    group: landform
+  isthmus:
+    zoom: 13
+    sign: ''
+    color: '#1d7500'
+    group: landform
+info: |-
+  <table>
+    {% for k, data in const %}
+      {% if data.zoom <= map.zoom %}
+      <tr>
+        <td>
+          {{ markerCircle({ fillColor: data.color })|raw }}<div class='sign'>{{ data.sign|raw }}</div>
+        </td>
+        <td>{{ tagTrans('natural', k) }}</td>
+      </tr>
+      {% endif %}
+    {% endfor %}
+  </table>

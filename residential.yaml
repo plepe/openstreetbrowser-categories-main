@@ -1,0 +1,46 @@
+type: overpass
+name:
+  ast: Zones residenciales
+  ca: Àrees Residencials
+  cs: Obytné oblasti
+  de: Wohngebiete
+  el: Περιοχές Κατοικίας
+  en: Residential Areas
+  es: Áreas residenciales
+  et: Elamupiirkonnad
+  fr: Zones résidentielles
+  gl: Zonas residenciais
+  hu: Lakóövezetek
+  it: Aree residenziali
+  ja: 住居エリア
+  nb: Boligområder
+  nl: Woongebieden
+  oc: Quartiers residenciaus
+  pl: Obszary zamieszkania
+  pt: Áreas residenciais
+  pt-br: Áreas residenciais
+  ro: Zona rezidentiala
+  ru: Жилые районы
+  sr: Стамбена подручја
+  tr: Yerleşim Alanları
+  uk: Житлова зона
+query:
+  13: |-
+    (
+    node[landuse~"^(residential)$"];
+    way[landuse~"^(residential)$"];
+    relation[landuse~"^(residential)$"];
+    )
+  15: |-
+    (
+    node[landuse~"^(residential|allotments)$"];
+    way[landuse~"^(residential|allotments)$"];
+    relation[landuse~"^(residential|allotments)$"];
+    )
+feature:
+  description: |-
+    {{ tagTrans('landuse', tags.landuse) }}
+
+    {% if tags.residential %}
+    ({{ tagTransList('residential', tags.residential) }})
+    {% endif %}
