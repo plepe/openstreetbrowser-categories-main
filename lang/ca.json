@@ -57,7 +57,7 @@
     "category:tourism_services": "Turisme",
     "category:transport_alternative": "Modes Alternatius de Transport",
     "category:walk_amenities": "Serveis",
-    "category:walk_amenities_qa": "Serveis per a peatons",
+    "category:walk_amenities_qa": "Serveis per a vianants",
     "category:waste": "Deixalles",
     "category:water": "Cossos d'aigua",
     "category:wikipedia": "Viquipèdia",
@@ -108,5 +108,8 @@
     "date format not understood": "Format de Data No Vàlida",
     "outdated feature": "Característiques obsoletes",
     "xmas:outdated-warning": "La característica no s'ha actualitzat per a la temporada actual! Comproveu i configureu l'etiqueta 'xmas:lastcheck' a la data actual.",
-    "deprecated": "L'etiqueta %s està obsoleta. Consulteu <a target='_blank' href=\"%s\">aquí</a> per obtenir més informació."
+    "deprecated": "L'etiqueta %s està obsoleta. Consulteu <a target='_blank' href=\"%s\">aquí</a> per obtenir més informació.",
+    "category:cycleway_types": "Tipus de carril bici",
+    "category:cycleway_width": "Amplada del carril bici",
+    "category:etymology": "Etimologia"
 }
