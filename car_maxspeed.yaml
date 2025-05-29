@@ -146,11 +146,11 @@ feature:
       transform: rotate({{ tags.direction|parseDirection|default(0) + 180 }}deg);
     {% endif %}
 
-    '>{{ tags.maxspeed|default('?') }}</span>
+    '>{{ maxspeed|default('?') }}</span>
     {% endif %}
   listMarkerSign: |
     {% if not tags.highway %}
-    <span style='font-size: 8pt;'>{{ tags.maxspeed|default('?') }}</span>
+    <span style='font-size: 8pt;'>{{ maxspeed|default('?') }}</span>
     {% endif %}
   styles: |-
     {% if not tags.highway %}
