@@ -82,7 +82,7 @@ const:
     variety_store:
       sign: fas:shopping-bag
     bakery:
-      sign: fas:birthday-cake
+      sign: fas:bread-slice
     confectionery:
       sign: fas:birthday-cake
     pastry:
@@ -92,13 +92,13 @@ const:
     motorcycle:
       sign: fas:motorcycle
     boutique:
-      sign: '&#128090;'
+      sign: fas:shirt
     clothes:
-      sign: '&#128090;'
+      sign: fas:shirt
     fabric:
       sign: ''
     fashion:
-      sign: '&#128090;'
+      sign: fas:shirt
     leather:
       sign: '&#128090;'
     sewing:
@@ -110,27 +110,27 @@ const:
     sea_food:
       sign: fas:fish
     butcher:
-      sign: fas:utensils
+      sign: fas:cow
     cheese:
-      sign: fas:utensils
+      sign: fas:cheese
     chocolate:
-      sign: fas:utensils
+      sign: fas:cookie
     deli:
       sign: fas:utensils
     dairy:
-      sign: fas:utensils
+      sign: fas:cheese
     farm:
-      sign: fas:utensils
+      sign: fas:wheat-awn
     greengrocer:
-      sign: fas:utensils
+      sign: fas:carrot
     pasta:
-      sign: fas:utensils
+      sign: fas:bowl-food
     spices:
-      sign: fas:utensils
+      sign: fas:pepper-hot
     coffee:
       sign: fas:coffee
     tea:
-      sign: fas:coffee
+      sign: fas:mug-hot
     convenience:
       sign: fas:shopping-basket
     department_store:
@@ -166,7 +166,7 @@ const:
     shoes:
       sign: fas:shoe-prints
     travel_agency:
-      sign: '&#129523;'
+      sign: fas:plane
     supermarket:
       sign: fas:shopping-cart
     watches:
@@ -249,6 +249,8 @@ const:
       sign: ''
     mobile_phone:
       sign: fas:mobile-alt
+    health_food:
+      sign: fas:apple-whole
   clothes:
     - women
     - men
