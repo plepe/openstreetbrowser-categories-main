@@ -280,14 +280,21 @@ const:
     - denim
 filter:
   shop:
-    name: '{{ trans(''filter:type'') }}'
+    name: |-
+      {{ trans("filter:type") }}
     type: select
-    show_default: 'true'
-    values: '{% set list = [] %}{% for k, v in const.shops %}<option value="{{ k }}">{% set list = list|merge([ k ]) %}{{ tagTrans(''shop'', k) }}</option>{% endfor %}<option weight=''1'' value=''other'' query=''nwr[shop][shop!~"^(|.*;)({{ list|join(''|'') }})(|;.*)$"]''>{{ trans(''other'') }}</option>'
+    show_default: true
+    values: |-
+      {% set list = [] %}
+      {% for k, v in const.shops %}
+      <option value="{{ k }}">{% set list = list|merge([ k ]) %}{{ tagTrans("shop", k) }}</option>
+      {% endfor %}
+      <option weight="1" value="other" query="nwr[shop][shop!~"^(|.*;)({{ list|join("|") }})(|;.*)$"]">{{ trans("other") }}</option>
     sort: natsort
     op: has
   clothes:
-    name: '{{ keyTrans(''clothes'') }}'
+    name: |-
+      {{ keyTrans("clothes") }}
     type: select
     values: |-
       {% set list = [] %}
