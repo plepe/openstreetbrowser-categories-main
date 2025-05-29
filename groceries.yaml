@@ -1,0 +1,64 @@
+type: overpass
+query:
+  15: |-
+    (
+    nwr[shop^supermarket];
+    nwr[shop^convenience];
+    nwr[shop^dairy];
+    nwr[shop^farm];
+    nwr[shop^greengrocer];
+    nwr[shop^health_food];
+    )
+feature:
+  pre: |-
+    {% set shop0 = tags.shop|split(';')[0] %}
+    {% set current = const.default %}
+    {% if const.shops[shop0] %}
+      {% set current = const.shops[shop0] %}
+    {% endif %}
+  description: |-
+    {% if tags.shop == 'yes' %}
+      {{ keyTrans('shop') }}
+    {% else %}
+      {{ tagTransList('shop', tags.shop) }}
+    {% endif %}
+  markerSign: |-
+    {% set c = current.sign %}
+    {% if c|slice(0, 4) == 'fas:' %}
+      <i class="fas fa-{{ c|slice(4) }}"></i>
+    {% elseif c|slice(0, 4) == 'far:' %}
+      <i class="far fa-{{ c|slice(4) }}"></i>
+    {% elseif c|slice(0, 5) == 'maki:' %}
+      <img data-src="{{ c }}">
+    {% else %}
+      {{ c|raw }}
+    {% endif %}
+const:
+  default:
+    sign: fas:shopping-bag
+  shops:
+    dairy:
+      sign: fas:chesse
+    farm:
+      sign: fas:wheat-awn
+    greengrocer:
+      sign: fas:carrot
+    convenience:
+      sign: fas:shopping-basket
+    supermarket:
+      sign: fas:shopping-cart
+    health_food:
+      sign: fas:apple-whole
+filter:
+  shop:
+    name: |-
+      {{ trans("filter:type") }}
+    type: select
+    show_default: true
+    values: |-
+      {% set list = [] %}
+      {% for k, v in const.shops %}
+      <option value="{{ k }}">{% set list = list|merge([ k ]) %}{{ tagTrans("shop", k) }}</option>
+      {% endfor %}
+    sort: natsort
+    op: has
