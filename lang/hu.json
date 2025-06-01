@@ -111,5 +111,6 @@
     "deprecated": "Ez a címke (%s) elavult. A további részleteket <a target='_blank' href=\"%s\">lásd itt</a>.",
     "category:etymology": "Etimológia",
     "category:cycleway_types": "Kerékpárútfajták",
-    "category:cycleway_width": "Kerékpárút szélessége"
+    "category:cycleway_width": "Kerékpárút szélessége",
+    "category:groceries": "Élelmiszer"
 }
