@@ -85,7 +85,7 @@
     "date format not understood": "தவறான தேதி வடிவம்",
     "outdated feature": "நற்பொருத்தங்கள் காலாவதியானவை",
     "xmas:outdated-warning": "நடப்பு பருவத்திற்கான நற்பொருத்தம் புதுப்பிக்கப்படவில்லை! தயவுசெய்து சரிபார்த்து, 'கிறிச்மச்: லாச்ட்செக்' என்ற குறிச்சொல்லை தற்போதைய தேதிக்கு அமைக்கவும்.",
-    "deprecated": "குறிச்சொல் %s நீக்கப்பட்டன. விவரங்களுக்கு </_ வெற்று 'href = \"%s\"> இங்கே காண்க.",
+    "deprecated": "குறிச்சொல் %s நீக்கப்பட்டன. விவரங்களுக்கு <a target='_blank' href=\"%s\">இங்கே காண்க</a>.",
     "category:special": "சிறப்பு",
     "category:sport": "விளையாட்டு",
     "category:swimming_bathing": "நீச்சல் மற்றும் குளியல்",
@@ -111,5 +111,6 @@
     "category:gastro": "காச்ட்ரோனமி",
     "category:health": "உடல்நலம்",
     "category:heritage": "பாரம்பரிய பாதுகாப்பு",
-    "category:hiking_routes": "ஐக்கிங் வழிகள்"
+    "category:hiking_routes": "ஐக்கிங் வழிகள்",
+    "category:groceries": "பலசரக்கு"
 }
