@@ -11,8 +11,11 @@ query:
   '14': |-
     (
       node["canoe"~"^(put_in|egress|put_in;egress)$"];
+      node["waterway"="access_point"];
       node["leisure"="slipway"];
+      node["waterway"="access_point"];
       way["canoe"="portage"];
+      way[highway][portage];
       nwr[shop~"^(boat)$"]["boat:type"~"^(.*;|)canoe|kayak|standup_paddleboard|dinghy|pedalboat(|;.*)$"];
       nwr[rental~"^(boat)$"]["boat:type"~"^(.*;|)canoe|kayak|standup_paddleboard|dinghy|pedalboat(|;.*)$"];
       nwr["canoe_rental"="yes"];
@@ -23,10 +26,13 @@ query:
     )
 feature:
   pre: |-
-    {% if tags.canoe == 'portage' and ( not attribute(tags, 'surface') or attribute(tags, 'surface') == 'water' ) %}
-      {% set key = 'waterway' %}
+    {% if tags.canoe == 'portage' or attribute(tags, 'portage') %}
+      {% set key = 'portage' %}
       {% set value = 'portage' %}
-    {% elseif tags.canoe %}
+    {% elseif tags.waterway and tags.waterway== 'access_point' %}
+      {% set key = 'waterway' %}
+      {% set value = tags.waterway %}
+    {% elseif tags.canoe and tags.canoe not in ['yes','designated','permissive','permit','discouraged','private','no']%}
       {% set key = 'canoe' %}
       {% set value = tags.canoe %}
     {% elseif tags.leisure %}
@@ -50,7 +56,7 @@ feature:
   description: |
     {{ tagTrans(key, value) }}
   body: |-
-    {% if constIndex in ['canoe=put_in', 'canoe=egress', 'canoe=put_in;egress', 'leisure=slipway','canoe=portage'] %}
+    {% if key not in ['shop'] %}
       <ul>
         {% if attribute(tags, 'surface') %}
         <li class='hasSymbol'>
@@ -74,6 +80,22 @@ feature:
           <i class='fa fa-unlock'></i>
           {{ keyTrans('Access') }}:
           <span class='value'>{{ attribute(tags, 'access') ? tagTrans('access', attribute(tags, 'access')) : '' }}</span>
+        </li>
+        {% endif %}
+
+        {% if attribute(tags, 'canoe') and tags.canoe in ['yes','designated','permissive','permit','discouraged','private','no'] %}
+        <li class='hasSymbol'>
+          <i class='fa fa-unlock'></i>
+          {{ keyTrans('Canoe Access') }}:
+          <span class='value'>{{ attribute(tags, 'canoe') ? tagTrans('access', attribute(tags, 'canoe')) : '' }}</span>
+        </li>
+        {% endif %}
+
+        {% if attribute(tags, 'portage') and tags.portage in ['yes','designated','permissive','permit','discouraged','private','no'] %}
+        <li class='hasSymbol'>
+          <i class='fa fa-unlock'></i>
+          {{ keyTrans('Portage Access') }}:
+          <span class='value'>{{ attribute(tags, 'portage') ? tagTrans('access', attribute(tags, 'portage')) : '' }}</span>
         </li>
         {% endif %}
 
@@ -110,9 +132,12 @@ feature:
       10
     {% endif %}
 const:
-  canoe=portage:
-    sign:
+  portage=portage:
+    sign: 
     priority: 2
+  waterway=access_point:
+    sign: <i class="fas fa-arrows-alt-v"></i>
+    priority: 0
   canoe=put_in:
     sign: <i class="fas fa-long-arrow-alt-down"></i>
     priority: 0
@@ -131,7 +156,4 @@ const:
   shop=rental:
     sign: <i class="fas fa-store"></i>
     priority: 3
-  waterway=portage:
-    sign:
-    priority: 2
   
