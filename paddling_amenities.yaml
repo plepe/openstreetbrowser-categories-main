@@ -13,7 +13,6 @@ query:
       node["canoe"~"^(put_in|egress|put_in;egress)$"];
       node["waterway"="access_point"];
       node["leisure"="slipway"];
-      node["waterway"="access_point"];
       way["canoe"="portage"];
       way[highway][portage];
       nwr[shop~"^(boat)$"]["boat:type"~"^(.*;|)canoe|kayak|standup_paddleboard|dinghy|pedalboat(|;.*)$"];
