@@ -172,16 +172,21 @@ feature:
     textRepeat: '1'
     textOffset: '4'
     textFontWeight: bold
+    fillOpacity: 0.5
+    fill: |-
+      {{ tags.area == 'yes' }}
   style:left:
     width: '2'
     color: |-
       {{ colorB|default('#404040') }}
     offset: '-1'
+    fill: false
   style:right:
     width: '2'
     color: |
       {{ colorF|default('#404040') }}
     offset: '1'
+    fill: false
   style:traffic_sign:
     width: 0
     radius: 0
