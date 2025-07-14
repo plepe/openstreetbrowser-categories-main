@@ -75,5 +75,12 @@
     "category:climbing": "Klättring",
     "category:coal": "Kol",
     "category:communication": "Kommunikation",
-    "category:construction": "Byggplatser"
+    "category:construction": "Byggarbetsplatser",
+    "category:craft": "Hantverk",
+    "category:culture-media": "Kultur - Media/Wikidata",
+    "category:culture": "Kultur",
+    "category:culture_religion": "Kultur och religion",
+    "category:cycle_amenities": "Bekvämligheter",
+    "category:cycle_directions": "Vägbeskrivning",
+    "category:cycle_routes": "Cycle Routes"
 }
