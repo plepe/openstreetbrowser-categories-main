@@ -82,5 +82,19 @@
     "category:culture_religion": "Kultur och religion",
     "category:cycle_amenities": "Bekvämligheter",
     "category:cycle_directions": "Vägbeskrivning",
-    "category:cycle_routes": "Cycle Routes"
+    "category:cycle_routes": "Cykelvägar",
+    "category:cycleway_types": "Cykelvägstyper",
+    "category:cycleway_width": "Cykelvägens bredd",
+    "category:developable_areas": "Utvecklingsbara områden",
+    "category:education": "Utbildningstjänster",
+    "category:electric_power": "Elkraft",
+    "category:emergency": "Räddningstjänst",
+    "category:financial": "Finansiell",
+    "category:fixme": "Fixa mig",
+    "category:footways": "Gångvägar",
+    "category:gastro-smoking": "Rökfri gastronomi",
+    "category:gastro": "Gastronomi",
+    "category:health": "Hälsa",
+    "category:heritage": "Skydd av kulturarv",
+    "category:hiking_routes": "Vandringsvägar"
 }
