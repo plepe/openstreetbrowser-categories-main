@@ -60,6 +60,20 @@
     "category:alternative_amenities": "Bekvämligheter",
     "category:alternative_routes": "Linjer",
     "category:buildings-entrances": "Ingångar",
-    "category:buildings-height": "Bygghöjd",
-    "category:buildings-start_date": "Byggnadens ålder"
+    "category:buildings-height": "Byggnadens höjd",
+    "category:buildings-start_date": "Byggnadens ålder",
+    "category:resources": "Resursutvinning",
+    "category:residential": "Bostadsområden",
+    "category:renewables": "Förnybara",
+    "category:buildings-type": "Byggnadstyper",
+    "category:buildings": "Byggnader",
+    "category:car_amenities": "Bekvämligheter",
+    "category:car_furniture": "Gatumöbler",
+    "category:car_maxspeed": "Maxhastighet",
+    "category:car_routes": "Bilvägar",
+    "category:children": "Barnfaciliteter",
+    "category:climbing": "Klättring",
+    "category:coal": "Kol",
+    "category:communication": "Kommunikation",
+    "category:construction": "Byggplatser"
 }
