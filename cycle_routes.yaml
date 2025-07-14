@@ -1,0 +1,210 @@
+name:
+  ca: Rutes Ciclistes
+  cs: Cyklotrasy
+  de: Radrouten
+  en: Cycle Routes
+  es: Rutas ciclistas
+  fr: Itinéraires vélo
+  gl: Rotas ciclistas
+  hu: Kerékpáros útvonalak
+  it: Percorsi ciclabili
+  ja: 自転車ルート
+  nb: Sykkelruter
+  nl: Fietsroutes
+  oc: Itineraris ciclistas
+  pl: Trasy rowerowe
+  pt: Ciclovias
+  pt-br: Ciclorrotas
+  ro: Trasee ciclism
+  ru: Веломаршруты
+  sr: Трасе за бицикле
+  tr: Bisiklet Rotaları
+query:
+  6: relation[type=route][route~"^(|.*;)bicycle(|;.*)$"][network~'^(|.*;)(icn)(|;.*)$']
+  9: relation[type=route][route~"^(|.*;)bicycle(|;.*)$"][network~'^(|.*;)(icn|ncn)(|;.*)$']
+  12: relation[type=route][route~"^(|.*;)bicycle(|;.*)$"][network~'^(|.*;)(icn|ncn|rcn)(|;.*)$']
+  15: relation[type=route][route~"^(|.*;)bicycle(|;.*)$"]
+members: true
+feature:
+  pre: |-
+    {% set network = tags.network %}
+    {% for n in tags.network|split(';') %}
+    {% if n|matches('cn$') %}{% set network = n %}{% endif %}
+    {% endfor %}
+  title: |-
+    {% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% endif %}
+  description: |-
+    {{ tagTrans("network", network) }}
+  markerSymbol: ''
+  listMarkerSymbol: |-
+    {{ markerLine({ "width": 4, "color": const[network].color|default(const[""].color) })|raw }}
+  priority: |-
+    {{ const[network].priority|default(4) }}
+  styles: ''
+  style:hover:
+    width: 0
+  style:selected:
+    width: 0
+memberFeature:
+  pre: |-
+    {% set priority = 4 %}
+    {% set network = '' %}
+    {% set refs = [] %}
+    {% set dirForward = false %}
+    {% set dirBackward = false %}
+    {% set hover = false %}
+    {% set selected = false %}
+
+    {% for master in masters %}
+      {% set masterNetwork = '' %}
+      {% for n in master.tags.network|split(';') %}
+        {% if n|matches('cn$') %}{% set masterNetwork = n %}{% endif %}
+      {% endfor %}
+      {% set _p = const[masterNetwork].priority|default(4) %}
+      {% if _p < priority %}
+        {% set priority = _p %}
+        {% set network = masterNetwork %}
+      {% endif %}
+      {% if master.tags.ref %}
+        {% set refs = refs|merge([ master.tags.ref ]) %}
+      {% endif %}
+      {% if master.role == 'forward' %}{% set dirForward = true %}
+      {% elseif master.role == 'backward' %}{% set dirBackward = true %}
+      {% else %}{% set dirForward = true %}{% set dirBackward = true %}
+      {% endif %}
+      {% if master.flags.hover %}{% set hover = master.role|default('both') %}{% endif %}
+      {% if master.flags.selected %}{% set selected = master.role|default('both') %}{% endif %}
+    {% endfor %}
+  title: ''
+  body: |-
+    <h4>Routes</h4>
+    <ul class='overpass-layer-list'>
+    {% for master in masters %}
+      {% set masterNetwork = '' %}
+      {% for n in master.tags.network|split(';') %}
+        {% if n|matches('cn$') %}{% set masterNetwork = n %}{% endif %}
+      {% endfor %}
+      <li data-object="{{ master.id }}"><a>
+        <div class='marker'>
+          <div class='symbol'>{{ markerLine({ width: 4, color: const[masterNetwork].color|default(const[''].color) })|raw }}</div>
+        </div>
+        <div class='content'>
+          <div class='description'>{{ tagTrans('network', masterNetwork) }}</div>
+          <div class='title'>{% if master.tags.ref and master.tags.name %}{{ master.tags.ref }} - {{ master.tags.name|default(master.tags.ref) }}{% elseif master.tags.ref %}{{ master.tags.ref }}{% elseif master.tags.name %}{{ master.tags.name }}{% else %}{{ trans('unnamed') }}{% endif %}</div>
+        </div>
+      </a></li>
+    {% endfor %}
+    </ul>
+  listExclude: true
+  styles: |-
+    default{% if hover %},hover{% endif %}{% if selected %},selected{% endif %}
+  style:
+    width: 4
+    color: |-
+      {{ const[network].color }}
+    opacity: 1
+    lineCap: |-
+      {% if not dirForward or not dirBackward %}butt{% else %}round{% endif %}
+    dashArray: |-
+      {% if not dirForward or not dirBackward %}27,8{% endif %}
+    dashOffset: |-
+      {% if dirBackward %}28{% else %}0{% endif %}
+    noClip: |-
+      {% if not dirForward or not dirBackward %}true{% else %}false{% endif %}
+    text: '{{ refs|join(" · ") }}             '
+    textRepeat: true
+    textOffset: 12
+    pattern: |-
+      {% if dirForward and dirBackward %}{% else %}arrowHead{% endif %}
+    pattern-offset: |-
+      {% if dirBackward %}4{% else %}30.5{% endif %}
+    pattern-repeat: 35
+    pattern-polygon: true
+    pattern-pixelSize: 9
+    pattern-angleCorrection: |-
+      {% if dirBackward %}180{% else %}0{% endif %}
+    pattern-path-width: 0
+    pattern-path-color: |-
+      {{ const[network].color }}
+    pattern-path-fillOpacity: 1
+    textFontWeight: bold
+  style:hover:
+    pane: hover
+    width: 4
+    color: black
+    lineCap: |-
+      {% if hover == "forward" or hover == "backward" %}butt{% else %}round{% endif %}
+    dashArray: |-
+      {% if hover == "forward" or hover == "backward" %}27,8{% endif %}
+    dashOffset: |-
+      {% if hover == "backward" %}28{% else %}0{% endif %}
+    noClip: |-
+      {% if hover == "forward" or hover == "backward" %}true{% else %}false{% endif %}
+    pattern: |-
+      {% if hover == "forward" or hover == "backward" %}arrowHead{% endif %}
+    pattern-offset: |-
+      {% if hover == "backward" %}4{% else %}30.5{% endif %}
+    pattern-repeat: 35
+    pattern-polygon: true
+    pattern-pixelSize: 9
+    pattern-angleCorrection: |-
+      {% if hover == "backward" %}180{% else %}0{% endif %}
+    pattern-path-width: 0
+    pattern-path-color: black
+    pattern-path-fillOpacity: 1
+  style:selected:
+    pane: selected
+    width: 4
+    color: '#3f3f3f'
+    lineCap: |-
+      {% if selected == "forward" or selected == "backward" %}butt{% else %}round{% endif %}
+    dashArray: |-
+      {% if selected == "forward" or selected == "backward" %}27,8{% endif %}
+    dashOffset: |-
+      {% if selected == "backward" %}28{% else %}0{% endif %}
+    noClip: |-
+      {% if selected == "forward" or selected == "backward" %}true{% else %}false{% endif %}
+    pattern: |-
+      {% if selected == "forward" or selected == "backward" %}arrowHead{% endif %}
+    pattern-offset: |-
+      {% if selected == "backward" %}4{% else %}30.5{% endif %}
+    pattern-repeat: 35
+    pattern-polygon: true
+    pattern-pixelSize: 9
+    pattern-angleCorrection: |-
+      {% if selected == "backward" %}180{% else %}0{% endif %}
+    pattern-path-width: 0
+    pattern-path-color: '#3f3f3f'
+    pattern-path-fillOpacity: 1
+const:
+  icn:
+    color: '#ff0000'
+    priority: 0
+    zoom: 6
+  ncn:
+    color: '#ff00ba'
+    priority: 1
+    zoom: 9
+  rcn:
+    color: '#ba00ff'
+    priority: 2
+    zoom: 12
+  lcn:
+    color: '#0000ff'
+    priority: 3
+    zoom: 15
+  '':
+    color: '#007fff'
+    priority: 4
+    zoom: 15
+info: |-
+  <table>
+  {% for value, data in const %}
+  {% if data.zoom <= map.zoom %}
+    <tr>
+      <td>{{ markerLine({ 'width': 4, color: data.color })|raw }}</td>
+      <td>{% if value %}{{ tagTrans('network', value) }}{% else %}{{ trans('unknown') }}{% endif %}</td>
+    </tr>
+  {% endif %}
+  {% endfor %}
+  </table>
