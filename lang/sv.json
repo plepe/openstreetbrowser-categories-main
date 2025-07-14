@@ -96,5 +96,21 @@
     "category:gastro": "Gastronomi",
     "category:health": "Hälsa",
     "category:heritage": "Skydd av kulturarv",
-    "category:hiking_routes": "Vandringsvägar"
+    "category:hiking_routes": "Vandringsleder",
+    "category:etymology": "Etymologi",
+    "category:groceries": "Dagligvaror",
+    "Objects with diet information": "Föremål med dietinformation",
+    "date format not understood": "Ogiltigt datumformat",
+    "outdated feature": "Funktioner föråldrade",
+    "xmas:outdated-warning": "Funktionen har inte uppdaterats för nuvarande säsong! Kontrollera och ange taggen \"xmas:lastcheck\" till det aktuella datumet.",
+    "deprecated": "Tag %s depreceras. Se <a target='_blank' href=\"%s\"> här </a> för detaljer.",
+    "category:special": "Särskilda",
+    "category:internet": "Tillgång till internet",
+    "category:kerbs": "Trottoarkanter",
+    "category:law": "Juridik",
+    "category:memorial": "Minnesmärken och monument",
+    "category:paddling_hazards": "Paddlingsrisker",
+    "category:paddling_routes": "Paddlingsleder",
+    "category:railway-gauge": "Järnvägens spårvidd",
+    "category:buildings-figure-ground": "Figur-markdiagram"
 }
