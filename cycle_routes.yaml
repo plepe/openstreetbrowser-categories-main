@@ -20,10 +20,25 @@ name:
   sr: Трасе за бицикле
   tr: Bisiklet Rotaları
 query:
-  6: relation[type=route][route~"^(|.*;)bicycle(|;.*)$"][network~'^(|.*;)(icn)(|;.*)$']
-  9: relation[type=route][route~"^(|.*;)bicycle(|;.*)$"][network~'^(|.*;)(icn|ncn)(|;.*)$']
-  12: relation[type=route][route~"^(|.*;)bicycle(|;.*)$"][network~'^(|.*;)(icn|ncn|rcn)(|;.*)$']
-  15: relation[type=route][route~"^(|.*;)bicycle(|;.*)$"]
+  6: |-
+    (
+    node[icn_ref];
+    relation[type=route][route~"^(|.*;)bicycle(|;.*)$"][network~'^(|.*;)(icn)(|;.*)$'];
+    )
+  9: |-
+    (
+    node[~"^[in]cn_ref$"~"."];
+    relation[type=route][route~"^(|.*;)bicycle(|;.*)$"][network~'^(|.*;)(icn|ncn)(|;.*)$']
+  12: |-
+    (
+    node[~"^[inr]cn_ref$"~"."];
+    relation[type=route][route~"^(|.*;)bicycle(|;.*)$"][network~'^(|.*;)(icn|ncn|rcn)(|;.*)$'];
+    )
+  15: |-
+    (
+    node[~"^[inrl]cn_ref$"~"."];
+    relation[type=route][route~"^(|.*;)bicycle(|;.*)$"];
+    )
 members: true
 feature:
   pre: |-
@@ -31,20 +46,67 @@ feature:
     {% for n in tags.network|split(';') %}
     {% if n|matches('cn$') %}{% set network = n %}{% endif %}
     {% endfor %}
+
+    {% set ref = '' %}
+    {% set item_type = '' %}
+
+    {% for level, def in const|reverse %}
+      {% if type == 'node' and attribute(tags, 'network:type') == 'node_network' and tags[level ~ '_ref'] %}
+        {% set ref = tags[level ~ '_ref']  %}
+        {% set network = level %}
+        {% set item_type = 'node_network_node' %}
+      {% endif %}
+    {% endfor %}
+
+    {% set color = const[network].color|default(const[""].color) %}
   title: |-
     {% if tags.ref and tags.name %}{{ tags.ref }} - {{ tags.name }}{% elseif tags.ref %}{{ tags.ref }}{% elseif tags.name %}{{ tags.name }}{% endif %}
+    {% if item_type == 'node_network_node' %}
+    {{ ref }}
+    {% endif %}
   description: |-
+    {% if item_type == 'node_network_node' %}
+    {{ trans('tag:network:type=node_network node') }}
+    {% else %}
     {{ tagTrans("network", network) }}
-  markerSymbol: ''
+    {% endif %}
+  markerSign: |-
+    {% if item_type == 'node_network_node' %}
+    {{ ref }}
+    {% endif %}
+  markerSymbol: |-
+    {% if item_type == 'node_network_node' %}
+    {{ markerPointer({ "width": 2, "color": color, "fillColor": colorInterpolate([color, 'white'], 0.75), "fillOpacity": 1 }) }}
+    {% endif %}
   listMarkerSymbol: |-
-    {{ markerLine({ "width": 4, "color": const[network].color|default(const[""].color) })|raw }}
+    {% if item_type == 'node_network_node' %}
+    {{ markerCircle({ "width": 2, "color": color, "fillColor": colorInterpolate([color, 'white'], 0.75), "fillOpacity": 1 }) }}
+    {% else %}
+    {{ markerLine({ "width": 4, "color": color })|raw }}
+    {% endif %}
   priority: |-
     {{ const[network].priority|default(4) }}
+  body: |-
+    {% if item_type == 'node_network_node' %}
+    <ul>
+      <li>
+      {% for level, def in const|reverse %}
+        {% if tags[level ~ '_ref'] %}
+          {{ tagTrans('network', level) }}: {{ tags[level ~ '_ref'] }}<br>
+        {% endif %}
+      {% endfor %}
+      </li>
+    </ul>
+    {% endif %}
   styles: ''
   style:hover:
-    width: 0
+    color: black
+    width: |-
+      {{ item_type == 'node_network_node' ? 3 : 0 }}
   style:selected:
-    width: 0
+    color: black
+    width: |-
+      {{ item_type == 'node_network_node' ? 3 : 0 }}
 memberFeature:
   pre: |-
     {% set priority = 4 %}
@@ -75,7 +137,8 @@ memberFeature:
       {% if master.flags.hover %}{% set hover = master.role|default('both') %}{% endif %}
       {% if master.flags.selected %}{% set selected = master.role|default('both') %}{% endif %}
     {% endfor %}
-  title: ''
+  exclude: |-
+    {{ type == 'node' }}
   body: |-
     <h4>Routes</h4>
     <ul class='overpass-layer-list'>
