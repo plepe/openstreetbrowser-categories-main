@@ -52,8 +52,10 @@ feature:
           {% set width=2 %}
       {% endif %}
     {% endif %}
-  title: '{% if tags.ref %}{{ localizedTag(tags, ''ref'') }} - {% endif %}{{ localizedTag(tags, ''name'')|default(localizedTag(tags, ''operator'')) }}'
-  description: '{{ tagTrans(''railway'', tags.railway) }}'
+  title: |-
+    {% if tags.ref %}{{ localizedTag(tags, "ref") }} - {% endif %}{{ localizedTag(tags, "name")|default(localizedTag(tags, "operator")) }}
+  description: |-
+    {{ tagTrans("railway", tags.railway) }}
   details: |-
     {% if tags.electrified == 'no' %}
     {{ tagTrans('electrified', 'no') }}
@@ -70,7 +72,11 @@ feature:
   markerSymbol: null
   listMarkerSymbol: line
   styles: casing,default
-  priority: '{% if tags.railway == ''station'' %}0{% elseif tags.railway in [ ''halt'', ''tram_stop'' ] %}1{% else %}5{% endif %}'
+  priority: |-
+    {% if tags.railway == "station" %}0
+    {% elseif tags.railway in [ "halt", "tram_stop" ] %}1
+    {% else %}5
+    {% endif %}
   style:
     width: '{{ width }}'
     lineCap: butt
