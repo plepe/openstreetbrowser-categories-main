@@ -111,5 +111,6 @@
     "category:etymology": "Etymologie",
     "deprecated": "Značka %s je zastaralá. Podrobnosti naleznete <a target='_blank' href=\"%s\">zde</a>.",
     "category:cycleway_types": "Typy cyklostezek",
-    "category:cycleway_width": "Šířka cyklostezky"
+    "category:cycleway_width": "Šířka cyklostezky",
+    "category:groceries": "Potraviny"
 }
