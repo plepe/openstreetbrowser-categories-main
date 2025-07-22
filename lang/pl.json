@@ -108,5 +108,6 @@
     "date format not understood": "Nieprawidłowy format dat",
     "outdated feature": "Przestarzałe obiekty",
     "xmas:outdated-warning": "Funkcja nie została zaktualizowana w bieżącym sezonie! Sprawdź i ustaw znacznik „xmas:lastcheck” na bieżącą datę.",
-    "deprecated": "Znacznik %s jest przestarzały. Więcej szczegółów znajdziesz <a target='_blank' href=\"%s\">tutaj</a>."
+    "deprecated": "Znacznik %s jest przestarzały. Więcej szczegółów znajdziesz <a target='_blank' href=\"%s\">tutaj</a>.",
+    "category:groceries": "Sklepy spożywcze"
 }
