@@ -1,1 +1,11 @@
-{}
+{
+    "category:railway": "റെയിൽവേ",
+    "category:historic": "ചരിത്രപരം",
+    "category:transport": "ഗതാകതം",
+    "category:transport_cycle": "സൈക്കിൾ",
+    "category:energy": "ഊർജ്ജം",
+    "category:infrastructure": "ഇൻഫ്രാസ്ട്രക്ചർ",
+    "category:developments": "ആസൂത്രണവും നിർമ്മാണവും",
+    "category:special": "പ്രത്യേകം",
+    "category:internet": "ഇന്റർനെറ്റ് ആക്സസ്"
+}
