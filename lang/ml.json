@@ -7,5 +7,9 @@
     "category:infrastructure": "ഇൻഫ്രാസ്ട്രക്ചർ",
     "category:developments": "ആസൂത്രണവും നിർമ്മാണവും",
     "category:special": "പ്രത്യേകം",
-    "category:internet": "ഇന്റർനെറ്റ് ആക്സസ്"
+    "category:internet": "ഇന്റർനെറ്റ് ആക്സസ്",
+    "category:services": "സേവനങ്ങൾ",
+    "category:transport_pt": "പൊതു ഗതാഗതം",
+    "category:law": "നിയമം",
+    "category:memorial": "ഗതാഗതം"
 }
