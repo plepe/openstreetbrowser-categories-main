@@ -1,1 +1,17 @@
-{}
+{
+    "category:historic": "Гістарычны",
+    "category:leisure_sport_shopping": "Вольны час, спорт і пакупкі",
+    "category:services": "Паслугі",
+    "category:transport": "Транспарт",
+    "category:transport_walk": "Хада",
+    "category:transport_cycle": "Веласпорт",
+    "category:transport_pt": "Грамадскі транспарт",
+    "category:transport_car": "Індывідуальны трафік",
+    "category:infrastructure": "Інфрастурктура",
+    "category:developments": "Планаванне і будаўніцтва",
+    "category:energy": "Энергія",
+    "category:railway": "Чыгунка",
+    "category:special": "Спецыяльны",
+    "category:osm-qa": "Кантроль Якасці OpenStreetMap",
+    "category:internet": "Доступ у Інтэрнэт"
+}
