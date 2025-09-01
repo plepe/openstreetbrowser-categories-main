@@ -110,5 +110,7 @@
     "xmas:outdated-warning": "Caratteristica non aggiornata alla stagione corrente! Controlla e modifica il tag 'xmas:lastcheck' alla data corrente.",
     "deprecated": "Il tag %s è deprecato. Vedi <a target='_blank' href=\"%s\">qui</a> per i dettagli.",
     "category:etymology": "Etimologia",
-    "category:groceries": "Generi alimentari"
+    "category:groceries": "Generi alimentari",
+    "category:cycleway_types": "Tipi di piste ciclabili",
+    "category:cycleway_width": "Larghezza della pista ciclabile"
 }
