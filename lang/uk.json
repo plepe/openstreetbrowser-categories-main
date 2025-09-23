@@ -111,5 +111,6 @@
     "category:cycleway_width": "Ширина велодоріжки",
     "category:etymology": "Етимологія",
     "deprecated": "Тег %s застарів. Дивіться <a target='_blank' href=\"%s\">тут</a>, щоб дізнатися більше.",
-    "category:cycleway_types": "Типи велодоріжок"
+    "category:cycleway_types": "Типи велодоріжок",
+    "category:groceries": "Бакалія"
 }
