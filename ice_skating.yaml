@@ -1,0 +1,217 @@
+name:
+  ca: Patinatge sobre gel
+  cs: Bruslení
+  de: Eislaufen
+  en: Ice Skating
+  es: Patinaje sobre hielo
+  fr: Patinage sur glace
+  gl: Patinaxe sobre xeo
+  hu: Korcsolyázás
+  it: Pattinaggio sul ghiaccio
+  ja: アイススケート
+  nb: Skøyter
+  nl: Schaatsen
+  oc: Patinatge sus glaç
+  pl: Łyżwiarstwo
+  pt: Patinagem no gelo
+  pt-br: Patinação no gelo
+  ro: Patinaj pe gheață
+  ru: Катание на коньках
+  sr: Клизање
+  tr: Buz pateni 
+type: overpass
+query:
+  # Ice rinks are intentionally excluded here as they are covered already by leisure.json and/or sport.json
+  # TODO: add ice skating relations when there is more than one in the world
+  '10': |-
+    (
+      way["piste:type"="ice_skate"];
+      way[waterway][ice_skates];  
+
+      node[leisure=slipway][ice_skates];
+      node[waterway=access_point][ice_skates];
+
+      way[highway][ice_skates=kluning];
+      way[highway][kluning];
+    )
+feature:
+  pre: |-
+    {% if attribute(tags, 'piste:type') == 'ice_skate' %}
+      {% set key = 'piste:type' %}      
+      {% set value = 'ice_skate' %}
+    {% elseif  type == 'way' and tags.waterway and tags.waterway != 'access_point' and tags.ice_skates %}
+      {% set key = 'piste:type' %}      
+      {% set value = 'ice_skate' %}
+    {% elseif  type == 'way' and tags.highway and tags.ice_skates == 'kluning' %}
+      {% set key = 'ice_skates' %}      
+      {% set value = 'kluning' %}
+    {% elseif  type == 'way' and tags.highway and tags.kluning %}
+      {% set key = 'ice_skates' %}      
+      {% set value = 'kluning' %}
+    {% elseif tags.waterway == 'access_point' and tags.ice_skates %}
+      {% set key = 'waterway' %}      
+      {% set value = 'access_point' %}
+    {% elseif tags.leisure == 'slipway' and tags.ice_skates %}
+      {% set key = 'leisure' %}      
+      {% set value = 'slipway' %}
+    {% endif %}
+
+    {% set constIndex = (key ~ "=" ~ value) %}
+    {% set item = const[constIndex] %}
+
+    {% if tags.ice_skates and tags.ice_skates in ['no','private','discouraged'] %}
+      {% set restricted_access_value = tags.ice_skates %}
+    {% elseif tags.access and tags.access in ['no','private','discouraged'] %}
+      {% set restricted_access_value = tags.access %}
+    {% elseif  type == 'way' and tags.waterway and tags.waterway != 'access_point' and tags.ice_skates and tags.ice_skates == 'kluning' %}
+      {% set restricted_access_value = tags.ice_skates %}
+    {% endif %}
+  title: |
+    {% if attribute(tags, "piste:name") %}
+      {{ localizedTag(tags, 'piste:name') }}  
+    {% else  %}
+      {{ localizedTag(tags, 'name') }} 
+    {% endif %}
+    {% if attribute(tags, 'ref') %}
+      ( {{ localizedTag(tags, 'ref') }} )
+    {% endif %}
+  listDetails: |-
+    {%if attribute(tags, 'waterbody:name')%}
+      {{ localizedTag(tags, 'waterbody:name') }}
+    {% endif %}
+  description: |
+    {{ tagTrans(key, value) }}
+  body: |-
+    <ul>
+      {% if attribute(tags, 'waterbody:name') %}
+      <li class='hasSymbol'>
+        <i class="fas fa-water"></i>
+        {{ tagTrans('natural', 'water') }}:
+        <span class='value'>{{ localizedTag(tags, 'waterbody:name') }}</span>
+      </li>
+      {% endif %}
+
+      {% if attribute(tags, 'surface') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-window-minimize'></i>
+        {{ keyTrans('Surface') }}:
+        <span class='value'>{{ attribute(tags, 'surface') ? tagTrans('surface', attribute(tags, 'surface')) : '' }}</span>
+      </li>
+      {% endif %}
+
+      {% if attribute(tags, 'operator') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-drivers-license-o'></i>
+        {{ keyTrans('operator') }}:
+        <span class='value'>{{ tagTrans('operator', attribute(tags, 'operator')) }}</span>
+      </li>
+      {% endif %}
+
+      {% if attribute(tags, 'access') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-unlock'></i>
+        {{ keyTrans('access') }}:
+        <span class='value'>{{ tagTrans('access', attribute(tags, 'access'))}}</span>
+      </li>
+      {% endif %}
+
+      {% if attribute(tags, 'ice_skates') and tags.ice_skates != 'kluning'%}
+      <li class='hasSymbol'>
+        <i class='fa fa-unlock'></i>
+        {{ keyTrans('ice_skates') }}:
+        <span class='value'>{{ tagTrans('access', attribute(tags, 'ice_skates')) }}</span>
+      </li>
+      {% elseif  type == 'way' and tags.waterway and tags.waterway != 'access_point' and tags.ice_skates and tags.ice_skates == 'kluning' %}
+      <li class='hasSymbol'>
+        <i class='fa fa-unlock'></i>
+        {{ keyTrans('ice_skates') }}:
+        <span class='value'>{{ tagTrans('access', 'no') }}</span>
+      </li>
+      {% endif %}
+
+      {% if attribute(tags, 'kluning') and tags.kluning %}
+      <li class='hasSymbol'>
+        <i class='fa fa-unlock'></i>
+        {{ keyTrans('kluning') }}:
+        <span class='value'>{{ tagTrans('access', attribute(tags, 'kluning')) }}</span>
+      </li>
+      {% elseif tags.highway and tags.ice_skates=='kluning' %}
+      <li class='hasSymbol'>
+        <i class='fa fa-unlock'></i>
+        {{ keyTrans('kluning') }}:
+        <span class='value'>{{ tagTrans('access', 'yes')  }}</span>
+      </li>
+      {% endif %}
+
+    </ul>
+  markerSign: '{{ item[''sign''] | raw }}'
+  markerSymbol: |-
+    {% if item.symbol=='pointer' %}
+    {% if restricted_access_value %}
+    {{ markerPointer({ fillColor: '#7F7F7F' }) }}
+    {% else %}
+    {{ markerPointer({ fillColor: '#AA99DD' }) }}
+    {% endif %}
+    {% endif %}
+  listMarkerSymbol: |-
+    {% if item.symbol == 'pointer' %}
+      {% if restricted_access_value %}
+        {{ markerCircle({ fillColor: '#7F7F7F' }) }}
+      {% else %}
+        {{ markerCircle({ fillColor: '#AA99DD' }) }}
+      {% endif %}
+    {% elseif item.symbol == 'polygon' %}
+      polygon
+    {% elseif item.symbol == 'line' %}
+      line
+    {% endif %}
+  style:
+    width: '{{ item.style.width }}'
+    color: |-
+      {% if restricted_access_value %}
+        #7F7F7F
+      {% else %}
+        {{ item.style.color }}
+      {% endif %}
+    text: |-
+      {% if item.text %}
+        {% if attribute(tags, "piste:name") %}
+          {{ localizedTag(tags, 'piste:name') }}  
+        {% elseif attribute(tags, "name") %}
+          {{ localizedTag(tags, 'name') }} 
+        {% endif %}
+      {% endif %}
+    textRepeat: '1'
+    lineCap: round
+    dashArray: |-
+      {% if restricted_access_value %}5,5{% endif %}
+  priority: |-
+    {% if item is defined %}
+      {{ item['priority'] }}
+    {% else %}
+      10
+    {% endif %}
+const:
+  piste:type=ice_skate:
+    symbol: line
+    style:
+      width: 4
+      color: '#AA99DD'
+    text: true
+    priority: 0          
+  ice_skates=kluning: #To align better with either typical access restrictions or pistes, this tag should be more like a piste:type=kluning or a highway with access ice_skates=kluning. However ice_skates=kluning is the *documented* tagging for now.
+    symbol: line
+    style:
+      width: 4
+      color: '#998888'
+    text: true
+    priority: 0    
+  waterway=access_point:
+    symbol: pointer
+    sign: <i class="fas fa-skating"></i>
+    priority: 0
+  leisure=slipway:
+    symbol: pointer
+    sign: <i class="fas fa-skating"></i>
+    priority: 0
+  
