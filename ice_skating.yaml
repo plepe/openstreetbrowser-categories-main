@@ -23,7 +23,7 @@ type: overpass
 query:
   # Ice rinks are intentionally excluded here as they are covered already by leisure.json and/or sport.json
   # TODO: add ice skating relations when there is more than one in the world
-  '10': |-
+  '9': |-
     (
       way["piste:type"="ice_skate"];
       way[waterway][ice_skates];  
@@ -59,9 +59,13 @@ feature:
     {% set constIndex = (key ~ "=" ~ value) %}
     {% set item = const[constIndex] %}
 
-    {% if tags.ice_skates and tags.ice_skates in ['no','private','discouraged'] %}
+    {% if tags.informal and tags.informal in ['yes','unknown'] %}
+      {% set informal_value = tags.informal %}
+    {% endif %}
+
+    {% if tags.ice_skates and tags.ice_skates in ['no','private','discouraged','unknown'] %}
       {% set restricted_access_value = tags.ice_skates %}
-    {% elseif tags.access and tags.access in ['no','private','discouraged'] %}
+    {% elseif tags.access and tags.access in ['no','private','discouraged','unknown'] %}
       {% set restricted_access_value = tags.access %}
     {% elseif  type == 'way' and tags.waterway and tags.waterway != 'access_point' and tags.ice_skates and tags.ice_skates == 'kluning' %}
       {% set restricted_access_value = tags.ice_skates %}
@@ -79,14 +83,17 @@ feature:
     {%if attribute(tags, 'waterbody:name')%}
       {{ localizedTag(tags, 'waterbody:name') }}
     {% endif %}
-  description: |
+  description: |-
+    {% if item.detailSign %}
+      {{ item.detailSign | raw }}
+    {% endif %}
     {{ tagTrans(key, value) }}
   body: |-
     <ul>
       {% if attribute(tags, 'waterbody:name') %}
       <li class='hasSymbol'>
         <i class="fas fa-water"></i>
-        {{ tagTrans('natural', 'water') }}:
+        <span class='key'>{{ tagTrans('natural', 'water') }}:</span>
         <span class='value'>{{ localizedTag(tags, 'waterbody:name') }}</span>
       </li>
       {% endif %}
@@ -94,7 +101,7 @@ feature:
       {% if attribute(tags, 'surface') %}
       <li class='hasSymbol'>
         <i class='fa fa-window-minimize'></i>
-        {{ keyTrans('Surface') }}:
+        <span class='key'>{{ keyTrans('surface') }}:</span>
         <span class='value'>{{ attribute(tags, 'surface') ? tagTrans('surface', attribute(tags, 'surface')) : '' }}</span>
       </li>
       {% endif %}
@@ -102,29 +109,29 @@ feature:
       {% if attribute(tags, 'operator') %}
       <li class='hasSymbol'>
         <i class='fa fa-drivers-license-o'></i>
-        {{ keyTrans('operator') }}:
+        <span class='key'>{{ keyTrans('operator') }}:</span>
         <span class='value'>{{ tagTrans('operator', attribute(tags, 'operator')) }}</span>
       </li>
       {% endif %}
 
-      {% if attribute(tags, 'access') %}
+      {% if attribute(tags, 'informal') %}
       <li class='hasSymbol'>
         <i class='fa fa-unlock'></i>
-        {{ keyTrans('access') }}:
-        <span class='value'>{{ tagTrans('access', attribute(tags, 'access'))}}</span>
+        <span class='key'>{{ keyTrans('informal') }}:</span>
+        <span class='value'>{{ tagTrans('informal', attribute(tags, 'informal'))}}</span>
       </li>
       {% endif %}
 
       {% if attribute(tags, 'ice_skates') and tags.ice_skates != 'kluning'%}
       <li class='hasSymbol'>
         <i class='fa fa-unlock'></i>
-        {{ keyTrans('ice_skates') }}:
+        <span class='key'>{{ keyTrans('ice_skates') }}:</span>
         <span class='value'>{{ tagTrans('access', attribute(tags, 'ice_skates')) }}</span>
       </li>
       {% elseif  type == 'way' and tags.waterway and tags.waterway != 'access_point' and tags.ice_skates and tags.ice_skates == 'kluning' %}
       <li class='hasSymbol'>
         <i class='fa fa-unlock'></i>
-        {{ keyTrans('ice_skates') }}:
+        <span class='key'>{{ keyTrans('ice_skates') }}:</span>
         <span class='value'>{{ tagTrans('access', 'no') }}</span>
       </li>
       {% endif %}
@@ -132,33 +139,61 @@ feature:
       {% if attribute(tags, 'kluning') and tags.kluning %}
       <li class='hasSymbol'>
         <i class='fa fa-unlock'></i>
-        {{ keyTrans('kluning') }}:
+        <span class='key'>{{ keyTrans('kluning') }}:</span>
         <span class='value'>{{ tagTrans('access', attribute(tags, 'kluning')) }}</span>
       </li>
       {% elseif tags.highway and tags.ice_skates=='kluning' %}
       <li class='hasSymbol'>
         <i class='fa fa-unlock'></i>
-        {{ keyTrans('kluning') }}:
+        <span class='key'>{{ keyTrans('kluning') }}:</span>
         <span class='value'>{{ tagTrans('access', 'yes')  }}</span>
       </li>
       {% endif %}
 
+    {% if attribute(tags, 'access') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-unlock'></i>
+        <span class='key'>{{ keyTrans('access') }}:</span>
+        <span class='value'>{{ tagTrans('access', attribute(tags, 'access'))}}</span>
+      </li>
+    {% endif %}
+
+    {% if attribute(tags, 'fee') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-money'></i>
+        <span class='key'>{{ keyTrans('fee') }}:</span>
+        <span class='value'>{{ tagTrans('fee', attribute(tags, 'fee')) }}</span>
+      </li>
+    {% endif %}
+
+    {% if attribute(tags,'ice_skates:description') %}
+      <li class='hasSymbol'>
+        <i class="fas fa-skating"></i>
+        <span class='value'>{{ localizedTag(tags, 'ice_skates:description') }}</span>
+      </li>
+    {% endif %}
+    {% if attribute(tags,'wheelchair:description') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-wheelchair'></i>
+        <span class='value'>{{ localizedTag(tags, 'wheelchair:description') }}</span>
+      </li>
+    {% endif %}
     </ul>
   markerSign: '{{ item[''sign''] | raw }}'
   markerSymbol: |-
     {% if item.symbol=='pointer' %}
     {% if restricted_access_value %}
-    {{ markerPointer({ fillColor: '#7F7F7F' }) }}
+    {{ markerPointer({ fillColor: item.style.color_restricted }) }}   
     {% else %}
-    {{ markerPointer({ fillColor: '#AA99DD' }) }}
+    {{ markerPointer({ fillColor: item.style.color }) }}
     {% endif %}
     {% endif %}
   listMarkerSymbol: |-
     {% if item.symbol == 'pointer' %}
       {% if restricted_access_value %}
-        {{ markerCircle({ fillColor: '#7F7F7F' }) }}
+        {{ markerCircle({ fillColor: item.style.color_restricted }) }}
       {% else %}
-        {{ markerCircle({ fillColor: '#AA99DD' }) }}
+        {{ markerCircle({ fillColor: item.style.color }) }}
       {% endif %}
     {% elseif item.symbol == 'polygon' %}
       polygon
@@ -169,7 +204,9 @@ feature:
     width: '{{ item.style.width }}'
     color: |-
       {% if restricted_access_value %}
-        #7F7F7F
+        {{ item.style.color_restricted }}
+      {% elseif informal_value %}
+        {{ item.style.color_informal }}
       {% else %}
         {{ item.style.color }}
       {% endif %}
@@ -197,21 +234,35 @@ const:
     style:
       width: 4
       color: '#AA99DD'
+      color_informal: '#948CAE'
+      color_restricted: '#7F7F7F'
     text: true
-    priority: 0          
+    priority: 1          
   ice_skates=kluning: #To align better with either typical access restrictions or pistes, this tag should be more like a piste:type=kluning or a highway with access ice_skates=kluning. However ice_skates=kluning is the *documented* tagging for now.
     symbol: line
     style:
       width: 4
       color: '#998888'
+      color_informal: '#DD9999'
+      color_restricted: '#7F7F7F'
     text: true
-    priority: 0    
+    priority: 1    
   waterway=access_point:
     symbol: pointer
     sign: <i class="fas fa-skating"></i>
+    detailSign: <i class="fas fa-water"></i>
+    style:
+      color: '#AA99DD'
+      color_informal: '#948CAE'
+      color_restricted: '#7F7F7F'
     priority: 0
   leisure=slipway:
     symbol: pointer
     sign: <i class="fas fa-skating"></i>
-    priority: 0
+    detailSign: <img src='maki:slipway'>
+    style:
+      color: '#AA99DD'
+      color_informal: '#948CAE'
+      color_restricted: '#7F7F7F'
+    priority: 0 
   
