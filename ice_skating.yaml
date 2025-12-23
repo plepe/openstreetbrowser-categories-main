@@ -23,7 +23,7 @@ type: overpass
 query:
   # Ice rinks are intentionally excluded here as they are covered already by leisure.json and/or sport.json
   # TODO: add ice skating relations when there is more than one in the world
-  '10': |-
+  '9': |-
     (
       way["piste:type"="ice_skate"];
       way[waterway][ice_skates];  
@@ -59,9 +59,13 @@ feature:
     {% set constIndex = (key ~ "=" ~ value) %}
     {% set item = const[constIndex] %}
 
-    {% if tags.ice_skates and tags.ice_skates in ['no','private','discouraged'] %}
+    {% if tags.informal and tags.informal in ['yes','unknown'] %}
+      {% set informal_value = tags.informal %}
+    {% endif %}
+
+    {% if tags.ice_skates and tags.ice_skates in ['no','private','discouraged','unknown'] %}
       {% set restricted_access_value = tags.ice_skates %}
-    {% elseif tags.access and tags.access in ['no','private','discouraged'] %}
+    {% elseif tags.access and tags.access in ['no','private','discouraged','unknown'] %}
       {% set restricted_access_value = tags.access %}
     {% elseif  type == 'way' and tags.waterway and tags.waterway != 'access_point' and tags.ice_skates and tags.ice_skates == 'kluning' %}
       {% set restricted_access_value = tags.ice_skates %}
@@ -79,7 +83,10 @@ feature:
     {%if attribute(tags, 'waterbody:name')%}
       {{ localizedTag(tags, 'waterbody:name') }}
     {% endif %}
-  description: |
+  description: |-
+    {% if item.detailSign %}
+      {{ item.detailSign | raw }}
+    {% endif %}
     {{ tagTrans(key, value) }}
   body: |-
     <ul>
@@ -104,6 +111,14 @@ feature:
         <i class='fa fa-drivers-license-o'></i>
         {{ keyTrans('operator') }}:
         <span class='value'>{{ tagTrans('operator', attribute(tags, 'operator')) }}</span>
+      </li>
+      {% endif %}
+
+      {% if attribute(tags, 'informal') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-unlock'></i>
+        {{ keyTrans('informal') }}:
+        <span class='value'>{{ tagTrans('informal', attribute(tags, 'informal'))}}</span>
       </li>
       {% endif %}
 
@@ -148,17 +163,21 @@ feature:
   markerSymbol: |-
     {% if item.symbol=='pointer' %}
     {% if restricted_access_value %}
-    {{ markerPointer({ fillColor: '#7F7F7F' }) }}
+    {{ markerPointer({ fillColor: item.style.color_restricted }) }}   
+    {% elseif informal_value %}
+    {{ markerPointer({ fillColor: item.style.color_informal }) }}
     {% else %}
-    {{ markerPointer({ fillColor: '#AA99DD' }) }}
+    {{ markerPointer({ fillColor: item.style.color }) }}
     {% endif %}
     {% endif %}
   listMarkerSymbol: |-
     {% if item.symbol == 'pointer' %}
       {% if restricted_access_value %}
-        {{ markerCircle({ fillColor: '#7F7F7F' }) }}
+        {{ markerCircle({ fillColor: item.style.color_restricted }) }}
+      {% elseif informal_value %}
+        {{ markerCircle({ fillColor: item.style.color_informal }) }}
       {% else %}
-        {{ markerCircle({ fillColor: '#AA99DD' }) }}
+        {{ markerCircle({ fillColor: item.style.color }) }}
       {% endif %}
     {% elseif item.symbol == 'polygon' %}
       polygon
@@ -169,7 +188,9 @@ feature:
     width: '{{ item.style.width }}'
     color: |-
       {% if restricted_access_value %}
-        #7F7F7F
+        {{ item.style.color_restricted }}
+      {% elseif informal_value %}
+        {{ item.style.color_informal }}
       {% else %}
         {{ item.style.color }}
       {% endif %}
@@ -197,6 +218,8 @@ const:
     style:
       width: 4
       color: '#AA99DD'
+      color_informal: '#948CAE'
+      color_restricted: '#7F7F7F'
     text: true
     priority: 0          
   ice_skates=kluning: #To align better with either typical access restrictions or pistes, this tag should be more like a piste:type=kluning or a highway with access ice_skates=kluning. However ice_skates=kluning is the *documented* tagging for now.
@@ -204,14 +227,26 @@ const:
     style:
       width: 4
       color: '#998888'
+      color_informal: '#DD9999'
+      color_restricted: '#7F7F7F'
     text: true
     priority: 0    
   waterway=access_point:
     symbol: pointer
     sign: <i class="fas fa-skating"></i>
+    detailSign: <i class="fas fa-water"></i>
+    style:
+      color: '#AA99DD'
+      color_informal: '#948CAE'
+      color_restricted: '#7F7F7F'
     priority: 0
   leisure=slipway:
     symbol: pointer
     sign: <i class="fas fa-skating"></i>
-    priority: 0
+    detailSign: <img src='maki:slipway'>
+    style:
+      color: '#AA99DD'
+      color_informal: '#948CAE'
+      color_restricted: '#7F7F7F'
+    priority: 0 
   
