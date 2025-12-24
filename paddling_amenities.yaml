@@ -8,7 +8,7 @@ name:
   tr: Kürek Tesisleri
 type: overpass
 query:
-  '14': |-
+  '12': |-
     (
       node["canoe"~"^(put_in|egress|put_in;egress)$"];
       node["waterway"="access_point"];
@@ -25,15 +25,12 @@ query:
     )
 feature:
   pre: |-
-    {% if tags.canoe == 'portage' or attribute(tags, 'portage') %}
+    {% if type == 'way' and (tags.canoe == 'portage' or attribute(tags, 'portage')) %}
       {% set key = 'portage' %}
       {% set value = 'portage' %}
-    {% elseif tags.waterway and tags.waterway== 'access_point' %}
+    {% elseif type == 'node' and tags.waterway and tags.waterway == 'access_point' %}
       {% set key = 'waterway' %}
       {% set value = tags.waterway %}
-    {% elseif tags.canoe and tags.canoe not in ['yes','designated','permissive','permit','discouraged','private','no']%}
-      {% set key = 'canoe' %}
-      {% set value = tags.canoe %}
     {% elseif tags.leisure %}
       {% set key = 'leisure' %}
       {% set value = tags.leisure %}
@@ -43,20 +40,50 @@ feature:
     {% elseif tags.rental or tags.canoe_rental or tags.kayak_rental or tags.standup_paddleboard_rental or tags.dingy_rental or tags.pedalboat_rental %}
       {% set key = 'shop' %}
       {% set value = 'rental' %}
+    {% elseif type == 'node' and tags.canoe and tags.canoe in ['put_in','egress','put_in;egress'] %}
+      {% set key = 'canoe' %}
+      {% set value = tags.canoe %}
     {% endif %}
 
     {% set constIndex = (key ~ "=" ~ value) %}
     {% set item = const[constIndex] %}
-  title: |
+
+    {% if tags.informal and tags.informal in ['yes','unknown'] %}
+      {% set informal_value = tags.informal %}
+    {% endif %}
+
+    {% if tags.ice_skates and tags.ice_skates in ['no','private','discouraged','unknown'] %}
+      {% set restricted_access_value = tags.ice_skates %}
+    {% elseif tags.access and tags.access in ['no','private','discouraged','unknown'] %}
+      {% set restricted_access_value = tags.access %}
+    {% elseif  type == 'way' and tags.waterway and tags.waterway != 'access_point' and tags.ice_skates and tags.ice_skates == 'kluning' %}
+      {% set restricted_access_value = tags.ice_skates %}
+    {% endif %}
+  title: |-
     {{ localizedTag(tags, 'name') }}
     {% if attribute(tags, 'ref') %}
       ( {{ localizedTag(tags, 'ref') }} )
     {% endif %}
-  description: |
+  listDetails: |-
+    {%if attribute(tags, 'waterbody:name')%}
+      {{ localizedTag(tags, 'waterbody:name') }}
+    {% endif %}
+  description: |-
+    {% if item.detailSign %}
+      {{ item.detailSign | raw }}
+    {% endif %}
     {{ tagTrans(key, value) }}
   body: |-
     {% if key not in ['shop'] %}
       <ul>
+      {% if attribute(tags, 'waterbody:name') %}
+      <li class='hasSymbol'>
+        <i class="fas fa-water"></i>
+        {{ tagTrans('natural', 'water') }}:
+        <span class='value'>{{ localizedTag(tags, 'waterbody:name') }}</span>
+      </li>
+      {% endif %}
+
         {% if attribute(tags, 'surface') %}
         <li class='hasSymbol'>
           <i class='fa fa-window-minimize'></i>
@@ -65,27 +92,34 @@ feature:
         </li>
         {% endif %}
 
-
         {% if attribute(tags, 'operator') %}
         <li class='hasSymbol'>
           <i class='fa fa-drivers-license-o'></i>
-          {{ keyTrans('Operator') }}:
-          <span class='value'>{{ attribute(tags, 'operator') ? tagTrans('operator', attribute(tags, 'operator')) : '' }}</span>
+          {{ keyTrans('operator') }}:
+          <span class='value'>{{ tagTrans('operator', attribute(tags, 'operator')) }}</span>
+        </li>
+        {% endif %}
+
+        {% if attribute(tags, 'informal') %}
+        <li class='hasSymbol'>
+          <i class='fa fa-unlock'></i>
+          {{ keyTrans('informal') }}:
+          <span class='value'>{{ tagTrans('informal', attribute(tags, 'informal'))}}</span>
         </li>
         {% endif %}
 
         {% if attribute(tags, 'access') %}
         <li class='hasSymbol'>
           <i class='fa fa-unlock'></i>
-          {{ keyTrans('Access') }}:
-          <span class='value'>{{ attribute(tags, 'access') ? tagTrans('access', attribute(tags, 'access')) : '' }}</span>
+          {{ keyTrans('access') }}:
+          <span class='value'>{{ tagTrans('access', attribute(tags, 'access'))}}</span>
         </li>
         {% endif %}
 
         {% if attribute(tags, 'canoe') and tags.canoe in ['yes','designated','permissive','permit','discouraged','private','no'] %}
         <li class='hasSymbol'>
           <i class='fa fa-unlock'></i>
-          {{ keyTrans('Canoe Access') }}:
+          {{ keyTrans('canoe') }}:
           <span class='value'>{{ attribute(tags, 'canoe') ? tagTrans('access', attribute(tags, 'canoe')) : '' }}</span>
         </li>
         {% endif %}
@@ -93,7 +127,7 @@ feature:
         {% if attribute(tags, 'portage') and tags.portage in ['yes','designated','permissive','permit','discouraged','private','no'] %}
         <li class='hasSymbol'>
           <i class='fa fa-unlock'></i>
-          {{ keyTrans('Portage Access') }}:
+          {{ keyTrans('portage') }}:
           <span class='value'>{{ attribute(tags, 'portage') ? tagTrans('access', attribute(tags, 'portage')) : '' }}</span>
         </li>
         {% endif %}
@@ -118,12 +152,58 @@ feature:
 
       </ul>
     {% endif %}
-    <!-- Description and Wheelchair rendered from detailsBody.html. -->
   markerSign: '{{ item[''sign''] | raw }}'
-  markerSymbol: |
-    {% if item['sign'] %}{{ markerPointer({ fillColor: '#FFFFFF' }) }}{% endif %}
-  listMarkerSymbol: |
-    {% if item['sign'] %}{{ markerCircle({ fillColor: '#FFFFFF' }) }}{% endif %}
+  markerSymbol: |-
+    {% if item.symbol=='pointer' %}
+    {% if restricted_access_value %}
+    {{ markerPointer({ fillColor: const.marker.style.color_restricted }) }}   
+    {% elseif informal_value %}
+    {{ markerPointer({ fillColor: const.marker.style.color_informal }) }}
+    {% else %}
+    {{ markerPointer({ fillColor: const.marker.style.color }) }}
+    {% endif %}
+    {% endif %}
+  listMarkerSymbol: |-
+    {% if item.symbol=='pointer' %}
+      {% if restricted_access_value %}
+        {{ markerCircle({ fillColor: const.marker.style.color_restricted }) }}   
+      {% elseif informal_value %}
+        {{ markerCircle({ fillColor: const.marker.style.color_informal }) }}
+      {% else %}
+        {{ markerCircle({ fillColor: const.marker.style.color }) }}
+      {% endif %}
+    {% elseif item.symbol == 'polygon' %}
+      polygon
+    {% elseif item.symbol == 'line' %}
+      line
+    {% endif %}
+  styles : |
+    default{% if item.symbol == 'line' %},casing{% endif %}
+  style:
+    width: '{{ item.style.width }}'
+    color: |-
+      {% if restricted_access_value %}
+        {{ item.style.color_restricted }}
+      {% elseif informal_value %}
+        {{ item.style.color_informal }}
+      {% else %}
+        {{ item.style.color }}
+      {% endif %}
+  style:casing:     
+    width: '{{item.style.casing.width}}'
+    pane: casing 
+  text: |-
+    {% if item.text %}
+      {% if attribute(tags, "piste:name") %}
+        {{ localizedTag(tags, 'piste:name') }}  
+      {% elseif attribute(tags, "name") %}
+        {{ localizedTag(tags, 'name') }} 
+      {% endif %}
+    {% endif %}
+  textRepeat: '1'
+  lineCap: round
+  dashArray: |-
+    {% if restricted_access_value %}5,5{% endif %}
   priority: |-
     {% if item is defined %}
       {{ item['priority'] }}
@@ -131,25 +211,49 @@ feature:
       10
     {% endif %}
 const:
+  marker:
+    style:
+      color: '#FFFFFF'
+      color_informal: '#BFBFBF'
+      color_restricted: '#7F7F7F'
   portage=portage:
-    sign: 
+    symbol: line
     priority: 2
+    text: true
+    style:
+      width: 4
+      color: '#B3D2FF'
+      color_informal: '#99A9BF'
+      color_restricted: '#7F7F7F'
+      casing:
+        width: 10
   waterway=access_point:
-    sign: <i class="fas fa-arrows-alt-v"></i>
+    symbol: pointer
+    sign: <img data-src="temaki:canoe">
+    detailSign: <i class="fas fa-arrows-alt-v"></i>
     priority: 0
   canoe=put_in:
-    sign: <i class="fas fa-long-arrow-alt-down"></i>
+    symbol: pointer
+    sign: <img data-src="temaki:canoe">
+    detailSign: <i class="fas fa-long-arrow-alt-down"></i>
     priority: 0
   canoe=egress:
-    sign: <i class="fas fa-long-arrow-alt-up"></i>
+    symbol: pointer
+    sign: <img data-src="temaki:canoe">
+    detailSign: <i class="fas fa-long-arrow-alt-up"></i>
     priority: 0
   canoe=put_in;egress:
-    sign: <i class="fas fa-arrows-alt-v"></i>
+    symbol: pointer
+    sign: <img data-src="temaki:canoe">
+    detailSign: <i class="fas fa-arrows-alt-v"></i>
     priority: 0
   leisure=slipway:
-    sign: <i class="fas fa-ship"></i>
+    symbol: pointer
+    sign: <img data-src="temaki:canoe">
+    detailSign: <img src='maki:slipway'>
     priority: 1
   shop=shop:
+    symbol: pointer
     sign: <i class="fas fa-store-alt"></i>
     priority: 3
   shop=rental:
