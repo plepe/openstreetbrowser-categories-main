@@ -52,12 +52,14 @@ feature:
       {% set informal_value = tags.informal %}
     {% endif %}
 
-    {% if tags.ice_skates and tags.ice_skates in ['no','private','discouraged','unknown'] %}
-      {% set restricted_access_value = tags.ice_skates %}
+    {% if tags.canoe and tags.canoe in ['no','private','discouraged','unknown'] %}
+      {% set restricted_access_value = tags.canoe %}
+      {% set restricted_canoe_value = tags.canoe %}
+    {% elseif tags.portage and tags.portage in ['no','private','discouraged','unknown'] %}
+      {% set restricted_access_value = tags.portage %}
+      {% set restricted_portage_value = tags.canoe %}
     {% elseif tags.access and tags.access in ['no','private','discouraged','unknown'] %}
       {% set restricted_access_value = tags.access %}
-    {% elseif  type == 'way' and tags.waterway and tags.waterway != 'access_point' and tags.ice_skates and tags.ice_skates == 'kluning' %}
-      {% set restricted_access_value = tags.ice_skates %}
     {% endif %}
   title: |-
     {{ localizedTag(tags, 'name') }}
@@ -74,91 +76,131 @@ feature:
     {% endif %}
     {{ tagTrans(key, value) }}
   body: |-
-    {% if key not in ['shop'] %}
-      <ul>
-      {% if attribute(tags, 'waterbody:name') %}
+    <ul>
+    {% if attribute(tags, 'waterbody:name') %}
       <li class='hasSymbol'>
         <i class="fas fa-water"></i>
-        {{ tagTrans('natural', 'water') }}:
+        <span class='key'>{{ tagTrans('natural', 'water') }}:</span>
         <span class='value'>{{ localizedTag(tags, 'waterbody:name') }}</span>
       </li>
-      {% endif %}
-
-        {% if attribute(tags, 'surface') %}
-        <li class='hasSymbol'>
-          <i class='fa fa-window-minimize'></i>
-          {{ keyTrans('Surface') }}:
-          <span class='value'>{{ attribute(tags, 'surface') ? tagTrans('surface', attribute(tags, 'surface')) : '' }}</span>
-        </li>
-        {% endif %}
-
-        {% if attribute(tags, 'operator') %}
-        <li class='hasSymbol'>
-          <i class='fa fa-drivers-license-o'></i>
-          {{ keyTrans('operator') }}:
-          <span class='value'>{{ tagTrans('operator', attribute(tags, 'operator')) }}</span>
-        </li>
-        {% endif %}
-
-        {% if attribute(tags, 'informal') %}
-        <li class='hasSymbol'>
-          <i class='fa fa-unlock'></i>
-          {{ keyTrans('informal') }}:
-          <span class='value'>{{ tagTrans('informal', attribute(tags, 'informal'))}}</span>
-        </li>
-        {% endif %}
-
-        {% if attribute(tags, 'access') %}
-        <li class='hasSymbol'>
-          <i class='fa fa-unlock'></i>
-          {{ keyTrans('access') }}:
-          <span class='value'>{{ tagTrans('access', attribute(tags, 'access'))}}</span>
-        </li>
-        {% endif %}
-
-        {% if attribute(tags, 'canoe') and tags.canoe in ['yes','designated','permissive','permit','discouraged','private','no'] %}
-        <li class='hasSymbol'>
-          <i class='fa fa-unlock'></i>
-          {{ keyTrans('canoe') }}:
-          <span class='value'>{{ attribute(tags, 'canoe') ? tagTrans('access', attribute(tags, 'canoe')) : '' }}</span>
-        </li>
-        {% endif %}
-
-        {% if attribute(tags, 'portage') and tags.portage in ['yes','designated','permissive','permit','discouraged','private','no'] %}
-        <li class='hasSymbol'>
-          <i class='fa fa-unlock'></i>
-          {{ keyTrans('portage') }}:
-          <span class='value'>{{ attribute(tags, 'portage') ? tagTrans('access', attribute(tags, 'portage')) : '' }}</span>
-        </li>
-        {% endif %}
-
-        {% if attribute(tags, 'fee') %}
-        <li class='hasSymbol'>
-          <i class='fa fa-money'></i>
-          {{ keyTrans('Fee') }}:
-          <span class='value'>{{ attribute(tags, 'fee') ? tagTrans('fee', attribute(tags, 'fee')) : '' }}</span>
-        </li>
-        {% endif %}
-
-        {% if attribute(tags, 'mapillary') %}
-        <li class='hasSymbol'>
-          <i class='fa fa-camera'></i>
-          {{ trans('Photos') }}:
-          <span class='value'>
-            <a href="https://www.mapillary.com/app/?focus=photo&pKey={{ attribute(tags, 'mapillary') }}" rel="noreferrer" target="_blank">Mapillary</a>
-          </span>
-        </li>
-        {% endif %}
-
-      </ul>
     {% endif %}
+
+    {% if attribute(tags, 'surface') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-window-minimize'></i>
+        <span class='key'>{{ keyTrans('surface') }}:</span>
+        <span class='value'>{{ attribute(tags, 'surface') ? tagTrans('surface', attribute(tags, 'surface')) : '' }}</span>
+      </li>
+    {% endif %}
+
+    {% if attribute(tags, 'operator') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-drivers-license-o'></i>
+        <span class='key'>{{ keyTrans('operator') }}:</span>
+        <span class='value'>{{ tagTrans('operator', attribute(tags, 'operator')) }}</span>
+      </li>
+    {% endif %}
+
+    {% if attribute(tags, 'informal') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-unlock'></i>
+        <span class='key'>{{ keyTrans('informal') }}:</span>
+        <span class='value'>{{ tagTrans('informal', attribute(tags, 'informal'))}}</span>
+      </li>
+    {% endif %}
+
+    {% if attribute(tags, 'canoe')  %}
+      {% if tags.canoe != 'portage' %}
+        <li class='hasSymbol'>
+          <i class='fa fa-unlock'></i>
+          <span class='key'>{{ keyTrans('canoe') }}:</span>
+          <span class='value'>{{ tagTrans('access', attribute(tags, 'canoe')) }}</span>
+        </li>
+      {% elseif type == 'way' and attribute(tags, 'highway') and tags.canoe == 'portage' %}
+        <li class='hasSymbol'>
+          <i class='fa fa-unlock'></i>
+          <span class='key'>{{ keyTrans('portage') }}:</span>
+          <span class='value'>{{ tagTrans('access', 'yes') }}</span>
+        </li>
+      {% endif %}
+    {% endif %}
+
+    {% if attribute(tags, 'portage')  %}
+      <li class='hasSymbol'>
+        <i class='fa fa-unlock'></i>
+        <span class='key'>{{ keyTrans('portage') }}:</span>
+        <span class='value'>{{ tagTrans('access', attribute(tags, 'portage')) }}</span>
+      </li>
+    {% endif %}
+
+    {% if attribute(tags, 'access') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-unlock'></i>
+        <span class='key'>{{ keyTrans('access') }}:</span>
+        <span class='value'>{{ tagTrans('access', attribute(tags, 'access'))}}</span>
+      </li>
+    {% endif %}
+
+    {% if attribute(tags, 'fee') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-money'></i>
+        <span class='key'>{{ keyTrans('fee') }}:</span>
+        <span class='value'>{{ tagTrans('fee', attribute(tags, 'fee')) }}</span>
+      </li>
+    {% endif %}
+
+    {% if attribute(tags, 'tidal') %}
+      <li class='hasSymbol'>
+        <i class="fa fa-arrow-up-from-water-pump"></i>
+        <span class='key'>{{ keyTrans('tidal') }}:</span>
+        <span class='value'>{{ tagTrans('tidal', attribute(tags, 'tidal')) }}</span>
+      </li>
+    {% endif %}
+
+    {% if attribute(tags, 'intermittent') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-percentage'></i>
+        <span class='key'>{{ keyTrans('intermittent') }}:</span>
+        <span class='value'>{{ tagTrans('intermittent', attribute(tags, 'intermittent')) }}</span>
+      </li>
+    {% endif %}
+
+    {% if attribute(tags, 'seasonal') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-leaf'></i>
+        <span class='key'>{{ keyTrans('seasonal') }}:</span>
+        <span class='seasonal'>{{ tagTrans('seasonal', attribute(tags, 'seasonal')) }}</span>
+      </li>
+    {% endif %}
+
+    {% if attribute(tags, 'mapillary') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-camera'></i>
+        <span class='key'>{{ trans('Photos') }}:</span>
+        <span class='value'>
+          <a href="https://www.mapillary.com/app/?focus=photo&pKey={{ attribute(tags, 'mapillary') }}" rel="noreferrer" target="_blank">Mapillary</a>
+        </span>
+      </li>
+    {% endif %}
+
+    {% if attribute(tags,'canoe:description') %}
+      <li class='hasSymbol'>
+        <img data-src="temaki:canoe">
+        <span class='value'>{{ localizedTag(tags, 'canoe:description') }}</span>
+      </li>
+    {% endif %}
+    {% if attribute(tags,'wheelchair:description') %}
+      <li class='hasSymbol'>
+        <i class='fa fa-wheelchair'></i>
+        <span class='value'>{{ localizedTag(tags, 'wheelchair:description') }}</span>
+      </li>
+    {% endif %}
+    </ul>
   markerSign: '{{ item[''sign''] | raw }}'
   markerSymbol: |-
     {% if item.symbol=='pointer' %}
     {% if restricted_access_value %}
     {{ markerPointer({ fillColor: const.marker.style.color_restricted }) }}   
-    {% elseif informal_value %}
-    {{ markerPointer({ fillColor: const.marker.style.color_informal }) }}
     {% else %}
     {{ markerPointer({ fillColor: const.marker.style.color }) }}
     {% endif %}
@@ -167,8 +209,6 @@ feature:
     {% if item.symbol=='pointer' %}
       {% if restricted_access_value %}
         {{ markerCircle({ fillColor: const.marker.style.color_restricted }) }}   
-      {% elseif informal_value %}
-        {{ markerCircle({ fillColor: const.marker.style.color_informal }) }}
       {% else %}
         {{ markerCircle({ fillColor: const.marker.style.color }) }}
       {% endif %}
@@ -189,21 +229,22 @@ feature:
       {% else %}
         {{ item.style.color }}
       {% endif %}
+    text: |-
+      {% if item.text %}
+        {% if attribute(tags, "piste:name") %}
+          {{ localizedTag(tags, 'piste:name') }}  
+        {% elseif attribute(tags, "name") %}
+          {{ localizedTag(tags, 'name') }} 
+        {% endif %}
+      {% endif %}
+    textRepeat: '1'
+    textOffset: -8
+    lineCap: round
+    dashArray: |-
+      {% if restricted_access_value %}5,5{% endif %}
   style:casing:     
     width: '{{item.style.casing.width}}'
     pane: casing 
-  text: |-
-    {% if item.text %}
-      {% if attribute(tags, "piste:name") %}
-        {{ localizedTag(tags, 'piste:name') }}  
-      {% elseif attribute(tags, "name") %}
-        {{ localizedTag(tags, 'name') }} 
-      {% endif %}
-    {% endif %}
-  textRepeat: '1'
-  lineCap: round
-  dashArray: |-
-    {% if restricted_access_value %}5,5{% endif %}
   priority: |-
     {% if item is defined %}
       {{ item['priority'] }}
@@ -213,12 +254,11 @@ feature:
 const:
   marker:
     style:
-      color: '#FFFFFF'
-      color_informal: '#BFBFBF'
+      color: '#B3D2FF'
       color_restricted: '#7F7F7F'
   portage=portage:
     symbol: line
-    priority: 2
+    priority: 4
     text: true
     style:
       width: 4
@@ -257,6 +297,7 @@ const:
     sign: <i class="fas fa-store-alt"></i>
     priority: 3
   shop=rental:
+    symbol: pointer
     sign: <i class="fas fa-store"></i>
     priority: 3
   
