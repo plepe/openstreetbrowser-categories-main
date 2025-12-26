@@ -107,5 +107,6 @@
     "Objects with diet information": "Objecten met dieet informatie",
     "date format not understood": "Datumformaat onbekend",
     "outdated feature": "Achterhaalde informatie",
-    "xmas:outdated-warning": "Object werd niet geactualiseerd voor het huidige seizoen! Controleer en zet de tag 'xmas:lastcheck' op de huidige datum alstublieft."
+    "xmas:outdated-warning": "Object werd niet geactualiseerd voor het huidige seizoen! Controleer en zet de tag 'xmas:lastcheck' op de huidige datum alstublieft.",
+    "category:ice_skating": "Schaatsen"
 }

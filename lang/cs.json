@@ -112,5 +112,6 @@
     "deprecated": "Značka %s je zastaralá. Podrobnosti naleznete <a target='_blank' href=\"%s\">zde</a>.",
     "category:cycleway_types": "Typy cyklostezek",
     "category:cycleway_width": "Šířka cyklostezky",
-    "category:groceries": "Potraviny"
+    "category:groceries": "Potraviny",
+    "category:ice_skating": "Bruslení"
 }

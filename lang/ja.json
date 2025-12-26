@@ -107,5 +107,6 @@
     "Objects with diet information": "食事制限情報のあるオブジェクト",
     "date format not understood": "日付形式が正しくありません",
     "outdated feature": "期間外",
-    "xmas:outdated-warning": "今のシーズンは地物が更新されていません! チェックして現在の日付に'xmas:lastcheck' タグをセットしてください。"
+    "xmas:outdated-warning": "今のシーズンは地物が更新されていません! チェックして現在の日付に'xmas:lastcheck' タグをセットしてください。",
+    "category:ice_skating": "アイススケート"
 }

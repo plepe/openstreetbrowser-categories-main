@@ -107,5 +107,6 @@
     "Objects with diet information": "Объекты с информацией о питании",
     "date format not understood": "Неверный формат даты",
     "outdated feature": "Устаревшие объекты",
-    "xmas:outdated-warning": "Объект не был обновлен в текущем сезоне! Пожалуйста, проверьте и установите текущую дату в теге 'xmas: lastcheck'."
+    "xmas:outdated-warning": "Объект не был обновлен в текущем сезоне! Пожалуйста, проверьте и установите текущую дату в теге 'xmas: lastcheck'.",
+    "category:ice_skating": "Катание на коньках"
 }

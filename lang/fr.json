@@ -112,5 +112,6 @@
     "xmas:outdated-warning": "Cet élément n'a pas été mis à jour pour cette saison ! Veuillez vérifier son existence et régler la valeur de \"xmas:lastcheck\" à la date actuelle.",
     "category:cycleway_types": "Types de pistes cyclables",
     "category:cycleway_width": "Largeur des pistes cyclables",
-    "category:groceries": "Magasin alimentaire"
+    "category:groceries": "Magasin alimentaire",
+    "category:ice_skating": "Patinage sur glace"
 }

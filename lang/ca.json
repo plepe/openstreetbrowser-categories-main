@@ -111,5 +111,6 @@
     "deprecated": "L'etiqueta %s està obsoleta. Consulteu <a target='_blank' href=\"%s\">aquí</a> per obtenir més informació.",
     "category:cycleway_types": "Tipus de carril bici",
     "category:cycleway_width": "Amplada del carril bici",
-    "category:etymology": "Etimologia"
+    "category:etymology": "Etimologia",
+    "category:ice_skating": "Patinatge sobre gel"
 }

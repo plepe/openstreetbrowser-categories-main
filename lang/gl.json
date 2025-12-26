@@ -107,5 +107,6 @@
     "Objects with diet information": "Obxectos con información sobre dietas",
     "date format not understood": "Formato de data non válido",
     "outdated feature": "Elementos obsoletos",
-    "xmas:outdated-warning": "O elemento non foi actualizado para a tempada actual! Por favor, verifica e define a etiqueta 'xmas:lastcheck' para a data actual."
+    "xmas:outdated-warning": "O elemento non foi actualizado para a tempada actual! Por favor, verifica e define a etiqueta 'xmas:lastcheck' para a data actual.",
+    "category:ice_skating": "Patinaxe sobre xeo"
 }

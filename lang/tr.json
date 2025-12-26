@@ -108,5 +108,6 @@
     "date format not understood": "Geçersiz Tarih Formatı",
     "outdated feature": "Güncelliğini yitirmiş özellikler",
     "xmas:outdated-warning": "Özellik mevcut sezon için güncellenmedi! Lütfen 'xmas:lastcheck' etiketini kontrol edip geçerli tarihe ayarlayın.",
-    "deprecated": "%s etiketi kullanımdan kaldırıldı. Ayrıntılar için<a target='_blank' href=\"%s\">buraya</a> bakınız."
+    "deprecated": "%s etiketi kullanımdan kaldırıldı. Ayrıntılar için<a target='_blank' href=\"%s\">buraya</a> bakınız.",
+    "category:ice_skating": "Buz pateni"
 }

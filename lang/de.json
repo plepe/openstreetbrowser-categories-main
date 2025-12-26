@@ -111,5 +111,6 @@
     "xmas:outdated-warning": "Objekt wurde nicht für die aktuelle Saison aktualisiert. Bitte prüfen und das Tag 'xmas:lastcheck' auf das aktuelle Datum setzen.",
     "category:cycleway_types": "Arten von Fahrradwegen",
     "category:cycleway_width": "Breite des Fahrradwegs",
-    "category:etymology": "Wortherkunft"
+    "category:etymology": "Wortherkunft",
+    "category:ice_skating": "Eislaufen"
 }
