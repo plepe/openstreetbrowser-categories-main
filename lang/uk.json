@@ -112,5 +112,8 @@
     "category:etymology": "Етимологія",
     "deprecated": "Тег %s застарів. Дивіться <a target='_blank' href=\"%s\">тут</a>, щоб дізнатися більше.",
     "category:cycleway_types": "Типи велодоріжок",
-    "category:groceries": "Бакалія"
+    "category:groceries": "Бакалія",
+    "category:graves": "Могили",
+    "category:ice_skating": "Катання на ковзанах",
+    "category:playground-details": "Дитячі майданчики"
 }
