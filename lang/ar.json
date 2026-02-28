@@ -1,1 +1,19 @@
-{}
+{
+    "category:historic": "تاريخيّ",
+    "category:index": "فهرس الفئات",
+    "category:leisure_sport_shopping": "الترفيه، الرياضة والتسوُّق",
+    "category:services": "الخدمات",
+    "category:transport": "المواصلات",
+    "category:transport_walk": "المشي",
+    "category:transport_cycle": "ركوب الدراجات",
+    "category:transport_pt": "المواصلات العامة",
+    "category:transport_car": "حركة المرور الفردية",
+    "category:infrastructure": "البنية التحتية",
+    "category:developments": "التخطيط والإنشاء",
+    "category:energy": "الطاقة",
+    "category:railway": "السكك الحديدية",
+    "category:special": "خاص",
+    "category:osm-qa": "مراقبة جودة خريطة الشارع المفتوح",
+    "category:internet": "الوصول إلى الإنترنت",
+    "category:kerbs": "أرصفة"
+}
