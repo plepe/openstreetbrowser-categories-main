@@ -15,7 +15,7 @@ query:
     nwr[historic];
     nwr[tourism~'^(.*;|)(attraction|artwork)(;.*|)$'];
     nwr[heritage];
-    nwr[amenity~'^(.*;|)(fountain|arts_centre|place_of_worship|theatre)(;.*|)$'];
+    nwr[amenity~'^(.*;|)(fountain|arts_centre|place_of_worship|theatre|public_bookcase)(;.*|)$'];
     nwr[man_made~'^(.*;|)(windmill|watermill|bridge|cairn|cross|geoglyph|hongsalmun|iljumun|lighthouse|obelisk|observatory|offshore_platform|paifang|stupa|torii)(;.*|)$'];
     nwr[natural=tree][denotation~'^(natural_monument|landmark)$'];
     )
@@ -158,6 +158,8 @@ const:
       icon: '<i class="fas fa-university"></i>'
     amenity=place_of_worship:
       icon: '<i class="fas fa-place-of-worship"></i>'
+    amenity=public_bookcase:
+      icon: '<i class="fas fa-book"></i>'
     amenity=theatre:
       icon: '<i class="fas fa-theater-masks"></i>'
     natural=tree:
