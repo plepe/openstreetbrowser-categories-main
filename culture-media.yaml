@@ -16,6 +16,7 @@ query:
     nwr[tourism~'^(.*;|)(attraction|artwork)(;.*|)$'];
     nwr[heritage];
     nwr[amenity~'^(.*;|)(fountain|arts_centre|place_of_worship|theatre|public_bookcase)(;.*|)$'];
+    nwr[leisure~'^(.*;|)(parklet)(;.*|)$'];
     nwr[man_made~'^(.*;|)(windmill|watermill|bridge|cairn|cross|geoglyph|hongsalmun|iljumun|lighthouse|obelisk|observatory|offshore_platform|paifang|stupa|torii)(;.*|)$'];
     nwr[natural=tree][denotation~'^(natural_monument|landmark)$'];
     )
@@ -79,6 +80,8 @@ feature:
       {{ keyTrans('heritage') }}
     {% elseif tags.man_made %}
       {{ tagTransList('man_made', tags.man_made) }}
+    {% elseif tags.leisure %}
+      {{ tagTransList('leisure', tags.leisure) }}
     {% elseif tags.natural %}
       {{ tagTrans('natural', tags.natural) }} ({{ tagTrans('denotation', tags.denotation) }})
     {% endif %}
@@ -164,6 +167,8 @@ const:
       icon: '<i class="fas fa-theater-masks"></i>'
     natural=tree:
       icon: '<i class="fas fa-tree"></i>'
+    leisure=parklet:
+      icon: '<img data-src="temaki:tree_and_bench?stroke=white">'
     heritage:
     man_made:
     other:
