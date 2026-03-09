@@ -59,17 +59,10 @@ filter:
       {{ trans('filter:type') }}
     type: select
     show_default: true
-    values:
-      - bar
-      - biergarten
-      - cafe
-      - fast_food
-      - food_court
-      - ice_cream
-      - pub
-      - restaurant
-      - canteen
-      - nightclub
+    values: |
+      {% for k, icon in const.type %}
+      <option value='{{ k }}' query='nwr[amenity^"{{ k }}"]'>{{ tagTrans('amenity', k) }}</option>
+      {% endfor %}
     valueName: |
       {{ tagTrans('amenity', value) }}
     op: 'has'
@@ -243,3 +236,5 @@ const:
     ice_cream: '&#127848;'
     pub: '&#127866;'
     nightclub: '<i class="fa-regular fa-moon"></i>'
+    food_court: null
+    canteen: null
