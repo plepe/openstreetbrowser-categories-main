@@ -24,7 +24,7 @@ name:
   uk: Гастрономія
 type: overpass
 query:
-  15: nwr[amenity~'^(.*; *|)(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant|canteen)(| *;.*)$'];
+  15: nwr[amenity~'^(.*; *|)(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant|canteen|nightclub)(| *;.*)$'];
 feature:
   description: |
     {{ tagTransList('amenity', tags.amenity) }}
@@ -69,6 +69,7 @@ filter:
       - pub
       - restaurant
       - canteen
+      - nightclub
     valueName: |
       {{ tagTrans('amenity', value) }}
     op: 'has'
@@ -241,3 +242,4 @@ const:
     fast_food: '&#127828;'
     ice_cream: '&#127848;'
     pub: '&#127866;'
+    nightclub: '<i class="fa-regular fa-moon"></i>'
