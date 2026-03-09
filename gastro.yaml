@@ -51,7 +51,8 @@ feature:
       {% endif %}
     </ul>
   markerSign: |
-    {% if tags.amenity=='bar' %}&#127864;{% elseif tags.amenity=='biergarten'%}&#127867;{% elseif tags.amenity=='cafe' %}&#9749;{% elseif tags.amenity=='fast_food' %}&#127828;{% elseif tags.amenity=='ice_cream' %}&#127848;{% elseif tags.amenity=='pub' %}&#127866;{% else %}&#127860;{% endif %}
+    {% set firstType = tags.amenity|split(';')[0] %}
+    {{ const.type[firstType]|default(const.type.restaurant)|raw }}
 filter:
   amenity:
     name: |
@@ -232,3 +233,11 @@ const:
     diet:lactose_free: {}
     diet:halal: {}
     diet:kosher: {}
+  type:
+    restaurant: '&#127860;'
+    bar: '&#127864;'
+    biergarten: '&#127867;'
+    cafe: '&#9749;'
+    fast_food: '&#127828;'
+    ice_cream: '&#127848;'
+    pub: '&#127866;'
