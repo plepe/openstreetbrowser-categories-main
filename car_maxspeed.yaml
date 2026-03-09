@@ -22,7 +22,7 @@ name:
   tr: En yüksek hız
 query:
   11: way[highway~"^(motorway|trunk)$"];
-  13: way[highway~"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|tertiary)$"];
+  13: way[highway~"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|tertiary|secondary_link|tertiary_link)$"];
   15: way[highway~"^(motorway|motorway_link|trunk|trunk_link|primary|primary_link|secondary|secondary_link|tertiary|tertiary_link|residential|unclassified)$"];
   16: |-
     (
