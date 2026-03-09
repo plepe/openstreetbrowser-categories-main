@@ -224,9 +224,15 @@ const:
     diet:raw: {}
     diet:gluten_free: {}
     diet:dairy_free: {}
+    diet:sugar_free: {}
     diet:lactose_free: {}
     diet:halal: {}
     diet:kosher: {}
+    diet:meat: {}
+    diet:non-vegetarian: {}
+    diet:keto: {}
+    diet:alcohol_free : {}
+    diet:excipient_free: {}
   type:
     restaurant: '&#127860;'
     bar: '&#127864;'
