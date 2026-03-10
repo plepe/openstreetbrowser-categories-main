@@ -233,11 +233,8 @@ const:
     diet:keto: {}
     diet:alcohol_free : {}
     diet:excipient_free: {}
-    diet:healthy: {}
     diet:organic: {}
     diet:carnivore: {}
-    diet:omnivore: {}
-    diet:plant-based: {}
     diet:wholegrain: {}
   type:
     restaurant: '&#127860;'
