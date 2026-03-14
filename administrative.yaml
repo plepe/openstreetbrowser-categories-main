@@ -25,35 +25,18 @@ name:
   tr: İdari Alanlar
 query:
   3: |-
-    (
-    way[admin_level=2];
     relation[admin_level=2];
-    )
   6: |-
-    (
-    way[admin_level~"^(2|3)$"];
     relation[admin_level~"^(2|3)$"];
-    )
   9: |-
-    (
-    way[admin_level~"^(2|3|4|5)$"];
     relation[admin_level~"^(2|3|4|5)$"];
-    )
   11: |-
-    (
-    way[admin_level~"^(2|3|4|5|6|7)$"];
     relation[admin_level~"^(2|3|4|5|6|7)$"];
-    )
   13: |-
-    (
-    way[admin_level~"^(2|3|4|5|6|7|8|9)$"];
     relation[admin_level~"^(2|3|4|5|6|7|8|9)$"];
-    )
   15: |-
-    (
-    way[admin_level~"^(2|3|4|5|6|7|8|9|10|11)$"];
     relation[admin_level~"^(2|3|4|5|6|7|8|9|10|11)$"];
-    )
+members: true
 feature:
   pre: |-
     {% set width = map.zoom < const[tags.admin_level].minZoom + 1.5 ? 1.5 : 3 %}
@@ -76,8 +59,37 @@ feature:
     {{ tagTrans("admin_level", tags.admin_level) }}
   body: |-
     {{ keyTrans("admin_level") }}: {{ tags.admin_level }}
-  listExclude: |-
-    {{ type == 'way' }}
+memberFeature:
+  pre: |-
+    {% set min_admin_level = 20 %}
+    {% for r in masters %}
+      {% if r.tags.admin_level and r.tags.boundary == 'administrative' %}
+        {% if r.tags.admin_level * 1 < min_admin_level %}
+          {% set min_admin_level = r.tags.admin_level * 1 %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {% set width = 0 %}
+    {% set color = 'black' %}
+    {% if min_admin_level < 20 %}
+      {% set width = map.zoom < const[min_admin_level].minZoom + 1.5 ? 1.5 : 3 %}
+      {% set color = colorInterpolate(['red', 'blue'], (min_admin_level - 2) / 10) %}
+    {% endif %}
+  exclude: |-
+    {{ type != 'way' }}
+  listExclude: true
+  body: |
+    {% for r in masters %}
+      {% if r.tags.admin_level and r.tags.boundary == 'administrative' %}
+        {{ r.tags.admin_level }} <a href="#administrative/{{ r.id }}">{{ localizedTag(r.tags, 'name') }} ({{ tagTrans("admin_level", r.tags.admin_level) }})</a><br>
+      {% endif %}
+    {% endfor %}
+  style:
+    width: |-
+      {{ width }}
+    color: |-
+      {{ color }}
 info: |-
   <table>
   {% for admin_level, data in const %}
