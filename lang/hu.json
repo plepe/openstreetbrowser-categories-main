@@ -30,7 +30,7 @@
     "category:phone": "Telefon",
     "category:places": "Helyek",
     "category:places_geo": "Helyek",
-    "category:playgrounds": "Játszóterek",
+    "category:playgrounds": "Játszótér",
     "category:post": "Posta",
     "category:power_routes": "Távvezetékek",
     "category:proposals": "Tervezett objektumok",
@@ -113,5 +113,7 @@
     "category:cycleway_types": "Kerékpárútfajták",
     "category:cycleway_width": "Kerékpárút szélessége",
     "category:groceries": "Élelmiszer",
-    "category:ice_skating": "Korcsolyázás"
+    "category:ice_skating": "Korcsolyázás",
+    "category:graves": "Sírok",
+    "category:playground-details": "Játszóterek"
 }
