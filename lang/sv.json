@@ -103,7 +103,7 @@
     "date format not understood": "Ogiltigt datumformat",
     "outdated feature": "Funktioner föråldrade",
     "xmas:outdated-warning": "Funktionen har inte uppdaterats för nuvarande säsong! Kontrollera och ange taggen \"xmas:lastcheck\" till det aktuella datumet.",
-    "deprecated": "Tag %s depreceras. Se <a target='_blank' href=\"%s\"> här </a> för detaljer.",
+    "deprecated": "Taggen %s är föråldrad. Titta <a target='_blank' href=\"%s\"> här </a> för detaljer.",
     "category:special": "Särskilda",
     "category:internet": "Tillgång till internet",
     "category:kerbs": "Trottoarkanter",
