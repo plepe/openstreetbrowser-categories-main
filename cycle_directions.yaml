@@ -23,6 +23,8 @@ feature:
     {% endif %}
 
     {% set driving_side = 'right' %}
+  description: |-
+    {{ tagTrans('highway', tags.highway) }}
   markerSymbol: null
   listMarkerSymbol: line
   styles: '{% if oneway != 0 %}default,{% endif %}left,right'
