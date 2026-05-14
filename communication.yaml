@@ -29,6 +29,7 @@ query:
     (
     nwr[amenity~'^(.*;|)(post_office|internet_cafe)(;.*|)$'];
     nwr[office~"^(.*;|)(telecommunication|it|newspaper|publisher|advertising_agency)(;.*|)$"];
+    nwr[post_office];
     );
   15: |-
     (
@@ -36,10 +37,20 @@ query:
     nwr[office~"^(.*;|)(telecommunication|it|newspaper|publisher|advertising_agency)(;.*|)$"];
     nwr[vending~"^(|.*;)parcel_pickup(;.*|)$"];
     nwr[vending~"^(|.*;)parcel_mail_in(;.*|)$"];
+    nwr[post_office];
     );
 feature:
   pre: |-
-    {% if tags.vending %}
+    {% if tags.amenity == 'post_office' %}
+      {% set key = 'amenity' %}
+      {% set value = tags.amenity %}
+    {% elseif tags.post_office %}
+      {% set key = 'post_office' %}
+      {% set value = tags.post_office %}
+      {% if tags.post_office == 'yes' %}
+        {% set deprecated = ['post_office=yes', 'https://wiki.openstreetmap.org/wiki/Key:post_office'] %}
+      {% endif %}
+    {% elseif tags.vending %}
       {% set key = 'amenity' %}
       {% set value = 'parcel_locker' %}
       {% set deprecated = ['vending=' ~ tags.vending, 'https://wiki.openstreetmap.org/wiki/Proposed_features/amenity%3Dparcel_locker'] %}
@@ -50,16 +61,21 @@ feature:
       {% set key = 'office' %}
       {% set value = tags.office %}
     {% endif %}
+  title: |-
+    {{ localizedTag(tags, 'post_office:name') |default(localizedTag(tags, 'name')) |default(localizedTag(tags, 'operator')) | default(localizedTag(tags, 'ref')) }}
   description: |-
     {% if key == 'office' %}
       {{ keyTrans('office') }} ({{ tagTransList('office', tags.office) }})
     {% else %}
       {{ tagTransList(key, value) }}
     {% endif %}
+  details: |-
+    {{ enumerate(attribute(tags, 'post_office:brand')|default(attribute(tags, 'brand'))) }}
   body: |-
     {% if deprecated %}<div class='warning'>{{ repoTrans('deprecated', deprecated[0], deprecated[1])|raw }}</div>{% endif %}
     <ul>
-    {% if tags.brand %}<li>{{ keyTrans('brand') }}: {{ localizedTag(tags, 'brand') }}</li>{% endif %}
+    {% if attribute(tags, 'post_office:brand') %}<li>{{ keyTrans('brand') }}: {{ localizedTag(tags, 'post_office:brand') }}</li>
+    {% elseif tags.brand %}<li>{{ keyTrans('brand') }}: {{ localizedTag(tags, 'brand') }}</li>{% endif %}
     {% if tags.operator %}<li>{{ keyTrans('operator') }}: {{ localizedTag(tags, 'operator') }}</li>{% endif %}
 
     {% if (key == 'amenity' and value == 'parcel_locker') or tags.parcel_pickup or tags.parcel_mail_in %}
@@ -99,6 +115,12 @@ const:
   amenity=post_box:
     sign: <img src='maki:post?size=11'>
     zoom: 16
+  post_office=post_partner:
+    sign: <i class="fa-solid fa-envelopes-bulk"></i>
+    zoom: 13
+  post_office=post_annex:
+    sign: <i class="fa-solid fa-envelopes-bulk"></i>
+    zoom: 13
   amenity=internet_cafe:
     sign: <i class='fa fa-laptop' aria-hidden='true'></i>
     zoom: 13
