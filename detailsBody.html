@@ -109,6 +109,31 @@
 </li>
 {% endif %}
 
+{% if tags.mobile %}
+<li class='hasSymbol'>
+  <i class="fa fa-phone" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('contact:mobile') }}:</span>
+  <span class='value'>
+    {% for i, v in tags.mobile|split(';') -%}
+    {%- if i > 0 %}, {% endif %}
+    <a target='_blank' href='tel:{{ v }}'>{{ v }}</a>
+    {%- endfor %}
+  </span>
+</li>
+{% endif %}
+
+{% if attribute(tags, 'contact:mobile') %}
+<li class='hasSymbol'>
+  <i class="fa fa-phone" aria-hidden="true"></i>
+  <span class='key'>{{ keyTrans('contact:mobile') }}:</span>
+  <span class='value'>
+    {% for i, v in attribute(tags, 'contact:mobile')|split(';') -%}
+    {%- if i > 0 %}, {% endif %}
+    <a target='_blank' href='tel:{{ v }}'>{{ v }}</a>
+    {%- endfor %}
+  </span>
+</li>
+{% endif %}
 
 {% if attribute(tags, 'contact:email') %}
 <li class='hasSymbol'>
