@@ -109,30 +109,48 @@
 </li>
 {% endif %}
 
-{% if attribute(tags, 'contact:email') or tags.email %}
+{% set contacts = {
+  email: [ 'mailto:$1', '<i class="fa fa-envelope"></i>' ],
+  facebook: [ 'https://www.facebook.com/$1', '<i class="fa-brands fa-facebook"></i>' ],
+  instagram: [ 'https://www.instagram.com/$1', '<i class="fa-brands fa-instagram"></i>' ],
+  linkedin: [ 'https://www.linkedin.com/company/$1', '<i class="fa-brands fa-linkedin"></i>' ],
+  mastodon: [ '', '<i class="fa-brands fa-mastodon"></i>' ],
+  ok: [ 'https://ok.ru/$1', '<i class="fa-brands fa-odnoklassniki"></i>' ],
+  telegram: [ 'https://t.me/$1', '<i class="fa-brands fa-telegram"></i>' ],
+  threads: [ 'https://threads.com/$1', '<i class="fa-brands fa-threads"></i>' ],
+  tiktok: [ 'https://www.tiktok.com/@$1', '<i class="fa-brands fa-tiktok"></i>' ],
+  twitter: [ 'https://x.com/$1', '<i class="fa-brands fa-x-twitter"></i>' ],
+  whatsapp: [ 'https://wa.me/$1', '<i class="fa-brands fa-"></i>' ],
+  vk: [ 'https://vk.com/$1', '<i class="fa-brands fa-vk"></i>' ],
+  youtube: [ 'https://www.youtube.com/user/$1', '<i class="fa-brands fa-youtube"></i>' ],
+} %}
+{% set has_contact = false %}
+{% for k, url_pattern in contacts %}
+  {% if attribute(tags, k) or attribute(tags, 'contact:' ~ k) %}
+    {% set has_contact = true %}
+  {% endif %}
+{% endfor %}
+
+{% if has_contact %}
 <li class='hasSymbol'>
-  <i class="fa fa-user-circle" aria-hidden="true"></i>
+  <i class="fa fa-link" aria-hidden="true"></i>
   <span class='key'>{{ keyTrans('contact') }}:</span>
   <span class='value'>
+    {% for k, def in contacts %}
+      {% for v in attribute(tags, 'contact:' ~ k)|default(attribute(tags, k))|split(';') -%}
+        {% set url = v matches '/^[a-z0-9]+:/' ? v : (def[0]|replace({ '$1': v })) %}
 
-  {% if attribute(tags, 'contact:email') %}
-    {% for i, v in attribute(tags, 'contact:email')|split(';') -%}
-    {%- if i > 0 %}, {% endif %}
-    <a target='_blank' href='mailto:{{ v }}'>
-      <i class="fa fa-envelope" aria-hidden="true"></i>
-    </a>
+        {% if k == 'mastodon' and url == '' %}
+          {% if v|split('@')|length < 3 %}
+            {% set url = 'https://' ~ v|split('@')[1] ~ '/@' ~ v|split('@')[2] %}
+          {% else %}
+            {% set url = 'https://' ~ v|split('@')[2] ~ '/@' ~ v|split('@')[1] %}
+          {% endif %}
+        {% endif %}
+
+        <a target='_blank' title="{{ keyTrans('contact:' ~ k) }}" href="{{ url }}">{{ def[1]|raw }}</a>
+      {%- endfor %}
     {%- endfor %}
-  {% endif %}
-
-  {% if attribute(tags, 'email') %}
-    {% for i, v in tags.email|split(';') -%}
-    {%- if i > 0 %}, {% endif %}
-    <a target='_blank' href='mailto:{{ v }}'>
-      <i class="fa fa-envelope" aria-hidden="true"></i>
-    </a>
-    {%- endfor %}
-  {% endif %}
-
   </span>
 </li>
 {% endif %}
