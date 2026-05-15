@@ -45,7 +45,7 @@ feature:
          <span class='value'>
          {% for kv, k in diets %}
            {% set v = tags[k] %}
-           <span title='{{ k ~ '=' ~ v }}' style='white-space: nowrap; margin-right: 0.5em;'>{% if v == 'no' %}✘ {% elseif v == 'only' %}❗{% else %}✔{% endif %}{{ keyTrans(k) }}</span>
+           <span title='{{ k ~ '=' ~ v }}' style='white-space: nowrap; margin-right: 0.5em;'>{% if v == 'no' %}✘ {% elseif v == 'only' %}✔✔{% elseif v == 'limited' %}🗸{% else %}✔{% endif %}{{ keyTrans(k) }}</span>
          {% endfor %}
         </span></li>
       {% endif %}
