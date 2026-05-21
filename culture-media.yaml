@@ -48,6 +48,14 @@ feature:
 
     {% set def = const.categories[cat] %}
 
+    {% set typeDef = {} %}
+    {% for kv, d in const.types|reverse %}
+      {% set k = kv|split('=')[0] %}
+      {% set v = kv|split('=')[1] %}
+      {% if d.icon and v and attribute(tags, k) == v %}
+        {% set typeDef = d %}
+      {% endif %}
+    {% endfor %}
   exclude: |
     {% if filter.category == 'wikidata_no_image' %}
       {{ (not wikidata) or (wikidata.claims.P18|length != 0) }}
@@ -91,14 +99,7 @@ feature:
   listMarkerSymbol: "{{ markerCircle({ fillColor: def.color })|raw }}"
 
   markerSign: |
-    {% set icon = '' %}
-    {% for kv, d in const.types|reverse %}
-      {% set k = kv|split('=')[0] %}
-      {% set v = kv|split('=')[1] %}
-      {% if d.icon and v and attribute(tags, k) == v %}
-        {% set icon = d.icon %}
-      {% endif %}
-    {% endfor %}
+    {% set icon = typeDef ? typeDef.icon : '' %}
     <span style='color: white;'>{{ icon|raw }}</span>
 filter: 
   type: 
