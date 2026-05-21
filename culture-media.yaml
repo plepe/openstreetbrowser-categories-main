@@ -69,6 +69,57 @@ feature:
     <ul>
     <li>{{ str|default(def.text) }}</li>
 
+    {% if typeDef.expectSubject %}
+      <li>Subject:
+      {% if attribute(tags, 'subject:wikidata') %}
+        {% for i, wd in attribute(tags, 'subject:wikidata')|split(';') %}
+          {%- if i != 0 %},{% endif %}
+          {% if wd %}
+            {% set wde = wd|wikidataEntity %}
+            {{ wde ? (wde.labels[user.data_lang]|default(wde.labels[user.ui_lang])|default(wde.labels.en)).value : '?' }}
+            (<a target="_blank" href="https://wikidata.org/wiki/{{ wd }}">{{ wd }}</a>)
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        Tag <a href="https://wiki.openstreetmap.org/wiki/Key:subject:wikidata">'subject:wikidata'</a> might be missing.
+      {% endif %}
+      </li>
+    {% endif %}
+
+    {% if typeDef.expectSubject %}
+      <li>Subject: 
+      {% if attribute(tags, 'subject:wikidata') %}
+        {% for i, wd in attribute(tags, 'subject:wikidata')|split(';') %}
+          {%- if i != 0 %},{% endif %}
+          {% if wd %}
+            {% set wde = wd|wikidataEntity %}
+            {{ wde ? (wde.labels[user.data_lang]|default(wde.labels[user.ui_lang])|default(wde.labels.en)).value : '?' }}
+            (<a target="_blank" href="https://wikidata.org/wiki/{{ wd }}">{{ wd }}</a>)
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        Tag <a href="https://wiki.openstreetmap.org/wiki/Key:subject:wikidata">'subject:wikidata'</a> might be missing.
+      {% endif %}
+      </li>
+    {% endif %}
+
+    {% if typeDef.expectSubject %}
+      <li>Subject: 
+      {% if attribute(tags, 'subject:wikidata') %}
+        {% for i, wd in attribute(tags, 'subject:wikidata')|split(';') %}
+          {%- if i != 0 %},{% endif %}
+          {% if wd %}
+            {% set wde = wd|wikidataEntity %}
+            {{ wde ? (wde.labels[user.data_lang]|default(wde.labels[user.ui_lang])|default(wde.labels.en)).value : '?' }}
+            (<a target="_blank" href="https://wikidata.org/wiki/{{ wd }}">{{ wd }}</a>)
+          {% endif %}
+        {% endfor %}
+      {% else %}
+        Tag <a href="https://wiki.openstreetmap.org/wiki/Key:subject:wikidata">'subject:wikidata'</a> might be missing.
+      {% endif %}
+      </li>
+    {% endif %}
+
     </ul>
   style:
     color: |
@@ -146,28 +197,41 @@ const:
   types:
     tourism=artwork:
       icon: '<i class="fas fa-palette"></i>'
+      expectArtist: true
     tourism=attraction:
       icon: '<i class="fas fa-chess"></i>'
     historic=memorial:
       icon: '<i class="fas fa-monument"></i>'
+      expectSubject: true
+      expectArtist: true
     historic=monument:
       icon: '<i class="fas fa-monument"></i>'
+      expectSubject: true
+      expectArtist: true
     historic=wayside_cross:
       icon: '<i class="fas fa-cross"></i>'
+      expectArtist: true
     historic=wayside_shrine:
       icon: '<i class="fas fa-vihara"></i>'
+      expectArtist: true
     historic=building:
       icon: '<i class="fas fa-home"></i>'
+      expectArchitect: true
     amenity=fountain:
       icon: '<img data-src="temaki:fountain?stroke=white">'
+      expectArtist: true
+      expectArchitect: true
     amenity=arts_centre:
       icon: '<i class="fas fa-university"></i>'
     amenity=place_of_worship:
       icon: '<i class="fas fa-place-of-worship"></i>'
+      expectArchitect: true
     amenity=public_bookcase:
       icon: '<i class="fas fa-book"></i>'
+      expectArtist: true
     amenity=theatre:
       icon: '<i class="fas fa-theater-masks"></i>'
+      expectArchitect: true
     natural=tree:
       icon: '<i class="fas fa-tree"></i>'
     leisure=parklet:
