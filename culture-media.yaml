@@ -58,8 +58,10 @@ feature:
     {% endif %}
 
   body: |
-    {{ str|default(def.text) }}
+    <ul>
+    <li>{{ str|default(def.text) }}</li>
 
+    </ul>
   style:
     color: |
       {{ def.color }}
