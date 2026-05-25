@@ -48,11 +48,13 @@ feature:
 
     {% set def = const.categories[cat] %}
 
+    {% set type = null %}
     {% set typeDef = {} %}
     {% for kv, d in const.types|reverse %}
       {% set k = kv|split('=')[0] %}
       {% set v = kv|split('=')[1] %}
-      {% if d.icon and v and attribute(tags, k) == v %}
+      {% if attribute(tags, k) and (v == null or attribute(tags, k) == v) %}
+        {% set type = kv %}
         {% set typeDef = d %}
       {% endif %}
     {% endfor %}
@@ -269,6 +271,9 @@ const:
       icon: '<i class="fas fa-tree"></i>'
     leisure=parklet:
       icon: '<img data-src="temaki:tree_and_bench?stroke=white">'
+    building:
+      icon: '<i class="fas fa-home"></i>'
+      expectArchitect: true
     heritage:
     man_made:
     other:
