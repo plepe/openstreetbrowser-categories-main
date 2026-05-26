@@ -155,6 +155,40 @@ feature:
       </li>
     {% endif %}
 
+    {% if (tags.name and typeDef.expectNameEtymology) or attribute(tags, 'name:etymology') or attribute(tags, 'name:etymology:wikidata') %}
+      <li>{{ keyTrans('name:etymology') }}:
+      {% if attribute(tags, 'name:etymology:wikidata') %}
+        {% set names = attribute(tags, 'name:etymology')|split(';') %}
+        {% set wikidatas = attribute(tags, 'name:etymology:wikidata')|split(';') %}
+
+        {% for i in range(0, max(names|length, wikidatas|length) - 1) -%}
+          {%- if i != 0 %},{% endif %}
+          {% set wd = wikidatas[i] %}
+          {% if wd %}
+            {% set wde = wd|wikidataEntity %}
+            {{ wde ? (wde.labels[user.data_lang]|default(wde.labels[user.ui_lang])|default(wde.labels.en)).value : '?' }}
+            (<a target="_blank" href="https://wikidata.org/wiki/{{ wd }}">{{ wd }}</a>)
+          {%- else %}
+            {{ names[i] }} (no Wikidata)
+          {%- endif %}
+        {%- endfor %}
+
+        {% if names|length != wikidatas|length %}
+          <br>Tags 'name:etymology' and 'name:etymology:wikidata' have different number of entries.
+        {% endif %}
+
+      {% elseif attribute(tags, 'name:etymology') %}
+        {% set names = attribute(tags, 'name:etymology')|split(';') %}
+        {% for i, name in names %}
+          {%- if i != 0 %},{% endif %}
+          {{ name }} (no Wikidata)
+        {%- endfor %}
+      {% elseif tags.name %} {# only expect etymology, when named #}
+        Tag <a href="https://wiki.openstreetmap.org/wiki/Key:name:etymology:wikidata">'name:etymology:wikidata'</a> might be missing.
+      {% endif %}
+      </li>
+    {% endif %}
+
     </ul>
   style:
     color: |
@@ -252,6 +286,7 @@ const:
     historic=building:
       icon: '<i class="fas fa-home"></i>'
       expectArchitect: true
+      expectNameEtymology: true
     amenity=fountain:
       icon: '<img data-src="temaki:fountain?stroke=white">'
       expectArtist: true
@@ -274,6 +309,7 @@ const:
     building:
       icon: '<i class="fas fa-home"></i>'
       expectArchitect: true
+      expectNameEtymology: true
     heritage:
     man_made:
     other:
