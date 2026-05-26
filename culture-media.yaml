@@ -16,7 +16,7 @@ query:
     nwr[tourism~'^(.*;|)(attraction|artwork)(;.*|)$'];
     nwr[heritage];
     nwr[amenity~'^(.*;|)(fountain|arts_centre|place_of_worship|theatre|public_bookcase)(;.*|)$'];
-    nwr[leisure~'^(.*;|)(parklet)(;.*|)$'];
+    nwr[leisure~'^(.*;|)(park|parklet)(;.*|)$'];
     nwr[man_made~'^(.*;|)(windmill|watermill|bridge|cairn|cross|geoglyph|hongsalmun|iljumun|lighthouse|obelisk|observatory|offshore_platform|paifang|stupa|torii)(;.*|)$'];
     nwr[natural=tree][denotation~'^(natural_monument|landmark)$'];
     )
@@ -306,6 +306,9 @@ const:
       icon: '<i class="fas fa-tree"></i>'
     leisure=parklet:
       icon: '<img data-src="temaki:tree_and_bench?stroke=white">'
+    leisure=park:
+      icon: '<i class="fa-solid fa-tree-city"></i>'
+      expectNameEtymology: true
     building:
       icon: '<i class="fas fa-home"></i>'
       expectArchitect: true
