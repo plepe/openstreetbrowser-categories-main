@@ -69,10 +69,16 @@ feature:
 
   body: |
     <ul>
-    <li>{{ str|default(def.text) }}</li>
+    <li class='hasSymbol'>
+      <i class="fa fa-circle-question" aria-hidden="true"></i>
+      <span class='key'>{{ str|default(def.text) }}</span>
+    </li>
 
     {% if typeDef.expectSubject %}
-      <li>Subject:
+      <li class='hasSymbol'>
+      <i class="fa fa-person" aria-hidden="true"></i>
+      <span class='key'>{{ keyTrans('subject') }}:</span>
+      <span class='value'>
       {% if attribute(tags, 'subject:wikidata') %}
         {% for i, wd in attribute(tags, 'subject:wikidata')|split(';') %}
           {%- if i != 0 %},{% endif %}
@@ -85,11 +91,15 @@ feature:
       {% else %}
         Tag <a href="https://wiki.openstreetmap.org/wiki/Key:subject:wikidata">'subject:wikidata'</a> might be missing.
       {% endif %}
+      </span>
       </li>
     {% endif %}
 
     {% if typeDef.expectArtist %}
-      <li>Artist:
+      <li class='hasSymbol'>
+      <i class="fa fa-palette" aria-hidden="true"></i>
+      <span class='key'>{{ keyTrans('artist') }}:</span>
+      <span class='value'>
       {% if attribute(tags, 'artist:wikidata') %}
         {% set names = attribute(tags, 'artist_name')|split(';') %}
         {% set wikidatas = attribute(tags, 'artist:wikidata')|split(';') %}
@@ -118,11 +128,15 @@ feature:
       {% else %}
         Tag <a href="https://wiki.openstreetmap.org/wiki/Key:artist:wikidata">'artist:wikidata'</a> might be missing.
       {% endif %}
+      </span>
       </li>
     {% endif %}
 
     {% if typeDef.expectArchitect or tags.architect or attribute(tags, 'architect:wikidata') %}
-      <li>Architect:
+      <li class='hasSymbol'>
+      <i class="fa fa-compass-drafting" aria-hidden="true"></i>
+      <span class='key'>{{ keyTrans('architect') }}:</span>
+      <span class='value'>
       {% if attribute(tags, 'architect:wikidata') %}
         {% set names = attribute(tags, 'architect')|split(';') %}
         {% set wikidatas = attribute(tags, 'architect:wikidata')|split(';') %}
@@ -152,11 +166,15 @@ feature:
       {% else %}
         Tag <a href="https://wiki.openstreetmap.org/wiki/Key:architect:wikidata">'architect:wikidata'</a> might be missing.
       {% endif %}
+      </span>
       </li>
     {% endif %}
 
     {% if (tags.name and typeDef.expectNameEtymology) or attribute(tags, 'name:etymology') or attribute(tags, 'name:etymology:wikidata') %}
-      <li>{{ keyTrans('name:etymology') }}:
+      <li class='hasSymbol'>
+      <i class="fa fa-book" aria-hidden="true"></i>
+      <span class='key'>{{ keyTrans('name:etymology') }}:</span>
+      <span class='value'>
       {% if attribute(tags, 'name:etymology:wikidata') %}
         {% set names = attribute(tags, 'name:etymology')|split(';') %}
         {% set wikidatas = attribute(tags, 'name:etymology:wikidata')|split(';') %}
@@ -186,6 +204,7 @@ feature:
       {% elseif tags.name %} {# only expect etymology, when named #}
         Tag <a href="https://wiki.openstreetmap.org/wiki/Key:name:etymology:wikidata">'name:etymology:wikidata'</a> might be missing.
       {% endif %}
+      </span>
       </li>
     {% endif %}
 
