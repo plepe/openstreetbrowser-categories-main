@@ -208,6 +208,25 @@ feature:
       </li>
     {% endif %}
 
+    {% if tags.wikidata or tags.wikimedia_commons or tags.image %}
+    <li class='hasSymbol'>
+      <i class="fa fa-link" aria-hidden="true"></i>
+      <span class='key'>Links:</span>
+      <span class='value'>
+      <ul>
+        {% if tags.wikidata %}
+          <li><a target="_blank" href="https://wikidata.org/wiki/{{ tags.wikidata }}">Wikidata</a></li>
+        {% endif %}
+        {% if tags.wikimedia_commons %}
+          <li><a target="_blank" href="{{ tags.wikimedia_commons matches '/:\/\//' ? tags.wikimedia_commons : 'https://commons.wikimedia.org/wiki/' ~ tags.wikimedia_commons }}">Wikimedia Commons</a></li>
+        {% endif %}
+        {% if tags.image %}
+          <li><a target="_blank" href="{{ tags.image matches '/:\/\//' ? tags.image : 'https://commons.wikimedia.org/wiki/' ~ tags.image }}">Image</a></li>
+        {% endif %}
+      </ul>
+    </li>
+    {% endif %}
+
     </ul>
   style:
     color: |
