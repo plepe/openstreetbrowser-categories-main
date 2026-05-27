@@ -28,6 +28,8 @@ query:
     (
     nwr[amenity~'^(.*; *|)(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant|canteen|nightclub)(| *;.*)$'];
     nwr[cafe];
+    nwr[shop^bakery][indoor_seating][indoor_seating!=no];
+    nwr[shop^bakery][outdoor_seating][outdoor_seating!=no];
     );
 feature:
   description: |
@@ -36,6 +38,8 @@ feature:
       {% if tags.shop %}({{ tagTransList('shop', tags.shop) }})
       {% elseif tags.amenity %}({{ tagTransList('amenity', tags.amenity) }})
       {% endif %}
+    {% elseif 'bakery' in tags.shop|split(';') %}
+      {{ tagTransList('shop', tags.shop) }}
     {% else %}
     {{ tagTransList('amenity', tags.amenity) }}
     {% endif %}
@@ -64,6 +68,8 @@ feature:
   markerSign: |
     {% if tags.cafe %}
     {{ const.type.cafe.icon|raw }}
+    {% elseif 'bakery' in tags.shop|split(';') %}
+    {{ const.type.bakery.icon|raw }}
     {% else %}
     {% set firstType = tags.amenity|split(';')[0] %}
     {{ (const.type[firstType]|default(const.type.restaurant)).icon|raw }}
@@ -273,3 +279,6 @@ const:
       icon: null
     canteen:
       icon: null
+    bakery:
+      icon: '&#127838;'
+      query: "nwr[shop=bakery]"
