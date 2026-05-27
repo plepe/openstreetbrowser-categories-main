@@ -52,7 +52,7 @@ feature:
     </ul>
   markerSign: |
     {% set firstType = tags.amenity|split(';')[0] %}
-    {{ const.type[firstType]|default(const.type.restaurant)|raw }}
+    {{ (const.type[firstType]|default(const.type.restaurant)).icon|raw }}
 filter:
   amenity:
     name: |
@@ -237,13 +237,23 @@ const:
     diet:carnivore: {}
     diet:wholegrain: {}
   type:
-    restaurant: '&#127860;'
-    bar: '&#127864;'
-    biergarten: '&#127867;'
-    cafe: '&#9749;'
-    fast_food: '&#127828;'
-    ice_cream: '&#127848;'
-    pub: '&#127866;'
-    nightclub: '<i class="fa-regular fa-moon"></i>'
-    food_court: null
-    canteen: null
+    restaurant:
+      icon: '&#127860;'
+    bar:
+      icon: '&#127864;'
+    biergarten:
+      icon: '&#127867;'
+    cafe:
+      icon: '&#9749;'
+    fast_food:
+      icon: '&#127828;'
+    ice_cream:
+      icon: '&#127848;'
+    pub:
+      icon: '&#127866;'
+    nightclub:
+      icon: '<i class="fa-regular fa-moon"></i>'
+    food_court:
+      icon: null
+    canteen:
+      icon: null
