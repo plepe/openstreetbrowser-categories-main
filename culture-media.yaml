@@ -16,7 +16,7 @@ query:
     nwr[tourism~'^(.*;|)(attraction|artwork)(;.*|)$'];
     nwr[heritage];
     nwr[amenity~'^(.*;|)(fountain|arts_centre|place_of_worship|theatre|public_bookcase)(;.*|)$'];
-    nwr[leisure~'^(.*;|)(parklet)(;.*|)$'];
+    nwr[leisure~'^(.*;|)(park|parklet)(;.*|)$'];
     nwr[man_made~'^(.*;|)(windmill|watermill|bridge|cairn|cross|geoglyph|hongsalmun|iljumun|lighthouse|obelisk|observatory|offshore_platform|paifang|stupa|torii)(;.*|)$'];
     nwr[natural=tree][denotation~'^(natural_monument|landmark)$'];
     )
@@ -48,6 +48,16 @@ feature:
 
     {% set def = const.categories[cat] %}
 
+    {% set type = null %}
+    {% set typeDef = {} %}
+    {% for kv, d in const.types|reverse %}
+      {% set k = kv|split('=')[0] %}
+      {% set v = kv|split('=')[1] %}
+      {% if attribute(tags, k) and (v == null or attribute(tags, k) == v) %}
+        {% set type = kv %}
+        {% set typeDef = d %}
+      {% endif %}
+    {% endfor %}
   exclude: |
     {% if filter.category == 'wikidata_no_image' %}
       {{ (not wikidata) or (wikidata.claims.P18|length != 0) }}
@@ -58,8 +68,72 @@ feature:
     {% endif %}
 
   body: |
-    {{ str|default(def.text) }}
+    <ul>
+    <li class='hasSymbol'>
+      <i class="fa fa-circle-question" aria-hidden="true" style="color: {{ def.color }};"></i>
+      <span class='key'>{{ str|default(def.text) }}</span>
+    </li>
 
+    {% for r, rdef in const.references %}
+      {% if (rdef.expectWhenTag and attribute(tags, rdef.expectWhenTag) and typeDef[rdef.expect]) or (not rdef.expectWhenTag and typeDef[rdef.expect]) or (rdef.nameTag and attribute(tags, rdef.nameTag)) or attribute(tags, rdef.wikidataTag) %}
+        <li class='hasSymbol'>
+        <i class="fa fa-{{ rdef.icon }}" aria-hidden="true"></i>
+        <span class='key'>{{ keyTrans(r) }}:</span>
+        <span class='value'>
+        {% if attribute(tags, rdef.wikidataTag) %}
+          {% set names = attribute(tags, rdef.nameTag)|split(';') %}
+          {% set wikidatas = attribute(tags, rdef.wikidataTag)|split(';') %}
+
+          {% for i in range(0, max(names|length, wikidatas|length) - 1) -%}
+            {%- if i != 0 %},{% endif %}
+            {% set wd = wikidatas[i] %}
+            {% if wd %}
+              {% set wde = wd|wikidataEntity %}
+              {{ wde ? (wde.labels[user.data_lang]|default(wde.labels[user.ui_lang])|default(wde.labels.en)).value|default('no label') : (names[i]|default('?')) }}
+              (<a target="_blank" href="https://wikidata.org/wiki/{{ wd }}">{{ wd }}</a>)
+            {%- else %}
+              {{ names[i] }} (no Wikidata)
+            {%- endif %}
+          {%- endfor %}
+
+          {% if rdef.nameTag and names|length != wikidatas|length %}
+            <br>Tags '{{ rdef.nameTag }}' and '{{ rdef.wikidataTag }}' have different number of entries.
+          {% endif %}
+
+        {% elseif attribute(tags, rdef.nameTag) %}
+          {% set names = attribute(tags, rdef.nameTag)|split(';') %}
+          {% for i, name in names %}
+            {%- if i != 0 %},{% endif %}
+            {{ name }} (no Wikidata)
+          {%- endfor %}
+        {% elseif (rdef.expectWhenTag and attribute(tags, rdef.expectWhenTag)) or (not rdef.expectWhenTag) %} {# only expect tag, when expectWhenTag set #}
+          Tag <a href="https://wiki.openstreetmap.org/wiki/Key:{{ rdef.wikidataTag }}">'{{ rdef.wikidataTag }}'</a> might be missing.
+        {% endif %}
+        </span>
+        </li>
+      {% endif %}
+    {% endfor %}
+
+    {% if tags.wikidata or tags.wikimedia_commons or tags.image %}
+    <li class='hasSymbol'>
+      <i class="fa fa-link" aria-hidden="true"></i>
+      <span class='key'>Links:</span>
+      <span class='value'>
+      <ul>
+        {% if tags.wikidata %}
+          <li><a target="_blank" href="https://wikidata.org/wiki/{{ tags.wikidata }}">Wikidata</a></li>
+        {% endif %}
+        {% if tags.wikimedia_commons %}
+          <li><a target="_blank" href="{{ tags.wikimedia_commons matches '/:\/\//' ? tags.wikimedia_commons : 'https://commons.wikimedia.org/wiki/' ~ tags.wikimedia_commons }}">Wikimedia Commons</a></li>
+        {% endif %}
+        {% if tags.image %}
+          <li><a target="_blank" href="{{ tags.image matches '/:\/\//' ? tags.image : 'https://commons.wikimedia.org/wiki/' ~ tags.image }}">Image</a></li>
+        {% endif %}
+      </ul>
+    </li>
+    {% endif %}
+
+    </ul>
   style:
     color: |
       {{ def.color }}
@@ -89,14 +163,7 @@ feature:
   listMarkerSymbol: "{{ markerCircle({ fillColor: def.color })|raw }}"
 
   markerSign: |
-    {% set icon = '' %}
-    {% for kv, d in const.types|reverse %}
-      {% set k = kv|split('=')[0] %}
-      {% set v = kv|split('=')[1] %}
-      {% if d.icon and v and attribute(tags, k) == v %}
-        {% set icon = d.icon %}
-      {% endif %}
-    {% endfor %}
+    {% set icon = typeDef ? typeDef.icon : '' %}
     <span style='color: white;'>{{ icon|raw }}</span>
 filter: 
   type: 
@@ -143,32 +210,55 @@ const:
   types:
     tourism=artwork:
       icon: '<i class="fas fa-palette"></i>'
+      expectArtist: true
     tourism=attraction:
       icon: '<i class="fas fa-chess"></i>'
     historic=memorial:
       icon: '<i class="fas fa-monument"></i>'
+      expectSubject: true
+      expectArtist: true
     historic=monument:
       icon: '<i class="fas fa-monument"></i>'
+      expectSubject: true
+      expectArtist: true
     historic=wayside_cross:
       icon: '<i class="fas fa-cross"></i>'
+      expectArtist: true
     historic=wayside_shrine:
       icon: '<i class="fas fa-vihara"></i>'
+      expectArtist: true
     historic=building:
       icon: '<i class="fas fa-home"></i>'
+      expectArchitect: true
+      expectNameEtymology: true
     amenity=fountain:
       icon: '<img data-src="temaki:fountain?stroke=white">'
+      expectArtist: true
+      expectArchitect: true
     amenity=arts_centre:
       icon: '<i class="fas fa-university"></i>'
     amenity=place_of_worship:
       icon: '<i class="fas fa-place-of-worship"></i>'
+      expectNameEtymology: true
+      expectArchitect: true
     amenity=public_bookcase:
       icon: '<i class="fas fa-book"></i>'
+      expectArtist: true
     amenity=theatre:
       icon: '<i class="fas fa-theater-masks"></i>'
+      expectArchitect: true
     natural=tree:
       icon: '<i class="fas fa-tree"></i>'
+      expectSpecies: true
     leisure=parklet:
       icon: '<img data-src="temaki:tree_and_bench?stroke=white">'
+    leisure=park:
+      icon: '<i class="fa-solid fa-tree-city"></i>'
+      expectNameEtymology: true
+    building:
+      icon: '<i class="fas fa-home"></i>'
+      expectArchitect: true
+      expectNameEtymology: true
     heritage:
     man_made:
     other:
@@ -193,3 +283,29 @@ const:
     wikipedia_no_wikidata:
       color: '#af00ff'
       text: wikipedia tag found without corresponding wikidata tag
+  references:
+    subject:
+      expect: expectSubject
+      icon: person
+      wikidataTag: 'subject:wikidata'
+    artist:
+      expect: expectArtist
+      icon: palette
+      nameTag: artist_name
+      wikidataTag: 'artist:wikidata'
+    architect:
+      expect: expectArchitect
+      icon: compass-drafting
+      nameTag: architect
+      wikidataTag: 'architect:wikidata'
+    'name:etymology':
+      expect: expectNameEtymology
+      expectWhenTag: name
+      icon: book
+      nameTag: 'name:etymology'
+      wikidataTag: 'name:etymology:wikidata'
+    species:
+      expect: expectSpecies
+      icon: tree
+      nameTag: species
+      wikidataTag: 'species:wikidata'
