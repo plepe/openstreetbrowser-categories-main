@@ -239,6 +239,7 @@ const:
       icon: '<i class="fas fa-university"></i>'
     amenity=place_of_worship:
       icon: '<i class="fas fa-place-of-worship"></i>'
+      expectNameEtymology: true
       expectArchitect: true
     amenity=public_bookcase:
       icon: '<i class="fas fa-book"></i>'
@@ -248,6 +249,7 @@ const:
       expectArchitect: true
     natural=tree:
       icon: '<i class="fas fa-tree"></i>'
+      expectSpecies: true
     leisure=parklet:
       icon: '<img data-src="temaki:tree_and_bench?stroke=white">'
     leisure=park:
@@ -302,3 +304,8 @@ const:
       icon: book
       nameTag: 'name:etymology'
       wikidataTag: 'name:etymology:wikidata'
+    species:
+      expect: expectSpecies
+      icon: tree
+      nameTag: species
+      wikidataTag: 'species:wikidata'
