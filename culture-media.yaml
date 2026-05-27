@@ -74,139 +74,45 @@ feature:
       <span class='key'>{{ str|default(def.text) }}</span>
     </li>
 
-    {% if typeDef.expectSubject %}
-      <li class='hasSymbol'>
-      <i class="fa fa-person" aria-hidden="true"></i>
-      <span class='key'>{{ keyTrans('subject') }}:</span>
-      <span class='value'>
-      {% if attribute(tags, 'subject:wikidata') %}
-        {% for i, wd in attribute(tags, 'subject:wikidata')|split(';') %}
-          {%- if i != 0 %},{% endif %}
-          {% if wd %}
-            {% set wde = wd|wikidataEntity %}
-            {{ wde ? (wde.labels[user.data_lang]|default(wde.labels[user.ui_lang])|default(wde.labels.en)).value|default('no label') : (names[i]|default('?')) }}
-            (<a target="_blank" href="https://wikidata.org/wiki/{{ wd }}">{{ wd }}</a>)
+    {% for r, rdef in const.references %}
+      {% if (rdef.expectWhenTag and attribute(tags, rdef.expectWhenTag) and typeDef[rdef.expect]) or (not rdef.expectWhenTag and typeDef[rdef.expect]) or (rdef.nameTag and attribute(tags, rdef.nameTag)) or attribute(tags, rdef.wikidataTag) %}
+        <li class='hasSymbol'>
+        <i class="fa fa-{{ rdef.icon }}" aria-hidden="true"></i>
+        <span class='key'>{{ keyTrans(r) }}:</span>
+        <span class='value'>
+        {% if attribute(tags, rdef.wikidataTag) %}
+          {% set names = attribute(tags, rdef.nameTag)|split(';') %}
+          {% set wikidatas = attribute(tags, rdef.wikidataTag)|split(';') %}
+
+          {% for i in range(0, max(names|length, wikidatas|length) - 1) -%}
+            {%- if i != 0 %},{% endif %}
+            {% set wd = wikidatas[i] %}
+            {% if wd %}
+              {% set wde = wd|wikidataEntity %}
+              {{ wde ? (wde.labels[user.data_lang]|default(wde.labels[user.ui_lang])|default(wde.labels.en)).value|default('no label') : (names[i]|default('?')) }}
+              (<a target="_blank" href="https://wikidata.org/wiki/{{ wd }}">{{ wd }}</a>)
+            {%- else %}
+              {{ names[i] }} (no Wikidata)
+            {%- endif %}
+          {%- endfor %}
+
+          {% if rdef.nameTag and names|length != wikidatas|length %}
+            <br>Tags '{{ rdef.nameTag }}' and '{{ rdef.wikidataTag }}' have different number of entries.
           {% endif %}
-        {% endfor %}
-      {% else %}
-        Tag <a href="https://wiki.openstreetmap.org/wiki/Key:subject:wikidata">'subject:wikidata'</a> might be missing.
-      {% endif %}
-      </span>
-      </li>
-    {% endif %}
 
-    {% if typeDef.expectArtist %}
-      <li class='hasSymbol'>
-      <i class="fa fa-palette" aria-hidden="true"></i>
-      <span class='key'>{{ keyTrans('artist') }}:</span>
-      <span class='value'>
-      {% if attribute(tags, 'artist:wikidata') %}
-        {% set names = attribute(tags, 'artist_name')|split(';') %}
-        {% set wikidatas = attribute(tags, 'artist:wikidata')|split(';') %}
-
-        {% for i in range(0, max(names|length, wikidatas|length) - 1) -%}
-          {%- if i != 0 %},{% endif %}
-          {% set wd = wikidatas[i] %}
-          {% if wd %}
-            {% set wde = wd|wikidataEntity %}
-            {{ wde ? (wde.labels[user.data_lang]|default(wde.labels[user.ui_lang])|default(wde.labels.en)).value|default('no label') : (names[i]|default('?')) }}
-            (<a target="_blank" href="https://wikidata.org/wiki/{{ wd }}">{{ wd }}</a>)
-          {%- else %}
-            {{ names[i] }} (no Wikidata)
-          {%- endif %}
-        {%- endfor %}
-
-        {% if names|length != wikidatas|length %}
-          <br>Tags 'artist_name' and 'artist:wikidata' have different number of entries.
+        {% elseif attribute(tags, rdef.nameTag) %}
+          {% set names = attribute(tags, rdef.nameTag)|split(';') %}
+          {% for i, name in names %}
+            {%- if i != 0 %},{% endif %}
+            {{ name }} (no Wikidata)
+          {%- endfor %}
+        {% elseif (rdef.expectWhenTag and attribute(tags, rdef.expectWhenTag)) or (not rdef.expectWhenTag) %} {# only expect tag, when expectWhenTag set #}
+          Tag <a href="https://wiki.openstreetmap.org/wiki/Key:{{ rdef.wikidataTag }}">'{{ rdef.wikidataTag }}'</a> might be missing.
         {% endif %}
-      {% elseif tags.artist_name %}
-        {% set names = attribute(tags, 'artist_name')|split(';') %}
-        {% for i, name in names %}
-          {%- if i != 0 %},{% endif %}
-          {{ name }} (no Wikidata)
-        {%- endfor %}
-      {% else %}
-        Tag <a href="https://wiki.openstreetmap.org/wiki/Key:artist:wikidata">'artist:wikidata'</a> might be missing.
+        </span>
+        </li>
       {% endif %}
-      </span>
-      </li>
-    {% endif %}
-
-    {% if typeDef.expectArchitect or tags.architect or attribute(tags, 'architect:wikidata') %}
-      <li class='hasSymbol'>
-      <i class="fa fa-compass-drafting" aria-hidden="true"></i>
-      <span class='key'>{{ keyTrans('architect') }}:</span>
-      <span class='value'>
-      {% if attribute(tags, 'architect:wikidata') %}
-        {% set names = attribute(tags, 'architect')|split(';') %}
-        {% set wikidatas = attribute(tags, 'architect:wikidata')|split(';') %}
-
-        {% for i in range(0, max(names|length, wikidatas|length) - 1) -%}
-          {%- if i != 0 %},{% endif %}
-          {% set wd = wikidatas[i] %}
-          {% if wd %}
-            {% set wde = wd|wikidataEntity %}
-            {{ wde ? (wde.labels[user.data_lang]|default(wde.labels[user.ui_lang])|default(wde.labels.en)).value|default('no label') : (names[i]|default('?')) }}
-            (<a target="_blank" href="https://wikidata.org/wiki/{{ wd }}">{{ wd }}</a>)
-          {%- else %}
-            {{ names[i] }} (no Wikidata)
-          {%- endif %}
-        {%- endfor %}
-
-        {% if names|length != wikidatas|length %}
-          <br>Tags 'architect' and 'architect:wikidata' have different number of entries.
-        {% endif %}
-
-      {% elseif tags.architect %}
-        {% set names = attribute(tags, 'architect')|split(';') %}
-        {% for i, name in names %}
-          {%- if i != 0 %},{% endif %}
-          {{ name }} (no Wikidata)
-        {%- endfor %}
-      {% else %}
-        Tag <a href="https://wiki.openstreetmap.org/wiki/Key:architect:wikidata">'architect:wikidata'</a> might be missing.
-      {% endif %}
-      </span>
-      </li>
-    {% endif %}
-
-    {% if (tags.name and typeDef.expectNameEtymology) or attribute(tags, 'name:etymology') or attribute(tags, 'name:etymology:wikidata') %}
-      <li class='hasSymbol'>
-      <i class="fa fa-book" aria-hidden="true"></i>
-      <span class='key'>{{ keyTrans('name:etymology') }}:</span>
-      <span class='value'>
-      {% if attribute(tags, 'name:etymology:wikidata') %}
-        {% set names = attribute(tags, 'name:etymology')|split(';') %}
-        {% set wikidatas = attribute(tags, 'name:etymology:wikidata')|split(';') %}
-
-        {% for i in range(0, max(names|length, wikidatas|length) - 1) -%}
-          {%- if i != 0 %},{% endif %}
-          {% set wd = wikidatas[i] %}
-          {% if wd %}
-            {% set wde = wd|wikidataEntity %}
-            {{ wde ? (wde.labels[user.data_lang]|default(wde.labels[user.ui_lang])|default(wde.labels.en)).value|default('no label') : (names[i]|default('?')) }}
-            (<a target="_blank" href="https://wikidata.org/wiki/{{ wd }}">{{ wd }}</a>)
-          {%- else %}
-            {{ names[i] }} (no Wikidata)
-          {%- endif %}
-        {%- endfor %}
-
-        {% if names|length != wikidatas|length %}
-          <br>Tags 'name:etymology' and 'name:etymology:wikidata' have different number of entries.
-        {% endif %}
-
-      {% elseif attribute(tags, 'name:etymology') %}
-        {% set names = attribute(tags, 'name:etymology')|split(';') %}
-        {% for i, name in names %}
-          {%- if i != 0 %},{% endif %}
-          {{ name }} (no Wikidata)
-        {%- endfor %}
-      {% elseif tags.name %} {# only expect etymology, when named #}
-        Tag <a href="https://wiki.openstreetmap.org/wiki/Key:name:etymology:wikidata">'name:etymology:wikidata'</a> might be missing.
-      {% endif %}
-      </span>
-      </li>
-    {% endif %}
+    {% endfor %}
 
     {% if tags.wikidata or tags.wikimedia_commons or tags.image %}
     <li class='hasSymbol'>
@@ -375,3 +281,24 @@ const:
     wikipedia_no_wikidata:
       color: '#af00ff'
       text: wikipedia tag found without corresponding wikidata tag
+  references:
+    subject:
+      expect: expectSubject
+      icon: person
+      wikidataTag: 'subject:wikidata'
+    artist:
+      expect: expectArtist
+      icon: palette
+      nameTag: artist_name
+      wikidataTag: 'artist:wikidata'
+    architect:
+      expect: expectArchitect
+      icon: compass-drafting
+      nameTag: architect
+      wikidataTag: 'architect:wikidata'
+    'name:etymology':
+      expect: expectNameEtymology
+      expectWhenTag: name
+      icon: book
+      nameTag: 'name:etymology'
+      wikidataTag: 'name:etymology:wikidata'
