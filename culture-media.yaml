@@ -70,7 +70,7 @@ feature:
   body: |
     <ul>
     <li class='hasSymbol'>
-      <i class="fa fa-circle-question" aria-hidden="true"></i>
+      <i class="fa fa-circle-question" aria-hidden="true" style="color: {{ def.color }};"></i>
       <span class='key'>{{ str|default(def.text) }}</span>
     </li>
 
