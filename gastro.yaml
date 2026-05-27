@@ -24,10 +24,21 @@ name:
   uk: Гастрономія
 type: overpass
 query:
-  15: nwr[amenity~'^(.*; *|)(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant|canteen|nightclub)(| *;.*)$'];
+  15: |-
+    (
+    nwr[amenity~'^(.*; *|)(bar|biergarten|cafe|fast_food|food_court|ice_cream|pub|restaurant|canteen|nightclub)(| *;.*)$'];
+    nwr[cafe];
+    );
 feature:
   description: |
+    {% if tags.cafe %}
+      {{ tagTrans('amenity', 'cafe') }}
+      {% if tags.shop %}({{ tagTransList('shop', tags.shop) }})
+      {% elseif tags.amenity %}({{ tagTransList('amenity', tags.amenity) }})
+      {% endif %}
+    {% else %}
     {{ tagTransList('amenity', tags.amenity) }}
+    {% endif %}
   details: |
     {{ tagTransList('cuisine', tags.cuisine) }}
   body: |
@@ -51,8 +62,12 @@ feature:
       {% endif %}
     </ul>
   markerSign: |
+    {% if tags.cafe %}
+    {{ const.type.cafe.icon|raw }}
+    {% else %}
     {% set firstType = tags.amenity|split(';')[0] %}
     {{ (const.type[firstType]|default(const.type.restaurant)).icon|raw }}
+    {% endif %}
 filter:
   amenity:
     name: |
@@ -60,8 +75,8 @@ filter:
     type: select
     show_default: true
     values: |
-      {% for k, icon in const.type %}
-      <option value='{{ k }}' query='nwr[amenity^"{{ k }}"]'>{{ tagTrans('amenity', k) }}</option>
+      {% for k, typedef in const.type %}
+      <option value='{{ k }}' query='{{ typedef.query|default("nwr[amenity^\"" ~ k ~ "\"]") }}'>{{ tagTrans('amenity', k) }}</option>
       {% endfor %}
     valueName: |
       {{ tagTrans('amenity', value) }}
@@ -245,6 +260,7 @@ const:
       icon: '&#127867;'
     cafe:
       icon: '&#9749;'
+      query: "(nwr[amenity^cafe];nwr[cafe];)"
     fast_food:
       icon: '&#127828;'
     ice_cream:
