@@ -107,7 +107,7 @@ feature:
             {{ name }} (no Wikidata)
           {%- endfor %}
         {% elseif (rdef.expectWhenTag and attribute(tags, rdef.expectWhenTag)) or (not rdef.expectWhenTag) %} {# only expect tag, when expectWhenTag set #}
-          Tag <a href="https://wiki.openstreetmap.org/wiki/Key:{{ rdef.wikidataTag }}">'{{ rdef.wikidataTag }}'</a> might be missing.
+          {{ repoTrans('tag_maybe_missing', '<a target="_blank" href="https://wiki.openstreetmap.org/wiki/Key:%1$s">"%1$s"</a>'|format(rdef.wikidataTag)|raw)|raw }}
         {% endif %}
         </span>
         </li>
