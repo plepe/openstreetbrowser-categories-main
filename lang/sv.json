@@ -115,5 +115,8 @@
     "category:buildings-figure-ground": "Figur-markdiagram",
     "category:graves": "Gravar",
     "category:ice_skating": "Skridskoåkning",
-    "category:playground-details": "Lekplatser"
+    "category:playground-details": "Lekplatser",
+    "tag_maybe_missing": "Taggen %s kan saknas.",
+    "tags_different_count": "Taggarna %s har olika antal poster.",
+    "tag_no_wikidata": "ingen Wikidata"
 }
