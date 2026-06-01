@@ -114,6 +114,8 @@
     "xmas:outdated-warning": "Feature has not been updated for the current season! Please check and set the tag 'xmas:lastcheck' to the current date.",
     "deprecated": "Tag %s is deprecated. See <a target='_blank' href=\"%s\">here</a> for details.",
     "tag_maybe_missing": "Tag %s might be missing.",
+    "tags_different_count": "Tags %s have different number of entries.",
+    "tag_no_wikidata": "no Wikidata",
     "category:graves": "Graves",
     "category:ice_skating": "Ice Skating",
     "category:playground-details": "Playgrounds"

@@ -92,19 +92,23 @@ feature:
               {{ wde ? (wde.labels[user.data_lang]|default(wde.labels[user.ui_lang])|default(wde.labels.en)).value|default('no label') : (names[i]|default('?')) }}
               (<a target="_blank" href="https://wikidata.org/wiki/{{ wd }}">{{ wd }}</a>)
             {%- else %}
-              {{ names[i] }} (no Wikidata)
+              {{ names[i] }} ({{ repoTrans('tag_no_wikidata') }})
             {%- endif %}
           {%- endfor %}
 
           {% if rdef.nameTag and names|length != wikidatas|length %}
-            <br>Tags '{{ rdef.nameTag }}' and '{{ rdef.wikidataTag }}' have different number of entries.
+            {% set list = [
+              '<a target="_blank" href="https://wiki.openstreetmap.org/wiki/Key:%1$s">"%1$s"</a>'|format(rdef.nameTag),
+              '<a target="_blank" href="https://wiki.openstreetmap.org/wiki/Key:%1$s">"%1$s"</a>'|format(rdef.wikidataTag)
+            ] %}
+            <br>{{ repoTrans('tags_different_count', list|enumerate)|raw }}
           {% endif %}
 
         {% elseif attribute(tags, rdef.nameTag) %}
           {% set names = attribute(tags, rdef.nameTag)|split(';') %}
           {% for i, name in names %}
             {%- if i != 0 %},{% endif %}
-            {{ name }} (no Wikidata)
+            {{ name }} ({{ repoTrans('tag_no_wikidata') }})
           {%- endfor %}
         {% elseif (rdef.expectWhenTag and attribute(tags, rdef.expectWhenTag)) or (not rdef.expectWhenTag) %} {# only expect tag, when expectWhenTag set #}
           {% set list = [] %}
