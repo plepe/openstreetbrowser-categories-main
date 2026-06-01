@@ -115,5 +115,6 @@
     "category:cycleway_width": "Larghezza della pista ciclabile",
     "category:ice_skating": "Pattinaggio sul ghiaccio",
     "category:playground-details": "Parco giochi",
-    "category:graves": "Tombe"
+    "category:graves": "Tombe",
+    "tag_maybe_missing": "Il tag %s potrebbe essere mancante."
 }
