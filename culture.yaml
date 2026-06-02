@@ -54,6 +54,10 @@ feature:
       {% if tags.display == 'unorthodox' or attribute(tags, 'display:unorthodox') %}{{ tagTrans('amenity', 'clock display=unorthodox') }}{% endif %}
     {% else %}
       {{ tagTransList(key, value) }}
+
+      {% if tags.tourism == 'artwork' and tags.artwork_type %}
+        ({{ tagTransList('artwork_type', tags.artwork_type) }})
+      {% endif %}
     {% endif %}
 
     {% if tags.tourism matches "/^(.*;|)museum(;.*|)$/" and tags.museum %}

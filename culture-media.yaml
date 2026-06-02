@@ -156,6 +156,9 @@ feature:
       {% endif %}
     {% elseif tags.tourism %}
       {{ tagTransList('tourism', tags.tourism) }}
+      {% if tags.tourism == 'artwork' and tags.artwork_type %}
+        ({{ tagTransList('artwork_type', tags.artwork_type) }})
+      {% endif %}
     {% elseif tags.amenity %}
       {{ tagTransList('amenity', tags.amenity) }}
     {% elseif tags.building %}
