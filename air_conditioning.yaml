@@ -1,0 +1,69 @@
+query: nwr[air_conditioning]
+feature:
+  pre: |
+    {% set color = const.values.other %}
+    {% if tags.air_conditioning == 'yes' %}
+      {% set color = const.values.yes %}
+    {% elseif tags.air_conditioning == 'no' %}
+      {% set color = const.values.no %}
+    {% endif %}
+
+    {% set item_k = null %}
+    {% set item_v = null %}
+    {% for k, list in const.types %}
+      {% if not item_k and attribute(tags, k) %}
+        {% set item_k = k %}
+        {% set item_v = attribute(tags, k) %}
+      {% endif %}
+    {% endfor %}
+  description: |
+    {{ tagTransList(item_k, item_v) }}
+  body: |
+    {{ item_v }}
+  style:
+    color: |
+      {{ color }}
+  markerSign: |
+    {{ const.types[item_k][item_v]|default(const.types[item_k].default)|raw }}
+  markerSymbol: |
+    {{ markerPointer({ fillColor: color }) }}
+  listMarkerSymbol: |
+    {{ markerCircle({ fillColor: color }) }}
+info: |
+  <table>
+  {% for value, color in const.values %}
+    <tr>
+      <td>{{ markerCircle({ fillColor: color })|raw }}</td>
+      <td>
+      {% if value == 'yes' %}{{ keyTrans('air_conditioning') }}
+      {% elseif value == 'no' %}{{ tagTrans('air_conditioning', 'no') }}
+      {% else %}{{ trans('other') }}
+      {% endif %}
+      </td>
+    </tr>
+  {% endfor %}
+  </table>
+const:
+  values:
+    'yes': cyan
+    'no': red
+    other: black
+  types:
+    amenity:
+      restaurant: '<i class="fa-solid fa-utensils"></i>'
+      fast_food: '<i class="fa-solid fa-burger"></i>'
+      ice_cream: '<i class="fa-solid fa-ice-cream"></i>'
+      pub: '<i class="fa-solid fa-beer-mug-empty"></i>'
+      bar: '<i class="fa-solid fa-martini-glass"></i>'
+      cafe: '<i class="fa-solid fa-mug-saucer"></i>'
+      library: '<i class="fa-solid fa-book"></i>'
+      place_of_worship: '<i class="fa-solid fa-place-of-worship"></i>'
+    shop:
+      default: '<i class="fa-solid fa-bag-shopping"></i>'
+    office:
+      default: '<i class="fa-solid fa-building"></i>'
+    leisure:
+    tourism:
+      hotel: '<i class="fa-solid fa-bed"></i>'
+      hostel: '<i class="fa-solid fa-bed"></i>'
+      motel: '<i class="fa-solid fa-bed"></i>'
