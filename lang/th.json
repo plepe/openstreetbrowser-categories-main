@@ -111,5 +111,12 @@
     "category:agriculture": "เกษตรกรรม",
     "category:education": "การบริการด้านการศึกษา",
     "category:culture_religion": "วัฒนธรรมและศาสนา",
-    "category:car_furniture": "เฟอร์นิเจอร์ริมถนน"
+    "category:car_furniture": "เฟอร์นิเจอร์ริมถนน",
+    "category:groceries": "ร้านขายของชำ",
+    "tag_maybe_missing": "แท็ก %s อาจขาดหายไป",
+    "tags_different_count": "แท็ก %s มีจำนวนรายการต่างกัน",
+    "tag_no_wikidata": "ไม่มี Wikidata",
+    "category:graves": "สุสาน",
+    "category:ice_skating": "สเกตน้ำแข็ง",
+    "category:playground-details": "สนามเด็กเล่น"
 }
