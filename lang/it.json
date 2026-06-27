@@ -118,5 +118,6 @@
     "category:graves": "Tombe",
     "tag_maybe_missing": "Il tag %s potrebbe essere mancante.",
     "tags_different_count": "I tag %s hanno un numero differente di voci.",
-    "tag_no_wikidata": "nessun Wikidata"
+    "tag_no_wikidata": "nessun Wikidata",
+    "category:air_conditioning": "Aria condizionata"
 }
