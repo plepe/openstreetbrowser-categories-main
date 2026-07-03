@@ -118,5 +118,6 @@
     "category:playground-details": "Lekplatser",
     "tag_maybe_missing": "Taggen %s kan saknas.",
     "tags_different_count": "Taggarna %s har olika antal poster.",
-    "tag_no_wikidata": "ingen Wikidata"
+    "tag_no_wikidata": "ingen Wikidata",
+    "category:air_conditioning": "Luftkonditionering"
 }
