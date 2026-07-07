@@ -118,5 +118,6 @@
     "tags_different_count": "У тегов %s имеется разное количество значений.",
     "tag_no_wikidata": "нет данных Wikidata",
     "category:graves": "Могилы",
-    "category:playground-details": "Игровые площадки"
+    "category:playground-details": "Игровые площадки",
+    "category:air_conditioning": "Кондиционирование"
 }
