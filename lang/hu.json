@@ -115,5 +115,9 @@
     "category:groceries": "Élelmiszer",
     "category:ice_skating": "Korcsolyázás",
     "category:graves": "Sírok",
-    "category:playground-details": "Játszóterek"
+    "category:playground-details": "Játszóterek",
+    "category:air_conditioning": "Klimatizált helyiség",
+    "tag_maybe_missing": "Lehet, hogy hiányzik a(z) %s címke.",
+    "tags_different_count": "A következő címkéknek különböző számú bejegyzést tartalmaznak: %s.",
+    "tag_no_wikidata": "nincs Wikidata"
 }
