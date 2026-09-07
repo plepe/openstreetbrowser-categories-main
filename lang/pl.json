@@ -110,5 +110,12 @@
     "xmas:outdated-warning": "Funkcja nie została zaktualizowana w bieżącym sezonie! Sprawdź i ustaw znacznik „xmas:lastcheck” na bieżącą datę.",
     "deprecated": "Znacznik %s jest przestarzały. Więcej szczegółów znajdziesz <a target='_blank' href=\"%s\">tutaj</a>.",
     "category:groceries": "Sklepy spożywcze",
-    "category:ice_skating": "Łyżwiarstwo"
+    "category:ice_skating": "Łyżwiarstwo",
+    "category:air_conditioning": "Klimatyzacja",
+    "category:cycleway_types": "Rodzaje dróg rowerowych",
+    "category:cycleway_width": "Szerokość drogi rowerowej",
+    "category:etymology": "Etymologia",
+    "tag_no_wikidata": "brak danych Wikidata",
+    "category:graves": "Groby",
+    "category:playground-details": "Place zabaw"
 }
