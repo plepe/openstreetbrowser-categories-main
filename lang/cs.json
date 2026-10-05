@@ -115,5 +115,9 @@
     "category:groceries": "Potraviny",
     "category:ice_skating": "Bruslení",
     "category:graves": "Hroby",
-    "category:playground-details": "Dětské hřiště"
+    "category:playground-details": "Dětské hřiště",
+    "category:air_conditioning": "Klimatizace",
+    "tag_maybe_missing": "Značka %s může být chybějící.",
+    "tags_different_count": "Tagy %s mají různé množství položek.",
+    "tag_no_wikidata": "bez Wikidata"
 }
