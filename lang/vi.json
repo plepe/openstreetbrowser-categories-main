@@ -64,5 +64,10 @@
     "category:cycle_directions": "Phương hướng",
     "category:cycle_routes": "Tuyến đường đạp xe",
     "category:education": "Dịch vụ giáo dục",
-    "category:emergency": "Dịch vụ Khẩn cấp"
+    "category:emergency": "Dịch vụ Khẩn cấp",
+    "category:natural": "Cấu trúc Tự nhiên",
+    "tag_no_wikidata": "không có Wikidata",
+    "category:graves": "Mộ",
+    "category:ice_skating": "Trượt băng",
+    "category:playground-details": "Khu vui chơi"
 }
